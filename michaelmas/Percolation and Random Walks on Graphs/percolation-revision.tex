@@ -1,0 +1,419 @@
+\documentclass[10pt,a4paper]{report}
+
+
+\usepackage{amsmath}
+\usepackage[utf8]{inputenc}
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{amssymb}
+\usepackage{calrsfs}
+\usepackage[left=2cm,right=2cm,top=2cm,bottom=2cm]{geometry}
+\usepackage[mathscr]{euscript}
+
+%%%%%%%%%letter above arrows
+\usepackage{mathtools}
+%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+%%%for drawing commutative diagrams.%%%%%%
+\usepackage{tikz-cd}  
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%for changing margin
+\def\changemargin#1#2{\list{}{\rightmargin#2\leftmargin#1}\item[]}
+\let\endchangemargin=\endlist 
+
+\newenvironment{proof}
+{\begin{changemargin}{1cm}{0.5cm} 
+	}%your text here
+	{\end{changemargin}
+}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{document}
+\newcommand{\thm}{\textbf{Theorem)}}
+\newcommand{\thmnum}[1]{\textbf{Theorem #1)}}
+\newcommand{\defi}{\textbf{Definition)}}
+\newcommand{\definum}[1]{\textbf{Definition #1)}}
+\newcommand{\lem}{\textbf{Lemma)}}
+\newcommand{\lemnum}[1]{\textbf{Lemma #1)}}
+\newcommand{\prop}{\textbf{Proposition)}}
+\newcommand{\propnum}[1]{\textbf{Proposition #1)}}
+\newcommand{\cor}{\textbf{Corollary)}}
+\newcommand{\cornum}[1]{\textbf{Corollary #1)}}
+\newcommand{\pf}{\textbf{proof) }}
+
+
+\newcommand{\lap}{\triangle} %%Laplacian
+\newcommand{\s}{\vspace{10pt}}
+\newcommand{\bull}{$\bullet$}
+\newcommand{\sta}{$\star$}
+\newcommand{\reals}{\mathbb{R}}
+
+\newcommand{\eop}{\hfill  \textsl{(End of proof)} $\square$} %end of proof
+
+\newcommand{\intN}{\mathbb{Z}_N}
+\newcommand{\norms}[2]{\parallel #1 \parallel_{#2}}
+\newcommand{\avg}{\mathbb{E}}
+\newcommand{\prob}{\mathbb{P}}
+\newcommand{\borel}{\mathscr{B}}
+\newcommand{\boxx}{\mathscr{B}}
+
+\setlength\parindent{0pt}
+\noindent
+
+\chapter*{Percolation and Random Walks on Graphs-revision note}
+\s
+
+\section*{1. Percolation}
+
+\subsection*{1.1. Definition of the model}
+
+\defi Bond/site Percolation on a graph $G=(V,E)$ and parameter $p\in [0,1]$.
+
+-What is the probability space and the $\sigma$-algebra? What is the probability measure?
+
+-denote the state by random variable $\eta_p \in \{0,1\}^E$.
+\s
+
+\defi $x \leftrightarrow y$, $\mathscr{C}(x)$
+\s
+
+\definum{1.1} Coupling of two probability measures $\mu$ and $\nu$.
+\s
+
+\subsection*{1.2. Coupling of percolation processes}
+
+\defi Percolation modelled via uniform random variables. 
+\s
+
+\lemnum{1.2.} The probability $\theta(p) = \prob_p(|\mathscr{C}(0)|=\infty)$ is an increasing function of $p$.
+
+\subsection*{1.3. Phase transition}
+
+\defi $p_c(d)$
+\s
+
+\thmnum{1.4.} For all $d\geq 2$ we have $p_c(d) \in (0,1)$.
+
+-uses $\Sigma_n$, the number of open self-avoiding walks of length $n$ and $\sigma_n$, the number of self-avoiding walks of length $n$.
+
+-come back to proof after \textbf{Definition 1.11.} Note that, the number of dual circuits of length $n$ that surrounds 0 is at most $n4^n$ using the following argument - a closed circuit surrounding 0 should pass at least one point among $\{(1,0),\cdots,(n,0) \}$ so choose this as a start point, then there are at most $4^n$ ways to proceed from this point, so the number is bounded by $n4^n$.
+\s
+
+\textbf{1.3.1. Self-avoiding walks}
+\s
+
+\lemnum{1.5.} Let $\sigma_n$ be the number of self-avoiding paths of length $n$> Then for all $m,n$ we have
+\begin{align*}
+\sigma_{n+m} \leq \sigma_n \sigma_m
+\end{align*}
+\s
+
+\cornum{1.6.} There is a constant $\lambda$ so that
+\begin{align*}
+\lim_{n\rightarrow \infty} \frac{\log \sigma_n}{n} = \lambda
+\end{align*}
+\s
+
+-\textbf{Remark:} the corollary tells us that $\sigma_n = e^{n\lambda (1+ o(1))}$. Define $\kappa = e^{\lambda}$.
+\s
+
+Improved versions of the corollary includes:
+\thmnum{1.9.}(Hammersley and Welsh) For all $d$ the number of self-avoiding walks $\sigma_n$ satisfies
+\begin{align*}
+\sigma_n \leq \exp(c_d \sqrt{n}) (\kappa_d)^n
+\end{align*}
+where $c_d$ is a positive constant.
+\s
+
+\thmnum{1.10.}(Hutchcroft) For all $d$ we have
+\begin{align*}
+\sigma_n \leq \exp(o(\sqrt{n})) \kappa^n
+\end{align*}
+
+-We do not prove 1.9. and 1.10.
+\s
+
+\textbf{1.3.2. Existence and uniqueness of the infinite cluster}
+\s
+
+\definum{1.11.} The dual of a planar graph $G$.
+
+-Remark : The $\mathbb{Z}^2$ lattice is isomorphic to its dual, i.e. has duality property.
+
+-We may prove \textbf{Theorem 1.4.} using duality of $\mathbb{Z}^2$ lattice.
+\s
+
+\lemnum{1.13.} Let $A_{\infty}$ be the event that there exists an infinite cluster. Then we have the following dichotomy:
+\begin{itemize}
+\item[(a)] If $\theta(p)=0$, then $\prob_p(A_{\infty}) =0$.
+\item[(b)] If $\theta(p)>0$, then $\prob_p(A_{\infty}) =1$.
+\end{itemize}
+\s
+
+\thmnum{1.14.} Let $N$ be the number of infinite clusters. For all $p > p_c$ we have that
+\begin{align*}
+\prob_{p}(N=1) =1
+\end{align*}
+
+-Refers to the fact that $N$ is translational invariant, hence therefore is a.s. a constant.
+
+(From Exercise 4. - proof : Let $X$ be a random variable that is translational invariant. Let $\Omega_x =\{\omega \in \Omega : X(\omega) =x \}$ and that $p_y = \prob(\Omega_y) >0$ for some $y$. As $X$ is translational invariant, one has $\Omega_y = T_a(\Omega_y)$ for each $a\in \mathbb{Z}^2$. !!!! I don't have any idea.
+
+It is sufficient to show that translation map acts as an ergodic map on the lattice
+)
+
+-proving that the number of clusters is not $\infty$ is difficult. Once assuming this, use the above fact to complete proof.(the remaining part is still hard)
+
+-Why do we have $\#\{$vertices of degree $\geq 3\} \leq \#$leaves? This is because we may make injection from the set $\{$vertices of degree $\geq 3\}$ to the set of leaves by modifying the paths appropriately.
+\s
+
+\subsection*{1.4. Correlation inequalities}
+
+Let $G=(V,E)$ be a graph, $\Omega =\{0,1\}^E$ be endowed with the $\sigma$-algebra $\mathscr{F}$ generated by the cylinder sets and with the usual probability measure with parameter $p\in [0,1]$.
+\s
+
+\definum{1.16.} For configurations $\omega, \omega' \in \Omega$, $\omega' \geq \omega$.
+
+-this defines a partial order on $\Omega$.
+
+-increasing/decreasing random variable $X$/event $A$.
+\s
+
+\textbf{Example)} The event $\{ |\mathscr{C(0)}| = \infty  \}$ is increasing.
+\s
+
+\thmnum{1.18.} If $N$ is an increasing random variable and $p_1\leq p_2$< then
+\begin{align*}
+\avg_{p_1}[N] \leq \avg_{p_2}[N]
+\end{align*}
+Similarly if $A$ is an increasing event, then\\
+\begin{align*}
+\prob_{p_1}(A) \leq \prob_{p_2}(A)
+\end{align*}
+
+-proved by coupling
+\s
+
+\thmnum{1.19}(FKG inequality) Let $X$ and $Y$ be two increasing variable on $(\Omega, \mathscr{F})$ such that $\avg_p[X^2]<\infty$ and $\avg_p[Y^2]<\infty$. Then
+\begin{align*}
+\avg_{p}[XY] \geq \avg_p [X] \avg_p [Y]
+\end{align*}
+
+-Another way of writing this is
+\begin{align*}
+\prob_p(A|B) \geq \prob_p(A)
+\end{align*}
+-The theorem tells us that whenever two random variables are increasing, then they are positively correlated.
+\s
+
+\textbf{Example}:
+\begin{itemize}
+\item conditioning on $x\leftrightarrow y$ increases the probability of having $u\leftrightarrow v$ for any $x,y,u,v$. 
+
+\item Let $G$ be a graph and for every vertex $x$ we define
+\begin{align*}
+p_c(x) = \sum \{p\in[0,1] : \prob_p (|\mathscr{C}(x)|=\infty )=0 \}
+\end{align*}
+Then we get $p_c(x) =p_c(y)$ for all $x,y$.(draw contradiction by assuming that for some $p$, we have $\prob_p (|\mathscr{C}(x)|=\infty )=0$ but $\prob_p (|\mathscr{C}(y)|=\infty )>0$)
+\end{itemize} 
+\s
+
+\definum{1.24} $[\omega]_S$ for $\omega \in \Omega = \{0,1\}^E$ and $S\subset E$.
+
+-The disjoint occurrence $A\circ B$ for events $A,B$.
+\s
+
+\thmnum{1.25}(BK inequality) Let $F$ be a \emph{finite set} and $\Omega = \{0,1\}^F$. For all increasing events $A,B$, we have 
+\begin{align*}
+\prob_p (A \circ B) \leq \prob_p(A) \prob_p(B)
+\end{align*}
+\s
+
+\thmnum{1.26}(Reimer's inequality) Let $F$ b e a finite set and $\Omega = \{0,1\}^F$. For all $A$ and $B$ we have(without assuming that they are increasing)
+\begin{align*}
+\prob_p (A \circ B) \leq \prob_p(A) \prob_p(B)
+\end{align*}
+-A generalized version of BK inequality, not proving
+\s
+
+\thmnum{1.27} Suppose that $\chi(p) = \avg_p [|\mathscr{C}(0)|]<\infty$. Then there exists a positive constant $c$ so that for all $n\geq 1$ we have
+\begin{align*}
+\prob_p(0\leftrightarrow \partial \mathscr{B}_n) \leq e^{-cn}
+\end{align*}
+where $\mathscr{B}_n = \{-n,\cdots,n]^d$ is the box with diameter $2n+1$.
+
+-uses BK inequality for proof.
+
+\subsection*{1.5. Russo's formula}
+
+\definum{1.28} A pivotal edge $e$ for $A$ an event and $\omega$ a percolation configuration.
+
+-The event $\{e$ is pivotal for $A \}$ is equal to $\{\omega : e$ is pivotal for $(A,\omega) \}$.
+\s
+
+\textbf{Example} Let $A$ be the event that $0$ is in an infinite cluster. Then an edge $e$ is pivotal for $A$ if the removal of $e$ leads to a finite component containing the origin.
+\s
+
+\thmnum{1.30} (Russo's formula) Let $A$ be an increasing event that depends only on the states of a finite number of edges. Then
+\begin{align*}
+\frac{d}{dp} \prob_p(A) = \avg_p[N(A)]
+\end{align*}
+where $N(A)$ is the number of pivotal edges for $A$.
+
+\s
+
+\textbf{Remark :} If $A$ is an increasing event depending on an infinite number of edges, then
+\begin{align*}
+\liminf_{\delta \rightarrow 0} \frac{\prob_{p+\delta}(A) - \prob_p(A)}{\delta} \geq \avg_p[N(A)]
+\end{align*}
+
+-\textbf{Why do we need equation (1.8)?}
+\s
+
+\cornum{1.32} Let $A$ be an increasing event depending on the states of $m$ edges and $p\leq q$ be in [0,1]. Then
+\begin{align*}
+\prob_q(A) \leq (\frac{q}{p})^m \prob_p(A)
+\end{align*}
+
+\subsection*{1.6. Subcritical phase}
+
+In this section we focus on $p<p_c$. In this case we know that there is no infinite cluster a.s. However, oone can ask what is the size of the cluster of 0. How do probabilities like $\prob_p(|\mathscr{C}(0)| \geq n)$ decay in $n$?
+
+Write $\mathscr{B}_n = [-n,n]^d \cap \mathbb{Z}^d$.
+\s
+
+\thmnum{1.33} Let $d\geq 2$. Then the following are true.
+\begin{itemize}
+\item[(a)] If $p<p_c$, then there exists a constant $c$ so that for all $n\geq 1$, we have
+\begin{align*}
+\prob_p(0\leftrightarrow \partial \mathscr{B}_n) \leq e^{-cn}
+\end{align*}
+
+\item[(b)] If $p>p_c$< then
+\begin{align*}
+\theta(p) = \prob_b(0\leftrightarrow \infty) \geq \frac{p-p_c}{p(1-p_c)}
+\end{align*}
+\end{itemize}
+\begin{proof}
+\pf Define
+\begin{align*}
+\varphi_p(S) = p\sum_{(x,y)\in \partial S} \prob_p(0 \xleftrightarrow[]{S} x)
+\end{align*}
+and
+\begin{align*}
+\tilde{p}_c = \sup\{p\in [0,1]:\exists \text{a finite set }S\text{ s.t. } 0\in S\text{ with }\varphi_p(S)<1 \}
+\end{align*}
+We prove the theorem with $p_c$ replaced by $\tilde{p}_c$, and from the results of the theorem, it follows that $p_c = \tilde{p}_c$. 
+\s
+
+\begin{itemize}
+\item[(a)] Let $\mathscr{C} = \{ x\in S : 0 \xleftrightarrow[]{S} x \}$. Then
+\begin{align*}
+\prob_p(0\leftrightarrow \partial \mathscr{B}_{kL}) &= \prob_p(\cup_{(x,y)\in \partial S} \cup_{A \subset S} 0 \xleftrightarrow[]{S} x, (x,y)\text{ is open, }\mathscr{C}=A,y \xleftrightarrow[]{A^c} \partial \mathscr{B}_{kL} ) \\
+&\leq \sum_{(x,y)\in \partial S} \sum_{A \subset S} \prob_p(0 \xleftrightarrow[]{S} x, (x,y)\text{ is open, }\mathscr{C}=A,y \xleftrightarrow[]{A^c} \partial \mathscr{B}_{kL}) \\
+&= p \sum_{(x,y)\in \partial S} \sum_{A \subset S} \prob_p(0 \xleftrightarrow[]{S} x, \mathscr{C}=A) \prob_p(y \xleftrightarrow[]{A^c} \partial \mathscr{B}_{kL}) \\
+&\leq p \sum_{(x,y)\in \partial S} \sum_{A \subset S} \prob_p(0 \xleftrightarrow[]{S} x, \mathscr{C}=A) \prob_p(0 \leftrightarrow \partial \mathscr{B}_{(k-1)L}) \\
+&= p \sum_{(x,y)\in \partial S}  \prob_p(0 \xleftrightarrow[]{S} x) \prob_p(0 \leftrightarrow \partial \mathscr{B}_{(k-1)L}) \\
+&= \varphi_p(S) \prob_p(0\leftrightarrow \partial \mathscr{B}_{(k-1)L})
+\end{align*}
+Iterating this inequality, we have
+\begin{align*}
+\prob_p(0\leftrightarrow \partial \mathscr{B}_{kL})\leq (\varphi_p(S))^{k-1}
+\end{align*}
+and hence has exponential decay.
+
+\item[(b)] By Russo's formula, we have
+\begin{align*}
+\frac{d}{dp}\prob_p(0\leftrightarrow \partial \mathscr{B}_n) &= \sum_{e\in \mathscr{B}_n}\prob_p(e \text{ is pivotal for } \{0\leftrightarrow \partial \mathscr{B}_n \}) \\
+&= \frac{1}{1-p}\sum_{e\in \boxx)n} \prob_p (e \text{ is pivotal, }0\nleftrightarrow \partial \boxx_n)
+\end{align*}
+Define
+\begin{align*}
+\mathscr{S} = \{ x\in \boxx_n : x\nleftrightarrow \partial \boxx_n \}
+\end{align*}
+Then
+\begin{align*}
+\frac{d}{dp}\prob_b(0\leftrightarrow \partial \boxx_n) &= \frac{1}{1-p} \sum_{e\in \boxx_n} \sum_{A \subset \boxx_n,0\in A} \prob_{p}(e \text{ is pivotal, }\mathscr{S}=A) \\
+&= \frac{1}{1-p} \sum_{A\subset \boxx_n,0 \in A} \sum_{(x,y)\in \partial A}  \prob_p(0\xleftrightarrow{A} x,\mathscr{S}=A) \\
+&= \frac{1}{1-p} \sum_{A\subset \boxx_n,0 \in A} \sum_{(x,y)\in \partial A} \prob_p(0\xleftrightarrow{A} x)\prob_p(\mathscr{S}=A)  \\
+&= \frac{1}{p(1-p)} \sum_{A\subset \boxx_n,0\in A} \varphi_p(A) \prob_p(\mathscr{S}=A) \\
+& \geq \frac{1}{p(1-p)} \inf_{S\subset \boxx_n,0\in S} \varphi_p(S) \prob_p(0\nleftrightarrow \partial \boxx_n)
+\end{align*}
+and therefore
+\begin{align*}
+\frac{d}{dp}\prob_p(0\leftrightarrow \partial \mathscr{B}_n) \geq \frac{1}{p(1-p)} \inf_{S\subset \mathscr{B}_n,0\in S} \varphi_p(S)(1-\prob_p(0\leftrightarrow \partial \mathscr{B}_n))
+\end{align*}
+For $p>\tilde{p}_c$, integrating from $\tilde{p}_c$ to $p$ gives
+\begin{align*}
+1-\prob_p(0\leftrightarrow \partial \boxx_n) \leq -\frac{1}{p(1-p)}(1-\prob_{\tilde{p}_c}(0\leftrightarrow \partial \boxx_n)) \exp(-\frac{p-\tilde{p}_c}{p(1-p)}) \leq \exp(-\frac{p-\tilde{p}_c}{p(1-p)})
+\end{align*}
+and we have the desired inequality as $n\rightarrow \infty$.
+\end{itemize}
+\end{proof}
+\s
+
+\bull \textbf{Remark :} We have assumed that $p<p_c$ but not $\theta(p) = 0$. For $d=2$, at the critical probability $1/2$, we do not have this exponential decay.
+\s
+
+\bull \textbf{Remark :} The probability $\prob_p(0\leftrightarrow \partial \boxx_n)$ is at least $p^n$, and hence we cannot hope for a faster convergence than exponential decay.
+\s
+
+\bull \textbf{Remark :} The theorem tells us that
+\begin{align*}
+\prob_p(|\mathscr{C}(0)|\geq n) \leq \prob_p(0\leftrightarrow \partial \boxx_{n^{1/d}}) \leq \exp(-cn^{1/d})
+\end{align*}
+However, this bound can be replace by $\exp(-cn)$.
+
+\subsection*{1.7. Supercritical phase in $\mathbb{Z}^2$}
+
+\thmnum{1.37.} For bond percolation on $\mathbb{Z}^2$ the probability $p_c =1/2$ and $\theta(1/2)=0$.
+
+\subsection*{1.8. Russo Seymour Welsh theorem}
+
+Let $\boxx(kl,l) = [-l,(2k-1)l]\times [-l,l]$ and $\boxx(l)=\boxx(l,l)$. Denote $\text{LR}(kl,l)$ the event that there exists a left to right crossing of $\boxx(kl,l)$ and write $\text{LR}(l)$ for a crossing of $\boxx(l)$. Also, let $A(l) = \boxx(3l)\backslash \boxx(l)$. Write $O(l)$ for the event that there is an open circuit in $A(l)$ containing 0 in its interior.
+\s
+
+\thmnum{1.38}(RSW) Suppose that $\prob_p(\text{LR}(l))=\alpha$. Then
+\begin{align*}
+\prob_p(O(l)) \geq (\alpha(1-\sqrt{1-\alpha})^4)^{12}
+\end{align*}
+\s
+
+\lemnum{1.40.} Suppose that $\prob_p(\text{LR}(l)) = \alpha$. Then
+\begin{align*}
+\prob_p(\text{LR}(\frac{3}{2}l,l)) \geq (1-\sqrt{1-\alpha})^3
+\end{align*}
+\s
+
+\lemnum{1.41.} We have
+\begin{align*}
+\prob_p(\text{LR}(2l,l)) &\geq \prob_p(\text{LR}(l))\Big( \prob_p(\text{LR}(3l/2,l))  \Big)^2 \\
+\prob_p(\text{LR}(3l,l)) &\geq \prob_p(\text{LR}(l))\big( \prob_p(\text{LR}(2l,l)) \big)^2\\
+\prob_p(O(l)) \geq (\prob_p(\text{LR}(3l,l)))^4
+\end{align*}
+
+\subsection*{1.9 Power law inequalities at the critical point}
+
+\thmnum{1.42.} There exist finite positive constants $\alpha_1,A_1,\alpha_2,A_2,\alpha_3,A_3,\alpha_4,A_4$ so that for all $n\geq 1$ we have
+\begin{align*}
+\frac{1}{2\sqrt{2}} \leq & \prob_{1/2}(0\leftrightarrow \partial \boxx_n) \leq A_1 n^{-\alpha_1}\\
+\frac{1}{2\sqrt{2}} \leq & \prob_{1/2}(|\mathscr{C}(0)|\geq n) \leq A_2 n^{-\alpha_2}\\
+& \avg[|\mathscr{C}(0)|^{\alpha_3} ] <\infty
+\end{align*}
+Moreover, for all $p>1/2$ we have
+\begin{align*}
+\theta(p) \leq A_4 (p-\frac{1}{2})^{\alpha_4}
+\end{align*}
+\s
+
+\lemnum{1.44.} Let $O(l)$ be as in the previous section. Then there exists a positive constant $\zeta$ such that for all $l\geq 1$ we have
+\begin{align*}
+\prob_{1/2}(O(l))\geq \zeta
+\end{align*}
+
+\subsection*{1.10. Grimmett Marstrand theorem}
+
+\subsection*{1.11. Conformal invariance of crossing probabilities $p=p_c$}
+\end{document}

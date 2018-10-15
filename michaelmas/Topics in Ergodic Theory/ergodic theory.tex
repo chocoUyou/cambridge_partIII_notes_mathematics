@@ -1,0 +1,754 @@
+\documentclass[10pt,a4paper]{report}
+
+
+\usepackage{amsmath}
+\usepackage[utf8]{inputenc}
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{amssymb}
+\usepackage{calrsfs}
+\usepackage[left=2cm,right=2cm,top=2cm,bottom=2cm]{geometry}
+\usepackage[mathscr]{euscript}
+
+%%%for drawing commutative diagrams.%%%%%%
+\usepackage{tikz-cd}  
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%for changing margin
+\def\changemargin#1#2{\list{}{\rightmargin#2\leftmargin#1}\item[]}
+\let\endchangemargin=\endlist 
+
+\newenvironment{proof}
+{\begin{changemargin}{1cm}{0.5cm} 
+	}%your text here
+	{\end{changemargin}
+}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{document}
+\newcommand{\thm}{\textbf{Theorem) }}
+\newcommand{\thmnum}[1]{\textbf{Theorem #1) }}
+\newcommand{\defi}{\textbf{Definition) }}
+\newcommand{\lem}{\textbf{Lemma) }}
+\newcommand{\lemnum}[1]{\textbf{Lemma #1) }}
+\newcommand{\prop}{\textbf{Proposition) }}
+\newcommand{\pf}{\textbf{proof) }}
+
+
+\newcommand{\lap}{\triangle} %%Laplacian
+\newcommand{\s}{\vspace{10pt}}
+\newcommand{\bull}{$\bullet$}
+\newcommand{\sta}{$\star$}
+\newcommand{\reals}{\mathbb{R}}
+
+\newcommand{\eop}{\hfill  \textsl{(End of proof)} $\square$} %end of proof
+
+\newcommand{\intN}{\mathbb{Z}_N}
+\newcommand{\norms}[2]{\parallel #1 \parallel_{#2}}
+\newcommand{\abs}[1]{\big| #1 \big|}
+\newcommand{\avg}{\mathbb{E}}
+\newcommand{\borel}{\mathscr{B}}
+\newcommand{\setlimsup}[2]{\bigcap_{#1=1}^{\infty}\bigcup_{#2=#1}^{\infty}}
+
+\newcommand{\newday}{======================================================================}
+
+\setlength\parindent{0pt}
+\noindent
+
+\chapter*{Topics in Ergodic Theory}
+\s
+
+=====================================================================================
+(4th October 2018, Thursday)
+\s
+
+\textbf{Measure preserving system} : $(X, \borel, \mu, T)$, where $X$ is a set, $\borel$ is a $\sigma$-algebra, $\mu$ is a probability measure with $\mu(A) \geq 0$ $\forall A \in \borel$, $\mu(X)=1$, and $T$ is a measure-preserving transformation. That is, $T: X\rightarrow X$ is measurable s.t. $\mu(T^{-1}(A)) = \mu(A)$ $\forall A \in \borel$.
+\s
+
+If $Y$ is a random element of $X$ with distribution $\mu$, then $T(Y)$ also has distribution $\mu$.
+\s
+
+\textbf{Example)}
+
+\begin{itemize}
+\item (Circle rotation) Let $X = \reals/ \mathbb{Z}$, $\borel$ be the Borel sets, $\mu$ be the Lebesgue measure and $T = R_{\alpha}$ where $R_{\alpha}(x) = x+\alpha$, and $\alpha \in \reals/\mathbb{Z}$ is parameter.
+
+\item (Times 2 map) $X = \reals/\mathbb{Z}$, $\borel$ be the Borel sets, $\mu$ is a Lebesgue measure, $T = T_2$ where $T_2(x) = 2x$.
+
+\begin{itemize}
+\item[ ] \textsl{(proof that $T_2$ is measure preserving)} First prove for intervals : let $I = (a,b)$. Then $\mu(I) = b-a$ and $\mu(T_2^{-1} I)= \mu((\frac{a}{2},\frac{b}{2}) \cup (\frac{a+1}{2},\frac{b+1}{2})) = b/2 - a/2 + b/2 - a/2 = b-a$.(Just use Dynkin's lemma to conclude... Or,)
+
+Now let $U \subset \reals / \mathbb{Z}$ be open. Then $U = \sqcup_{i} I_i$ is a disjoint union of intervals, so
+\begin{align*}
+\mu(T^{-1}U) = \mu(\sqcup_j T^{-1}I_j) = \sum_j \mu(T^{-1} I_j) = \sum_{j} \mu(I_j) = \mu(U)
+\end{align*}
+
+Let $K \subset \reals/\mathbb{Z}$ be a compact set. Then
+\begin{equation*}
+\mu(T^{-1}K) = 1- \mu((T^{-1}K)^c) = 1- \mu(T^{-1}(K^c)) = 1- \mu(K^c) = \mu(K)
+\end{equation*}
+
+Let $A$ be an arbitrary Borel set and let $\epsilon >0$. Then $\exists U$ open and $\exists K$ compact such that $K\subset A \subset A$ and $\mu(U \backslash K) < \epsilon$, so
+\begin{align*}
+\mu(K) = \mu(T^{-1} K) \leq \mu(T^{-1} A) \leq \mu(T^{-1} U) = \mu(U)
+\end{align*}
+
+We also have $\mu(K) \leq \mu(A) \mu(U)$. Since $\mu(U) - \mu(K) < \epsilon$, $|\mu(A) - \mu(T^{-1}A) | < \epsilon$. Since $\epsilon$ was arbitrary, so $\mu(A) = \mu(T^{-1} A)$.
+
+\eop
+\end{itemize}
+\end{itemize}
+\s
+
+The \textbf{orbit} $x \in X$ is the sequence $x, Tx, T^2 x, \cdots$.
+\s
+
+Some Questions:
+
+\begin{itemize}
+\item Let $A \in \borel$ and $ x\in A$. Doest the orbit of $x$ visit $A$ infinitely often?
+
+\item What is the proportion of the times $n$ such that $T^n x$ is in $A$? 
+
+\item (Mixing property) What is $\mu(\{x \in A : T^nx \in A\})$ if $n$ is large
+\end{itemize}
+\s
+
+\textbf{Example)} Let $A = [0,\frac{1}{4}) \subset \reals/\mathbb{Z}$ and $T = T_2$. Then $T^n x \in A \Leftrightarrow (n+1)^{\text{st}}$ and $(n+2)^{\text{nd}}$ binary digits of $x$ are 0.
+
+For example, $x = 1/6 = 0.00101010\ldots_{(2)}$ never comes back to $A$.
+
+Another interesting fact : $\mu(\{x : x\in A, T_2^n x \in A \}) = 1/16$ if $n\geq2$.(Circle rotation has very different property.)
+\s
+
+\subsection*{Markov Shift}
+
+\begin{itemize}
+\item Let $(p_1, p_2, \cdots, p_n)^T$ be a probability vector. Let $A \in \reals_{\geq 0}^{n\times n}$ be the \textbf{matrix of transition probabilities}.
+
+Assumptions : (1) $A(1,\cdots,1)^T = (1,\cdots,1)^T$; (2) $(p_1, \cdots, p_n) A = (p_1, \cdots, p_n)$
+
+\item Let $X = \{ 1,\cdots,n\}^{\mathbb{Z}}$, $\borel$ be the Borel $\sigma$-algebra generated by the product topology of the discrete topology on $\{1,\cdots, n\}$, and $T = \sigma$ is the shift map $(\sigma X)_m = X_{m+1}$.
+
+\item Let $\mu(\{x\in X : x_m=i_0,\cdots,x_{m+n}=i_n\}) = p_{i_0} a_{i_0 i_1} \cdots a_{i_{n-1} i_n}$.
+\end{itemize}
+\s
+
+\thm (Szemer\'{e}di) Let $S \subset \mathbb{Z}$ of positive upper Banach density. That is:
+\begin{align*}
+\bar{d}(S) = \limsup_{N,M : M-N \rightarrow \infty} \frac{1}{M-N}|S \cap [N,M-1] | >0.
+\end{align*}
+
+Then $S$ contains arbitrary long arithmetic progressions. That is, $\forall l$, $\exists a \in \mathbb{Z}$, $d\in \mathbb{Z}_{>0}$ such that $a, a+d, \cdots, a+(l-1)d \in S$.
+\s
+
+\thm (Furstenberg) (Multiple recurrence) Let $(X,\borel,\mu, T)$ be a MPS(Measure preserving system). Let $A \in \borel$ b s.t. $\mu(A) >0$. Let $l\in \mathbb{Z}_{>0}$. Then
+\begin{align*}
+\liminf_{N\rightarrow \infty} \frac{1}{N} \sum_{n=1}^N \mu(A\cap T^{-n}(A) \cap \cdots \cap T^{-(l-1)n}(A))>0
+\end{align*}
+\s
+
+=====================================================================================
+(6th October 2018, Saturday)
+\s
+
+\thm (Szemer\'{e}di) Let $S \subset \mathbb{Z}$ of positive upper Banach density. Then $S$ contains arbitrary long arithmetic progressions. \s
+
+\thm (Furstenberg) Let $(X,\borel,\mu, T)$ be a MPS. Let $A \in \borel$ be s.t. $\mu(A) >0$. Then for $\forall l\in \mathbb{Z}_{>0}$
+\begin{align*}
+\liminf_{N\rightarrow \infty} \frac{1}{N} \sum_{n=1}^N \mu(A\cap T^{-n}(A) \cap \cdots \cap T^{-(l-1)n}(A))>0
+\end{align*}
+\s
+\s
+
+Let $X =\{0,1\}^{\mathbb{Z}}$, $\borel$ be the Borel $\sigma$-algebra, $T=\sigma$ be the shift map.
+
+For a set $S \subset \mathbb{Z}_{\geq 0}$, Let $x^S \in X$ be defined by
+\begin{align*}
+x_n^S =\begin{cases}
+1 \quad \text{if} \quad n\in S\\
+0 \quad \text{if} \quad \text{o/w} 
+\end{cases}
+\end{align*}
+
+Let $A \in \borel$ and $A = \{x\in X:x_0=1 \}$
+
+Observation : $n\in S \Leftrightarrow \sigma^n x^S \in A \Leftrightarrow (\sigma^n x^S)_0=1 \Leftrightarrow x_n^S =1$.
+
+Let $\{M_m\}$ and $\{N_m\}$ be sequences s.t.
+\begin{align*}
+\bar{d}(S) = \lim_{m\rightarrow \infty} \frac{1}{M_m - N_m} \big|S \cap [N_m,M_m-1] \big|
+\end{align*}
+Let $\mu_m = \frac{1}{M_m - N_m} \sum_{n=N_m}^{M_m-1} \delta_{\sigma^n x^S}$, where $\delta_x$ is a measure on $X$ defined as
+\begin{align*}
+\delta_x(B) = \begin{cases}
+1 \quad x\in B \\
+0 \quad \text{o/w}
+\end{cases}
+\end{align*}
+
+Let $\mu$ be the weak limit of a subsequence of $\mu_m$.
+\s
+
+\begin{itemize}
+\item[ ] \textsl{(Reminder)}
+
+\item \textbf{Weak Limits) : }(In fact, weak-* limits) Let $X$ be a compact metric space, Let $\mu_m$ be a sequence of Borel measures on $X$, and let $\mu$ be another Borel measure. Then $\mu_m$ weakly converges to $\mu$. In notation,
+\begin{align*}
+\lim-w_{m\rightarrow \infty} \mu_m = \mu
+\end{align*}
+if $\int f d\mu_m \rightarrow \int f d\mu$ $\forall f\in C(X)$
+
+\item \thm (Banach-Alaoglu/Helly) Let $X$ be a compact metric space. Then $\mathscr{M}(X)$, the set of Borel probability measures endowed with the topology of weak convergence, is compact and metrizable.
+
+In particular, there is a weakly convergent subsequence in any sequence of Borel probability measures.
+\end{itemize}
+\s
+
+\lem Let $(X,\borel, \mu, \sigma)$ be as defined above is a measure preserving system.
+\begin{itemize}
+\item[ ] \textbf{proof sketch)} Let $B\in \borel$ Then:
+\begin{align*}
+\mu_m(B) &= \frac{1}{M_m-N_m} |\{ n \in [N_m, M_m-1] : \sigma^n x^S \in B \}  | \\
+\mu_m(\sigma^{-1}B) &= \frac{1}{M_m-N_m} | \{n\in [N_m, M_m -1]:\sigma^n x^S \in \sigma^{-1} B \} | \\
+&= \frac{1}{M_m-N_m} | \{n\in [N_m +1, M_m]:\sigma^n x^S \in B \} | \\
+|\mu_m(B) - \mu_m(\sigma^{-1}B)| &\leq \frac{1}{M_m-N_m} \rightarrow 0 \quad \text{as } m\rightarrow \infty
+\end{align*} 
+It can be shown that we can pass to the limit and conclude $\mu (B) = \mu(\sigma^{-1}B)$.
+\end{itemize}
+\s
+
+\bull \textbf{Remark :} If $B$ is a cylinder set, i.e. $\exists L \in \mathbb{Z}_{>0}$ and $\tilde{B} \subset \{0,1\}^{2L+1}$ s.t.
+\begin{align*}
+B = \{ x\in X : (x_{-L},\cdots,x_L) \in \tilde{B} \}
+\end{align*}
+then $B$ is both closed and open. Therefore $\chi_B$, the characteristic function of $B$, is continuous. Hence, the limit
+\begin{align*}
+\lim_{m\rightarrow \infty} \mu_m(B) = \mu(B)
+\end{align*}
+\s
+
+\prop Let $S\subset\mathbb{Z}$, let $x^S$, $A$, $(X,\borel, \mu, \sigma)$ be as defined above. Let $l\in \mathbb{Z}_{>0}$. Suppose that $\exists n \in \mathbb{Z}_{>0}$ s.t.
+\begin{align*}
+\mu ( A \cap \sigma^{-n}(A) \cap \cdots \cap \sigma^{-n(l-1)}(A) ) >0
+\end{align*}
+Then $S$ contains an arithmetic progression of length $l$.
+
+\begin{proof}
+\pf Without loss of generality, we may assume that $\mu = \lim_{m\rightarrow \infty} \mu_m$(if this is not the case, we just replace $\mu_m$ with its converging subsequence).  Let $B = A \cap \sigma^{-n}(A) \cap \cdots \cap \sigma^{-n(l-1)}(A)$ and observe that $B$ is a cylinder set. Then $\mu(B) = \lim \mu_m(B)$ hence $\exists m$ s.t. $\mu_m (B) >0$.
+
+By definition of $\mu_m$, $\exists k \in [N_m,M_m-1]$ such that $\sigma^k x^S \in B$. Hence
+\begin{align*}
+&\sigma^k x^S \in A, \,\, \sigma^kx^S \in \sigma^{-n}(A),\cdots,\sigma^k x^S \in \sigma^{-n(l-1)}(A) \\
+\Rightarrow &\sigma^k x^S \in A, \,\, \sigma^{k+n}x^S \in A, \cdots,\sigma^{k+n(l-1)} x^S \in A
+\end{align*}
+and so $k,k+n,\cdots,k+n(l-1) \in S$ by earlier observation.
+
+\eop
+\end{proof}
+\s
+
+Note $A$ is also a cylinder set. Then $\mu(A)= \lim_{m} \mu_m (A)$ and
+\begin{align*}
+\mu(A) = \lim_m \mu_m(A) = \lim_m \frac{1}{M_m -N_m} \big| \{ n\in [N_m, M_m-1] : n\in S \} \big| = \bar{d}(S) > 0
+\end{align*}
+by assumption that $S$ is of positive upper Banach density, and therefore we can prove Szemer\'{e}di when assuming Furstenberg.
+\s
+
+========================================================================================================
+(9th October, Tuesday)
+\s
+
+\lem Let $(X, \borel, \mu, T)$ be MPS. Let $A\in \borel$ with $\mu(A) >0$. Then $\exists n \in \mathbb{Z}_{>0}$ s.t. $\mu(A \cap T^{-n}A) >0$.
+\begin{proof}
+\pf Suppose $\mu(A \cap T^{-n}A) =0$ for all $n>0$. Then
+\begin{align*}
+\mu(T^{-k}A\cap T^{-n}A) = \mu(A \cap T^{-(n-l)}A ) =0
+\end{align*}
+for all $n>k\geq 0$. Hence the sets $A, T^{-1}A,\cdots$ are "almost pairwise disjoint". Then
+\begin{align*}
+\mu(A \cup T^{-1}A \cup \cdots \cup T^{-n}A) &= \mu(A) + \big( \mu(T^{-1}A) - \mu(T^{-1}A \cap A) \big)\\
+& + \big( \mu(T^{-2}A) - \mu(T^{-2}A \cap (A \cup T^{-1}A)) + \cdots \\
+& + \big( \mu(T^{-n}A) - \mu(T^{-n}A \cap (A \cup T^{-1}A \cup \cdots \cup T^{-(n-1)}A) ) \big) \\
+& = (n+1) \mu(A),
+\end{align*}
+a contradiction if $n+1 > \mu(A)^{-1}$.
+
+\eop
+\end{proof}
+\s
+
+\thm (Poincar\'{e} recurrence) Let $(X,\borel, \mu, T)$ be MPS. Let $A \in \borel$ with $\mu(A) >0$. Then a.e. $x\in A$ returns to $A$ infinitely often. That is,
+\begin{align*}
+\mu(A \backslash \setlimsup{N}{n} T^{-n} A  ) =0
+\end{align*}
+\s
+
+\textbf{Remark : } $x\in T^{-n} A$ $\Leftrightarrow$ $T^{n}x \in A$. So $\cup_{n=N}^{\infty} T^{-n}A$ are the points that visit $A$ at least once after time $N$. 
+\s
+
+\begin{proof}
+\pf Let $A_0$ be the set of point in $A$ that never returns to $A$. We first show $\mu(A_0)=0$. Note that $\mu(A_0 \cap T^{-n}A_0) \leq \mu(A_0 \cap T^{-n}A) = \mu(\phi) =0$ for all $n>0$. By the previous lemma, we have $\mu(A_0) =0$. Note that if $x\in A \backslash \big( \setlimsup{N}{n} T^{-n} A \big)$, then there is a maximal $m\in \mathbb{Z}_{\geq 0}$ such that $T^{m}x \in A_0$. This means that
+\begin{align*}
+A \backslash \cap \cup T^{-n} A \subset \cup_{m=0}^{\infty}T^{-m}A_0
+\end{align*}
+and since $T^{-m} A_0$ has measure 0 for each $m\geq 0$, $A \backslash \cap \cup T^{-n} A$ also has measure 0.
+
+\eop
+\end{proof}
+\s
+
+However, if we are aim to show that any point of $X$(or almost every) visits a set $A$ with $\mu(A)$ infinitely often, we should prevent elements of $X$ being partitioned by orbits of $T^{-1}$. Assumption of ergodicity turns out to be enough for this.(In fact, we can make 'ergodic decomposition' for $T$ to to satisfy ergodicity on each partition - but not lecturing on this; bit tricky)
+\s
+
+\defi A MPS $(X,\borel, \mu, T)$ is called \textbf{ergodic} if $A=T^{-1}A$ implies $\mu(A) =0$ or $1$ for all $A \in \borel$.
+\s
+
+If the MPS is not ergodic, and $A \in \borel$ with $\mu(A) \in (0,1)$ s.t. $T^{-1}A =A$, then we can restrict the MPS to $A$. That is, we consider the MPS:
+
+\quad $(A,\borel_A, \mu_A, T\big|_A)$ where $\borel_A = \{B\in \borel : B \subset A \}$, $\mu_A(B) = \mu(B)/\mu(A)$ for all $B\in \borel_A$.
+\s
+
+\thm The following are equivalent for a MPS $(X,\borel, \mu, T)$ :
+\begin{itemize}
+\item[(1)] $(X,\borel, \mu, T)$ is ergodic.
+\item[(2)] $\mu(\setlimsup{N}{n} T^{-n} A ) =1$ for all $A\in \borel$ with $\mu(A) >0$.
+\item[(3)] $\mu(A \bigtriangleup T^{-1} A) =0$ implies $\mu(A) =0$ or 1 for all $A\in \borel$.
+\item[(4)] For all bounded measurable functions $f:X\rightarrow \reals$, $f = f \circ T$ a.e. implies $f$ is constant a.e.
+\item[(5)] For all measurable functions $f:X\rightarrow \mathbb{C}$, $f = f \circ T$ a.e. implies $f$ is constant a.e.
+\end{itemize}
+\s
+
+Each condition show different perspective to view ergodicity. The second item shows that for ergodic systems Poincar\'{e} recurrence holds in a stronger form: not only almost every point in $A$ but also almost every point in $X$ visits $A$ infinitely often. The last three conditions are often used in practice.
+\begin{proof}
+\pf \begin{itemize}
+\item[(1)$\Rightarrow$(2)] Let $A\in \borel$ with $\mu(A) >0$ Let $B = \bigcap \bigcup T^{-n}A$, the set of points that visit $A$ infinitely often. By Poicar\'{e} recurrence(or P-recurrence), $\mu(B) \geq \mu(A) >0$. So if we show that $B = T^{-1}B$, then $\mu(B)=1$ follows by ergodicity.
+
+\quad While, $x\in B$ $\Leftrightarrow$ $x$ visits $A$ i.o. $\Leftrightarrow$ $Tx$ visits A i.o. $\Leftrightarrow$ $Tx \in B$. So we proved $B = T^{-1}B$.
+\item[(2)$\Rightarrow$(3)] Let $A\in \borel$ s.t. $\mu(A \bigtriangleup T^{-1} A) =0$. If $\mu(A) =0$, there is nothing to prove, so assume $\mu(A)>0$. Let $B= \cap \cup T^{-n} A$. By (2), we know that $\mu(B) = 1$. We show $\mu(B\backslash A) =0$, which completes the proof.
+
+\quad Let $x\in B\backslash A$, then there is a first time $m>0$ s.t. $T^m x\in A$, hence $x\in T^{-m}A \backslash T^{-(m-1)}A$. This shows $B\backslash A \subset \bigcup T^{-m} A \backslash T^{-(m-1)A}$. But $T^{-m} A \backslash T^{-(m-1)A}$ has measure 0 because $\mu(T^{-m} A \backslash T^{-(m-1)}A)= \mu(T^{-1}A\backslash A) =0$.
+
+\quad So we conclude $\mu(B\backslash A) =0$.
+\item[(3)$\Rightarrow$(4)] Let $f:X\rightarrow \reals$ be a bounded measurable function s.t. $f= f\circ T$ almost everywhere. For any $t\in \reals$, define $A_t = \{x\in A : f(x) \leq t\}$. Then
+\begin{align*}
+\mu(A_t \bigtriangleup T^{-1}A_t) = \mu( \{x\in A : f(x) \leq t\} \bigtriangleup \{x\in A : f \circ T(x) \leq t\}) =0
+\end{align*} 
+By (3), we have $\mu(A_t)\in \{0,1\}$ for all $t$. Since $f$ was bounded, if $t$ is very small, then $\mu(A_t)=0$ and if $t$ is very large $\mu(A_t) =1$. But $t\mapsto \mu(A_t)$ is a monotone function, we have $\exists c \in \reals$ s.t. $\mu(A_t) =0$ for all $t<c$ and $\mu(A_t) =1$ for all $t>c$. Therefore we have $f(x)=c$.
+\item[(4)$\Rightarrow$(1)] Let $A\in \borel$ with $A = T^{-1}A$. Then $\chi_A = \chi_A \circ T$ everywhere, so $\chi_A$ is constant a.e.
+\end{itemize}
+\end{proof}
+\s
+
+\textbf{Example :} The circle rotation $(\reals/\mathbb{Z},\borel, \mu, R_{\alpha})$ is ergodic if and only if $\alpha$ is irrational.
+
+\begin{proof}
+\pf Let $f:X\rightarrow \reals$ be measurable, and let $f(x) = \sum_{n\in \mathbb{Z}} a_n \exp(2\pi i nx)$. Then
+\begin{align*}
+f\circ R_{\alpha}(x) = f(x+\alpha) &= \sum_{n\in \mathbb{Z}}a_n \exp(2\pi in (x+\alpha)) \\
+&= \sum_{n\in \mathbb{Z}} a_n \exp(2\pi in\alpha) \exp(2\pi i nx)
+\end{align*}
+so $f=f\circ R_{\alpha}$ is equivalent to having $a_n = a_n \exp(2\pi i n \alpha)$ for all $n$.
+If $\alpha$ is irrational, then $\exp(2\pi in\alpha) \neq 1$ for all $n\neq 0$ so $a_n=0$ for all $n\neq 0$.
+
+\eop
+\end{proof}
+\s
+
+\newday
+
+(11th October, Thursday)
+\s
+
+\thm (Mean ergodic theorem, von Neumann) Let $(x,\borel, \mu, T)$ be a MPS. Write
+\begin{align*}
+I = \{ f\in L^2(X) : f\circ T = f \,\,\, \text{a.e.} \}  \subset L^2(X)
+\end{align*}
+for the closed subspace of $T$-invariant functions. Write $P_T : L^2(X) \rightarrow I$ for the orthogonal projection. Then for every $f\in L^2(X)$, we have
+\begin{align*}
+\frac{1}{N} \sum_{n=0}^{N-1} f\circ T^n \rightarrow P_T f \quad \text{in } L^2(X)
+\end{align*}
+Here, $\frac{1}{N} \sum_{n=0}^{N-1} f\circ T^n$ called the \textbf{ergodic average}.
+\s
+
+There are two proofs for this theorem : one uses spectral theory and the the other does not. We would prove using the second approach, and sketch the first proof in the example sheet.
+
+\s
+
+\thm (Pointwise ergodic theorem, Birkhoff) Let $(X,\borel, \mu, T)$ be a MPS. Then for all $f\in L^1(X)$, $\exists f^* \in L^1(X)$ s.t. $f^* = f^* \circ T$ a.e. and 
+\begin{align*}
+\frac{1}{N} \sum_{n=0}^{N-1} f\circ T^n (x) \rightarrow f^*(x) \quad \text{a.e. in } X 
+\end{align*}
+\s
+
+\textbf{Comments}
+\begin{itemize}
+\item[(1)] If $f\in L^2 \cap L^1$, then $f^* = P_T f$.
+\item[(2)] There is an $L^p$ version of convergence in norm. That is, if $f\in L^p$, then
+\begin{align*}
+\frac{1}{N} \sum_{n=0}^{N-1} f\circ T^n \rightarrow f^* \quad \text{in } L^p \text{ norm}
+\end{align*}
+This will be proved in the example sheet.
+\item[(3)] If $(X,\borel, \mu, T)$ is ergodic, then $f^*$(or $P_T f$) is constant a.e., because it is $T$-invariant.
+
+\quad Note : $f^*(x)  = \int f^* d\mu$ a.e. By $L^1$ norm convergence, we also have
+\begin{align*}
+\lim_{N\rightarrow \infty} \int \frac{1}{N} \sum_{n=0}^{N-1} f\circ T^n d\mu \rightarrow \int f^* d\mu
+\end{align*}
+By a lemma that would follow,
+\begin{align*}
+\int f\circ T^n d\mu = \int fd\mu \quad \forall n, \text{ hence} \quad \int f d\mu = \int f^* d\mu
+\end{align*}
+Then
+\begin{align*}
+\frac{1}{N} \sum_{n=0}^{N-1}f(T^n x) \rightarrow \int f d\mu
+\end{align*}
+Can be interpreted as "time average(LHS) converges to spatial average(RHS)".
+\end{itemize}
+\s
+
+\lem Let $T : X \rightarrow X$ be a measurable transformation and let $\mu$ be a probability measure. Then $\mu$ is $T$-invariant \emph{if and only if}
+\begin{align}
+\int f\circ T d \mu = \int f d\mu \quad \forall f \in L^1(X,\mu)  \label{*}
+\end{align}
+\begin{proof}
+\pf  (\emph{(\ref{*}) $\Rightarrow$ measure preserving property}) : Let $A\in \borel$. Then
+\begin{align*}
+\mu(T^{-1} A) = \int \chi_{T^{-1} A} d\mu = \int \chi_A \circ T d\mu = \int \chi_A d\mu = \mu(A)
+\end{align*}
+
+(\emph{MPP $\Rightarrow$ (\ref{*})}) : Let $f\in L^1(X)$. If $f= \chi_A$ for some $A\in \borel$, then
+\begin{align*}
+\int f \circ T d\mu = \mu(T^{-1}A) = \mu (A)  = \int f d\mu
+\end{align*}
+(\ref{*}) hold for such $f$. Then (\ref{*}) also holds for simple functions by linearity of integration. In the case where $f$ is non-negative, let $f_n$ be a monotone increasing sequence of simple functions such that $\lim_n f_n = f$(e.g. $f_n = f\wedge n$),
+\begin{align*}
+\int f\circ T d\mu = \lim_n \int f_n \circ T d\mu = \lim_n \int f_n d\mu = \int fd\mu
+\end{align*}
+\quad In the general case, separate $f$ into positive and negative parts and conclude the proof.
+
+\eop
+\end{proof}
+\s
+
+\defi Let $(X,\borel, \mu, T)$ be a MPS. Then the \textbf{Koopman operator} is defined as : $U_T f = f\circ T$ acting on functions on $X$.
+\s
+
+\lem The Koopman operator is an isometry on $L^2(X)$. That is,
+\begin{align*}
+\langle f,g\rangle = \langle U_T f, U_T g \rangle
+\end{align*}
+\begin{proof}
+\pf Apply the previous lemma for the function $f\circ \bar{g}$.
+\begin{align*}
+\mu(U_T f \cdot U_T \bar{g}) = \mu(U_T(f\bar{g})) = \mu(f\bar{g})
+\end{align*}
+
+\eop
+\end{proof}
+\s
+
+\defi A MPS $(X,\borel, \mu, T)$ is called invertible if $\exists S:X\rightarrow X$, measure preserving, s.t.
+\begin{align*}
+S\circ T = T\circ S= id_X \quad \text{a.e.}
+\end{align*}
+If such a map exists, we denote it by $T^{-1} = S$. (such operator is unique up to a.s. equality)
+\s
+
+\lem If $(X,\borel, \mu, T)$ is invertible, then $U_T$ is unitary, and $U^*_T = U_{T^{-1}}$.
+
+\begin{proof}
+\pf Note : $U_{T^{-1}} \circ U_T = U_T \circ U_{T^{-1}} = id_{L^2(X)}$, so it is enough to show that $U^*_T = U_{T^{-1}}$. To do this, we need to show :
+\begin{align*}
+\langle U_{T^{-1}} f, g\rangle = \langle f, U_T g\rangle \quad \forall f,g, \in L^2
+\end{align*}
+and
+\begin{align*}
+\langle U_{T^{-1}} f, g\rangle = \int f\circ T^{-1} \cdot \bar{g} d\mu = \int \Big( f\circ T^{-1} \cdot \bar{g}  \Big) \circ T d\mu = \int f\cdot \bar{g} \circ T d\mu = \langle f, U_T g\rangle
+\end{align*}
+
+\eop
+\end{proof}
+\s
+
+\quad Both von Neumann's and Birkhoff's theorems are easy for certain special kinds of functions. For instance, if $f\in I$ :
+\begin{align*}
+\frac{1}{N} \sum_{n=0}^{N-1} f\circ T^n =f
+\end{align*}
+Also, if $f= g \circ T -g$ for some $g$, then
+\begin{align*}
+\frac{1}{N} \sum_{n=0}^{N-1} f\circ T^n = \frac{1}{N}\big( g\circ T^N - g \big)
+\end{align*}
+It turns out that these two are the only functions that we have to worry about (in the case of von Neumann's theorem) - as presented in the following lemma.
+\s
+
+\lem Write $B = \{g\circ T-g:g\in L^2(x) \}$. Then $B^{\perp} =I$.
+\s
+
+\textit{Caution ! :} $B$ is not close in $L^2$. So we get $L^2 = I \oplus \bar{B}$, but not $L^2 = I \oplus B$. 
+
+\begin{proof}
+\pf Let $f\in L^2(X)$. Then
+\begin{align*}
+& f\in B^{\perp} \quad \Leftrightarrow \quad \langle f, g\circ T - g\rangle = 0 \quad \forall g \in L^2 \\
+\Leftrightarrow \quad & \langle f, g\circ T \rangle = \langle f, g\rangle \quad \forall g \in L^2 \\
+\Leftrightarrow \quad & \langle U^*_T f, g\rangle = \langle f, g\rangle \quad \forall g \in L^2 \\
+\Leftrightarrow \quad & U^*_T f = f
+\end{align*}
+Now we only need to see that $U^*_T f=f$ $\Leftrightarrow$ $U_T f =f$ :
+\begin{align*}
+& U_T f = f \\
+\Leftrightarrow \quad &\norms{f-U_T f}{}^2 = 0 \\
+\Leftrightarrow \quad & \norms{f}{}^2 + \norms{U_T f}{}^2 - \langle f, U_T f\rangle - \langle U_T f,f\rangle =0 \\
+\Leftrightarrow \quad & \norms{f}{}^2 + \norms{U^{*}_T f}{}^2 - \langle f, U^{*}_T f\rangle - \langle U^{*}_T f, f\rangle + \Big( \norms{U_T f} - \norms{U^*_T f}{}^2 \Big) =0 \\
+\Leftrightarrow \quad & \norms{f-U^{*}_T f}{}^2 + \Big( \norms{U_T f}{}^2 - \norms{U^{*}_T f}{}^2 \Big) = 0
+\end{align*}
+Since $\norms{f-U^*_T f}{}^2 \geq 0$, $\norms{U_T f}{}^2 - \norms{U^*_T f}{}^2 \geq 0$(note that we do not know that $U^*_T$ is unitary, since we do not know if $T$ is invertible, but we know that $\norms{U^*_T}{op} \leq 1$), this statement is equivalent to having $f = U^*_T f$.
+\end{proof}
+\s
+
+Now we are ready to prove the mean ergodic theorem.
+
+\begin{proof}
+\textbf{proof of MET) } Fix $\epsilon>0$. Let $f\in L^2$. By the lemma, $\exists g,e \in L^2$ s.t.
+\begin{align*}
+f= P_T f + (g\circ T -g) +e
+\end{align*}
+with $\norms{e}{} <\epsilon$ and
+\begin{align*}
+\frac{1}{N}\sum_{n=0}^{N-1}f\circ T^n = P_T f + \frac{1}{N}(g\circ T^N -g) + \frac{1}{N} \sum_{n=0}^{N-1} e\circ T^n
+\end{align*}
+This gives bound
+\begin{align*}
+\norms{\frac{1}{N}\sum_{n=0}^{N-1}f\circ T^n - P_T f}{} \leq \frac{2\norms{g}{}}{N} + \epsilon
+\end{align*}
+Taking $N\rightarrow \infty$ gives
+\begin{align*}
+\limsup_{N\rightarrow \infty} \norms{\frac{1}{N} \sum_{n=0}^{N-1} f\circ T^n - P_T f}\leq \epsilon
+\end{align*}
+
+\eop
+\end{proof}
+\s
+
+\newday
+
+(13th October, Saturday)
+\s
+
+Now we start proving mean ergodic theorem, starting with the following theorem.
+\s
+
+\thm \emph{(Maximal Ergodic Theorem, Wiener)} Let $(X,\borel, \mu, T)$ be a MPS. Let $f\in L^1$, $\alpha\in \reals_{>0}$. Let
+\begin{align*}
+E_{\alpha} = \{x\in X : \sup_N \frac{1}{N} \sum_{n=0}^{N-1} f(T^n x) > \alpha \}
+\end{align*}
+Then $\mu(E_{\alpha}) \leq \frac{1}{\alpha} \norms{f}{1}$.
+\s
+
+-the theorem is useful, because we can bound some set of particular irregularity depending on the parameter $\alpha$.
+
+-usually, these kinds of maximal inequalities are prove using covering lemmas, e.g. using Vitalli covering lemma. This is also possible in this case, but the proof gets too long.
+\s
+
+The proof of the theorem depends on the following proposition
+\s
+
+\prop Let $(X,\borel, \mu, T)$ be a MPS. Let $f\in L^1$. Let
+\begin{align*}
+&f_0 =0, \quad f_1=f, \quad f_2=f\circ T + f, \quad \cdots \\
+&f_n = f\circ T^{n-1} + \cdots + f\circ T + f = f_{n-1}\circ T + f \\
+&F_N = \max_{n=0,\cdots,N} f_n
+\end{align*}
+Then $\int_{x:F_N(x)>0} f(x)d\mu(x) \geq 0$ for all $N$.
+\begin{proof}
+\pf  Suppose that $F_N(x)>0$. Then $F_N(x) =f_n(x)$ for some $n \in \{1,\cdots N\}$. Then $F_N(x) = f_{n-1}(Tx) + f(x) \leq F_N(Tx) +f(x)$, hence $f(x) \leq F_N(x) -F_N(Tx)$.
+\begin{align*}
+\int_{\{x: F_N(x)>0\}} f(x) d\mu \geq \int_{\{x:F_N(x)>0\}} (F_N(x)-F_N\circ T(x) ) d\mu(x)
+\end{align*}
+Note, if $F_N(x)\leq 0$, then we have $F_N(x) = 0$ and $F_N(x) - F_N(Tx) \leq 0$, so we have $F_N(x) - F_N \circ T(x) \geq 0$ on the domain $\{x: F_N(x) >0 \}$. 
+
+\eop
+\end{proof}
+\s
+
+We now prove maximal ergodic theorem.
+
+\begin{proof}
+\textbf{proof of Maximal E.T.)} Define
+\begin{align*}
+E_{\alpha,N} &= \{x\in X : \max_{m=0\cdots, N} \frac{1}{m} \sum_{n=0}^{m-1} f(T^n x) >\alpha   \} \\
+&= \{x\in X: \max_{m=0,\cdots,N} \sum_{n=0}^{m-1} \big( f(T^n x) - \alpha \big) > 0 \}
+\end{align*}
+(with convention that the sum is just 0 in the case $m=0$) We apply the proposition for the function $f-\alpha$. Then
+\begin{align*}
+\int_{E_{\alpha, N}} \big( f(x) - \alpha \big) d\mu \geq 0
+\end{align*}
+Then
+\begin{align*}
+\norms{f}{1} \geq  \int_{E_{\alpha, N}} f(x) \geq \alpha \mu(E_{\alpha,N}) 
+\end{align*}
+Note that $E_{\alpha} = \bigcup_{M} E_{\alpha,M}$ is an increasing union and the inequality holds for any $N$, so $\norms{f}{1} \geq \mu(E_{\alpha})$.
+
+\eop
+\end{proof}
+
+\thm (Pointwise ergodic theorem) Let $(X,\borel, \mu, T)$ be a MPS. Let $f\in L^1$. Then $\exists f^* \in L^1$, $T$-invariant s.t.
+\begin{align*}
+\frac{1}{N} \sum_{n=0}^{N-1} f(T^n x) \rightarrow f^* (x) \quad \text{pointwise a.e.}
+\end{align*}
+\begin{proof}
+\pf Fix $\epsilon >0$. Then $\exists f_{\epsilon} \in L^2$, $e_{\epsilon, 1} \in L^1$ s.t.
+\begin{align*}
+f = f_{\epsilon} + e_{\epsilon,1}\quad \text{and } \norms{e_{\epsilon,1}}{1} <\epsilon.
+\end{align*}
+Also $\exists g_{\epsilon} \in L^2$, $e_{\epsilon,2} \in L^2$ s.t.
+\begin{align*}
+f_{\epsilon} = P_T f_{\epsilon} + g_{\epsilon} \circ T - g_{\epsilon} + e_{\epsilon,2} \quad \text{and } \norms{e_{\epsilon,2}}{1} <\epsilon
+\end{align*}
+and $\exists h_{\epsilon} \in L^{\infty}$, $e_{\epsilon,3} \in L^1$ s.t.
+\begin{align*}
+g_{\epsilon} = h_{\epsilon} + e_{\epsilon,3}\quad \text{and } \norms{e_{\epsilon,3}}{1}<\epsilon
+\end{align*}
+
+\quad So $f = P_T f_{\epsilon} + h_{\epsilon}\circ T - h_{\epsilon} + e_{\epsilon}$, where $e_{\epsilon} \in L^1$ with$ \norms{e_{\epsilon}}{1} <\epsilon$.
+\begin{align*}
+\frac{1}{N} \sum_{n=0}^{N-1} f(T^n x) = P_T f_{\epsilon}(x) + \frac{1}{N} \big( h_{\epsilon}(T^n x) - h_{\epsilon}(x) \big) + \frac{1}{N}\sum_{n=0}^{N_1} e_{\epsilon}(T^n x)
+\end{align*}
+Let
+\begin{align*}
+E_{\epsilon,\alpha} = \{ x\in : \limsup_{N\rightarrow \infty} \Big| \frac{1}{N} \sum_{n=0}^{N-1} f(T^n x) - P_T f_{\epsilon}(x) > \alpha  \Big| \}
+\end{align*} 
+(Not same as $E_{\alpha, N}$ defined earlier)
+Applying the Maximal ergodic theorem for the $f_n$ gives
+\begin{align*}
+\mu(E_{\epsilon,\alpha} ) \leq \frac{1}{\alpha} \norms{e_{\epsilon}}{1} \leq \frac{h\epsilon}{\alpha}
+\end{align*}
+
+\quad Let $F$ be the set of points $x$ s.t. $\frac{1}{N} \sum_{n=0}^{N_1} f(T^n x)$ does not converge at $x$. Then $F\subset \bigcup_{\alpha}F_{\alpha}$, where
+\begin{align*}
+F_{\alpha} = \{x\in X : \limsup_{N_1,N_2 \rightarrow \infty} \Big| \frac{1}{N} \sum_{n=0}^{N_1 -1} f(T^n x) - \frac{1}{N_2} \sum_{n=0}^{N_2 -1} f(T^n x) \Big| >2\alpha  \}
+\end{align*}
+Notice, $F_{\alpha} \subset E_{\epsilon, \alpha}$ for all $\epsilon>0$(?????), so $\mu(F_{\alpha}) \leq \mu(E_{\epsilon,\alpha}) \leq \frac{h \epsilon}{\alpha}$. Therefore $\mu(F_{\alpha}) =0$. We can take a countable sequence of $\alpha$'s(e.g. $(1/k)_{k\in \mathbb{N}}$) and conclude $\mu(F) = 0$.
+
+\quad We proved that $\frac{1}{N} \sum_{n=0} f(T^n x) \rightarrow f^*(x)$ for some function $f^*$. By Fatou's lemma, we have $f^* \in L^1$, and it remains to prove $f^*(x) = f^*(Tx)$ a.e.
+
+\quad For almost every $x$,
+\begin{align*}
+f^*(x) &= \lim_{N\rightarrow \infty} \frac{1}{N} \sum_{n=0}^{N-1}f(T^n x) \\
+f^*(Tx) &= \lim_{N\rightarrow \infty} \frac{1}{N} \sum_{n=0}^{N-1} f(T^{n-1} x) \\
+&= \lim_{N\rightarrow \infty} \frac{1}{N} \sum_{n=0}^{N-1} f(T^n x) \\
+&= \lim_{N\rightarrow \infty} \frac{1}{N-1} \sum_{n=1}^{N-1} f(T^n x) \\
+&= \lim_{N\rightarrow \infty} \frac{1}{N} \sum_{n=1}^{N-1} f(T^n x)
+\end{align*}
+Therefore $f^*(x) - f^*(Tx) = \lim_{N\rightarrow \infty} \frac{1}{N}f(x) = 0$ 
+
+\eop
+\end{proof}
+
+This is a rubbish proof.
+
+\begin{proof}
+\textbf{way more elegant proof) }
+\begin{itemize}
+\item[(1)] First, let $f$ be a positive $L^1$ function. Then we may find a positive measurable function $\bar{f}(x)$ such that
+\begin{align*}
+\bar{f}(x) = \liminf_{N\rightarrow \infty} \frac{1}{N} \sum_{n=0}^{N-1} f\circ T^n (x) \quad \text{a.e.}
+\end{align*}
+Moreover, by Fatou's lemma, we have
+\begin{align*}
+\mu (| \bar{f} |) \leq \liminf_{N} \mu(| \frac{1}{N} \sum_{n=0}^{N-1} f\circ T^n |) = \norms{f}{1} <\infty  
+\end{align*}
+and therefore $\bar{f} \in L^1$. Now let $g(x) = f(x) - \bar{f}(x)$, then again $g\in L^1$, with
+\begin{align*}
+\liminf_{N\rightarrow \infty} \frac{1}{N} \sum_{n=0}^{N-1} g\circ T^n (x) =0 \quad \text{a.e.}
+\end{align*}
+Now consider the set $F_q$, defined for $q\in \mathbb{Q}_{>0}$.
+\begin{align*}
+F_q = \{  x: |\limsup_N  \frac{1}{N} \sum_{n=0}^{N-1} g \circ T^n (x) | > q   \}
+\end{align*}
+But by the maximal Ergodic lemma, we have
+\begin{align*}
+\mu (F_q) \leq \frac{1}{q} \norms{g}{1} \leq \frac{2}{q} \norms{f}{1} \rightarrow 0 \quad \text{as } q\rightarrow 0
+\end{align*}
+and therefore
+\begin{align*}
+\mu(\{ x : |\limsup_N  \frac{1}{N} \sum_{n=0}^{N-1} g \circ T^n (x) |>0  \}) = \mu (\cap_q F_q) = 0
+\end{align*}
+We may conclude that
+\begin{align*}
+\limsup_N  \frac{1}{N} \sum_{n=0}^{N-1} g \circ T^n (x) = \liminf_N  \frac{1}{N} \sum_{n=0}^{N-1} g \circ T^n (x)  = 0 \quad \text{a.e.}
+\end{align*}
+and we see that
+\begin{align*}
+\lim_{N\rightarrow \infty }\frac{1}{N} \sum_{n=0}^{N-1} f \circ T^n (x) \rightarrow \bar{f} \quad \text{a.e.}
+\end{align*}
+with $\norms{\bar{f}}{1} \leq \norms{f}{1}$.
+
+\item[(2)] For the general case, just divide $f$ into a non-negative part and a negative part, e.g. $f=f^+ - f^-$ and apply part (1) to show that
+\begin{align*}
+& \lim_{N\rightarrow \infty }\frac{1}{N} \sum_{n=0}^{N-1} f^+ \circ T^n (x) \rightarrow \bar{f}^+ \quad \text{a.e.} \\
+& \lim_{N\rightarrow \infty }\frac{1}{N} \sum_{n=0}^{N-1} f^- \circ T^n (x) \rightarrow \bar{f}^- \quad \text{a.e.}
+\end{align*}
+and put $f^* = \bar{f}^+ - \bar{f}^-$, then we have the desired result.
+\end{itemize} 
+
+\eop
+\end{proof}
+\s
+
+=======================================================================
+
+(not done in the lecture. a question in example sheet.)
+
+\thm (Pointwise ergodic theorem, $L^p$-version) Let $(X,\borel, \mu, T)$ be a MPS, that is $\sigma$-finite. Let $f\in L^p$. Then $\exists f^* \in L^p$, $T$-invariant s.t.
+\begin{align*}
+\frac{1}{N} \sum_{n=0}^{N-1} f(T^n x) \rightarrow f^* (x) \quad \text{pointwise a.e.}
+\end{align*}
+\begin{proof}
+\pf First, assume that $f$ is a positive function. Let $(f_n)_n$ be a increasing sequence of $L^1$ functions s.t. $f_n \rightarrow f$ in $L^p$ and almost everywhere. Then by pointwise ergodic theorem for $L^1$ functions, we may find $(f^*_n)_n \subset L^1$ s.t.
+\begin{align*}
+\lim_{N\rightarrow \infty }\frac{1}{N} \sum_{n=0}^{N-1} f_n \circ T^n (x) \rightarrow f^*_n \quad \text{a.e.}
+\end{align*}
+Then $(f^*_n)_n$ also forms an increasing sequence, and therefore converges almost everywhere, say $f^*_n \rightarrow f^*$ a.e. Now, by Fatou's lemma, we have, for $n\geq m$,
+\begin{align*}
+\mu( (f^*_n - f^*_m)^{p} )^{1/p} \leq \liminf_{n} \Big( \mu( \frac{1}{N} \sum_{k=0}^{N-1} (f_n - f_m)  \circ T^k )  \Big)^{1/p} \leq \liminf_n \mu((f_n-f_m)^p)^{1/p}
+\end{align*}
+where the last inequality follows from Minkowski's inequality. Therefore, $(f^*_n)_n$ forms a Cauchy sequence in $L^p$, and in fact converges to $f^*$ in $L^p$. Also, again by Minkowski's inequality, we have $\norms{f^*_n}{p} \leq \norms{f_n}{p}$ and 
+\begin{align*}
+\norms{\frac{1}{N} \sum_{m=0}^{N-1} f_n \circ T^m}{p} \leq \norms{f_n}{p}
+\end{align*}
+so by dominated convergence theorem, we realize that $\frac{1}{N} \sum_{n=0}^{N-1} f_n \rightarrow f^*$ is in fact in $L^p$. Putting these results together, we conclude that
+\begin{align*}
+\frac{1}{N} \sum_{n=0}^{N-1} f \circ T^n \rightarrow f^* \quad \text{in } L^p \text{ and a.e.}
+\end{align*}
+
+
+\begin{center}
+\begin{large}
+\begin{tikzcd}
+f_n \arrow[r, "L^p"] \arrow[d, "L^p"]
+& f \arrow[d,  red] \\
+f^*_n \arrow[r, "L^p"]
+& f^*
+\end{tikzcd}
+\end{large}
+\end{center}
+
+\quad For general functions(not necessarily positive), divide it into a non-negative part and a negative part, and find a.e. and $L^p$ converging functions separately and add them.
+\end{proof}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+\end{document}

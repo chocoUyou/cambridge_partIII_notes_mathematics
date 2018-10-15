@@ -1,0 +1,690 @@
+\documentclass[10pt,a4paper]{report}
+
+
+\usepackage{amsmath}
+\usepackage[utf8]{inputenc}
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{amssymb}
+\usepackage{calrsfs}
+\usepackage[left=2cm,right=2cm,top=2cm,bottom=2cm]{geometry}
+\usepackage[mathscr]{euscript}
+
+%%%for drawing commutative diagrams.%%%%%%
+\usepackage{tikz-cd}  
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%for changing margin
+\def\changemargin#1#2{\list{}{\rightmargin#2\leftmargin#1}\item[]}
+\let\endchangemargin=\endlist 
+
+\newenvironment{proof}
+{\begin{changemargin}{1cm}{0.5cm} 
+	}%your text here
+	{\end{changemargin}
+}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{document}
+\newcommand{\thm}{\textbf{Theorem) }}
+\newcommand{\thmnum}[1]{\textbf{Theorem #1) }}
+\newcommand{\defi}{\textbf{Definition) }}
+\newcommand{\definum}[1]{\textbf{Definition #1) }}
+\newcommand{\lem}{\textbf{Lemma) }}
+\newcommand{\lemnum}[1]{\textbf{Lemma #1) }}
+\newcommand{\prop}{\textbf{Proposition) }}
+\newcommand{\propnum}[1]{\textbf{Proposition #1) }}
+\newcommand{\corr}{\textbf{Corollary) }}
+\newcommand{\corrnum}[1]{\textbf{Corollary #1) }}
+\newcommand{\pf}{\textbf{proof) }}
+
+
+\newcommand{\lap}{\triangle} %%Laplacian
+\newcommand{\s}{\vspace{10pt}}
+\newcommand{\bull}{$\bullet$}
+\newcommand{\sta}{$\star$}
+\newcommand{\reals}{\mathbb{R}}
+
+\newcommand{\eop}{\hfill  \textsl{(End of proof)} $\square$} %end of proof
+\newcommand{\eos}{\hfill  \textsl{(End of statement)} $\square$} %end of proof
+
+
+\newcommand{\intN}{\mathbb{Z}_N}
+\newcommand{\nat}{\mathbb{N}}
+\newcommand{\norms}[2]{\parallel #1 \parallel_{#2}}
+\newcommand{\abs}[1]{\big| #1 \big|}
+\newcommand{\avg}{\mathbb{E}}
+\newcommand{\prob}{\mathbb{P}}
+\newcommand{\borel}{\mathscr{B}}
+\newcommand{\EE}{\mathscr{E}}
+\newcommand{\pa}{\partial}
+
+\def\doubleunderline#1{\underline{\underline{#1}}}
+
+\newcommand{\newday}{===============================================================}
+
+\setlength\parindent{0pt}
+
+\chapter*{Analysis of PDEs}
+\s
+
+Claude Warnick(cmw50)
+
+www.dpmms.cam.ac.uk/~cmw50
+
+Example Classes : Dr. Ivan Moyano
+\s
+
+Texts : (1)Evans. PDEs, (2)Rauch, PDEs, (3)F.John, PDEs, (4)Gilberg + Raudinger, Elliptic PDE, (5) Ladyzhenskay, The Boundary Value Problems of Mathematical Physics.
+\s
+
+=====================================================================================
+
+(5th October 2018, Friday)
+\s
+
+\section*{Introduction}
+
+Suppose $U \subset \reals^n$ is open. A \emph{partial differential equation} of order $k$ is an expression of the following form:
+\begin{align}
+F(x, u(x),Du(x),\cdots,D^{(k)}u(x))=0 \label{1}
+\end{align}
+Here, $F: U \times \reals\times \reals^n \times \cdots \times \reals^{n^k} \rightarrow \reals$ is a given function and $u : U \rightarrow \reals$ is the 'unknown'. We say $u\in C^k(U)$ is a classical solution of \ref{1} if \ref{1} is satisfied on $U$ when we substitute $u$ into the expression.
+\s
+
+We could also consider the case where $u:U \rightarrow \reals^p$ and $F$ takes values in $\reals^q$, then we speak of a \emph{system of PDE's}.
+\s
+
+\textbf{Examples)}
+\begin{itemize}
+\item[1.] The Transport Equation:
+Suppose $V :\reals^{n+2} \rightarrow \reals^n$ is given.
+\begin{align*}
+\frac{\partial u}{\partial t}(x,t) + V(x,t,u(t,x)) \cdot D_x u (x,t) = f(x,t) \quad \text{for } x\in \reals^n
+\end{align*}
+is a PDE for $u: \reals^{n+1} \rightarrow \reals$. This describes evolution of some chemical produced at rate $f(x,t)$ and being advected by a flow of velocity $V(x,t,u(t,x))$.
+
+\item[2.] The Laplace and Poisson Equations:
+\begin{align*}
+\Delta u(x) = \sum_{i=1}^n \frac{\partial^2 u}{\partial x_i \partial x_j}(x)=0 \quad \text{(Laplace Equation)}
+\end{align*}
+This describes: \begin{itemize}
+\item[+] Electrostatic potential in empty space
+\item[+] Static distribution of heat in a solid body
+\item[+] Applications to steady flows in 2D
+\item[+] Connections to complex analysis
+\end{itemize}
+
+\begin{align*}
+\Delta u(x) =f(x) \quad \text{some given } f: \reals^n \rightarrow \reals \quad \text{(Poisson's Equation)}
+\end{align*}
+This describes: \begin{itemize}
+\item[+] Electric field produced by charge distribution $f$
+\item[+] Gravitational field in Newton's Theory($f$ is mass density)
+\end{itemize}
+
+\item[3.] Heat/Diffusion Equation:
+\begin{align*}
+\frac{\partial u}{\partial t} = \Delta u
+\end{align*}
+This describes evolution of temperature in a solid homogeneous body.
+
+\item[4.] Wave Equation:
+\begin{align*}
+-\frac{\pa^2 u}{\pa t^2} + \Delta u =0
+\end{align*}
+This describe: \begin{itemize}
+\item[+] Displacement of a stretched string (dimension=1)
+\item[+] Ripples on surface of water (dimension=2)
+\item[+] Density of air in a sound wave (dimension=3)
+\end{itemize}
+
+\item[5.] Maxwell's Equations:
+With $E,B : \reals^3 \times \reals \rightarrow \reals^3$,
+\begin{align*}
+\nabla \cdot E = \rho & \quad \nabla \cdot B =0 \\
+\nabla \times E + \frac{\pa B}{\pa t} =0 & \quad \nabla \times B - \frac{\pa E}{\pa t} = J
+\end{align*}
+$\rho$, $J$ are charge density/current respectively, are given.
+
+\item[6.] Ricci Flow:
+\begin{align*}
+\pa_t g_{ij} = -2R_{ij}
+\end{align*}
+where $g_{ij}$ is a Riemannian metric, $R_{ij}$ is its Ricci curvature.
+
+\item[7.] Minimal Surface Equation:
+For $u: \reals^2 \rightarrow \reals$,
+\begin{align*}
+\text{div}(\frac{Du}{\sqrt{1-|Du|^2}}) =0
+\end{align*}
+Condition for the graph $\{ (x,y,u(x,y)) \}$ to locally extremise area.
+
+\item[8.] Eikonal Equation:
+for $U\subset \reals^3$ and $u:U\rightarrow \reals$
+\begin{align*}
+|Du|=1
+\end{align*}
+Level sets parametrise a wave-front moving according to the ray theory of light. 
+
+\item[9.] Schr\"{o}dinger's Equation:
+For $u:\reals^3 \times \reals \rightarrow \mathbb{C} \equiv \reals^2$,
+\begin{align*}
+i\frac{\pa u}{\pa t} + \Delta u - Vu =0
+\end{align*}
+for $V: \reals^3\rightarrow \reals$ given. $u$ is the wavefunction of a quantum mechanical particle moving in a potential $V$.
+
+\item[10.] Einstein's Equations for General Relativity:
+\begin{align*}
+R_{\mu \nu}[g] =0
+\end{align*}
+where $g$ is Lorentzian metric. $R_{\mu \nu}$ is Ricci tensor. This describes gravitational field in vacuum.
+
+\item[-.] There are Many more examples.
+\end{itemize}
+
+\subsection*{Data and Well-Posedness}
+In all examples, there is extra information required beyond the equation. We call this the \emph{data}. An important question is what data is appropriate. We typically ask of a PDE problem that:
+\begin{itemize}
+\item[a)] A solution exists,
+\item[b)] for given data the solution is unique,
+\item[c)] the solution depends on the data continuously.
+\end{itemize}
+If these hold, we say the problem is 'well-posed'. To make these precise, we have to (usually) specify function spaces for the data and solution to belong to.
+\s
+
+====================================================================
+8th October, Monday
+\s
+
+Let $U \subset \reals^n$, $u: U \rightarrow \reals$ be unknown. Then our system of interest will be
+\begin{align}
+F(x; u,Du,\cdots, D^k u)=0 \label{thePDE}
+\end{align}
+\s
+
+\textbf{Notations) } Let $\alpha = (\alpha_1, \cdots, \alpha_n) \in \mathbb{N}^n$ be a multi-index(where $\mathbb{N} =\{ 0,1,2,3,\cdots\}$). Then we let:
+\begin{itemize}
+\item $D^{\alpha}f(x) = \frac{\partial^{| \alpha |} f}{\partial x_1^{\alpha_1} \cdots \partial x_n^{\alpha_n}}$ where $|\alpha| = \alpha_1 + \cdots + \alpha_n$ is the order of $\alpha$.
+\item For $x \in \reals^n$, $x^{\alpha} = x_1^{\alpha_1} \times \cdots \times x_n^{\alpha_n}$
+\item $\alpha! = \alpha_1! \cdots \alpha_n!$.
+\item For $\beta = (\beta_1, \cdots, \beta_n)$, $\beta \leq \alpha$ is equivalent to having $\beta_k \leq \alpha_k$ for all $k$.
+\end{itemize}
+\s
+
+\subsection*{Classifying PDEs}
+\begin{itemize}
+\item We say (\ref{thePDE}) is \textbf{linear} if $F$ is a linear function of $u$ and its derivatives. We can write (\ref{thePDE}) as 
+\begin{align*}
+\sum_{|\alpha \leq k} a_{\alpha}(x) D^{\alpha}u(x) = f(x)
+\end{align*}
+\item We say (\ref{thePDE}) is \textbf{semi-linear} if it is of the form
+\begin{align*}
+\sum_{|\alpha \leq k} a_{\alpha}(x) D^{\alpha}u(x) + a_0(x;u(x),\cdots,D^{k-1}u(x)) = 0
+\end{align*}|
+\item We say (\ref{thePDE}) is \textbf{quasi-linear} if it is of the form
+\begin{align*}
+\sum_{|\alpha \leq k} a_{\alpha}\big(x;u(x),\cdots,D^{k-1}u(x) \big) D^{\alpha}u(x) + a_0(x;u(x),\cdots,D^{k-1}u(x)) = 0
+\end{align*}|
+\item We say (\ref{thePDE}) is \textbf{fully non-linear} if its not linear, semi-linear, nor quasi-linear
+\end{itemize}
+\s
+
+\textbf{Examples)}
+\begin{itemize}
+\item $\Delta u = f$ is linear
+\item $\Delta u =u^3$ is semi-linear
+\item $uu_{xx} + u_x u_{yy} = f$ is quasi-linear
+\item $u_{xx}u_{yy} - u_{xy}^2 = f$ is fully non-linear.
+\end{itemize}
+\s
+
+\subsection*{Cauchy-Kovalevskaya Theorem}
+For motivation, we recall some ODE theory. Fix $U \subset \reals^n$, and assume $f:U \rightarrow \reals^n$ is given. Consider the ODE
+\begin{align}
+\dot{u}(t) = f(u(t)), u(0)=u_0 \in U \label{theODE}
+\end{align}
+with $u : I \subset \reals \rightarrow U$.
+\s
+
+\thm (Picard-Lindel\"{o}f) Suppose there exist $r,K>0$ s.t. $B_r(u_0) = \{ w\in \reals^n : |w-u_0|<r\}$ and $|f(x)-f(y) \leq K|x-y|$ for all $x,y \in B_r(x_0)$. Then there exists $\epsilon >0$(depending in $r$ and $K$) and a unique $C^1$-function $u : (-\epsilon,\epsilon)\rightarrow U$ solving (\ref{theODE}).
+
+\pf Use $U$ solves (\ref{theODE}), then 
+\begin{align}
+u(t) = u_0 + \int_0^t f(u(s))ds \label{equivODE}
+\end{align}
+and conversely, if $U$ is $C^0$ and solves (\ref{equivODE}), then in fact $U$ is $C^1$ by FTC, and $u$ solves (\ref{theODE}).(in context of PDEs, this is called \emph{weak formulation})
+
+Then our solution, if exists, is a fixed point of the map $B : w \mapsto u_0 + \int_0^t f(w(s))ds$.(~use Banach fixed point theorem)
+\s
+
+\textbf{Observations:}
+\begin{itemize}
+\item[-] We start by reformulating the problem in a weak form and find a unique $C^0$ solution. Then $C^1$ the regularity follows a posteriori.
+\item[-] to construct the fixed point map, we solve the linear problem $\dot{w}(t) = f(w(t))$.
+\end{itemize}
+\s
+
+Lets consider an alternative approach to solving (\ref{theODE}). Assuming $f$ is differentiable, we have
+\begin{align*}
+u^{(1)}(t) &= f(u(t)) \\
+u^{(2)}(t) &= f'(u(t))\dot{u}(t) \\
+u^{(3)}(t) &= f''(u(t))(\dot{u}(t))^2 + f'(u(t))\ddot{u}(t) \\
+&\vdots \\
+u^{(k)}(t) &= f_k(u(t), \dot{u}(t),\cdots, u^{(k-1)})(t))
+\end{align*}
+So in principle, given $u(0) = u_0$, we can determine $u_k = u^{(k)}(0)$ for all $k \geq 0$. \emph{Formally} at least, we can write
+\begin{align}
+u(t) = \sum_{k=0}^{\infty} u_k t^k / k! \label{seriesSoln}
+\end{align}
+ignoring the issues of convergence. Call this a \textbf{formal power series solution}. When will this agree with the Picard-Lindel\"{o}f solution we have constructed?
+\s
+
+\thm(Cauchy-Kovalevskaya, for the case of ODEs) The series in (\ref{seriesSoln}) converges to a solution of (\ref{theODE}) in a neighbourhood of $t=0$ if $f$ is real analytic at $u_0$.
+
+-This will follow from a more general result later.
+\s
+
+\defi Let $U \subset \reals^n$ be open and suppose $f: U \rightarrow \reals$. $f$ is called \textbf{real analytic} near $x_0 \in U$ if $\exists r >0$ and constants $f_{\alpha}$($\alpha$ are multi-indices) such that
+\begin{align*}
+f(x) = \sum_{\alpha}f_{\alpha} (x-x_0)^{\alpha} \quad \text{for } x \in B_r(x_0)
+\end{align*}
+\s
+
+\textbf{Note:} if $f$ is real analytic, then it is $C^{\infty}$. Furthermore, the constants $f_{\alpha}$ are given by $f_{\alpha} = D^{\alpha}f(x_0) /\alpha!$. Thus $f$ equals its Taylor expansion about $x_0$, in a neighbourhood of $x_0$.
+\begin{align*}
+f(x) = \sum_{\alpha} \frac{D^{\alpha}f(x_0)}{\alpha!} (x-x_0)^{\alpha} \quad \text{for } x \in B_r(x_0)
+\end{align*}
+By translation, we usually assume $x_0 =0$
+\s
+
+\newday
+
+(10th October, Wednesday)
+\s
+
+$\bullet$ Last lecture : $U \subset \reals^n$ open, $f: U \rightarrow \reals$ is real analytic at $x_0 \in U$ if $\exists f_{\alpha} \in \reals$, $r>0$ s.t.
+\begin{align*}
+f(x)  = \sum_{\alpha} f_{\alpha}(x-x_0)^{\alpha} \quad \forall |x-x_0|<r
+\end{align*}
+\s
+
+\textbf{Properties of real analytic functions}
+\begin{itemize}
+\item $f$ is real analytic at $x_0$ if and only if $\exists s>0$ and $C,\rho>0$ such that:
+\begin{align*}
+\sup_{|x-x_0|< s}\big| D^{\alpha}f(x) \big| \leq C \frac{|\alpha|!}{\rho^{|\alpha|}}
+\end{align*}
+\item If $f$ is RA(real analytic) at $x_0$, it is RA for all $x$ close enough to $x_0$.
+\item If $f: U \rightarrow \reals$ is real analytic everywhere on a connected set $U$, then $f$ is determined by its values on any open subset of $U$. (Or by its Taylor expansion at a single point.)
+\end{itemize}
+\s
+
+\textbf{Example :} If $r>0$ set
+\begin{align*}
+f(x) = \frac{r}{r-(x_1 + \cdots + x_n)} \quad \text{for } |x|<r/\sqrt{n}
+\end{align*}
+Then for $|x| < r/\sqrt{n}$,
+\begin{align*}
+f(x) &= \frac{1}{1-(x_1 + \cdots +x_n)/r} = \sum_{k=0}^{\infty} \Big( \frac{x_1 +\cdots +x_n}{r} \Big)^k = \sum_{k=0}^{\infty} \frac{1}{r^k} \sum_{|\alpha| = k} \begin{pmatrix}
+|\alpha| \\
+\alpha
+\end{pmatrix} x^{\alpha} \\
+& =  \sum_{\alpha} \frac{|\alpha|!}{r^{|\alpha|}\alpha!} x^{\alpha}
+\end{align*}
+by multinomial theorem. This is valid for $|x_1+\cdots +x_n|/r <1$, which holds for $|x|<r/\sqrt{n}$. In fact, on this domain, the series converges absolutely. Indeed :
+\begin{align*}
+\sum_{\alpha} \frac{|\alpha|!}{r^{|\alpha|}\alpha!} |x|^{\alpha} = \sum_{k=0}^{\infty} \Big( \frac{|x_1|+\cdots+|x_n|}{r} \Big)^k < \infty
+\end{align*}
+since $|x_1|+\cdots +|x_n| \leq |x| \sqrt{n} <r$.
+\s
+
+\defi Let $f = \sum_{\alpha} f_{\alpha} x^{\alpha}$, $g= \sum_{\alpha} g_{\alpha} x^{\alpha}$ be two formal power series. We say $g$ \textbf{majorises} $f$, written $g \gg f$ if
+\begin{align*}
+\big|f_{\alpha} \big| \leq g_{\alpha}
+\end{align*}
+for all $\alpha$, and say that $g$ is a \textbf{majorant} of $f$.
+\s
+
+\lem \begin{itemize}
+\item[(i)] If $g\gg f$ and $g$ converges for $|x|<r$ then $f$ also converges (absolutely) for $|x| <r$.
+\item[(ii)] If $f$ converges for $|x|<r$, then for any $s\in (0,r/\sqrt{n})$, $f$ has a majorant that converges for $|x|<s/\sqrt{n}$.($n$ is the dimension of the space)
+\end{itemize}
+\begin{proof}
+\pf \begin{itemize}
+\item[(i)] We note that
+\begin{align*}
+\sum_{\alpha} \abs{f_{\alpha} x^{\alpha}} &\leq \sum_{\alpha} \abs{f_{\alpha}} |x_1|^{\alpha_1} \cdots |x_n|^{\alpha_n} \\
+&\leq \sum_{\alpha} g_{\alpha} \tilde{x}^{\alpha}
+\end{align*}
+where $\tilde{x} = (|x_1|,\cdots,|x_n|)$. Now $|\tilde{x}| = |x|  <r$ so $\sum_{\alpha} g_{\alpha} \tilde{x}^{\alpha}$ converges, hence $\sum_{\alpha} \abs{f_{\alpha} x^{\alpha}}$ converges. Hence $f$ converges on $|x|<r$ absolutely. 
+\item[(ii)] Pick $s$ s.t. $0<s\sqrt{n} <r$, and set $y=s(1,\cdots,1)$. Then $|y| = s\sqrt{n} <r$. Hence $\sum_{\alpha}f_{\alpha}y^{\alpha}$ converges. A convergent series has bounded terms, $\exists C>0$ s.t. $\abs{f_{\alpha}y^{\alpha}} \leq C$ for all $\alpha$, and therefore
+\begin{align*}
+\abs{f_{\alpha}} \leq \frac{C}{y_1^{\alpha_1} \cdots y_n^{\alpha_n}} = \frac{C}{s^{|\alpha|}} \leq \frac{C |\alpha|!}{s^{\alpha} \alpha!}
+\end{align*}
+But then $g(x)$ defined by
+\begin{align*}
+g(x) = \frac{Cs}{s-(x_1 + \cdots + x_n)}  = C \sum_{\alpha} \frac{|\alpha|!}{s^{\alpha}\alpha!}x^{\alpha}
+\end{align*}
+majorises $f$ and converges for $|x|<s/\sqrt{n}<r/n$.
+\end{itemize}
+
+\eop
+\end{proof}
+\s
+
+\textbf{Remark :} If $f = (f^1, \cdots, f^m)$ and $g =(g^1, \cdots, g^m)$ are formal power series, then we say
+\begin{align*}
+g\gg f \quad \text{if} \quad g^i \gg f^i \quad i=1,\cdots,m
+\end{align*}
+\s
+
+\subsection*{Cauchy-Kovalevskaya for First Order Systems}
+We will study a problem that generalises the Cauchy problem for ODEs we have already discussed.
+\s
+
+As coordinates on $\reals^n$ we take $(x',t) = x$ where
+\begin{align*}
+x'=(x_1,\cdots,x_{n-1}) \in \reals^{n-1}, \quad t=x^n \in \reals
+\end{align*}
+Set
+\begin{align*}
+B^n_r = \{t^2 +|x'|^2 <r^2 \}, \quad B_r^{n-1} = \{|x'|<r, t=0 \}
+\end{align*}
+\s
+
+\renewcommand{\vec}{\underline}
+We consider a system of equations for unknown $\vec{u}(x) \in \reals^m$. More concretely, we seek a solution to
+\begin{align} 
+\vec{u}_t &= \sum_{j=1}^{n-1} \doubleunderline{B}_j (\vec{u},x') \cdot \vec{u}_{x_j} + \vec{c}(\vec{u},x') \quad \text{on } B_r^n \label{5} \\
+\vec{u} &= 0 \quad \text{on } B_r^{n-1} \nonumber
+\end{align}
+where $\vec{u}_{x_j}=\partial u/\partial x_j$ etc. We assume that we are given the real analytic functions
+\begin{align*}
+\doubleunderline{B}_j :& \reals^m \times \reals^{n-1} \rightarrow \text{Mat}(m\times m) \\
+\vec{c} :& \reals^m \times \reals^{n-1} \rightarrow \reals^m
+\end{align*}
+(these functions do not have to defined on the entire space, but just have to be defined on $\reals^n \times B^{n-1}_r$)
+
+Note we assume $\doubleunderline{B}_j$ and $\vec{u}$ do not depend explicitly on $t$. We can always introduce $u^{m+1}$ satisfying $\partial_t u^{m+1} =1$, $u^{m+1} =0$ on $B_r^{n-1}$ and extending the system.
+
+\quad We will write $\doubleunderline{B}_j = ((b_j^{kl}))$ and $\vec{c}  = (c^1, \cdots, c^m)^T$. Then in components (\ref{5}) reads:
+\begin{align*}
+u_t^k = \sum_{j=1}^{n-1} \sum_{l=1}^m b_j^{kl}(\vec{u},x')u_{x_j}^l + c^k(\vec{u},x') \quad k=1,\cdots, m
+\end{align*}
+\s
+
+\textbf{Examples :} Take $m=2$, write $\vec{u} = (f, g)^T$.
+\begin{itemize}
+\item[(a)] \begin{align*}
+\begin{cases}
+f_t= g_x + F\\
+g_t = f_x
+\end{cases}
+\end{align*}
+together imply $f_{tt} - f_{xx} = F_t$
+\item[(b)] \begin{align*}
+\begin{cases}
+f_t= -g_x + F\\
+g_t = f_x
+\end{cases}
+\end{align*}
+together imply $f_{tt} + f_{xx} = F_t$. (Note $F=0$ gives Cauchy-Riemann equation)
+\end{itemize}
+\s
+
+\thm (Cauchy-Kovalevskaya) Assume $\{\doubleunderline{B}_j \}_{j=1}^{n-1}$ and $\vec{c}$ are real analytic. Then for sufficiently small $r>0$ there exists a unique real analytic function $\vec{u} : B_r^n \rightarrow \reals^m$ solving the problem (\ref{5}).
+\s
+
+\newday
+
+(12th October, Friday)
+\s
+
+\thm (Cauchy-Kovalevskaya) Assume $\{\doubleunderline{B}_j \}_{j=1}^{n-1}$ and $\vec{c}$ are real analytic. Then for sufficiently small $r>0$ there exists a unique real analytic function $\vec{u} : B_r^n \rightarrow \reals^m$ solving the problem (\ref{5}).
+\begin{proof}
+\pf \begin{itemize}
+\item[1.] The strategy will be to write
+\begin{align}
+\vec{u}(x)  = \sum_{\alpha} \vec{u}_{\alpha}x^{\alpha} \label{6}
+\end{align}
+and compute coefficients
+\begin{align*}
+\vec{u}_{\alpha} = \frac{D^{\alpha } \vec{u}(0)}{\alpha !}
+\end{align*}
+in terms of $\doubleunderline{B}_j$, $\vec{c}$ and show that the series (\ref{6}) converges on $B_r^n$ for $r$ small enough.
+
+\item[2.] As $\doubleunderline{B}_j$ and $\vec{c}$ are real analytic, we can write
+\begin{align*}
+\doubleunderline{B}_j(z,x') &= \sum_{\gamma, \delta} \doubleunderline{B}_{j,\gamma,\delta}z^{\gamma}(x')^{ \delta} \quad \gamma\in \mathbb{N}^m,\delta \in \mathbb{N}^{n-1} \text{ multiindices} \\
+\vec{c}(z,x') & = \sum_{\gamma, \delta} \vec{c}_{\gamma, \delta} z^{\gamma}(x')^{ \delta}
+\end{align*}
+where these power series converge for $ |z|^2 + |x'|^2 <s^2$, wlog $s>r$.
+Thus:
+\begin{align}
+\doubleunderline{B}_{j, \gamma, \delta} &= \frac{D_z^{\delta} D_{x'}^{\delta} \doubleunderline{B}_{j}(0,0)}{\gamma ! \delta !} \label{7}\\
+\vec{c}_{\gamma, \delta} &= \frac{D_z^{\delta} D_{x'}^{\delta} \vec{c}(0,0)}{\gamma ! \delta !} \nonumber
+\end{align}
+
+\item[3.] Since $\vec{u} \equiv 0$ on $\{ t=x^n =0 \}$, we have
+\begin{align*}
+\vec{u}_{\alpha} = \frac{D^{\alpha}\vec{u}(0)}{\alpha !} = 0
+\end{align*}
+for all multi-indices $\alpha$ with $\alpha_n=0$.
+
+Now, we use the evolution equation (\ref{5}) to deduce
+\begin{align*}
+\vec{u}_{x_n}(0)  = \vec{u}_t (0) = \sum_{j=1}^{n-1} \doubleunderline{B}_j(\vec{u}(0),0) \vec{u}_{x_j}(0) + \vec{c}(\vec{u}(0),0) = \vec{c}(0,0)
+\end{align*}
+Fix $i\in \{1,2,\cdots, n-1\}$, differentiate (\ref{5}) with respect to $x^i$ : 
+\begin{align*}
+\vec{u}_{tx_i} = \sum_{j=1}^{n-1} \Big[ & \partial_{x_i} \doubleunderline{B}_j(\vec{u},x') \vec{u}_{x_j} + \big( \sum_{i=1}^m \partial_{z_i}\doubleunderline{B}_j (\vec{u},x') \frac{\partial u^i}{\partial x^j} \vec{u}_{x_j} \big) + \doubleunderline{B}_j(\vec{u},x')\vec{u}_{x_i x_j} \Big] \\
+& + \partial_{x_i} \vec{c}(\vec{u},x') + \sum_{i=1}^m \partial_{z_l} \vec{c}(\vec{u},x') \frac{\partial u^{l}}{\partial x^i} \\
+\vec{u}_{tx_i}(0) = \partial_{x_i} & \vec{c}(0,0)
+\end{align*}
+Iterating this, we deduce $D^{\alpha}\vec{u}(0) = D^{\delta} \vec{c}(\vec{0},0)$ where $\alpha=(\delta,1)$. 
+
+\item[4. ] Now, suppose $\alpha = (\delta,2)$, for $\delta \in \mathbb{N}^{n-1}$. Then
+\begin{align*}
+D^{\alpha} u^k &= D^{\delta}(u^k_{x_n x_n}) = D^{\delta}(u^k_t)_t \\
+&= D^{\delta}\Big( \sum_{j=1}^{n-1}\sum_{l=1}^m b_j^{kl} u_{x_j}^l + c^k \Big)_t \\
+&= D^{\delta}\Big( \sum_{j=1}^{n-1} \sum_{i=1}^m \Big[ b_j^{kl} u_{x_j t}^l + \sum_{p=1}^m (b_j^{kl})_{z_p} u_{x_j}^l u_t^p \Big] + \sum_{p=1}^m c_{z_p}^k u_t^p  \Big)
+\end{align*}
+so
+\begin{align*}
+D^{\alpha} u^k (0) = D^{\alpha} \Big( \sum_{j=1}^{n-1} \sum_{i=1}^m  b_j^{kl} u_{x_j t}^l + \sum_{p=1}^m c_{z_p}^k u_t^p \Big) \Big|_{x=0,\vec{u}=0}
+\end{align*}
+Now crucially, the expression on the right can be expanded to produce a polynomial with non-negative coefficients involving derivative of $\doubleunderline{B}_j$ and $\vec{c}$, and derivatives $D^{\beta} \vec{u}$ where $\beta_n \leq 1$. More generally, for each multi-index $\alpha$ and each $k\in \{1,\cdots, n\}$, we can compute
+\begin{align*}
+D^{\alpha}u^k(0) = p_{\alpha}^k \Big( D_z^{\alpha} D^{\delta}_{x'}\doubleunderline{B}_j, D_z^{\alpha}D_{x'}^{\delta} \vec{c}, D^{\beta} \vec{u}\Big) \big|_{x=0,\vec{u}=0}
+\end{align*}
+where $\beta_n\leq \alpha_n -1$ and $p_{\alpha}^k$ is some polynomial in its arguments with non-negative coefficients. Equivalently, for each $\alpha, k$
+\begin{align*}
+u_{\alpha}^k = q_{\alpha}^k \big( \doubleunderline{B}_{j,\alpha,\delta},\vec{c}_{\gamma, \delta},u_{\beta}  \big)
+\end{align*}
+where $q_{\alpha}^k$ is a polynomial with non-negative coefficients, with $\beta_n \leq \alpha_n -1$.
+
+\item[5.] We have shown that if a solution exists, we can compute all derivatives at $0$ in terms of known quantities. We will construct a series which majorises the formal sum $\sum_{\alpha} u_{\alpha}x^{\alpha}$.
+
+\quad First suppose 
+\begin{align*}
+\doubleunderline{B}_j^{*} \gg \doubleunderline{B}_j \quad \vec{c}^* \gg \vec{c}
+\end{align*}
+where
+\begin{align*}
+\doubleunderline{B}_j^{*} &= \sum_{\gamma, \delta} \doubleunderline{B}_{j,\gamma,\delta}^{*} z^{\gamma} (x')^{\delta} \\
+\vec{c}^* &= \sum_{\gamma, \delta} \vec{c}_{\gamma,\delta}^{*} z^{\gamma} (x')^{\delta}
+\end{align*}
+Assume these converge for $|z|^2 + |x'|^2 <s^2$ (decrease $s$ if necessary). For all $j,\gamma, \delta, k,l$,
+\begin{align*}
+0\leq |B^{kl}_{j,\gamma,\delta}| \leq (B^*)^{kl}_{j,\gamma,\delta}, \quad 0\leq |c^k_{\gamma, \delta} | \leq (c^*)^{kl}_{\gamma, \delta}
+\end{align*}
+We consider the modified problem:
+\begin{align*}
+\vec{u}^*_t &= \sum_{j=1}^{n-1} \doubleunderline{B}^*_j (\vec{u}^*, x') \vec{u}^*_{x_j} + \vec{c}^*(\vec{u}^*,x') \quad \text{for } |x| <r \\
+\vec{u}^* &= \vec{0} \quad \text{on } B_r^{n-1}
+\end{align*}
+As above, seek a real analytic solution
+\begin{align*}
+\vec{u}^* = \sum_{\alpha} \vec{u}^*_{\alpha} x^{\alpha} \quad \text{where } \vec{u}^*_{\alpha} = \frac{D^{\alpha}\vec{u}(0)}{\alpha !}
+\end{align*}
+
+\item[6.] We claim $0\leq |u_{\alpha}^k| \leq (u^*)^{k}_{\alpha}$ for all $\alpha \in \mathbb{N}^n$.
+
+We do this by proof by induction on $\alpha_n$.
+
+For $\alpha_n =0$, $u_{\alpha}^* = u_{\alpha} =0$
+
+For the induction step: (for $\beta_{\alpha} \leq \alpha_n -1$)
+\begin{align*}
+|u_{\alpha}^k| &= |q_{\alpha}^k(\doubleunderline{B}_{j,\gamma,\delta}, \vec{c}_{\gamma,\delta},\vec{u}_{\beta})| \\
+&\leq q_{\alpha}^k ( |B_{j,\gamma,\delta}^{kl}|,|C_{\gamma,\delta}^k|,|u^k_{\beta}|) \\
+&\leq q_{\alpha}^k ((B^*)^{kl}_{j,\gamma,\delta},(c^*)^{k}_{\gamma,\delta},(u^*)^{k}_{\beta}) \\
+&= (u*)^{k}_{\alpha}
+\end{align*}
+Using positivity of coefficients of $q$ and induction assumption. Thus $\vec{u}^* \gg \vec{u}$. Remains to show we can find $\doubleunderline{B}_{j}^*$, $\vec{c}^*$ s.t. a solution $\vec{u}^*$ exists and converges near 0.
+\end{itemize}
+\end{proof}
+
+\newday
+
+(15th October, Monday)
+\s
+
+Last lecture :
+\begin{itemize}
+\item a formal power series solution $\vec{u} = \sum_{\alpha} \vec{u}_{\alpha} x^{\alpha}$ exists.
+
+\item If $\doubleunderline{B}^*_j \gg \doubleunderline{B}_j$, $\vec{c}^* \gg \vec{c}$ and $\vec{u}^*$ satisfies
+\begin{align*}
+\vec{u}^*_t &= \sum_{j=1}^{n-1} \doubleunderline{B}^*_j (\vec{u}^*, x') \vec{u}^*_{x_j} + \vec{c}^*(\vec{u}^*,x') \quad \text{for } |x| <r \\
+\vec{u}^* &= \vec{0} \quad \text{on } B_r^{n-1}
+\end{align*}
+then the power series for $\vec{u}^* = \sum_{\alpha} \vec{u}^*_{\alpha} x^{\alpha}$.
+\end{itemize}
+
+\begin{proof}
+\textbf{proof, continued)} To complete the proof, it suffices to show that for any $\doubleunderline{B}_j$, $\vec{c}$, we can find $\doubleunderline{B}^*_j$, $\vec{c}^*_j$ such that the corresponding $\vec{u}^*_j$ is a convergent series.
+
+\quad We make a particular choice for $\doubleunderline{B}^*_j$, $\vec{c}^*$. For this we recall from an earlier lemma that
+\begin{align*}
+\doubleunderline{B}^*_j &= \frac{Cr}{r-(x_1+\cdots+x_{n-1}) - (z_1 + \cdots + z_m)} \begin{pmatrix}
+1 & 1& \cdots 1 \\
+\vdots & & \ddots \vdots \\
+1 & 1 & \cdots 1
+\end{pmatrix} \\
+\vec{c}^* &= \frac{Cr}{r-(x_1+\cdots+x_{n-1}) - (z_1 + \cdots + z_m)} (1,\cdots, 1)^T
+\end{align*}
+will majorise $\doubleunderline{B}_j$, $\vec{c}$, provided $C$ is large enough, $r$ is small enough and $\doubleunderline{B}^*_j$, $\vec{c}^*$ are given by convergent series for $|x'|^2 + |z|^2 <r^2$. With these choices of majorants, the modified equation takes the form :
+\begin{align*}
+(u^*)^k_t  &= \frac{Cr}{r-(x_1+\cdots+x_{n-1}) - ((u^*)^1 + \cdots + (u^*)^m)} (\sum_{j,l} \big( u^*)^l_{x_j} +1 \big) \quad \text{for } |x'|^2 + t^2 <r^2 \\
+u^* &= 0 \quad \quad \quad \quad \text{for } t=0,|x'|<r
+\end{align*}
+This problem has an explicit solution.
+\begin{align*}
+\vec{u}^* = v^* (1,\cdots,1)^T
+\end{align*}
+where
+\begin{align*}
+v^* = \frac{1}{mn} \Big( r - (x_1+ \cdots + x_{n-1}) - \sqrt{(r-(x_1+\cdots + x_{n-1}))^2 - 2nmCrt} \Big)
+\end{align*}
+(\emph{Check this is indeed the solution!!}) $v^*$ is real analytic for $|x'|^2 + t^2 < r^2$, provided $r$ is small enough. Hence $\vec{u}^*$ is given by a convergent series since $\vec{u}^* \gg \vec{u}$. Our formal power series for $\vec{u}$ converges.
+
+\quad Initial condition hold for $\vec{u}$ since
+\begin{align*}
+\vec{u}_{\alpha} = \vec{0} \quad \text{if} \quad \alpha_n =0
+\end{align*}
+%배고프다 ㅜㅜㅜㅜ
+Moreover, the functions $\vec{u}_t$ and $\sum_{j=1}^{n-1} \doubleunderline{B}_j(\vec{u},x') \vec{u}_{x_j} + \vec{c}(\vec{u},x')$ are both real analytic near 0 and by construction, have the same Taylor expansion. Hence they must agree on a neighbourhood of 0, so the equation holds in some ball about 0.
+
+\eop 
+\end{proof}
+\s
+
+\subsection*{Reduction to a First Order System}
+
+\textbf{Example) }
+\begin{proof}
+\quad Consider the PDE problem for $u:\reals^3 \rightarrow \reals$
+\begin{align}
+u_{tt} &= uu_{xy} - u_{xx} + u_t  \label{11} \\
+u\big|_{t=0}  &= u_0  \nonumber \\
+u_t \big|_{t=0} &= u_1 \nonumber
+\end{align}
+where $u_0, u_1:\reals^2 \rightarrow \reals$ are given real analytic functions (near 0).
+
+First note that $f=u_0 + tu_1$ is analytic in a neighbourhood of $0\in \reals^3$ and $f\big|_{t=0} = u_0$, $f_t\big|_{t=0} = u_1$. 
+
+Set $w = u-f$, then
+\begin{align*}
+& w_{tt} = ww_{xy}  - w_{xx} + w_t + fw_{xy} + f_{xy} w + F\\
+& w\big|_{t=0} = w_t \big|_{t=0} =0
+\end{align*}
+where $F= ff_{xy} - f_{xx} +f_t -f_{tt}$.
+
+Let $(x,y,t) = (x^1,x^2,x^3)$ and set $\vec{u} = (w,w_x,w_y,w_t) = (u^1,u^2,u^3,u^4)$. Then
+
+\begin{align*}
+& u^1_{x^3} = w_t = u^4 \\
+& u^2_{x^3} = w_{xt} = u^4_{x_1} \\
+& u^3_{x^3} = w_{yt} = u^4_{x_2} \\
+& u^4_{x^3} = w_{tt} = u^1 u^2_{x^2} - u^2_{x^1}+ u^4+ fu^2_{x^2} + f_{xy}u^1 + F
+\end{align*}
+Now, defining:
+\begin{align*}
+& \doubleunderline{B}_1 = \begin{pmatrix}
+0 & 0 & 0 & 0 \\
+0 & 0 & 0 & 1 \\
+0 & 0 & 0 & 0 \\
+0 & -1& 0 & 0
+\end{pmatrix},\quad \doubleunderline{B}_2 = \quad \begin{pmatrix}
+0 & 0 & 0 & 0 \\
+0 & 0 & 0 & 0 \\
+0 & 0 & 0 & 1 \\
+u_1 +f & 0 & 0 & 0 
+\end{pmatrix} \\
+& \quad \\
+& \vec{c} = (u^4, 0, 0, u^4 + f_{xy}u^1 +F)^T
+\end{align*}
+The system of equations is in the form
+\begin{align*}
+\vec{u}_{x_2} = \sum_{j=1}2 \doubleunderline{B}_j \vec{u}_{x_j} + \vec{c}
+\end{align*}
+where $\doubleunderline{B}_j$, $\vec{c}$ are real analytic near 0. By Cauchy-Kovalevskaya, a real analytic solution to (\ref{11}) exists near 0.
+\end{proof}
+\s
+
+\textbf{Note :} this procedure relied on 
+\begin{itemize}
+\item[(a)] being able to solve for $u_{tt}$,
+\item[(b)] $u_{tt}$ depending on at most two derivatives of $u$ (in a quasilinear fashion)
+\end{itemize}
+\s
+
+\quad More generally, suppose we wish to solve the quasilinear problem :
+\begin{align*}
+& \sum_{|\alpha|=k} a_{\alpha} (D^{k-1}u,\cdots, u, x) D^{\alpha}u + a_0 (D^{k-1}u, \cdots, u,x) = 0 \quad \text{for } |x|<r \\
+&  u = \frac{\partial u}{\partial x_n} =  \cdots = \frac{\partial^{k-1} u}{\partial x_n^{k-1}} = 0 \quad \quad \text{for } |x'| <r,\, x_n=0
+\end{align*}
+called a \textbf{Cauchy problem}.
+
+\quad We introduce
+\begin{align*}
+\vec{u} = (u,\frac{\partial u}{\partial x_n}, \cdots, D^{\alpha}u,\cdots )_{|\alpha|\leq k-1} = (u^1,\cdots, u^m)
+\end{align*}
+$\vec{u}$ contains all derivative of $u$ up to order $k-1$. Wlog, (by changing the order if necessary) put $u^m = \partial^{k-1} u / \partial x_n^{k-1}$. For $j<m$, we can compute $\partial u^j / \partial x^n$ in terms of $\partial u^l /\partial x^p$ for some $l\in \{1,\cdots, m\}$ and $p<n$.
+
+\quad To computed $\partial u^m / \partial x_n$ we need to use the equation. Suppose that
+\begin{align*}
+a_{(0,\cdots,0,k)}(0,\cdots, 0) \neq 0
+\end{align*}
+Then we can write the equation as :
+\begin{align*}
+\frac{\partial^k u}{\partial x^k_n} = \frac{-1}{a_{(0,\cdots,k)} (D^{k-1}u,\cdots,u,x)}\Big[\sum_{|\alpha|=k, \alpha_n <k} a_{\alpha} D^{\alpha} u + a_0  \Big]
+\end{align*}
+Assuming $a_{\alpha}$ are real analytic, the denominator will be non-zero near the origin. The RHS can be written in terms of $\frac{\partial u^l}{\partial x^p}$ for $p<n$ and $\vec{u}$. We see we can write the equation as a first ordered system for $\vec{u}$, \emph{provided}(this condition is important! would come back to this later)
+\begin{align*}
+a_{(0,\cdots, k)}(0,\cdots, 0) \neq 0 \quad \text{(non-characteristic condition)}
+\end{align*}
+In this case we can apply Cauchy-Kovalevskaya.
+\end{document}

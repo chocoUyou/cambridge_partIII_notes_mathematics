@@ -1,0 +1,475 @@
+\documentclass[10pt,a4paper]{report}
+
+
+\usepackage{amsmath}
+\usepackage[utf8]{inputenc}
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{amssymb}
+\usepackage{calrsfs}
+\usepackage[left=2cm,right=2cm,top=2cm,bottom=2cm]{geometry}
+\usepackage[mathscr]{euscript}
+
+%%%for drawing commutative diagrams.%%%%%%
+\usepackage{tikz-cd}  
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%for changing margin
+\def\changemargin#1#2{\list{}{\rightmargin#2\leftmargin#1}\item[]}
+\let\endchangemargin=\endlist 
+
+\newenvironment{proof}
+{\begin{changemargin}{1cm}{0.5cm} 
+	}%your text here
+	{\end{changemargin}
+}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{document}
+\newcommand{\thm}{\textbf{Theorem) }}
+\newcommand{\thmnum}[1]{\textbf{Theorem #1) }}
+\newcommand{\defi}{\textbf{Definition) }}
+\newcommand{\definum}[1]{\textbf{Definition #1) }}
+\newcommand{\lem}{\textbf{Lemma) }}
+\newcommand{\lemnum}[1]{\textbf{Lemma #1) }}
+\newcommand{\prop}{\textbf{Proposition)}}
+\newcommand{\propnum}[1]{\textbf{Proposition #1) }}
+\newcommand{\corr}{\textbf{Corollary) }}
+\newcommand{\corrnum}[1]{\textbf{Corollary #1) }}
+\newcommand{\pf}{\textbf{proof) }}
+
+
+\newcommand{\lap}{\triangle} %%Laplacian
+\newcommand{\s}{\vspace{10pt}}
+\newcommand{\bull}{$\bullet$}
+\newcommand{\sta}{$\star$}
+\newcommand{\reals}{\mathbb{R}}
+
+\newcommand{\eop}{\hfill  \textsl{(End of proof)} $\square$} %end of proof
+\newcommand{\eos}{\hfill  \textsl{(End of statement)} $\square$} %end of proof
+
+
+\newcommand{\intN}{\mathbb{Z}_N}
+\newcommand{\nat}{\mathbb{N}}
+\newcommand{\norms}[2]{\parallel #1 \parallel_{#2}}
+\newcommand{\avg}{\mathbb{E}}
+\newcommand{\prob}{\mathbb{P}}
+\newcommand{\borel}{\mathscr{B}}
+\newcommand{\EE}{\mathscr{E}}
+\newcommand{\cov}{\text{Cov}}
+\newcommand{\var}{\text{Var}}
+
+\newcommand{\newday}{===============================================================}
+
+\setlength\parindent{0pt}
+
+\chapter*{Advanced Probability}
+\s
+
+=====================================================================================
+(5th October 2018, Friday)
+\s
+
+\section*{0. Review}
+
+\subsection*{0.1. Measure Spaces}
+
+Let $E$ be a set.
+\s
+
+Let $\EE$ be a set of subsets of $E$. We say that $\EE$ is a \textbf{$\sigma$-algebra} if $\phi \in \EE$ and for $A \in \EE$ and for any sequence $(A_n : n\in \mathbb{N})$ in $\EE$, we have $E\backslash A \in \EE$ and $\cup_n A_n \in \EE$. Then $(E,\EE)$ is called a \textbf{measurable space} and we call the elements of $\EE$ \textbf{measurable}.
+\s
+
+Let $\mu$ be a function $\EE \rightarrow [0,\infty]$. We say that $\mu$ is a \textbf{measure} if $\mu(\phi)=0$ and for all sequences $(A_n : n\in \mathbb{N})$ of disjoint elements, we have $\mu(\cup_n A_n) = \sum_n \mu(A_n)$.(\textbf{countable additivity}). The triple $(E,\EE, \mu)$ is called the \textbf{measure space}. 
+\s
+
+Given a topological space $E$ there is a smallest $\sigma$-algebra containing all the open sets. This is the \textbf{Borel $\sigma$-algebra}, denoted $\borel(E)$.
+\s
+
+E.g. For $\reals$, has $\borel(\reals) = \borel$, and $[0,\infty]$(the extended real positive line) has analogous Borel $\sigma$-algebra.
+\s
+
+\subsection*{0.2. Integration of Measurable Functions}
+
+Let $(E, \EE)$ and $(E', \EE')$ be measurable spaces. A function $f: E \rightarrow E'$ is \textbf{measurable} if
+\begin{align*}
+f^{-1}(A) = \{ x\in E : f(x) \in A \} \in \EE \quad \forall A \in \EE'
+\end{align*}
+
+If we refer to a \textbf{measurable function} $f$ without specifying range, the default is $(\reals, \borel)$. 
+\s
+
+If we refer to $f$ as a \textbf{non-negative measurable function}, then we mean $E' = [0, \infty]$, $\EE' = \borel([0,\infty])$. Write $m\EE^+$ for the set of non-negative measurable functions.
+\s
+
+\thmnum{0.2.1.} Let $(E,\EE, \mu)$ be a measure space. Then there exists a \textit{unique} map $\tilde{mu} : m \EE^+ \rightarrow [0,\infty]$ such that
+\begin{itemize}
+\item[(a)] $\tilde{mu}(1_A) = \mu(A)$ for all $A \in \EE$.
+\item[(b)] $\tilde{mu}(\alpha f + \beta g)= \alpha \tilde{mu}(f) + \beta \tilde{\mu}(g)$ for all $\alpha, \beta \in [0,\infty)$ and all $f,g \in m \EE^+$.
+\item[(c)] (\textbf{monotone convergence}) $\tilde{\mu}(f) = \lim_{n\rightarrow \infty} \tilde{\mu}(f_n)$ for a non-decreasing sequence of functions $(f_n)_{n\in \mathbb{N}}$ in $m\EE^+$ such that $f_n(x) \rightarrow f(x)$ as $n\rightarrow \infty$ for all $x\in E$. 
+\end{itemize}
+\eos
+\s
+
+For now on, write $\mu$ for $\tilde{\mu}$. Call $\mu(f)$ the \textbf{integral of $f$} w.r.t. $\mu$. Also write $\int_E fd\mu = \int_E f(x) \mu(dx)$.
+\s
+
+A \textbf{simple function } is one which is a finite linear combination of indicator functions of measurable sets with positive coefficients. So $f$ is simple if $f = \sum_{k=1}^n \alpha_k 1_{A_k}$ for some $n \geq 0$, $\alpha_k \in (0,\infty)$ and $A_k \in \EE$ for $k\in \{1,\cdots, n\}$.
+\s
+
+Form (a) and (b) for $f$ simple, we have
+\begin{align*}
+\mu(f) = \sum_{k=1}^n \alpha_k \mu(A_k)
+\end{align*}
+Also, if $f,g \in m\EE^+$ with $f\leq g$ then $f+h = g$ where $h = g- f1_{f<\infty} \in m\EE^+$.  Since $\mu(h) \geq 0$, (b) implies $\mu(f) \leq \mu(g)$.
+\s
+
+Take $f\in m\EE^+$. Define for $x\in E$, $n \in \mathbb{N}$,
+\begin{align*}
+f_n(x) = 2^{-n}[2^n f(x)] \wedge n 
+\end{align*}
+Then $(f_n:n\in \mathbb{N})$ is a non-decreasing sequence of simple functions such that $f_n(x) \rightarrow f(x)$ for all $x\in E$. By monotone convergence(property (c)), we have
+\begin{align*}
+\mu(f) = \lim_{n\rightarrow \infty} \mu(f_n)
+\end{align*}
+These procedure characterizes $\mu(f)$ uniquely in terms of the measure $\mu : \EE \rightarrow [0,+\infty]$, (a), (b) and (c), so we have shown the uniqueness in \textbf{Theorem 0.2.1.}
+\s
+
+When is $\mu(f)=0$? (for $f\in m\EE^+$)
+\s
+
+For measurable functions $f,g$ we say $f=g$ \textbf{almost everywhere}(or a.e.) if
+\begin{align*}
+\mu(\{x\in E : f(x) \neq g(x) \}) =0
+\end{align*}
+Can show, for $f\in m\EE^+$, we have $\mu(f) =0$ if and only if $f=0$ a.e.
+\s
+
+Let $f$ be a measurable function. We say that $f$ is \textbf{integrable} if $\mu(|f|) <\infty$. Write $L^1 = L^1(E,\EE,\mu)$ for the set of all integrable functions. We extend the integral to $L^1$ by setting $\mu(f)= \mu(f^+) - \mu(f^-)$ where $f^{\pm}(x) = 0 \vee (\pm f(x))$ so that $f = f^+ + f^-$. Then can show $L^1$ is a vector space $\mu: L^1 \rightarrow \reals$ is linear. 
+\s
+
+\lemnum{0.2.2.} \textbf{(Fatou's lemma)} Let $(f_n:n\in \nat)$ be a sequence in $m\EE^+$. Then
+\begin{align*}
+\mu(\liminf_{n\rightarrow \infty} f_n) \leq \liminf_{n\rightarrow \infty} \mu(f_n)
+\end{align*}
+\eos
+
+The proof is done by applying monotone convergence to the sequence $(\inf_{m\geq n} f_m : n \in \nat)$.
+\s
+
+====================================================================
+8th October, Monday
+\s
+
+\thmnum{0.2.3}(Dominated Convergence) Let $(f_n :n \in \mathbb{N})$ be a sequence of measurable functions on $(E,\mathscr{E})$. Suppose $f_n(x) \rightarrow f(x)$ as $n\rightarrow$ for some function $f$ and for every $x\in E$. Suppose furthermore that $|f_n| \leq g$ for all $n$, for some measurable function $g$. Then $f_n$ is integrable for all $n$ and so is $f$. Moreover, we have $\mu(f_n) \rightarrow \mu(f)$ as $n\rightarrow \infty$.
+\s
+
+We call a measure space $(\Omega, \mathscr{F}, \mathbb{P})$ such that $\prob(\Omega) =1$ a \textbf{probability space}, with the following terms replaced:
+\begin{align*}
+\text{measurable functions} (f) &\leftrightarrow \text{random variable} (X) \\
+\text{measurable sets} &\leftrightarrow \text{events} \\
+\text{almost everywhere} &\leftrightarrow \text{almost surely}\\
+\text{integral} & \leftrightarrow \text{expectation}(\avg{X} = \int_{\Omega} X d\prob \text{ in place of } \prob(X))
+\end{align*}
+
+\subsection*{0.3. Production measure and Fubini't theorem}
+
+Take finite (or $\sigma$-finite) measure spaces $(E_1, \mathscr{E}_1, \mu_1)$ and $(E_2, \mathscr{E}_2, \mu_2)$. Write $\mathscr{E}_1 \otimes \mathscr{E}_2$ for the $\sigma$-algebra on $E_1 \times E_2$ generated by sets of the form $A_1 \times A_2$ for $A_1 \in \mathscr{E}_1$ and $A_2 \in \mathscr{E}_2$ and call this \textbf{product $\sigma$-algebra}.
+\s
+
+\thmnum{0.3.1.} There exists a unique measure $\mu = \mu_1 \otimes \mu_2$ on $(E_1 \times E_2, \mathscr{E}_1 \times \mathscr{E}_2)$ such that
+\begin{align*}
+\mu(A_1 \times A_2) = \mu_1(A_1) \mu_2(A_2) \quad \forall A_1 \in \mathscr{E}_1, A_2 \in \mathscr{E}_2
+\end{align*}
+\s
+
+\thmnum{0.3.2.} (Fubini's theorem) Let $f$ be a non-negative measurable function on $(E_1 \times E_2, \mathscr{E}_1 \times \mathscr{E}_2)$.
+
+\begin{itemize}
+\item $x_1 \in E_1$, set $f_{x_1} (x_2) = f(x_1, x_2)$, then $f_{x_1}$ is $\mathscr{E_2}$-measurable for all $x_1 \in E_1$.
+
+\item Set $f_1(x_1) = \mu_2(f_{x_1})$. Then $f_1$ is $\mathscr{E}_1$-measurable, and $\mu_1(f_1) = \mu(f)$.
+\end{itemize} 
+\eos
+
+Now define $\hat{f}$ on $E_2 \times E_1$ by $\hat{f}(x_2,x_1) = f(x_1,x_2)$. Then we can show that $\hat{f}$ is $\mathscr{E}_2 \otimes \mathscr{E}_1$-measurable and $\mu_2 \otimes \mu_1 (\hat{f}) = (\mu_1 \otimes \mu_2)(f)$. So by Fubini, we have $\mu_2(f_2) = \hat{\mu}(\hat{f}) = \mu(f) \mu_1(f_1)$ where $f_2$ is defined as for $f_1$.
+\s
+
+i.e. $\int_{E_2} \big( \int_{E_1} f(x_1, x_2) \mu_1(dx_1) \big) \mu_2(dx_2) = \int_{E_1} \big( \int_{E_2} f(x_1, x_2) \mu_2(dx_2) \big) \mu_1(dx_1)$.
+\s
+
+Note, $f$ being integrable is also sufficient to for Fubini's theorem.
+\s
+
+\section*{Chapter 1. Conditional Expectation}
+\subsection*{1.1. Discrete Case}
+
+Suppose $(G_n : n\in \mathbb{N})$ is a sequence of disjoint sets in $\mathscr{F}$ such that $\cup_n G_n = \Omega$. Let $X$ be an integrable random variable.
+\begin{itemize}
+\item Set $\mathscr{G} = \sigma(G_n : n\in \mathbb{N}) = \{ \cup_{n\in I}G_n : I \subset \mathbb{N} \}$.
+
+\item Define a new random variable $Y = \sum_{n \in \mathbb{N}} \avg(X | G_n ) 1_{G_n}$ where $\avg(X|G_n) =  \avg(X 1_{G_n}) / \prob(G_n)$ (used convention 0/0=0). Then,
+\begin{itemize}
+\item[(a)] $Y$ is $\mathscr{G}$-measurable.
+\item[(b)] $Y$ is integrable and $\avg(Y 1_A) = \avg(X 1)A)$ for all $A \in \mathscr{G}$.
+\end{itemize} 
+We denote $Y = \avg(X|\mathscr{G})$ and call (a version of) the \textbf{conditional expectation} of $X$ given $\mathscr{G}$. 
+\end{itemize}
+\s
+
+\subsection*{1.2. Gaussian Case}
+
+Let $(W,X)$ be a Gaussian random variable in $\reals^2$ that has distribution $N(\mu, \Sigma)$. Take $\mathscr{G} = \sigma(W) = \{ W^{-1}(B) : B \in \mathscr{B}(\reals) \}$. 
+\s
+
+Consider, for $a,b \in \reals$, the random variable $Y = aW +b$.
+\s
+
+We can choose $a,b$ so that $\avg(Y)  = a\avg(X) + b = \avg(X)$ and $\cov(Y-X,W) = a \text{Var}(W) - \text{Var}(X,W) =0$. Then
+\begin{itemize}
+\item[(a)] $Y$ is $\mathscr{G}$-measurable.
+\item[(b)] $Y$ is integrable and $\avg(Y 1_A) = \avg(X 1_A)$ for all $A \in \mathscr{G}$.
+\end{itemize}
+To see this, note $Y-X$ and $W$ are independent as $\cov(Y-X, W) =0$ so $\avg((Y-X)1_A) = \avg(Y-X) \prob(A) =0$ for all $A \in \mathscr{G}$.
+\s
+
+\subsection*{1.3. Conditional density functions}
+
+Let $(U,V)$ be a random variable in $\reals^2$ with density function $f(u,v)$. That is, $\prob((U,V)\in A) = \int_A f(u,v)dudv$. Take $\mathscr{G} = \sigma(U) = \{ U^{-1}(B) : B \in \borel  \}$. Take a Borel measurable function $h$ on $\reals$ and set $X = h(V)$. Assume $X \in L^1(\prob)$. Note $U$ has density function $f(u) = \int f(u,v)dv$. Define the \textbf{conditional density function} $f(u|v) = f(u,v)/f(v)$(again with convention 0/0=0). Now set $Y=g(U)$ where $g(u) = \int_{\reals}h(v) f(v|u)dv$. Then $g$ is a Borel function on $\reals$ so
+\begin{itemize}
+\item[(a)] $Y$ is a $\mathscr{G}$-measurable random variable.
+\item[(b)] $Y$ is integrable and for all $A = U^{-1}(B) \in \mathscr{G}$, we have $\avg(Y 1_A) = \avg(X 1_A)$.
+\end{itemize}
+To see this,
+\begin{align*}
+\avg(Y 1_A) &= \int_{\reals} g(u) 1_B (u) f(u) du \\
+&= \int \int h(v) f(v|u) dv 1_B(u) f(u) du \\
+&= \avg(X 1_A)
+\end{align*}
+using Fubini's theorem to go from second to the third line.
+\s
+
+\newday
+
+(10th October, Wednesday)
+\s
+
+\subsection*{1.4. Existence and uniqueness of conditional expectation}
+
+$(\Omega, \mathscr{F},\prob)$ is always the probability space behind.
+\newcommand{\F}{\mathscr{F}}
+\newcommand{\G}{\mathscr{G}}
+\s
+
+\thmnum{1.4.1.} Let $X$ be integrable random variable and let $\mathscr{G}$ be a sub-$\sigma$-algebra of $\mathscr{F}$. There exist a random variable $Y$ such that
+\begin{itemize}
+\item[(a)] $Y$ is $\G$-measurable,
+\item[(b)] $Y$ is integrable and for all $A \in \G$, $\avg(Y1_A) = \avg(X1_A)$.
+\end{itemize}
+Moreover, if $Y'$ is another random variable satisfying (a) and (b) then $Y'=Y$ a.s.
+\s
+
+We will write $Y = \avg(X | \G)$ a.s.(because $\avg(X|\G)$ is not a fully specified random variable) and we say $Y$ is a \textbf{(version of) the conditional expectation of $X$ given $\G$}. In case $X = 1_A$ write $Y=\prob(A|\G)$ a.s.
+\s
+
+An analogous statement holds with 'integrable' replaced by 'non-negative' throughout the statement.
+\begin{proof}
+\pf \emph{(Uniqueness)} Suppose $Y$ satisfies (a) and (b), and $Y'$ satisfies (a) and (b) for an integrable random variable $X'$, with $X \leq X'$. Consider the non-negative random variable $Z = (Y-Y')1_A$ where $A = \{Y\geq Y'\} \in \G$. Then
+\begin{align*}
+\avg(Y1_A ) = \avg(X1_A) \leq \avg(X' 1_A) = \avg(Y' 1_A)
+\end{align*} 
+so $\avg(Z) \leq 0$ so $Z=0$ a.s. and so $Y\leq Y'$ a.s.
+
+\quad By symmetry, if $X=X'$, we see that $Y=Y'$ a.s.
+
+\emph{(Existence)} Consider for now the case $X \in L^2(\F)$ (that is, $\avg(|X|^2) <\infty$, which is stronger than being integrable). Since $L^2(\F)$ is a Hilbert space, and in fact $L^2(\G)$ is a closed subspace of $L^2(\F)$, there exists an orthogonal projection $Y$ of $X$ on $L^2(\G)$. That is, $Y \in L^2(\G)$ and for all $Z \in L^2(\G)$, we have $\avg((Y-X)Z) =0$. (This is because $(X-Y)$ should be orthogonal to $L^2(\G)$, and the inner product is given by $\langle X-Y, Z\rangle = \avg((X-Y)Z) =0$.) So for any $A\in \G$, take $Z = 1_A$ to see $\avg(Y1_A) = \avg(X1_A)$. So $Y$ satisfies (a) and (b).
+
+\quad Suppose now that $X \geq 0$. Set $X_n = X \wedge n$ then $X_n \in L^2(\F)$. We have shown there exist $Y_n \in L^2(\G)$ such that for all $A \in \G$, we have $\avg(Y_n1_A) = \avg(X_n 1_A)$, $0\leq X_n \leq X_{n+1}$ and $0 \leq Y_n \leq Y$ for all $n$. Set $\Omega_0 = \{\omega \in \Omega : 0 \leq Y_n(\omega) \leq Y_{n+1}(\omega)$ for all $n \}$. Then $\prob(\Omega_0)=1$ (because it is a countable intersection of sets of measure 1). Define a non-negative $\G$-measurable random variable
+\begin{align*}
+Y_{\infty} =  \lim_{n\rightarrow \infty}  1_{\Omega_0} Y_n
+\end{align*} 
+Then $0 \leq 1_{\Omega_0} Y_n \nearrow Y_{\infty}$ as $n\rightarrow \infty$ so by monotone convergence, we have for all $A\in \G$
+\begin{align*}
+\avg(Y_{\infty} 1_A) = \lim_{n\rightarrow \infty} \avg(Y_n 1_A)  = \lim_{n\rightarrow \infty} \avg(X_n 1_A) = \avg(X 1_A)
+\end{align*}
+In particular, taking $A =\Omega$, we see $Y_{\infty}$ is integrable, so $\prob(Y_{\infty})=0$. So if we set $Y= Y_{\infty} 1_{Y_{\infty}<\infty}$, then $Y$ is a random variable and satisfies (a) and (b).
+
+\quad In the general case we can apply the proceeding to $X^{\pm} = 0 \vee (\pm X)$ (so $X = X^+ - X^-$) to obtain $Y^{\pm}$ and then check $Y= Y^+ - Y^-$ satisfies (a) and (b).
+
+\eop 
+\end{proof}
+
+\subsection*{1.5. Properties of conditional expectation}
+
+Conditional expectations plays a central role in many core materials of the course. e.g. martingales and Brownian motion. So it would be useful to investigate some properties of conditional expectation.
+\s
+
+Fix an integrable random variable $X$ and sub-$\sigma$-algebra $\G$. \textbf{Theorem 1.4.1} has useful consequences:
+\begin{itemize}
+\item[(i)] $\avg (\avg(X|\G)) = \avg(X)$
+\item[(ii)] If $X$ is $\G$-measurable then $\avg(X|\G) =X$ a.s.
+\item[(iii)] If $X$ is independent of $\G$ then $\avg(X|\G) = \avg(X)$ a.s.
+\begin{itemize}
+\item[:] check for $A \in \G$, $\avg(X1_A) = \avg(X) \prob(A) = \avg(\avg(X)1_A)$ so $\avg(X)$ satisfies condition (b).
+\end{itemize} 
+\item[(iv)] If $X\geq 0$ a.s. then $\avg(X|\G) \geq 0$ a.s. (follows from the proof of \textbf{Theorem 1.4.1})
+\item[(v)] For all $\alpha, \beta\in \reals$, all integrable random variables $X,Y$, has
+\begin{align*}
+\avg(\alpha X + \beta Y |\G) = \alpha \avg(X|\G) + \beta \avg(Y|\G) \quad \text{a.s.}
+\end{align*}
+\begin{itemize}
+\item[:] check that the expression on the RHS satisfies condition (b) to show that it is a version of conditional expectation of $\alpha X + \beta Y$ given $\G$.
+\end{itemize}
+\s
+
+Now consider a sequence of random variables $(X_n)_n$. 
+\item[(vi)] \emph{(conditional monotone convergence)} If $0\leq X_n \nearrow X$ pointwise then $\avg(X_n |\G)\rightarrow \avg(X|\G)$ a.s.
+\begin{itemize}
+\item[:] To see this, we know $\avg(X_n|\G) \nearrow Y$ a.s. for some non-negative $\G$-measurable random variable $Y$. Take $A \in \G$ then by monotone convergence, we have
+\begin{align*}
+\avg(Y1_A)  &= \lim_{n\rightarrow \infty} \avg(\avg(X_n |\G) 1_A) \\
+&= \lim_{n\rightarrow \infty} \avg(X_n 1_A) = \avg(X1_A)
+\end{align*}
+so $Y$ satisfies (b) for $X$.
+\end{itemize} 
+\item[(vii)] \emph{(Conditional Fatou's lemma)} For any non-negative random variables $X_n$,
+\begin{align*}
+\avg(\liminf_{n\rightarrow \infty} X_n |\G) \leq \liminf_{n\rightarrow \infty} \avg(X_n |\G)
+\end{align*}
+
+\begin{itemize}
+\item[:] By conditional monotone convergence, we have
+\begin{align*}
+\avg(\liminf_{n\rightarrow \infty} X_n |\G) = \lim_{n\rightarrow \infty} \avg(\inf_{m\geq n} X_m |\G) &\leq \lim_{n\rightarrow \infty} \inf_{m\geq n} \avg(X_m | \G) \\
+&= \liminf_{n\rightarrow \infty} \avg(X_n | \G)
+\end{align*}
+so we have the result.
+\end{itemize}
+\item[(viii)] \emph{(Conditional dominated convergence)} If $X_n(\omega) \rightarrow X(\omega)$ for all $\omega$ as $n\rightarrow \infty$ and there exist $Y$ integrable so $|X_n| \leq Y$ for all $n$, then 
+\begin{align*}
+\avg(X_n|\G) \rightarrow \avg(X|\G) \quad \text{a.s.}
+\end{align*}
+\begin{itemize}
+\item[:] First, note that $X_n$ and $X$ are integrable, since they are bounded by $Y$. Consider the sequence of non-negative random variables $Z_n = Y-X_n$. By Fatou's lemma,
+\begin{align*}
+\avg(\liminf_{n} Z_n |\G) = \avg(Y-X|\G) \leq \liminf_{n} \avg(Y-X_n|\G) = \avg(Y|\G) - \limsup_{n} \avg(X_n|\G)
+\end{align*}
+and hence
+\begin{align*}
+\limsup_{n} \avg(X_n|\G) \leq \avg(X|\G)
+\end{align*}
+On the other hand, if we let $W_n = Y+X_n$, applying Fatou's lemma gives
+\begin{align*}
+\avg(\liminf_n W_n |\G) = \avg(Y|\G) + \avg(X|\G) \leq \avg(Y|\G) + \liminf_{n} \avg(X_n|\G)
+\end{align*}
+and so
+\begin{align*}
+\liminf_n \avg(X_n|\G) \geq \avg(X|\G)
+\end{align*}
+The two inequalities give the result.
+\end{itemize}
+\end{itemize}
+
+\newday
+
+(12th October, Friday)
+\s
+
+\begin{itemize}
+\item[(ix)] \emph{(Conditional Jensen)} Let $c: \reals \rightarrow (-\infty, \infty]$ be convex. Then $c(\avg(X|\G)) \leq \avg( c(X) |\G)$ a.s.
+\begin{itemize}
+\item[:] To see this, since $c$ is convex there exist real sequences $(a_n)$,$(b_n)$ such that $c(x) = \sup_n (a_n x +b_n)$. Then $c(X) \geq a_n X +b_n$ for all $n$. So
+\begin{align*}
+\avg(c(X)|\G) \geq \avg(a_n X + b|\G) = a_n \avg(X|\G) + b_n \quad \text{a.s.}
+\end{align*}
+so $\avg(c(X)|\G) \geq c(\avg(X|\G))$ a.s.
+\end{itemize}
+\item[(x)] $\norms{\avg(X|\G)}{p}\leq \norms{X}{p}$ for all $p\in [0,\infty)$ (where $\norms{X}{p} = \avg(|X|^p)$)
+\begin{itemize}
+\item[:] To see this, take $c(x) = |x|^p$ in conditional Jensen's inequality.
+\end{itemize}
+\item[(xi)] \emph{(Tower property)} This is also important for martingales.
+
+Suppose $\mathscr{H} \subset \G \subset \F$ be sub-$\sigma$-algebras. Then
+\begin{align*}
+\avg(X|\mathscr{H}) = \avg(\avg(X|\G)|\mathscr{H}) \quad \text{a.s.}
+\end{align*}
+\begin{itemize}
+\item[:] Proof is an exercise.
+\end{itemize}
+\item[(xii)] \emph{(Taking out what is known)} This is related to the 'filtration' that is to be introduced in the theory of martingales.
+
+Let $Y$ be a bounded $\G$-measurable random variable. Then 
+\begin{align*}
+\avg(YX|\G)  = Y\avg(X|\G) \quad \text{a.s.} \quad \cdots\cdots (\star)
+\end{align*}
+\begin{itemize}
+\item[:] To see this, consider first the case when $Y=1_B$, $B\in \G$. Take $A\in \G$, then
+\begin{align*}
+\avg(Y\avg(X|\G) 1_A) = \avg(\avg(X|\G)1_A) = \avg(X1_{AB)} = \avg(YX1_A) 
+\end{align*}
+so above identity $(\star)$ holds. The general case follows by a monotone class argument. i.e. ($\star$) extends by linearity to case where $Y$ is simple. Next consider $X,Y\geq 0$ and set $Y_n = (2^{-n} \lfloor 2^n \rfloor)\wedge n$. Then $Y_n$ is simple, so $\avg(Y_n X 1_A) = \avg(Y_n \avg(X|\G))$ for all $A\in \G$. Let $n\rightarrow \infty$ using monotone convergence to obtain ($\star$) for $Y$. Finally extend to $X,Y$ general using $X = X^+ - X^-$ and $Y=Y^+ - X^-$.(Or instead, use \emph{monotone class theorem}, that abstracts this process)
+\end{itemize}
+\item[(xiii)] Let $\mathscr{H}$ be a $\sigma$-algebra and suppose $\mathscr{H}$ is independent of $\sigma(X,\G)$. Then
+\begin{align*}
+\avg(X|\sigma(\G, \mathscr{H})) = \avg(X|\mathscr{H}) \quad \text{a.s.}
+\end{align*}
+\begin{itemize}
+\item[:] To see this, put $Z =\avg(X|\sigma(\G, \mathscr{H}))$ and $Y = \avg(X|\mathscr{H})$. Take $A\in \G$, $B\in \mathscr{H}$.
+\begin{align*}
+&\avg(Y 1_{A\cap B}) = \avg(X 1_A 1_B)= \avg(X1_A)\prob(B) \\
+=& \avg(Y1_A) \prob(B) = \avg(Y1_{A\cap B})
+\end{align*}
+Hence $\avg((Z-Y)1_{A\cap B})= 0$ for all $A\in \G$, $B\in \mathscr{H}$. Also, $(Z-Y)$ is $\sigma(\G,\mathscr{H})$-measurable, and therefore $Y=Z$ by standard argument, e.g. using the following lemma.
+\begin{itemize}
+\item[] \lem Suppose $X$ is integrable and $\avg(X1_A) = 0$ for all $A\in \mathscr{A}$ where $\mathscr{A}$ is a $\pi$-system generating $\F$. Then $X=0$ a.s.
+
+\pf Consider $\mathscr{D}  = \{A\in \F : \avg(X1_A) =0\}$ then $\mathscr{D}$ is a $d$-system, contains $\mathscr{A}$ so $\mathscr{D} = \F$ by Dynkin's lemma. Finally, $\avg(X 1_{ \{X>0}\} ) =0$ so $X=0$ a.s.
+\end{itemize}
+\end{itemize}
+\end{itemize}
+\s
+
+We end the chapter with a lemma that is going to be useful.
+\s
+
+\lemnum{1.5.1.} Let $X\in L^1(\prob)$. Set $\mathcal{Y} = \{\avg(X|\G) : \G \subset \F$ a sub-$\sigma$-algebra $\}$. Then $\mathcal{Y}$ is UI(\emph{uniformly integrable}). That is,
+\begin{align*}
+\sup_{Y \in \mathcal{Y}} \avg(|Y| 1_{|Y|\geq \lambda}) \rightarrow 0 \quad \text{as } \lambda \rightarrow \infty
+\end{align*}
+\begin{proof}
+\pf Since $X$ is integrable, given $\epsilon >0$, there exists $\delta>0$ s.t. $\avg(|X| 1_A) \leq \epsilon$ whenever $\prob(A) \leq \delta$. (Suppose not, then we should find $\epsilon>0$ and $A_n \in F$ s.t. $\prob(A_n) \leq 2^{-n}$ and $\avg(|X|1_{A_n}) >\epsilon$. Set $A= \bigcap_n \bigcup_{m\geq n} A_m$. Then $\prob(A) =0$ by Borel-Cantelli lemma. But $\avg(|X| 1_{\cup_{m\geq n} A_m}) \geq \epsilon$, while this converges to $\avg(|X|1_A) =0$ as $n\rightarrow \infty$, which is a contradiction.)
+
+\quad Choose $\lambda \in (0,\infty)$ so that $\avg(|X|) \leq \lambda \delta$. Take $Y = \avg(X|\G) \in \mathcal{Y}$. Since $x\mapsto |x|$ is a convex function, by conditional Jensen's inequality,
+\begin{align*}
+Y \leq \avg(|X| |\G) \quad \text{so} \quad \avg(|Y|) \leq	\avg(|X|)
+\end{align*}
+(In fact, by decomposition $X= X^+ + X^-$, we see that $|Y| = \avg(X^+ | \G) + \avg(X^-|\G)) = \avg(|X|\big| \G)$ a.s.... but does not need this at this point)
+
+By Chebyshev's inequality, $\prob(|Y|\geq \lambda) \leq \lambda^{-1} \avg(|Y|)\leq \delta$ hence
+\begin{align*}
+\avg\Big( |Y| 1_{|Y|\geq \lambda} \Big) &\leq \avg\Big( \avg(|X||\G) 1_{|Y|\geq \lambda} \Big) \quad \text{as } 1_{Y\geq \lambda} \in \G \\
+&= \avg  (|X| 1_{|Y|\geq \lambda}) \leq \epsilon
+\end{align*}
+So $\sup_{x\in \mathcal{Y}} \avg(|Y|1_{|Y|\geq \lambda}) \leq \epsilon$. This is true for any $\epsilon>0$, therefore we have the uniform integrability.
+
+\eop
+\end{proof}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+\end{document}
