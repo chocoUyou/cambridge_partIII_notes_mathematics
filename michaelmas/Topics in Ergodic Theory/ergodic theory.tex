@@ -33,7 +33,8 @@
 \newcommand{\lemnum}[1]{\textbf{Lemma #1) }}
 \newcommand{\prop}{\textbf{Proposition) }}
 \newcommand{\pf}{\textbf{proof) }}
-
+\newcommand{\cor}{\textbf{Corollary )}}
+\newcommand{\cornum}[1]{\textbf{Corollary #1 )}}
 
 \newcommand{\lap}{\triangle} %%Laplacian
 \newcommand{\s}{\vspace{10pt}}
@@ -646,7 +647,10 @@ Therefore $f^*(x) - f^*(Tx) = \lim_{N\rightarrow \infty} \frac{1}{N}f(x) = 0$
 \eop
 \end{proof}
 
-This is a rubbish proof.
+==============================================================================
+
+(this proof has faults. will repair, or delete,,,,,,,,)
+
 
 \begin{proof}
 \textbf{way more elegant proof) }
@@ -738,11 +742,134 @@ f^*_n \arrow[r, "L^p"]
 \quad For general functions(not necessarily positive), divide it into a non-negative part and a negative part, and find a.e. and $L^p$ converging functions separately and add them.
 \end{proof}
 
+\newday
 
+(16th October, Tuesday)
+\s
 
+\defi A number $x\in [0,1]$ is called \textbf{normal} in base $K$, if for every $b_1, b_2, \cdots, b_M \in \{0,\cdots, K\}$, we have :
+\begin{align*}
+\frac{1}{N} \big| \{ n\in \{0,\cdots, N-1\}: x_{n+1} = b+1, \cdots, x_{n+M}= b_M  \} \big| \rightarrow \frac{1}{K^M}
+\end{align*}
+where $x = 0.x_1x_2\cdots_{(K)}$ is a base $K$ expansion.
+\s
 
+\thm Almost every number (w.r.t. Lebesgue measure) is normal in any base $K\geq 2$. 
+\begin{proof}
+\pf Consider the MPS $(\reals/ \mathbb{Z},\borel, m, T_K)$($\borel$ the Borel $\sigma$-algebra, $m$ the Lebesgue measure) where $T_K(x) = K\cdot x$. From the example sheet, this is an ergodic MPS. Now fix $M$ and $b_1, \cdots, b_M$ as in the definition and consider the set
+\begin{align*}
+A = [ (0.b_1 b_2 \cdots b_M)_{(K)}, (0.b_1\cdots b_M)_{(K)} + \frac{1}{K^M} )
+\end{align*}
 
+\bull Note : $T^n x\in A \quad \Leftrightarrow \quad x_{n+1} = b_1, c\dots, x_{n+M} = b_M$
 
+To see that $x$ is normal, we need
+\begin{align*}
+\frac{1}{N} \sum_{n=0}^{N-1} \chi_A(T^n x) \rightarrow \frac{1}{K^M}
+\end{align*}
+This holds by the pointwise ergodic theorem for almost every $x$. Since there are countably many choices for $K$, $M$, and $b,\cdots,b_M$, the theorem follows.
+
+\eop
+\end{proof}
+\s
+
+The problem with these ergodic theorems is that the converging point might differ depending on the selection of measure. To study in which cases this can be prevented, we study the uniqueness of measures that is preserved under a fixed map $T$.
+
+\s
+\defi A \textbf{topological dynamical system} is a tuple $(X,T)$, where $X$ is a compact metric space and $T:X\rightarrow X$ is a continuous map. We say that $(X,T)$ is \textbf{uniquely ergodic}, if there is only one $T$-invariant Borel probability measure on $X$.
+\s
+
+\thm Let $(X,T)$ be a topological dynamical system. The followings are equivalent :
+\begin{itemize}
+\item[(1)] $(X,T)$ is uniquely ergodic.
+\item[(2)] For every $f\in C(X)$, there is $c_f \in \mathbb{C}$ s.t. 
+\begin{align*}
+\frac{1}{N} \sum_{n=0}^{N-1} f(T^n x) \rightarrow c_f \quad \text{uniformly on } X
+\end{align*}
+\item[(3)]  There is a dense $A\subset C(X)$ and for each $f\in A$ there is $c_f \in \mathbb{C}$ s.t.
+\begin{align*}
+\frac{1}{N} \sum_{n=0}^{N-1} f(T^n x) \rightarrow c_f \quad \text{not necessarily uniformly } \forall x\in X
+\end{align*}
+\end{itemize}
+\s
+
+\thm \emph{(Riesz representation theorem)}  Let $X$ be a compact metric space. Then to each finite Borel measure on $X$, we associate bounded linear functional on $C(X)$ as follows : 
+\begin{align*}
+L_{\mu} f= \int f d\mu
+\end{align*}
+Then $\mu \mapsto L_{\mu}$ is a bijection from the space of finite Borel measures on $X$, $\mathscr{M}(X)$, to bounded linear functional on $C(X)$.
+\s 
+
+\cor Let $\mu_1 \neq \mu_2$ be two Borel measures on a compact metric space. Then $\mu_1 = \mu_2$ if and only if
+\begin{align*}
+\int f d\mu_1 = \int f d\mu_2 \quad \forall f \in C(X)
+\end{align*}
+\s
+
+\defi Let $X$, $T$ be as above, let $\mu$ be a Borel measure. The push-forward of $\mu$ via $T$ is the measure
+\begin{align*}
+T_{*} \mu (A) = \mu(T^{-1}(A)) \quad \forall A\in \borel
+\end{align*}
+
+-This indeed defines a measure.
+\s
+
+\lem Let $X$, $T$, $\mu$ be as above. Then
+\begin{align*}
+\int f dT_{*}\mu = \int f \circ T d\mu
+\end{align*}
+for every bounded measurable function $f$.
+\begin{proof}
+\pf First prove this for characteristic functions of sets. Let $A\in \borel$.
+\begin{align*}
+\int \chi_A dT_* \mu = T_* \mu(A) = \mu(T^{-1} A) = \int \chi_{T^{-1} A } d\mu = \int \chi_A \circ T d\mu 
+\end{align*}
+Now use uniform class theorem to complete the proof.
+
+\eop
+\end{proof}
+\s
+
+\bull \textbf{Remark :} $\mu$ is $T$-invariant \emph{iff} $\mu = T_* \mu$.
+\s
+
+\lem Let $X, T, \mu$ be as above. Then $\mu$ is $T$-invariant \emph{iff}
+\begin{align*}
+\int f d\mu = \int f\circ T d\mu \quad \forall f \in C(X) \quad \cdots \cdots (\star)
+\end{align*}
+
+(we are talking about continuous functions in place of measurable functions - so is in fact enough to work with only continuous functions.)
+\begin{proof}
+\pf We have already seen that $\mu$ being $T$-invariant implies ($\star$).
+
+For the other direction, note the following : suppose that $(\star)$ holds. Then $\int f dT_* d\mu = \int f\circ T d\mu = \int fd\mu$ for all $f\in C(X)$. Now by the corollary before, we have $\mu = T_* \mu$.   
+
+\eop
+\end{proof}
+\s
+
+\thm Let $(X,T)$ be a topological dynamical system. Let $(\nu_j)_j$ be a sequence of Borel probability measures on $X$. Let $(N_j) \subset \mathbb{Z}_{>0}$ be sequence s.t. $N_j \rightarrow \infty$ as $j\rightarrow \infty$. Let $\mu$ be the weak limit of a subsequence of
+\begin{align*}
+\frac{1}{N_j} \sum_{n=0}^{N_j -1} T^n_* \nu_j 
+\end{align*}
+Then $\mu$ is $T$-invariant.
+\begin{proof}
+\pf Fix $f\in C(X)$. Wlog, assume $w-\lim \frac{1}{N_j} \sum_{n=0}^{N_j -1} T^n_* \nu_j = \mu$.
+\begin{align*}
+\int f\circ T d\mu &= \lim_{j\rightarrow \infty} \int f\circ T d\Big( \frac{1}{N_j} \sum_{n=0}^{N_j01} T^n)* \nu_j \Big)  \\
+& = \lim_{j\rightarrow \infty} \frac{1}{N_j} \sum_{n=0}^{N_j-1} \int f\circ T dT^n_* \nu_j \\
+& = \lim_{j\rightarrow \infty}\frac{1}{N_j} \sum_{n=0}^{N_j-1} \int f\circ T^{n+1} dT\nu_j \\
+& = \lim_{j\rightarrow \infty}\frac{1}{N_j} \sum_{n=1}^{N_j} \int f\circ T^{n} dT\nu_j
+\end{align*}
+Now we can expand $\int fd\mu$ similarly
+\begin{align*}
+\int fd\mu = \lim_{j\rightarrow \infty} \frac{1}{N_j} \sum_{n=0}^{N_j -1} \int f\circ T^n d\nu_j
+\end{align*}
+then 
+\begin{align*}
+\Big| \int fd\mu - \int f\circ T d\mu \Big| \leq \limsup_{j\rightarrow \infty} \frac{\norms{f}{\infty} + \norms{f}{\infty}}{N_j}=0
+\end{align*}
+\end{proof}
 
 
 

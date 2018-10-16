@@ -51,12 +51,17 @@
 
 
 \begin{document}
-\newcommand{\thm}{\textbf{Theorem)}}
-\newcommand{\thmnum}[1]{\textbf{Theorem #1)}}
-\newcommand{\defi}{\textbf{Definition)}}
-\newcommand{\lem}{\textbf{Lemma)}}
-\newcommand{\lemnum}[1]{\textbf{Lemma #1)}}
-\newcommand{\prop}{\textbf{Proposition)}}
+\newcommand{\thm}{\textbf{Theorem) }}
+\newcommand{\thmnum}[1]{\textbf{Theorem #1) }}
+\newcommand{\defi}{\textbf{Definition) }}
+\newcommand{\lem}{\textbf{Lemma) }}
+\newcommand{\lemnum}[1]{\textbf{Lemma #1) }}
+\newcommand{\prop}{\textbf{Proposition) }}
+\newcommand{\propnum}[1]{\textbf{Proposition #1) }}
+\newcommand{\cor}{\textbf{Corollary) }}
+\newcommand{\cornum}[1]{\textbf{Corollary #1) }}
+
+
 \newcommand{\pf}{\textbf{proof) }}
 \newcommand{\eop}{\hfill  \textsl{(End of proof)} $\square$} %end of proof
 
@@ -344,6 +349,112 @@ It follows that $\text{Re}\Big( \sum_r  \big| \hat{A}(r) \big|^4 \omega^{rx} \Bi
 \end{itemize} 
 \eop
 \end{proof}
+\s
+
+\newday
+
+(16th October, Tuesday)
+\s
+
+(about the example sheet - Question 2, has to fix $\alpha^2 \beta^2 N^4$ to $\alpha^2 \beta^2 N^3$ : a natural way to think about this is "normalizing". We decide one element from other three, so the factor of $N$ should be 3.)
+\s
+
+Recall : $B(K,\delta) = \{x\in \intN : rx\in [-\delta N, \delta N]$ for all $r\in K \}$
+\s
+
+\defi Let $A$, $B$ be subsets of Abelian groups and let $\phi : A\rightarrow B$. Then $\phi$ is a \textbf{Freiman homomorphism of order $k$} if
+\begin{align*}
+a_1 + \cdots + a_k = a_{k+1} + \cdots + a_{2k} \quad \Rightarrow \phi(a_1) + \cdots \phi(a_k) = \phi(a_{k+1}) +\cdots +\phi(a_{2k})
+\end{align*}
+If $k=2$, we call this a \textbf{Freiman homomorphism}. In that case, the condition is equivalent to
+\begin{align*}
+a-b = c-d \quad \Rightarrow \phi(a) - \phi(b) = \phi(c) - \phi(d)
+\end{align*}
+
+\quad If $\phi$ has an inverse which is also a Freiman homomorphism of order $k$ then $\phi$ is a Freiman isomorphism or order $k$>
+
+
+\s
+
+Consider $\begin{matrix}
+\cdot & \cdot & \cdot \\
+\cdot & \cdot & \cdot \\
+\cdot & \cdot & \cdot
+\end{matrix}
+$ and $\cdots$, $\cdots$, $\cdots$. They have same additive structure, in some sense, and the Freiman isomorphism describes this.
+\s
+
+\renewcommand{\vec}{\underline}
+
+\lemnum{9} Assume $0 \notin K$ and $N$ prime. If $\delta <1/4$, then $B(K,\delta)$ (arc) is Freiman isomorphic to the intersection in $\reals^{|K|}$ of $[-\delta N, \delta N]^|K|$ with some lattice $\Lambda$. 
+\begin{proof}
+\pf Let $K = \{r_1, \cdots, r_k\}$ and let $\Lambda = N \mathbb{Z}^k + \{(r_1x, \cdots, r_kx) : x\in \mathbb{Z}\}$. Write $\vec{r}$ for $(r_1, \cdots, r_k)$. \emph{Claim} that $B(K,\delta) \cong\Lambda \cap [-\delta N, \delta N]^k$.
+\s
+
+\quad Define a map $\phi : B(K,\delta) \rightarrow \Lambda \cap [-\delta N,\delta N]^k$ by sending $x$ to $(\langle r_1 x\rangle, \cdots, \langle r_k x\rangle)$ where $\langle u\rangle$ means the least-modulus residue of $u$ mod $N$. If $x+ y = z+w$, then $\vec{r} x+ \vec{x} y = \vec{r} z + \vec{r} w$ in $\intN^k$. But for each $i$, $\langle r_i x \rangle + \langle r_i y \rangle - \langle r_z \rangle- \langle r_i w \rangle \in [-4\delta N, 4\delta N]$. Since $\delta < 1/4$, that implies that $\langle r_i x \rangle + \langle r_i y \rangle - \langle r_z \rangle- \langle r_i w \rangle =0$. So $\langle \vec{r} x \rangle + \langle \vec{r} y \rangle - \langle \vec{r} \rangle- \langle \vec{r} w \rangle$.
+
+\quad That already implies that $\phi$ is an injection.
+
+\quad If $\vec{r} x + \vec{a} N \in [-\delta N, \delta N]^k$(this is a way of writing a typical lattice), then $r_i x \in [-\delta N, \delta N]$ mod $N$ for each $i$, so $x\in B(K,\delta)$ and $\phi(x) = \vec{r}x + \vec{a}N$. So $\phi$ is a surjection.
+
+\quad If $\vec{r} x+ \vec{a} N + \vec{r} y + \vec{b} N = \vec{r} z + \vec{c}N + \vec{ r} w + \vec{d}N$, then $r_i(x+y) = r_i (z+w)$ mod $N$, s $x+y = z+w$ mod $N$, so the inverse of $\phi$ is also a Freiman homomorphism.
+
+\eop 
+\end{proof}
+\s
+
+(we will not prove in this course, but later in next term, a generalized version of AP contained in an intersection of $K$ and a box - this requires more knowledge in geometry of numbers, so cannot be dealt here)
+\s
+
+\lemnum{10} Let $\Lambda$ be a lattice and let $C$ be a symmetric convex body, both in $\reals^k$. Then $|\Lambda \cap C | \leq 5^k |\Lambda \cap \frac{C}{2}|$
+
+(5 is not an optimal bound, but convenient to prove - how do we reduce this?)
+\begin{proof}
+\pf Let $x_1, \cdots, x_n$ be a maximal subset of $\Lambda \cap C$ such that for all $i \neq j$, $x_j \notin x_i + \frac{C}{2}$. Then by maximality, the sets $x_i + C/2$ cover all of $\Lambda \cap C$. Also, the sets $x_i + C/4$ are disjoint subsets of $\reals^k$, and they are all contained in $C + \frac{C}{4} = 5C/4$. So $m \leq \frac{\text{vol}(5C/5)}{\text{vol}{C/4}} = 5^k$. 
+\end{proof}
+\s
+
+\cornum{11} If $N$ is primes, $0\notin K$, $|K| =k$, $\delta <1/4$, then $|B(K,\delta)| \delta 5^k |B(k,\delta/2)|$
+\s
+
+\section*{2. Sum Sets and their Structure}
+
+Suppose $A$ is a subset of integers, and has $k$ such that $|A+A | \leq k|A|$. What can we say about the set $A$? What can we say about the bound of $|rA-sA|$? (will prove $|rA-sA| \leq k^{r+s})|A|$)
+\s
+
+\lemnum{1} (George Petridis - a former student of T.W.Gowers) Let $A_0$ and $B$ be finite subsets of an Abelian group such that $|A_0 + B | \leq K_0 |A_0| $. Then there exists a subset $A\subset A_0$ and $K\leq K_0$ such that $|A+B+C|\leq K|A+C|$ for every finite subset $C$ of the group.
+\s
+
+-the style of proof is so different from other combinatorics proofs. It uses induction on $C$.(Lesson to take : do not dispose a method for proof even before thinking about it)
+\begin{proof}
+\pf Let $A$ minimize the ration $|A+B|/|A|$ and elt the minimal ration be $K$.
+
+\bull Claim : this works. We prove this by induction on $C$.
+
+\quad If $C=\phi$, we are all happy. Now assume it for $C$ and let $x\notin C$.
+
+Then $A+(C \cup \{x\}) = (A+C) \cup \Big[ (A+x) \backslash (A'+x) \Big]$ where $A' = \{a\in A: a+x\in A+ C\}$. This is a disjoint union, so
+\begin{align*}
+|A+(C\cup \{x\})| = |A+C| + |A| - |A'|
+\end{align*}
+Also, $A+B + (C\cup \{x\}) = (A+B+C) \cup \big( (A+B+x) \backslash (A'+B+x)\big)$ since if $a+x\in A+C$, then $a+B+x \subset A+B+C$.
+\begin{align*}
+|A+B+(C\cup \{x \}) | &\leq |A+B+C| + |A+B| - |A'+B| \\
+&\leq K|A+C| + K|A| - K|A'|
+\end{align*}
+by induction and minimality property of $A$
+
+\eop
+\end{proof}
+
+
+
+
+
+
+
+
+
 
 
 

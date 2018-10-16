@@ -1,4 +1,4 @@
-This is XeTeX, Version 3.14159265-2.6-0.99998 (MiKTeX 2.9.6500) (preloaded format=xelatex 2018.2.4)  15 OCT 2018 16:16
+This is XeTeX, Version 3.14159265-2.6-0.99998 (MiKTeX 2.9.6500) (preloaded format=xelatex 2018.2.4)  16 OCT 2018 13:56
 entering extended mode
 **./discrete_analysis.tex
 (discrete_analysis.tex
@@ -597,25 +597,25 @@ LaTeX Font Info:    ... okay on input line 53.
 * (1in=72.27pt=25.4mm, 1cm=28.453pt)
 
 ABD: EveryShipout initializing macros
-Overfull \hbox (177.60312pt too wide) in paragraph at lines 90--93
+Overfull \hbox (177.60312pt too wide) in paragraph at lines 95--98
 []\TU/lmr/m/n/10 ==============================================================
 =======================
  []
 
-LaTeX Font Info:    Try loading font information for U+msa on input line 97.
+LaTeX Font Info:    Try loading font information for U+msa on input line 102.
 ("C:\Program Files (x86)\MiKTeX 2.9\tex\latex\amsfonts\umsa.fd"
 File: umsa.fd 2013/01/14 v3.01 AMS symbols A
 )
-LaTeX Font Info:    Try loading font information for U+msb on input line 97.
+LaTeX Font Info:    Try loading font information for U+msb on input line 102.
 
 ("C:\Program Files (x86)\MiKTeX 2.9\tex\latex\amsfonts\umsb.fd"
 File: umsb.fd 2013/01/14 v3.01 AMS symbols B
 )
-LaTeX Font Info:    Try loading font information for OMS+rsfs on input line 97.
-
+LaTeX Font Info:    Try loading font information for OMS+rsfs on input line 102
+.
 
 ("C:\Program Files (x86)\MiKTeX 2.9\tex\latex\calrsfs\omsrsfs.fd")
-LaTeX Font Info:    Try loading font information for U+rsfs on input line 97.
+LaTeX Font Info:    Try loading font information for U+rsfs on input line 102.
 
 ("C:\Program Files (x86)\MiKTeX 2.9\tex\latex\jknappen\ursfs.fd"
 File: ursfs.fd 1998/03/24 rsfs font definition file (jk)
@@ -623,27 +623,33 @@ File: ursfs.fd 1998/03/24 rsfs font definition file (jk)
 
 
 ]
-Overfull \hbox (169.82315pt too wide) in paragraph at lines 167--170
+Overfull \hbox (169.82315pt too wide) in paragraph at lines 172--175
 []\TU/lmr/m/n/10 ==============================================================
 ======================
  []
 
 [2]
-Overfull \hbox (14.22314pt too wide) in paragraph at lines 245--246
+Overfull \hbox (14.22314pt too wide) in paragraph at lines 250--251
 []\TU/lmr/m/n/10 ==============================================================
 == 
  []
 
 [3]
 \tmpboxcontent=\box43
- [4] [5] (discrete_analysis.aux) ) 
+ [4]
+Overfull \hbox (14.22314pt too wide) in paragraph at lines 354--355
+[]\TU/lmr/m/n/10 ==============================================================
+== 
+ []
+
+[5] [6] [7] (discrete_analysis.aux) ) 
 Here is how much of TeX's memory you used:
- 14325 strings out of 427839
- 283715 string characters out of 3151405
+ 14328 strings out of 427839
+ 283731 string characters out of 3151405
  368947 words of memory out of 3000000
- 18019 multiletter control sequences out of 15000+200000
+ 18022 multiletter control sequences out of 15000+200000
  5930 words of font info for 37 fonts, out of 3000000 for 9000
  1328 hyphenation exceptions out of 8191
- 72i,19n,88p,823b,405s stack positions out of 5000i,500n,10000p,200000b,50000s
+ 72i,19n,88p,823b,403s stack positions out of 5000i,500n,10000p,200000b,50000s
 
-Output written on discrete_analysis.pdf (5 pages).
+Output written on discrete_analysis.pdf (7 pages).
