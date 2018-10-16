@@ -654,28 +654,33 @@ Therefore $f^*(x) - f^*(Tx) = \lim_{N\rightarrow \infty} \frac{1}{N}f(x) = 0$
 
 \begin{proof}
 \textbf{way more elegant proof) }
+For simplicity, let $S_N(x) \frac{1}{N} \sum_{n=0}^{N-1} f\circ T^n (x)$.
 \begin{itemize}
-\item[(1)] First, let $f$ be a positive $L^1$ function. Then we may find a positive measurable function $\bar{f}(x)$ such that
+\item[(1)] First, let $f$ be a positive $L^1$ function. Then we may find a positive measurable function $\bar{f}(x)$  such that
 \begin{align*}
-\bar{f}(x) = \liminf_{N\rightarrow \infty} \frac{1}{N} \sum_{n=0}^{N-1} f\circ T^n (x) \quad \text{a.e.}
+&\bar{f}(x) = \liminf_{N\rightarrow \infty} S_N(x) \quad \text{a.e.}
 \end{align*}
-Moreover, by Fatou's lemma, we have
+Note that $\bar{f}$ is $T$-invariant, since
+\begin{align*}
+S_N \circ T = \frac{1}{N}(f\circ T + \cdots + f\circ T^N) = \frac{N+1}{N} S_{N+1} - \frac{1}{N} f
+\end{align*} 
+Also, by Fatou's lemma,
 \begin{align*}
 \mu (| \bar{f} |) \leq \liminf_{N} \mu(| \frac{1}{N} \sum_{n=0}^{N-1} f\circ T^n |) = \norms{f}{1} <\infty  
 \end{align*}
-and therefore $\bar{f} \in L^1$. Now let $g(x) = f(x) - \bar{f}(x)$, then again $g\in L^1$, with
+and therefore $\bar{f} \in L^1$ with $\int \bar{f} d\mu = \int fd\mu$. Now let $g(x) = f(x) - \bar{f}(x)$, then again $g\in L^1$, with $\int g d\mu = 0$ and 
 \begin{align*}
 \liminf_{N\rightarrow \infty} \frac{1}{N} \sum_{n=0}^{N-1} g\circ T^n (x) =0 \quad \text{a.e.}
 \end{align*}
 Now consider the set $F_q$, defined for $q\in \mathbb{Q}_{>0}$.
 \begin{align*}
-F_q = \{  x: |\limsup_N  \frac{1}{N} \sum_{n=0}^{N-1} g \circ T^n (x) | > q   \}
+F_q = \{  x: \limsup_N  \frac{1}{N} \sum_{n=0}^{N-1} g \circ T^n (x) > q   \}
 \end{align*}
-But by the maximal Ergodic lemma, we have
+Observe that $F_q$ is a $T$-invariant set, so $\mu(g 1_{F_q}) = \mu(f 1_{F_q}) - \mu(\bar{f} 1_{F_q}) =0$. But by maximal ergodic theorem, we have
 \begin{align*}
-\mu (F_q) \leq \frac{1}{q} \norms{g}{1} \leq \frac{2}{q} \norms{f}{1} \rightarrow 0 \quad \text{as } q\rightarrow 0
+& q \mu(F_q) \leq  \int_{F_q} g d\mu =0
 \end{align*}
-and therefore
+hence $\mu(F_q) =0$, and 
 \begin{align*}
 \mu(\{ x : |\limsup_N  \frac{1}{N} \sum_{n=0}^{N-1} g \circ T^n (x) |>0  \}) = \mu (\cap_q F_q) = 0
 \end{align*}

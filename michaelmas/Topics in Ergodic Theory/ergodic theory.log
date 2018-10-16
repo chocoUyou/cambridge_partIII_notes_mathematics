@@ -1,4 +1,4 @@
-This is XeTeX, Version 3.14159265-2.6-0.99998 (MiKTeX 2.9.6500) (preloaded format=xelatex 2018.2.4)  16 OCT 2018 13:53
+This is XeTeX, Version 3.14159265-2.6-0.99998 (MiKTeX 2.9.6500) (preloaded format=xelatex 2018.2.4)  16 OCT 2018 20:01
 entering extended mode
 **"./ergodic theory.tex"
 ("ergodic theory.tex"
@@ -593,18 +593,18 @@ Overfull \hbox (123.14316pt too wide) in paragraph at lines 650--651
  []
 
 [10]
-Overfull \hbox (68.68314pt too wide) in paragraph at lines 704--705
+Overfull \hbox (68.68314pt too wide) in paragraph at lines 710--711
 []\TU/lmr/m/n/10 ==============================================================
 ========= 
  []
 
-
-Overfull \hbox (60.9031pt too wide) in paragraph at lines 745--746
+[11]
+Overfull \hbox (60.9031pt too wide) in paragraph at lines 751--752
 []\TU/lmr/m/n/10 ==============================================================
 ======== 
  []
 
-[11] [12] [13] [14] ("ergodic theory.aux") ) 
+[12] [13] [14] ("ergodic theory.aux") ) 
 Here is how much of TeX's memory you used:
  12985 strings out of 427839
  263700 string characters out of 3151405
