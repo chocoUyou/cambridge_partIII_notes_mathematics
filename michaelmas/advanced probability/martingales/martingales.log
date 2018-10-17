@@ -1,4 +1,4 @@
-This is XeTeX, Version 3.14159265-2.6-0.99998 (MiKTeX 2.9.6500) (preloaded format=xelatex 2018.2.4)  15 OCT 2018 18:24
+This is XeTeX, Version 3.14159265-2.6-0.99998 (MiKTeX 2.9.6500) (preloaded format=xelatex 2018.2.4)  17 OCT 2018 11:57
 entering extended mode
 **./martingales.tex
 (martingales.tex
@@ -563,14 +563,23 @@ eus/m/n/10 F[]\OT1/cmr/m/n/10 ] \OMS/cmsy/m/n/10 ^^T \OT1/cmr/m/n/10 0$ \TU/lmr
 /10 ^^T
  []
 
-[2] [3] (martingales.aux) ) 
+[2]
+Overfull \hbox (6.44315pt too wide) in paragraph at lines 257--258
+[]\TU/lmr/m/n/10 ==============================================================
+= 
+ []
+
+[3]
+File: upcrossing.png Graphic file (type bmp)
+<upcrossing.png>
+ [4] [5] (martingales.aux) ) 
 Here is how much of TeX's memory you used:
- 12862 strings out of 427839
- 260862 string characters out of 3151405
+ 12871 strings out of 427839
+ 260948 string characters out of 3151405
  318324 words of memory out of 3000000
- 16584 multiletter control sequences out of 15000+200000
+ 16587 multiletter control sequences out of 15000+200000
  6530 words of font info for 40 fonts, out of 3000000 for 9000
  1328 hyphenation exceptions out of 8191
- 61i,12n,84p,468b,253s stack positions out of 5000i,500n,10000p,200000b,50000s
+ 61i,16n,84p,468b,267s stack positions out of 5000i,500n,10000p,200000b,50000s
 
-Output written on martingales.pdf (3 pages).
+Output written on martingales.pdf (5 pages).

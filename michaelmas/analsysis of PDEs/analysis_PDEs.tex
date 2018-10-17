@@ -687,4 +687,133 @@ Assuming $a_{\alpha}$ are real analytic, the denominator will be non-zero near t
 a_{(0,\cdots, k)}(0,\cdots, 0) \neq 0 \quad \text{(non-characteristic condition)}
 \end{align*}
 In this case we can apply Cauchy-Kovalevskaya.
+\s
+
+\newday
+
+(17th October, Wednesday)
+\s
+
+(Problem sheet 1 handed out. Example classes sign-up. First example class (probably) at Thur/Fri next week)
+\s
+
+\subsection*{Cauchy Problems for Quasilinear Equations with Data on a Surface}
+
+We say $\Sigma \subset \reals^n$ is a real analytic \textbf{hypersurface} near $x\in \Sigma$ if there exists $\epsilon >0$ and a real analytic map $\Phi : B_{\epsilon } (x) \rightarrow U \subset \reals^n$ where $U = \Phi(B_{\epsilon}(x))$ such that
+\begin{itemize}
+\item $\Phi$ is bijective, and the inverse $\Phi^{-1} : U\rightarrow B_{\epsilon}(x)$ is real analytic.
+\item $\Phi (\Sigma \cap B_{\epsilon}(x)) = \{x_n=0 \} \cap U$.
+\end{itemize}
+%(in fact non-singularity of derivative of $\Phi$ automatically implies invertibility and the analyticity of the inverse - see https://www.encyclopediaofmath.org/index.php/Real_analytic_function#Implicit_and_inverse_function_theorems)
+We think of $\Phi$ as 'straightening out the boundary'. 
+\s
+
+There are many examples, e.g. $\{|x|=1\}$.
+\s
+
+Let $\gamma$ be the unit normal to $\Sigma$ and suppose $u$ solves
+\begin{align}
+& \sum_{|\alpha| =k} a_{\alpha}(D^{k-1}u, \cdots, u,x)D^{\alpha} u + a_0(D^{n-1}u, \cdots, u,x) =0 \quad \text{in } B_{\epsilon}(x) \label{dagger}\\
+& u= \gamma^i \partial_i u = \cdots =(\gamma^i \partial_i)^{k-1} = 0 \quad \text{on } \Sigma \nonumber
+\end{align}
+\s
+
+Define $v(y) = u(\Phi^{-1}(y)) \quad \Leftrightarrow \quad u(x) = v(\Phi(x))$. Note
+\begin{align*}
+&\frac{\pa u}{\pa x^i} = \frac{\pa v}{\pa y^j} \frac{\pa \Phi^j}{\pa x^i} \\
+&\frac{\pa^2 u}{\pa x^i \pa x^k} = \frac{\pa v^2}{\pa y^j \pa y^i} \frac{\pa \Phi^j}{\pa x^i} \frac{\pa \Phi^l}{\pa x^k} + \frac{\pa v}{\pa y^j} \frac{\pa^2 \Phi^j}{\pa^i \pa x^k} \quad \text{etc.}
+\end{align*}
+So we can compute $D^{\alpha} u$ as a linear combination of $D^{\beta}v$ for $|\beta| \leq |\alpha|$, with coefficients depending on $\Phi$. So if $u$ solves (\ref{dagger}), then $v$ will solve 
+\begin{align*}
+\sum_{|\alpha| =k} b_{\alpha}(D^{k-1}v, \cdots, v, x)D^{\alpha v} + b_0 (D^{k-1}v, \cdots, v, x) =0
+\end{align*}
+Moreover,
+\begin{align*}
+v \big|_{x_n =0} &= u \big|_{\Sigma} = 0 \\
+\pa_i v \big|_{x_n =0} &= (D\Phi^-1)_{ij} \pa_j u \big|_{\Sigma} = 0 
+\end{align*}
+and proceeding similarly for $\pa^{k-1} v / (\pa x^n)^{k-1}$, we have
+\begin{align*}
+v = \frac{\pa v}{\pa x^n} = \cdots = \pa^{k-1} v / (\pa x^n)^{k-1} =0 \quad \text{on } \{ x_n =0 \}
+\end{align*}
+We can solve this, provided
+\begin{align*}
+b_{(0,\cdots,0, k)}(0,0, \cdots, 0, y) \neq 0 \quad \text{on } \{ x_n =0 \}
+\end{align*}
+
+Note if $|\alpha | = k$,
+\begin{align*}
+D^{\alpha}u = \frac{\pa^k v}{\pa y^k_n} (D\Phi^n)^{\alpha} + (\text{terms not involving } \frac{\pa^k v}{\pa y^k_n})
+\end{align*}
+So the coefficient of $\pa^k v / \pa y^k_n$ in
+\begin{align*}
+\sum_{|\alpha| =k} a_{\alpha}(D^{k-1}u, \cdots, u,x)D^{\alpha} u + a_0(D^{n-1}u, \cdots, u,x) =0
+\end{align*}
+is
+\begin{align*}
+b_{(0,\cdots,k)} = a_{\alpha}(D\Phi^n)^{\alpha}
+\end{align*}
+But $\Sigma = \{\Phi^n =0\}$ so $D\Phi^n \propto \gamma$. Therefore,
+\begin{align*}
+b_{(0,\cdots,k)} \neq 0 \quad \Leftrightarrow \quad \sum_{|\alpha|=k} a_{\alpha} (D\Phi^n)^{\alpha} \neq 0  \quad \Leftrightarrow \quad \sum_{|\alpha|=k} a_{\alpha} \gamma^{\alpha} \neq 0
+\end{align*}
+\s
+
+\defi $\Sigma$ is a non-characteristic at $x\in \Sigma$ for the problem (\ref{dagger}) provided
+\begin{align*}
+\sum_{|\alpha| =k} a_{\alpha} (0,\cdots,0,x) \gamma^{\alpha}(x) \neq 0
+\end{align*}
+\s
+
+Finally, we have a more general version of Cauchy-Kovalevskaya.
+\s
+
+\thm (Cauchy-Kovalevskaya Redux) Suppose $\Sigma \subset \reals^n$ is a real analytic hypersurface. If$\Sigma$ is non-characteristic for (\ref{dagger}) at $x\in \Sigma$, there exists a unique real analytic solution to (\ref{dagger}) in a neighbourhood of $x$.
+\begin{proof}
+\pf We have already seen that we can solve the problem for $v$ uniquely, then $u(x)  = v(\Phi(x))$ is the unique solution for (\ref{dagger})
+
+\eop
+\end{proof}
+\s
+
+\subsection*{Characteristic Surfaces for 2nd Order Linear PDE}
+
+Consider the linear operator
+\begin{align*}
+Lu = \sum_{i,j=1}^n a_{ij}\frac{\pa^2 u}{\pa x_i \pa x_j} + \sum_{i=1}^n b_i \frac{\pa u}{\pa x^i} + cu
+\end{align*}
+with $a_{ij},b_i,c : \reals^n \rightarrow \reals$.
+\s
+
+Consider the Cauchy problem
+\begin{align*}
+Lu& = f \\
+u &= \sum_{i=1}^n \xi^i \frac{\pa u}{\pa x^i} = 0 \quad \text{on } \Pi_{\xi} = \{ \xi \cdot x =0 \}
+\end{align*}
+$\Pi_{\xi}$ is characteristic at $x\in \reals^n$ if : 
+\begin{align*}
+\sigma_p (\xi, x) = \sum_{i,j=1}^n a_{ij}\xi^i \xi^j = 0
+\end{align*}
+$\sigma_p$ is the \textbf{principal symbol} of $L$. 
+\s
+
+\begin{itemize}
+\item If $\sigma_p(\xi, x) >0$ for all $x$, $\xi \neq 0$, then no plane is characteristic, and such operations are called $\textbf{elliptic}$. 
+\end{itemize}
+\s
+
+Let us restrict to the case where $a_{ij},b_i, c$ are constants. Suppose $b_i = c=0$ and $\Pi_{\xi}$ is characteristic. Then
+\begin{align*}
+u(x) = e^{i\lambda \xi \cdot x}
+\end{align*}
+solve $Lu =0$ for any $\lambda$. By taking $\lambda$ large, we can construct solutions to $Lu =0$ whose derivative (in the $\xi$ direction) is a large as we like. In particular, $Lu$ is very regular, but $u$ need not be. In the elliptic setting, this cannot happen. 
+\s
+
+
+
+
+
 \end{document}
+
+
+

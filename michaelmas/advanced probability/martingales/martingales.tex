@@ -252,16 +252,133 @@ The inclusions (b)$\Rightarrow$(c) and (c)$\Rightarrow$(d) are obvious.
 \end{itemize}
 \eop
 \end{proof}
+\s
 
+\newday
 
+(17th October, Wednesday)
+\s
 
+\subsection*{2.3. Doob's upcrossing inequality}
 
+\begin{itemize}
+\item Let $X$ be a random process and let $a,b\in \reals$ s.t. $a<b$. Fix $\omega \in \Omega$. By an \textbf{upcrossing} of $[a,b]$ by $X(\omega)$, we mean an interval of times $\{j,j+1, \cdots, k\}$ s.t. $X_j(\omega) <a$, $X_k(\omega) >b$.
 
+\item Write $U_n[a,b](\omega)$ for the number of disjoint upcrossings contained in $\{0,1,\cdots,n\}$, and $U_n[a,b] \nearrow U[a,b]$ as $n\rightarrow \infty$.
+\end{itemize}
+\s
 
+\begin{center}
+	\begin{figure}
+		\includegraphics[scale=0.5]{upcrossing}
+	\end{figure}
+\end{center}
 
+\thmnum{2.3.1.}(Doob's upcrossing inequality) Let $X$ be a \emph{super-martingale}. Then
+\begin{align*}
+(b-a) \avg[U[a,b]] \leq \sup_{n\geq 0} \avg[(X_n-a)^{-}]
+\end{align*}
+(Recall, $x^- = (-x) \vee 0$)
+\begin{proof}
+Set $T_0 =0$ and define recursively for $k\geq 0$,
+\begin{align*}
+S_{k+1} = \inf \{m\geq T_k : X_m <a \}, \quad T_{k+1} = \sup \{m\geq S_{k+1} : X_m >b \}
+\end{align*}
+Note that if $T_k < \infty$, then $\{S_k, S_{k}+1, T_k \}$ is an upcrossing of $[a,b]$ by $X$, and $T_k$ is the time of completion of the $k-th$ upcrossing.
+\quad Also note that $U_n [a,b] \leq n$. For $m\leq n$, we have
+\begin{align*}
+\{U_n[a,b] =m \} = \{T_m \leq n < T_{m+1} \}
+\end{align*}
+On this event,
+\begin{align*}
+X_{T_k \wedge n}  - X_{S_k \wedge n} = \begin{cases}
+X_{T_k} - X_{S_k} \geq b-a \quad \text{if } k\leq m \\
+X_n - X_{S_k} \geq X_n -a \quad \text{if } k =m1, S_{m+1} \leq n \\
+0 \quad \text{otherwise}
+\end{cases}
+\end{align*}
+Hence
+\begin{align*}
+\sum_{k=1}^n (X_{T_k \wedge n} - X_{S_k \wedge n}) &\geq (b-a) U_n[a,b] + X_n - a \\
+&\geq (b-a)U_n[a,b] -(X_n -a)^-
+\end{align*}
+Since $X$ is a super-martingale and $T_k \wedge n$ and $S_k \wedge n$ are \emph{bounded stopping times} with $S_k \leq T_k$, by optional stopping theorem, we have
+\begin{align*}
+\avg (X_{T_k \wedge n})\leq \avg(X_{S_k \wedge n})
+\end{align*}
+By $\avg(\sum_{k=1}^n (X_{T_k \wedge n} - X_{S_k \wedge n}))$ we get
+\begin{align*}
+(b-a) \avg(U_n[a,b]) \leq \sum_{n\geq 0} \avg[(X_n-a)^-]
+\end{align*}
+Apply monotone convergence, with $n\rightarrow \infty$, then we are done.
 
+\eop
+\end{proof}
+\s
 
+This theorem does not seem to have any significance at the moment, but it will turn out to be important later on.
 
+\subsection*{2.4. Doob's maximal inequalities.}
 
+\quad Define $X_n^ = \sum_{k\geq n} |X_k|$
+\s
+
+In the next two theorems, we see that the martingale(or sub-martingale) property allows us to obtain estimates on this $X_n^*$ in terms of expectations for $X_n$.\\
+\s
+
+\thmnum{2.4.1} (Doob's maximal inequality) Let $X$ be a \emph{martingale or a non-negative sub-martingale}. Then for all $\lambda \geq 0$,
+\begin{align*}
+\lambda \prob(X_n^* \geq \lambda) \leq \avg(|X_n|   1_{\{ X_n^*\geq \lambda \}}) \leq \avg(|X_n|)
+\end{align*}
+\begin{proof}
+\pf If $X$ is a martingale, then $|X|$ is a non-negative sub-martingale. It suffices to consider the case where $X$ is a non-negative sub-martingale.
+
+\quad Set $T = \inf \{ k \geq 0 : X_k \geq \lambda \} \wedge n$. Then $T$ is a stopping time and $T\leq n$, so by optional stopping, has
+\begin{align*}
+\avg(X_n) \geq \avg(X_T) &= \avg(X_T 1_{X^*_n \geq \lambda}) + \avg(X_T 1_{X^*_n < \lambda}) \\
+& = \avg( \lambda 1_{X^*_n \geq \lambda})  + \avg(X_n 1_{X_n^* < \lambda})
+\end{align*}
+and
+\begin{align*}
+\avg(X_n 1_{X^* \geq \lambda}) \geq \lambda \prob(X^*_n \geq \lambda)
+\end{align*}
+
+\eop
+\end{proof}
+\s
+
+\thmnum{2.4.2} (Doob's $L^p$-inequality) Let $X$ be a \emph{martingale or a non-negative sub-martingale}. Then, for all $p>1$ and $q = p/(p-1)$, we have
+\begin{align*}
+\norms{X^*_n}{p} \leq q \norms{X_n}{q} 
+\end{align*}
+\begin{proof}
+\pf Again, it suffices to consider when $X$ is a non-negative sub-martingale. Fix $k < \infty$. Then
+\begin{align*}
+\avg [ (X^*_n \wedge k)^p  ] &= \avg \int_0^k p \lambda^{p-1} 1_{\{x^*_n \lambda \}} d\lambda \quad \text{(integration by parts)}\\
+& = \int_0^k p \lambda^{p-1} \prob(X^*_n \geq \lambda) d\lambda \quad \text{(Fubini)} \\
+& \leq \int+0^k p\lambda^{p-2} \avg (X_n 1_{X^*_n \geq \lambda}) d\lambda \quad \text{(Doob's maximal inequaltiy)} \\
+& =\frac{p}{p-1} \avg(X_n (X^*_n \wedge k)^{p-1} ) \\
+& \leq q \norms{X_n}{p} \norms{X^*_n \wedge k}{p}^{p-1} \quad \text{(H\"{o}lder's inequality)}
+\end{align*}
+Hence , $\norms{X^*_n \wedge k}{p} \leq q\norms{X_n}{p}$. Apply monotone convergence theorem with $k\rightarrow \infty$, then we have the desired result.
+
+\eop
+\end{proof}
+\s
+
+Doob's maximal and $L^p$ inequalities have different versions which apply under the same hypothesis to
+\begin{align*}
+X^* = \sum_{n\geq 0} |X_n|
+\end{align*}
+since $X^*_n \nearrow X^*$. Letting $n\rightarrow \infty$ in Doob's maximal inequality gives
+\begin{align*}
+\lambda \prob(X^* \geq \lambda) \lim_{n\rightarrow \infty} \lambda \prob(X^*_n \geq \lambda) \leq \sup_{n\geq 0} \avg(|X_n|)
+\end{align*}
+We can then replace $\lambda \prob(X^* >\lambda)$ by $\lambda \prob (X^* \geq \lambda)$ by taking limits from the right in $\lambda$.
+
+\quad Similarly, for $p\in (1,\infty)$ by monotone convergence,
+\begin{align*}
+\norms{X^*}{p} \leq q \sup_{n\geq 0} \norms{X_n}{p}
+\end{align*}
 
 \end{document}
