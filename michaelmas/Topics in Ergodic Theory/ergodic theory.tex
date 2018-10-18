@@ -23,6 +23,12 @@
 	}%your text here
 	{\end{changemargin}
 }
+
+\newenvironment{subproof}
+{\begin{changemargin}{0.5cm}{0.5cm}
+	}%your text here
+	{\end{changemargin}
+}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 \begin{document}
@@ -62,6 +68,8 @@
 =====================================================================================
 (4th October 2018, Thursday)
 \s
+
+\section*{1. Measure preserving system}
 
 \textbf{Measure preserving system} : $(X, \borel, \mu, T)$, where $X$ is a set, $\borel$ is a $\sigma$-algebra, $\mu$ is a probability measure with $\mu(A) \geq 0$ $\forall A \in \borel$, $\mu(X)=1$, and $T$ is a measure-preserving transformation. That is, $T: X\rightarrow X$ is measurable s.t. $\mu(T^{-1}(A)) = \mu(A)$ $\forall A \in \borel$.
 \s
@@ -134,6 +142,8 @@ Assumptions : (1) $A(1,\cdots,1)^T = (1,\cdots,1)^T$; (2) $(p_1, \cdots, p_n) A 
 \item Let $\mu(\{x\in X : x_m=i_0,\cdots,x_{m+n}=i_n\}) = p_{i_0} a_{i_0 i_1} \cdots a_{i_{n-1} i_n}$.
 \end{itemize}
 \s
+
+\section*{2. Furstenberg's correspondence principle}
 
 \thm (Szemer\'{e}di) Let $S \subset \mathbb{Z}$ of positive upper Banach density. That is:
 \begin{align*}
@@ -260,6 +270,8 @@ by assumption that $S$ is of positive upper Banach density, and therefore we can
 (9th October, Tuesday)
 \s
 
+\section*{3. Poincar\'{e} recurrence, Ergodicity}
+
 \lem Let $(X, \borel, \mu, T)$ be MPS. Let $A\in \borel$ with $\mu(A) >0$. Then $\exists n \in \mathbb{Z}_{>0}$ s.t. $\mu(A \cap T^{-n}A) >0$.
 \begin{proof}
 \pf Suppose $\mu(A \cap T^{-n}A) =0$ for all $n>0$. Then
@@ -360,6 +372,8 @@ If $\alpha$ is irrational, then $\exp(2\pi in\alpha) \neq 1$ for all $n\neq 0$ s
 
 (11th October, Thursday)
 \s
+
+\section*{4. Ergodic theorems}
 
 \thm (Mean ergodic theorem, von Neumann) Let $(x,\borel, \mu, T)$ be a MPS. Write
 \begin{align*}
@@ -799,10 +813,12 @@ This holds by the pointwise ergodic theorem for almost every $x$. Since there ar
 \end{proof}
 \s
 
+\section*{6. Unique ergodicity}
+
 The problem with these ergodic theorems is that the converging point might differ depending on the selection of measure. To study in which cases this can be prevented, we study the uniqueness of measures that is preserved under a fixed map $T$.
 
 \s
-\defi A \textbf{topological dynamical system} is a tuple $(X,T)$, where $X$ is a compact metric space and $T:X\rightarrow X$ is a continuous map. We say that $(X,T)$ is \textbf{uniquely ergodic}, if there is only one $T$-invariant Borel probability measure on $X$.
+\defi A \textbf{topological dynamical system} is a tuple $(X,T)$, where $X$ is a compact metric space and $T:X\rightarrow X$ is a continuous map. We say that $(X,T)$ is \textbf{uniquely ergodic}, if there is only one \emph{$T$-invariant Borel probability measure} on $X$.
 \s
 
 \thm Let $(X,T)$ be a topological dynamical system. The followings are equivalent :
@@ -896,6 +912,130 @@ then
 \Big| \int fd\mu - \int f\circ T d\mu \Big| \leq \limsup_{j\rightarrow \infty} \frac{\norms{f}{\infty} + \norms{f}{\infty}}{N_j}=0
 \end{align*}
 \end{proof}
+
+\newday
+
+(18 October, Thursday)
+\s
+
+(Example sheet distributed. Example Class at 27 Oct, 10, 24 Nov. 2pm-4pm)
+
+(Problem 9 and 10 to be submitted before Thursday 3pm)
+\s
+
+\thm Let $(X,T)$ be a topological dynamical system. The followings are equivalent :
+\begin{itemize}
+\item[(1)] $(X,T)$ is uniquely ergodic.
+\item[(2)] $\forall f \in C(X)$, $\exists c_f \in \mathbb{C}$ s.t. $\frac{1}{N}\sum_{n=0}^{N-1} f(T^n x) \rightarrow c_f$ uniformly.
+\item[(3)] $\exists A \subset C(f)$ dense s.t. $\forall f\in A$, $\exists c_f \in \mathbb{C}$ s.t.
+\begin{align*}
+\frac{1}{N} \sum_{n=0}^{N-1} f(T^n x) \rightarrow c_f \quad \forall x \in X
+\end{align*}
+but not necessarily uniformly.
+\end{itemize}
+\begin{proof}
+\pf \begin{itemize}
+\item[(1) $\Rightarrow$ (2)] Suppose that (2) fails with $c_f = \int fd\mu$, where $\mu$ is the unique invariant measure. Then $\exists \epsilon >0$, $\exists x_1, x_2, \cdots \in X$, $\exists (N_j)_{j} \subset \mathbb{Z}$ s.t. 
+\begin{align*}
+\Big| \frac{1}{N_j}\sum_{n=0}^{N_j -1} f(T^n x_j) - \int f d\mu \Big| > \epsilon \quad \cdots \cdots (\star)
+\end{align*}
+By using Bolzanno-Weierstrass theorem to restrict to a converging subsequence whenever necessary(and using diagonal argument)(noting that ), we may suppose that
+\begin{align*}
+\frac{1}{N_j} \sum_{n=0}^{N_j-1} f(T^n x_j) \rightarrow a
+\end{align*}
+for some $a\in \mathbb{C}$. Moreover, we can also assume that
+\begin{align*}
+\frac{1}{N_j} \sum_{n=0}^{N_j-1} T^n_* \delta_{x_j} \rightarrow \nu
+\end{align*}
+for some probability measure $\nu$. By the theorem from the previous lecture, $\nu$ is $T$-invariant. Also,
+\begin{align*}
+\int fd\nu &= \lim_{j\rightarrow \infty} \frac{1}{N_j} \sum_{n=0}^{N_j -1} \int f dT^n_* \delta_{x_j} \\
+& = \lim_{j\rightarrow \infty} \frac{1}{N_j} \sum_{n=0}^{N_j-1} f(T^n x_j) =a
+\end{align*}
+By $(\star)$, $|a-\int fd\mu| >\epsilon$, so $\int fd\mu \neq fd\nu$, hence $\mu \neq \nu$, a contradiction.
+\item[(2) $\Rightarrow$ (3)] This implication is trivial.
+\item[(3) $\Rightarrow$ (1)] Let $\mu, \nu$ be $T$-invariant probability measures. We will show that $\int fd\mu = \int fd \nu$ for all $f\in A$. Since $A$ is dense, this also holds for all $f\in C(X)$. By the corollary to Riesz representation theorem, this implies $\mu = \nu$.
+
+\quad We know
+\begin{align*}
+\frac{1}{N} \sum_{n=0}^{N-1} f(T^n x) \rightarrow c_f \quad \forall x\in X
+\end{align*}
+By dominated convergence, has
+\begin{align*}
+\int f d\mu = \int \frac{1}{N} \sum_{n=0}^{N-1} f(T^n x) d\mu \rightarrow c_f
+\end{align*}
+Thus $\int fd\mu = c_f$.
+
+The same argument gives $\int fd\mu = c_f$.
+\end{itemize}
+\eop
+\end{proof}
+\s
+
+\textbf{Example :} Let $\alpha \in \reals / \mathbb{Z}$ be irrational. Then the circle rotation $(\reals/\mathbb{Z},R_{\alpha})$ is uniquely ergodic. Indeed, let $\mu$ be an $R_{\alpha}$-invariant measure. Then
+\begin{align*}
+& \int \exp (2\pi i n x) d\mu = \int \exp(2\pi i n R_{\alpha}(x)) d\mu \\
+=& \int \exp (2\pi i n (x+\alpha)) d\mu = \exp (2\pi i n \alpha) \int \exp (2\pi i n x) d\mu
+\end{align*}
+Since $\alpha$ is irrational, $\exp(2\pi i n \alpha) \neq 1$ if $n\neq 0$. Then
+\begin{align*}
+(\dagger)\cdots\cdots \begin{cases}
+\int \exp(2\pi i nx)d\mu = 0 \quad \forall n \neq 0 \\
+\int 1 d\mu =1
+\end{cases}
+\end{align*}
+Let $f$ be a trigonometric polynomial, i.e. a finite lienar combination of the functions $\exp(2\pi i nx)$, where $n\in \mathbb{Z}$. Then $(\dagger)$ implies
+\begin{align*}
+\int f d\mu = \int f(x) dx
+\end{align*}
+\begin{subproof}
+\emph{Fact :} Trigonometric polynomials is dense in $C(X)$ - use Stone-Weirestrass theorem.
+\end{subproof}
+Therefore, $\mu$ is just a Lebesgue measure.
+\s
+
+\defi A sequence $x_1,x_2, \cdots \in [0,1)$ is said to be \textbf{equidistributed} if
+\begin{align*}
+\frac{1}{N} \sum_{n=0}^{N-1} f(x_n) \rightarrow \int_{\reals/\mathbb{Z}} f(x) dx \quad \forall f \in C(\reals/\mathbb{Z})
+\end{align*}
+\s
+
+\textbf{Remark : } Let $0\leq a< b<1$. Then $x_1,x_2,\cdots$ is equidistributed \emph{if and only if}
+\begin{align*}
+\frac{1}{N} \Big| \{n\in [0,N-1] : x_n \in [a,b] \} \Big| \rightarrow a-b \quad \forall 0\leq a< b<1
+\end{align*}
+\s
+
+\cor $\{n\alpha + x$ mod $1 : n\geq 0\}$ is equidistributed for all $\alpha$ irrational and $x\in [0,1)$.
+\s
+
+This is the difference between pointwise ergodic theorem and unique ergodicity - unique ergodicity shows results for all $\alpha$ irrational, while pointwise erodic theorem shows for almost every points.
+\begin{proof}
+\pf This follows from the previous theorem and the example.
+\end{proof}
+
+\textbf{Open Problem : }Classify the Borel probability measures on $\reals/\mathbb{Z}$ that are invariant under both $T_2$ and $T_3$.
+
+\quad If only invariant under $T_2$, there are too many of them, so it is hopeless to classify them. However, if invariant under both $T_2$ and $T_3$, it is expected that the result is a combination of Lebesgue measure and measures derived from it.
+\s
+
+\section*{7. Equidistribution of polynomials}
+
+\defi Let $(X,\borel, \mu, T)$ be a MPS, with $X$ a compact metric space, and $T:X \rightarrow X$ is continuous. Then $x\in X$ is called \textbf{generic w.r.t. } $\mu$ if the following holds :
+\begin{align*}
+& \frac{1}{N}\sum_{n=0}^{N-1} T^n_* \delta_x \rightarrow \mu \quad \text{weakly} \\
+\Leftrightarrow & \frac{1}{N} \sum_{n=0}^{N-1} f(T^n x) \rightarrow \int f d\mu \quad \forall f \in C(X) \quad \cdots\cdots (\star)
+\end{align*}
+\s
+
+\lem $\mu$-almost every $x\in X$ is $\mu$-generic.
+\begin{proof}
+\pf By the pointwise ergodic theorem, for $\forall f \in C(X)$, there is a set $X_f$ with $\mu(X_f) =1$ such that ($\star$) holds. Observe that every point in $\bigcap_{f\in A} X_f$ where $A\subset C(X)$ is dense and countable is $\mu$-generic.
+
+\eop
+\end{proof}
+
+
 
 
 

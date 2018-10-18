@@ -92,11 +92,6 @@
 \chapter*{Introduction to Discrete Analysis}
 \s
 
-\begin{proof}
-\pf ddddddd
-\end{proof}
-
-
 =====================================================================================
 (4th October 2018, Thursday)
 \s
@@ -129,6 +124,9 @@ where $\Delta_{xy} = N$ if $x=y$ and $0$ if $x\neq y$.(in analogy with $\delta$-
 \end{itemize}
 \s
 
+Beware that inner product in the Fourier space and the physical space are defined in a different way : $\langle \hat{f},\hat{g} \rangle = \sum_{r} \hat{f}(r) \bar{\hat{g}(r)}$ while $\langle f,g\rangle = \avg_x f(x) \bar{g}(x)$
+\s
+
 \lemnum{2}(Convolution identity) $\hat{f * g}(r) = \hat{f}(r) \hat{g}(r)$
 
 \begin{itemize}
@@ -157,7 +155,7 @@ where $\Delta_{xy} = N$ if $x=y$ and $0$ if $x\neq y$.(in analogy with $\delta$-
 \begin{itemize}
 \item If $f$ is real-valued, then $\hat{f}(-r) = \avg_x f(x) \omega^{rx} = \bar{\avg_x f(x) \omega^{-rx}} = \overline{ \hat{f}(r) }$.
 
-\item If $A\subset \intN$, write $A$(instead of $1_A$ or $\chi_A$) for the characteristic function of $A$. Then $\hat{A}(0) = \avg_x A(x) = \frac{|A|}{N}$, the \textbf{density} of $A$. Also, $\norms{\hat{A}}{2}^2 = \langle \hat{A}, \hat{A} \rangle> = \langle< A,A \rangle> = \avg_x A(x)^2 = |A|/N$.
+\item If $A\subset \intN$, write $A$(instead of $1_A$ or $\chi_A$) for the characteristic function of $A$. Then $\hat{A}(0) = \avg_x A(x) = \frac{|A|}{N}$, the \textbf{density} of $A$. Also, $\norms{\hat{A}}{2}^2 = \langle \hat{A}, \hat{A} \rangle = \langle A,A \rangle = \avg_x A(x)^2 = |A|/N$.
 
 \item Let $f: \intN \rightarrow \mathbb{C}$. Given $\mu \in \intN$ with $(\mu, N)=1$, define $f_{\mu}(x)$ to be $f(\mu^{-1}x)$. Then $\hat{f}_{\mu}(r) = \avg_x f_{\mu}(x)\omega^{-rx} = \avg_x f(x/\mu) \omega^{-rx} = \avg_x f(x)\omega^{-r\mu x} = \hat{f}(\mu r)$.
 \end{itemize}
@@ -466,13 +464,118 @@ by induction and minimality property of $A$
 
 \eop
 \end{proof}
+\s
 
+\newday
 
+(18th October, Thursday)
+\s
 
+(Example class next Wednesday afternoon, 24th October)
+\s
 
+\cornum{2} If $A$, $B$ are finite subsets of an Abelian group and $|A+ B|\leq K|A|$ then there exists $A' \subset A$, $A' \neq \phi$ such that $|A' + rB| \leq K^r|A'|$ for every positive integer $r$.
+\begin{proof}
+\pf Choose $A'$ as we chose $A$ in \textbf{Lemma 1}, that is, minimizing $|A'+B|/|A'|$. Then $|A' + rB| = |A'+B +(r-1)B| \leq K |A' + (r-1)B|$ and $|K' + B| \leq K|A'|$. So we are done by induction.
 
+\eop
+\end{proof}
+\s
 
+\cornum{3} If $|A+A| \leq K|A|$ or $|A-A| \leq K|A|$, then $|rA| \leq K^r |A|$.
+\begin{proof}
+\pf Just set $B= A$ or $-A$ in \textbf{Corollary 2}, and note that $|A \pm rA| \geq |rA|$.
 
+\eop
+\end{proof}
+\s
+
+\lemnum{4} \emph{(Ruzsa triangle inequality)} Let $A,B,C$ be finite subsets of an Abelian group. Then 
+\begin{align*}
+A||B-C| \leq |A-B||A-C|
+\end{align*}
+\begin{proof}
+\pf  Define a map $\phi : A \times (B-C) \rightarrow (A-B) \times (A-C)$ as follows : For each $x \in B-C$, choose functions $b(x)\in B$ and $c(x) \in C$ such that $b(x) - c(x) =x$. Now given $(a,x)$ with $a\in A$, $x\in B-C$, set $\phi(a,x) = (a-b(x), a-c(x))$.
+
+\quad Note that given $(a-b(x), a-c(x))\in (A-B)\times (A-C)$, we may find $x = b(x)-c(x) = (a-c(x))- (a-b(x))$. And then, having worked with $x$, we know $b(x)$, and $a = a-b(x)+b(x)$, so $a$ is determined too, so $\phi$ is a injection, and the inequality follows.
+
+\eop
+\end{proof}
+\s
+
+Why does this lemma deserves its name 'triangular inequality?' We can rewrite it as
+\begin{align*}
+\frac{|B-C|}{|B|^{1/2} |C|^{1/2}} \leq \frac{|A-B|}{|A|^{1/2}|B|^{1/2}} \cdot \frac{|A-C|}{|A|^{1/2}|C|^{1/2}}
+\end{align*}
+So if we define the \textbf{Rusza distance} $d(A,B)$ to be $\frac{|A-B|}{|A|^{1/2}|B|^{1/2}}$, then the inequality says $d(B,C) \leq d(A,B)d(A,C)$.
+
+(be aware that, $\log(d(A,B))$ still does not define a metric... this defines a metric if and only if $A$ is a coset of a subgroup. But this inequality is still useful, since this helps to measure a distance between two sets using other two relations.)
+\s
+
+\cornum{5} If $|A+B| \leq K|A|$, then $|rB-sB| \leq K^{r+s}|A|$ for all positive integers $r,s$.
+\begin{proof}
+\pf Pick $A'$ as before. Then by \textbf{Corollary 2} with $B$ replaced by $-B$, has
+\begin{align*}
+|A'-rB| \leq K^r |A'| \quad \text{and} \quad |A'-sB|\leq K^s |A'|
+\end{align*}
+Therefore by Ruzsa triangle inequality,
+\begin{align*}
+|A'||rB-sB| \leq K^{r+s} |A'|^2 \quad \Rightarrow \quad |rB-sB| \leq K^{r+s}|A|
+\end{align*}
+
+\eop
+\end{proof}
+\s
+
+\cornum{6} \emph{(Plannecke's theorem)} If $|A+A| \leq K|A|$ or $|A-A| \leq K|A|$, then $|rA-sA| \leq K^{r+s} |A|$.
+\begin{proof}
+\pf Apply \textbf{Corollary 5} with $B= -A$ or $B=A$.
+
+\eop
+\end{proof}
+\s
+
+If you follow the lines of proof, you'll find them trivial but the proof themselves are highly non-trivial.
+\s
+
+\lemnum{7} \emph{(Ruzsa's embedding Lemma)} Let $A\subset \mathbb{Z}$ be finite and suppose that $|kA-kA| \leq C|A|$. Then there exists a prime $p > 4C|A|$ and a subset $A'\subset A$ of size at least $|A|/k$ such that $A'$ is Freiman isomorphic of order $k$ to a subset of $\mathbb{Z}_p$.
+
+(In fact, the proof tells us that such subset $A'\subset A$ exists for any prime $p>2C|A|$, with $|A'| \geq \lfloor |A|/k \rfloor$)
+\s
+
+This gives a pretty dense subgroup of a cyclic group. This is beneficial later one
+
+\begin{proof}
+\pf Consider the following composition of maps.
+\begin{align*}
+\phi : \mathbb{Z} \xrightarrow{\text{reduce mod } q} \mathbb{Z}_q \xrightarrow{\times \text{ by some(random) }r\neq 0} \mathbb{Z}_q \xrightarrow{\text{least non-neg. residue}} \mathbb{Z} \xrightarrow{\text{reduce mod } p} \mathbb{Z}_p
+\end{align*}
+where $q$ is a prime bigger than diam($A$)(the largest element of $A-A$) and $p$ is a prime $\in (2C|A|,4C|A|]$. Call $\phi$ for this composition. The first, second and fourth parts are group homomorphisms, and thus Freiman homomorphism of all orders. Also, the third map is a Freiman homomoprhism of order $k$ if you restrict to a subinterval of $[0,q-1]$ of length $\leq q/k$. To see this, write $\langle u\rangle$ for least non-negative residue, let $I$ be an interval of length $\leq q/k$ (and therefore $<q/k$) and $u_1, \cdots, u_{2k} \in I$. If $u_1 + \cdots +u_k - u_{k+1} - \cdots -u_{2k} =0$, then
+\begin{align*}
+\langle u_1 \rangle + \cdots + \langle u_k \rangle - \langle u_{k+1} \rangle - \cdots - \langle u_{2k} \rangle \equiv 0 \quad \text{mod } q
+\end{align*}
+and also $\langle u_1 \rangle + \cdots + \langle u_k \rangle - \langle u_{k+1} \rangle - \cdots - \langle u_{2k} \rangle \in (-q,q)$. So it is zero.
+
+\quad By the pigeon hole principle, for any $r$ we can find $I$ of length $\leq q/k$ such that $A' = \{ a\in A : ra\in I \text{ mod} q\}$ has size at least $|A|/k$ (In fact, this is not true : Let $q = ku + s$ and $|A| = kw + v$, where $s,v\in [0,k-1]$. $I_1,\cdots,I_k$ be disjoint intervals of each length $u \leq q/k$. Then $\big| \cup_j \{a\in A : ra \in I_j \} \big| \geq |A| -s = kw+(v-s)$. Then by pigeon hole principle, one can choose $I_j$ with $\Big| \{a\in A : ra \in I_j \} \Big| \geq w = \lfloor |A|/k \rfloor$. So $|A|/k$ should be replaced by $\lfloor |A|/k \rfloor$.  How do I fix this problem?) Then $\phi|_{A'}$ is a Freiman homomorphism of order $k$.
+\s
+
+It remains to prove that $\phi$ is an isomorphism to its image. That is, we must show that if 
+\begin{align*}
+& a_1 + \cdots + a_k - a_{k+1} - \cdots - a_{2k} \neq 0 \,\, (a_i \in A)\\
+\text{then } \quad & \langle a_1 \rangle + \cdots + \langle a_k \rangle - \langle a_{k+1} \rangle - \cdots - \langle a_{2k} \rangle \not\equiv 0 \quad \text{mod }p
+\end{align*}
+But if the $a_i$ are chosen such that the $ra_i$ all belong to the same interval of length $\leq q/k$ then
+\begin{align*}
+\Big|\langle ra_1 \rangle + \cdots + \langle ra_k \rangle - \langle ra_{k+1} \rangle - \cdots - \langle ra_{2k} \rangle \Big|  < q
+\end{align*}
+and
+\begin{align*}
+\langle ra_1 \rangle + \cdots + \langle ra_k \rangle - \langle ra_{k+1} \rangle - \cdots - \langle ra_{2k} \rangle \equiv r(a_1 + \cdots + a_k - a_{k+1} - \cdots -a_{2k}) \quad \text{mod } q
+\end{align*}
+So all that can go wrong is if $r(a_1 + \cdots + a_k - a_{k+1} - \cdots - a_{2k})$ is $xp$ for some $x\neq 0$ with $|x|<q/p$(if $|x|\geq q/p$, then its contradicts the first inequality). The number of values to avoid is at most $2q/p=|(-p/q,p/q)|$, so for each $a_1+ \cdots +a_k -a_{k+1} - \cdots - a_{2k}$ the probability of going wrong if $r$ (mod $q$) is chosen randomly is at most $2/p$. And since $|kA-kA|\leq C|A|$, the probability of going wrong is at most $\frac{2}{p} C|A|$, if $a_j$ are chosen at random. Since $p>2C|A|$, there exists some $r$ s.t. we get an Freiman isompophism of order $k$.
+
+\eop
+\end{proof}
 
 
 
