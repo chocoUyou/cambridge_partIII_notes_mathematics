@@ -10,6 +10,40 @@
 \usepackage[left=2cm,right=2cm,top=2cm,bottom=2cm]{geometry}
 \usepackage[mathscr]{euscript}
 
+\usepackage{color}
+
+%%%%%%%%Draws Pretty Box%%%%%%%
+%%%Use with \bluebox[<top pad>][<bot pad>]{<contents>}
+\definecolor{myblue}{rgb}{.8, .8, 1}
+
+\usepackage{empheq}
+
+\newlength\mytemplen
+\newsavebox\mytempbox
+
+\makeatletter
+\newcommand\bluebox{%
+    \@ifnextchar[%]
+       {\@bluebox}%
+       {\@bluebox[0pt]}}
+
+\def\@bluebox[#1]{%
+    \@ifnextchar[%]
+       {\@@bluebox[#1]}%
+       {\@@bluebox[#1][0pt]}}
+
+\def\@@bluebox[#1][#2]#3{
+    \sbox\mytempbox{#3}%
+    \mytemplen\ht\mytempbox
+    \advance\mytemplen #1\relax
+    \ht\mytempbox\mytemplen
+    \mytemplen\dp\mytempbox
+    \advance\mytemplen #2\relax
+    \dp\mytempbox\mytemplen
+    \colorbox{myblue}{\hspace{1em}\usebox{\mytempbox}\hspace{1em}}}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
 %%%for drawing commutative diagrams.%%%%%%
 \usepackage{tikz-cd}  
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -280,7 +314,7 @@ The inclusions (b)$\Rightarrow$(c) and (c)$\Rightarrow$(d) are obvious.
 \end{align*}
 (Recall, $x^- = (-x) \vee 0$)
 \begin{proof}
-Set $T_0 =0$ and define recursively for $k\geq 0$,
+\pf Set $T_0 =0$ and define recursively for $k\geq 0$,
 \begin{align*}
 S_{k+1} = \inf \{m\geq T_k : X_m <a \}, \quad T_{k+1} = \sup \{m\geq S_{k+1} : X_m >b \}
 \end{align*}
@@ -320,7 +354,7 @@ This theorem does not seem to have any significance at the moment, but it will t
 
 \subsection*{2.4. Doob's maximal inequalities.}
 
-\quad Define $X_n^ = \sum_{k\geq n} |X_k|$
+\quad Define $X_n^* = \sum_{k\geq n} |X_k|$
 \s
 
 In the next two theorems, we see that the martingale(or sub-martingale) property allows us to obtain estimates on this $X_n^*$ in terms of expectations for $X_n$.\\
@@ -380,5 +414,150 @@ We can then replace $\lambda \prob(X^* >\lambda)$ by $\lambda \prob (X^* \geq \l
 \begin{align*}
 \norms{X^*}{p} \leq q \sup_{n\geq 0} \norms{X_n}{p}
 \end{align*}
+\s
+
+\newday
+
+(19th October, Friday)
+\s
+
+\subsection*{2.5. Doob's martingale convergence theorems}
+
+We are going to study three different martingale convergence theorems. They are all important.
+\s
+
+\begin{itemize}
+\item We say that a random process $X$ is \textbf{$L^p$-bounded} if $\sum_{n\geq 0} \norms{X_n}{p} <\infty$.
+\item We say that $X$ is \textbf{uniformly integrable} if
+\begin{align*}
+\sup_{n\geq 0} \avg (| X_n | 1_{|X_n| >\lambda})\rightarrow 0 \quad \text{as }\lambda \rightarrow \infty
+\end{align*}
+\item If $X$ is $L^p$ bounded for some $p>1$, then this implies that $X$ is uniformly integrable. This again implies that $X$ is $L^1$ bounded. The first implication follows from H\"{o}lder inequality. The second implication is true because $\avg(|X_n|) = \avg(|X_n|1_{|X_n|\leq \lambda} ) + \avg(|X_n|1_{|X_n|> \lambda} ) \leq \lambda + \avg(|X_n|1_{|X_n|> \lambda} )$.
+\end{itemize}
+\begin{center}
+\bluebox{$X$ is $L^p$-bounded, $p>1$}
+\vspace{5pt}
+
+$\Downarrow$
+\vspace{5pt}
+
+\bluebox{$X$ is Uniformly integrable}
+\vspace{5pt}
+
+$\Downarrow$
+\vspace{5pt}
+
+\bluebox{$X$ is $L^1$-bounded}
+\end{center}
+\s
+
+\thmnum{2.5.1}\emph{(Almost sure martingale convergence theorem)} Let $X$ be an \emph{$L^1$-bounded super-martingale}. Then there exists an integrable and $\F_{\infty}$-measurable random variable $X_{\infty}$ such that
+\begin{align*}
+X_n \rightarrow X \quad \text{\emph{a.s.} as } n\rightarrow \infty
+\end{align*}
+\begin{proof}
+\pf For a sequence of real numbers $(x_n)_{n\geq 0}$, as $n\rightarrow \infty$, $(x_n)_n$ either converges \emph{or} $|x_n|\rightarrow \infty$, \emph{or} $\liminf_{n} x_n < \limsup_{n} x_n$. In the last case, since the rationals are dense in $\reals$, there exist $a,b\in \mathbb{Q}$ such that $\liminf x_n < a<b \limsup x_n$. 
+
+\quad Set $\Omega_0 = \Omega_{\infty} \cap (\bigcap_{a,b\in \mathbb{Q},a<b} \Omega_{a,b})$ where $\Omega_{\infty} = \{ \liminf |X_n| <\infty \}$, $\Omega_{a,b} = \{ U[a,b] < \infty \}$ (Recall that $U[a,b]$ is the number of upcrossings). Then $X_n(\omega)$ converges for all $\omega \in \Omega_0$. By Fatous' lemma,
+\begin{align*}
+\avg(\liminf |X_n|) \leq \liminf \avg |X_n| <\infty
+\end{align*}
+so this implies $\prob (\Omega_{\infty}) =1$. By Doob's inequality, for $a<b$, has
+\begin{align*}
+(b-a) \avg(U[a,b]) \leq |a| + \sup_{n\geq 0} \avg |X_n | <\infty
+\end{align*}
+and therefore $\prob(\Omega_{a,b})=1$. Putting this together, we deduce that $\prob(\Omega_0) =1$, and we can find a random variable $X_{\infty}$ defined by
+\begin{align*}
+X_{\infty} = \lim_{n\rightarrow \infty} X_n 1_{\Omega_0}
+\end{align*}
+Then $X_n\rightarrow X_{\infty}$ a.s. Also $X_{\infty}$ is $\F_{\infty}$-measurable and $|X_{\infty}| \leq \liminf|X_n|$ so $\avg(|X_{\infty}|) <\infty$. Hence $X_{\infty}$ is integrable.
+
+\eop
+\end{proof}
+\s
+
+\textbf{Remark :} Every non-negative integrable super-martingale is $L^1$-bounded, hence it converges a.s.
+\s
+
+\thmnum{2.5.2}\emph{($L^1$ martingale convergence theorem)} Let $(X_n)_{n\geq 0}$ be a \emph{uniformly integrable martingale}. Then there exists a random variable $X_{\infty} \in L^1(\F_{\infty})$ such that
+\begin{align*}
+X_n \xrightarrow{n\rightarrow \infty} X_{\infty} \quad \text{a.s. and in }L^1
+\end{align*}
+
+Moreover, $X_n = \avg(X_{\infty} |\F_n)$ a.s. for all $n\geq 0$.
+
+\quad Conversely, for all $Y\in L^1(\F_{\infty})$, on choosing  version $X_n$ of $\avg(Y|\F_n)$ for all $n$, we obtain a uniformly integrable martingale $(X_n)_{n\geq 0}$ such that
+\begin{align*}
+X_n \xrightarrow{n\rightarrow \infty} Y \quad \text{a.s. and in }L^1
+\end{align*}
+\s
+
+We can think of this theorem as establishing the bijection
+\begin{center}
+\bluebox{unif. integrable martingale/a.s.} $\leftrightarrow$ \bluebox{$L^1(\F_{\infty})$}
+\end{center}
+
+\begin{proof}
+\pf Let $(X_n)_{n\geq 0}$ be a uniformly integrable martingale. By the almost sure martingale convergence theorem, there exists $X_{\infty} \in L^1(\F_{\infty})$ s.t. $X_n \rightarrow X_{\infty}$ a.s. Since $X$ is uniformly integrable, it also follows that $X_n \rightarrow X_{\infty}$ in $L^1$.(see PM, Thm 2.5.1. and 6.2.3.)
+
+\quad Next, for $m\geq n$,
+\begin{align*}
+\norms{X_n - \avg(X_{\infty} |\F_{n})}{1} &= \norms{ \avg(X_m-X_{\infty} |\F_n ) }{1} \\
+&= \norms{X_m - X_{\infty}}{1} \rightarrow 0 \quad \text{as } m\rightarrow \infty
+\end{align*}
+Hence $X_n = \avg(X_{\infty} |\F_n)$ a.s.
+\s
+
+\quad For the converse statement, suppose $Y\in L^1(\F_{\infty})$ and let $X_n$ be a version of $\avg(Y|\F_n)$ for all $n$. Then $(X_n)_{n\geq 0}$ is a martingale by the tower property, and is uniformly integrable by \textbf{Lemma 1.5.1.} Hence there exists $X_{\infty} \in L^1(\F_{\infty})$ such that $X_n \rightarrow X_{\infty}$ a.s. and in $L^1$. For all $n \geq 0$ and all $A\in \F_{n}$, we have 
+\begin{align*}
+\avg(X_{\infty} 1_A) = \lim_{m\rightarrow \infty} \avg(X_m 1_A) = \lim_{n\leq m\rightarrow \infty} \avg(\avg(Y 1_A |\F_m)) = \avg(Y1_A)
+\end{align*}
+where the second equality follows because $\avg(X_m |\F_n) = \avg(Y |\F_n)$. Now $X_{\infty}$, $Y\in L^1(\F_{\infty})$ and $\cup_n \F_n$ is a $\pi$-system generating $\F_{\infty}$. Hence, by Dynkin's lemma,
+\begin{align*}
+X_{\infty} = Y \quad \text{a.s.}
+\end{align*}
+
+\eop
+\end{proof}
+\s
+
+\thmnum{2.5.3}\emph{($L^p$-martingale convergence theorem)} Let $p\in (1,\infty)$. Let $(X_n)_{n\geq 0}$ be an $L^p$-bounded martingale. Then there exists a random variable $X_{\infty} \in L^p (\F_{\infty})$ s.t.
+\begin{align*}
+X_n \rightarrow X_{\infty} \quad \text{a.s. and in } L^p
+\end{align*}
+Moreover, $X_n = \avg(X_{\infty}|\F_n)$ a.s. for all $n\geq 0$.
+
+\quad Conversely, for all $Y\in L^p(\F_{\infty})$, on choosing a version $X_n$ of $\avg(Y|\F_n)$ for all $n$, we obtain an $L^p$-bounded martingale such that $X_n \rightarrow Y$ a.s. and in $L^p$.
+\s
+
+This is very similar to the statement of $L^1$-martingale convergence theorem. Indeed, the proof is also very similar.
+\begin{proof}
+\pf Let $(X_n)$ be an $L^p$-bounded martingale. By \emph{a.s. martingale convergence theorem}, there exists $X_{\infty} \in L^1(\F_{\infty})$, $X_n\rightarrow X_{\infty}$ a.s.
+
+\quad By \emph{Doob's $L^p$-inequality}, $\norms{X^*}{p} \leq q \sup_{n\geq 0} \norms{X_n}{p} < \infty$, where $X^* = \sup_{n\geq 0} |X_n|$. Also, since $|X_n - X_{\infty}|^p \leq (2 X^*)^p$ for all $n$, we may apply dominated convergence theorem to deduce that $X_n \rightarrow X_{\infty}$ in $L^p$. Then $X_n = \avg(X_{\infty} |\F_n)$ a.s. for all $n$, as in the $L^1$-convergence.
+\s
+
+\quad For the converse statement, suppose $Y\in L^p(\F_{\infty})$ and let $X_n$ be a version of $\avg(Y|\F_n)$. Then $(X_n)_{n\geq 0}$ is a martingale by the tower property and by Jensen inequality,
+\begin{align*}
+\norms{X_n}{p} = \norms{\avg(Y|\F_n)}{p} \leq \norms{Y}{p}
+\end{align*}
+Let $X_n \rightarrow X_{\infty}$ a.s. and in $L^P$ for $X_{\infty} \in L^{p}(\F_{\infty})$, using the previous part. Then proceed as in the proof of $L^1$-convergence to prove that in fact $Y = X_{\infty}$ a.s. 
+
+\eop
+\end{proof}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 \end{document}

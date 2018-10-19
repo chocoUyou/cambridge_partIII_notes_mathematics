@@ -59,6 +59,8 @@
 \newcommand{\EE}{\mathscr{E}}
 \newcommand{\pa}{\partial}
 
+\renewcommand{\bar}{\overline}
+
 \def\doubleunderline#1{\underline{\underline{#1}}}
 
 \newcommand{\newday}{===============================================================}
@@ -716,6 +718,7 @@ Let $\gamma$ be the unit normal to $\Sigma$ and suppose $u$ solves
 & \sum_{|\alpha| =k} a_{\alpha}(D^{k-1}u, \cdots, u,x)D^{\alpha} u + a_0(D^{n-1}u, \cdots, u,x) =0 \quad \text{in } B_{\epsilon}(x) \label{dagger}\\
 & u= \gamma^i \partial_i u = \cdots =(\gamma^i \partial_i)^{k-1} = 0 \quad \text{on } \Sigma \nonumber
 \end{align}
+(note that the boundary condition is equivalent to having $D^{\alpha} u =0$ for all $|\alpha| <k$ on $\Sigma$.)
 \s
 
 Define $v(y) = u(\Phi^{-1}(y)) \quad \Leftrightarrow \quad u(x) = v(\Phi(x))$. Note
@@ -732,7 +735,7 @@ Moreover,
 v \big|_{x_n =0} &= u \big|_{\Sigma} = 0 \\
 \pa_i v \big|_{x_n =0} &= (D\Phi^-1)_{ij} \pa_j u \big|_{\Sigma} = 0 
 \end{align*}
-and proceeding similarly for $\pa^{k-1} v / (\pa x^n)^{k-1}$, we have
+and proceeding similarly for $\pa^{k-1} v / (\pa x^n)^{k-1}$, we have each $D^{\beta} v$ for $|\beta|<k$ as a linear combination of $D^{\alpha}u$($|\alpha|<k$) and hence $D^{\beta} v= 0$ for each $|\alpha|<k$. Hence, we have (check that this is an equivalent condition)
 \begin{align*}
 v = \frac{\pa v}{\pa x^n} = \cdots = \pa^{k-1} v / (\pa x^n)^{k-1} =0 \quad \text{on } \{ x_n =0 \}
 \end{align*}
@@ -808,6 +811,107 @@ u(x) = e^{i\lambda \xi \cdot x}
 \end{align*}
 solve $Lu =0$ for any $\lambda$. By taking $\lambda$ large, we can construct solutions to $Lu =0$ whose derivative (in the $\xi$ direction) is a large as we like. In particular, $Lu$ is very regular, but $u$ need not be. In the elliptic setting, this cannot happen. 
 \s
+
+\newday
+
+(19th October, Friday)
+\s
+
+\subsection*{Criticisms/Shortcomings of Cauchy-Kovalevskaya}
+\begin{itemize}
+\item[1.] Real analyticity is (sometimes) too strong a condition. For example, if solutions of Maxwell's equations were required to be real analytic. We'd know electro-magnetic field everywhere if we could measure it in some small set. This is absurd.
+\item[2.] We don't necessarily get continuous dependence on data in the form we would like.
+
+\textbf{Example :} Consider Laplace's equation on $\reals^2$. $u_{xx} + u_{yy} = 0$, with Cauchy data $u(x,0) = \cos (kx)$, $u_y(x,0) =0$. This has a real analytic solution
+\begin{align*}
+u(x,y) = \cos (kx) \cosh (ky)
+\end{align*}
+We can check that $\sup_{x\in \reals} |u(x,0) \leq 1|$ but $\sup_{x\in \reals} |u(x,\epsilon)| \rightarrow \infty$ as $k\rightarrow \infty$ for all $\epsilon >0$.
+
+\quad In fact, we can require as many derivatives of $u$ on $\{ y=0 \}$ to be bounded and we can still find solutions which are arbitrarily large at $y=\epsilon$. This Cauchy problem is \emph{not} well posed in $C^k$, as there is no continuous dependence on data.
+\s
+\end{itemize}
+\s
+
+These suggest the Cauchy problem for Laplace's equation is not the natural one to consider. 
+
+\subsection*{Elliptic Boundary Value Problems}
+
+A more natural problem arising in physics is the \textbf{Dirichlet Problem} : 
+\begin{align*}
+\Delta u &= 0\quad \text{in } U\subset \reals^n, \quad U \text{ open, bounded} \\
+u &= g \quad \text{on } \pa U
+\end{align*}
+
+e.g. $u$ is electrostatic potential in a cavity whose walls are held at voltage $g$. 
+\s
+
+We shall develop methods to solve such problems. First we develop some technology.
+%배고프다. 배꼽시계에 신호온다ㅏㅏㅏㅏㅏㅏㅏㅏㅏㅏㅏㅏㅏㅏㅏㅏㅏㅏㅏㅏㅏㅏㅏㅏㅏㅏㅏㅏㅏㅏㅏ
+
+\subsection*{H\"{o}lder and Sobolev Spaces}
+
+We need to discuss various function spaces in which to seek solutions our PDEs.
+
+\subsubsection*{H\"{o}lder spaces}
+
+Suppose $U\subset \reals^n$ is open. We write $u\in C^k(U)$ if $u:U\rightarrow \reals$ is $k$-times differentiable at each $x\in U$ and $D^{\alpha}$ is continuous on $U$ for all $|\alpha| \leq k$. This is not a Banach space, so we would like to restrict to a smaller complete space with a norm.
+
+\quad We say $u\in C^k(\bar{U})$ if $u\in C^k (U)$ and $D^{\alpha}u$ is uniformly continuous and bounded on $U$ for each $|\alpha| \leq k$. We introduce a norm :
+\begin{align*}
+\norms{u}{C^k(\bar{U})} = \sum_{|\alpha|\leq k} \sup_{x\in U} |D^{\alpha}u(x)|
+\end{align*}
+With this norm, $C^k(\bar{U})$ is a Banach space. (*Be aware, that $C^k(\bar{U})$ seems to be constructed from the closure $\bar{U}$, but this is not true. It is constructed from $U$ and just depends on $U$. This matters when $U$ does not have a nice boundary e.g. if $U$ is a complement of the Cantor set$\cap [0,1]$, then $C^{k}(\bar{U})\neq C^{k} \cap [0,1]$).
+
+\quad For $0< \gamma \leq 1$, we say that $u$ is \textbf{H\"{o}lder continuous with exponent $\gamma$} if there exists a constant $C\geq 0$ s.t.
+\begin{align*}
+|u(x)-u(y)|\leq C|x-y|^{\gamma} \quad \forall x,y \in U
+\end{align*}
+We define $\gamma^{\text{th}}$ \textbf{H\"{o}lder seminorm} by
+\begin{align*}
+[u]_{C^{0,\gamma}(\bar{U})} = \inf_{x,y\in U} \frac{|u(x)-u(y)|}{|x-y|^{\gamma}}
+\end{align*}
+
+\quad We say $u\in C^{k,\gamma}(\bar{U})$ if $u\in C^k(\bar{U})$ and $D^{\alpha}u$ is H\"{o}lder continuous, with exponent $\gamma$ for all $|\alpha|=k$. We define a norm : 
+\begin{align*}
+\norms{u}{C^{k,\gamma}(\bar{U})} = \norms{u}{C^k(\bar{U})} + \sum_{|\alpha|=k} [D^{\alpha} k]_{C^{0,\gamma}(\bar{U})}
+\end{align*}
+This is again a Banach space.
+
+\subsubsection*{The Spaces $L^p(U)$, $L^p_{\text{loc}}(U)$}
+
+For $U\subset\reals^n$ open, suppose $1\leq p<\infty$. We define the space $L^p(U)$ by
+\begin{align*}
+L^p(U) = \{ u:U\rightarrow \reals \text{ measurable}| \norms{u}{L^p(U)} <\infty \} / \sim
+\end{align*}
+where
+\begin{align*}
+\norms{u}{L^p(U)} = \begin{cases}
+\big( \int_{U} |u(x)|^p dx \big)^{1/p} \quad \text{for } 1\leq p <\infty \\
+\\
+\text{assup}_x u(x) = \inf \{C\geq 0 : |u(x)| \leq C \text{ for almost every } x \}
+\end{cases}
+\end{align*}
+and the $\sim$ is an equivalence relation defined by $u_1 \sim u_2$ \emph{if and only if} $u_1 = u_2$ almost everywhere.
+
+$L^p(U)$ is a Banach space with norm $\norms{\cdot}{L^p(U)}$. Completeness follows from dominated convergence theorem.
+\s
+
+We define a local versions of $L^p(u)$ : we say $u\in L^p_{\text{loc}}(U)$ if $u\in L^p(V)$ for every $V \subset\subset U$ should be read \textbf{'$V$ is compactly contained in $U$'}, meaning there exists a compact $K$ s.t. $V\subset K \subset U$. Note $L^p_{\text{loc}}(U)$ is \emph{not} a Banach space.(it is a Fr\'{e}chet space)
+
+\subsubsection*{Weak Derivatives}
+
+We would like a notion of differentiability for $L^p$ functions. Since $L^p$ functions like to be integrated, it makes sense to sekk a definition involving integration.
+\s
+
+\defi Suppose $u,v\in L^1_{\text{loc}}(U)$ and $\alpha$ is a multi-index. We say $v$ is a \textbf{$\alpha^{\text{th}}$ weak derivative} of $u$ if
+\begin{align*}
+(-1)^{|\alpha|} \int_{U} uD^{\alpha} \phi dx = \int_U v\phi dx \quad \forall \phi \in C^{\infty}_c(U)
+\end{align*}
+In other words, $u$, $v$ obey the correct integration of parts formula, when integrated against a test function $\phi \in C^{\infty}_c(U)$.
+\s
+
+$\star$ Check that if $D^{\alpha} u = v$, then $v$ is indeed also a weak derivative of $u$.
 
 
 
