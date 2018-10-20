@@ -715,25 +715,25 @@ There are many examples, e.g. $\{|x|=1\}$.
 
 Let $\gamma$ be the unit normal to $\Sigma$ and suppose $u$ solves
 \begin{align}
-& \sum_{|\alpha| =k} a_{\alpha}(D^{k-1}u, \cdots, u,x)D^{\alpha} u + a_0(D^{n-1}u, \cdots, u,x) =0 \quad \text{in } B_{\epsilon}(x) \label{dagger}\\
+& \sum_{|\alpha| =k} a_{\alpha}(D^{k-1}u, \cdots, u,x)D^{\alpha} u + a_0(D^{k-1}u, \cdots, u,x) =0 \quad \text{in } B_{\epsilon}(x) \label{dagger}\\
 & u= \gamma^i \partial_i u = \cdots =(\gamma^i \partial_i)^{k-1} = 0 \quad \text{on } \Sigma \nonumber
 \end{align}
 (note that the boundary condition is equivalent to having $D^{\alpha} u =0$ for all $|\alpha| <k$ on $\Sigma$.)
 \s
 
-Define $v(y) = u(\Phi^{-1}(y)) \quad \Leftrightarrow \quad u(x) = v(\Phi(x))$. Note
+Define $v(y) = u(\Phi(y)) \quad \Leftrightarrow \quad u(x) = v(\Phi^{-1}(x))$. Note
 \begin{align*}
-&\frac{\pa u}{\pa x^i} = \frac{\pa v}{\pa y^j} \frac{\pa \Phi^j}{\pa x^i} \\
-&\frac{\pa^2 u}{\pa x^i \pa x^k} = \frac{\pa v^2}{\pa y^j \pa y^i} \frac{\pa \Phi^j}{\pa x^i} \frac{\pa \Phi^l}{\pa x^k} + \frac{\pa v}{\pa y^j} \frac{\pa^2 \Phi^j}{\pa^i \pa x^k} \quad \text{etc.}
+&\frac{\pa v}{\pa x^i} = \frac{\pa u}{\pa y^j} \frac{\pa \Phi^j}{\pa x^i} \\
+&\frac{\pa^2 v}{\pa x^i \pa x^k} = \frac{\pa u^2}{\pa y^j \pa y^i} \frac{\pa \Phi^j}{\pa x^i} \frac{\pa \Phi^l}{\pa x^k} + \frac{\pa u}{\pa y^j} \frac{\pa^2 \Phi^j}{\pa^i \pa x^k} \quad \text{etc.}
 \end{align*}
 So we can compute $D^{\alpha} u$ as a linear combination of $D^{\beta}v$ for $|\beta| \leq |\alpha|$, with coefficients depending on $\Phi$. So if $u$ solves (\ref{dagger}), then $v$ will solve 
 \begin{align*}
-\sum_{|\alpha| =k} b_{\alpha}(D^{k-1}v, \cdots, v, x)D^{\alpha v} + b_0 (D^{k-1}v, \cdots, v, x) =0
+\sum_{|\alpha| =k} b_{\alpha}(D^{k-1}v, \cdots, v, x)D^{\alpha}v + b_0 (D^{k-1}v, \cdots, v, x) =0
 \end{align*}
 Moreover,
 \begin{align*}
 v \big|_{x_n =0} &= u \big|_{\Sigma} = 0 \\
-\pa_i v \big|_{x_n =0} &= (D\Phi^-1)_{ij} \pa_j u \big|_{\Sigma} = 0 
+\pa_i v \big|_{x_n =0} &= (D\Phi)_{ij} \pa_j u \big|_{\Sigma} = 0 
 \end{align*}
 and proceeding similarly for $\pa^{k-1} v / (\pa x^n)^{k-1}$, we have each $D^{\beta} v$ for $|\beta|<k$ as a linear combination of $D^{\alpha}u$($|\alpha|<k$) and hence $D^{\beta} v= 0$ for each $|\alpha|<k$. Hence, we have (check that this is an equivalent condition)
 \begin{align*}
@@ -762,7 +762,7 @@ b_{(0,\cdots,k)} \neq 0 \quad \Leftrightarrow \quad \sum_{|\alpha|=k} a_{\alpha}
 \end{align*}
 \s
 
-\defi $\Sigma$ is a non-characteristic at $x\in \Sigma$ for the problem (\ref{dagger}) provided
+\defi $\Sigma$ is a \textbf{non-characteristic} at $x\in \Sigma$ for the problem (\ref{dagger}) provided
 \begin{align*}
 \sum_{|\alpha| =k} a_{\alpha} (0,\cdots,0,x) \gamma^{\alpha}(x) \neq 0
 \end{align*}
@@ -771,7 +771,7 @@ b_{(0,\cdots,k)} \neq 0 \quad \Leftrightarrow \quad \sum_{|\alpha|=k} a_{\alpha}
 Finally, we have a more general version of Cauchy-Kovalevskaya.
 \s
 
-\thm (Cauchy-Kovalevskaya Redux) Suppose $\Sigma \subset \reals^n$ is a real analytic hypersurface. If$\Sigma$ is non-characteristic for (\ref{dagger}) at $x\in \Sigma$, there exists a unique real analytic solution to (\ref{dagger}) in a neighbourhood of $x$.
+\thm (Cauchy-Kovalevskaya Redux) Suppose $\Sigma \subset \reals^n$ is a real analytic hypersurface. If $\Sigma$ is non-characteristic for (\ref{dagger}) at $x\in \Sigma$, there exists a unique real analytic solution to (\ref{dagger}) in a neighbourhood of $x$.
 \begin{proof}
 \pf We have already seen that we can solve the problem for $v$ uniquely, then $u(x)  = v(\Phi(x))$ is the unique solution for (\ref{dagger})
 

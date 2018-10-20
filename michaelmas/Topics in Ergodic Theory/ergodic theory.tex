@@ -1024,7 +1024,7 @@ This is the difference between pointwise ergodic theorem and unique ergodicity -
 \defi Let $(X,\borel, \mu, T)$ be a MPS, with $X$ a compact metric space, and $T:X \rightarrow X$ is continuous. Then $x\in X$ is called \textbf{generic w.r.t. } $\mu$ if the following holds :
 \begin{align*}
 & \frac{1}{N}\sum_{n=0}^{N-1} T^n_* \delta_x \rightarrow \mu \quad \text{weakly} \\
-\Leftrightarrow & \frac{1}{N} \sum_{n=0}^{N-1} f(T^n x) \rightarrow \int f d\mu \quad \forall f \in C(X) \quad \cdots\cdots (\star)
+\Leftrightarrow \quad & \frac{1}{N} \sum_{n=0}^{N-1} f(T^n x) \rightarrow \int f d\mu \quad \forall f \in C(X) \quad \cdots\cdots (\star)
 \end{align*}
 \s
 
@@ -1034,6 +1034,129 @@ This is the difference between pointwise ergodic theorem and unique ergodicity -
 
 \eop
 \end{proof}
+\s
+
+\newday
+
+(20th October, Saturday)
+\s
+
+We seek for a generalized version of the previous corollary.
+\s
+
+\thm \emph{(Furstenbeg)} Let $(X,T)$ be a uniquely ergodic topological dynamical system. Denote by $\mu$ the invariant measure. Write
+\begin{align*}
+S: X \times \reals/\mathbb{Z} &\rightarrow X \times \reals/\mathbb{Z} \\
+(x,y) &\mapsto (Tx, y+c(x))
+\end{align*}
+where $c:X\rightarrow \reals/\mathbb{Z}$ is a fixed continuous function. Then $\mu * m$, where $m$ is the Lebesgue measure on $\reals/\mathbb{Z}$ is $S$-invariant. If $\mu \otimes m$(the product measure) is $S$-ergodic, then $(X\times \reals/\mathbb{Z},S)$ is uniquely ergodic.
+\s
+
+This has name of \textbf{skew-product}.
+\begin{proof}
+\pf Let $f \in C(X \times \reals/\mathbb{Z})$. Then
+\begin{align*}
+\iint f\circ S(x,y) d\mu(x)dy  &= \int_X \int_0^1 f(Tx,y+c(x)) dyd\mu(x) = \int_X \int_{-c(x)}^{1-c(x)} f(Tx,y)dyd\mu (x) \\
+&= \int_{\reals/\mathbb{Z}}\int_X f(Tx,y)d\mu(x)dy = \iint f(x,y)d\mu(x)dy
+\end{align*}
+So $\mu \otimes m$ is indeed $S$-invariant.
+\s
+
+Now we assume that $\mu *m$ is $S$-ergodic. We show that $(X\times \reals/\mathbb{Z},S)$ is uniquely ergodic.
+\s
+
+Recall the definition :
+
+\begin{subproof}
+\defi A point $(x,y) \in X\times \reals/\mathbb{Z}$ is \textbf{generic} if
+\begin{align*}
+& \frac{1}{N} \sum_{n=0}^{N-1} S^n_* \delta(x,y) \xrightarrow{\text{weakly}} \mu \otimes m \\
+\Leftrightarrow \quad & \frac{1}{N}\sum_{n=0}^{N-1} f(S^n(x,y)) \rightarrow \int fd\mu dm \quad \forall f\in C(X\times \reals/\mathbb{Z})
+\end{align*}
+\end{subproof}
+\s
+
+Let $E$ be the set of $\mu \otimes m$-generic points. We showed last time, ergodicity implies $\mu \otimes m(E) =1$.
+\s
+
+\begin{subproof}
+\textbf{Claim : } If $(x,y) \in E$, then $(x,t+y) \in E$ for all $t\in \reals/\mathbb{Z}$.
+
+\pf Observation : $S\circ U_t = U_t \circ S$, where $U_t(x,y)=(x,t+y)$. Indeed,
+\begin{align*}
+S\circ U_t(x,y) = S(x,t+y) = (Tx,t+y+c(x)) =U_t(Tx,y+c(x)) =  U_t \circ S(x,y)
+\end{align*}
+Let $f\in C(X\times \reals/\mathbb{Z})$. Write
+\begin{align*}
+&\frac{1}{N} \sum_{n=0}^{N-1} f(S^n(x+ty)) = \frac{1}{N}\sum_{n=0}^{N-1} f(S^n \circ U_t(x,t)) \\
+= & \frac{1}{N}\sum_{n=0}^{N-1} f(U_t \circ S^n(x,t)) \xrightarrow{N\rightarrow \infty} \iint f\circ U_t dm d\mu = \iint f dmd\mu \quad \text{since } (x,y) \in E
+\end{align*}
+So $(x,t+y)$ is indeed generic, i.e. $(x,t+y) \in E$.
+\end{subproof}
+\s
+
+This means $E = A\times \reals/ \mathbb{Z}$ for some $A\subset X$ Borel set. Note, $\mu(A) = \mu \otimes m(E) =1$. Let $\nu$ be an $S$-invariant measure on $X\times \reals/\mathbb{Z}$.
+
+\quad We aim to prove that $\nu(E) =1$ : Write $P$ for the projection $X\times \reals/ \mathbb{Z} \rightarrow X$. We show $P_* \nu = \mu$. It is enough to show that $P_* \nu$ is $T$-invariant. Let $B\subset X$, a Borel set. Then
+\begin{align*}
+P_* \nu(T^{-1}(B)) &= \nu(T^{-1} (B) \times \reals/\mathbb{Z}) = \nu (S^{-1}(B\times \reals/ \mathbb{Z}))\\
+&= \nu(B\times \reals/\mathbb{Z}) = P_* \nu(B)
+\end{align*}
+Since $(X,\borel,\mu,T)$ was assumed to be uniquely ergodic, this forces us to have $P_* \nu =\mu$. Then $P_*\nu(A) = \mu(A) =1$, and therefore $\nu(E) = \nu(A\times \reals/ \mathbb{Z})=1$.
+
+\quad Finally, we show that $\int f d\nu = \iint f d\mu dm$ for all $f\in C(X\times \reals/ \mathbb{Z})$ and this proves $\nu = \mu \otimes m$ : If $(x,y) \in E$, then
+\begin{align*}
+\frac{1}{N} \sum_{n=0}^{N-1} f(S^n (x,y)) \rightarrow \iint f d\mu dm
+\end{align*}
+But since $\nu(E) = 1$, this holds $\nu$-a.e. By dominated convergence,
+\begin{align*}
+\int f d\nu = \int \frac{1}{N} \sum_{n=0}^{N-1} f(S^n(x,y)) d\nu \rightarrow \iint fd\mu dm
+\end{align*}
+So we have $\int fd\nu = \iint fd\mu dm$.
+
+\eop
+\end{proof}
+\s
+
+From the theorem, we can prove a generalized version of the example from the previous lecture.
+\s
+
+\cor Let $S : (\reals/ \mathbb{Z})^d \rightarrow (\reals/ \mathbb{Z})^d$, defined by
+\begin{align*}
+S(x_1,x_2, \cdots, x_d)  = (x_1 +\alpha,x_2+x_1, \cdots, x_d+x_{d-1})
+\end{align*}
+where $\alpha \in (\reals/ \mathbb{Z}) \backslash \mathbb{Q}$ is a fixed irrational number. Then $((\reals/\mathbb{Z})^d,S)$ is uniquely invariant. 
+\begin{proof}
+\pf Prove by induction on $d$.
+\begin{itemize}
+\item $d=1$ case is the circle rotation that we already discussed.
+\item Suppose $d\geq 2$ and the claim holds for $d-1$. By Furstenberg's theorem, it is enough to show that $((\reals/\mathbb{Z})^d, \borel, m^d,S)$ is ergodic ($m$ is the Lebesgue measure).
+
+\quad Let $f$ be a bounded measurable function on $(\reals/\mathbb{Z})^d$. Then
+\begin{align*}
+f(x) &= \sum_{n\in \mathbb{Z}^d} a_n \exp(2\pi i n \cdot x) \quad \text{a.e.}\\ 
+f(S(x)) &= \sum_{n\in \mathbb{Z}^d}  a_n \exp(2\pi i( n_1(x_1 +\alpha) + n_2(x_2+x_1) + \cdots + n_d(x_d +x_{d-1})    )) \\
+&= \sum_{n\in \mathbb{Z}^d} \exp(2\pi i n_1 \alpha) a_n \exp(2\pi i((n_1 + n_2)x_1 + \cdots +(n_{d-1}+n_d)x_{d-1} + n_d x_d  )  ) \\
+&= \sum_{n\in \mathbb{Z}^d} \exp(2\pi i n_1 \alpha) a_n \exp(2\pi i \hat{S}(n) \cdot x)
+\end{align*}
+where $\hat{S}(n) = (n_1 + n_2, n_2 + n_3, \cdots, n_{d-1}+n_d, n_d)$.
+
+\quad Suppose $f = f\circ S$ a.e. Then $a_{\hat{S}(n)} = \exp(2\pi i\alpha n_1) a_n$. Suppose that $a_m \neq 0$ for some $m\in \mathbb{Z}^d$. We aim to show $m=0$, which implies that $f$ is constant : By Parseval's formula,
+\begin{align*}
+\sum_{n\in \mathbb{Z}}|a_n|^2  = \norms{f}{2}^2 < \infty
+\end{align*}
+This means that there are at most finite $n$'s such that $|a_m| = |a_n|$. In particular, the orbit $m,\hat{S}(m),\hat{S}^2(m),\cdots$ must be periodic. Note $(\hat{S}^j(m))_{d-1} = m_{d-1} + jm_d$. Thus $m_d =0$. Similar argument gives $m_j=0$ for all $j=2,3,\cdots,d$. Hence we should have $m=(m_1,0,\cdots,0)$ and $\hat{S}^j(m) = (m)$. We now use $a_m = \exp(2\pi i \alpha m_1) a_m$. Since $a_m \neq 0$, we must have $\exp(2\pi i\alpha m_1) =1$. As $\alpha$ is irrational, this implies $m_1 =0$. 
+\end{itemize}
+
+\eop
+\end{proof}
+
+
+
+
+
+
+
 
 
 

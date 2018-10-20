@@ -1,4 +1,4 @@
-This is XeTeX, Version 3.14159265-2.6-0.99998 (MiKTeX 2.9.6500) (preloaded format=xelatex 2018.2.4)  19 OCT 2018 14:16
+This is XeTeX, Version 3.14159265-2.6-0.99998 (MiKTeX 2.9.6500) (preloaded format=xelatex 2018.2.4)  19 OCT 2018 23:46
 entering extended mode
 **./analysis_PDEs.tex
 (analysis_PDEs.tex
@@ -527,58 +527,58 @@ LaTeX Font Info:    ... okay on input line 28.
 * (1in=72.27pt=25.4mm, 1cm=28.453pt)
 
 ABD: EveryShipout initializing macros
-Overfull \hbox (177.60312pt too wide) in paragraph at lines 81--82
+Overfull \hbox (177.60312pt too wide) in paragraph at lines 83--84
 []\TU/lmr/m/n/10 ==============================================================
 ======================= 
  []
 
-LaTeX Font Info:    Try loading font information for U+msa on input line 88.
+LaTeX Font Info:    Try loading font information for U+msa on input line 90.
 ("C:\Program Files (x86)\MiKTeX 2.9\tex\latex\amsfonts\umsa.fd"
 File: umsa.fd 2013/01/14 v3.01 AMS symbols A
 )
-LaTeX Font Info:    Try loading font information for U+msb on input line 88.
+LaTeX Font Info:    Try loading font information for U+msb on input line 90.
 
 ("C:\Program Files (x86)\MiKTeX 2.9\tex\latex\amsfonts\umsb.fd"
 File: umsb.fd 2013/01/14 v3.01 AMS symbols B
 )
-LaTeX Font Info:    Try loading font information for OMS+rsfs on input line 88.
+LaTeX Font Info:    Try loading font information for OMS+rsfs on input line 90.
 
 
 ("C:\Program Files (x86)\MiKTeX 2.9\tex\latex\calrsfs\omsrsfs.fd") [1
 
 
 ]
-Overfull \hbox (45.34311pt too wide) in paragraph at lines 196--199
+Overfull \hbox (45.34311pt too wide) in paragraph at lines 198--201
 []\TU/lmr/m/n/10 ==============================================================
 ======
  []
 
 [2] [3]
-Overfull \hbox (6.44315pt too wide) in paragraph at lines 301--302
+Overfull \hbox (6.44315pt too wide) in paragraph at lines 303--304
 []\TU/lmr/m/n/10 ==============================================================
 = 
  []
 
 [4] [5] [6]
-Overfull \hbox (6.44315pt too wide) in paragraph at lines 439--440
+Overfull \hbox (6.44315pt too wide) in paragraph at lines 441--442
 []\TU/lmr/m/n/10 ==============================================================
 = 
  []
 
 [7]
-Overfull \hbox (6.44315pt too wide) in paragraph at lines 549--550
+Overfull \hbox (6.44315pt too wide) in paragraph at lines 551--552
 []\TU/lmr/m/n/10 ==============================================================
 = 
  []
 
 [8] [9] [10]
-Overfull \hbox (6.44315pt too wide) in paragraph at lines 692--693
+Overfull \hbox (6.44315pt too wide) in paragraph at lines 694--695
 []\TU/lmr/m/n/10 ==============================================================
 = 
  []
 
 [11] [12]
-Overfull \hbox (6.44315pt too wide) in paragraph at lines 813--814
+Overfull \hbox (6.44315pt too wide) in paragraph at lines 815--816
 []\TU/lmr/m/n/10 ==============================================================
 = 
  []
