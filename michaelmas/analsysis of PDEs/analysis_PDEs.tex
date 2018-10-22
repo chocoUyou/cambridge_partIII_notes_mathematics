@@ -23,6 +23,12 @@
 	}%your text here
 	{\end{changemargin}
 }
+
+\newenvironment{subproof}
+{\begin{changemargin}{0.5cm}{0.5cm} 
+	}%your text here
+	{\end{changemargin}
+}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 \begin{document}
@@ -901,7 +907,7 @@ We define a local versions of $L^p(u)$ : we say $u\in L^p_{\text{loc}}(U)$ if $u
 
 \subsubsection*{Weak Derivatives}
 
-We would like a notion of differentiability for $L^p$ functions. Since $L^p$ functions like to be integrated, it makes sense to sekk a definition involving integration.
+We would like a notion of differentiability for $L^p$ functions. Since $L^p$ functions like to be integrated, it makes sense to seek a definition involving integration.
 \s
 
 \defi Suppose $u,v\in L^1_{\text{loc}}(U)$ and $\alpha$ is a multi-index. We say $v$ is a \textbf{$\alpha^{\text{th}}$ weak derivative} of $u$ if
@@ -912,8 +918,141 @@ In other words, $u$, $v$ obey the correct integration of parts formula, when int
 \s
 
 $\star$ Check that if $D^{\alpha} u = v$, then $v$ is indeed also a weak derivative of $u$.
+\s
 
+\newday
 
+(22nd October, Monday)
+\s
+
+(Example Classes : Group A - Thurs 2:00 - 3:30 pm, Group B - Thurs 4:00 - 5:30 pm, MR5)
+
+(I am Group B)
+
+(Submission in the problem class)
+
+(Also a handout distributed - I'll try to add them in my notes!)
+\s
+
+\textbf{Last lecture :} Suppose $u,v\in L^1_{\text{loc}}(U)$ and $\alpha$ is a multi-index. We say $v$ is a \textbf{$\alpha^{\text{th}}$ weak derivative} of $u$ if
+\begin{align*}
+(-1)^{|\alpha|} \int_{U} uD^{\alpha} \phi dx = \int_U v\phi dx \quad \forall \phi \in C^{\infty}_c(U)
+\end{align*}
+In other words, $u$, $v$ obey the correct integration of parts formula, when integrated against a test function $\phi \in C^{\infty}_c(U) = \{u\in C^k(U) \,\,\,\, \forall k=1,2,\cdots | \text{supp}(U) \subset \subset U \}$.
+\s
+
+If $u\in C^k(U)$< then $D^{\alpha} u$ is a weak $\alpha$-derivative of $u$ for all $|\alpha| \leq k$ (use integration by part for proof)
+\s
+
+\newcommand{\loc}{L^1_{\text{loc}}}
+
+\lem Suppose $v,\tilde{v} \in \loc (U)$ are both weak $\alpha$-derivatives of $u\in \loc (U)$. Then $v= \tilde{v}$ almost everywhere.
+\begin{proof}
+\pf \begin{align*}
+(-1)^{|\alpha|} \int_U uD^{\alpha} \phi dx = \int_U v \phi dx = \int_U \tilde{v} \phi dx
+\end{align*}
+by the definition of $v$ and $\tilde{v}$ being $\alpha$-derivatives. Then
+\begin{align*}
+\int_U (v-\tilde{v}) \phi dx =0 \quad \forall \phi \in C^{\infty}_c (Y) \quad \Rightarrow \quad v= \tilde{v} \quad \text{a.e.}
+\end{align*}
+
+\eop
+\end{proof}
+\s
+
+Since weak derivative is unique, we denote the $\alpha^{\text{th}}$ weak derivative of $u$ by $D^{\alpha} u$.
+
+\s
+\defi \begin{itemize}
+\item We say $u \in \loc (U)$ belongs to the \textbf{Sobolev space} $W^{k,p}(U)$ ($k$ is the number of derivatives we want and $p$ is the exponent of $L^p$ space we are working on) if $u\in L^p(U)$ and the weak derivative $D^{\alpha} u$ exist for all $|\alpha| \leq k$ and $D^{\alpha} \in L^p(U)$.
+\item If $p=2$ we write $H^k(U) = W^{k,2}(U)$.
+\item We define the $W^{k,p}$ norm by
+\begin{align*}
+\norms{u}{W^{k,p}(U)} = \begin{cases}
+\Big( \sum_{|\alpha|\leq k} \int_U |D^{\alpha} u|^p dx \Big)^{1/p} \quad 1\leq p <\infty \\
+\sum_{|\alpha|\leq k} \norms{D^{\alpha} u }{L^{\infty}(U)} \quad p =\infty
+\end{cases}
+\end{align*}
+(there are various equivalent ways of defining the norm)
+\item We denote by $W_0^{k,p}(U)$ the completion of $C_c^{\infty}(U)$ in the $W^{k,p}(U)$-norm.
+\end{itemize} 
+\s
+
+We will find out that these spaces will be useful in fining solutions of PDEs. In particular, the $H^k$ spaces will be useful.
+\s
+
+\textbf{Example :} Let $U = B_1(0) = \{ |x| <1 \} \subset \reals^n$. Set $u(x) = |x|^{-\lambda}$ for $x\in U \backslash \{0\}$ and $\lambda >0$. This diverges at $x=0$, so this is not a $C^{k}(U)$ function.
+
+\quad Note for $x\neq 0$, $D_i u = - \lambda x_i /|x|^{\lambda +2}$. By considering test functions $\phi \in C_c^{\infty}(U \backslash \{0\})$, if $u$ is weakly differentiable, then the weak derivative must agree with this for $x\neq 0$. We can check $U\in L^1(U)$ if
+\begin{align*}
+\infty > \int_U |u| dx = \int_{B_1(0)} |x|^{-\lambda} dx = \omega_{n-1} \int_0^1 r^{-\lambda} r^{n-1} dr
+\end{align*}
+where $\omega_{n-1}$ is the area of $S^{n-1}$. The integral is finite if $n-1-\lambda >-1$, or equivalently $\lambda n$.
+
+\quad A similar computation gives $- \lambda x_i/|x|^{\lambda +2} \in L^1(U)$, and equivalently $\lambda +1 <n$.
+
+\quad Now we take $\lambda < n-1$. Now, suppose $\phi \in C^{\infty}_c(U)$.
+\begin{align*}
+-\int_{U \backslash B_{\epsilon}(0)} u\phi_{x_i} dx = \int_{U \backslash B_{\epsilon}(0)} u_{x_i} \phi dx - \int_{\pa B_{\epsilon}(0)} u \phi \nu^i dS
+\end{align*}
+where $\vec{\nu} = (\nu^1, \cdots, \nu^n)$ is the inward normal to $\partial B_{\epsilon}(0)$. Then integration by parts is justified since $u$ is smooth on $U \backslash B_{\epsilon}(0)$. We estimate
+\begin{align*}
+& \Big| \int_{\pa B_{\epsilon}(0)} u\phi \nu^i dS \Big| \leq \int_{\pa B_{\epsilon}(0)} |u\phi| dS \\
+\leq & \norms{\phi}{L^{\infty}(U)} \int_{\pa B_{\epsilon}(0)} |u| dS = \norms{\phi}{L^{\infty}(U)} \int_{\pa B_{\epsilon}(0)} \epsilon^{-d} dS \\
+= & \omega_{n-1} \norms{\phi}{L^{\infty}(U)} \epsilon^{n+1-\lambda} \xrightarrow{\epsilon \rightarrow 0} 0 \quad \text{for } \lambda < n-1
+\end{align*}
+Thus if $\lambda < n-1$, $|u|^{\lambda}$ has a $i^{\text{th}}$ weak derivative, equal to $-\lambda x_i /|x|^{\lambda+1}$. Moreover, $|Du| = -\lambda / |x|^{\lambda +1} \in L^p(U)$ \emph{if and only if} $p(\lambda +1) <n$. Also, $u\in L^p(U)$ \emph{if and only if} $p\lambda <n$.
+
+\quad $\therefore$ $u\in W^{1,p}(U) \quad \Leftrightarrow \quad \lambda < \frac{n-p}{p}$.
+\s
+
+Notice that if $p>n$, we don't have an example of with $\lambda >0$ (look back once we've done some Sobolev embeddings).
+\s
+
+\thm  For each $k=1,2,\cdots$ and $1\leq p\leq \infty$. Then the space $W^{k,p}(U)$ is a Banach space.
+\begin{proof}
+We need some nice properties of weak derivatives, e.g. linearity, but we differ them to the example sheets.
+\s
+
+\pf We just prove the $p<\infty$ case here.
+\begin{itemize}
+\item[1.] Homogeneity and positivity of $\norms{\cdot}{W^{k,p}(U)}$ are obvious. To prove triangular inequality, recall Minkowski's inequality : 
+\begin{align*}
+\big( \sum_{i=1}^n |a_i + b_i|^p \big)^{1/p} \leq \big( \sum_{i=1}^n |a_i|^p \big)^{1/p} + \big( \sum_{i=1}^n |b_i|^p \big)^{1/p}
+\end{align*}
+We compute
+\begin{align*}
+\norms{u+v}{W^{k,p}(U)} &= \Big( \sum_{|\alpha| \leq k} \norms{D^{\alpha} u + D^{\alpha}v}{L^p (U)}^p \Big)^{1/p} \\
+&\leq \Big( \sum_{|\alpha| \leq k} \big( \norms{D^{\alpha} u}{L^p (U)} + \norms{D^{\alpha} v}{L^p (U)} \big)^p \Big)^{1/p} \\
+&\leq \big( \sum_{|\alpha| \leq k} \norms{D^{\alpha} u}{L^p (U)}^p \Big)^{1/p} + \Big( \sum_{|\alpha| \leq ks} \norms{D^{\alpha}v}{L^p (U)}^p \Big)^{1/p} \\
+&= \norms{u}{W^{k,p}(U)} + \norms{v}{W^{k,p}(U)}
+\end{align*}
+\item[2.] For completeness, we note :
+\begin{align*}
+\norms{D^{\alpha} u}{L^p(U)} \leq \norms{u}{W^{k,p}(U)} \quad |\alpha| \leq k
+\end{align*}
+If $(u_l)_l$ is a Cauchy sequence in $W^{k,p}(U)$, then
+\begin{align*}
+\norms{D^{\alpha}(u_l - u_m)}{L^p(U)} \leq \norms{u_l -u_m}{W^{k,p}(U)}
+\end{align*}
+and hence $(D^{\alpha}u_l)_l$ is a Cauchy sequence in $L^p(U)$ for all $|\alpha| \leq k$. By completeness of $L^p (U)$, we may find $u^{\alpha} \in L^p(U)$ such that $D^{\alpha}u_l \rightarrow u^{\alpha}$ in $L^p(U)$ for each $|\alpha|\leq k$. In particular, let $u = u^{(0,\cdots, 0)}$
+\begin{subproof}
+\textbf{Claim : } $u^{\alpha} = D^{\alpha} u$ for each $|\alpha| \leq k$.
+
+\pf To see this, let $\phi \in C^{\infty}_c(U)$. Then
+\begin{align*}
+(-1)^{|\alpha|} \int_U u_{l} D^{\alpha} \phi dx = \int_U D^{\alpha} u_l \phi dx
+\end{align*}
+Sending $l\rightarrow \infty$, we have $D^{\alpha} u_{l} \rightarrow u^{\alpha}$, $u_{l} \rightarrow u$ in $L^p(U)$. Therefore,
+\begin{align*}
+(-1) \int_U u D^{\alpha} \phi dx = \int_U u^{\alpha} \phi dx
+\end{align*}
+and $D^{\alpha} u = u^{\alpha} \in L^p(U)$ so $u\in W^{k,p}(U)$ and $u_l \rightarrow u$ in $W^{k,p}(U)$
+\end{subproof}
+\end{itemize}
+
+\eop
+\end{proof}
 
 
 

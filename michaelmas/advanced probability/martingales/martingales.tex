@@ -43,6 +43,9 @@
     \colorbox{myblue}{\hspace{1em}\usebox{\mytempbox}\hspace{1em}}}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
+%%%%%%%%%%for writing symbol above an equality
+\newcommand\xeq{\stackrel{\mathclap{\normalfont\mbox{d}}}{=}}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 %%%for drawing commutative diagrams.%%%%%%
 \usepackage{tikz-cd}  
@@ -54,6 +57,12 @@
 
 \newenvironment{proof}
 {\begin{changemargin}{1cm}{0.5cm} 
+	}%your text here
+	{\end{changemargin}
+}
+
+\newenvironment{subproof}
+{\begin{changemargin}{0.5cm}{0.5cm} 
 	}%your text here
 	{\end{changemargin}
 }
@@ -239,7 +248,7 @@ but since $(X_n)$ was a super-martingale,  $\avg [  X_{k+1} -X_k | \F_k ] \leq 0
 \begin{align*}
 \avg(X_T |\F_S) \leq X_{S\wedge T} \quad \text{a.s.},
 \end{align*}
-\item[(c)] for all stopping times $T$, $X_T$ is a super-martingale,
+\item[(c)] for all stopping times $T$, the stopped process $X^T$ is a super-martingale,
 \item[(d)] for all bounded stopping times $T$ and all stopping times $S$ with $S\leq T$ a.s,
 \begin{align*}
 \avg(X_T) \leq \avg(X_S)
@@ -272,7 +281,7 @@ But since this inequality is true for any $A\in \F_S$ and noting that $X_{S\wedg
 \end{align*}
 \s
 
-The inclusions (b)$\Rightarrow$(c) and (c)$\Rightarrow$(d) are obvious.
+The implications (b)$\Rightarrow$(c) and (c)$\Rightarrow$(d) are obvious.
 \s
 
 \item[(d) $\Rightarrow$ (a)] Let $m\leq n$ and $A\in \F_n$. Set $T= m1_A + n1_{A^c}$. Then $T$ is a stopping with $T\leq n$. Then
@@ -545,6 +554,133 @@ Let $X_n \rightarrow X_{\infty}$ a.s. and in $L^P$ for $X_{\infty} \in L^{p}(\F_
 
 \eop
 \end{proof}
+\s
+
+\newday
+
+(22nd October, Monday)
+\s
+
+Recall that, for a stopping time $T$ and a random process $X$, $X_T$ has been defined only on $\{T<\infty \}$. Given an almost sure limit $X_{\infty}$ for $X$, we define $X_T = X_{\infty}$ on $\{T= \infty \}$. Then the optional stopping theorem extends to all stopping times for uniformly integrable martingales.
+\s
+
+\thmnum{2.5.5.} Let $X$ be a uniformly integrable martingale and let $T$ be any stopping time. Then $\avg(X_T) = \avg(X_0)$. Moreover, for all stopping time $S$ and $T$, we have
+\begin{align*}
+\avg(X_T |\F_S) = X_{S\wedge T} \quad \text{a.s.}
+\end{align*}
+\s
+
+This theorem is an extension of Optional stopping theorem, \textbf{Theorem 2.2.2} and \textbf{Theorem 2.2.3}.
+\begin{proof}
+\pf By the optional stopping time theorem and \textbf{2.2.3}, when applied to the bounded stopping time $T\wedge n$, we have
+\begin{align*}
+& \avg(X_{T\wedge n}) = \avg(X_0) \\
+& \avg(X_{T\wedge n}|\F_S) = X_{S\wedge T\wedge n}
+\end{align*}
+In order to get the claim by letting $n\rightarrow \infty$, we need to prove $X_{T\wedge n} \rightarrow X_T$ \emph{a.s.} and in $L^1$. This will imply that
+\begin{align*}
+\avg(X_{T\wedge n}|\F_S) \rightarrow \avg(X_{T}|\F_S) \quad \text{in } L^1
+\end{align*}
+\begin{subproof}
+\textbf{Claim :} $X_{T\wedge n} \rightarrow X_T$ \emph{a.s.} and in $L^1$
+
+\pf By the $L^1$ martingale convergence theorem, there exists $X_{\infty} \in L^1(\F_{\infty})$ s.t. $X_n \rightarrow X_{\infty}$ a.s. and in $L^1$ and $X_n = \avg(X_{\infty}|\F_n)$. This implies $X_{T\wedge n}\rightarrow X_T$ \emph{a.s.} as $n\rightarrow \infty$.(if $T<\infty$, the convergence trivial, and in the case $T=\infty$, the convergence justified the previous statement). Since $F_{T\wedge n} \subset F_n$, by \textbf{Theorem 2.2.3.} and the tower property we have
+\begin{align*}
+X_{T\wedge n} = \avg(X_n | \F_{T\wedge n})= \avg(X_{\infty}|\F_{T\wedge n})
+\end{align*}
+By \textbf{Lemma 1.5.1}, $(X_{T\wedge n})_{n\geq 0}$ is uniformly integrable. Hence
+\begin{align*}
+X_{T\wedge n} \rightarrow X_T \quad \text{in } L^1
+\end{align*}
+\end{subproof}
+
+\eop
+\end{proof}
+\s
+
+\subsubsection*{Backward martingale}
+\begin{itemize}
+\item A \textbf{backward filtration} $(\hat{\F}_n)_{n\geq 0}$ is a sequence of $\sigma$-algebras such that $\F \supset \hat{\F}_n \supset \hat{\F}_{n+1}$.
+\item This also defines $\hat{\F}_{\infty} = \bigcap_{n\geq 0} \hat{\F}_n$
+\end{itemize}
+\s
+
+\thmnum{2.5.4.} \emph{(Backward martingale convergence theorem)} For all $Y\in L^1(\F)$, we have 
+\begin{align*}
+\avg(Y|\hat{\F}_n) \rightarrow \avg(Y|\hat{\F}_{\infty}) \quad \text{a.s. and in } L^1 \quad \text{as } n\rightarrow \infty
+\end{align*}
+\s
+
+Note that we do not need a uniformly integrability condition, because our assumption of backward filtration already implies uniform convergences.
+\begin{proof}
+\pf Write $X_n = \avg(Y|\hat{\F}_n)$ for all $n\geq 0$. Fix $n\geq 0$, by the Tower property, $(X_{n-k})_{0\leq k\leq n}$ is a martingale for the filtration $(\hat{\F}_{n-k})_{0\leq k\leq n}$. For $a<b$, the number $U_n[0,\infty]$ of upcrossings of $[a,b]$ by $(X_k)_{0\leq k \leq n}$ equals the number of upcrossings of $[-b,-a]$ by the process $(-X_{n-k})_{0\leq k\leq n}$. Hence by \textbf{Theorem 2.3.1},
+\begin{align*}
+(b-a)\avg(U_n [a,b]) \leq \avg((X_0 -b)^+)
+\end{align*}
+and so by monotone convergence,
+\begin{align*}
+(b-a) \avg(U[a,b]) \leq \avg((X_0-b)^+) \leq \avg(|Y|) + |b| <\infty
+\end{align*}
+Also, 
+\begin{align*}
+\avg(\liminf |X_n|) \leq \liminf \avg|X_n| \leq \avg|Y| < \infty
+\end{align*}
+The only used(???) in the proof of the almost sure martingale convergence theorem applies to show that $\prob(\hat{\Omega}_0)=1$. where $\hat{\Omega}_0 = \{X_n$ converges as $n\rightarrow \infty \}$
+
+\quad Set $X_{\infty} 1_{\hat{\Omega}_0} \lim_{n\rightarrow \infty} X_n$. Then $X_{\infty} \in L^1(\hat{\F}_{\infty})$ and $X_n \rightarrow X_{\infty}$ a.s. Now $(X_n)_{n\geq 0}$ is uniformly integrable (by \textbf{Lemma 1.5.1}), so $X_n\xrightarrow{L^1} X_{\infty}$. Finally, for all $A\in \hat{F}_{\infty}$, we have
+\begin{align*}
+\avg((X_{\infty} - \avg(Y|\hat{\F}_{\infty})) 1_A) = \lim_{n\rightarrow \infty} \avg((X_n -Y)1_A) = 0
+\end{align*}
+This implies $X_{\infty} = \avg(Y|\hat{\F}_{\infty})$ a.s.
+
+\eop
+\end{proof}
+
+\section*{3. Applications of martingale theory}
+
+\subsection*{Sums of independent random variables}
+
+\newcommand{\T}{\mathscr{T}}
+
+Let $S_n = X_1 + \cdots + X_n$, where $(X_n)_{n\geq 0}$ is a sequence of independent random variables.
+\s
+
+\thmnum{3.1.1} \emph{(Strong Law of Large Numbers)} Let $(X_n)_{n\geq 0}$ be a sequence of independent identically distributed (\emph{i.i.d}) integrable random variables. Set $\mu = \avg(X_{1})$. Then
+\begin{align*}
+S_n / n \rightarrow \mu \quad \text{ a.s. and in } L^1
+\end{align*}
+\begin{proof}
+\pf Define $\hat{\F}_n = \sigma(S_m : m\geq n)$, $\T_n = \sigma(X_m : m\geq n+1)$ and $\T = \cap_{n\geq 1} \T_n$. Then $\hat{\F}_n = \sigma(S_n, \T_n)$ and $(\hat{\F}_n)_{n\geq 1}$ is a backward filtration. Since $\sigma(X_1, S_n)$ is independent of $\T_n$, we have
+\begin{align*}
+\avg(X_1 |\hat{\F}_n) = \avg(X_1 |S_n) \quad \text{a.s.}
+\end{align*} 
+For $k\leq n$ and all Borel sets $B$, we have
+\begin{align*}
+\avg(X_k 1_{ \{S_n \in B \} }) = \avg(X_1 1_{\{S_n \in B \} })
+\end{align*}
+by symmetry $(X_k, S_n) \xeq (X_1, S_n)$ in distribution, so $\avg(X_k | S_n) = \avg(X_1 |S_n)$ a.s. But
+\begin{align*}
+\avg(X_1 |S_n)+ \cdots + \avg(X_n|S_n) = \avg(S_n |S_n) = S_n \quad \text{a.s.}
+\end{align*} 
+so $\avg(X_1 |\hat{\F}_n) = S_n /n$ almost surely. Then by backward martingale convergence theorem, has $S_n/n\rightarrow Y$ a.s. and in $L^1$ for some random variable $Y$. Then $Y\in \T$. By Kolmogorov's 0-1 law [PM \textbf{Theorem 2.6.1}], $Y$ is almost surely a constant. Hence
+\begin{align*}
+Y = \avg(Y) = \lim \avg(S_n/n) = \mu \quad \text{a.s.}
+\end{align*}
+where the second equality follows from $L^1$ convergence $S_n/n\rightarrow Y$.
+
+\eop
+\end{proof}
+\s
+
+Since a.s. convergence implies convergence in probability, we have the following corollary.
+\s
+
+\corrnum{3.1.2} \emph{(Weak law of large numbers)} Let $(X_n)_{n\geq 1}$ be a sequence of i.i.d. integrable r.v.. Set $\mu =\avg(X_1)$. Then 
+\begin{align*}
+\prob(|\frac{S_n}{n} -\mu| > \epsilon) \rightarrow 0 \quad \text{as } n\rightarrow \infty \quad \forall \epsilon >0
+\end{align*}
+
+
 
 
 
