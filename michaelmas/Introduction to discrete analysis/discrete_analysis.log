@@ -1,4 +1,4 @@
-This is XeTeX, Version 3.14159265-2.6-0.99998 (MiKTeX 2.9.6500) (preloaded format=xelatex 2018.2.4)  18 OCT 2018 16:19
+This is XeTeX, Version 3.14159265-2.6-0.99998 (MiKTeX 2.9.6500) (preloaded format=xelatex 2018.2.4)  23 OCT 2018 14:48
 entering extended mode
 **./discrete_analysis.tex
 (discrete_analysis.tex
@@ -545,23 +545,61 @@ sep char (CT)
 \stackedbox=\box41
 \@centerbox=\box42
 \c@ROWcellindex@=\count129
-) (discrete_analysis.aux)
+) ("C:\Program Files (x86)\MiKTeX 2.9\tex\latex\mathtools\empheq.sty"
+Package: empheq 2017/03/31 v2.15 Emphasizing equations
+
+("C:\Program Files (x86)\MiKTeX 2.9\tex\latex\mathtools\mhsetup.sty"
+Package: mhsetup 2017/03/31 v1.3 programming setup (MH)
+)
+("C:\Program Files (x86)\MiKTeX 2.9\tex\latex\mathtools\mathtools.sty"
+Package: mathtools 2018/01/08 v1.21 mathematical typesetting tools
+LaTeX Info: Thecontrolsequence`\('isalreadyrobust on input line 129.
+LaTeX Info: Thecontrolsequence`\)'isalreadyrobust on input line 129.
+LaTeX Info: Thecontrolsequence`\['isalreadyrobust on input line 129.
+LaTeX Info: Thecontrolsequence`\]'isalreadyrobust on input line 129.
+\g_MT_multlinerow_int=\count130
+\l_MT_multwidth_dim=\dimen174
+\origjot=\skip60
+\l_MT_shortvdotswithinadjustabove_dim=\dimen175
+\l_MT_shortvdotswithinadjustbelow_dim=\dimen176
+\l_MT_above_intertext_sep=\dimen177
+\l_MT_below_intertext_sep=\dimen178
+\l_MT_above_shortintertext_sep=\dimen179
+\l_MT_below_shortintertext_sep=\dimen180
+)
+\l_EQ_equationtype_int=\count131
+\l_EQ_alignmentmode_int=\count132
+\l_EQ_totalwidth_dim=\dimen181
+\l_EQ_displaywidth_dim=\dimen182
+\l_EQ_temp_linewidth_dim=\dimen183
+\EmphEqdelimitershortfall=\dimen184
+\EmphEqdelimiterfactor=\count133
+\g_EQ_toptag_height_dim=\dimen185
+\g_EQ_bottomtag_depth_dim=\dimen186
+\g_EQ_toprow_height_dim=\dimen187
+\g_EQ_bottomrow_depth_dim=\dimen188
+\g_EQ_widesttag_dim=\dimen189
+\EQ_mathdisplay_box=\box43
+\EQ_tag_box=\box44
+\g_EQ_temprow_int=\count134
+)
+(discrete_analysis.aux)
 \openout1 = `discrete_analysis.aux'.
 
-LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 58.
-LaTeX Font Info:    ... okay on input line 58.
-LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 58.
-LaTeX Font Info:    ... okay on input line 58.
-LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 58.
-LaTeX Font Info:    ... okay on input line 58.
-LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 58.
-LaTeX Font Info:    ... okay on input line 58.
-LaTeX Font Info:    Checking defaults for TU/lmr/m/n on input line 58.
-LaTeX Font Info:    ... okay on input line 58.
-LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 58.
-LaTeX Font Info:    ... okay on input line 58.
-LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 58.
-LaTeX Font Info:    ... okay on input line 58.
+LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 62.
+LaTeX Font Info:    ... okay on input line 62.
+LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 62.
+LaTeX Font Info:    ... okay on input line 62.
+LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 62.
+LaTeX Font Info:    ... okay on input line 62.
+LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 62.
+LaTeX Font Info:    ... okay on input line 62.
+LaTeX Font Info:    Checking defaults for TU/lmr/m/n on input line 62.
+LaTeX Font Info:    ... okay on input line 62.
+LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 62.
+LaTeX Font Info:    ... okay on input line 62.
+LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 62.
+LaTeX Font Info:    ... okay on input line 62.
 
 *geometry* detected driver: pdftex
 *geometry* verbose mode - [ preamble ] result:
@@ -597,25 +635,27 @@ LaTeX Font Info:    ... okay on input line 58.
 * (1in=72.27pt=25.4mm, 1cm=28.453pt)
 
 ABD: EveryShipout initializing macros
-Overfull \hbox (177.60312pt too wide) in paragraph at lines 95--98
-\TU/lmr/m/n/10 ================================================================
-=====================
+\Hy@linkcounter=\count135
+
+Overfull \hbox (14.22314pt too wide) in paragraph at lines 102--103
+[]\TU/lmr/m/n/10 ==============================================================
+== 
  []
 
-LaTeX Font Info:    Try loading font information for U+msa on input line 102.
+LaTeX Font Info:    Try loading font information for U+msa on input line 110.
 ("C:\Program Files (x86)\MiKTeX 2.9\tex\latex\amsfonts\umsa.fd"
 File: umsa.fd 2013/01/14 v3.01 AMS symbols A
 )
-LaTeX Font Info:    Try loading font information for U+msb on input line 102.
+LaTeX Font Info:    Try loading font information for U+msb on input line 110.
 
 ("C:\Program Files (x86)\MiKTeX 2.9\tex\latex\amsfonts\umsb.fd"
 File: umsb.fd 2013/01/14 v3.01 AMS symbols B
 )
-LaTeX Font Info:    Try loading font information for OMS+rsfs on input line 102
+LaTeX Font Info:    Try loading font information for OMS+rsfs on input line 110
 .
 
 ("C:\Program Files (x86)\MiKTeX 2.9\tex\latex\calrsfs\omsrsfs.fd")
-LaTeX Font Info:    Try loading font information for U+rsfs on input line 102.
+LaTeX Font Info:    Try loading font information for U+rsfs on input line 110.
 
 ("C:\Program Files (x86)\MiKTeX 2.9\tex\latex\jknappen\ursfs.fd"
 File: ursfs.fd 1998/03/24 rsfs font definition file (jk)
@@ -623,39 +663,45 @@ File: ursfs.fd 1998/03/24 rsfs font definition file (jk)
 
 
 ]
-Overfull \hbox (169.82315pt too wide) in paragraph at lines 175--178
+Overfull \hbox (169.82315pt too wide) in paragraph at lines 183--186
 []\TU/lmr/m/n/10 ==============================================================
 ======================
  []
 
 [2]
-Overfull \hbox (14.22314pt too wide) in paragraph at lines 253--254
+Overfull \hbox (14.22314pt too wide) in paragraph at lines 261--262
 []\TU/lmr/m/n/10 ==============================================================
 == 
  []
 
 [3]
-\tmpboxcontent=\box43
+\tmpboxcontent=\box45
  [4]
-Overfull \hbox (14.22314pt too wide) in paragraph at lines 357--358
+Overfull \hbox (14.22314pt too wide) in paragraph at lines 365--366
 []\TU/lmr/m/n/10 ==============================================================
 == 
  []
 
 [5] [6]
-Overfull \hbox (14.22314pt too wide) in paragraph at lines 469--470
+Overfull \hbox (14.22314pt too wide) in paragraph at lines 477--478
 []\TU/lmr/m/n/10 ==============================================================
 == 
  []
 
-[7] [8] (discrete_analysis.aux) ) 
+[7]
+Overfull \hbox (14.22314pt too wide) in paragraph at lines 589--590
+[]\TU/lmr/m/n/10 ==============================================================
+== 
+ []
+
+[8] [9] [10] (discrete_analysis.aux) ) 
 Here is how much of TeX's memory you used:
- 14330 strings out of 427839
- 283750 string characters out of 3151405
- 368997 words of memory out of 3000000
- 18024 multiletter control sequences out of 15000+200000
+ 15069 strings out of 427839
+ 297351 string characters out of 3151405
+ 390853 words of memory out of 3000000
+ 18754 multiletter control sequences out of 15000+200000
  5930 words of font info for 37 fonts, out of 3000000 for 9000
  1328 hyphenation exceptions out of 8191
- 72i,19n,88p,823b,403s stack positions out of 5000i,500n,10000p,200000b,50000s
+ 72i,19n,88p,823b,405s stack positions out of 5000i,500n,10000p,200000b,50000s
 
-Output written on discrete_analysis.pdf (8 pages).
+Output written on discrete_analysis.pdf (10 pages).

@@ -1150,11 +1150,130 @@ This means that there are at most finite $n$'s such that $|a_m| = |a_n|$. In par
 
 \eop
 \end{proof}
+\s
 
+\newday
 
+(23 October, Tuesday)
+\s
 
+(Examples Class : This Saturday 2-4pm, MR12)
+\s
 
+We meet the main theorem of the chapter.
+\s
 
+\thm \emph{(Weyl)} Let $P(x) = a_d x^d + \cdots + a_1 x + a_0$ be polynomial such that $a_j$ is irrational for at least one $j\neq 0$. Then the sequence $\{ P(n) \}_{n>0}$ is equdistributed in $[0,1)$ mod $\mathbb{Z}$.
+\begin{proof}
+\pf First consider the case when $a_d$ is irrational. Recall that the system $(\reals/\mathbb{Z}, S)$ is uniquely ergodic, where $S(x_1, \cdots, x_d) = (x_1 + \alpha, x_2 +x_1, \cdots, x_d + x_{d-1})$ and $\alpha \in \reals/\mathbb{Z}$ irrational.
+
+\quad Note :
+\begin{align*}
+S^n \begin{pmatrix}
+x_1 \\
+x_2 \\
+\vdots \\
+x_d
+\end{pmatrix} = \begin{pmatrix}
+x_1 + n \alpha \\
+x_2 + n x_1 + \begin{pmatrix}
+n\\
+2
+\end{pmatrix} \alpha \\
+\vdots \\
+x_d + n x_{d-1} +  \cdots + \begin{pmatrix}
+n \\
+d-1
+\end{pmatrix} x_1 + \begin{pmatrix}
+n \\
+d
+\end{pmatrix} \alpha
+\end{pmatrix}
+\end{align*}
+This can be proved by induction on $n$.
+
+\quad Consider the polynomials $q_j = t(t-1)\cdots (t-j+1)/j !$. The polynomials $q_0,q_1,\cdots,q_d$ form a basis in the vector space of polynomials of degree $\leq d$. In particular, there are $x_1, \cdots,x_d,\alpha \in \reals$ such that
+\begin{align*}
+p(t) = \alpha q_d (t) + x_1 q_{d-1}(t) + \cdots + x_d q_0(t) \quad \cdots\cdots\cdots (\star)
+\end{align*}
+with $\alpha = a_d \cdot d!$ is irrational. Then there are $\alpha, x_1, \cdots,x_d \in \reals/\mathbb{Z}$ such that
+\begin{align*}
+p(n) = \alpha\begin{pmatrix}
+n \\
+d
+\end{pmatrix} + x_1 \begin{pmatrix}
+n \\
+d-1
+\end{pmatrix} + \cdots + x_d \begin{pmatrix}
+n \\
+0
+\end{pmatrix} \quad \text{mod } \mathbb{Z}
+\end{align*}
+for all $n\in \mathbb{Z}$. Let $f\in C(\reals/\mathbb{Z})$ and let $g(x_1, \cdots, x_d) = f(x_d) \in (\reals/\mathbb{Z})^d$. Now we have :
+\begin{align*}
+\frac{1}{N} \sum_{n=0}^{N-1} f(p(n)) = \frac{1}{N} \sum_{n=0}^{N-1} g(S^n(x_1, \cdots, x_d)) \quad \cdots \cdots (\dagger)
+\end{align*}
+where $x_1,\cdots, x_d$ are as in $(\star)$ and $\alpha$ in the definition of $S$ is also coming from $(\star)$. By unique ergodicity, $(\dagger)$ converges to
+\begin{align*}
+\int \cdots \int g(t_1, \cdots, t_d) dt_1 \cdots dt_d = \int f(t)dt 
+\end{align*}
+for all $x \in [0,1)$ uniformly. This proves equidistribution.
+\s
+
+\textit{General case :} Let $j$ be maximal such that $a_j$ is irrational. Let $q\in \mathbb{Z}_{>0}$ be such that $qa_d, \cdots,qa_{d-1},\cdots, qa_{j+1} \in \mathbb{Z}$. Fix $b \in \{ 0,1,\cdots,q-1 \}$.
+
+\quad Note :
+\begin{align*}
+p(qn+b) = a_d b^d + \cdots a_{j+1} b^{j+1} + a_j(qn +b)^j + \cdots  a_1(qn+b) + a_0 \quad \text{mod } \mathbb{Z}
+\end{align*}
+This is a polynomial in $n$ with irrational leading coefficient. By the special case proved earlier, $\{ p(qn + b) \}$ equidistributes for each fixed $b$.
+
+\eop
+\end{proof}
+\s
+
+This theorem was proved by number theorists way before ergodic theory was founded. There are in fact many ways to prove this theorem, e.g. using Harmonic analysis. The proof using Harmonic analysis even gives the rate of convergence to the equidistributed state, while no proof with ergodic theory does. However, there are yet more sophisticated versions of this theorem, which cannot be proved (at least as long as it is known) without using ergodic theory.
+\s
+
+\section*{8. Mixing Properties}
+
+\defi An MPS $(X,\borel, \mu,T)$ is called \textbf{mixing} if $\forall A,B\in \borel$ and $\forall \epsilon>0$, there is $N>0$ such that
+\begin{align*}
+\Big| \mu(A\cap T^{-n}B) - \mu(A)\mu(B) \Big| < \epsilon \quad \forall n >N
+\end{align*}
+\s
+
+\defi An MPS $(X,\borel, \mu, T)$ is called a \textbf{mixing on $k$ sets} if $\forall A_0, A_1, \cdots,A_{k-1} \in \borel$ and $\forall \epsilon >0$, there is $N$ such that
+\begin{align*}
+\Big| \mu(A_0 \cap T^{-n_1} A \cap \cdots \cap T^{-nk-1}A_{k-1}) - \mu(A_0) -\cdots -\mu(A_{k-1}) \Big| < \epsilon
+\end{align*}
+for all $n_1, \cdots, n_{k-1}$ if $n_1>N$, $n_2-n_1>N$, $\cdots$, $n_{k-1} - n_{k-2} >N$.
+\s
+
+\textbf{Open Problem :} Is there an MPS that is mixing on 2 sets but not on 3 sets?
+\s
+
+\defi
+\begin{itemize}
+\item A subset $S \subset \mathbb{Z}_{>0}$ has \textbf{full density} if
+\begin{align*}
+\frac{|S\cap [1,N]|}{N} \rightarrow 1 \quad \text{as } N\rightarrow \infty
+\end{align*}
+\item We say that the sequence of complex numbers $(a_n)$ \textbf{converge in density} to $a\in \mathbb{C}$ if $\{n: |a_n -a| <\epsilon \}$ has full density for all $\epsilon >0$.
+
+In notation, write $D-\lim_{n\rightarrow \infty} a_n = a$.
+\item We say that $(a_n)$ \textbf{Ces\`{a}ro-converges} to $a$ if
+\begin{align*}
+\frac{1}{N} \sum_{n=1}^N a_n \rightarrow a \quad \text{as } N\rightarrow \infty
+\end{align*}
+\end{itemize}
+\s
+
+\defi An MPS $(X,\borel, \mu, T)$ is \textbf{weak mixing} if $\forall A,B \in \borel$, we have
+\begin{align*}
+D-\lim_{n\rightarrow \infty} \mu(A \cap T^{-n}B) = \mu(A) \mu(B)
+\end{align*}
+\s
 
 
 

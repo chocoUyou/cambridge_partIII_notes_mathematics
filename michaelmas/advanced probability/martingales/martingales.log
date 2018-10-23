@@ -1,4 +1,4 @@
-This is XeTeX, Version 3.14159265-2.6-0.99998 (MiKTeX 2.9.6500) (preloaded format=xelatex 2018.2.4)  22 OCT 2018 12:02
+This is XeTeX, Version 3.14159265-2.6-0.99998 (MiKTeX 2.9.6500) (preloaded format=xelatex 2018.2.4)  23 OCT 2018 14:18
 entering extended mode
 **./martingales.tex
 (martingales.tex
@@ -665,11 +665,7 @@ Overfull \hbox (6.44315pt too wide) in paragraph at lines 559--560
 = 
  []
 
-[7]
-
-Package xcolor Warning: Incompatible color definition on input line 580.
-
-[8] [9] (martingales.aux) ) 
+[7] [8] [9] (martingales.aux) ) 
 Here is how much of TeX's memory you used:
  13687 strings out of 427839
  275621 string characters out of 3151405
@@ -677,6 +673,6 @@ Here is how much of TeX's memory you used:
  17383 multiletter control sequences out of 15000+200000
  6546 words of font info for 42 fonts, out of 3000000 for 9000
  1328 hyphenation exceptions out of 8191
- 61i,18n,84p,523b,275s stack positions out of 5000i,500n,10000p,200000b,50000s
+ 61i,18n,84p,511b,275s stack positions out of 5000i,500n,10000p,200000b,50000s
 
 Output written on martingales.pdf (9 pages).

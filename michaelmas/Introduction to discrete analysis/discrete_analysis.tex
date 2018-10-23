@@ -54,6 +54,10 @@
 }
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
+\usepackage{empheq}
+%%%%%%%%%%for writing symbol above an equality
+\newcommand{\xeq}[1]{\stackrel{\mathclap{\normalfont\mbox{\tiny{#1}}}}{=}}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 \begin{document}
 \newcommand{\thm}{\textbf{Theorem) }}
@@ -308,7 +312,7 @@ rA = \{a_1+ \cdots + a_r : a_1,\cdots,a_r \in A  \}
 \end{align*}
 \s
 
-\lemnum{7} Let $A\subset \intN$ be a set of density $\alpha$. Then $2A-2A$ contains a Bohr set $B(K,1/4)$(arc) with $|K|\leq \alpha^{-2}$.
+\lemnum{7} \emph{(Bogolyubov)} Let $A\subset \intN$ be a set of density $\alpha$. Then $2A-2A$ contains a Bohr set $B(K,1/4)$(arc) with $|K|\leq \alpha^{-2}$.
 
 \begin{proof}
 \pf Observe that $x\in 2A-2A$ if and only if $A*A*(-A)*(-A)(x) \neq 0$(think for a second). But
@@ -531,7 +535,7 @@ Therefore by Ruzsa triangle inequality,
 \end{proof}
 \s
 
-\cornum{6} \emph{(Plannecke's theorem)} If $|A+A| \leq K|A|$ or $|A-A| \leq K|A|$, then $|rA-sA| \leq K^{r+s} |A|$.
+\cornum{6} \emph{(Pl\"{u}nnecke's theorem)} If $|A+A| \leq K|A|$ or $|A-A| \leq K|A|$, then $|rA-sA| \leq K^{r+s} |A|$.
 \begin{proof}
 \pf Apply \textbf{Corollary 5} with $B= -A$ or $B=A$.
 
@@ -550,7 +554,7 @@ If you follow the lines of proof, you'll find them trivial but the proof themsel
 This gives a pretty dense subgroup of a cyclic group. This is beneficial later one
 
 \begin{proof}
-\pf Consider the following composition of maps.
+\pf Consider the following composition of maps, with prime $q > 2k \max \{ |a|:a\in A\}$
 \begin{align*}
 \phi : \mathbb{Z} \xrightarrow{\text{reduce mod } q} \mathbb{Z}_q \xrightarrow{\times \text{ by some(random) }r\neq 0} \mathbb{Z}_q \xrightarrow{\text{least non-neg. residue}} \mathbb{Z} \xrightarrow{\text{reduce mod } p} \mathbb{Z}_p
 \end{align*}
@@ -580,6 +584,74 @@ So all that can go wrong is if $r(a_1 + \cdots + a_k - a_{k+1} - \cdots - a_{2k}
 
 \eop
 \end{proof}
+\s
+
+\newday
+
+(23rd October, Wednesday)
+\s
+
+(Tomorrow example class MR3, 2pm)
+
+(Question 10 in examples sheets - need condition that $B$ has property $P$)
+\s
+
+\subsection*{Freiman's theorem (a version of)}
+\s
+
+We shall now start with a set $A\subset \mathbb{Z}$ with $|A+A| \leq C|A|$ and put together several of the previous results to say a lot about the structure of $A$. 
+
+(The theorem proved here is not the most general version. For a stronger version, see the attached note of Brad Hannigan-Daley)
+\s
+
+\begin{itemize}
+\item By Pl\"{u}nnecke's theorem, $|8A - 8A| \leq C^{16}|A|$
+\item By Ruzsa's embedding lemma, $A$ has a subset $A'$ of size at least $|A|/8$ that is 8-isomorphic to a subset $A'' \subset\mathbb{Z}_p$ with $p \leq 4C^{16}|A|$. The density of $A''$ in $\mathbb{Z}_p$ is $\alpha \geq \frac{1}{32C^{16}}$.
+\item By Bogolyubov's lemma, $2A'' - 2A''$ contains a Bohr set $B(K,1/4)$ with $|K|\leq \alpha^{-2}$, which is 2-isomorphic to a set $B$ that is the intersection of a symmetric convex with a lattice of dimension at most $\alpha^{-2}$. But $2A'' - 2A'' \xeq{2} 2A' -2A'$ (think for a minute - if $A' \xeq{8} A''$ then we should have $2A'-2A' \xeq{2} 2A''-2A''$), and therefore $2A' - 2A'$ has a subset $B$ that is isomorphic to $B'$. 
+\item Now let $X \subset A$ be maximal such that the sets $x + B$ with $x\in X$ are disjoint. Then $A \subset X + B-B$, by maximality. Also,
+\begin{align*}
+|X||B| = |X+B| \leq |3A-2A| \leq C^5 |A| \quad \Rightarrow |X|\leq \quad C^5 |A|/|B|
+\end{align*}
+But by \textbf{Lemma 8} about Bohr sets, $|B| \geq 4^{\alpha^{-2}} |A|$, so $|X| \leq 4^{\alpha^{-2}}C^5 \leq 4^{1024 C^{32}} C^5$. So $A$ is contained in the union of at most $4^{1024 C^{32}} C^5$ translates of $B-B$
+\item If $B = \Lambda \cap K_0$ (where $K_0$ is a symmetric convex body) then $B-B \subset \Lambda \cap 2K_0$, and also $|B-B|\leq C^2 |A| \leq 5^{\alpha^{-2}}|B|$. So this 
+\end{itemize}
+
+We need a additional statement about the geometry of numbers to prove the real Freiman's theorem.
+\s
+
+*******************************************************************************************
+
+(not lectured)
+\s
+
+\textbf{Minkowski's Second Theorem} : Let $K$ be a symmetric convex body and $\Lambda$ a lattice in $\reals^k$. Let $\lambda_1 \leq \cdots \leq \lambda_k$ be the successive minima of $C$ with respect to $\Lambda$. Then $\lambda_1 \cdots \lambda_k \leq 2^k \text{det}(\Lambda)/\text{vol}(K)$.
+\s
+
+\lem (Volume Packing Lemma) Let $\Lambda, \Lambda'$ be lattices with $\lambda \subset \Lambda' \subset \reals^n$. Then
+\begin{align*}
+\text{det}(\Lambda) = \text{det}(\Lambda')[\Lambda : \Lambda]
+\end{align*}
+\s
+
+\prop Let $N$ be a large prime, $r_1, \cdots, r_k$ be distinct residue classes mod $N$ with $k\geq 2$, and let $\delta\in (0,1)$. Then the Bohr set $\mathscr{B}(r_1, \cdots, r_k ;\delta)$ in $\mathbb{Z}/N$ contains a proper generalized arithmetic progression of dimension $k$ and size at least $(\delta/k)^k N$.
+\s
+
+It follows the Freiman's theorem.
+\s
+
+\textbf{Freiman's Theorem :} Let $A$ be a finite subset of $\mathbb{Z}$ with $|A+A|\leq C|A|$. Then there exist constants $d'$ and $S$ depending only on $C$ such that $A$ is contained in a generalized arithmetic progression of dimension at most $d'$ and size at most $S$.
+\s
+
+*******************************************************************************************
+\s
+
+\subsection*{The Balog-Szemer\'{e}di-Gowers theorem}
+(!!!!!!!!!!!)
+
+\defi Let $A$ be a subset of an Abelian group. An \textbf{additive quadruple} in $A$ is a quadruple $(a,b,c,d) \in A^4$ such that $a+b = c+d$. (Equivalently, it's a quadruple such that $a-b= c-d$)
+\s
+
+If $|A|=n$, then the number of additive quadruples in $A$ is at most $n^3$ (this is obtained if $A$ is a subgroup or a coset of a subgroup.) We shall show that if $A^4$ contains at least $cn^3$ additive quadruples, then $A$ has a subset $A'$ of size at least $c'n$ with $|A-A'| \leq C|A'|$ where $c'$ and $C$ depend (nicely) on $c$ only.
 
 
 

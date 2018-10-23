@@ -1,4 +1,4 @@
-This is XeTeX, Version 3.14159265-2.6-0.99998 (MiKTeX 2.9.6500) (preloaded format=xelatex 2018.2.4)  21 OCT 2018 22:19
+This is XeTeX, Version 3.14159265-2.6-0.99998 (MiKTeX 2.9.6500) (preloaded format=xelatex 2018.2.4)  23 OCT 2018 15:14
 entering extended mode
 **"./ergodic theory.tex"
 ("ergodic theory.tex"
@@ -616,7 +616,22 @@ Overfull \hbox (60.9031pt too wide) in paragraph at lines 1039--1040
 ======== 
  []
 
-[16] [17] [18] ("ergodic theory.aux") ) 
+[16] [17]
+Overfull \hbox (60.9031pt too wide) in paragraph at lines 1155--1156
+[]\TU/lmr/m/n/10 ==============================================================
+======== 
+ []
+
+[18]
+Overfull \hbox (38.02707pt too wide) in paragraph at lines 1223--1224
+[]\TU/lmr/m/it/10 General case : \TU/lmr/m/n/10 Let $\OML/cmm/m/it/10 j$ \TU/lm
+r/m/n/10 be maximal such that $\OML/cmm/m/it/10 a[]$ \TU/lmr/m/n/10 is irration
+al. Let $\OML/cmm/m/it/10 q \OMS/cmsy/m/n/10 2 \U/msb/m/n/10 Z[]$ \TU/lmr/m/n/1
+0 be such that $\OML/cmm/m/it/10 qa[]; []  ; qa[]; []  ; qa[] \OMS/cmsy/m/n/10 
+2
+ []
+
+[19] [20] ("ergodic theory.aux") ) 
 Here is how much of TeX's memory you used:
  12991 strings out of 427839
  263821 string characters out of 3151405
@@ -624,6 +639,6 @@ Here is how much of TeX's memory you used:
  16704 multiletter control sequences out of 15000+200000
  12271 words of font info for 64 fonts, out of 3000000 for 9000
  1328 hyphenation exceptions out of 8191
- 61i,18n,84p,532b,1018s stack positions out of 5000i,500n,10000p,200000b,50000s
+ 61i,20n,84p,532b,1018s stack positions out of 5000i,500n,10000p,200000b,50000s
 
-Output written on ergodic theory.pdf (18 pages).
+Output written on ergodic theory.pdf (20 pages).
