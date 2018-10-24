@@ -70,6 +70,8 @@
 \def\doubleunderline#1{\underline{\underline{#1}}}
 
 \newcommand{\newday}{===============================================================}
+\newcommand{\digression}{**********************************************************************************************}
+
 
 \setlength\parindent{0pt}
 
@@ -1053,6 +1055,150 @@ and $D^{\alpha} u = u^{\alpha} \in L^p(U)$ so $u\in W^{k,p}(U)$ and $u_l \righta
 
 \eop
 \end{proof}
+\s
+
+\newday
+
+(24th October, Wednesday)
+\s
+
+A point from last time 
+\begin{itemize}
+\item If $\phi \in C_c^{\infty} (U)$ and $u_l \rightarrow u$ in $L^p(U)$ then
+\begin{align*}
+\int_U u_l \phi dx \rightarrow \int_U u\phi dx
+\end{align*}
+This can be shown using H\"{o}lder inequality, e.g. $|\int_U (u_l -u)\phi dx| \leq \norms{u_l - u}{L^p} \norms{\phi}{L^q} \rightarrow 0$ as $l\rightarrow \infty$.
+\end{itemize}
+\s
+
+\section*{Approximation of Functions in Sobolev Spaces}
+
+It is often useful to know that we can approximate a certain object, e.g. a function, by some nicer object. In particular, for functions in Sobolev spaces, it is useful to be able to approximate by classically differentiable functions. We will show this is possible, with some assumptions on $U$.
+
+\subsection*{Convolution and Smoothing}
+
+A useful trick to smooth a function is \textbf{convolution with a smooth mollifier}.
+\s
+
+\defi \begin{itemize}
+\item[(i)] Let \begin{align*}
+\eta(x) = \begin{cases}
+c e^{\frac{1}{|x|^2 -1}} \quad |x|<1 \\
+0 \quad \quad |x| \geq 1
+\end{cases}
+\end{align*}
+where $c$ is chosen such that $\int_{\reals^n} \eta(x) dx =1$.
+\item[(ii)] For each $\epsilon >0$, set
+\begin{align*}
+\eta_{\epsilon}(x) = \frac{1}{\epsilon^n} \eta(\epsilon x)
+\end{align*}
+the standard mollifier.
+\s
+
+\begin{figure}[h]
+	\centering
+	\includegraphics[width=0.5\textwidth]{kernel}
+\end{figure}
+\s
+
+We have that $\eta_{\epsilon}(x) \in C^{\infty}(\reals^n)$ and $\text{supp}(\eta_{\epsilon}) \subset B_{\epsilon}(0)$.
+\end{itemize} 
+\s
+
+We let $U_{\epsilon} = \{ x\in U | \text{dist}(x,\partial U) > \epsilon \}$.
+\s
+
+\defi If $f: U\rightarrow \reals^n$ is locally integrable. i.e. $f\in L^1_{\text{loc}}(U)$. We define its $\epsilon$-mollification $f^{\epsilon} : U_{\epsilon} \rightarrow \reals$ by $f^{\epsilon} = \eta_\epsilon * f$, i.e.
+\begin{align*}
+f^{\epsilon}(x) = \int_U \eta_{\epsilon}(x-y) f(y)dy
+\end{align*}
+\s
+
+Think of this as the average of $f$ in a neighbourhood of $x$, weighted by $\eta_{\epsilon}$ shifted to have its peak at $x$.
+\s
+
+\thm (Properties of Mollifiers) \begin{itemize}
+\item[(i)] $f^{\epsilon} \in C^{\infty}(U_{\epsilon})$ and $D^{\alpha}f^{\epsilon} = \int_U D^{\alpha}_x \eta_{\epsilon}(x-y)f(y) dy$.
+\item[(ii)] $f^{\epsilon}\rightarrow f$ almost everywhere as $\epsilon \rightarrow 0$.
+\item[(iii)] If $f\in C^0 (U)$, then $f^{\epsilon} \rightarrow f$ uniformly on compact subsets of $U$.
+\item[(iv)] If $1\leq p <\infty$ and $f \in L^p_{\text{loc}}(U)$ then $f^{\epsilon} \rightarrow f$ in $L^p_{\text{loc}}(U)$, i.e.
+\begin{align*}
+\norms{f^{\epsilon} - f}{L^p(V)} \rightarrow 0 \quad \forall V \subset\subset U
+\end{align*}
+\end{itemize}
+\begin{proof}
+\pf See handout
+\end{proof}
+
+\s
+
+\lem Assume $u \in W^{k,p}(U)$ for some $1\leq p < \infty$. Set $u^{\epsilon} = \eta_{\epsilon} * u$ in $U_{\epsilon}$. Then
+\begin{itemize}
+\item[(i)] $u^{\epsilon} \in C^{\infty}(U_{\epsilon}) \quad \forall \epsilon >0$
+\item[(ii)] If $V \subset \subset U$, then $u^{\epsilon} \rightarrow u$ in $W^{k,p}(V)$
+\end{itemize}
+\begin{proof}
+\pf For (i), see handout.
+
+For (ii), we claim $D^{\alpha} u^{\epsilon} = \eta_{\epsilon} * D^{\alpha} u$ for $|\alpha| \leq k$ in $U_{\epsilon}$, i.e. the derivative of $u^{\epsilon}$ is the $\epsilon$-mollifier of the derivative of $u$, i.e. derivatives commute with convolutions. To see this,
+\begin{align*}
+D^{\alpha} u^{\epsilon}(x) &= D^{\alpha} \int_U \eta_{\epsilon}(x-y) u(u) dy \\
+&= \int_U D_x^{\alpha} \eta_x(x-y) u(y) dy \\
+&= (-1)^{|\alpha|} \int_U D_y^{\alpha} \eta_x(x-y) u(y) dy \\
+&= \int_U \eta_{\epsilon}(x-y) D^{\alpha} u(y) dy \quad \quad \text{(by definition of weak derivatives)} \\
+&= \eta_{\epsilon} * D^{\alpha} u(x)
+\end{align*}
+Now, fix $V\subset \subset U$. By previous theorem, $\eta_{\epsilon} * D^{\alpha} u \rightarrow D^{\alpha} u$ in $L^p_{\text{loc}}(U)$. So $D^{\alpha} u^{\epsilon} \rightarrow D^{\alpha} u$. in $L^p_{\text{loc}}(U)$ for all $|\alpha| \leq k$. Thus :
+\begin{align*}
+\norms{u^{\epsilon}- u}{W^{k,p}(V)}^p = \sum_{|\alpha|\leq k} \norms{D^{\alpha} u^{\epsilon} - D^{\alpha}u}{L^p(U)}^p \rightarrow 0
+\end{align*}
+so indeed $u^{\epsilon} \rightarrow u$ in $W^{k,p}(U)$.
+
+\eop
+\end{proof}
+\s
+
+This tells us we can approximate $u$ in the interior of $U$ by smooth functions. We can do better :
+\s
+
+\thm (Global approximation by smooth functions) Suppose $U\subset \reals^n$ is open and \emph{bounded}, and suppose $u\in W^{k,p}(U)$ for some $1\leq p<\infty$. Then there exists functions $u_n \in C^{\infty}(U) \cap W^{k,p}(U)$ such that
+\begin{align*}
+u_n \rightarrow u \quad \text{in } W^{k,p}(U)
+\end{align*}
+
+Note, we do not assert $u_n \in C^{\infty}(\bar{U})$.
+\begin{proof}
+\pf \begin{itemize}
+\item[1.] We have $U = \bigcup_{i=1}^{\infty} U_i$, where $U_i = \{x\in U \, : \, \text{dist}(x,\pa U) > 1/i \}$ for $i=1,2,\cdots$. Write $V_i = U_{i+3} \backslash \bar{U}_{i+1}$ and choose $V_0$ that is compact in $U$, so that we have $U = \bigcup_{i=1}^{\infty} V_i$. Let $\{\xi_i\}_{i=0}^{\infty}$ be a \emph{partition of unity subordinate} to $\{V_i \}$ so that
+\begin{align*}
+\begin{cases}
+\xi_i \in C_c^{\infty}(V_i) \\
+0\leq \xi_i \leq 1 \\
+\sum_{i=0}^{\infty} \xi_i = 1 \quad \text{on } U
+\end{cases}
+\end{align*}
+Suppose $u\in W^{k,p}(U)$. Then $\xi_i u \in W^{k,p}(U)$ and $\text{supp}(\xi_i u) \subset V_i$.
+\item[2.] Fix $\delta >0$. For each $i$, choose $\epsilon_i$ sufficiently small that $u^i = \eta_{\epsilon_i} * (\xi_i u)$ satisfies
+\begin{align*}
+&\norms{u^i - \xi_i u}{W^{k,p}(U)} \leq \frac{\delta}{2^{i+1}} \quad i=0,1,2,\cdots \\
+& \text{supp}(U_i) \subset W_i = U_{i+1} \backslash \bar{U}_i \quad i=1,2,\cdots
+\end{align*}
+\item[3.] Write $v = \sum_{i=0}^{\infty} u^i$, then $v \in C^{\infty}(U)$ as for each $V \subset\subset U$, the sum is finite. Since $u = \sum_{i=0}^{\infty} \xi_i u$, for each $V\subset\subset U$< we have
+\begin{align*}
+\norms{v-u}{W^{k,p}(U)} &\leq \sum_{i=0}^{\infty} \norms{u^i- \xi_i u}{W^{k,p}(U)} \\
+& \leq \delta \sum_{i=0}^{\infty} 2^{-i-1} = \delta
+\end{align*}
+Take supremum over $V\subset\subset U$, and conclude $v \in W^{k,p}(U)$, and $\norms{v-u}{W^{k,p}(U)} \leq \delta$.
+\end{itemize}
+
+\eop
+\end{proof}
+\s
+
+\newday
+
+
 
 
 

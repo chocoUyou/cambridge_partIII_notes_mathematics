@@ -1,4 +1,4 @@
-This is XeTeX, Version 3.14159265-2.6-0.99998 (MiKTeX 2.9.6500) (preloaded format=xelatex 2018.2.4)  22 OCT 2018 21:50
+This is XeTeX, Version 3.14159265-2.6-0.99998 (MiKTeX 2.9.6500) (preloaded format=xelatex 2018.2.4)  24 OCT 2018 16:41
 entering extended mode
 **./analysis_PDEs.tex
 (analysis_PDEs.tex
@@ -527,76 +527,91 @@ LaTeX Font Info:    ... okay on input line 34.
 * (1in=72.27pt=25.4mm, 1cm=28.453pt)
 
 ABD: EveryShipout initializing macros
-Overfull \hbox (177.60312pt too wide) in paragraph at lines 89--90
+Overfull \hbox (177.60312pt too wide) in paragraph at lines 91--92
 []\TU/lmr/m/n/10 ==============================================================
 ======================= 
  []
 
-LaTeX Font Info:    Try loading font information for U+msa on input line 96.
+LaTeX Font Info:    Try loading font information for U+msa on input line 98.
 ("C:\Program Files (x86)\MiKTeX 2.9\tex\latex\amsfonts\umsa.fd"
 File: umsa.fd 2013/01/14 v3.01 AMS symbols A
 )
-LaTeX Font Info:    Try loading font information for U+msb on input line 96.
+LaTeX Font Info:    Try loading font information for U+msb on input line 98.
 
 ("C:\Program Files (x86)\MiKTeX 2.9\tex\latex\amsfonts\umsb.fd"
 File: umsb.fd 2013/01/14 v3.01 AMS symbols B
 )
-LaTeX Font Info:    Try loading font information for OMS+rsfs on input line 96.
+LaTeX Font Info:    Try loading font information for OMS+rsfs on input line 98.
 
 
 ("C:\Program Files (x86)\MiKTeX 2.9\tex\latex\calrsfs\omsrsfs.fd") [1
 
 
 ]
-Overfull \hbox (45.34311pt too wide) in paragraph at lines 204--207
+Overfull \hbox (45.34311pt too wide) in paragraph at lines 206--209
 []\TU/lmr/m/n/10 ==============================================================
 ======
  []
 
 [2] [3]
-Overfull \hbox (6.44315pt too wide) in paragraph at lines 309--310
+Overfull \hbox (6.44315pt too wide) in paragraph at lines 311--312
 []\TU/lmr/m/n/10 ==============================================================
 = 
  []
 
 [4] [5] [6]
-Overfull \hbox (6.44315pt too wide) in paragraph at lines 447--448
+Overfull \hbox (6.44315pt too wide) in paragraph at lines 449--450
 []\TU/lmr/m/n/10 ==============================================================
 = 
  []
 
 [7]
-Overfull \hbox (6.44315pt too wide) in paragraph at lines 557--558
+Overfull \hbox (6.44315pt too wide) in paragraph at lines 559--560
 []\TU/lmr/m/n/10 ==============================================================
 = 
  []
 
 [8] [9] [10]
-Overfull \hbox (6.44315pt too wide) in paragraph at lines 700--701
+Overfull \hbox (6.44315pt too wide) in paragraph at lines 702--703
 []\TU/lmr/m/n/10 ==============================================================
 = 
  []
 
 [11] [12]
-Overfull \hbox (6.44315pt too wide) in paragraph at lines 821--822
+Overfull \hbox (6.44315pt too wide) in paragraph at lines 823--824
 []\TU/lmr/m/n/10 ==============================================================
 = 
  []
 
 [13]
-Overfull \hbox (6.44315pt too wide) in paragraph at lines 923--924
+Overfull \hbox (6.44315pt too wide) in paragraph at lines 925--926
 []\TU/lmr/m/n/10 ==============================================================
 = 
  []
 
-[14] [15] [16] (analysis_PDEs.aux) ) 
+[14] [15]
+Overfull \hbox (6.44315pt too wide) in paragraph at lines 1060--1061
+[]\TU/lmr/m/n/10 ==============================================================
+= 
+ []
+
+[16]
+File: kernel.png Graphic file (type bmp)
+<kernel.png>
+ [17] [18]
+Overfull \hbox (6.44315pt too wide) in paragraph at lines 1199--1200
+[]\TU/lmr/m/n/10 ==============================================================
+= 
+ []
+
+[19] (analysis_PDEs.aux) ) 
 Here is how much of TeX's memory you used:
- 12867 strings out of 427839
- 260930 string characters out of 3151405
+ 12877 strings out of 427839
+ 261010 string characters out of 3151405
  321457 words of memory out of 3000000
- 16591 multiletter control sequences out of 15000+200000
+ 16595 multiletter control sequences out of 15000+200000
  5946 words of font info for 39 fonts, out of 3000000 for 9000
  1328 hyphenation exceptions out of 8191
- 61i,18n,84p,470b,307s stack positions out of 5000i,500n,10000p,200000b,50000s
+ 61i,18n,84p,470b,330s stack positions out of 5000i,500n,10000p,200000b,50000s
 
-Output written on analysis_PDEs.pdf (16 pages).
+Output written on analysis_PDEs.pdf (19 pages).
