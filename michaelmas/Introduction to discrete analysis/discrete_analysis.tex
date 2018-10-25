@@ -647,16 +647,88 @@ It follows the Freiman's theorem.
 \s
 
 \subsection*{The Balog-Szemer\'{e}di-Gowers theorem}
-(!!!!!!!!!!!)
 
 \defi Let $A$ be a subset of an Abelian group. An \textbf{additive quadruple} in $A$ is a quadruple $(a,b,c,d) \in A^4$ such that $a+b = c+d$. (Equivalently, it's a quadruple such that $a-b= c-d$)
 \s
 
 If $|A|=n$, then the number of additive quadruples in $A$ is at most $n^3$ (this is obtained if $A$ is a subgroup or a coset of a subgroup.) We shall show that if $A^4$ contains at least $cn^3$ additive quadruples, then $A$ has a subset $A'$ of size at least $c'n$ with $|A-A'| \leq C|A'|$ where $c'$ and $C$ depend (nicely) on $c$ only.
+\s
+
+\newday
+
+(25th October, Thursday)
+\s
+
+\lemnum{8} Let $A_1, A_2,\cdots, A_m$ be subsets of $[n]=\{1,2,\cdots,n\}$ of average density at least $\delta$. Then for any $\eta >0$ we can find a set $B \subset [m]$ of size at least $\delta m/\sqrt{2}$ such that the proportion of pairs $(i,j) \in B^2$ with $|A_i \cap A_j| \geq \eta \delta^2 n/2$ is at least $1-\eta$.
+\begin{proof}
+\pf Choose $y\in [n]$ uniformly at random, and set $B = \{i: y\in A_i \}$. The probability that we pick both $i$ and $j$ is $|A_i \cap A_j|/n$, which we can write as $\langle A_i, A_j \rangle$. So the expected number of pairs we pick is 
+\begin{align*}
+\sum_{i,j} \langle A_i, A_j \rangle = \norms{\sum_i A_i}{2}^2 \geq \norms{\sum_i A_i}{1}^2 =(\delta m)^2 = \delta^2 m^2
+\end{align*}
+The probability that we pick $i,j$ with $|A_i \cap A_j| \leq \eta \delta^2 n/2$ is at most $\eta \delta^2 /2$. Call such a pair $(i,j)$ \textbf{bad}. Then
+\begin{align*}
+\avg |B|^2 - \eta^{-1} \avg(\# \text{ bad pairs picked}) \geq \delta^2 m^2 - \eta^{-1} \frac{\eta \delta^2}{2} m^2 = \frac{\delta^2 m^2}{2}
+\end{align*}
+Therefore, there exists $B$ such that $|B|\geq \delta m/\sqrt{2}$ and the proportion of pairs in $B^2$ that are bad is at most $\eta$.
+
+\eop
+\end{proof}
+\s
+
+The following is an equivalent statement.
+\s
+
+\cornum{9} Let $G$ be a bipartite graph with finite vertex sets $X,Y$ and density at least $\delta$. Then there is a subset $B\subset X$ of size at least $\delta |X| /\sqrt{2}$ such that for at least $(1-\eta)|B|^2$ pairs $(x_1,x_2)\in B^2$, there are at least $\frac{\eta \delta^2}{2} |Y|$ paths of length 2 from $x_1$ to $x_2$. 
+
+(Note : density of a bipartite graph = $|E(G)/(|X||Y||)$)
+\begin{proof}
+\pf Put $X =[m]$ and $Y= [n]$ and $A_i = \{y\in Y : (i,y) \in E, i\in X, y\in Y \} \subset Y $ be as in the setting of \textbf{Lemma 8}. If we choose a subset $B$ of $X$, then there is a path of length 2 from $x_1 \in B$ to $x_2 \in B$ passing through $B$ if and only if $|A_{x_1}\cap A_{x_2}|$ is non-empty, therefore we can just apply \textbf{Lemma 8} to conclude.
+
+\eop
+\end{proof}
+
+\s
+
+\cornum{10} Let $G$ be a bipartite graph as above with density $\delta$. Then there is a subset $B'\subset X$ of size at least $\delta |X|/2\sqrt{2}$ such that for every $x_1, x_2 \in B'$ there are at least $\frac{\delta^5}{2048 \sqrt{2}} |X| |Y|^2$ paths of length 4 from $x_1$ to $x_2$. 
+\begin{proof}
+\pf Choose $B$ as in \textbf{Corollary 9} with $\eta = 1/16$. Define a graph $\Gamma$ with vertex set $B$, joining $x_1$ to $x_2$ if there are at least $\frac{\delta^2}{32}|Y|$ paths of length 2 from $x_1$ to $x_2$ in $G$. By \textbf{Corollary 9}, the average degree in $\Gamma$ is at least $\frac{15}{16}|B|$. Therefore, there are at least $|B|/2$ vertices in $B$ of degree at least $\frac{7}{8}|B|$. Let $B'$ be the set of all such vertices. If $x_1,x_2\in B'$, then there are at least $\frac{3}{4} |B|$ vertices in $B$ joined to both $x_1$ and $x_2$ in $\Gamma$.
+\begin{figure}[h]
+	\centering
+	\includegraphics[width=0.3\textwidth]{1}
+\end{figure}
+Therefore, there at least
+\begin{align*}
+\frac{\delta^4}{1024} |Y|^2 \frac{3}{4} \frac{\delta |X|}{\sqrt{2}} \quad \text{paths of length 4 from } x_1 \text{ to } x_2
+\end{align*} 
 
 
 
+[Note : setting $\eta= 1/8$ would(?) give a bound of $\frac{\delta^4}{256} |Y|^2 \frac{1}{2} \frac{\delta |X|}{\sqrt{2}}$]
 
+\eop
+\end{proof}
+\s
+
+\lemnum{11} \emph{(The BSG Lemma)} Let $A$ be a subset of size $n$ of an Abelian group $H$. Suppose that there are at least $cn^3$ additive quadruples in $A$. Then $A$ has subset $A'$ of size at least $c'n$ with $|A'-A'| \leq C|A'|$, where $c'$ and $C$ depend on $c$ only.
+\begin{proof}
+\pf For each $d$, let $f(d)$ be the number of ways of writing $d = a_1 -a_2$ with $a_1, a_2 \in A$. Then $\sum_d f(d)^2 \geq cn^3$, because $f(d)^2$ is the number of quadruples $(a_1,a_2, a_3, a_4)$ with $d=a_1 - a_2 = a_3 - a_4$ for each $d$. Call $d$ \textbf{popular} if $f(d)\geq cn/2$. Then
+\begin{align*}
+cn^3 \leq \sum_d f(d)^2 &= \sum_{d \text{ popular}} f(d)^2 + \sum_{d \text{ unpopular}} f(d)^2 \\
+&\leq ( \# \text{ popular d}) \times n^2 + \frac{cn}{2} n^2 \quad (\text{since } \sum_d f(d) = n^2)
+\end{align*}
+Therefore, the number of popular $d$ is at least $cn/2$.
+
+\quad Now define a graph with vertex set $A$, by joining $a_1$ to $a_2$ if $a_1 -a_2$ (or $a_2 -a_1$) is popular. Each popular difference contributes at least $cn/2$ edges so the average degree of the graph is at least $c^2/4$.
+
+\quad By duplicating the vertex set, create a corresponding bipartite graph $G$. By \textbf{Corollary 10} with $\delta = c^2/4$, we can find a subset $B\subset A$ of size at least $\frac{c^2}{8\sqrt{2}} |A|$ such that for any $a_1,a_2 \in B$ there are at least $\frac{\delta^5}{2048\sqrt{2}} |A|^3$ paths of length 4 from $a_1$ to $a_2$. Each such paths of length 4 gives us at least $(\frac{c}{2}|A|)^4$ ways of writing $a_2 -a_1$ as $b_1 -b_2 + b_3 -b_4 +b_5 -b_6 +b_7 -b_8$ with all $b_i \in A$. So
+
+\begin{align*}
+|B-B| \times \frac{\delta^5}{2048 \sqrt{2}} |A|^3 (\frac{c}{2}|A|)^4 \leq |A|^8
+\end{align*}
+so $|B-B|\leq C'|A| \leq C|B|$
+
+\eop
+\end{proof}
 
 
 
