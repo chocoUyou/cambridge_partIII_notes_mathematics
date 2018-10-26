@@ -1,4 +1,4 @@
-This is XeTeX, Version 3.14159265-2.6-0.99998 (MiKTeX 2.9.6500) (preloaded format=xelatex 2018.2.4)  24 OCT 2018 18:39
+This is XeTeX, Version 3.14159265-2.6-0.99998 (MiKTeX 2.9.6500) (preloaded format=xelatex 2018.2.4)  26 OCT 2018 20:22
 entering extended mode
 **./martingales.tex
 (martingales.tex
@@ -542,20 +542,20 @@ File: pgflibraryarrows.meta.code.tex 2015/05/13 v3.0.1a (rcs-revision 1.13)
 ))) (martingales.aux)
 \openout1 = `martingales.aux'.
 
-LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 71.
-LaTeX Font Info:    ... okay on input line 71.
-LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 71.
-LaTeX Font Info:    ... okay on input line 71.
-LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 71.
-LaTeX Font Info:    ... okay on input line 71.
-LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 71.
-LaTeX Font Info:    ... okay on input line 71.
-LaTeX Font Info:    Checking defaults for TU/lmr/m/n on input line 71.
-LaTeX Font Info:    ... okay on input line 71.
-LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 71.
-LaTeX Font Info:    ... okay on input line 71.
-LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 71.
-LaTeX Font Info:    ... okay on input line 71.
+LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 72.
+LaTeX Font Info:    ... okay on input line 72.
+LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 72.
+LaTeX Font Info:    ... okay on input line 72.
+LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 72.
+LaTeX Font Info:    ... okay on input line 72.
+LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 72.
+LaTeX Font Info:    ... okay on input line 72.
+LaTeX Font Info:    Checking defaults for TU/lmr/m/n on input line 72.
+LaTeX Font Info:    ... okay on input line 72.
+LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 72.
+LaTeX Font Info:    ... okay on input line 72.
+LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 72.
+LaTeX Font Info:    ... okay on input line 72.
 
 *geometry* detected driver: pdftex
 *geometry* verbose mode - [ preamble ] result:
@@ -592,25 +592,25 @@ LaTeX Font Info:    ... okay on input line 71.
 
 \Hy@linkcounter=\count131
 ABD: EveryShipout initializing macros
-Overfull \hbox (6.44315pt too wide) in paragraph at lines 116--117
+Overfull \hbox (6.44315pt too wide) in paragraph at lines 119--120
 []\TU/lmr/m/n/10 ==============================================================
 = 
  []
 
-LaTeX Font Info:    Try loading font information for U+msa on input line 128.
+LaTeX Font Info:    Try loading font information for U+msa on input line 131.
 ("C:\Program Files (x86)\MiKTeX 2.9\tex\latex\amsfonts\umsa.fd"
 File: umsa.fd 2013/01/14 v3.01 AMS symbols A
 )
-LaTeX Font Info:    Try loading font information for U+msb on input line 128.
+LaTeX Font Info:    Try loading font information for U+msb on input line 131.
 
 ("C:\Program Files (x86)\MiKTeX 2.9\tex\latex\amsfonts\umsb.fd"
 File: umsb.fd 2013/01/14 v3.01 AMS symbols B
 )
-LaTeX Font Info:    Try loading font information for OMS+rsfs on input line 128
+LaTeX Font Info:    Try loading font information for OMS+rsfs on input line 131
 .
 
 ("C:\Program Files (x86)\MiKTeX 2.9\tex\latex\calrsfs\omsrsfs.fd")
-LaTeX Font Info:    Try loading font information for U+eus on input line 128.
+LaTeX Font Info:    Try loading font information for U+eus on input line 131.
 
 ("C:\Program Files (x86)\MiKTeX 2.9\tex\latex\amsfonts\ueus.fd"
 File: ueus.fd 2013/01/14 v3.01 Euler Script
@@ -618,7 +618,7 @@ File: ueus.fd 2013/01/14 v3.01 Euler Script
 
 
 ]
-Overfull \hbox (5.0501pt too wide) in paragraph at lines 230--232
+Overfull \hbox (5.0501pt too wide) in paragraph at lines 233--235
 \TU/lmr/m/n/10 but since $\OT1/cmr/m/n/10 (\OML/cmm/m/it/10 X[]\OT1/cmr/m/n/10 
 )$ \TU/lmr/m/n/10 was a super-martingale, $\U/msb/m/n/10 E\OT1/cmr/m/n/10 [\OML
 /cmm/m/it/10 X[] \OMS/cmsy/m/n/10 ^^@ \OML/cmm/m/it/10 X[]\OMS/cmsy/m/n/10 j\U/
@@ -629,7 +629,7 @@ eus/m/n/10 F[]\OT1/cmr/m/n/10 ] \OMS/cmsy/m/n/10 ^^T \OT1/cmr/m/n/10 0$ \TU/lmr
  []
 
 [2]
-Overfull \hbox (6.44315pt too wide) in paragraph at lines 300--301
+Overfull \hbox (6.44315pt too wide) in paragraph at lines 303--304
 []\TU/lmr/m/n/10 ==============================================================
 = 
  []
@@ -638,47 +638,61 @@ Overfull \hbox (6.44315pt too wide) in paragraph at lines 300--301
 File: upcrossing.png Graphic file (type bmp)
 <upcrossing.png>
  [4]
-Overfull \hbox (6.44315pt too wide) in paragraph at lines 432--433
+Overfull \hbox (6.44315pt too wide) in paragraph at lines 435--436
 []\TU/lmr/m/n/10 ==============================================================
 = 
  []
 
 [5]
 
-Package xcolor Warning: Incompatible color definition on input line 451.
+Package xcolor Warning: Incompatible color definition on input line 454.
 
 
-Package xcolor Warning: Incompatible color definition on input line 457.
+Package xcolor Warning: Incompatible color definition on input line 460.
 
 
-Package xcolor Warning: Incompatible color definition on input line 463.
+Package xcolor Warning: Incompatible color definition on input line 466.
 
 
-Package xcolor Warning: Incompatible color definition on input line 510.
+Package xcolor Warning: Incompatible color definition on input line 513.
 
 
-Package xcolor Warning: Incompatible color definition on input line 510.
+Package xcolor Warning: Incompatible color definition on input line 513.
 
 [6]
-Overfull \hbox (6.44315pt too wide) in paragraph at lines 563--564
+Overfull \hbox (6.44315pt too wide) in paragraph at lines 566--567
 []\TU/lmr/m/n/10 ==============================================================
 = 
  []
 
 [7] [8]
-Overfull \hbox (6.44315pt too wide) in paragraph at lines 688--689
+Overfull \hbox (6.44315pt too wide) in paragraph at lines 691--692
 []\TU/lmr/m/n/10 ==============================================================
 = 
  []
 
-[9] [10] [11] (martingales.aux) ) 
+[9] [10]
+Overfull \hbox (3.94426pt too wide) in paragraph at lines 773--774
+[] \TU/lmr/m/n/10 Observe that $\OT1/cmr/m/n/10 (\U/eus/m/n/10 F[]\OT1/cmr/m/n/
+10 )[]$ \TU/lmr/m/n/10 is a filtration and $\OT1/cmr/m/n/10 (\OML/cmm/m/it/10 X
+[]\OT1/cmr/m/n/10 )[]$ \TU/lmr/m/n/10 is a non-negative martingale adapted to $
+\OT1/cmr/m/n/10 (\U/eus/m/n/10 F[]\OT1/cmr/m/n/10 )[]$\TU/lmr/m/n/10 (has
+ []
+
+
+Overfull \hbox (6.44315pt too wide) in paragraph at lines 789--790
+[]\TU/lmr/m/n/10 ==============================================================
+= 
+ []
+
+[11] [12] [13] (martingales.aux) ) 
 Here is how much of TeX's memory you used:
- 13688 strings out of 427839
- 275626 string characters out of 3151405
+ 13689 strings out of 427839
+ 275629 string characters out of 3151405
  339965 words of memory out of 3000000
- 17384 multiletter control sequences out of 15000+200000
+ 17385 multiletter control sequences out of 15000+200000
  6546 words of font info for 42 fonts, out of 3000000 for 9000
  1328 hyphenation exceptions out of 8191
  61i,18n,84p,519b,275s stack positions out of 5000i,500n,10000p,200000b,50000s
 
-Output written on martingales.pdf (11 pages).
+Output written on martingales.pdf (13 pages).

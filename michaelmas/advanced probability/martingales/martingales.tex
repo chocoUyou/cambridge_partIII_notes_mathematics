@@ -4,6 +4,7 @@
 \usepackage{amsmath}
 \usepackage[utf8]{inputenc}
 \usepackage{amsmath}
+%\usepackage{unicode-math}
 \usepackage{amsfonts}
 \usepackage{amssymb}
 \usepackage{calrsfs}
@@ -101,6 +102,8 @@
 \newcommand{\EE}{\mathscr{E}}
 \newcommand{\cov}{\text{Cov}}
 \newcommand{\var}{\text{Var}}
+\newcommand{\cha}{1}
+
 
 \newcommand{\newday}{===============================================================}
 
@@ -234,7 +237,7 @@ but since $(X_n)$ was a super-martingale,  $\avg [  X_{k+1} -X_k | \F_k ] \leq 0
 \end{proof}
 \s
 
-\bull Note that $X$ is a sub-martingale \emph{if and only if} ($-X$) is a super-martingale, and that $X$ is a martingale \emph{if and only if} $X$ and ($-X$) are super-martingales. Hence, we obtain sub-martingale and martingale versions of the theorem :
+$\star$ Note that $X$ is a sub-martingale \emph{if and only if} ($-X$) is a super-martingale, and that $X$ is a martingale \emph{if and only if} $X$ and ($-X$) are super-martingales. Hence, we obtain sub-martingale and martingale versions of the theorem :
 \begin{align*}
 &\text{If } (X_n) \text{ is a sub-martingale, } \avg[X_T] \geq \avg[X_S] \\
 &\text{If } (X_n) \text{ is a martingale, } \avg[X_T] = \avg[X_S]
@@ -722,9 +725,8 @@ For the first point,
 \nprob_n (A) = \nprob_{n+1}(A |\F_n) = \avg(X_{n+1} 1_A |\F_n) = \avg(X_{n+1}|\F_n) 1_A  \quad \forall A \in \F_n \\
 \Leftrightarrow \quad \avg(X_{n+1} |\F_n) = X_n \quad \text{a.s.} \quad \Leftrightarrow \quad (X_n) \text{ is a martingale}
 \end{align*}
-\s
 
-For the second point, suppose $\nprob |\F_n = \nprob_n \quad \forall n$. Then $\nprob_n |\F_m  =(\nprob | \F_n) | \F_m = \nprob_m$ whenever $n\geq m$, so we find that $(X_n)_n$ is a martingale. Since we assumed that $\avg(X_n)=1$ for all $n$, by almost everywhere martingale convergence theorem, we find a random variable $X$ such that $X_n \rightarrow X$ a.s. Now for any $A \in \F$, we may find $N \geq 0$ such that $A\in \F_k$ for all $k\geq N$, so
+\quad For the second point, suppose $\nprob |\F_n = \nprob_n \quad \forall n$. Then $\nprob_n |\F_m  =(\nprob | \F_n) | \F_m = \nprob_m$ whenever $n\geq m$, so we find that $(X_n)_n$ is a martingale. Since we assumed that $\avg(X_n)=1$ for all $n$, by almost everywhere martingale convergence theorem, we find a random variable $X$ such that $X_n \rightarrow X$ a.s. Now for any $A \in \F$, we may find $N \geq 0$ such that $A\in \F_k$ for all $k\geq N$, so
 \begin{align*}
 \nprob(A) = \nprob(A |\F_k) = \nprob_k (A) = \avg(X_k 1_A) \xrightarrow{k\rightarrow \infty} \avg(X 1_A)
 \end{align*}
@@ -762,13 +764,17 @@ We will give a proof for the case \emph{where $\mathscr{E}$ is countably generat
 \end{align*}
 It will suffice to show that there is a random variable $X \geq 0$ such that $\nprob(A) = \avg(X 1_A)$ for all $A\in \F$.
 
-\quad Set $\F_n = \sigma(G_k : k\leq n)$. There exists $m \in \mathbb{N}$ and a partition of $\Omega$ by events $A_1, \cdots, A_m$ such that $\F_n = \sigma (A_1, \cdots, A_m)$ (e.g. choose $A_1 = G_1$, $A_2 = G_2 \backslash G_1$, $A_3 = G_3\backslash (G_1 \cup G_2)$ and so on). Set $X_n = \sum_{j=1}^m a_{j} 1_{A_j}$ where $a_j = \nprob(A_j) / \prob(A_j)$ if $\prob(A_j)>0$ and $a_j =0$ otherwise. Then $X_n \geq 0$, $X_n \in \F_n$.
+\quad Set $\F_n = \sigma(G_k : k\leq n)$. There exists $m \in \mathbb{N}$ and a partition of $\Omega$ by events $A_1, \cdots, A_m$ such that $\F_n = \sigma (A_1, \cdots, A_m)$ (e.g. choose $A_1 = G_1$, $A_2 = G_2 \backslash G_1$, $A_3 = G_3\backslash (G_1 \cup G_2)$ and so on). Set 
+\begin{align*}
+X_n = \sum_{j=1}^m a_{j} 1_{A_j}
+\end{align*}
+where $a_j = \nprob(A_j) / \prob(A_j)$ if $\prob(A_j)>0$ and $a_j =0$ otherwise. Then $X_n \geq 0$, $X_n \in \F_n$.
 
-\quad Observe that $(\F_n)_{n\geq 0}$ is a filtration and $(X_n)_{n\geq 0}$ is a non-negative martingale adapted to $(\F_n)_{n\geq 0}$. We will show that $(X_n)_{n\geq 0}$ is \emph{uniformly integrable}. Once shown this, by the $L^1$-martingale convergence theorem, there exists $X\geq 0$ such that $\avg(X 1_A) = \avg(X_n 1_A)$ for all $A \in \F_n$. Define a probability measure $\mathbb{Q}$ on $\F$ by
+\quad Observe that $(\F_n)_{n\geq 0}$ is a filtration and $(X_n)_{n\geq 0}$ is a non-negative martingale adapted to $(\F_n)_{n\geq 0}$(has to check this). We will show that $(X_n)_{n\geq 0}$ is \emph{uniformly integrable}. Once shown this, by the $L^1$-martingale convergence theorem, there exists $X\geq 0$ such that $\avg(X 1_A) = \avg(X_n 1_A)$ for all $A \in \F_n$. Define a probability measure $\mathbb{Q}$ on $\F$ by
 \begin{align*}
 \mathbb{Q}(A) = \avg(X 1_A) \quad \forall A \in \F
 \end{align*}
-Then $\mathbb{Q} = \nprob$ on $\cup_n \F_n$ which is a $\pi$-system generating $\F$. Hence $\mathbb{Q} = \nprob$ on $\F$, by uniqueness of extension.[PM, Thm 1.7.1], which implies (b). (In fact we do not have to use the extension theorem... we just have $\F = \cup_n \F_n$)
+Then $\mathbb{Q} = \nprob$ on $\cup_n \F_n$ which is a $\pi$-system generating $\F$. Hence $\mathbb{Q} = \nprob$ on $\F$, by uniqueness of extension.[PM, Thm 1.7.1], which implies (b).
 
 \quad It remains to show that $(X_n)_n$ is uniformly integrable. Given $\epsilon >0$, we can find $\delta >0$ such that $\nprob(B) <\epsilon$ for all $B \in \F$ with $\prob (B) <\delta$.(If not, there would be a sequence of sets $(B_n)_{n} \subset \F$ with $\prob(B_n)<2^{-n}$ and $\nprob(B) \leq \epsilon$ for all $n$. Then by Borel-Cantielli lemma, $\prob(\limsup B_n) =0$, but $\nprob(\limsup B_n) >\epsilon$, which contradicts (a)). Set $\lambda = 1/\delta$. Then by Markov inequality,
 \begin{align*}
@@ -778,15 +784,129 @@ so $\avg(X_n 1_{X_n > \lambda}) = \nprob(X_n > \lambda) < \epsilon$ for all $n$.
 
 \eop
 \end{proof}
+\s
 
+\newday
 
+(26th October, Friday)
+\s
 
+\subsection*{3.3. Markov Chains}
 
+\begin{itemize}
+\item Let $E$ be a \emph{countable set}. We identify each measure $\mu$ on $E$ with $(\mu_x : x\in E)$ where $\mu_x = \mu(\{x\})$. Then for each function $f$ on $E$ write
+\begin{align*}
+\mu(f) = \mu f = \sum_{x\in E} \mu_x f_x \quad \text{(vector product)}
+\end{align*}
+where $f_x = f(x)$.
+\item A \textbf{transition matrix} on $E$ is a matrix $P=(p_{xy}:x,y\in E)$ such that each row $(p_{xy}:y\in E)$ is a probability measure.
+\item Given a filtration $(\F_n)_{n\geq 0}$ and $(X_n)_{n\geq 0}$, and adapted process with values in $E$, we say that $(X_n)_{n\geq 0}$ is a \textbf{Markov chain with transition matrix $P$} if, for all $n\geq 0$, all $x,y\in E$ and all $A\in \F_n$ with $A\subset \{x_n =x \}$ and $\prob(A)>0$,
+\begin{align*}
+\prob(X_{n+1} =y |A) = p_{xy}
+\end{align*}
+\end{itemize}
+Our notion of Markov chain depends on the choice of $(\F_n)_n$. The following results show that our definition agrees with the usual one with the choice of the natural filtration of $(X_n)_n$.
+\s
 
+\propnum{3.3.1} Let $(X_n)_{n\geq 0}$ be a random process in $E$ and take $\F_n = \sigma (X_k : k\geq n)$. Then the following are equivalent :
+\begin{itemize}
+\item[(a)] $(X_n)_{n\geq 0}$ is a Markov chain with initial distribution $\mu$ and transition matrix $P$.
+\item[(b)] For all $n$ and all $x_0,x_1,\cdots,x_n\in E$,
+\begin{align*}
+\prob(X_0 = x_0, X_1=x_1,\cdots,X_n=x_n) = \mu_{x_0} p_{x_0 x_1} \cdots p_{x_{n-1}x_n}
+\end{align*}
+\end{itemize}
+\s
 
+\propnum{3.3.2} Let $E^*$ denote the set of sequence $x=(x_n : n\geq 0)$ taking values in $E$ and define $X_n : E^* \rightarrow E$ by $X_n(x) = x_n$. Set $\mathscr{E} = \sigma (X_k : k\geq 0)$. Let $P$ be a transition matrix on $E$. Then, for each $y\in E$, there is a unique probability measure $\prob_y$ on $(E^*,\mathscr{E}^*)$ such that $(X_n)_{n\geq 0}$ is a Markov chain with transition matrix $P$ and starting from $y$.
+\begin{proof}
+\pf The choice of probability measure should be obvious from the transition matrix $P$. To show uniqueness, use Dynkin's lemma.
+\end{proof}
 
+\s
 
+An example of a Markov chain in $\mathbb{Z}^d$ is the simple symmetric random walk with transition matrix
+\begin{align*}
+p_{xy} = \begin{cases}
+1/2d \quad \text{if } |x-y| =1 \\
+0 \quad \text{otherwise}
+\end{cases}
+\end{align*}
+The following result shows a simple instance of a general relationship between Markov processes and martingale.
+\s
 
+\propnum{3.3.3} Let $(X_n)_{n\geq 0}$ be an adapted process in $E$. TFAE :
+\begin{itemize}
+\item[(a)] $(X_n)_{n\geq 0}$ is a Markov chain with transition matrix $P$.
+\item[(b)] For all bounded functions $f$ on $E$, the following process is a \emph{martingale}
+\begin{align*}
+M^f_n = f(X_n) - f(X_0) - \sum_{k=0}^{n-1} (P-I) f(X_k)
+\end{align*}
+\end{itemize}
+\begin{proof}
+\pf (exercise) (Be careful that $(P-I)f(X_n)$ is not $P-I$ applied to $f(X_n)$ but $(P-I)f$ applied to $X_n$.) Suppose that $(X_n)_n$ is a Markov chain. Then
+\begin{align*}
+& \avg(f(X_{n+1}) |\F_n) = \avg( \sum_{y\in E} f(X_{n+1}) \cha_{X_{n+1}=y} | \F_n) = \sum_{y\in E} f(y) \avg( \cha_{X_{n+1}=y} |\F_n)
+\end{align*}
+\begin{subproof}
+\textbf{Claim :} $\avg(\cha(X_{n+1}=y) |\F_n) = \sum_{x\in X} p_{xy} \cha(X_n = x)$
+
+\pf Observe that $\avg(\cha_{X_{n+1}=y} |\F_n)= \avg\big(\avg(\cha(X_{n+1}=y) |X_n) |\F_n \big)$, so it is sufficient to prove that $\avg(\cha(X_{n+1}=y) |X_n) = \sum_{x\in X} p_{xy} \cha(X_n = x)$. The expression on the right hand side is clearly $\sigma(X_n)$-measurable. Also, for any $A = \{X_n = w\} \in \sigma(X_n)$
+\begin{align*}
+&\avg( \avg(\cha_{X_{n+1}=y} |X_n)) 1_A ) = \avg( \cha_{X_{n+1}=y} 1_A ) = \prob(X_{n+1}=y, X_n = w) = p_{wy} \prob(X_n =w)
+\end{align*}
+and
+\begin{align*}
+\avg(\sum_{x\in X} p_{xy} \cha(X_n = x) 1_A) = \sum_{x\in X}p_{xy} \prob(X_n =x, 1_A) = p_{wy} \prob(X_n = w)
+\end{align*}
+Since $\{ \{X_n = w\} : w\in E\}$ generates $\sigma(X_n)$, we have the result.
+\end{subproof}
+Therefore, 
+$\avg(f(X_{n+1}) |\F_n) = \sum_{x,y\in E} f(y) p_{xy} 1_{X_n = x} = P(f)(X_n)$ and therefore
+\begin{align*}
+\avg(f(X_n+1) - f(X_0) - \sum_{k=0}^{n} (P-I) f(X_k) |\F_n) = f(X_n) - f(X_0) - \sum_{k=0}^{n-1} (P-I) f(X_k)
+\end{align*}
+\s
+
+Now if $(M^f_n)_n$ is a martingale for any bounded function, then it follows that $\avg(f(X_n+1)|X_n) = P(f)(X_n)$ for any bounded $f$ and $n$, and therefore $X_n$ is a Markov chain.
+\end{proof}
+\s
+
+\begin{itemize}
+\item A bounded function $f$ on $E$ is said to be \textbf{harmonic} (for the transition matrix $P$) if 
+\begin{align*}
+P(f) = f \quad \text{i.e. } \sum_{y\in E} p_{xy}f_y = f_x \quad \forall x\in E
+\end{align*}
+\item If $f$ is a \emph{bounded harmonic function}, then $(f(X_n))_{n\geq 0}$ is a \emph{bounded martingale.} Then by Doob's convergence theorem, $f(X_n)$ converges a.s. and in $L^p$ for all $p<\infty$.
+\item More generally, for $D\subset E$, a \emph{bounded function} $f$ on $E$ is \textbf{harmonic on $D$} if
+\begin{align*}
+\sum_{y\in E} p_{xy}f_y = f_x \quad \forall x\in D
+\end{align*}
+\item Let $\partial D = E\backslash D$ and fix a bounded function $f$ on $\partial D$. Set $T= \inf \{n\geq 0: X_n \in \partial D \}$ and define a function $u$ on $E$ by
+\begin{align*}
+u(x) = \avg_x (f(X_T) 1_{T<\infty} )
+\end{align*}
+where $E_x$ is the unique probability measure of a Markov chain starting at $x \in E$, as defined in \textbf{Prop 3.3.2}.
+\end{itemize}
+\s
+
+\thmnum{3.3.4} The function $u$ is bounded, harmonic in $D$, and $u=f$ on $\partial D$. Moreover, if $\prob_x (T<\infty) =1 $ for all $x\in D$, then $u$ is the unique bounded extension of $f$ which is harmonic in $D$.
+\begin{proof}
+\pf It is clear that $u$ is bounded and $u = f$ on $\partial D$. For all $x,y\in E$ with $p_{xy}>0$ under $\prob_x$, conditional on $\{X_1 = y \}$, $(X_{n+1})_{n\geq 0}$ has distribution $\prob_y$. So for $x\in D$, $u(x)= \sum_{y\in E} p_{xy} u(y)$ showing $u$ is harmonic in $D$.
+
+\quad On the other hand, suppose that $g$ is a bounded function harmonic in $D$ such that $g= f$ on $\partial D$. Then $M = M^g$(where $M$ is as defined in \textbf{Prop 3.3.3}) is a martingale and $T$ is a stopping time, so $M^T$ is also a martingale by optional stopping theorem. But $M_{T \wedge n} = g(X_{T\wedge n})$ so if $\prob_x (T <\infty)=1$ for all $x\in D$, then
+\begin{align*}
+M_{T \wedge n} \rightarrow g(X_T) = f(X_T) \quad \text{a.s.}
+\end{align*}
+So by bounded convergence, for all $x\in D$,
+\begin{align*}
+g(x) = \avg_x (M_0) = \avg_x (M_{T\wedge n}) \rightarrow \avg_x(f(X_T)) = u(x)
+\end{align*}
+therefore $g(x) = u(x)$ for all $x\in E$.
+
+\eop
+\end{proof}
+\s
 
 
 

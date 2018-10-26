@@ -1198,6 +1198,141 @@ Take supremum over $V\subset\subset U$, and conclude $v \in W^{k,p}(U)$, and $\n
 
 \newday
 
+(26th October, Friday)
+\s
+
+\textbf{Last Lecture :} $U\subset \reals^n$ open and bounded, $u\in W^{k,p} (U) $, $1\leq  p<\infty$, there is a sequence $u_l \in C^{\infty}(U) \cap W^{k,p}(U)$ such that $u_l \rightarrow u$ in $W^{k,p}(U)$.
+\s
+
+However, if the boundary of $U$ is behaves badly, this approximation still is not good enough. We will extend this to an approximation result with $u_k \in C^{\infty}(\bar{U})$, but for this we require an assumption on $\pa U$.
+\s
+
+\defi Suppose $U\subset \reals^n$ is open and bounded, we say $U$ is a \textbf{$C^{k,\alpha}$ domain}, if for every $p\in \pa U = \bar{U} \backslash U$, there exists some $r>0$ and a $C^{k,\alpha}$ function $\gamma : \reals^{n-1} \rightarrow \reals$ such that (after possibly relabelling axes)
+\begin{align*}
+U \cap B_r (p) = \{ x\in B_{r}(p) : x_n > \gamma(x_1, \cdots, x_{n-1}) \}
+\end{align*}
+\begin{figure}[h]
+	\centering
+	\includegraphics[scale=0.5]{2}
+\end{figure}
+
+\thm Suppose $U \subset \reals^n$ is a $C^{0,1}$ domain ($U$ has Lipshitz boundary). Let $u\in W^{k,p}(U)$ for some $1\leq p <\infty$. Then there exist functions $u_m \in C^{\infty}(\bar{U})$ such that $u_m \rightarrow u$ in $W^{k,p}(U)$.
+\begin{proof}
+\pf \begin{itemize}
+\item[1.] Fix $x^0 \in \pa U$. Since $U$ is Lipshitz, $\exists r>0$, $\gamma \in C^{0,1}(\reals^{n-1})$ (after relabelling axes) s.t.
+\begin{align*}
+U \cap B_r(x^0) = \{ x\in B_r(x^0) : x_n > \gamma (x_1, \cdots, x_{n-1})\}
+\end{align*}
+Set $V = U \cap B_{r/2}(x^0)$.
+\item[2. ] Define the shifted point $x^{\epsilon} = x+ \lambda \epsilon e_n$ ($x\in V, \epsilon >0$, $\lambda >0$, $e_n$ the unit vector in n-direction). For $\lambda$ large enough, $B_{\epsilon}(x^{\epsilon}) \subset U\cap B_r (x^0)$ for all $x\in V$ and $\epsilon$ small enough.
+\begin{figure}[h]
+	\centering
+	\includegraphics[scale=0.5]{3}
+\end{figure}
+This is equivalent to saying that above each point, we can find a cone which remains above the graph.  Also, we can choose $\lambda$ uniformly on $V$(e.g. $\lambda \geq \norms{\gamma}{C^{0,1}}$). Define
+\begin{align*}
+u_{\epsilon}(x) = u(x^{\epsilon}) \quad x\in V
+\end{align*}
+and set $v^{\epsilon,\tilde{\epsilon}} = \eta_{\tilde{\epsilon}} * u_{\epsilon}$ for $0 < \tilde{\epsilon} <\epsilon$. Clearly, we have $v^{\epsilon, \tilde{\epsilon}} \in C^{\infty}(\bar{V})$.
+\item[3.] Fix $\delta >0$, we estimate
+\begin{align*}
+\norms{v^{\epsilon,\tilde{\epsilon}}-u}{W^{k,p}(V)} \leq \norms{v^{\epsilon,\tilde{\epsilon}}-u_{\epsilon}}{W^{k,p}(V)} + \norms{u_{\epsilon}-u}{W^{k,p}(V)}
+\end{align*}
+since translation is continuous in the $L^p$ norms, we can pick $\epsilon >0$ such that
+\begin{align*}
+\norms{u_{\epsilon}-u}{W^{k,p}(V)} < \delta /2
+\end{align*}
+Having fixed $\epsilon>0$, we can pick $\tilde{\epsilon}>0$ such that
+\begin{align*}
+\norms{v^{\epsilon,\tilde{\epsilon}}-u_{\epsilon}}{W^{k,p}(V)} < \delta /2
+\end{align*}
+by our previous theorem.
+\item[4.] Now, since $\pa U$ is compact, we can find finitely main $x^0_i \in \pa U$ radii $r_i>0$, sets $V_i = U \cap B_{r_i /2}(x^0_i)$ and functions $v_i \in C^{\infty}(\bar{V}_i)$ for $i=1,\cdots,N$ satisfying
+\begin{align*}
+\norms{v_i - u}{W^{k,p}(V_i)} \leq \delta
+\end{align*}
+and $\pa U \subset \bigcup_{i=1}^N V_i$. Take an open $V_0 \subset \subset U$ such that $U \subset \bigcup_{i=0}^N V_i$ and by a previous result we can find $v_0 \in C^{\infty}_c(U)$ such that
+\begin{align*}
+\norms{v_0-u}{W^{k,p}(V_0)} \leq \delta
+\end{align*}
+\begin{figure}[h]
+	\centering
+	\includegraphics[scale=0.5]{4}
+\end{figure}
+\item[5.] Let $\{\xi_i\}_{i=0}^N$ be a smooth partition of unity subordinated to the open sets $\{V_0, \{B_{r_i/2}(x^0_i)\}_{i=1}^N \}$ such that $\xi_i \in C^{\infty}_c(B_{r_i/2}(x_i^0))$, $\xi_0 \in C_c^{\infty}(V_0)$, $0 \leq \xi_i \leq 1$ with $\sum_{i=0}^N \xi_i =1$ on $U$.
+
+\quad Define $v = \sum_{i=0}^N \xi_i v_i$. Clearly $v \in C^{\infty}_c(\bar{U})$. Further, for $|\alpha|\leq k$,
+\begin{align*}
+\norms{D^{\alpha}v- D^{\alpha}u}{L^p(U)} &\leq \sum_{i=0}^N \norms{D^{\alpha}(\xi_i v_i) - D^{\alpha}(\xi_i u)}{L^p(V_i)} \\
+&\leq C_k \sum_{i=0}^N \norms{v_i - u_i}{W^{k,p}(V_i)} \\
+&\leq C_k (N+1)\delta
+\end{align*}
+As $\delta$ was arbitrary, we have the desired result.
+\end{itemize}
+
+\eop
+\end{proof}
+\s
+
+\thm (Extension of Sobolev functions) Suppose $U\subset \reals^n$, open, bounded, is a $C^{1,0}$ domain. Choose a bounded $V$ such that $U \subset\subset V$. Then there exists a bounded linear operator $E : W^{1,p}(U) \rightarrow W^{1,p}(\reals^n)$ such that for each $u \in W^{1,p}(U)$ :
+\begin{itemize}
+\item[(i)] $Eu =u$ almost everywhere in $U$.
+\item[(ii)] $Eu$ has support in $V$.
+\item[(iii)] $\norms{Eu}{W^{1,p}(\reals^n)} \leq C \norms{u}{W^{1,p}(U)}$ where $C$ only depends on $U,V$ and $p$.
+\end{itemize}
+\s
+
+We call $Eu$ an \textbf{extension of $u$ to $\reals^n$}. This is not unique.
+\s
+
+\lem Suppose $U = B_r(0) \cap \{x_n >0 \}$.  Suppose $u \in C^1( \overline{\{x_n>0 \}})$. We can find an $Eu \in C^1(\reals^n)$ such that
+\begin{align*}
+\norms{Eu}{W^{1,p}(B_r(0))} \leq \norms{u}{W^{1,p}(U)}
+\end{align*}
+for some constant $C>0$.
+\begin{proof}
+\pf We define \begin{align*}
+\bar{u}(x) = \begin{cases}
+\begin{array}{lc}
+u(x) & \text{if } x_n \geq 0 \\
+-3u(x_1, \cdots, x_{n-1},-x_n) + 4u(x_1,\cdots, x_{n-1},\frac{-x_n}{2}) & \text{if } x_n<0
+\end{array}
+\end{cases}
+\end{align*}
+\begin{subproof}
+\textbf{Claim :} $\bar{u} \in C^1(\reals^n)$.
+
+\quad Clearly, $\bar{u} \in C^0(\reals^n)$ as
+\begin{align*}
+\lim_{x_n \rightarrow 0} -3u(x_1, \cdots,x_{n-1},-x_n) + 4u(x_1, \cdots, x_{n-1},-\frac{x_n}{2}) = u(x_1, \cdots, x_{n-1},0)
+\end{align*}
+Do similarly for $\pa_{x_j} \bar{u}$, $1\leq j\leq n-1$.
+
+\quad For $x_n <0$,
+\begin{align*}
+\pa_{x_n} \bar{u}(x_1,\cdots, x_n) =& 3\pa_{x_n} u(x_1, \cdots, x_{n-1},-x_n) -2\pa_{x_n} u(x_1, \cdots, x_{n-1},-x_n/2)\\
+& \rightarrow u_{x_n}(x_1, \cdots, x_{n-1},0) \quad \text{as } x_n \rightarrow 0^-
+\end{align*}
+So $U$, $Du$ are continuous across $\{x_n=0\}$. 
+\end{subproof}
+Setting $Eu = \bar{u}$, clearly $\bar{u}$ depends on $u$ linearly, and a computation shows $\norms{Eu}{W^{1,k}(U)} \leq C \norms{u}{W^{1,k}(U)}$
+
+\eop
+\end{proof}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
