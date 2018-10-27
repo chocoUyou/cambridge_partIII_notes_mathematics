@@ -56,6 +56,8 @@
 \newcommand{\avg}{\mathbb{E}}
 \newcommand{\borel}{\mathscr{B}}
 \newcommand{\setlimsup}[2]{\bigcap_{#1=1}^{\infty}\bigcup_{#2=#1}^{\infty}}
+\newcommand{\dlim}{D-\lim}
+\newcommand{\clim}{C-\lim}
 
 \newcommand{\newday}{======================================================================}
 
@@ -1261,18 +1263,18 @@ for all $n_1, \cdots, n_{k-1}$ if $n_1>N$, $n_2-n_1>N$, $\cdots$, $n_{k-1} - n_{
 \end{align*}
 \item We say that the sequence of complex numbers $(a_n)$ \textbf{converge in density} to $a\in \mathbb{C}$ if $\{n: |a_n -a| <\epsilon \}$ has full density for all $\epsilon >0$.
 
-In notation, write $D-\lim_{n\rightarrow \infty} a_n = a$.
+In notation, write $\dlim_{n\rightarrow \infty} a_n = a$.
 \item We say that $(a_n)$ \textbf{Ces\`{a}ro-converges} to $a$ if
 \begin{align*}
 \frac{1}{N} \sum_{n=1}^N a_n \rightarrow a \quad \text{as } N\rightarrow \infty
 \end{align*}
-Denote $C-\lim_{n\rightarrow \infty} a_n= a$
+Denote $\clim_{n\rightarrow \infty} a_n= a$
 \end{itemize}
 \s
 
 \defi An MPS $(X,\borel, \mu, T)$ is \textbf{weak mixing} if $\forall A,B \in \borel$, we have
 \begin{align*}
-D-\lim_{n\rightarrow \infty} \mu(A \cap T^{-n}B) = \mu(A) \mu(B)
+\dlim_{n\rightarrow \infty} \mu(A \cap T^{-n}B) = \mu(A) \mu(B)
 \end{align*}
 \s
 
@@ -1283,10 +1285,10 @@ D-\lim_{n\rightarrow \infty} \mu(A \cap T^{-n}B) = \mu(A) \mu(B)
 
 \lem Let $(a_n) \subset \reals$ be a \emph{bounded sequence}. Let $a\in \reals$. Then the following are equivalent.
 \begin{itemize}
-\item[(1)] $D-\lim_{n\rightarrow \infty} a_n =a$.
-\item[(2)] $C-\lim_{n\rightarrow \infty} |a_n -a| =0$.
-\item[(3)] $C-\lim_{n\rightarrow \infty} |a_n -a|^2 =0$.
-\item[(4)] $C-\lim_{n\rightarrow \infty} a_n =a$ and $C-\lim a_n^2 =a^2$.
+\item[(1)] $\dlim_{n\rightarrow \infty} a_n =a$.
+\item[(2)] $\clim_{n\rightarrow \infty} |a_n -a| =0$.
+\item[(3)] $\clim_{n\rightarrow \infty} |a_n -a|^2 =0$.
+\item[(4)] $\clim_{n\rightarrow \infty} a_n =a$ and $\clim a_n^2 =a^2$.
 \end{itemize}
 \begin{proof}
 \pf \begin{itemize}
@@ -1315,9 +1317,9 @@ for each $\epsilon$. This proves (1).
 \item[(1),(2) $\Rightarrow$ (4)] \begin{align*}
 \Big| \frac{1}{N} \sum_{n=1}^N (a_n -a) \Big| \leq \frac{1}{N}\sum_{n=1}^N |a_n -a| \rightarrow 0 \quad \text{by (2)}
 \end{align*}
-This implies $C-\lim a_n =a$.
+This implies $\clim a_n =a$.
 
-\quad Now by the definition of $D-\lim$, we see that $D-\lim a_n = a$ implies $D-\lim a^2_n =a^2$ and this implies $C-\lim |a_n^2 -a^2| \rightarrow 0$. But by our previous part of the proof, this also implies $C-\lim a_n^2 =a^2$.
+\quad Now by the definition of $\dlim$, we see that $\dlim a_n = a$ implies $\dlim a^2_n =a^2$ and this implies $\clim |a_n^2 -a^2| \rightarrow 0$. But by our previous part of the proof, this also implies $\clim a_n^2 =a^2$.
 \item[(4) $\Rightarrow$ (3)] \begin{align*}
 \frac{1}{N} \sum_{n=1}^N (a_n -a)^2 &= \frac{1}{N} \sum_{n=1}^N a^2_n + \frac{1}{N} \sum_{n=1}^N a^2 - 2\frac{1}{N}\sum_{n=1}^N a a_n \rightarrow a^2 + a^2 - 2a \cdot a =0 \quad \text{as } N\rightarrow \infty
 \end{align*}
@@ -1345,11 +1347,11 @@ Implication from (5) to the others involves some functional analysis, which we d
 \begin{itemize}
 \item[(i)] $(X,\borel, \mu, T)$ is weak mixing \emph{if and only if}
 \begin{align*}
-D-\lim_{n\rightarrow \infty} \mu(T^{-n} A \cap B) = \mu(A) \mu(B) \quad \forall A,B \in \mathscr{S}
+\dlim_{n\rightarrow \infty} \mu(T^{-n} A \cap B) = \mu(A) \mu(B) \quad \forall A,B \in \mathscr{S}
 \end{align*}
 \item[(ii)] $(X,\borel, \mu, T)$ is ergodic \emph{if and only if}
 \begin{align*}
-C-\lim_{n\rightarrow \infty} \mu(T^{-n}A \cap B) = \mu(A) \mu(B)
+\clim_{n\rightarrow \infty} \mu(T^{-n}A \cap B) = \mu(A) \mu(B)
 \end{align*}
 \end{itemize}
 \begin{proof}
@@ -1361,26 +1363,26 @@ The backward implications are trivial, so we just prove forward implications her
 \begin{itemize}
 \item[(i)] First,
 \begin{align*}
-\mathscr{D} = \{A\in \borel : D-\lim_{n\rightarrow \infty} \mu(T^{-n} A \cap B) = \mu(A) \mu(B) \quad \forall B\in \mathscr{S} \}
+\mathscr{D} = \{A\in \borel : \dlim_{n\rightarrow \infty} \mu(T^{-n} A \cap B) = \mu(A) \mu(B) \quad \forall B\in \mathscr{S} \}
 \end{align*}
 Then for any $B\in \mathscr{S}$, $A\in D$ and $(A_n)_{n} \subset D$ disjoint, we have
 \begin{align*}
-D-\lim_{n\rightarrow \infty} \mu(T^{-n} A^c \cap B) = \mu(B) - D-\lim_{n\rightarrow \infty} \mu(T^{-n} A \cap B) = \mu(A^c) \mu(B)
+\dlim_{n\rightarrow \infty} \mu(T^{-n} A^c \cap B) = \mu(B) - \dlim_{n\rightarrow \infty} \mu(T^{-n} A \cap B) = \mu(A^c) \mu(B)
 \end{align*}
 and
 \begin{align*}
-D-\lim_{n\rightarrow \infty} \mu(T^{-n} \cup_n A_n \cap B) = \sum_n D-\lim_{n\rightarrow \infty} \mu(T^{-n} A_n \cap B) = \mu(\cup_n A_n) \mu(B)
+\dlim_{n\rightarrow \infty} \mu(T^{-n} \cup_n A_n \cap B) = \sum_n \dlim_{n\rightarrow \infty} \mu(T^{-n} A_n \cap B) = \mu(\cup_n A_n) \mu(B)
 \end{align*}
 and hence $A^c \in \mathscr{D}$ and $\cup_n A_n \in \mathscr{D}$. Therefore, $D$ is a $d$-system and by Dynkin's lemma, $\mathscr{D} = \sigma(\mathscr{S}) = \borel$.
 
 \quad Next, let 
 \begin{align*}
-\mathscr{D}' = \{B\in \borel : D-\lim_{n\rightarrow \infty} \mu(T^{-n} A \cap B) = \mu(A) \mu(B) \quad \forall A\in \borel \}
+\mathscr{D}' = \{B\in \borel : \dlim_{n\rightarrow \infty} \mu(T^{-n} A \cap B) = \mu(A) \mu(B) \quad \forall A\in \borel \}
 \end{align*}
 then we can show accordingly that $\mathscr{D}'$ is a $d$-system, and hence is in fact equal to $\borel$.
 \item[(ii)] We may use exactly the same method to show that
 \begin{align*}
-C-\lim_{n\rightarrow \infty} \mu(T^{-n}A \cap B) = \mu(A) \mu(B) \quad \forall A,B \in \borel
+\clim_{n\rightarrow \infty} \mu(T^{-n}A \cap B) = \mu(A) \mu(B) \quad \forall A,B \in \borel
 \end{align*}
 Now suppose $A$ is a $T$-invariant set, so $T^{-n} A = A$ for all $n\geq 0$. Application of the above formula with $B=A$ gives
 \begin{align*}
@@ -1410,26 +1412,138 @@ Therefore this converges to 0 as $N\rightarrow 0$. So by the previous lemma, $(X
 \item[(2) $\Rightarrow$ (3)] (3) is a special case of (2) if we show that $(X,\borel, \mu, T)$ is ergodic. This can be seen by applying (2) with $|Y|=1$ and $S = 1_{Y}$.
 \item[(3) $\Rightarrow$ (1)]  Let $A,B \in \borel$. We have
 \begin{align*}
-& C-\lim \mu \otimes \mu((T\times T)^{-n}(A\times X) \cap (B\times X)) = \mu \otimes \mu (A \times X) \cdot \mu \otimes \mu (B \times X) \\
-=& C-\lim \mu(T^{-n}A\cap B)\mu(T^{-n}X\cap X) = \mu(A) \mu(B) \mu(X)^2 \\
-=& C-\lim \mu(T^{-n}A\cap B) = \mu(A) \mu(B)
+& \clim \mu \otimes \mu((T\times T)^{-n}(A\times X) \cap (B\times X)) = \mu \otimes \mu (A \times X) \cdot \mu \otimes \mu (B \times X) \\
+=& \clim \mu(T^{-n}A\cap B)\mu(T^{-n}X\cap X) = \mu(A) \mu(B) \mu(X)^2 \\
+=& \clim \mu(T^{-n}A\cap B) = \mu(A) \mu(B)
 \end{align*}
 Same argument with $A \times A$ and $B\times B$ in place of $A\times X$ and $B\times X$ gives :
 \begin{align*}
-C-\lim \mu(T^{-n}A \cap B)^2 = (\mu(A) \cdot \mu(B))^2
+\clim \mu(T^{-n}A \cap B)^2 = (\mu(A) \cdot \mu(B))^2
 \end{align*}
 Then by last last lemma (4) $\Rightarrow$ (1), we have
 \begin{align*}
-D-\lim \mu(T^{-n} A\cap B)= \mu(A) \mu(b)
+\dlim \mu(T^{-n} A\cap B)= \mu(A) \mu(b)
 \end{align*}
 This proves (1).
 \item[(1) $\Leftrightarrow$ (4)] Use same arguments.
 \end{itemize}
 \end{proof}
+\s
 
+\newday
 
+(27th October, Saturday)
+\s
 
+\begin{proof}
+\textbf{proof continued)} \begin{itemize}
+\item[(3) $\Rightarrow$ (5)] Suppose that $f\circ T = \lambda f$ $\mu$-a.e. for $f\in L^2$ and $\lambda \in \mathbb{C}$. Consider the function $\tilde{f}(x,y) = f(x)\bar{f}(u)$. We will show that $\tilde{f}$ is $T \times T$ invariant. We have
+\begin{align*}
+\tilde{f}(Tx,Ty) = f(Tx) \cdot \bar{f}(Ty) = \lambda f(x) \bar{\lambda} \bar{f}(y) = |\lambda|^2 \tilde{f}(x,y)
+\end{align*}
+Since $U_T$ is an isometry,
+\begin{align*}
+\langle f, f \rangle = \langle U_T f, U_T f\rangle = \langle \lambda f , \lambda f\rangle = |\lambda|^2 \langle f,f\rangle
+\end{align*}
+so $|\lambda| =1$ and $\tilde{f} \circ (T \times T) = \tilde{f}$ indeed. However, if $f$ is not constant, then $\tilde{f}$ is also not constant, so $(X\times X, \cdots)$ is not ergodic. This gives a contradiction, so $f$ need be a constant
+\end{itemize}
+\s
 
+\item[(5) $\Rightarrow$ (3)] This implication requires some knowledge in functional analysis. Will not be dealt here.
 
+\eop
+\end{proof}
+\s
+
+We can in fact do better then this.
+\s
+
+\thm Let $(X,\borel, \mu, T)$ be a weak mixing MPS, and let $k\in \mathbb{Z}_{>0}$. Let $f_1,\cdots,f_k \in L^{\infty}$. Then :
+\begin{align*}
+\frac{1}{N} \sum_{n=1}^N U^n_T f_1 \cdots U^{2n}_T f_2 \cdots U^{kn}_T f_k \xrightarrow{L^2} \int f_1 d\mu \cdots \int f_{k} d\mu
+\end{align*}
+\s
+
+\cor  $(X,\borel, \mu, T)$ be a weak mixing MPS, and let $k\in \mathbb{Z}_{>0}$. Let $f_0 \in L^{\infty}$. Then :
+\begin{align*}
+\frac{1}{N} \sum_{n=1}^N \int f_0 U^n_T f_1 \cdots U^{kn}_T f_k d\mu \rightarrow \int f_0 d\mu \int f_1 d\mu \cdots \int f_k d\mu
+\end{align*}
+In particular, let $f_0 = f_1 = \cdots = f_k = \chi_A$ for some $A\in \borel$. Then
+\begin{align*}
+\frac{1}{N}\sum_{n=1}^N \mu(A \cap T^{-n}A \cap \cdots \cap T^{-nk} A) \rightarrow \mu(A)^{k+1}
+\end{align*}
+\begin{proof}
+\pf Let $g_N = \frac{1}{N} \sum_{n=1}^N U^n_T f_1 \cdots U^{2n}_T f_2 \cdots U^{kn}_T f_k$. Then the above theorem says that $g_n \rightarrow \gamma$ in $L^2$, where $\gamma$ is as in the theorem. Then it also follows that $\langle f_0, \bar{g}_n \rangle \rightarrow \langle f_0 , \bar{\gamma}\rangle$, which is exactly the statement of the corollary.
+
+\eop
+\end{proof}
+\s
+
+We need a lemma to prove the theorem.
+\s
+
+\lem \emph{(van der Corput)} Let $u_1,u_2,\cdots$ be a bounded sequence in a Hilbert space $\mathscr{H}$. For each $h \in \mathbb{Z}_{\geq 0}$, write
+\begin{align*}
+s_h = \limsup_{N\rightarrow \infty} \Big| \frac{1}{N} \sum_{n=1}^N \langle u_n, u_{n+h} \rangle \Big|
+\end{align*}
+Suppose that $\dlim_{h\rightarrow \infty} s_h =0$. Then
+\begin{align*}
+\norms{\frac{1}{N} \sum_{n=1}^N u_n}{} \rightarrow 0 \quad \text{as } n\rightarrow \infty
+\end{align*}
+\begin{proof}
+\textbf{(Idea)}
+\begin{align*}
+\norms{\frac{1}{N}\sum_{n=1}^N u_n}{}^2 &= \frac{1}{N^2} \sum_{n_1=1}^N \sum_{n_2=1}^N \langle u_{n_1}, u_{n_2} \rangle \\
+&= \frac{1}{N^2} \Big( \sum_{n=1}^N \norms{u_n}{}^2 + \sum_{h=1}^{N-1} \sum_{n=1}^{N-k} 2 \Re (\langle u_n, u_{n+h} \rangle ) \Big)
+\end{align*}
+\s
+
+\pf Fix $\epsilon >0$. By the assumption, we can find $H$ such that
+\begin{align*}
+\frac{1}{H} \sum_{h=0}^{H-1} s_h <\epsilon
+\end{align*}
+Write
+\begin{align*}
+& \norms{\frac{1}{N} \sum_{n=1}^N u_n - \frac{1}{NH} \sum_{n=1}^N \sum_{h=1}^H u_{n-h} }{} \\ 
+\leq &\frac{1}{N} \Big[ \sum_{n=1}^H \norms{u_h}{} + \sum_{n=1}^{N+H} \norms{u_n}{} \Big] < \epsilon \quad \text{if $N$ is large enough.}
+\end{align*}
+and
+\begin{align*}
+\frac{1}{NH} \norms{\sum_{n=1}^N \sum_{h=1}^H u_{n+h}}{} \leq \frac{1}{NH} \sum_{n=1}^N \norms{\sum_{h=1}^H u_{n+h}}{}
+\end{align*}
+Using Cauchy-Schwarz on the expression on the right hand side of the above equation, we have
+\begin{align*}
+\frac{1}{N^2 H^2} \norms{\sum_{n=1}^N \sum_{h=1}^H u_{n+h}}{}^2 &\leq \frac{1}{N H^2} \sum_{n=1}^N \norms{\sum_{h=1}^H u_{n+h}}{}^2 \\
+& = \frac{1}{NH^2} \sum_{n=1}^N \sum_{h_1=1}^H \sum_{h_2 =1}^H \langle u_{n+h_1}, u_{n+h_2} \rangle \\
+& \leq \frac{1}{H^2} \sum_{h_1=1}^H \sum_{h_2 =1}^H \frac{1}{N} \Big| \sum_{n=1}^N \langle u_{n+h_1} , u_{n+h_2} \rangle  \Big|
+\end{align*}
+Take $N\rightarrow \infty$, then we get
+\begin{align*}
+\limsup_{N \rightarrow \infty} \frac{1}{N^2 H^2} \norms{\sum_{n=1}^N \sum_{h=1}^H u_{n+h}}{}^2 &\leq \frac{1}{H^2} \sum_{h_1 =1}^H \sum_{h_2=1}^H s_{|h_1 - h_2|} \\
+&\leq \frac{1}{H^2} \sum_{h=0}^{H-1} 2H \cdot s_h < 2\epsilon
+\end{align*}
+Combining what we have,
+\begin{align*}
+\lim_{N\rightarrow \infty} \norms{\frac{1}{N} \sum_{n=1}^N u_n}{} \leq \epsilon + \sqrt{2\epsilon}
+\end{align*}
+$\epsilon$ was chosen arbitrary, so we have the desired result.
+
+\eop
+\end{proof}
+\s
+
+\lem Let $(X,\borel, \mu, T)$ be a weak mixing measure preserving system. Let $f,g\in L^2$. Then
+\begin{align*}
+\dlim \langle U^n_T f,g\rangle = \int f d\mu \cdot \int \hat{g} d\mu 
+\end{align*}
+\begin{proof}
+If we plug in characteristic functions in $f$ and $g$, this is precisely the definition of weak mixing. So we can think of this as an extension of weak mixing definition.
+\end{proof}
+
+\lem If $(X,\borel, \mu, T)$ is weak mixing, then so is $(X,\borel, \mu, T^k)$.
+\begin{proof}
+\pf Proof of two lemmas are exercises.
+\end{proof}
+\s
 
 \end{document}
