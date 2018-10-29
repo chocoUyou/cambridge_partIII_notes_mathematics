@@ -1,4 +1,4 @@
-This is XeTeX, Version 3.14159265-2.6-0.99998 (MiKTeX 2.9.6500) (preloaded format=xelatex 2018.2.4)  26 OCT 2018 20:50
+This is XeTeX, Version 3.14159265-2.6-0.99998 (MiKTeX 2.9.6500) (preloaded format=xelatex 2018.2.4)  29 OCT 2018 17:09
 entering extended mode
 **./analysis_PDEs.tex
 (analysis_PDEs.tex
@@ -614,14 +614,23 @@ LaTeX Warning: `h' float specifier changed to `ht'.
 [19]
 File: 4.png Graphic file (type bmp)
 <4.png>
- [20] [21] (analysis_PDEs.aux) ) 
+ [20]
+Overfull \hbox (6.44315pt too wide) in paragraph at lines 1324--1325
+[]\TU/lmr/m/n/10 ==============================================================
+= 
+ []
+
+[21]
+File: 5.png Graphic file (type bmp)
+<5.png>
+ [22] [23] [24] (analysis_PDEs.aux) ) 
 Here is how much of TeX's memory you used:
- 12889 strings out of 427839
- 261109 string characters out of 3151405
+ 12893 strings out of 427839
+ 261142 string characters out of 3151405
  321457 words of memory out of 3000000
- 16604 multiletter control sequences out of 15000+200000
+ 16607 multiletter control sequences out of 15000+200000
  5946 words of font info for 39 fonts, out of 3000000 for 9000
  1328 hyphenation exceptions out of 8191
  61i,21n,84p,470b,333s stack positions out of 5000i,500n,10000p,200000b,50000s
 
-Output written on analysis_PDEs.pdf (21 pages).
+Output written on analysis_PDEs.pdf (24 pages).

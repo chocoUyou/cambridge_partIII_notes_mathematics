@@ -1287,7 +1287,7 @@ We call $Eu$ an \textbf{extension of $u$ to $\reals^n$}. This is not unique.
 
 \lem Suppose $U = B_r(0) \cap \{x_n >0 \}$.  Suppose $u \in C^1( \overline{\{x_n>0 \}})$. We can find an $Eu \in C^1(\reals^n)$ such that
 \begin{align*}
-\norms{Eu}{W^{1,p}(B_r(0))} \leq \norms{u}{W^{1,p}(U)}
+\norms{Eu}{W^{1,p}(B_r(0))} \leq C \norms{u}{W^{1,p}(U)}
 \end{align*}
 for some constant $C>0$.
 \begin{proof}
@@ -1319,16 +1319,160 @@ Setting $Eu = \bar{u}$, clearly $\bar{u}$ depends on $u$ linearly, and a computa
 
 \eop
 \end{proof}
+\s
 
+\newday
 
+(29th October, 2018)
+\s
 
+Recall, we were on our way to proving the following theorem.
+\s
 
+\thm (Extension of Sobolev functions) Suppose $U\subset \reals^n$, open, bounded, is a $C^{1,0}$ domain. Choose a bounded $V$ such that $U \subset\subset V$. Then there exists a bounded linear operator $E : W^{1,p}(U) \rightarrow W^{1,p}(\reals^n)$ such that for each $u \in W^{1,p}(U)$ :
+\begin{itemize}
+\item[(i)] $Eu =u$ almost everywhere in $U$.
+\item[(ii)] $Eu$ has support in $V$.
+\item[(iii)] $\norms{Eu}{W^{1,p}(\reals^n)} \leq C \norms{u}{W^{1,p}(U)}$ where $C$ only depends on $U,V$ and $p$.
+\end{itemize}
+\s
 
+Yet we need another lemma. Be aware that in the following lines of proof, the constant $C$ varies and might not indicate a single number.
+\s
 
+\lem Suppose $U\subset \reals^n$, bounded, open $C^1$-domain. Suppose $u\in C^1 (\bar{U})$. Then $\exists \bar{u} \in C^1_c(\reals^n)$ that depends linearly on $u$ and that
+\begin{align*}
+\norms{\bar{u}}{W^{1,p}(\reals^n)} \leq C \norms{u}{W^{1,p}(U)} \quad u= \bar{u} \text{ on } U
+\end{align*}
+\begin{proof} 
+\pf We prove this lemma by reducing the setting to the setting of the previous lemma.
+\begin{itemize}
+\item[1.] Pick $x_0 \in \pa U$. After possibly relabelling axes, $\exists r>0$ such that
+\begin{align*}
+U \cap B_r(x_0) = \{x\in B_r(x_0) : x_n > \gamma(x_1, \cdots, x_{n-1}) \}
+\end{align*}
+for some $\gamma \in C^1(\reals^{n-1})$. (by definition of being a $C^1$-domain). Define $\Phi^i (x) = y^i$ where
+\begin{align*}
+& y^i  = x^i \quad \forall i=1, \cdots, n-1 \\
+& y^n = x^n - \gamma(x^1, \cdots, x^{n-1})
+\end{align*}
+This has inverse $\Psi(y) = x$ where
+\begin{align*}
+& x^i = y^i \quad i=1,\cdots, n-1 \\
+& x^n = y^n + \gamma(y^1, \cdots, y^{n-1})
+\end{align*}
+Clearly, $\Phi \circ \Psi = \Psi \circ \Phi = id_{B_r(x_0)}$,	
+\begin{align*}
+\Phi(U \cap B_r(x_0)) \subset \{y_0 >0 \}
+\end{align*}
+and $\Phi, \Psi$ are both $C^1$. If $y_0 = \Phi(X_0)$, $\exists s>0$ such that $B_s(y_0) \subset \Phi(B_r(x_0))$. Define $W = \Phi^{-1}(B_s(y_0))$.
 
+\begin{figure}[h]
+	\centering
+	\includegraphics[width=0.5\textwidth]{5}
+\end{figure}
 
+\item[2.] For $y\in B_s(y_0) \cap \{y_n >0 \} = B_+$, we define
+\begin{align*}
+u'(y) = u(\Psi(y))
+\end{align*}
+By the previous lemma, $\exists \bar{u}' \in C^1 (B_s(y_0))$ such that $\bar{u}' = u'$ on $B_s(y_0) \cap \{y_0 >0\} = B_+$ and
+\begin{align*}
+\norms{\bar{u}'}{W^{1,p}(B_s(y_0))} \leq C \norms{u'}{W^{1,p}(B_+)}
+\end{align*}
+Converting back to $x$-coordinates, we define
+\begin{align*}
+\bar{u}(x) = \bar{u}' (\Phi(x)) \quad \forall x\in W. 
+\end{align*}
+Therefore $\bar{u}$ extends $u$ from $U\cap W$ to $W$ and (checking this is an exercise.)
+\begin{align*}
+\norms{\bar{u}}{W^{1,p}(W)} \leq C\norms{u}{W^{1,p}(U)}
+\end{align*}
+\item[3.] Since $\pa U$ is compact, we can take a finite number of points $x^i_0 \in \pa U$, open sets $W_i \ni x_0^i$ and extensions $\bar{u}_i$ of $u$ to $W_i$ such that $\bigcup_{i=1}^n W_i \supset \pa U$. Also, pick $W_0 \subset \subset U$ such that $\bigcup_{i=0}^N W_i \supset U$ and set $\bar{u}_0 =u$ on $W_0$.
 
+\quad Pick a partition of unity subordinate to $\{w_i\}_{i=0}^N$, say $\{\xi_i \}_{i=0}^N$ such that (i) $\xi_i \in C_c^{\infty}(W_i)$, (ii) $0\leq \xi_i \leq 1$ and (iii) $\sum_{i=0}^N \xi_i(x) =1$ for all $x\in U$. Define
+\begin{align*}
+\bar{u} = \sum_{i=0}^N \xi_i \bar{u}_i
+\end{align*}
+Then if $x\in U$,
+\begin{align*}
+\bar{u}(x) = \sum_{i=0}^N \xi_i(x) u(x) = u(x)
+\end{align*}
+so $\bar{u} \in C_c^1(\reals^n)$ is an extension of $u$ and
+\begin{align*}
+\norms{\bar{u}}{W^{1,p}(\reals^n)} \leq C \norms{u}{W^{1,p}(U)}
+\end{align*}
+We can also check each step that $\bar{u}$ depends linearly on $u$. We write $\bar{u} = Eu$. 
+\end{itemize}
 
+\eop
+\end{proof}
+\s
+
+We are finally ready to the prove the theorem based on the two previous lemmas.
+\s
+
+\begin{proof}
+\textbf{proof of the extension theorem) }  Suppose $u \in W^{1,p}(U)$. By approximation theorem, $\exists u_m \in C^{\infty}(\bar{U})$ with $u_m \rightarrow u$ in $W^{1,p}(U)$ and a.e. In particular, the map $E$ of the previous lemmas is defined on each $u_m$. By linearity of $E$,
+\begin{align*}
+\norms{E(u_n - u_m)}{W^{1,p}(\reals^n)} = \norms{Eu_n - E u_m}{W^{1,p}(\reals^n)} \leq C\norms{u_n - u_m}{W^{1,p}(U)}
+\end{align*}
+Since $(u_n)_n$ is convergent in $W^{1,p}(U)$, it is Cauchy in $W^{1,p}(U)$, we deduce that $(Eu_m)_m$ is Cauchy in $W^{1,p}(\reals^n)$. Hence
+\begin{align*}
+E u_m \rightarrow \tilde{u}
+\end{align*}
+for some $F[u] \in W^{1,p}(\reals^n)$. In fact, $\tilde{u}$ is independent of approximating sequence so we set $Fu = \tilde{u}$ and linear in $u$. If needs be, we can always multiply our answer by $\phi \in C_c^{\infty}(U)$ with $\phi =1$ on $U$ to fix support on $Fu$. We can then check $F$ satisfies conditions (i),(ii) and (iii).
+
+\eop
+\end{proof}
+\s
+
+We can repeat our argument to show a result for extensions of functions in $W^{1,p}(U)$ where $U$ is a $C^k$ domain, using a suitable higher order reflections.
+\s
+
+\subsubsection*{Trace theorem}
+
+Because Sobolev functions are defined only up to almost everywhere sense, we do not yet know what it means for a Sobolev function to be defined on a boundary of a domain(as a submanifold of codimension 1 has measure 0), which means that we can not state boundary value problems of PDEs properly. To amend this problem, we need the following trace theorem.
+\s
+
+\thm \emph{(Trace Theorem)} Assume $U\subset \reals^n$ is open, bounded $C^1$ domain. There exists a bounded linear operator
+\begin{align*}
+T : W^{1,p}(U) \rightarrow L^p(\pa U) \quad 1\leq p <\infty
+\end{align*}
+such that
+\begin{itemize}
+\item[(i)] $Tu = u \big|_{\pa U}$ if $u \in W^{1,p}(U) \cap C(\bar{U})$
+\item[(ii)] $\norms{Tu}{L^p(\pa U)} \leq C\norms{u}{W^{1,p}(U)}$ for all $u\in W^{1,p}(U)$ where $C = C(U,p)$ only depends on $U$ and $p$.
+\end{itemize}
+\s
+
+The operator $T$ allows us to talk about '\emph{the restriction of $u$ to $\pa U$}' even though $u$ is only defined almost everywhere, and $\pa U$ is a set of measure zero.
+\begin{proof}
+\pf \begin{itemize}
+\item[(i)] First assume $u\in C^1(\bar{U})$, and as previously, suppose $x^0 \in \pa U$ and $\pa U$ is flat near $x^0$ lying in the plane $\{x_n =0\}$. Choose $B = B_r(x^0)$ for some $r>0$ such that
+\begin{align*}
+& B_+ = B \cap \{x_n \geq 0 \} \subset \bar{U} \\
+& B_- = B \cap \{x_n \leq 0 \} \subset \reals^n \backslash U
+\end{align*}
+Set $\hat{B} = B_{r/2}(x^0)$, denote by $\Gamma$ the portion of $\pa U$ lying within $\hat{B}$. Pick $\xi \in C_c^{\infty}(B)$ such that $0\leq \xi \leq 1$ on $B$ and $\xi \equiv 1$ on $\hat{B}$. 
+\begin{align*}
+\int_{\Gamma} |u|^p dx'  &= \int_{\Gamma} \xi |u|^p dx' \quad \quad (dx' \text{ the area element of } \Gamma) \\
+&\leq \int_{B\cap \{x_n =0\}} \xi |u|^p dx' \\
+&\leq \int_{0}^r \frac{d}{dy_n} \Big[ - \int_{B\cap \{x_n = y_n \}} \xi |u|^p dx' \Big] dy_n \\
+&= - \int_{B_+}  \pa_{x_n} \big(\xi |u|^p \big) dx \\
+&= - \int_{B_+} \big( |u|^p \pa_{x_n}\xi  + p \pa_{x_n} u |u|^{p-1} \xi \big) dx
+\end{align*}
+Using Young's inequality($|ab| \leq |a|^p/p + |b|^q/q$), we have
+\begin{align*}
+\Big| (\pa_{x_n} u) |u|^{p-1} \Big| \leq \frac{|\pa_{x_n} u|^p}{p} + \frac{|u|^{q(p-1)}}{q} \quad \text{where } q = \frac{p}{1-p}
+\end{align*}
+and therefore
+\begin{align*}
+\int_{\Gamma} |u|^p dx' \leq C_{p,r} \int_{B^+} |u|^p + |Du|^p dx
+\end{align*}
+and therefore $\norms{u}{L^p(\Gamma)} \leq C_{p,r} \norms{u}{W^{1,p}(B_+)}$.
+\end{itemize}
+\end{proof}
 
 
 
