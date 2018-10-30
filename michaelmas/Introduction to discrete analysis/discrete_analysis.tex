@@ -87,6 +87,13 @@
 \newcommand{\prob}{\mathbb{P}}
 \newcommand{\osc}{\text{\osc}}
 
+\newcommand{\boxinn}[4]{\begin{array}{|cc|} 
+\cline{1-2}
+#1 & #2 \\
+#3 & #4 \\
+\cline{1-2}
+\end{array}}
+
 \newcommand{\newday}{================================================================}
 \newcommand{\digression}{**********************************************************************************************}
 
@@ -729,6 +736,126 @@ so $|B-B|\leq C'|A| \leq C|B|$
 
 \eop
 \end{proof}
+\s
+
+\newday
+
+(30th October, Tuesday)
+\s
+
+(When revising this course, try to remember the structure of the proofs rather than the exact numbers. The exact number is not very important)
+
+\section*{3. Quasirandom Graphs}
+
+The box norm is an extremely useful tool in studying Quasirandomness.
+
+\subsection*{The box norm}
+\newcommand{\boxnorm}[1]{\norms{#1}{\square}}
+\quad Let $X$ and $Y$ be finites sets and $f:X\times Y \rightarrow \mathbb{C}$. We define the \textbf{box norm} $\norms{f}{\square}$ of $f$ by the formula
+\begin{align*}
+\boxnorm{f}^4 = \avg_{x_1,y_1,x_2,y_2} f(x_1,y_1) \bar{f(x_1,y_2)}\bar{f(x_2,y_1)} f(x_2,y_2)
+\end{align*}
+It is not entirely clear if whether this really is a norm.
+\s
+
+\quad If $f_1,f_2,f_3,f_4 :X\times Y \rightarrow \mathbb{C}$, then their \textbf{box inner product} $[f_1,f_2,f_3,f_4]$ is
+\begin{align*}
+[f_1,f_2,f_3,f_4] = \avg_{x_1,y_1,x_2,y_2} f_1(x_1,y_1) \bar{f_2(x_1,y_2)} \bar{f_3(x_2,y_1)} f_4(x_2,y_2)
+\end{align*}
+\s
+
+We shall \emph{temporarily} use the notation $[f_1,f_2,f_3,f_4]=\boxinn{f_1}{f_2}{f_3}{f_4}$ in order to expose the symmetry.
+\s
+
+\lemnum{1} For any four functions $f_00, f_{01}, f_{10}, f_{11}$ we have
+\begin{align*}
+|\boxinn{f_{00}}{f_{01}}{f_{10}}{f_{11}}| \leq \boxnorm{f_{00}} \boxnorm{f_{01}}\boxnorm{f_{10}}\boxnorm{f_{1}}
+\end{align*}
+This is called \textbf{Box Cauchy-Schwarz inequality}.
+\begin{proof}
+\pf \begin{align*}
+& \avg_{x_0,y_0,x_1,y_1} f_{00}(x_0,y_0) \bar{f_{01}(x_0,y_1)} \bar{f_{10}(x_1,y_0)} f_{11}(x_1,y_1) \\
+=& \avg_{x_0,x_1} \Big( \avg_{y_0} f_{00}(x_0,y_0)   \bar{f_{10}(x_1,y_0)} \Big) \overline{\Big( \avg_{y_1} f_{01}(x_0,y_1) \bar{f_{11}(x_1,y_1)} \Big)} \\
+\leq&  \Big( \avg_{x_0,x_1} \Big| \avg_{y_0} f_{00}(x_0,y_0) \bar{f_{10}(x_1,y_0)} \Big|^2 \Big)^{1/2} \Big( \avg_{x_0,x_1} \Big| \avg_{y_1} f_{01}(x_0,y_1) \bar{f_{11}(x_1,y_1)} \Big|^2 \Big)^{1/2} \\
+=& \boxinn{f_{00}}{f_{00}}{f_{10}}{f_{10}}^{1/2} \boxinn{f_{01}}{f_{01}}{f_{11}}{f_{11}}^{1/2}
+\end{align*}
+By Symmetry (interchanging the roles of $x$ and $y$) we also have, for any functions $g_{00}, g_{01}, g_{10}, g_{11}$, 
+\begin{align*}
+\Big| \boxinn{g_{00}}{g_{01}}{g_{10}}{g_{11}} \Big| \leq \boxinn{g_{00}}{g_{01}}{g_{00}}{g_{01}}^{1/2} \boxinn{g_{10}}{g_{11}}{g_{10}}{g_{11}}^{1/2}
+\end{align*}
+Combining these two inequalities in the obvious way gives the result.
+
+\eop
+\end{proof}
+(the whole point of using this weird notation was to visualize symmetry and to simplify the argument. Can give up with this notation and write a lengthy proof)
+\s
+
+\cornum{2} $\boxnorm{\cdot}$ is a norm.
+\begin{proof}
+\pf The only property that is not completely straightforward is the triangular inequality. Let $f_0$, $f_1: X\times Y \rightarrow \mathbb{C}$. Then
+\begin{align*}
+\boxnorm{f_0 + f_1}^4 &=  [f_0+f_1 ,f_0+f_1,f_0+f_1,f_0+f_1] \\
+&= \sum_{\epsilon \in \{0,1\}^4} [f_{\epsilon_1},f_{\epsilon_2},f_{\epsilon_3},f_{\epsilon_4}] \\
+&\leq \sum_{\epsilon \in \{0,1\}^4} \boxnorm{f_{\epsilon_1}} \boxnorm{f_{\epsilon_2}} \boxnorm{f_{\epsilon_3}} \boxnorm{f_{\epsilon_4}} \\
+&= (\boxnorm{f_0} + \boxnorm{f_1})^4
+\end{align*}
+
+\eop
+\end{proof}
+\s
+
+\textbf{Remark :} Suppose that $f(x,y) = g(x)$ for every $x,y$. Then
+\begin{align*}
+\boxnorm{f}^4 = \avg_{x_1,x_2} g(x_1) \bar{g(x_1)} \bar{g(x_2)} g(x_2) = \norms{g}{2}^4
+\end{align*}
+so $\boxnorm{f} = \norms{g}{2}$.
+\s
+
+\cornum{3} \emph{(The box-norm inequality)} If $f: X \times Y \rightarrow \mathbb{C}$, $u:X\rightarrow \mathbb{C}$, $v:Y\rightarrow \mathbb{C}$ then
+\begin{align*}
+\big| \avg_{x,y} f(x,y) u(x) v(y) \big| \leq \boxnorm{f} \norms{u}{2} \norms{v}{2}
+\end{align*}
+\begin{proof}
+\pf Apply the box Cauchy-Schwarz inequality to $f_1=f$, $f_2(x,y) = u(x)$, $f_3(x,y) =v(y)$, $f_4(x,y)=1$ and use the above remark.
+
+\eop
+\end{proof}
+\s
+
+\lemnum{4} Let $f: X\times Y \rightarrow \mathbb{C}$. Then $\boxnorm{f} \geq |\avg_{x,y} f(x,y)|$.
+\begin{proof}
+\pf Note that we can write $\boxnorm{f}^4 = \avg_{x_1,x_2}  \big| \avg_y f(x_1,y) \bar{f(x_2,y)} \big| ^2$, so
+\begin{align*}
+\boxnorm{f}^4 &= \avg_{x_1,x_2}  \big| \avg_y f(x_1,y) \bar{f(x_2,y)} \big| ^2 \geq \big| \avg_{x_1,x_2} \avg_y f(x_1,y) \bar{f(x_2,y)} \big|^2 \\
+&= \Big| \avg_y \big| \avg_x f(x,y) \big|^2 \Big|^2 \geq \Big| \avg_y \avg_x f(x,y)   \Big|^4
+\end{align*}
+
+\eop
+\end{proof}
+\s
+
+\lemnum{5} Let $F: X\times Y \rightarrow \reals$ be such that $\avg_{x,y} F(x,y) = \delta >0$ and $\boxnorm{F} \leq \delta^4 (1+C)$. Let $f(x,y) = F(x,y) - \delta$. Then $\boxnorm{f} \leq $.
+\s
+
+\quad This inequality can be thought to be an estimation of box norm-variance of $F$.
+\begin{proof}
+\pf For each $x$, let $g(x) = \avg_{y} f(x,y)$ and let $h(x,y)= f(x,y) - g(x)$. Then $\avg_x g(x) = \avg_{x,y} f(x,y) = \avg_{x,y} F(x,y) - \delta =0$ and for every $x$, $\avg_{y} h(x,y) = g(x) - g(x) = 0$. Now 
+\begin{align*}
+\boxnorm{F}^4 &= \avg_{x_1,x_2}  \big| \avg_y F(x_1,y) \bar{F(x_2,y)} \big| ^2 \\
+&= \avg_{x_1,x_2} \Big| \avg_y (\delta + g(x_1) + h(x_1,y))(\delta + \bar{g(x_2)} + \bar{h(x_2,y)})\Big|^2 \\
+&= \avg_{x_1,x_2} \Big| \avg_y (\delta + g(x_1))(\delta + \bar{g(x_2)}) + \avg_y h(x_1,y) \bar{h(x_2,y)} \Big|^2 \\
+&\geq \delta^4 + 2\delta^2 \avg_x |g(x)|^2 + (\avg_x |g(x)|^2)^2 + \boxnorm{h}^4
+\end{align*}
+
+(...to be continued)
+\end{proof}
+
+
+
+
+
+
+
 
 
 

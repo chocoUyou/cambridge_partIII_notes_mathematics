@@ -1534,7 +1534,7 @@ $\epsilon$ was chosen arbitrary, so we have the desired result.
 
 \lem Let $(X,\borel, \mu, T)$ be a weak mixing measure preserving system. Let $f,g\in L^2$. Then
 \begin{align*}
-\dlim \langle U^n_T f,g\rangle = \int f d\mu \cdot \int \hat{g} d\mu 
+\dlim \langle U^n_T f,g\rangle = \int f d\mu \cdot \int \bar{g} d\mu 
 \end{align*}
 \begin{proof}
 If we plug in characteristic functions in $f$ and $g$, this is precisely the definition of weak mixing. So we can think of this as an extension of weak mixing definition.
@@ -1545,5 +1545,115 @@ If we plug in characteristic functions in $f$ and $g$, this is precisely the def
 \pf Proof of two lemmas are exercises.
 \end{proof}
 \s
+
+\newday
+
+(30th October, Tuesday)
+\s
+
+We will prove the main theorem of the section using van der Corput lemma from the previous lecture. In the proof, the statement of its corollary would also be useful.
+\s
+
+\cor  $(X,\borel, \mu, T)$ be a weak mixing MPS, and let $k\in \mathbb{Z}_{>0}$. Let $f_0 \in L^{\infty}$. Then :
+\begin{align*}
+\frac{1}{N} \sum_{n=1}^N \int f_0 U^n_T f_1 \cdots U^{kn}_T f_k d\mu \rightarrow \int f_0 d\mu \int f_1 d\mu \cdots \int f_k d\mu
+\end{align*}
+\s
+
+\thm Let $(X,\borel, \mu, T)$ be a weak mixing MPS, and let $k\in \mathbb{Z}_{>0}$. Let $f_1,\cdots,f_k \in L^{\infty}$. Then :
+\begin{align*}
+\frac{1}{N} \sum_{n=1}^N U^n_T f_1 \cdots U^{2n}_T f_2 \cdots U^{kn}_T f_k \xrightarrow{L^2} \int f_1 d\mu \cdots \int f_{k} d\mu
+\end{align*}
+\begin{proof}
+\pf Proof is by induction on $k$. If $k=1$, then this reduces to the mean ergodic theorem. Suppose that $k>1$ and the statement of the theorem and the statement of the corollary holds for $k-1$.
+
+\quad We first consider the special case $\int f_{k} d\mu =0$. Aim to apply van der Corput's lemma for
+\begin{align*}
+u_n = U^n_T f_1 U^{2n}_T f_2 \cdots U^{kn}_T f_k \in L^2(X)
+\end{align*}
+We compute $s_k$.
+\begin{align*}
+\langle u_n, u_{n+h} \rangle &= \int U^n_T f_1 \cdots U^{kn}_T f_k \cdot U^{n+h}_T \bar{f}_1 \cdots U^{k(n+h)}_T \bar{f}_k d\mu \\
+&= \int f_1 \cdot U^h_T \bar{f}_1 \cdot U^n_T (f_2 U^{2h}_T \bar{f}_2) \cdots U^{(k-1)n}_T (f_k \cdot U^{kh} \bar{f}_k) d\mu
+\end{align*}
+Apply the \textbf{Corollary} for $k-1$ and $f_j U_T^{jh} \bar{f}_j$ in the role of $f_{j-1}$. Then we get :
+\begin{align*}
+\lim_{N\rightarrow \infty} \frac{1}{N} \sum_{n=1}^N \langle u_n, u_{n+h} \rangle = \int f_1 U^k_T \bar{f}_1 d\mu \cdots \int f_k U^{kh}_T \bar{f}_k d\mu
+\end{align*}
+Also as $|f_1 U^k_T \bar{f}_1| \leq \norms{f_1}{\infty}^2$ and similarly for the other terms,
+\begin{align*}
+\limsup_{N\rightarrow \infty} \frac{1}{N} \Big| \sum_{n=1}^N \langle u_n, u_{n+h} \rangle \Big| \leq \norms{f_1}{\infty}^2  \cdots \norms{f_{k-1}}{\infty}^2 \Big| \int f_k U^{kh}_T \bar{f}_{k} d\mu \Big|
+\end{align*}
+By a lemma stated last time $(X,\borel, \mu, T^k)$ is a weak mixing. By the other lemma, we then have :
+\begin{align*}
+\dlim_{h\rightarrow \infty} \int f_k U^{kh}_T \bar{f}_k d\mu = \int f_k \cdot \int f_k = 0
+\end{align*}
+and therefore $\dlim s_k =0$. Then van der Corput's lemma applies and we get the claimed result for this special case.
+\s
+
+\quad In the general case, we can write $f_k = \int f_k d\mu + f'_{k}$, where $\int f'_k d\mu =0$. Then
+\begin{align*}
+\frac{1}{N} \sum_{n=0}^{N-1}  U_T^n f_1 U^{2n}_T f_2 \cdots U^{nk} f_k =& \frac{1}{N} \sum_{n=0}^{N-1}  U_T^n f_1 U^{2n}_T f_2 \cdots U^{nk} f'_k \\
+& + \int f_{k} d\mu \cdot \frac{1}{N} \sum_{n=0}^{N-1}  U_T^n f_1 U^{2n}_T f_2 \cdots U^{n(k-1)} f_{k-1}
+\end{align*}
+The first term converges to 0 by our special case showed earlier and the second term converges to
+\begin{align*}
+\int f_1 d\mu \cdot \int f_{k-1} d\mu
+\end{align*}
+by induction hypothesis.
+
+\eop
+\end{proof}
+\s
+
+\subsection*{Cutting and Stacking}
+
+In this small sub-section, we will be constructing an example showing that weak mixing is not equal to mixing. The construction is going to be bit technical.
+\begin{itemize}
+\item For each $n\in \mathbb{Z}_{>0}$, let $I_1^{(n)}, \cdots, I_{N(n)}^{(n)}$ be a collection of subintervals $I_j^{(n)} = [a_j^{(n)}, b_j^{(n)} ) \subset [0,1)$. Suppose they satisfy the following properties.
+\begin{itemize}
+\item[(1)] For each fixed $n$, $I_j^{(n)}$ are pairwise disjoint and they have the same length.
+\item[(2)] $\text{length}(I_1^{(n)}) \rightarrow 0$ as $n\rightarrow \infty$ and $\mu([0,1) \backslash \bigcup_{j=1}^{N(n)} I_j^{(n)}) \rightarrow 0$ as $n\rightarrow \infty$.
+\item[(3)] $\bigcup_{j=1}^{N(n)} I_j^{(n)} \subset \bigcup_{j=1}^{N(n+1)} I^{(n+1)}_j$.
+\item[(4)] If $I_{j'}^{(n+1)} \cap I_j^{(n)} \neq \phi$ for some $n,j,j'$ then $I_j^{(n+1)} \subset I_j^{(n)}$ and if $j \neq N(n)$ then $I_{j'}^{(n+1)} \subset I_j^{(n)}$ and if $j \neq N(n)$ then $a^{n+1}_{j'+1} - a^{n+1}_{j'} = a^{n+1}_{j+1} - a^{n+1}_{j}$. 
+\end{itemize}
+\end{itemize}
+\s
+
+\lem Given $I_j^{(n)}$ satisfy the above conditions, there is a unique (up to a set of measure 0) transformation $T: [0,1) \rightarrow [0,1)$ such that $T$ maps $I_j^{(n)}$ onto $I_{j+1}^{(n)}$ by a translation. That is, 
+\begin{align*}
+T \big|_{I_{j}^{(n)}} : x \mapsto x + a_{j+1}^{(n)} - a_j^{(n)}
+\end{align*}
+This holds for all $n$ and for all $j=1, \cdots N(n)-1$. Moreover $T$ preserves the Lebesgue measure on $[0,1)$.
+\begin{proof}
+\pf See example sheets. (Note that the condition (4) above is imposed precisely in order to state this lemma)
+\end{proof}
+\s
+
+\subsubsection*{The Chac\'{o}n map}
+
+Let $I_1^{(1)} = [0,\frac{2}{3})$ and $N(1) =1$. Suppose that $I_j^{(n)}$ are defined for some $n$. Cut $I_{j}^{(n)}$ into 3 equal pieces. Define $I_j^{(n+1)}$ to be the piece on the left and side, $I_{j+N(n)}^{(n+1)}$ be the piece in the middle and $I_{j+2N(n)+1}^{(n+1)}$ be the piece on the right hand side. Also, let $N(n+1) = 3N(n)+1$. Now cut off an interval of the same length as the other $I_j^{n+1}$'s from $[0,1) \backslash \bigcup_{j=1}^{N(n)} I_j^{(n)}$ and let this be $I_{2N(n)+1}^{(n+1)}$.
+
+(I think the indices are wrong??
+\s
+
+Let $I_1^{(1)} = [0,\frac{2}{3})$ and $N(1) =1$. Suppose that $I_j^{(n)}$ are defined for some $n$. Cut $I_{j}^{(n)}$ into 3 equal pieces. Define $I_j^{(n+1)}$ to be the piece on the left and side, $I_{j+N(n)}^{(n+1)}$ be the piece in the middle and $I_{j+2N(n)}^{(n+1)}$ be the piece on the right hand side. Also, let $N(n+1) = 3N(n)+1$. Now cut off an interval of the same length as the other $I_j^{n+1}$'s from $[0,1) \backslash \bigcup_{j=1}^{N(n)} I_j^{(n)}$ and let this be $I_{3N(n)+1}^{(n+1)}$.)
+\s
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 \end{document}

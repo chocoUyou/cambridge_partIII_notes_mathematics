@@ -1,4 +1,4 @@
-This is XeTeX, Version 3.14159265-2.6-0.99998 (MiKTeX 2.9.6500) (preloaded format=xelatex 2018.2.4)  28 OCT 2018 01:21
+This is XeTeX, Version 3.14159265-2.6-0.99998 (MiKTeX 2.9.6500) (preloaded format=xelatex 2018.2.4)  30 OCT 2018 15:13
 entering extended mode
 **./discrete_analysis.tex
 (discrete_analysis.tex
@@ -637,25 +637,25 @@ LaTeX Font Info:    ... okay on input line 62.
 ABD: EveryShipout initializing macros
 \Hy@linkcounter=\count135
 
-Overfull \hbox (14.22314pt too wide) in paragraph at lines 103--104
+Overfull \hbox (14.22314pt too wide) in paragraph at lines 110--111
 []\TU/lmr/m/n/10 ==============================================================
 == 
  []
 
-LaTeX Font Info:    Try loading font information for U+msa on input line 111.
+LaTeX Font Info:    Try loading font information for U+msa on input line 118.
 ("C:\Program Files (x86)\MiKTeX 2.9\tex\latex\amsfonts\umsa.fd"
 File: umsa.fd 2013/01/14 v3.01 AMS symbols A
 )
-LaTeX Font Info:    Try loading font information for U+msb on input line 111.
+LaTeX Font Info:    Try loading font information for U+msb on input line 118.
 
 ("C:\Program Files (x86)\MiKTeX 2.9\tex\latex\amsfonts\umsb.fd"
 File: umsb.fd 2013/01/14 v3.01 AMS symbols B
 )
-LaTeX Font Info:    Try loading font information for OMS+rsfs on input line 111
+LaTeX Font Info:    Try loading font information for OMS+rsfs on input line 118
 .
 
 ("C:\Program Files (x86)\MiKTeX 2.9\tex\latex\calrsfs\omsrsfs.fd")
-LaTeX Font Info:    Try loading font information for U+rsfs on input line 111.
+LaTeX Font Info:    Try loading font information for U+rsfs on input line 118.
 
 ("C:\Program Files (x86)\MiKTeX 2.9\tex\latex\jknappen\ursfs.fd"
 File: ursfs.fd 1998/03/24 rsfs font definition file (jk)
@@ -663,13 +663,13 @@ File: ursfs.fd 1998/03/24 rsfs font definition file (jk)
 
 
 ]
-Overfull \hbox (169.82315pt too wide) in paragraph at lines 184--187
+Overfull \hbox (169.82315pt too wide) in paragraph at lines 191--194
 []\TU/lmr/m/n/10 ==============================================================
 ======================
  []
 
 [2]
-Overfull \hbox (14.22314pt too wide) in paragraph at lines 262--263
+Overfull \hbox (14.22314pt too wide) in paragraph at lines 269--270
 []\TU/lmr/m/n/10 ==============================================================
 == 
  []
@@ -677,39 +677,45 @@ Overfull \hbox (14.22314pt too wide) in paragraph at lines 262--263
 [3]
 \tmpboxcontent=\box45
  [4]
-Overfull \hbox (14.22314pt too wide) in paragraph at lines 366--367
+Overfull \hbox (14.22314pt too wide) in paragraph at lines 373--374
 []\TU/lmr/m/n/10 ==============================================================
 == 
  []
 
 [5] [6]
-Overfull \hbox (14.22314pt too wide) in paragraph at lines 478--479
+Overfull \hbox (14.22314pt too wide) in paragraph at lines 485--486
 []\TU/lmr/m/n/10 ==============================================================
 == 
  []
 
 [7]
-Overfull \hbox (14.22314pt too wide) in paragraph at lines 590--591
+Overfull \hbox (14.22314pt too wide) in paragraph at lines 597--598
 []\TU/lmr/m/n/10 ==============================================================
 == 
  []
 
 [8] [9]
-Overfull \hbox (14.22314pt too wide) in paragraph at lines 657--658
+Overfull \hbox (14.22314pt too wide) in paragraph at lines 664--665
 []\TU/lmr/m/n/10 ==============================================================
 == 
  []
 
 File: 1.png Graphic file (type bmp)
 <1.png>
-[10] [11] (discrete_analysis.aux) ) 
+[10]
+Overfull \hbox (14.22314pt too wide) in paragraph at lines 741--742
+[]\TU/lmr/m/n/10 ==============================================================
+== 
+ []
+
+[11] [12] [13] (discrete_analysis.aux) ) 
 Here is how much of TeX's memory you used:
- 15079 strings out of 427839
- 297411 string characters out of 3151405
- 390852 words of memory out of 3000000
- 18758 multiletter control sequences out of 15000+200000
+ 15081 strings out of 427839
+ 297424 string characters out of 3151405
+ 390853 words of memory out of 3000000
+ 18760 multiletter control sequences out of 15000+200000
  5930 words of font info for 37 fonts, out of 3000000 for 9000
  1328 hyphenation exceptions out of 8191
  72i,19n,88p,823b,405s stack positions out of 5000i,500n,10000p,200000b,50000s
 
-Output written on discrete_analysis.pdf (11 pages).
+Output written on discrete_analysis.pdf (13 pages).
