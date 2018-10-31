@@ -10,6 +10,15 @@
 \usepackage[left=2cm,right=2cm,top=2cm,bottom=2cm]{geometry}
 \usepackage[mathscr]{euscript}
 
+%%%%%For writing large opertors%%%%%%%%%%%
+%\usepackage{stmaryrd}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%for writing large parallel%%%%%%
+\usepackage{mathtools}
+\DeclarePairedDelimiter\bignorm{\lVert}{\rVert}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
 %%%for drawing commutative diagrams.%%%%%%
 \usepackage{tikz-cd}  
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -44,7 +53,6 @@
 \newcommand{\corrnum}[1]{\textbf{Corollary #1) }}
 \newcommand{\pf}{\textbf{proof) }}
 
-
 \newcommand{\lap}{\triangle} %%Laplacian
 \newcommand{\s}{\vspace{10pt}}
 \newcommand{\bull}{$\bullet$}
@@ -57,7 +65,7 @@
 
 \newcommand{\intN}{\mathbb{Z}_N}
 \newcommand{\nat}{\mathbb{N}}
-\newcommand{\norms}[2]{\parallel #1 \parallel_{#2}}
+\newcommand{\norms}[2]{\bignorm[\big]{#1}_{#2}}
 \newcommand{\abs}[1]{\big| #1 \big|}
 \newcommand{\avg}{\mathbb{E}}
 \newcommand{\prob}{\mathbb{P}}
@@ -843,7 +851,7 @@ We can check that $\sup_{x\in \reals} |u(x,0) \leq 1|$ but $\sup_{x\in \reals} |
 
 These suggest the Cauchy problem for Laplace's equation is not the natural one to consider. 
 
-\subsection*{Elliptic Boundary Value Problems}
+\section*{Elliptic Boundary Value Problems}
 
 A more natural problem arising in physics is the \textbf{Dirichlet Problem} : 
 \begin{align*}
@@ -1072,7 +1080,7 @@ This can be shown using H\"{o}lder inequality, e.g. $|\int_U (u_l -u)\phi dx| \l
 \end{itemize}
 \s
 
-\section*{Approximation of Functions in Sobolev Spaces}
+\subsection*{Approximation of Functions in Sobolev Spaces}
 
 It is often useful to know that we can approximate a certain object, e.g. a function, by some nicer object. In particular, for functions in Sobolev spaces, it is useful to be able to approximate by classically differentiable functions. We will show this is possible, with some assumptions on $U$.
 
@@ -1473,6 +1481,128 @@ and therefore
 and therefore $\norms{u}{L^p(\Gamma)} \leq C_{p,r} \norms{u}{W^{1,p}(B_+)}$.
 \end{itemize}
 \end{proof}
+\s
+
+\newday
+
+(31st October, Wednesday)
+\s
+
+\begin{proof}
+\textbf{proof continued) } 
+
+\textbf{Last lecture} : $U \subset \reals^n$ open, bounded, $\pa U$ is $C^1$. If $\pa U$ is flat near $x^0$ and $u\in C^{\infty} (\bar{Y})$. Then there exists open $\Gamma \subset \pa U$ such that
+\begin{align*}
+\int_{\Gamma} |u|^p dx' \leq C \int_U |u|^p + |Du|^p dx
+\end{align*}
+If $x^0 \in \pa U$, but $\pa U$ is not flat near $x^0$, we use a $C^1$ boundary straightening function as in the proof of the extension theorem to show $\exists \Gamma \subset \pa U$ open such that
+\begin{align*}
+\int_{\Gamma} |u|^p dS \leq C \int_{U} |u|^p + |Du|^p dx \quad 
+\end{align*}
+where $dS$ is area element of $\Gamma$ not in its original coordinate but in its parametrised coordinates. But by estimating the Jacobian of the chart, this can be replaced by the area element of $\Gamma$ without much difficulty.
+
+\quad Use compactness of $\pa U$ with this result to show
+\begin{align*}
+\int_{\pa U} |u|^p dS \leq C\int_{Y} |u|^p + |Du|^p dx \quad \text{hence} \quad \norms{Tu}{L^p(\pa U)} \leq C\norms{u}{W^{1,p}(U)}
+\end{align*}
+(plus partition of unity as in the previous proofs)
+
+\quad For general $u\in W^{1,p}(U)$, approximate by $u\in C^{\infty}(\bar{U})$. If $u\in W^{1,p}(U) \cap C^0(\bar{U})$ use that our approximating sequence converges uniformly to $u$ to show $Tu = u\big|_{\pa U}$.
+
+(See the Example sheet 2 to fill in the gaps)
+\end{proof}
+\s
+
+We have shown that associated to $u \in W^{1,p}(U)$ is $Tu \in L^p(\pa U)$, uniquely determined by $Tu=u\big|_{\pa U}$ for $u \in C^0(\bar{U})$. But it is not true that any $L^p$ function arises as a trace of some Sobolev function. That is, the \textbf{trace map} $T$ is not surjective. There exists $f \in L^p(\pa U)$ such that $Tu \neq f$ for all $u \in W^{1,p}(U)$.
+\s
+
+\textbf{Note :} Recall we defined $W_0^{1,p}$ to be the completion of $C_c^{\infty}$ in $W^{1,p}$-norm. So one can show without difficulty that if $u \in W_0^{1,p}(U)$ then $Tu=0$. The converse is true : if $u\in W^{1,p}(U)$ and $Tu =0$ then $u \in W_0^{1,p}(U)$. Finally, if $u\in W^{2,p}(U)$, $D_i u \in W^{1,p}(U)$ so one can define $u$ and $Du$ on $\pa U$ using $T$.
+\s
+
+\subsection*{Sobolev Inequalities, Embeddings}
+
+(For this section, it would be useful to refer to Cl\'{e}ment's Analysis of Functions lecture notes)
+\s
+
+We can think of the $p$ in $L^p_{\text{loc}}$ as giving some measure of how 'spicky' the function can be. If $\gamma p <1$(or equivalently $\gamma <1/p$)
+\begin{align*}
+\norms{x^{-\gamma}}{L^p((0,1])}^p = \int_0^1 x^{-\gamma p} dx < \infty
+\end{align*}
+For larger $p$, the function must tend to infinity more slowly as $x\rightarrow 0$.
+\s
+
+The Sobolev embeddings tell us we can exchange 'differentiability' (i.e. $k$ in $W^{k,p}$), for 'integrability' (i.e. $p$ in $W^{k,p}$). The first result is:
+\s
+
+\thm \emph{(Sobolev-Gagliardo-Nirenberg)} Assume $n>p$. We have $W^{1,p}(\reals^n) \subset L^{p^*} (\reals^n)$ with $p^* = \frac{np}{n-p}>p$, and $\exists C >0$ depending only on $n,p$ such that $\forall u \in W^{1,p}(\reals^n)$,
+\begin{align*}
+\norms{u}{L^{p^*}(\reals^n)} \leq C \norms{Du}{L^p(\reals^n)} \leq C\norms{u}{W^{1,p}(\reals^n)}
+\end{align*}
+\s
+
+\lem Let $n\geq 2$ and $f_1, \cdots, f_n \in L^{n-1}(\reals^{n-1})$. For any $1\leq i\leq n$, denote $\tilde{x}_i = (x_1, \cdots, x_{i-1}, x_{i+1}, \cdots, x_n) \in \reals^{n-1}$ (remove $i^{\text{th}}$ component from $(x_1, \cdots, x_n) \in \reals^n$) and
+\begin{align*}
+f : \reals^n \rightarrow \reals \quad f(t) = f_1(\tilde{x}_1) f_2(\tilde{x}_2) \cdots f_n(\tilde{x}_n)
+\end{align*}
+Then $f\in L^1(\reals^n)$ with
+\begin{align*}
+\norms{f}{L^1(\reals^n)} \leq \prod_{i=1}^n \norms{f_i}{L^{n-1}(\reals^{n-1})}
+\end{align*}
+\begin{proof}
+\pf We work by induction.
+
+\quad For $n=2$, $f(x_1,x_2) = f_1(x_2)f_2(x_1)$ so
+\begin{align*}
+\norms{f}{L^1(\reals^n)} &= \int_{\reals^2} |f(x_1,x_2)| dx_1 dx_2 = \int_{\reals} |f_1(x_1)| dx_2 \int |f_2(x_2)| dx_1 \\
+&= \norms{f_1}{L^1} \norms{f_2}{L^1}
+\end{align*}
+
+\quad Suppose result holds for some $n \geq 2$. Write $f(x_1, \cdots, x_{n+1}) = f_{n+1}(\tilde{x}_{n+1}) F(x)$, where $F(x)  = f_1(\tilde{x}_1) \cdots f_n(\tilde{x}_n)$ and note
+\begin{align*}
+\int_{y_1, \cdots, y_n} |f(y_1,\cdots, y_n, x_{n+1})| dy_1 \cdots dy_n \leq \norms{f_{n+1}}{L^n(\reals^n)} \norms{F(\cdot, x_{n+1})}{L^{n/(n-1)}(\reals^n)} \,\, \cdots (\dagger)
+\end{align*}
+by H\"{o}lder inequality. We apply the result for $n$ to $|f_1|^{n/(n-1)}(\cdot, x_{n+1}) \times \cdots \times |f_n|^{n/(n-1)}(\cdot, x_{n+1})$ to find
+\begin{align*}
+\norms{F(\cdot, x_{n+1})}{L^{n/(n-1)}(\reals^{n})} =& \norms{ |f_1|^{\frac{n}{n-1}}(\cdot, x_{n+1}) \times \cdots \times |f_n|^{\frac{n}{n-1}}(\cdot, x_{n+1})}{L^1(\reals^n)}^{\frac{n-1}{n}} \\
+\leq & \Big( \prod_{i=1}^n \norms{ |f_i|^{n/(n-1)} (\cdot, x_{n+1}) }{L^{n-1}(\reals^{n-1})} \Big)^{n-1/n} \\
+= & \prod_{i=1}^n \norms{f_i (\cdot, x_{n+1})}{L^n(\reals^{n-1})}
+\end{align*}
+Finally, we integrate ($\dagger$) over $x_{n+1}$ to get
+\begin{align*}
+\norms{f}{L^1(\reals^{n+1})} \leq & \norms{f_{n+1}}{L^n(\reals^n)} \int \prod_{i=1}^n \norms{f_i(\cdot, x_{n+1})}{L^n(\reals^{n-1})} dx_{n+1} \\
+\leq & \norms{f_{n+1}}{L^n(\reals^n)} \prod_{i=1}^n \Big(  \int_{x_{n+1}} \norms{f_i}{L^n(\reals^{n-1})}^n (\cdot, x_{n+1}) dx_{n+1}  \Big)^{1/n} \quad \text{(by H\"{o}lder)} \\ 
+= & \norms{f_{n+1}}{L^n(\reals^n)} \prod_{i=1}^n \norms{f_i}{L^n(\reals^n)}
+\end{align*}
+So result hold for $n+1$, so by induction we are done.
+
+\eop
+\end{proof}
+\s
+
+\begin{proof}
+\textbf{proof of Sobolev-Gagliargo-Nirenberg in case $p=1$)} First assume $u\in C_c^{\infty}(\reals^n)$ since $u$ has compact support, we have
+\begin{align*}
+u(x) = \int_{-\infty}^{x_i} \pa_{x_i} u(x_1, \cdots, x_{i-1}, y, x_{i+1}, \cdots, x_n) dy
+\end{align*}
+so that
+\begin{align*}
+|u(x)| \leq \int_{-\infty}^{\infty} |Du(x_1, \cdots, x_{i-1},y,x_{i+1},\cdots, x_n)| dy
+\end{align*}
+Define $f_i(\tilde{x}_i)  = \int_{-\infty}^{\infty} |Du(x_1, \cdots, x_{i-1},y,x_{i+1},\cdots, x_n)| dy$. Thus
+\begin{align*}
+|u(x)|^{n/n-1} \leq \prod_{i=1}^n f_i(\tilde{x}_i)^{1/(n-1)}
+\end{align*}
+Integrating and using the previous lemma gives
+\begin{align*}
+\Big( \norms{u}{L^{n/(n-1)(\reals^n)}}  \Big)^{\frac{n-1}{n}} =& \norms{u^{\frac{n}{n-1}}}{L^1(\reals^n)}  \\
+\leq& \prod_{i=1}^n \norms{f_i^{\frac{1}{n-1}}}{L^{n-1}(\reals^{n-1})} = \prod_{i=1}^n \norms{Du}{L^1}^{\frac{1}{n-1}} = \norms{Du}{L^1(\reals^n)}^{\frac{n}{n-1}}
+\end{align*}
+Since this estimate only depends on the size of $u$ and $Du$, by approximation by smooth functions, this also holds for $u\in W^{1,1}(\reals^n)$.
+
+\eop
+\end{proof}
+
+
 
 
 
