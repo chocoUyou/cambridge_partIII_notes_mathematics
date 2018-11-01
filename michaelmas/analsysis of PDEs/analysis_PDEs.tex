@@ -885,12 +885,12 @@ With this norm, $C^k(\bar{U})$ is a Banach space. (*Be aware, that $C^k(\bar{U})
 \end{align*}
 We define $\gamma^{\text{th}}$ \textbf{H\"{o}lder seminorm} by
 \begin{align*}
-[u]_{C^{0,\gamma}(\bar{U})} = \inf_{x,y\in U} \frac{|u(x)-u(y)|}{|x-y|^{\gamma}}
+[u]_{C^{0,\gamma}(\bar{U})} = \sup_{x,y\in U} \frac{|u(x)-u(y)|}{|x-y|^{\gamma}}
 \end{align*}
 
 \quad We say $u\in C^{k,\gamma}(\bar{U})$ if $u\in C^k(\bar{U})$ and $D^{\alpha}u$ is H\"{o}lder continuous, with exponent $\gamma$ for all $|\alpha|=k$. We define a norm : 
 \begin{align*}
-\norms{u}{C^{k,\gamma}(\bar{U})} = \norms{u}{C^k(\bar{U})} + \sum_{|\alpha|=k} [D^{\alpha} k]_{C^{0,\gamma}(\bar{U})}
+\norms{u}{C^{k,\gamma}(\bar{U})} = \norms{u}{C^k(\bar{U})} + \sum_{|\alpha|=k} [D^{\alpha} u]_{C^{0,\gamma}(\bar{U})}
 \end{align*}
 This is again a Banach space.
 
@@ -898,7 +898,7 @@ This is again a Banach space.
 
 For $U\subset\reals^n$ open, suppose $1\leq p<\infty$. We define the space $L^p(U)$ by
 \begin{align*}
-L^p(U) = \{ u:U\rightarrow \reals \text{ measurable}| \norms{u}{L^p(U)} <\infty \} / \sim
+L^p(U) = \{ u:U\rightarrow \reals \text{ measurable} \,\, : \,\, \norms{u}{L^p(U)} <\infty \} / \sim
 \end{align*}
 where
 \begin{align*}

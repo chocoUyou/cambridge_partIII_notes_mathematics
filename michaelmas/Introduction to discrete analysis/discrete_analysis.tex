@@ -15,6 +15,11 @@
 \usepackage{scrextend}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
+%%%%%%%%%%for writing large parallel%%%%%%
+\usepackage{mathtools}
+\DeclarePairedDelimiter\bignorm{\lVert}{\rVert}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
 %for drawing commutative diagrams.
 \usepackage{tikz-cd}  
 %%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -82,10 +87,12 @@
 \newcommand{\reals}{\mathbb{R}}
 
 \newcommand{\intN}{\mathbb{Z}_N}
-\newcommand{\norms}[2]{\parallel #1 \parallel_{#2}}
+\newcommand{\norms}[2]{\bignorm[\big]{#1}_{#2}}
 \newcommand{\avg}{\mathbb{E}}
 \newcommand{\prob}{\mathbb{P}}
 \newcommand{\osc}{\text{\osc}}
+
+\newcommand{\boxnorm}[1]{\norms{#1}{\tiny{\square}}}
 
 \newcommand{\boxinn}[4]{\begin{array}{|cc|} 
 \cline{1-2}
@@ -750,7 +757,6 @@ so $|B-B|\leq C'|A| \leq C|B|$
 The box norm is an extremely useful tool in studying Quasirandomness.
 
 \subsection*{The box norm}
-\newcommand{\boxnorm}[1]{\norms{#1}{\square}}
 \quad Let $X$ and $Y$ be finites sets and $f:X\times Y \rightarrow \mathbb{C}$. We define the \textbf{box norm} $\norms{f}{\square}$ of $f$ by the formula
 \begin{align*}
 \boxnorm{f}^4 = \avg_{x_1,y_1,x_2,y_2} f(x_1,y_1) \bar{f(x_1,y_2)}\bar{f(x_2,y_1)} f(x_2,y_2)
@@ -834,7 +840,7 @@ so $\boxnorm{f} = \norms{g}{2}$.
 \end{proof}
 \s
 
-\lemnum{5} Let $F: X\times Y \rightarrow \reals$ be such that $\avg_{x,y} F(x,y) = \delta >0$ and $\boxnorm{F} \leq \delta^4 (1+C)$. Let $f(x,y) = F(x,y) - \delta$. Then $\boxnorm{f} \leq $.
+\lemnum{5} Let $F: X\times Y \rightarrow \reals$ be such that $\avg_{x,y} F(x,y) = \delta >0$ and $\boxnorm{F} \leq \delta^4 (1+C)$. Let $f(x,y) = F(x,y) - \delta$. Then $\boxnorm{f} \leq |\delta| (c^{1/4} + (c/2)^{1/2})$.
 \s
 
 \quad This inequality can be thought to be an estimation of box norm-variance of $F$.
@@ -844,13 +850,117 @@ so $\boxnorm{f} = \norms{g}{2}$.
 \boxnorm{F}^4 &= \avg_{x_1,x_2}  \big| \avg_y F(x_1,y) \bar{F(x_2,y)} \big| ^2 \\
 &= \avg_{x_1,x_2} \Big| \avg_y (\delta + g(x_1) + h(x_1,y))(\delta + \bar{g(x_2)} + \bar{h(x_2,y)})\Big|^2 \\
 &= \avg_{x_1,x_2} \Big| \avg_y (\delta + g(x_1))(\delta + \bar{g(x_2)}) + \avg_y h(x_1,y) \bar{h(x_2,y)} \Big|^2 \\
-&\geq \delta^4 + 2\delta^2 \avg_x |g(x)|^2 + (\avg_x |g(x)|^2)^2 + \boxnorm{h}^4
 \end{align*}
-
-(...to be continued)
 \end{proof}
+\s
 
+\newday
 
+(1st November, Thursday)
+\s
+
+\begin{proof}
+\textbf{proof continued)} For $F(x,y) = \delta + g(x) + h(x,y)$,
+\begin{align*}
+\boxnorm{F}^4 =  \avg_{x_1,x_2} \Big| (\delta + g(x_1))(\delta + \bar{g(x_2)}) + \avg_y h(x_1,y) \bar{h(x_2,y)} \Big|^2
+\end{align*}
+When we expand the mod squared, we get three terms as follows. The first is
+\begin{align*}
+& \avg_{x_1, x_2} (\delta + g(x_1)) \overline{(\delta + g(x_1))} \overline{(\delta + g(x_2))} (\delta + g(x_2) \\
+=& |\delta|^4 + |\delta|^2 \avg |g(x_1)|^2 + |\delta|^2 \avg |g(x_2)|^2 + \avg |g(x_1)|^2 |g(x_2)|^2 = (|\delta|^2 + \norms{g}{2}^2)
+\end{align*}
+The second is
+\begin{align*}
+2 \text{Re}(\avg_{x_1,x_2} (\delta + g(x_1)) \overline{(\delta + g(x_1))} \avg_y \overline{h(x_1,y)} h(x_2,y)) = \avg_y 2\text{Re} \Big| \avg_x (\delta + g(x)) \overline{h(x,y)} \Big|^2 \geq 0
+\end{align*}
+The third is $\boxnorm{h}^4$.
+
+\quad Putting this together, has
+\begin{align*}
+\boxnorm{F}^4 \geq (\delta^2 + \norms{g}{2}^2)^2 + \boxnorm{h}^4
+\end{align*}
+Therefore, if $\boxnorm{F}^4 \leq |\delta|^4 (1+c)$, we have $\boxnorm{h}^4 \leq c|\delta|^4$ and
+\begin{align*}
+|\delta|^2 + \norms{g}{2}^2 \leq |\delta|^2 (1+c)^{1/2} \leq |\delta|^2 (1+ \frac{c}{2})
+\end{align*}
+so $\norms{g}{2} \leq \sqrt{\frac{c}{2}}\delta$.
+
+\quad Therefore, $\boxnorm{f} = \boxnorm{F-\delta} \leq |\delta| (c^{1/4} + (c/2)^{1/2})$.
+
+\eop
+\end{proof}
+\s
+
+We are now ready to do some quasirandom graphs.
+\s
+
+\lemnum{6} Let $G$ be a bipartite graph of density $\delta$ with finite vertex sets $X,Y$. Then the following statements are "equivalent", in the sense that if one holds for sufficiently small $c_i$, then the others hold for small $c_j$.
+\begin{itemize}
+\item[(i)] $\boxnorm{G}^4 \leq \delta^4 (1+c_1)$. ($\boxnorm{G}^4$ is the \textbf{4-cycle density} of $G$.)
+\item[(ii)] For each vertex $x,x_1, x_2 \in X$, let $\delta(x) = \avg_y G(x,y) =$(density of neighbourhood of $x$ in $Y$), and let $\delta(x_1,x_2) = \avg_y G(x_1,y)G(x_2,y)=$(density of neighbourhood intersection). Similarly define $\delta(y)$, $\delta(y_1,y_2)$ for $y,y_1,y_2 \in Y$. Then
+\begin{align*}
+\avg_{x_1,x_2} \Big[ \big( \delta(x_1,x_2) - \delta^2 \big)^2 \Big] \leq c_2 \delta^4
+\end{align*}
+(be aware that this object is not the variance of $\delta(x_1,x_2)$, because $\delta^2$ is not its mean)
+\begin{figure}[h]
+	\centering
+	\includegraphics[width=0.3\textwidth]{2}
+\end{figure}
+\item[(iii)] For every $A \subset X$ of density $\alpha$ and $B\subset Y$ of density $\beta$,
+\begin{align*}
+\Big| \avg_{x,y} G(x,y) A(x)B(y) - \delta \alpha \beta \Big| \leq c_3 \delta
+\end{align*}
+\end{itemize}
+\begin{proof}
+\pf \begin{itemize}
+\item[(i)$\Leftrightarrow$(ii)] Observe first that $\boxnorm{G}^4 = \avg_{x_1,x_2} \delta(x_1,x_2)^2$. Also,
+\begin{align*}
+& \avg(\delta(x_1,x_2)-\delta^2)^2 = \avg_{x_1,x_2} \delta(x_1,x_2)^2 - 2\delta^2 \avg_{x_1,x_2} \delta(x_1,x_2) + \delta^4 \\
+& \avg(\delta(x_1,x_2)) = \avg_y \avg_{x_1,x_2} G(x_1,y) G(x_2,y) = \avg_y \delta(y)^2 \geq (\avg_y \delta(y))^2 = \delta^2
+\end{align*}
+($\Rightarrow$) So if $\boxnorm{G}^4 \leq \delta^4 (1+c)$, then $\avg(\delta(x_1,x_2)-\delta^2)^2 \leq \delta^4 (1+c) -2\delta^4 + \delta^4 = \delta^4 c$.
+\s
+
+($\Leftarrow$) Conversely, if $\avg(\delta(x_1,x_2)-\delta^2)^2 \leq c\delta^4$, then $\avg(\delta(x_1,x_2)-\delta^2) \leq c^{1/2} \delta^2$, and hence
+\begin{align*}
+\avg(\delta(x_1,x_2)) \leq (1+ c^{1/2}) \delta^2
+\end{align*}
+Then 
+\begin{align*}
+\boxnorm{G}^4 = \avg_{x_1,x_2} \delta(x_1,x_2)^2 \leq c\delta^4 + 2\delta^2(1+c^{1/2}) \delta^2 - \delta^4 = \delta^4(1+c+2c^{1/2})
+\end{align*}
+\item[(i)$\Rightarrow$(iii)] (Note : this implication is the most useful one) Suppose (i) holds. Then
+\begin{align*}
+\Big| \avg_{x,y} G(x,y)A(x)B(y) - \delta \alpha \beta \Big| = \Big| \avg_{x,y} (G-\delta)(x,y) A(x)B(y)   \Big|
+\end{align*}
+But by \textbf{Lemma 5}, $\boxnorm{G-\delta} \leq \delta (c_1^{1/4} + (c_1/2)^{1/2})$ so by the box-norm inequality(\textbf{Corollary 3}), this is at most
+\begin{align*}
+\delta (c_1^{1/4} + (c_1/2)^{1/2}) \alpha^{1/2} \beta^{1/2} \quad \Big( \leq \delta(c_1^{1/4} + (c_1/2)^{1/2}) \Big)
+\end{align*}
+\item[(iii)$\Rightarrow$(i)] \emph{(with assumption of $G$ being regular)} If $G$ is regular (on both sides) (that is, the vertices connected to a particular vertex has regular density $\delta$), then the proof is very short.
+
+\quad If (i) is false, then
+\begin{align*}
+\avg_{x_2,y_2} \avg_{x_1,y_1} G(x_1,y_1) G(x_1,y_2) G(x_2,y_1) G(x_2,y_2) > \delta^4 (1+c_1)
+\end{align*}
+since $\prob [G(x_2,y_2)=1] = \delta$, it follows (by pigeon hole principle) that there exist $x_2, y_2$ such that
+\begin{align*}
+\avg_{x_1,y_1} G(x_1, y_1) G(x_1,y_2) G(x_2, y_1) > \delta^3(1+c_1)
+\end{align*}
+Let
+\begin{align*}
+A = \{x: G(x,y_2) =1 \}, \quad B= \{ y: G(x_2,y) =1 \}
+\end{align*}
+Then $A$ and B have density $\delta$ (by regularity) and
+\begin{align*}
+\Big| \avg_{x,y} G(x,y) A(x) B(y) -\delta^3 \Big| > \delta^3 c_1
+\end{align*}
+\s
+
+\emph{(without assumption of $G$ being regular)} 
+
+\end{itemize}
+\end{proof}
 
 
 

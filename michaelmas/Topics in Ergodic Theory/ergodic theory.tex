@@ -60,6 +60,7 @@
 \newcommand{\clim}{C-\lim}
 
 \newcommand{\newday}{======================================================================}
+\newcommand{\digression}{**********************************************************************************************}
 
 \setlength\parindent{0pt}
 \noindent
@@ -681,11 +682,8 @@ Therefore $f^*(x) - f^*(Tx) = \lim_{N\rightarrow \infty} \frac{1}{N}f(x) = 0$
 
 ==============================================================================
 
-(this proof has faults. will repair, or delete,,,,,,,,)
-
-
 \begin{proof}
-\textbf{way more elegant proof) }
+\textbf{a more elegant proof) }
 For simplicity, let $S_N(x) \frac{1}{N} \sum_{n=0}^{N-1} f\circ T^n (x)$.
 \begin{itemize}
 \item[(1)] First, let $f$ be a positive $L^1$ function. Then we may find a positive measurable function $\bar{f}(x)$  such that
@@ -1632,18 +1630,156 @@ This holds for all $n$ and for all $j=1, \cdots N(n)-1$. Moreover $T$ preserves 
 
 \subsubsection*{The Chac\'{o}n map}
 
-Let $I_1^{(1)} = [0,\frac{2}{3})$ and $N(1) =1$. Suppose that $I_j^{(n)}$ are defined for some $n$. Cut $I_{j}^{(n)}$ into 3 equal pieces. Define $I_j^{(n+1)}$ to be the piece on the left and side, $I_{j+N(n)}^{(n+1)}$ be the piece in the middle and $I_{j+2N(n)+1}^{(n+1)}$ be the piece on the right hand side. Also, let $N(n+1) = 3N(n)+1$. Now cut off an interval of the same length as the other $I_j^{n+1}$'s from $[0,1) \backslash \bigcup_{j=1}^{N(n)} I_j^{(n)}$ and let this be $I_{2N(n)+1}^{(n+1)}$.
-
-(I think the indices are wrong??
+Let $I_1^{(1)} = [0,\frac{2}{3})$ and $N(1) =1$. Suppose that $I_j^{(n)}$ are defined for some $n$. Cut $I_{j}^{(n)}$ into 3 equal pieces. Define $I_j^{(n+1)}$ to be the piece on the left hand side, $I_{j+N(n)}^{(n+1)}$ be the piece in the middle and $I_{j+2N(n)+1}^{(n+1)}$ be the piece on the right hand side. Also, let $N(n+1) = 3N(n)+1$. Now cut off an interval of the same length as the other $I_j^{n+1}$'s from $[0,1) \backslash \bigcup_{j=1}^{N(n)} I_j^{(n)}$ and let this be $I_{2N(n)+1}^{(n+1)}$.
 \s
 
-Let $I_1^{(1)} = [0,\frac{2}{3})$ and $N(1) =1$. Suppose that $I_j^{(n)}$ are defined for some $n$. Cut $I_{j}^{(n)}$ into 3 equal pieces. Define $I_j^{(n+1)}$ to be the piece on the left and side, $I_{j+N(n)}^{(n+1)}$ be the piece in the middle and $I_{j+2N(n)}^{(n+1)}$ be the piece on the right hand side. Also, let $N(n+1) = 3N(n)+1$. Now cut off an interval of the same length as the other $I_j^{n+1}$'s from $[0,1) \backslash \bigcup_{j=1}^{N(n)} I_j^{(n)}$ and let this be $I_{3N(n)+1}^{(n+1)}$.)
+\digression
+
+A more detailed explanation of the Chac\'{o}n map, 
+
+Reference : \text{http://math.uchicago.edu/~may/REU2015/REUPapers/Chen,Wenyu.pdf}
 \s
 
+\begin{figure}[h]
+	\centering
+	\includegraphics[scale=0.4]{1}
+\end{figure}
+
+The construction is basically "cutting the column into three, putting a spacer above the middle column, and stacking from left to right." We inductively construct the columns $C_0, C_1, C_2 \cdots$.
+\s
+
+Let \textbf{column}($C$) be a finite sequence of disjoint intervals of the same length. Each interval($I$) is called a \textbf{level} and the number of intervals in a column is called the \textbf{height}($h$) of the column.
+\s
+
+First, let $C_0$ denote the column consisting of a single interval $I_{0,0} = [0,\frac{2}{3})$. Then $h_0 =1$.
+\s
+
+Construction of $C_1$ : divide $C_0$ into three disjoint subintervals and put a spacer $S_0 = [2/3, 8/9)$. Then the union of all the intervals is $[0,8/9)$, and $h_1 =4$.
+\s
+
+We obtain $C_{n+1} = C_{n}$. $C_n$ has $(3^{n+1}-1)/2$ intervals, each of length $2\cdot 3^{-n-1}$, and the union of each levels is $[0,1-3^{-n-1}$. To obtain $C_{n+1}$, subdivide each interval equally into three and define spacer $S_n = [1-3^{-n-1},1- \frac{2}{3}3^{-n-1})$.
+\s
+
+Now define $T_{C_n}$ (for $n\geq 2$) be the map defined on $[0,1)$ by
+\begin{align*}
+T_{C_n}(x) = \begin{cases} \begin{array}{cl}
+x & \text{if } x\in [1-1/3^{n+1},1) \\
+x - \frac{1}{2} - \frac{5}{6} \frac{1}{3^n} & \text{if } x\in S_n \\
+x + \frac{1}{2} & \text{if } x\in I^{(n)}_{2\cdot 3^{n-1}} \\
+x- 1 + \frac{5}{3} \frac{1}{3^n} & \text{if } x\in I^{(n)}_{N(n)} \\
+x + \cdots & \text{if otherwise}  
+\end{array}
+\end{cases}
+\end{align*}
+(has to complete this... but for form is too complicated!!) That is, $T_{C_n}$ is 'going up one level' where the levels are as displayed in the figure below.
+\s
+
+Define $T$, the Chac\'{o}n map as the limit of $T_{C_n}$.
+
+\begin{figure}[h]
+	\centering
+	\includegraphics[scale=0.66]{2}
+\end{figure}
+\s
+
+\digression
 
 
+\newday
 
+(1st November, Thursday)
+\s
 
+(Will be showing that $([0,1), \borel, \mu, T)$ is a measure preserving system in the example sheet 2.)
+\s
+
+\lem Consider $([0,1), \borel, \mu, T)$ where $m$ is the Lebesgue measure and $T$ is Chac\'{o}n map. Then $\forall$ $n,j$, we have
+\begin{align*}
+& m(I^{(n)}_j \cap T^{N(n)} I^{(n)}_j) \geq \frac{1}{3}m(I_j^{n}) \\
+& m(I^{(n)}_j \cap T^{N(n)+1} I^{(n)}_j) \geq \frac{1}{3}m(I_j^{n})
+\end{align*}
+\begin{proof}
+\pf Note 
+\begin{align*}
+& I_j^{(n)} = I_{j}^{(n+1)} \cup I_{j+N(n)}^{(n+1)} \cup I_{j+2N(n)+1}^{n+1} \\
+\text{and} \quad & T^{N(n)} I_j^{(n+1)}  = I^{(n+1)}_{j+N(n)} \\
+\text{and} \quad & T^{N(n)+1} I^{(n+1)}_{j+N(n)} = I^{(n+1)}_{j+2N(n)+1}
+\end{align*}
+Thus $I^{(n)}_j \cap T^{N(n)} I_j^{(n)} \supset I^{(n+1)}_{j+N(n)}$ and $I^{(n)}_j \cap T^{N(n)+1} I^{(n)}_j \supset I^{(n+1)}_{j+2N(n)+1}$.
+
+\eop
+\end{proof}
+\s
+
+\thm $([0,1), \borel, \mu, T)$ is not mixing.
+\begin{proof}
+\pf Consider $A= I^{(2)}_1$ then $m(A) = 2/9$. For $n\geq 2$, $A$ is the union of some intervals of the form $I^{(n)}_j$. Apply the lemma to each of these.
+\begin{align*}
+m(A\cap T^{N(n)} A) \geq \frac{1}{3} m(A) = \frac{3}{2} m(A)^2
+\end{align*}
+this contradicts the definition of mixing.
+
+\eop
+\end{proof}
+\s
+
+\thm  $([0,1), \borel, \mu, T)$ is weak mixing.
+\begin{proof}
+\pf Let $f\in L^2$ such that $f\circ T = \lambda f$ a.e. We aim to show that $f$ is constant a.e., then this implies that the system is weak mixing, by a theorem presented earlier. Note that $|\lambda| =1$.
+
+\quad Fix $\epsilon >0$ sufficiently small,
+\begin{proof}
+e.g. $\epsilon < 1/12$ and
+\begin{align*}
+m(x\in [0,1) : |f(x)| >2) > 10\epsilon
+\end{align*}
+This might require replacing $f$ by a suitable constant multiple. 
+\end{proof}
+By Lousin's theorem, there is $h :[0,1] \rightarrow \mathbb{C}$ continuous such that $m(x\in [0,1) : f(x) \neq h(x)) < \epsilon$. Then if $n$ is sufficiently large, then $|h(x_1)-h(x_2)| < \epsilon$ whenever $|x_1 - x_2| < \frac{2}{3^n}$, and in particular this holds  when $x_1,x_2 \in I_j^{(n)}$ for some $j$. The intervals $I^{(n)}_j$ fill at least half of $[0,1)$. Therefore by pigeon hole principle, $\exists$ $j$ s.t. $m(x\in I^{(n)}_j : f(x) \neq h(x)) < 2\epsilon m(I^{(n)}_j)$. Let $z = f(x')$ for some $x' \in I^{(n)}_j$ such that $f(x') = h(x')$. Then
+\begin{align*}
+m(x\in I^{(n)}_j : |f(x) - \lambda^{N(n)}z| < \epsilon) \geq m\big( y \in I^{(n)}_j : T^{N(n)} y \in I^{(n)}_j \text{ and } f(y) = h(y) \big) 
+\end{align*}
+\begin{subproof}
+: denote $A = \{ y \in I^{(n)}_j : T^{N(n)} y \in I^{(n)}_j \text{ and } f(y) = h(y) \}$, $B = \{ x\in I^{(n)}_j : |f(x) - \lambda^{N(n)}z| < \epsilon\}$. If $y\in A$, then $x = T^{N(n)} y \in I^{(n)}_j$ and 
+\begin{align*}
+f(x) = f(T^{(n)} y) = \lambda^{N(n)} f(y) = \lambda^{N(n)} h(y)
+\end{align*}
+Since $|h(y)-z| < \epsilon$, $|f(x) - \lambda^{N(n)}z| < \epsilon$, so $x\in B$. 
+\end{subproof}
+Hence
+\begin{align*}
+m(A) & \geq m(I_j^{(n)} \cap T^{N(n)}I^{(n)}_j)  - m(y \in I^{(n)}_j : f(y) \neq h(y)) \\
+& \geq \frac{1}{3} m(I^{(n)}_j) - 2\epsilon m(I^{(n)}_j)
+\end{align*}
+Since $\epsilon < 1/12$, has $\frac{1}{3} > 2\epsilon$, so $m(A) >0$, i.e. $\exists$ $x\in I^{(n)}_j$ such that
+\begin{align*}
+f(x)  = h(x) \quad \text{and} \quad |f(x) - \lambda^{N(n)} z| < \epsilon
+\end{align*}
+and therefore $|f(x)-z| < \epsilon$ (as $z = f(T^n( x')) = f(x')$ for some $x' \in I^{(n)}_j$), thus $|z-\lambda^{N(n)}z| < 2\epsilon$.
+
+\quad We will show in a minute that $|z| \geq 1$. If this is true, then
+\begin{align*}
+|1-\lambda^{N(n)}| < 2\epsilon
+\end{align*} 
+and same argument using the second claim in the lemma gives
+\begin{align*}
+|1- \lambda^{N(n)+1}| < 2\epsilon
+\end{align*}
+Hence :
+\begin{align*}
+|\lambda^{N(n)} - \lambda^{N(n)+1}| < 4\epsilon \quad \Rightarrow \quad |1-\lambda| < 4\epsilon
+\end{align*}
+Taking $\epsilon \searrow 0$< we get $\lambda =1$.
+
+We now have to show that $|z| \geq 1$.
+\begin{subproof}
+ Recall $m(x\in I^{(n)}_j : |f(x)-z| > \epsilon) < 2\epsilon m(I^{(n)}_j)$. Using $T^{i-j}I_j^{(n)} = I^{(n)}_i$ we get
+\begin{align*}
+m(x\in I^{(n)}_j : |f(x) - \lambda^{i-j} z| &\leq \epsilon) \geq m(x\in [0,1) : |f(x)| > |z|+ \epsilon) \\
+&\leq \sum_{i=1}^{N(n)} 2\epsilon m(I^{(n)}_i) + m([0,1) \backslash \cup_i I_i^{(n)}) \leq 2\epsilon + \frac{2}{3^n}
+\end{align*}
+\end{subproof}
+\end{proof}
 
 
 
