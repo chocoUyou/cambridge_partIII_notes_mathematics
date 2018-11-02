@@ -1601,15 +1601,155 @@ Since this estimate only depends on the size of $u$ and $Du$, by approximation b
 
 \eop
 \end{proof}
+\s
 
+\newday
 
+(2nd November, Friday)
+\s
 
+\textbf{Last lecture :}
 
+\thm \emph{(Sobolev-Gagliardo-Nirenberg)} Assume $n>p$. We have $W^{1,p}(\reals^n) \subset L^{p^*} (\reals^n)$ with $p^* = \frac{np}{n-p}>p$, and $\exists C >0$ depending only on $n,p$ such that $\forall u \in W^{1,p}(\reals^n)$,
+\begin{align*}
+\norms{u}{L^{p^*}(\reals^n)} \leq C \norms{Du}{L^p(\reals^n)} \leq C\norms{u}{W^{1,p}(\reals^n)}
+\end{align*}
+\s
 
+We proved $p=1$ case: $\norms{u}{L^{\frac{n}{n-1}}(\reals^n)} \leq \norms{Du}{L^1(\reals^n)}$, so the constant $C =1$. The trick in this proof was to combine the integrals in various directions in a good way, using a Lemma.
 
+In the example sheet Exercise 2.12, we show that if the set $U$ has $C^1$ boundary, it satisfies an isoperimetric inequality, given an estimate of above form.
+\s
 
+\begin{proof}
+\textbf{proof of the case $p>1$) } Now suppose $p>1$. We apply the $p=1$ result to $v= |u|^{\gamma}$ where $\gamma >1$ will be chosen later. We note the following fact from \textbf{Example sheet 2, Exercise 2.6}
+\begin{subproof}
+\textbf{Fact :} Suppose $U$ is bounded and $u\in W^{1,p}(U)$ for some $p\in [1,\infty)$. Also, let $F: \reals \rightarrow \reals$ is $C^1$ and $F'$ is bounded. Then $v(x)=F(u(x))$ is in $W^{1,p}(U)$ and the weak derivative is given by $\pa_{x_i} v = F'(u) \pa_{x_i u}$ for $i=1,\cdots,n$.
+\end{subproof}
+Hence, $v$ is weakly differentiable and 
+\begin{align*}
+Dv = \gamma \text{sign}(u) |u|^{\gamma -1} Du
+\end{align*}
+so
+\begin{align*}
+\norms{v}{L^{\frac{n}{n-1}}(\reals^n)} &= \Big( \int_{\reals^n} |u|^{\frac{\gamma n}{n-1}}  dx \Big)^{\frac{n-1}{n}} \leq \gamma \int_{\reals^n} |u|^{\gamma -1} |Du| dx \\
+&\leq \gamma \Big( \int_{\reals^n} |u|^{(\gamma-1) \frac{p}{p-1}} dx \Big)^{\frac{p-1}{p}} \Big( \int_{\reals^n} |Du|^p dx \Big)^{1/p} \quad \text{(by H\"{o}lder)}
+\end{align*}
+We choose $\gamma$ such that
+\begin{align*}
+\frac{\gamma n}{n-1} = \frac{(\gamma -1)p}{p-1} \quad \Rightarrow \quad \gamma = \frac{p(n-1)}{n-p} >1
+\end{align*}
+Then $\frac{\gamma n}{n-1} = \frac{(n-1)p}{p-1} = \frac{np}{n-p} = p^*$ is as given in the statement of the theorem. Thus,
+\begin{align*}
+\Big( \int_{\reals^n} |u|^{p^*} dx \Big)^{1/p^*} = \frac{p(n-1)}{n-p} \Big( \int_{\reals^n} |Du|^p dx \Big)^{1/p}
+\end{align*}
 
+\eop
+\end{proof}
+\s
 
+In fact, in the example sheet(Exercise 2.9), you will see that this family of inequality, bounding $\norms{u}{q}$ by $\norms{Du}{p}$, can only exist for only particular pair of exponents $(p,q)$ satisfying
+\begin{align*}
+\frac{1}{q} = \frac{1}{p} - \frac{1}{n}
+\end{align*}
+\s
+
+\corrnum{1} Let $U \subset \reals^n$ be open, bounded $C^1$-domain, and $1\leq p<n$. Then $W^{1,p}(U) \subset L^{p^*}(U)$ (where $p^*$ is as before) and $\exists$ $C(p,n,U)$ such that
+\begin{align*}
+\norms{u}{L^{p^*}(U)} \leq C(p,n,U) \norms{Du}{W^{1,p} (U)} \quad \forall u \in W^{1,p}(U)
+\end{align*} 
+\begin{proof}
+\pf By extension theorem, $\exists$ a bounded operator $E: W^{1,p}(U) \rightarrow W^{1,p}(\reals^n)$ such that $Eu = u$ on $U$ and $Eu$ has compact support. By Sobolev-Gagliardo-Nirenberg theorem, $Eu \in W^{1,p}(\reals^n)$ implies $Eu \in L^{p^*} (\reals^n)$ and therefore $u \in L^{p^*}(U)$ and
+\begin{align*}
+\norms{u}{L^{p^*}(U)} = \norms{Eu}{L^{p^*}(U)} \leq \norms{Eu}{L^{p^*}(\reals^n)} \leq C \norms{Eu}{W^{1,p}(\reals^n)} \leq \tilde{C}\norms{u}{W^{1,p}(U)}
+\end{align*}
+
+\eop
+\end{proof}
+\s
+
+\corrnum{2} \emph{(Poincar\'{e} Inequality)} Suppose $U\subset \reals^n$ be open and bounded. Suppose $u \in W_0^{1,p}(U)$ for some $1\leq p<n$. Then we have the following estimate.
+\begin{align*}
+\norms{u}{L^q (U)} \leq C\norms{Du}{L^p(U)} \quad \forall q \in [1,p^*)
+\end{align*}
+where $C = C(p,q,n,U)$. In particular,
+\begin{align*}
+\norms{u}{L^{p}(U)} \leq C \norms{Du}{L^p(U)}
+\end{align*}
+\begin{proof}
+\pf Since $u \in W^{1,p}_0(U)$, $\exists$ $u_m \in C_c^{\infty}(U)$ converging to $U$ in $W^{1,p}(U)$. Extend $u_m$ by zero on $U^c$ to get $\bar{u}_m \in C^{\infty}_c (\reals^n)$. Apply Sobolev-Gagliardo-Nirenberg inequality to find
+\begin{align*}
+\norms{u_m}{L^{p^*}(U)} \leq C \norms{Du_m}{L^p(U)}
+\end{align*}
+And further
+\begin{align*}
+\norms{u_m - u_{m'}}{L^{p^*}(U)} \leq C \norms{Du_m - Du_{m'}}{L^p(U)}
+\end{align*}
+Therefore, $(u_m)$ is Cauchy in $L^{p^*}(U)$, and hence $u_m$ converges in $L^{p^*}$. We can send $m\rightarrow \infty$ in $\norms{u_m}{L^{p^*}(U)} \leq C \norms{Du_m}{L^p(U)}$ further to find
+\begin{align*}
+\norms{u}{L^{p^*}(U)} \leq C \norms{Du}{L^p(U)}
+\end{align*}
+
+Since $\text{vol}(U) < \infty$, by H\"{o}lder, we can see that
+\begin{align*}
+\norms{u}{L^q(U)} \leq \norms{Du}{L^p(U)}  \quad \forall q \in [1,p^*]
+\end{align*}
+\eop
+\end{proof}
+\s
+
+Now suppose $n<p< \infty$. Then naively, we might expect a function in $W^{1,p}(\reals^n)$ to be better than $L^{\infty}$. In fact, we have
+\s
+
+\thm \emph{(Morrey's Inequality)} Suppose $n<p<\infty$. Then $\exists C = C(p,n)$ such that
+\begin{align*}
+\norms{u}{C^{0,\gamma}(\reals^n)} \leq C\norms{u}{W^{1,p}(\reals^n)} \quad \forall u \in C_c^1(\reals^n)
+\end{align*}
+where $\gamma = 1-\frac{n}{p}$. (This can be interpreted as : as $p$ increases, we lose less and less information about differentiability in the Sobolev norm)
+\begin{proof}
+\pf We first establish the H\"{o}lder part of the estimate. Let $Q$ be an open cube, sides parallel to axes of side $r>0$ (centred at any point). Set
+\begin{align*}
+\bar{u} = \frac{1}{|Q|} \int_{Q} u(x) dx
+\end{align*}
+to be the average of $u$ on $Q$. Then
+\begin{align*}
+|\bar{u}-u(0)| = \Big| \frac{1}{|Q|} \int_{Q} u(x) -u(0) dx \Big| \leq \frac{1}{|Q|} \int_{Q} |u(x)-u(0)| dx
+\end{align*}
+Note
+\begin{align*}
+u(x) - u(0) = \int_0^1 \frac{d}{dt} u(tx)dx = \sum_{i=1}^n \int_0^1 x^i \frac{\pa u}{\pa x^i} (tx) dt
+\end{align*}
+so
+\begin{align*}
+|u(x) - u(0)| \leq r \int_0^1 \sum_{i=0}^n \Big| \frac{\pa u}{\pa x^i} (tx)\Big| dt \quad \text{(since }x\in Q \Rightarrow |x|<r)
+\end{align*}
+Thus
+\begin{align*}
+|\bar{u}-u(0)| &\leq \frac{r}{|Q|} \int_Q \int_0^1 \sum_{i=1}^n \Big| \frac{\pa u}{\pa x^i}(tx)\Big| dtdx  \\
+&=\frac{r}{|Q|} \int_0^1 \Big( \int_Q \sum_{i=1}^n \Big| \frac{\pa u}{\pa x^i} (tx) \Big| dx \Big) dt \quad (\text{Fubini}) \\
+&= \frac{r}{|Q|} \int_0^1 t^{-n} \Big( \int_{tQ} \sum_{i=1}^n \Big| \frac{\pa u}{\pa x^i} (y) dy \Big| dy \Big) dt \quad (y=tx) \\
+&\leq \frac{r}{|Q|} \int_0^1 t^{-n} \Big( \sum_{i=1}^n \norms{\frac{\pa u}{\pa x^i}}{L^p(Q)} |tQ|^{1/p'} \Big) dt \quad (\text{H\"{o}lder}, \frac{1}{p}+ \frac{1}{p'} = 1)
+\end{align*}
+so using the fact $|Q| = r^n$ and $|tQ| = t^n r^n$,
+\begin{align*}
+|\bar{u}-u(0)| &\lesssim r^{1-n+ \frac{n}{p'}} \norms{Du}{L^p(\reals^n)} \int_0^1 t^{-n + \frac{n}{p'}} dt \\
+&\lesssim \frac{r^{1-\frac{n}{p}}}{1-n/p} \norms{Du}{L^p(\reals^n)}
+\end{align*}
+Now suppose $x,y\in \reals^n$ with $|x-y| = r/2$. Pick a box containing $x,y$ with side $r$. By above,
+\begin{align*}
+|u(x) - u(y)| \leq |u(x)- \bar{u}| + |\bar{u} - u(y) | \lesssim \frac{r^{1-\frac{n}{p}}}{1-n/p} \norms{Du}{L^p(\reals^n)}
+\end{align*}
+and therefore
+\begin{align*}
+\frac{|u(x)-u(y)|}{|x-y|^{1-\frac{n}{p}}} \lesssim \frac{1}{1-n/p} \norms{Du}{L^p(\reals^n)}
+\end{align*}
+Finally, to see that $u$ is bounded for any $x\in \reals^n$, pick a box of side $1$ containing $x$ and estimate
+\begin{align*}
+|u(x)| \leq |\bar{u}-u(x)| + |\bar{u}| \lesssim \norms{Du}{L^p(\reals^n)} + \norms{u}{L^p(\reals^n)} \lesssim \norms{u}{W^{1,p}(\reals^n)}
+\end{align*}
+
+\eop
+\end{proof}
 
 \end{document}
 
