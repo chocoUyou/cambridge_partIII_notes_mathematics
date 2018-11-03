@@ -1,4 +1,4 @@
-This is XeTeX, Version 3.14159265-2.6-0.99998 (MiKTeX 2.9.6500) (preloaded format=xelatex 2018.2.4)  1 NOV 2018 16:36
+This is XeTeX, Version 3.14159265-2.6-0.99998 (MiKTeX 2.9.6500) (preloaded format=xelatex 2018.2.4)  3 NOV 2018 14:43
 entering extended mode
 **./discrete_analysis.tex
 (discrete_analysis.tex
@@ -702,6 +702,9 @@ Overfull \hbox (14.22314pt too wide) in paragraph at lines 671--672
 
 File: 1.png Graphic file (type bmp)
 <1.png>
+
+LaTeX Warning: `h' float specifier changed to `ht'.
+
 [10]
 Overfull \hbox (14.22314pt too wide) in paragraph at lines 748--749
 []\TU/lmr/m/n/10 ==============================================================
@@ -715,189 +718,193 @@ LaTeX Font Warning: Command \tiny invalid in math mode on input line 763.
 LaTeX Font Warning: Command \tiny invalid in math mode on input line 763.
 
 
-LaTeX Font Warning: Command \tiny invalid in math mode on input line 779.
+LaTeX Font Warning: Command \tiny invalid in math mode on input line 767.
 
 
-LaTeX Font Warning: Command \tiny invalid in math mode on input line 779.
-
-
-LaTeX Font Warning: Command \tiny invalid in math mode on input line 779.
-
-
-LaTeX Font Warning: Command \tiny invalid in math mode on input line 779.
-
-
-LaTeX Font Warning: Command \tiny invalid in math mode on input line 779.
-
-
-LaTeX Font Warning: Command \tiny invalid in math mode on input line 779.
-
-
-LaTeX Font Warning: Command \tiny invalid in math mode on input line 779.
-
-
-LaTeX Font Warning: Command \tiny invalid in math mode on input line 779.
+LaTeX Font Warning: Command \tiny invalid in math mode on input line 767.
 
 [11]
 
-LaTeX Font Warning: Command \tiny invalid in math mode on input line 799.
+LaTeX Font Warning: Command \tiny invalid in math mode on input line 783.
 
 
-LaTeX Font Warning: Command \tiny invalid in math mode on input line 807.
+LaTeX Font Warning: Command \tiny invalid in math mode on input line 783.
 
 
-LaTeX Font Warning: Command \tiny invalid in math mode on input line 807.
+LaTeX Font Warning: Command \tiny invalid in math mode on input line 783.
 
 
-LaTeX Font Warning: Command \tiny invalid in math mode on input line 807.
+LaTeX Font Warning: Command \tiny invalid in math mode on input line 783.
 
 
-LaTeX Font Warning: Command \tiny invalid in math mode on input line 807.
+LaTeX Font Warning: Command \tiny invalid in math mode on input line 783.
 
 
-LaTeX Font Warning: Command \tiny invalid in math mode on input line 807.
+LaTeX Font Warning: Command \tiny invalid in math mode on input line 783.
 
 
-LaTeX Font Warning: Command \tiny invalid in math mode on input line 807.
+LaTeX Font Warning: Command \tiny invalid in math mode on input line 783.
 
 
-LaTeX Font Warning: Command \tiny invalid in math mode on input line 807.
+LaTeX Font Warning: Command \tiny invalid in math mode on input line 783.
 
 
-LaTeX Font Warning: Command \tiny invalid in math mode on input line 807.
+LaTeX Font Warning: Command \tiny invalid in math mode on input line 803.
 
 
-LaTeX Font Warning: Command \tiny invalid in math mode on input line 807.
+LaTeX Font Warning: Command \tiny invalid in math mode on input line 811.
 
 
-LaTeX Font Warning: Command \tiny invalid in math mode on input line 807.
+LaTeX Font Warning: Command \tiny invalid in math mode on input line 811.
 
 
-LaTeX Font Warning: Command \tiny invalid in math mode on input line 807.
+LaTeX Font Warning: Command \tiny invalid in math mode on input line 811.
 
 
-LaTeX Font Warning: Command \tiny invalid in math mode on input line 807.
+LaTeX Font Warning: Command \tiny invalid in math mode on input line 811.
 
 
-LaTeX Font Warning: Command \tiny invalid in math mode on input line 807.
+LaTeX Font Warning: Command \tiny invalid in math mode on input line 811.
 
 
-LaTeX Font Warning: Command \tiny invalid in math mode on input line 807.
+LaTeX Font Warning: Command \tiny invalid in math mode on input line 811.
 
 
-LaTeX Font Warning: Command \tiny invalid in math mode on input line 816.
+LaTeX Font Warning: Command \tiny invalid in math mode on input line 811.
 
 
-LaTeX Font Warning: Command \tiny invalid in math mode on input line 816.
+LaTeX Font Warning: Command \tiny invalid in math mode on input line 811.
 
 
-LaTeX Font Warning: Command \tiny invalid in math mode on input line 817.
+LaTeX Font Warning: Command \tiny invalid in math mode on input line 811.
 
 
-LaTeX Font Warning: Command \tiny invalid in math mode on input line 823.
+LaTeX Font Warning: Command \tiny invalid in math mode on input line 811.
 
 
-LaTeX Font Warning: Command \tiny invalid in math mode on input line 823.
+LaTeX Font Warning: Command \tiny invalid in math mode on input line 811.
 
 
-LaTeX Font Warning: Command \tiny invalid in math mode on input line 831.
+LaTeX Font Warning: Command \tiny invalid in math mode on input line 811.
 
 
-LaTeX Font Warning: Command \tiny invalid in math mode on input line 833.
+LaTeX Font Warning: Command \tiny invalid in math mode on input line 811.
+
+
+LaTeX Font Warning: Command \tiny invalid in math mode on input line 811.
+
+
+LaTeX Font Warning: Command \tiny invalid in math mode on input line 820.
+
+
+LaTeX Font Warning: Command \tiny invalid in math mode on input line 820.
+
+
+LaTeX Font Warning: Command \tiny invalid in math mode on input line 821.
+
+
+LaTeX Font Warning: Command \tiny invalid in math mode on input line 827.
+
+
+LaTeX Font Warning: Command \tiny invalid in math mode on input line 827.
+
+
+LaTeX Font Warning: Command \tiny invalid in math mode on input line 835.
 
 
 LaTeX Font Warning: Command \tiny invalid in math mode on input line 837.
 
 
-LaTeX Font Warning: Command \tiny invalid in math mode on input line 837.
+LaTeX Font Warning: Command \tiny invalid in math mode on input line 841.
 
 
-LaTeX Font Warning: Command \tiny invalid in math mode on input line 843.
-
-
-LaTeX Font Warning: Command \tiny invalid in math mode on input line 843.
+LaTeX Font Warning: Command \tiny invalid in math mode on input line 841.
 
 [12]
 
-LaTeX Font Warning: Command \tiny invalid in math mode on input line 853.
+LaTeX Font Warning: Command \tiny invalid in math mode on input line 847.
 
 
-LaTeX Font Warning: Command \tiny invalid in math mode on input line 853.
+LaTeX Font Warning: Command \tiny invalid in math mode on input line 847.
 
 
-Overfull \hbox (14.22314pt too wide) in paragraph at lines 857--858
+LaTeX Font Warning: Command \tiny invalid in math mode on input line 857.
+
+
+LaTeX Font Warning: Command \tiny invalid in math mode on input line 857.
+
+
+Overfull \hbox (14.22314pt too wide) in paragraph at lines 861--862
 []\TU/lmr/m/n/10 ==============================================================
 == 
  []
 
 
-LaTeX Font Warning: Command \tiny invalid in math mode on input line 866.
+LaTeX Font Warning: Command \tiny invalid in math mode on input line 870.
 
 
-LaTeX Font Warning: Command \tiny invalid in math mode on input line 866.
+LaTeX Font Warning: Command \tiny invalid in math mode on input line 870.
 
 
-LaTeX Font Warning: Command \tiny invalid in math mode on input line 876.
+LaTeX Font Warning: Command \tiny invalid in math mode on input line 880.
 
 
-LaTeX Font Warning: Command \tiny invalid in math mode on input line 881.
+LaTeX Font Warning: Command \tiny invalid in math mode on input line 885.
 
 
-LaTeX Font Warning: Command \tiny invalid in math mode on input line 881.
+LaTeX Font Warning: Command \tiny invalid in math mode on input line 885.
 
 
-LaTeX Font Warning: Command \tiny invalid in math mode on input line 881.
+LaTeX Font Warning: Command \tiny invalid in math mode on input line 885.
 
 
-LaTeX Font Warning: Command \tiny invalid in math mode on input line 881.
+LaTeX Font Warning: Command \tiny invalid in math mode on input line 885.
 
 
-LaTeX Font Warning: Command \tiny invalid in math mode on input line 882.
+LaTeX Font Warning: Command \tiny invalid in math mode on input line 886.
 
 
-LaTeX Font Warning: Command \tiny invalid in math mode on input line 882.
+LaTeX Font Warning: Command \tiny invalid in math mode on input line 886.
 
 
-LaTeX Font Warning: Command \tiny invalid in math mode on input line 888.
+LaTeX Font Warning: Command \tiny invalid in math mode on input line 892.
 
 
-LaTeX Font Warning: Command \tiny invalid in math mode on input line 888.
+LaTeX Font Warning: Command \tiny invalid in math mode on input line 892.
 
 
-LaTeX Font Warning: Command \tiny invalid in math mode on input line 899.
+LaTeX Font Warning: Command \tiny invalid in math mode on input line 903.
 
 
-LaTeX Font Warning: Command \tiny invalid in math mode on input line 899.
+LaTeX Font Warning: Command \tiny invalid in math mode on input line 903.
 
+[13]
 File: 2.png Graphic file (type bmp)
 <2.png>
 
-LaTeX Warning: `h' float specifier changed to `ht'.
+
+LaTeX Font Warning: Command \tiny invalid in math mode on input line 920.
 
 
-LaTeX Font Warning: Command \tiny invalid in math mode on input line 916.
-
-[13]
-
-LaTeX Font Warning: Command \tiny invalid in math mode on input line 921.
+LaTeX Font Warning: Command \tiny invalid in math mode on input line 925.
 
 
-LaTeX Font Warning: Command \tiny invalid in math mode on input line 931.
+LaTeX Font Warning: Command \tiny invalid in math mode on input line 935.
 
 
-LaTeX Font Warning: Command \tiny invalid in math mode on input line 931.
+LaTeX Font Warning: Command \tiny invalid in math mode on input line 935.
 
 
-LaTeX Font Warning: Command \tiny invalid in math mode on input line 936.
+LaTeX Font Warning: Command \tiny invalid in math mode on input line 940.
 
-[14] (discrete_analysis.aux) ) 
+[14] [15] (discrete_analysis.aux) ) 
 Here is how much of TeX's memory you used:
  15093 strings out of 427839
  297661 string characters out of 3151405
- 394182 words of memory out of 3000000
+ 395182 words of memory out of 3000000
  18771 multiletter control sequences out of 15000+200000
  5930 words of font info for 37 fonts, out of 3000000 for 9000
  1328 hyphenation exceptions out of 8191
- 72i,19n,88p,823b,405s stack positions out of 5000i,500n,10000p,200000b,50000s
+ 72i,19n,88p,884b,405s stack positions out of 5000i,500n,10000p,200000b,50000s
 
-Output written on discrete_analysis.pdf (14 pages).
+Output written on discrete_analysis.pdf (15 pages).

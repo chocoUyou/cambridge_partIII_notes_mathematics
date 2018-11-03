@@ -1,4 +1,4 @@
-This is XeTeX, Version 3.14159265-2.6-0.99998 (MiKTeX 2.9.6500) (preloaded format=xelatex 2018.2.4)  1 NOV 2018 15:52
+This is XeTeX, Version 3.14159265-2.6-0.99998 (MiKTeX 2.9.6500) (preloaded format=xelatex 2018.2.4)  3 NOV 2018 13:00
 entering extended mode
 **"./ergodic theory.tex"
 ("ergodic theory.tex"
@@ -665,7 +665,13 @@ Overfull \hbox (60.9031pt too wide) in paragraph at lines 1688--1689
 ======== 
  []
 
-[27] [28] [29] ("ergodic theory.aux") ) 
+[27] [28]
+Overfull \hbox (60.9031pt too wide) in paragraph at lines 1785--1786
+[]\TU/lmr/m/n/10 ==============================================================
+======== 
+ []
+
+[29] [30] [31] ("ergodic theory.aux") ) 
 Here is how much of TeX's memory you used:
  13007 strings out of 427839
  263922 string characters out of 3151405
@@ -673,6 +679,6 @@ Here is how much of TeX's memory you used:
  16713 multiletter control sequences out of 15000+200000
  12271 words of font info for 64 fonts, out of 3000000 for 9000
  1328 hyphenation exceptions out of 8191
- 61i,21n,84p,592b,1018s stack positions out of 5000i,500n,10000p,200000b,50000s
+ 61i,21n,84p,960b,1018s stack positions out of 5000i,500n,10000p,200000b,50000s
 
-Output written on ergodic theory.pdf (29 pages).
+Output written on ergodic theory.pdf (31 pages).

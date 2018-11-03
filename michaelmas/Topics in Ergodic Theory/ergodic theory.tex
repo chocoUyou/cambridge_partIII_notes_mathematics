@@ -1780,13 +1780,117 @@ m(x\in I^{(n)}_j : |f(x) - \lambda^{i-j} z| &\leq \epsilon) \geq m(x\in [0,1) : 
 \end{align*}
 \end{subproof}
 \end{proof}
+\s
 
+\newday
 
+(3rd November, Saturday)
+\s
 
+\textbf{Recall :}
 
+$([0,1),\borel,m,T)$ a Chac\'{o}n map, $I_j^{(n)}$ intervals, $j=1,\cdots, N(n)$. To show this is a weak mixing, we aimed to show $f\circ T = \lambda f$ a.e. implies $f$ is constant a.e.
+\s
 
+So far, we prove : $\forall \epsilon >0$, $\forall n$ sufficiently large, $\exists z = z_{n,\epsilon} \mathbb{C}$ and $\exists j \in \{1, \cdots, N(n)\}$ such that
+\begin{align*}
+m(x\in I_j^{(n)}: |f(x) -z| > \epsilon ) < 2\epsilon m(I_j^{(n)})
+\end{align*}
+We also proved $\lambda =1$, provided we can show $|z_{n,\epsilon} \geq 1|$ for any $\epsilon >0$ and sufficiently large $n$.
 
+(Using $T^{j-i}I_j^{(n)} = I_i^{(n)}$ and $|f(T^{i-j}x)| = |f(x)|$)
+\s
 
+\quad Summing these up for $i=1,\cdots, N(n)$, we get
+\begin{align*}
+m(x\in [0,1) : |f(x)| \leq |z| +\epsilon) \geq (1-2\epsilon) \sum_{i=1}^{N(n)} m(I^{(n)}_j) = (1-2\epsilon) (1-3^{-n})
+\end{align*}
+If $n$ is sufficiently large, then
+\begin{align*}
+m(x\in[0,1) : |f(x)| \leq 1+ \epsilon) \geq 1-10\epsilon
+\end{align*}
+Comparing this with our ssumption on $\epsilon$ at the beginning of the proof, we get $|z| \geq 1$, so now we get $|z| =1$. Thus $f(T^{i-j}x) = f(x)$.
+
+\quad The same argument using this instead of $|f(T^{i-j}x)| = |f(x)|$ gives
+\begin{align*}
+m(x\in [0,1) : |f(x) - z_{n,\epsilon} | \leq \epsilon ) \geq (1-2\epsilon) (1-3^{-n}) \quad \cdots\cdots (\dagger)
+\end{align*}
+Choose sequence $\epsilon_m\rightarrow 0$ and $n_m\\rightarrow \infty$ such that $z_{n_m, \epsilon_m}$ converges to a complex number $\tilde{z}$(in fact, we have to first check that $z_{n,\epsilon}$ has a bounded subsequence), by Bozanno-Weierstrasss. If $m$ is sufficiently large (depending on $\delta >0$) then
+\begin{align*}
+m(x\in [0,1) : |f(x)-\tilde{z}| < \delta ) > 1-\delta
+\end{align*}
+if we use $(\dagger)$ for $n_m$ and $\epsilon_m$.
+
+\section*{9. Entropy}
+
+\textbf{Bernoulli Shift : } Let $(P_1, P_2,\cdots, P_d)$ be a probability vector. The \textbf{$(P_1, \cdots, P_d)$-Bernoulli shift} is the MPS
+\begin{align*}
+\big( \{1,\cdots, d\}^{\mathbb{Z}}, \borel, \mu_{P_1,\cdots, P_d},\sigma \big)
+\end{align*}
+where $\mu_{P_1,\cdots, P_d}$ is the product measure with $(P_1,\cdots, P_d)$ on the coordinates and $\sigma$ is the shift map.
+\s
+
+\defi The MPS $(X_1, \borel_1, \mu_1, T_1)$ and $(X_2,\borel_2, \mu_2, T_2)$ are called \textbf{isomorphic}, if there are maps
+\begin{align*}
+S_1 : X_1\rightarrow X_2,\quad S_2 : X_2 \rightarrow X_1
+\end{align*}
+such that $S_1 \circ S_2 = id_{X_2}$ a.e., $S_2 \circ S_1 = id_{X_1}$ a.e., $(S_1)_* \mu_1 =\mu_2$, $(S_2)_* \mu_2 =\mu_1$ and $T_1 \circ S_2 = T_1 \circ T_2$ a.e.
+\s
+
+\textbf{The Question :} Are the $(\frac{1}{2}, \frac{1}{2})$ and $(\frac{1}{3},\frac{1}{3},\frac{1}{3})$ Bernoulli-shift isomorphic?
+\s
+
+This question does not seem very difficult, but this had been unsolved for a long time. These two shifts have "the same" Koopman operators, and moreover Meshalkin proved that $(\frac{1}{4},\frac{1}{4},\frac{1}{4},\frac{1}{4})$ and $(\frac{1}{2},\frac{1}{8},\frac{1}{8},\frac{1}{8},\frac{1}{8})$-Bernoulli shifts are isomorphic. This problem was finally solved by Kolmogorov. He proved that these two systems are not isomorphic by attaching a quantity called \emph{entropy}, which should be preserved by isomorphism, on each system and by showing they are not equal. Later, Ornstein showed that two Bernoulli shifts are isomorphic if and only if they have the same entropy. Actually, the introduction of notion of entropy in measure preserving systems was the starting point of ergodic theory being identified as an independent subject, so the importance of entropy in the field of ergodic theory cannot be overemphasize.
+\s
+
+Let us do some actual mathematics now. We define the entropy as the measure of the amount how difficult it is to predict the system.
+\s
+
+\defi Let $(X,\borel, \mu)$ be a probability space. A \textbf{countable measurable partition} is a collection of measurable sets $A_1, A_2, \cdots$ such that $A_i \cap A_j =\phi$ for all $i\neq j$ and $\bigcup A_i = X$. The sets $A_i$ are called the atoms of partition. 
+
+\quad The \textbf{join} or \textbf{coarsest common refinement} of two countable measurable partiotion $\xi, \eta$ is
+\begin{align*}
+\xi \vee \eta = \{A \cap B : A\in \xi, B \in \eta \}
+\end{align*}
+
+\quad Define a function
+\begin{align*}
+H(p_1, \cdots, p_d) = - \sum_{j=1}^d p_j \log (p_j)
+\end{align*}
+for all probability vector $(p_1, \cdots, p_d)$ with the convention $0 \cdot \log 0 =0$. The \textbf{entropy} of a countable measurable partition $\xi$ is
+\begin{align*}
+H_{\mu}(\xi) = H(\mu(A_1), \mu(A_2), \cdots)
+\end{align*}
+where $\xi = \{A_1, A_2, \cdots \}$.
+
+\quad The \textbf{conditional entropy} of $\xi = \{A_1, A_2, \cdots \}$ relative to $\eta = \{B_1, B_2, \cdots \}$ is 
+\begin{align*}
+H_{\mu} (\xi | \eta) = \sum_{n=1}^{\infty} \mu(B_n) \cdot H(\frac{\mu(A_1 \cap B_n)}{\mu(B_n)},\frac{\mu(A_2 \cap B_n)}{\mu(B_n)},\cdots )
+\end{align*}
+This is the average average of entropy conditioned on each partition of 
+\s
+
+$\star$ Very Useful Interpretations : 
+
+\quad Entropy of $\xi$ provides the amount of information we can obtain from an experiment $\xi$. Conditional entropy of $\xi$ relative to $\eta$ provides the amount of information we can get from $\xi$ given the information about experiment $\eta$. Entropy of join $\xi \vee \eta$ gives the amount of information we can get if we perform both experiments $\xi$ and $\eta$.
+\s
+
+\lem
+\begin{itemize}
+\item[(1)] $H_{\mu} (\xi) \geq 0$.
+\item[(2)] The value of $H_{\mu}(\xi)$ is maximal among partition $\xi$ with $k$ atoms if all atoms have the same measure $\frac{1}{k}$.
+\item[(3)] $H_{\mu}(\{A_1, \cdots, A_k \}) = H_{\mu}(A_{\rho (1)}, \cdots, A_{\rho (k)})$ for all permutations $\rho \in \text{Sym}(\{1,\cdots,k\})$.
+\item[(4)] $H_{\mu} (\xi \vee \eta) = H_{\mu}(\xi) + H_{\mu}(\eta |\xi)$. This is called \emph{chain rule.}
+\end{itemize}
+\begin{proof}
+\pf \begin{itemize}
+\item (1 )is trivial and (2) is going to be proved in recent future using Jensen's inequality.
+\item (3) and (4) are going to be proved later, in more general setting.
+\end{itemize}
+\end{proof}
+\s
+
+\textbf{Khinchin)} Let $H_{\cdot}(\cdot) : P(X) \times \borel$ be a function satisfying the conditions (1)-(4) of the lemma, where $P(X)$ is the set of Borel probability measures on $(X,\borel)$. Then $H_{\cdot}(\cdot)$ is uniquely determined by these properties, up to a multiplication of a scalar factor.
 
 
 

@@ -452,7 +452,7 @@ Hence $n \leq \frac{\text{vol}(5C/4)}{\text{vol}(C/4)} = 5^k$, and we have the c
 \end{proof}
 \s
 
-\cornum{11} If $N$ is primes, $0\notin K$, $|K| =k$, $\delta <1/4$, then $|B(K,\delta)| \delta 5^k |B(k,\delta/2)|$
+\cornum{11} If $N$ is primes, $0\notin K$, $|K| =k$, $\delta <1/4$, then $|B(K,\delta)| \leq 5^k |B(k,\delta/2)|$
 \s
 
 \section*{2. Sum Sets and their Structure}
@@ -507,7 +507,7 @@ by induction and minimality property of $A$
 
 \cornum{3} If $|A+A| \leq K|A|$ or $|A-A| \leq K|A|$, then $|rA| \leq K^r |A|$.
 \begin{proof}
-\pf Just set $B= A$ or $-A$ in \textbf{Corollary 2}, and note that $|A \pm rA| \geq |rA|$.
+\pf Just set $B= A$ or $-A$ in \textbf{Corollary 2}, and note that $|A' \pm rA| \geq |rA|$.
 
 \eop
 \end{proof}
@@ -537,9 +537,9 @@ So if we define the \textbf{Rusza distance} $d(A,B)$ to be $\frac{|A-B|}{|A|^{1/
 
 \cornum{5} If $|A+B| \leq K|A|$, then $|rB-sB| \leq K^{r+s}|A|$ for all positive integers $r,s$.
 \begin{proof}
-\pf Pick $A'$ as before. Then by \textbf{Corollary 2} with $B$ replaced by $-B$, has
+\pf Pick $A'$ as before. Then by \textbf{Corollary 2} with same $A$ and $B$, has
 \begin{align*}
-|A'-rB| \leq K^r |A'| \quad \text{and} \quad |A'-sB|\leq K^s |A'|
+|A'+ rB| \leq K^r |A'| \quad \text{and} \quad |-A'-sB|=|A'+sB|\leq K^s |A'|
 \end{align*}
 Therefore by Ruzsa triangle inequality,
 \begin{align*}
@@ -665,7 +665,7 @@ It follows the Freiman's theorem.
 \defi Let $A$ be a subset of an Abelian group. An \textbf{additive quadruple} in $A$ is a quadruple $(a,b,c,d) \in A^4$ such that $a+b = c+d$. (Equivalently, it's a quadruple such that $a-b= c-d$)
 \s
 
-If $|A|=n$, then the number of additive quadruples in $A$ is at most $n^3$ (this is obtained if $A$ is a subgroup or a coset of a subgroup.) We shall show that if $A^4$ contains at least $cn^3$ additive quadruples, then $A$ has a subset $A'$ of size at least $c'n$ with $|A-A'| \leq C|A'|$ where $c'$ and $C$ depend (nicely) on $c$ only.
+If $|A|=n$, then the number of additive quadruples in $A$ is at most $n^3$ (this is obtained if $A$ is a subgroup or a coset of a subgroup.) We may expect that as the structure of $A$ gets closer to the structure of a group, then larger the number of quadruples there would be. In fact, the converse statement - \emph{if} $A^4$ contains at least $cn^3$ additive quadruples, \emph{then} $A$ has a subset $A'$ of size at least $c'n$ with $|A-A'| \leq C|A'|$ where $c'$ and $C$ depend (nicely) on $c$ only - also holds.(We are going to prove the last statement.) Hence, the size of number of quadruples can be used as a measure of how close the structure of the subset $A$ is close to structure of a group.(though this statement cannot be justified quantitatively.)
 \s
 
 \newday
@@ -705,14 +705,14 @@ The following is an equivalent statement.
 
 \cornum{10} Let $G$ be a bipartite graph as above with density $\delta$. Then there is a subset $B'\subset X$ of size at least $\delta |X|/2\sqrt{2}$ such that for every $x_1, x_2 \in B'$ there are at least $\frac{\delta^5}{2048 \sqrt{2}} |X| |Y|^2$ paths of length 4 from $x_1$ to $x_2$. 
 \begin{proof}
-\pf Choose $B$ as in \textbf{Corollary 9} with $\eta = 1/16$. Define a graph $\Gamma$ with vertex set $B$, joining $x_1$ to $x_2$ if there are at least $\frac{\delta^2}{32}|Y|$ paths of length 2 from $x_1$ to $x_2$ in $G$. By \textbf{Corollary 9}, the average degree in $\Gamma$ is at least $\frac{15}{16}|B|$. Therefore, there are at least $|B|/2$ vertices in $B$ of degree at least $\frac{7}{8}|B|$. Let $B'$ be the set of all such vertices. If $x_1,x_2\in B'$, then there are at least $\frac{3}{4} |B|$ vertices in $B$ joined to both $x_1$ and $x_2$ in $\Gamma$.
+\pf Choose $B$ as in \textbf{Corollary 9} with $\eta = 1/16$ (with size at least $\delta |X|/\sqrt{2}$). Define a graph $\Gamma$ with vertex set $B$, joining $x_1$ to $x_2$ if there are at least $\frac{\delta^2}{32}|Y|$ paths of length 2 from $x_1$ to $x_2$ in $G$. By \textbf{Corollary 9}, the average degree in $\Gamma$ is at least $(1-\frac{1}{16})|B| = \frac{15}{16}|B|$. Therefore, (by pigeon hole principle - if there are $\leq |B|/2$ vertices with degree $|B|$ and $\geq |B|/2$ vertices with degree $7|B|/8$, then the average degree would be $\leq 15|B|/16$) there are at least $|B|/2$ vertices in $B$ of degree at least $\frac{7}{8}|B|$. Let $B'$ be the set of all such vertices. If $x_1,x_2\in B'$, then there are at least $1-(1-\frac{7}{8})-(1-\frac{7}{8})=\frac{3}{4} |B|$ vertices in $B$ joined to both $x_1$ and $x_2$ in $\Gamma$.
 \begin{figure}[h]
 	\centering
 	\includegraphics[width=0.3\textwidth]{1}
 \end{figure}
 Therefore, there at least
 \begin{align*}
-\frac{\delta^4}{1024} |Y|^2 \frac{3}{4} \frac{\delta |X|}{\sqrt{2}} \quad \text{paths of length 4 from } x_1 \text{ to } x_2
+\Big(\frac{\delta^2 |Y|}{32}\Big) \times \Big(\frac{\delta^2 |Y|}{32} \Big) \times \Big(\frac{3}{4} |B|\Big) \geq  \frac{\delta^4}{1024} |Y|^2 \frac{3}{4} \frac{\delta |X|}{\sqrt{2}} \quad \text{paths of length 4 from } x_1 \text{ to } x_2
 \end{align*} 
 
 
@@ -761,6 +761,10 @@ The box norm is an extremely useful tool in studying Quasirandomness.
 \begin{align*}
 \boxnorm{f}^4 = \avg_{x_1,y_1,x_2,y_2} f(x_1,y_1) \bar{f(x_1,y_2)}\bar{f(x_2,y_1)} f(x_2,y_2)
 \end{align*}
+This is a non-negative real number, because we can rewrite this as
+\begin{align*}
+\boxnorm{f}^4 = \avg_{x_1,x_2} \Big( \Big| \avg_y f(x_1,y) \overline{f(x_2,y)} \Big|^2 \Big)
+\end{align*}
 It is not entirely clear if whether this really is a norm.
 \s
 
@@ -773,7 +777,7 @@ It is not entirely clear if whether this really is a norm.
 We shall \emph{temporarily} use the notation $[f_1,f_2,f_3,f_4]=\boxinn{f_1}{f_2}{f_3}{f_4}$ in order to expose the symmetry.
 \s
 
-\lemnum{1} For any four functions $f_00, f_{01}, f_{10}, f_{11}$ we have
+\lemnum{1} For any four functions $f_{00}, f_{01}, f_{10}, f_{11}$ we have
 \begin{align*}
 |\boxinn{f_{00}}{f_{01}}{f_{10}}{f_{11}}| \leq \boxnorm{f_{00}} \boxnorm{f_{01}}\boxnorm{f_{10}}\boxnorm{f_{1}}
 \end{align*}
@@ -840,7 +844,7 @@ so $\boxnorm{f} = \norms{g}{2}$.
 \end{proof}
 \s
 
-\lemnum{5} Let $F: X\times Y \rightarrow \reals$ be such that $\avg_{x,y} F(x,y) = \delta >0$ and $\boxnorm{F} \leq \delta^4 (1+C)$. Let $f(x,y) = F(x,y) - \delta$. Then $\boxnorm{f} \leq |\delta| (c^{1/4} + (c/2)^{1/2})$.
+\lemnum{5} Let $F: X\times Y \rightarrow \reals$ be such that $\avg_{x,y} F(x,y) = \delta >0$ and $\boxnorm{F}^4 \leq \delta^4 (1+c)$. Let $f(x,y) = F(x,y) - \delta$. Then $\boxnorm{f} \leq |\delta| (c^{1/4} + (c/2)^{1/2})$.
 \s
 
 \quad This inequality can be thought to be an estimation of box norm-variance of $F$.
