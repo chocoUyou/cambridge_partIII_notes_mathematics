@@ -1534,7 +1534,7 @@ For larger $p$, the function must tend to infinity more slowly as $x\rightarrow 
 The Sobolev embeddings tell us we can exchange 'differentiability' (i.e. $k$ in $W^{k,p}$), for 'integrability' (i.e. $p$ in $W^{k,p}$). The first result is:
 \s
 
-\thm \emph{(Sobolev-Gagliardo-Nirenberg)} Assume $n>p$. We have $W^{1,p}(\reals^n) \subset L^{p^*} (\reals^n)$ with $p^* = \frac{np}{n-p}>p$, and $\exists C >0$ depending only on $n,p$ such that $\forall u \in W^{1,p}(\reals^n)$,
+\thm \emph{(Sobolev-Gagliardo-Nirenberg, or SGN)} Assume $n>p$. We have $W^{1,p}(\reals^n) \subset L^{p^*} (\reals^n)$ with $p^* = \frac{np}{n-p}>p$, and $\exists C >0$ depending only on $n,p$ such that $\forall u \in W^{1,p}(\reals^n)$,
 \begin{align*}
 \norms{u}{L^{p^*}(\reals^n)} \leq C \norms{Du}{L^p(\reals^n)} \leq C\norms{u}{W^{1,p}(\reals^n)}
 \end{align*}
@@ -1750,6 +1750,177 @@ Finally, to see that $u$ is bounded for any $x\in \reals^n$, pick a box of side 
 
 \eop
 \end{proof}
+\s
+
+\newday
+
+(5th November, Monday)
+\s
+
+\textbf{Last lecture :}
+\begin{proof}
+\thm \emph{(Morrey's Inequality)} Suppose $n<p<\infty$. Then $\exists C = C(p,n)$ such that
+\begin{align*}
+\norms{u}{C^{0,\gamma}(\reals^n)} \leq C\norms{u}{W^{1,p}(\reals^n)} \quad \forall u \in C_c^1(\reals^n)
+\end{align*}
+where $\gamma = 1-\frac{n}{p}$.
+\end{proof}
+\s
+
+Morrey's inequality does not seem really useful at a first site. But from this, its follows a somewhat more useful and interesting result.
+\s
+
+\corr Let $n< p < \infty$. Suppose $u \in W^{1,p} (U)$. For $U\subset \reals^n$ open, bounded $C^{1}$-domain. (boundedness is in fact not necessary.) Then $\exists u^* \in C^{0,1-\frac{n}{p}}(U)$ such that $u = u^*$ almost everywhere, and
+\begin{align*}
+\norms{u^*}{C^{0,1-\frac{n}{p}}(U)} \leq C \norms{u}{W^{1,p}(U)}
+\end{align*}
+for some $C = C(n,p,U)$.
+\begin{proof}
+\pf By extension theorem, $\exists \bar{u} \in W^{1,p}(\reals^n)$ with $\bar{u} =u$ a.e. on $U$. We can find a sequence $u_m \in C_c^{\infty}(\reals^n)$ such that $u_m \rightarrow \bar{u}$ in $W^{1,p}(\reals^n)$ and $u_m(x) \rightarrow \bar{u}(x)$ for almost every $x$. By Morrey's inequality, has
+\begin{align*}
+\norms{u_m -u_{m'}}{C^{0,1-\frac{n}{p}}(\reals^n)} \leq C \norms{u_m - u_{m'}}{W^{1,p}(\reals^n)}
+\end{align*}
+and so $(u_m)_{m\geq 1}$ is Cauchy in $C^{0, 1-\frac{n}{p}}(\reals^n)$. Also, since $C^{0, 1-\frac{n}{p}}(\reals^n)$ is complete, $u_m \rightarrow \bar{u}^*$ in $C^{0,1-\frac{n}{p}}(\reals^n)$. Hence $\bar{u}^* = \bar{u}$ almost everywhere, so $u^* = \bar{u}^* \big|_{U}$. This satisfies our conditions.
+
+\eop
+\end{proof}
+\s
+
+\begin{tabular}{|p{0.9\textwidth}|}
+\hline\\
+The following diagram abstracts what we had been doing :
+
+\begin{center}
+\begin{large}
+\begin{tikzcd}
+{} & u \in W^{1,p}(\reals^n) \arrow[rd, "n<p"] \arrow[ld, "n>p"] & {} \\
+u \in L^{p^*}(\reals^n)
+& {} &  u\in C^{0,1-\frac{n}{p}}(\reals^n)
+\end{tikzcd}
+\end{large}
+\end{center}
+where the left arrow is implied by SGN inequality and the right arrow is implied by the corollary right above.
+\\\\\hline
+\end{tabular}
+\s
+
+By iterating these results, it is possible to establish similar embedding results for $W^{k,p}(\reals^n)$ into $W^{k',p'}(\reals^n)$ for $k'<k, p'>p$ or $C^{k',\gamma}(\reals^n)$ for $k'<k$.
+\s
+
+For example, we have $u \in W^{2,2}(\reals^3)$ $\Leftrightarrow$ $Du \in W^{1,2}(\reals^3)$ and $u \in W^{1,2}(\reals^3)$. This implies $Du \in L^6(\reals^3)$ and $u\in L^6(\reals^3)$, and therefore $u\in W^{1,6}(\reals^3)$ and finally $u \in C^{0,1/2}(\reals^3)$ by the corollary.
+\s
+
+\section*{Second Order Elliptic Equations}
+
+Let $U\subset \reals^n$ and consider the operator
+\begin{align*}
+Lu = - \sum_{i,j=1}^n \big( a^{ij}(x) u_{x_j} \big)_{x_i} + \sum_{i=1}^n b^i (x) u_{x_i} + c(x)u \quad (\textbf{Divergence form})
+\end{align*}
+where $a^{ij},b^i,c$ are given functions on $U$. Typically we will assume they are at least $L^{\infty}$, but sometimes we will require more. 
+
+\quad Assuming $a^{ij} \in C^{1}(U)$ we can write $L$ in \textbf{non-divergence form} as
+\begin{align*}
+Lu = -\sum_{i,j=1}^n a^{ij}u_{x_i x_j} + \sum_{i=1}^n \tilde{b}^i u_{x_i} + cu 
+\end{align*}
+where $\tilde{b}^i = b^i - a^{ji}_{x_i}$.
+
+\quad We further assume $L$ is elliptic. This implies that $L$ or $-L$ satisfies
+\begin{align*}
+\sum_{i,j} a^{ij} \xi_i \xi_j \geq 0 \quad \forall \xi \in \reals^n
+\end{align*}
+and has equality \emph{iff} $\xi=0$. This implies that every surface is non-characteristic. 
+\s
+
+It turns out this is not a strong enough condition in general. We shall also require \textbf{uniform ellipticity} :
+\s
+
+\defi $L$ is \textbf{uniformly elliptic} if $\exists \theta \in \reals_{>0}$ such that
+\begin{align*}
+0 \leq \theta |\xi|^2 \leq \sum_{i,j} a^{ij}(x) \xi_i \xi_j \quad \forall x\in U, \,\, \xi\in \reals^n
+\end{align*}
+\s
+
+Uniform ellipticity is a statement about invertibility of matrix $(a_{ij})_{ij}$. In fact, in finite dimensional case, ellipticity implies uniform ellipticity.
+\s
+
+We consider the boundary value problem
+\begin{align}
+\begin{cases} 
+Lu = f \quad \text{in } U \\
+u\big|_{\pa U} =0
+\end{cases} \label{12}
+\end{align} 
+where $U$ is \emph{always} open bounded $C^1$-domain.
+\s
+
+\textbf{Example :} Let $L=-\Delta$, then the above problem models the electrostatic potential $u$, sourced by a charge distribution $f$, inside a cavity $U$ whose walls are grounded.
+\s
+
+It will turn out that form (\ref{12}) is not so well suited to finding solutions. We shall reformulate the problem into a more amenable form.
+
+\quad Suppose $u\in C^2(\bar{U})$ is a solution of
+\begin{align*}
+Lu = - \sum_{i,j=1}^n \big( a^{ij}(x) u_{x_j} \big)_{x_i} + \sum_{i=1}^n b^i (x) u_{x_i} + c(x)u = f
+\end{align*}
+with $u=0$ on $\pa U$. Multiplying these equation by $v\in C^2(\bar{U})$ satisfying $v=0$ on $\pa U$, we find :
+\begin{align*}
+\int_U vLu dx = \int_U (-v) \sum_{i,j=1}^n \big( a^{ij}(x) u_{x_j} \big)_{x_i} + v\sum_{i=1}^n b^i (x) u_{x_i} + c(x)u v dx = \int fv dx
+\end{align*}
+Now, by the divergence theorem,
+\begin{align*}
+\int_U -\sum_{i,j} v\big(a^{ij}u_{x_j}\big)_{x_i} dx &= - \int_{\pa U} v \sum_{i,j} a^{ij} u_{x_j} dS_i + \int_U \sum_{i,j} a^{ij} u_{x_i} v_{x_j} \\
+&= \int_U \sum_{i,j} a^{i,j} u_{x_j} v_{x_i}
+\end{align*}
+If we define $B[u,v] = \int_U \sum_{i,j} a^{ij}(x) u_{x_j} v_{x_i} + \sum_{i} b^i u_{x_i} v + cu\cdot v dx$, we deduce 
+\begin{align*}
+B[u,v] &= \int_U \sum_{i,j} a^{ij}(x) u_{x_j} v_{x_i} + \sum_{i} b^i u_{x_i} v + cu\cdot v dx \\
+&= \int_U fv dx = \big(f,v \big)_{L^2(U)} 
+\end{align*}
+Conversely, suppose $u\in C^2(\bar{U})$ satisfies $u\big|_{\pa U} = 0$ and
+\begin{align*}
+B[u,v] = \big( f,v \big)_{L^2(U)} \quad \forall v \in C^2(\bar{U}), \,\, v\big|_{\pa U} =0
+\end{align*}
+We can undo the integration by parts to deduce
+\begin{align*}
+\int_U (Lu -f) v dx =0 \quad \forall v \in C^2(\bar{U}), \,\, v\big|_{\pa U} =0
+\end{align*}
+implies $Lu=f$.
+\s
+
+We conclude :
+
+\quad $u \in C^2(\bar{U})$ with $u \big|_{\pa U} =0$ solves (\ref{12}) \emph{if and only if}
+\begin{align*}
+B[u,v] = \big( f,v \big)_{L^2(U)} \quad \text{with} \quad v\big|_{\pa U} = 0
+\end{align*}
+\s
+
+Note that $B[u,v]$ in fact makes sense for $u,v\in H^1(U)$. To encode the boundary conditions, we can require $u,v$ vanish on $\pa U$ in the \emph{trace sense}(as in the trace theorem), or equivalently $u,v \in H_0^1(U)$. This motivates us to define \textbf{weak solution} of a PDE.
+\s
+
+\defi We say that $u\in H^1_0(U)$ is a \textbf{weak solution} of the problem
+\begin{align*}
+\begin{cases}
+\begin{array}{ll}
+Lu = f & \text{in } U \\
+u =0 & \text{on } \pa U
+\end{array}
+\end{cases}
+\end{align*}
+For $y\in L^2(U)$ given, if
+\begin{align*}
+B[u,v] = \big( f,v \big)_{L^2(U)} \quad \forall v\in H_0^1 (U)
+\end{align*}
+\s
+
+A synopsis for existential proof of a PDE : will first show that weak solutions always exist, and provided sufficient smoothness of $f$, the weak solution is in fact smooth.
+\s
+
+
+
+
+
+
 
 \end{document}
 

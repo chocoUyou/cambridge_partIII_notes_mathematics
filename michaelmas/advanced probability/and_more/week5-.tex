@@ -244,13 +244,125 @@ Now integrate with respect to $\mu$ and use Fubini.
 
 \eop
 \end{proof}
+\s
 
+\newday
 
+(5th November, Monday)
+\s
 
+\thmnum{5.3.2} Let $\mu_n, \mu$ be probability measures on $\reals^d$ with characteristic functions $\phi_n, \phi$. Then the following are equivalent
+\begin{itemize}
+\item[(a)] $\mu_n \rightarrow \mu$ weakly on $\reals^d$.
+\item[(b)] $\phi_n(u) \rightarrow \phi(u)$ for all $u\in \reals^d$.
+\end{itemize}
+We will prove only for the case $d=1$.
+\begin{proof}
+\pf It is clear that (a) implies (b). Suppose (b) holds. We prove via a 'compactness argument'. We aim to show that the sequence $(\mu_n)_n$ tight, and therefore has a converging subsequence, and show that the converging point is in fact $\mu$.
 
+\quad Note that $\phi(0) = 1$ and $\phi$ is continuous. Given $\epsilon >0$, there exists $\lambda < \infty$ such that
+\begin{align*}
+C \lambda \int^{1/\lambda}_0 (1- \text{Re}(\phi(u))) du \leq \epsilon/2
+\end{align*}
+with $C = (1- \sin(1))^{-1} < \infty$. By dominated convergence,
+\begin{align*}
+\int_0^{1/\lambda} (1- \text{Re}(\phi_n(u))) du \xrightarrow{n\rightarrow \infty} \int^{1/\lambda}_0 (1- \text{Re}(\phi(u))) du
+\end{align*}
+so for sufficiently large $n$, by \textbf{Lemma 5.3.1,},
+\begin{align*}
+\mu_n (\reals \backslash (-\lambda , \lambda)) \leq C\lambda \int^{1/\lambda}_0 (1- \text{Re}(\phi_n(u))) du \leq \epsilon
+\end{align*}
+Since $\epsilon$ was arbitrary, we see that $(\mu_n : n\in \mathbb{N})$ is tight. By Prohorov's theorem, we have a converging subsequence $\mu_{n_k} \rightarrow \nu$ for some probability measure $\nu$.
 
+\quad Suppose for a contradiction that $\nu \neq \mu$. Therefore, there exists $\epsilon >0$, and $f\in C_b(\reals^n)$ such that
+\begin{align*}
+|\mu_{n_k} (f) - \mu(f)| \geq \epsilon \quad \forall k
+\end{align*}
+By above argument, we have $\mu_{n_k} \rightarrow \nu$. But then, since $e^{inx}$ is a bounded continuous function,
+\begin{align*}
+\int_{\reals} e^{inx} \nu(dx) = \lim_{k\rightarrow \infty} \phi_{n_k}(n) = \phi(n)
+\end{align*}
+which indicates $\mu = \nu$ by uniqueness of characteristic functions (see PM notes), a contradiction.
 
+\eop
+\end{proof}
+\s
 
+In fact, the proof of the theorem implies a slightly stronger statement, which is less useful.
+\s
+
+\thmnum{5.3.3} \emph{(L\'{e}vy's continuity theorem for characteristic functions)} Let $(\mu_n : n\in \mathbb{N})$ be a sequence of probability measures on $\reals^n$ with characteristic functions $\phi_n$. Suppose $\phi_n (u) \rightarrow \phi(u)$ for all $u$ for some function $\phi$ (not necessarily a characteristic function) such that $\phi$ is continuous at $0$. Then $\phi$ is the characteristic function of some probability measure $\mu$ on $\reals^d$ and $\mu_n \rightarrow \mu$ weakly on $\reals^d$.
+\s
+
+\section*{6. Large Deviations}
+	
+\subsection*{6.1. Cram\'{e}rs theorem}
+
+\thmnum{6.1.1} Let $(X_n : n\in \mathbb{N})$ be a sequence of integrable \emph{i.i.d.} random variables in $\reals$. Set $m = \avg(X_1)$, $S_n = X_1 + \cdots + X_n$. We know $S_n / n \rightarrow \delta_m$ in probability, so if $(m-\epsilon, m+ \epsilon) \cap B =\phi$ then $\prob (S_n/n \in B) \rightarrow 0$ as $n\rightarrow \infty$. Then in fact the convergence rate is given by $\sim \exp (-n \alpha(B))$ for some $\alpha$. To be precise, for all $a\geq m = \avg(X_1)$, as $n\rightarrow \infty$,
+\begin{align*}
+\frac{1}{n} \log \prob (S_n \geq na) \rightarrow -\psi^*(a)
+\end{align*}
+where $\psi^*$ is the \emph{Legendre transform} of the \emph{cumulant generating function} $\psi (\lambda) = \log (\avg(e^{\lambda X_1}))$, where Legendre transform is given by
+\begin{align*}
+\psi^* (x) = \sup_{\lambda \in \reals} \{ \lambda x - \psi(\lambda) \}
+\end{align*}
+\quad In particular, for $n$ sufficiently large and in case $\psi^{*}(a) < \infty$, we get
+\begin{align*}
+-\psi^{*}(a) - \epsilon \leq \frac{1}{n} \log (\prob(S_n \geq a)) \leq -\psi^{*}(a) + \epsilon 
+\end{align*}
+and therefore
+\begin{align*}
+e^{-n(\psi^*(a)+\epsilon)} \leq \prob (S_n \geq na) \leq e^{-n(\psi^*(a)-\epsilon)} .
+\end{align*}
+\s
+
+\textbf{Note :} $\psi$ is always a convex function, so $\psi^*$ is also a convex function.
+\s
+
+\textbf{Examples :}
+\begin{itemize}
+\item[(i)] $X_1 \sim N(0,1)$, then $\avg(e^{\lambda X_1}) = e^{\lambda^2 /2}$,  $\psi(\lambda) = \lambda^2 /2$ and $\psi^*(x) = x^2/2$. Hence
+\begin{align*}
+\frac{1}{n} \log (\prob(S_n \geq a)) \rightarrow -\frac{a^2}{2} \quad \forall a\geq 0
+\end{align*}
+Can check this directly, using the fact that $S_n \sim N(0,n)$ in this case.
+\item[(ii)] $X_1 \sim \text{Exp}(1)$, then
+\begin{align*}
+\avg(e^{\lambda X_1}) = \int_0^{\infty} e^{\lambda x} e^{-x} dx = \begin{cases}
+\begin{array}{ll}
+\infty & \text{if } \lambda \geq 1 \\
+\frac{1}{1-\lambda} & \text{if } \lambda <1
+\end{array}
+\end{cases}
+\end{align*} 
+so $\psi(\lambda) = -\log (1-\lambda)$ if $\lambda <1$ and $\infty$ otherwise, and $\psi^*(x) = x-1-\log(x)$ for $x>0$. Cram\'{e}r's theorem implies that
+\begin{align*}
+\frac{1}{n} \log \prob(S_n \geq na) \rightarrow -(a-1-\log (a)) \quad \forall a\geq 1
+\end{align*}
+On the other hand, $\text{Var}(X_1) =1 <\infty$, so $\frac{S_n -n}{\sqrt{n}} \rightarrow N(0,1)$ by CLT. So
+\begin{align*}
+\prob(S_n \geq n + a\sqrt{n}) \rightarrow \int_a^{\infty} \frac{1}{\sqrt{2\pi}} e^{-x^2/2} dx
+\end{align*}
+so Cram\'{e}r's theorem gives a result of a different flavour from CLT for distributions with bounded variation : while CLT provides a description for distribution near the average, Cram\'{e}r gives an explanation of tail distribution of $S_n$.
+\end{itemize}
+\s
+
+\begin{proof}
+\textbf{preparation for proof of Cram\'{e}r's theorem) } Let $\mu(B) = \prob(X_1 \in B)$. Exclude the easy case where $\mu = \delta_m$. Define for $\lambda \geq 0$ with $\psi(\lambda) < \infty$, the \textbf{tilted distribution} $\mu_{\lambda}$ by
+\begin{align*}
+\mu_{\lambda} (dx) \propto e^{\lambda x} \mu(dx)
+\end{align*}
+For $K \geq m = \avg(X_1)$, define the conditional distribution by
+\begin{align*}
+\mu_K(dx | x\leq K) \propto 1_{\{x\leq K\}} \mu(dx)
+\end{align*}
+The CGF(cumulant generating function) of $\mu_K$ is then given by
+\begin{align*}
+\psi_{K}(\lambda) = \log(\avg(e^{\lambda X_1} | X_1 \leq K))
+\end{align*}
+\end{proof}
+
+\s
 
 
 

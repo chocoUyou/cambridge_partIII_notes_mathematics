@@ -1,4 +1,4 @@
-This is XeTeX, Version 3.14159265-2.6-0.99998 (MiKTeX 2.9.6500) (preloaded format=xelatex 2018.2.4)  2 NOV 2018 19:52
+This is XeTeX, Version 3.14159265-2.6-0.99998 (MiKTeX 2.9.6500) (preloaded format=xelatex 2018.2.4)  5 NOV 2018 14:31
 entering extended mode
 **./analysis_PDEs.tex
 (analysis_PDEs.tex
@@ -687,14 +687,20 @@ Overfull \hbox (6.44315pt too wide) in paragraph at lines 1606--1607
 = 
  []
 
-[26] [27] [28] (analysis_PDEs.aux) ) 
-Here is how much of TeX's memory you used:
- 13439 strings out of 427839
- 270794 string characters out of 3151405
- 334079 words of memory out of 3000000
- 17144 multiletter control sequences out of 15000+200000
- 5946 words of font info for 39 fonts, out of 3000000 for 9000
- 1328 hyphenation exceptions out of 8191
- 61i,21n,84p,470b,335s stack positions out of 5000i,500n,10000p,200000b,50000s
+[26] [27]
+Overfull \hbox (6.44315pt too wide) in paragraph at lines 1755--1756
+[]\TU/lmr/m/n/10 ==============================================================
+= 
+ []
 
-Output written on analysis_PDEs.pdf (28 pages).
+[28] [29] [30] [31] (analysis_PDEs.aux) ) 
+Here is how much of TeX's memory you used:
+ 13593 strings out of 427839
+ 274222 string characters out of 3151405
+ 334089 words of memory out of 3000000
+ 17289 multiletter control sequences out of 15000+200000
+ 11087 words of font info for 60 fonts, out of 3000000 for 9000
+ 1328 hyphenation exceptions out of 8191
+ 61i,22n,84p,470b,1062s stack positions out of 5000i,500n,10000p,200000b,50000s
+
+Output written on analysis_PDEs.pdf (31 pages).
