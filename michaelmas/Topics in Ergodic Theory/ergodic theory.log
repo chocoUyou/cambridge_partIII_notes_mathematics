@@ -1,4 +1,4 @@
-This is XeTeX, Version 3.14159265-2.6-0.99998 (MiKTeX 2.9.6500) (preloaded format=xelatex 2018.2.4)  3 NOV 2018 13:00
+This is XeTeX, Version 3.14159265-2.6-0.99998 (MiKTeX 2.9.6500) (preloaded format=xelatex 2018.2.4)  6 NOV 2018 15:00
 entering extended mode
 **"./ergodic theory.tex"
 ("ergodic theory.tex"
@@ -475,23 +475,57 @@ File: pgflibraryarrows.meta.code.tex 2015/05/13 v3.0.1a (rcs-revision 1.13)
 \pgfarrowlength=\dimen169
 \pgfarrowwidth=\dimen170
 \pgfarrowlinewidth=\dimen171
-))) ("ergodic theory.aux")
+)))
+("C:\Program Files (x86)\MiKTeX 2.9\tex\latex\mathtools\mathtools.sty"
+Package: mathtools 2018/01/08 v1.21 mathematical typesetting tools
+
+("C:\Program Files (x86)\MiKTeX 2.9\tex\latex\tools\calc.sty"
+Package: calc 2014/10/28 v4.3 Infix arithmetic (KKT,FJ)
+\calc@Acount=\count123
+\calc@Bcount=\count124
+\calc@Adimen=\dimen172
+\calc@Bdimen=\dimen173
+\calc@Askip=\skip46
+\calc@Bskip=\skip47
+LaTeX Info: Redefining \setlength on input line 80.
+LaTeX Info: Redefining \addtolength on input line 81.
+\calc@Ccount=\count125
+\calc@Cskip=\skip48
+)
+("C:\Program Files (x86)\MiKTeX 2.9\tex\latex\mathtools\mhsetup.sty"
+Package: mhsetup 2017/03/31 v1.3 programming setup (MH)
+)
+LaTeX Info: Thecontrolsequence`\('isalreadyrobust on input line 129.
+LaTeX Info: Thecontrolsequence`\)'isalreadyrobust on input line 129.
+LaTeX Info: Thecontrolsequence`\['isalreadyrobust on input line 129.
+LaTeX Info: Thecontrolsequence`\]'isalreadyrobust on input line 129.
+\g_MT_multlinerow_int=\count126
+\l_MT_multwidth_dim=\dimen174
+\origjot=\skip49
+\l_MT_shortvdotswithinadjustabove_dim=\dimen175
+\l_MT_shortvdotswithinadjustbelow_dim=\dimen176
+\l_MT_above_intertext_sep=\dimen177
+\l_MT_below_intertext_sep=\dimen178
+\l_MT_above_shortintertext_sep=\dimen179
+\l_MT_below_shortintertext_sep=\dimen180
+)
+("ergodic theory.aux")
 \openout1 = `"ergodic theory.aux"'.
 
-LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 34.
-LaTeX Font Info:    ... okay on input line 34.
-LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 34.
-LaTeX Font Info:    ... okay on input line 34.
-LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 34.
-LaTeX Font Info:    ... okay on input line 34.
-LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 34.
-LaTeX Font Info:    ... okay on input line 34.
-LaTeX Font Info:    Checking defaults for TU/lmr/m/n on input line 34.
-LaTeX Font Info:    ... okay on input line 34.
-LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 34.
-LaTeX Font Info:    ... okay on input line 34.
-LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 34.
-LaTeX Font Info:    ... okay on input line 34.
+LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 39.
+LaTeX Font Info:    ... okay on input line 39.
+LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 39.
+LaTeX Font Info:    ... okay on input line 39.
+LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 39.
+LaTeX Font Info:    ... okay on input line 39.
+LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 39.
+LaTeX Font Info:    ... okay on input line 39.
+LaTeX Font Info:    Checking defaults for TU/lmr/m/n on input line 39.
+LaTeX Font Info:    ... okay on input line 39.
+LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 39.
+LaTeX Font Info:    ... okay on input line 39.
+LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 39.
+LaTeX Font Info:    ... okay on input line 39.
 
 *geometry* detected driver: pdftex
 *geometry* verbose mode - [ preamble ] result:
@@ -527,25 +561,25 @@ LaTeX Font Info:    ... okay on input line 34.
 * (1in=72.27pt=25.4mm, 1cm=28.453pt)
 
 ABD: EveryShipout initializing macros
-Overfull \hbox (177.60312pt too wide) in paragraph at lines 71--74
+Overfull \hbox (177.60312pt too wide) in paragraph at lines 76--79
 \TU/lmr/m/n/10 ================================================================
 =====================
  []
 
-LaTeX Font Info:    Try loading font information for U+msa on input line 77.
+LaTeX Font Info:    Try loading font information for U+msa on input line 82.
 ("C:\Program Files (x86)\MiKTeX 2.9\tex\latex\amsfonts\umsa.fd"
 File: umsa.fd 2013/01/14 v3.01 AMS symbols A
 )
-LaTeX Font Info:    Try loading font information for U+msb on input line 77.
+LaTeX Font Info:    Try loading font information for U+msb on input line 82.
 
 ("C:\Program Files (x86)\MiKTeX 2.9\tex\latex\amsfonts\umsb.fd"
 File: umsb.fd 2013/01/14 v3.01 AMS symbols B
 )
-LaTeX Font Info:    Try loading font information for OMS+rsfs on input line 77.
+LaTeX Font Info:    Try loading font information for OMS+rsfs on input line 82.
 
 
 ("C:\Program Files (x86)\MiKTeX 2.9\tex\latex\calrsfs\omsrsfs.fd")
-LaTeX Font Info:    Try loading font information for U+eus on input line 77.
+LaTeX Font Info:    Try loading font information for U+eus on input line 82.
 
 ("C:\Program Files (x86)\MiKTeX 2.9\tex\latex\amsfonts\ueus.fd"
 File: ueus.fd 2013/01/14 v3.01 Euler Script
@@ -553,19 +587,19 @@ File: ueus.fd 2013/01/14 v3.01 Euler Script
 
 
 ]
-Overfull \hbox (177.60312pt too wide) in paragraph at lines 165--168
+Overfull \hbox (177.60312pt too wide) in paragraph at lines 170--173
 []\TU/lmr/m/n/10 ==============================================================
 =======================
  []
 
 [2]
-Overfull \hbox (325.42313pt too wide) in paragraph at lines 272--275
+Overfull \hbox (325.42313pt too wide) in paragraph at lines 277--280
 []\TU/lmr/m/n/10 ==============================================================
 ==========================================
  []
 
 [3] [4]
-Overfull \hbox (35.31023pt too wide) in paragraph at lines 346--347
+Overfull \hbox (35.31023pt too wide) in paragraph at lines 351--352
 \TU/lmr/m/n/10 shows $\OML/cmm/m/it/10 B\OMS/cmsy/m/n/10 n\OML/cmm/m/it/10 A \O
 MS/cmsy/m/n/10 ^^Z [] \OML/cmm/m/it/10 T[]A\OMS/cmsy/m/n/10 n\OML/cmm/m/it/10 T
 []$\TU/lmr/m/n/10 . But $\OML/cmm/m/it/10 T[]A\OMS/cmsy/m/n/10 n\OML/cmm/m/it/1
@@ -575,55 +609,55 @@ MS/cmsy/m/n/10 ^^Z [] \OML/cmm/m/it/10 T[]A\OMS/cmsy/m/n/10 n\OML/cmm/m/it/10 T
  []
 
 
-Overfull \hbox (60.9031pt too wide) in paragraph at lines 374--375
+Overfull \hbox (60.9031pt too wide) in paragraph at lines 379--380
 []\TU/lmr/m/n/10 ==============================================================
 ======== 
  []
 
 [5] [6] [7]
-Overfull \hbox (60.9031pt too wide) in paragraph at lines 552--553
+Overfull \hbox (60.9031pt too wide) in paragraph at lines 557--558
 []\TU/lmr/m/n/10 ==============================================================
 ======== 
  []
 
 [8] [9]
-Overfull \hbox (123.14316pt too wide) in paragraph at lines 683--684
+Overfull \hbox (123.14316pt too wide) in paragraph at lines 688--689
 []\TU/lmr/m/n/10 ==============================================================
 ================ 
  []
 
 [10]
-Overfull \hbox (68.68314pt too wide) in paragraph at lines 744--745
+Overfull \hbox (68.68314pt too wide) in paragraph at lines 749--750
 []\TU/lmr/m/n/10 ==============================================================
 ========= 
  []
 
 [11]
-Overfull \hbox (60.9031pt too wide) in paragraph at lines 785--786
+Overfull \hbox (60.9031pt too wide) in paragraph at lines 790--791
 []\TU/lmr/m/n/10 ==============================================================
 ======== 
  []
 
 [12] [13]
-Overfull \hbox (60.9031pt too wide) in paragraph at lines 916--917
+Overfull \hbox (60.9031pt too wide) in paragraph at lines 921--922
 []\TU/lmr/m/n/10 ==============================================================
 ======== 
  []
 
 [14] [15]
-Overfull \hbox (60.9031pt too wide) in paragraph at lines 1039--1040
+Overfull \hbox (60.9031pt too wide) in paragraph at lines 1044--1045
 []\TU/lmr/m/n/10 ==============================================================
 ======== 
  []
 
 [16] [17]
-Overfull \hbox (60.9031pt too wide) in paragraph at lines 1155--1156
+Overfull \hbox (60.9031pt too wide) in paragraph at lines 1160--1161
 []\TU/lmr/m/n/10 ==============================================================
 ======== 
  []
 
 [18]
-Overfull \hbox (38.02707pt too wide) in paragraph at lines 1223--1224
+Overfull \hbox (38.02707pt too wide) in paragraph at lines 1228--1229
 []\TU/lmr/m/it/10 General case : \TU/lmr/m/n/10 Let $\OML/cmm/m/it/10 j$ \TU/lm
 r/m/n/10 be maximal such that $\OML/cmm/m/it/10 a[]$ \TU/lmr/m/n/10 is irration
 al. Let $\OML/cmm/m/it/10 q \OMS/cmsy/m/n/10 2 \U/msb/m/n/10 Z[]$ \TU/lmr/m/n/1
@@ -632,19 +666,19 @@ al. Let $\OML/cmm/m/it/10 q \OMS/cmsy/m/n/10 2 \U/msb/m/n/10 Z[]$ \TU/lmr/m/n/1
  []
 
 [19]
-Overfull \hbox (60.9031pt too wide) in paragraph at lines 1279--1280
+Overfull \hbox (60.9031pt too wide) in paragraph at lines 1284--1285
 []\TU/lmr/m/n/10 ==============================================================
 ======== 
  []
 
 [20] [21] [22]
-Overfull \hbox (60.9031pt too wide) in paragraph at lines 1431--1432
+Overfull \hbox (60.9031pt too wide) in paragraph at lines 1436--1437
 []\TU/lmr/m/n/10 ==============================================================
 ======== 
  []
 
 [23] [24]
-Overfull \hbox (60.9031pt too wide) in paragraph at lines 1547--1548
+Overfull \hbox (60.9031pt too wide) in paragraph at lines 1552--1553
 []\TU/lmr/m/n/10 ==============================================================
 ======== 
  []
@@ -660,25 +694,31 @@ LaTeX Warning: `h' float specifier changed to `ht'.
 File: 2.png Graphic file (type bmp)
 <2.png>
 
-Overfull \hbox (60.9031pt too wide) in paragraph at lines 1688--1689
+Overfull \hbox (60.9031pt too wide) in paragraph at lines 1693--1694
 []\TU/lmr/m/n/10 ==============================================================
 ======== 
  []
 
 [27] [28]
-Overfull \hbox (60.9031pt too wide) in paragraph at lines 1785--1786
+Overfull \hbox (60.9031pt too wide) in paragraph at lines 1790--1791
 []\TU/lmr/m/n/10 ==============================================================
 ======== 
  []
 
-[29] [30] [31] ("ergodic theory.aux") ) 
+[29] [30]
+Overfull \hbox (60.9031pt too wide) in paragraph at lines 1901--1903
+[]\TU/lmr/m/n/10 ==============================================================
+======== 
+ []
+
+[31] [32] [33] ("ergodic theory.aux") ) 
 Here is how much of TeX's memory you used:
- 13007 strings out of 427839
- 263922 string characters out of 3151405
- 320382 words of memory out of 3000000
- 16713 multiletter control sequences out of 15000+200000
+ 13553 strings out of 427839
+ 273574 string characters out of 3151405
+ 333963 words of memory out of 3000000
+ 17250 multiletter control sequences out of 15000+200000
  12271 words of font info for 64 fonts, out of 3000000 for 9000
  1328 hyphenation exceptions out of 8191
- 61i,21n,84p,960b,1018s stack positions out of 5000i,500n,10000p,200000b,50000s
+ 61i,21n,84p,960b,1019s stack positions out of 5000i,500n,10000p,200000b,50000s
 
-Output written on ergodic theory.pdf (31 pages).
+Output written on ergodic theory.pdf (33 pages).

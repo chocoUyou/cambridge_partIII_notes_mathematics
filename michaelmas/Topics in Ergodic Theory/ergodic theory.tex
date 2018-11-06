@@ -14,6 +14,11 @@
 \usepackage{tikz-cd}  
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
+%%%%%%%%%%for writing large parallel%%%%%%
+\usepackage{mathtools}
+\DeclarePairedDelimiter\bignorm{\lVert}{\rVert}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
 %%%%%%%%%%for changing margin
 \def\changemargin#1#2{\list{}{\rightmargin#2\leftmargin#1}\item[]}
 \let\endchangemargin=\endlist 
@@ -51,7 +56,7 @@
 \newcommand{\eop}{\hfill  \textsl{(End of proof)} $\square$} %end of proof
 
 \newcommand{\intN}{\mathbb{Z}_N}
-\newcommand{\norms}[2]{\parallel #1 \parallel_{#2}}
+\newcommand{\norms}[2]{\bignorm[\big]{#1}_{#2}}
 \newcommand{\abs}[1]{\big| #1 \big|}
 \newcommand{\avg}{\mathbb{E}}
 \newcommand{\borel}{\mathscr{B}}
@@ -1865,7 +1870,7 @@ where $\xi = \{A_1, A_2, \cdots \}$.
 
 \quad The \textbf{conditional entropy} of $\xi = \{A_1, A_2, \cdots \}$ relative to $\eta = \{B_1, B_2, \cdots \}$ is 
 \begin{align*}
-H_{\mu} (\xi | \eta) = \sum_{n=1}^{\infty} \mu(B_n) \cdot H(\frac{\mu(A_1 \cap B_n)}{\mu(B_n)},\frac{\mu(A_2 \cap B_n)}{\mu(B_n)},\cdots )
+H_{\mu} (\xi | \eta) = \sum_{n=1}^{\infty} \mu(B_n) \cdot H\Big( \frac{\mu(A_1 \cap B_n)}{\mu(B_n)},\frac{\mu(A_2 \cap B_n)}{\mu(B_n)},\cdots \Big)
 \end{align*}
 This is the average average of entropy conditioned on each partition of 
 \s
@@ -1884,16 +1889,157 @@ $\star$ Very Useful Interpretations :
 \end{itemize}
 \begin{proof}
 \pf \begin{itemize}
-\item (1 )is trivial and (2) is going to be proved in recent future using Jensen's inequality.
+\item (1) is trivial and (2) is going to be proved shortly using Jensen's inequality.
 \item (3) and (4) are going to be proved later, in more general setting.
 \end{itemize}
 \end{proof}
 \s
 
 \textbf{Khinchin)} Let $H_{\cdot}(\cdot) : P(X) \times \borel$ be a function satisfying the conditions (1)-(4) of the lemma, where $P(X)$ is the set of Borel probability measures on $(X,\borel)$. Then $H_{\cdot}(\cdot)$ is uniquely determined by these properties, up to a multiplication of a scalar factor.
+\s
 
+\newday
+\s
 
+(6th November, Tuesday)
 
+\defi A function $[a,b] \rightarrow \reals \cup \{ \infty \}$ is \textbf{convex}, if $\forall x \in (a,b)$, $\exists \alpha_x \in \reals$ such that
+\begin{align*}
+f(y) \geq f(x) + \alpha_x (y-x) \quad \forall y \in [a,b]
+\end{align*}
+$f$ is \textbf{strictly convex} if the equality occurs only for $x=y$. 
+\s
 
+\textbf{Remark :} If $f$ is $C^2([a,b])$ and $f''(x) >0$ for all $x\in (a,b)$, then $f$ is strictly convex.
+\s
 
+\textbf{Jensen's inequality)} Let $f:[a,b] \rightarrow \reals \cup \{\infty\}$ be a convex function. Let $p_1, p_2, \cdots$ be a probability vector (possibly countably infinite). Let $x_1, x_2, \cdots \in [a,b]$. Then
+\begin{align*}
+f(p_1 x_1 + p_2 x_2 + \cdots) \leq \sum_i p_i f(x_i)
+\end{align*}
+If $f$ is strictly convex, then equality occurs \emph{iff} those $x_i$ for which $p_i >0$ coincide.
+\s
+
+\textbf{Claim :} Let $(X,\borel, \mu)$ be a probability space. Let $\xi$ be a measurable partition with $k$ atoms. Then
+\begin{align*}
+H_{\mu}(\xi) \leq \log (k)
+\end{align*}
+and equality occurs only if each atom of $\xi$ has measures $\frac{1}{k}$.
+\begin{proof}
+\pf Apply Jensen's inequality to the function $x\mapsto x \log (x)$ with weights $p_i = \frac{1}{k}$ at the point $\mu(A_i)$, where $A_i$ are the atoms of $\xi$. Note,
+\begin{align*}
+& \sum p_i \mu(A_i) = \frac{1}{k} \sum \mu(A_i) = \frac{1}{k} \\
+\Rightarrow \quad & \frac{1}{k} \log (\frac{1}{k}) \leq \sum \frac{1}{k} \mu(A_i) \log (\mu(A_i))
+\end{align*}
+so
+\begin{align*}
+\log k \geq \sum (-1) \mu(A_i) \log \mu(A_i) = H_{\mu}(\xi)
+\end{align*}
+
+\eop
+\end{proof}
+
+\s
+
+\defi Let $(X, \borel, \mu)$ be a probability space and let $\xi$ be a countable measurable partition. The \textbf{information function} of $\xi$ is
+\begin{align*}
+I_{\mu} (\xi) : & X \rightarrow \reals \cup \{\infty \} \\
+& x\mapsto -\log \mu \big( [x]_{\xi} \big)
+\end{align*}
+where $[x]_{\xi}$ is the atom of $\xi$ where $x$ belongs.
+
+\quad If $\eta$ is another partition, then the \textbf{conditional information function} of $\xi$ relative to $x$ is
+\begin{align*}
+I_{\mu} (\xi | \eta) (x)  = - \log \frac{\mu \big( [x]_{\xi \vee \eta} \big)}{\mu \big( [x]_{\eta} \big)}
+\end{align*}
+\s
+
+It is apparent that the information function is related to entropy. This is summarized in the following lemma.
+\s
+
+\lem With notation as above,
+\begin{align*}
+& H_{\mu}(\xi) = \int I_{\mu} (\xi) d \mu \\
+& H_{\mu}(\xi | \eta) = \int I_{\mu} (\xi | \eta) d \mu
+\end{align*}
+\begin{proof}
+\pf The first equality is direct from the definition. For the second equality,
+\begin{align*}
+I_{\mu} (\xi |\eta) d\mu &= \sum_{A\in \xi, B \in \eta} \int_{A \cap B} I_{\mu}(\xi | \eta) d\mu = - \sum_{A \in \xi, B\in \eta} \mu(A\cap B) \log \Big( \frac{\mu(A \cap B)}{\mu(B)}\Big) \\
+&= -\sum_{B\in \eta} \mu(B) \cdot \sum_{A\in \xi} \frac{\mu(A\cap B)}{\mu(B)} \log \Big( \frac{\mu(A\cap B)}{\mu(B)} \Big)
+\end{align*}
+
+\eop
+\end{proof}
+\s
+
+One reason we use information function is that it is much easier to prove chain rule with information function.
+\s
+
+\lem \emph{(Chain rule)} Let $(X,\borel, \mu)$ be a probability space and let $\xi, \eta, \lambda$ be countable measurable partitions. Then
+\begin{align*}
+I_{\mu} (\xi \vee \eta | \lambda)(x) &= I_{\mu}(\xi | \lambda) (x) + I_{\mu}(\eta | \xi \vee \lambda)(x) \quad \forall x \in X \\
+H_{\mu} (\xi \vee \eta | \lambda) &= H_{\mu}(\xi | \lambda)  + H_{\mu}(\eta | \xi \vee \lambda)
+\end{align*}
+\begin{proof}
+\pf For the first equality,
+\begin{align*}
+I_{\mu} (\xi \vee \eta |\lambda) (x)  &= \log \frac{\mu ([x]_{\lambda})}{\mu([x]_{\xi \vee \eta \vee \lambda})} \\
+I_{\mu} (\xi |\lambda) (x)  &= \log \frac{\mu ([x]_{\lambda})}{\mu([x]_{\xi \vee \lambda})} \\
+I_{\mu} (\eta |\lambda \vee \xi) (x)  &= \log \frac{\mu ([x]_{\xi \vee \lambda})}{\mu([x]_{\xi \vee \eta \vee \lambda})} \\
+\end{align*}
+and this proves the chain rule for information function.
+
+\quad The second equality follows from the first equality by integration the information function (as in the previous lemma).
+
+\eop
+\end{proof}
+\s
+
+The following inequality is very important in theory of mathematics of information.
+\s
+
+\lem Let notation be as above. Then
+\begin{align*}
+H_{\mu}(\xi | \eta) \geq H_{\mu}(\xi | \eta \vee \lambda)
+\end{align*}
+
+"The amount of information obtained from $\xi$ given $\eta$ is larger than information obtained from $\xi$ given $\eta$ and $\lambda$."
+\begin{proof}
+\pf 
+\begin{align*}
+H_{\mu}(\xi | \eta \vee \lambda) &= \sum_{A \in \xi, B \in \eta, C \in \lambda} \mu(A\cap B \cap C) \log \Big( \frac{\mu(B\cap C)}{\mu(A\cap B \cap C)}\Big) \\
+H_{\mu}(\xi | \eta ) &= \sum_{A \in \xi, B \in \eta} \mu(A\cap B ) \log \Big( \frac{\mu(B)}{\mu(A\cap B )}\Big)
+\end{align*}
+It is enough to show that for all fixed $A \in \xi$, $B\in \eta$, we have
+\begin{align*}
+\mu(A\cap B) \log \Big( \frac{\mu(B)}{\mu(A\cap B)}\Big) \geq \sum_{C \in \lambda} \mu(A \cap B \cap C) \log \Big( \frac{\mu(B\cap C)}{\mu(A\cap B \cap C)} \Big)
+\end{align*}
+To see this, apply Jensen's inequality for $x\mapsto x\log x$ at points $\frac{\mu(A\cap B\cap C)}{\mu(B \cap C)}$ for $C \in \lambda$ with weights $\frac{\mu(B\cap C)}{\mu(B)}$. Write
+\begin{align*}
+\sum_{C\in \lambda } \frac{\mu(B\cap C)}{\mu(B)} \cdot \frac{\mu(A\cap B \cap C)}{\mu(B\cap C)} = \frac{1}{\mu(B)} \sum_{C\in \lambda} \mu(A\cap B \cap C) = \frac{\mu(A\cap B)}{\mu(B)}
+\end{align*}
+and application of Jensen gives
+\begin{align*}
+\frac{\mu(A\cap B)}{\mu(B)}\cdot \log \Big( \frac{\mu(A\cap B)}{\mu(B)} \Big) \leq \sum_{C\in \lambda} \frac{\mu(B\cap C)}{\mu(B)} \cdot \log\Big( \frac{\mu(A\cap B \cap C)}{\mu(B\cap C)} \Big)
+\end{align*}
+and therefore
+\begin{align*}
+\mu(A\cap B)\cdot \log \Big( \frac{\mu(A\cap B)}{\mu(B)} \Big) \leq \sum_{C\in \lambda} \mu(B\cap C) \cdot \log \Big( \frac{\mu(A\cap B \cap C)}{\mu(B\cap C)} \Big)
+\end{align*}
+
+\eop
+\end{proof}
+\s
+
+\cor $H_{\mu}(\xi) \leq H_{\mu}(\xi \vee \eta) \leq H_{\mu}(\xi) + H_{\mu}(\eta)$.
+\begin{proof}
+\pf Using the chain rule, obtain
+\begin{align*}
+H_{\mu}(\xi \vee \eta) = H_{\mu} (\xi)  + H_{\mu}(\eta | \xi)
+\end{align*}
+and form the previous lemma, has $H_{\mu}(\eta |\xi) \leq H_{\mu}(\eta)$
+
+\eop
+\end{proof}
 \end{document}

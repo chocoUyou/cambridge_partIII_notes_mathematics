@@ -9,7 +9,7 @@
 \usepackage{calrsfs}
 \usepackage[left=2cm,right=2cm,top=2cm,bottom=2cm]{geometry}
 \usepackage[mathscr]{euscript}
-\usepackage{mathrsfs}
+%\usepackage{mathrsfs}
 
 %%%%%%%%%for adding margins%%%%%%%%%
 \usepackage{scrextend}
@@ -131,7 +131,7 @@ Let us write $\norms{f}{p}$ for $(\mathbb{E}_x |f(x)|^p)^{1/p}$ and call the res
 \textbf{Important convention} : we use averages for the "original functions" in "physical space" and sums for their Fourier transforms in "frequency spaces".
 \s
 
-\lemnum{1} (Parseval's identity) If $f,g:\mathbb{Z}_N \rightarrow \mathbb{C}$, then $\langle \hat{f},\hat{g}\rangle =\langle f,g\rangle$.
+\lemnum{1} (Parseval's identity) If $f,g:\mathbb{Z}_N \rightarrow \mathbb{C}$, then $\langle \hat{f},\hat{g}\rangle =\langle f,g\rangle$. (be aware that inner product are not defined the same in the physical space and the frequency space)
 \begin{itemize}
 \item[ ] \pf
 \begin{align*}
@@ -677,7 +677,7 @@ If $|A|=n$, then the number of additive quadruples in $A$ is at most $n^3$ (this
 \begin{proof}
 \pf Choose $y\in [n]$ uniformly at random, and set $B = \{i: y\in A_i \}$. The probability that we pick both $i$ and $j$ is $|A_i \cap A_j|/n$, which we can write as $\langle A_i, A_j \rangle$. So the expected number of pairs we pick is 
 \begin{align*}
-\sum_{i,j} \langle A_i, A_j \rangle = \norms{\sum_i A_i}{2}^2 \geq \norms{\sum_i A_i}{1}^2 =(\delta m)^2 = \delta^2 m^2
+\avg|B|^2 = \sum_{i,j} \langle A_i, A_j \rangle = \norms{\sum_i A_i}{2}^2 \geq \norms{\sum_i A_i}{1}^2 =(\delta m)^2 = \delta^2 m^2
 \end{align*}
 The probability that we pick $i,j$ with $|A_i \cap A_j| \leq \eta \delta^2 n/2$ is at most $\eta \delta^2 /2$. Call such a pair $(i,j)$ \textbf{bad}. Then
 \begin{align*}
@@ -959,19 +959,105 @@ Then $A$ and B have density $\delta$ (by regularity) and
 \begin{align*}
 \Big| \avg_{x,y} G(x,y) A(x) B(y) -\delta^3 \Big| > \delta^3 c_1
 \end{align*}
-\s
-
-\emph{(without assumption of $G$ being regular)} 
-
 \end{itemize}
 \end{proof}
+\s
 
+\newday
 
+(6th November, Tuesday)
+\s
 
+\begin{proof}
+\textbf{proof continued)} \emph{(without assumption of $G$ being regular)} If we have
+\begin{align*}
+\avg_{x_1, x_2, y_1, y_2} G(x_1, y_1) G(x_1,y_2) G(x_2,y_1) G(x_2,y_2) \geq \delta^4 + c\delta^4
+\end{align*}
+then
+\begin{align*}
+\begin{array}{ll}
+\text{\emph{either}} & \avg_{x_1, x_2, y_1, y_2} G(x_1, y_1) G(x_1,y_2) G(x_2,y_1) G(x_2,y_2) \geq \delta \avg_{x_1, x_2, y_1, y_2} G(x_1,y_2) G(x_2,y_1) G(x_2,y_2) + \frac{c}{2} \delta^4 \\
+\text{\emph{or}} & \avg_{x_1, x_2, y_1, y_2} G(x_1,y_2) G(x_2,y_1) G(x_2,y_2) \geq \delta^3 + \frac{c}{2}\delta^3 = \delta \avg_{x_1, x_2, y_1, y_2} G(x_1,y_2) G(x_2,y_1) + \frac{c}{2}\delta^3
+\end{array}
+\end{align*}
+In the first case, we can rewrite the inequality as
+\begin{align*}
+\avg_{x_1, x_2, y_1, y_2} \big( G(x_1,y_1) -\delta \big) G(x_1,y_2) G(x_2,y_1) G(x_2,y_2) \geq \frac{c}{2} \delta^4
+\end{align*}
+Since $G(x_2, y_2)=1$ with probability $\delta$, it follows that there exist $x_2, y_2$ such that
+\begin{align*}
+\avg_{x_2, y_2} \big( G(x_1,y_1) -\delta \big) G(x_1,y_2) G(x_2,y_1) \geq \frac{c\delta^3}{2}
+\end{align*}
+Then, as before, take $A = N(y_2)= \{ x:G(x,y_2)=1 \}$, $B=N(x_2)$ and we get
+\begin{align*}
+\Big| \avg_{x,y} G(x,y) A(x)B(y) - \delta \frac{|A|}{|X|} \frac{|B|}{|Y|} \Big| \geq \frac{c\delta^3}{2}
+\end{align*}
+which contradicts the condition (iii).
 
+\quad In the second case, we can rewrite the inequality as
+\begin{align*}
+\avg_{x_1, x_2, y_1, y_2} G(x_1,y_2) G(x_2,y_1) (G(x_2,y_2) - \delta) \geq \frac{c\delta^3}{2}
+\end{align*}
+It follows that there exist $x_1, y_1$ such that
+\begin{align*}
+\avg_{x_2, y_2} G(x_1,y_2) G(x_2,y_1) G(x_2,y_2) - \delta \avg_{x_2, y_2} G(x_1,y_2) G(x_2,y_1) \geq \frac{c\delta^3}{2}
+\end{align*}
+This time set $A = N(y_1)$, $B=N(x_1)$ then we have contradiction to condition (iii).
 
+\eop
+\end{proof}
 
+\lemnum{7} \emph{(Counting random)} Let $G$ be a $k$-partite graph with vertex sets $X_1, \cdots, X_k$. Write $G(X_i, X_j)$ for the induced bipartite subgraph with vertex sets $(X_i, X_j)$. Suppose that the density of $G(X_i, X_j)$ is $\alpha_{ij}$ and that writing $G_{ij}$ for the restriction $G_{ij}$ for the restriction of $G$ to $X_i \times X_j$, $\boxnorm{G_{ij} - \alpha_{ij}} \leq c$. Let $H$ be a graph with vertex set $[k]$ and let $x_i \in X_i$ be chosen independently at random. Then
+\begin{align*}
+\Big| \avg_{x_1, \cdots, x_k} \prod_{ij \in E(H)} G_{ij} (x_i, x_j) - \prod_{ij\in E(H)} \alpha_{ij} \Big| \leq 2^{|E(H)|} c
+\end{align*}
+(can do better than this, but it is easier to prove with bound $2^{|E(H)|} c$.)
+\begin{proof}
+\pf Let $G_{ij} = f_{ij} + \alpha_{ij}$. Then $\boxnorm{f_{ij}} \leq c$ for all $i,j$. Then
+\begin{align*}
+\avg \prod_{ij \in E(H)} G_{ij}(x_i,x_j) = \avg \prod_{ij\in E(H)} (\alpha_{ij} + f_{ij}(x_i, x_j))
+\end{align*}
+The main term is $\prod_{ij\in E(H)} \alpha_{ij}$ (when we expand the product into $2^{|E(H)|})$ terms). Every other term can be written in the form
+\begin{align*}
+\avg_{x_i, x_j} f_{ij}(x_i,x_j) u(x_i) v(x_j)
+\end{align*}
+with $\norms{u}{\infty},\norms{v}{\infty} \leq 1$ if we fix all variables other than $x_i$ and $x_j$. Therefore, by the box-norm inequality, it has size at most $c$, and this remains true after averaging over the other variables. 
 
+\eop
+\end{proof}
+\s
+
+\subsection*{Szemer\'{e}di's Regularity Lemma}
+
+Szemer\'{e}di's regularity lemma says that almost every $k$-partite graph is actually very close to a quasirandom graph. We are not going to state the result in the section and delay the proof for later.
+\s
+
+Let $X$ be a finite set and let $\mathscr{P}= \{ X_1, \cdots, X_k \}$ be a partition $X=X_1 \cup \cdots \cup X_k$. Given a function $f: X\rightarrow \reals$, define the conditional expectation of $f$ with respect to $\mathscr{P}$ by
+\begin{align*}
+\avg [f | \mathscr{P}] = \avg[f|\mathscr{P}](x) = \avg[f(y) | y \text{ is in the same cell as } x]
+\end{align*}
+Let us temporarily write $Pf$ for $\avg[f|\mathscr{P}]$ ($P$ for projection).
+\s
+
+\textbf{Remarks :}
+\begin{itemize}
+\item[(i)] Note that $\avg[\avg[f|\mathscr{P}]] = \avg f$.
+\item[(ii)] $\langle f, Pf \rangle =  \avg_x [ f(x) \avg[f|\mathscr{P}](x) ] = \avg [\avg[f|\mathscr{P}]^2 ] = \langle Pf, Pf \rangle$. Therefore, $\langle (I-P)f, Pf \rangle =0$.
+\item[(iii)] $P(Pf) = \avg[\avg[f|\mathscr{P}]|\mathscr{P}] = \avg[f| \mathscr{P}] = Pf$. Together with (ii), $P$ is an orthogonal projection.
+\item[(iv)] It follows that
+\begin{align*}
+\avg f^2 = \norms{f}{2}^2 = \norms{Pf}{2}^2 + \norms{(I-P)f}{2}^2 \geq \norms{Pf}{2}^2 = \avg[\avg[f|\mathscr{P}]^2]
+\end{align*}
+So the norm decreases in taking conditional expectation.
+\item[(v)] Let $\mathscr{Q}$ be a refinement of $\mathscr{P}$. Then
+\begin{align*}
+\avg[\avg[f|\mathscr{Q}]|\mathscr{P}] = \avg[f| \mathscr{P}]
+\end{align*}
+It follows from (iv) applied to $\avg[f|\mathscr{Q}]$ that
+\begin{align*}
+\avg[\avg[f|\mathscr{Q}]^2 ] \geq \avg [ \avg[f|\mathscr{P}]^2 ]
+\end{align*}
+\end{itemize}
 
 
 

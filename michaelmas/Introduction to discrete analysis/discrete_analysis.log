@@ -1,4 +1,4 @@
-This is XeTeX, Version 3.14159265-2.6-0.99998 (MiKTeX 2.9.6500) (preloaded format=xelatex 2018.2.4)  3 NOV 2018 14:43
+This is XeTeX, Version 3.14159265-2.6-0.99998 (MiKTeX 2.9.6500) (preloaded format=xelatex 2018.2.4)  6 NOV 2018 14:14
 entering extended mode
 **./discrete_analysis.tex
 (discrete_analysis.tex
@@ -136,10 +136,6 @@ Package: ifxetex 2010/09/12 v0.6 Provides ifxetex conditional
 Package: euscript 2009/06/22 v3.00 Euler Script fonts
 LaTeX Font Info:    Overwriting math alphabet `\EuScript' in version `bold'
 (Font)                  U/eus/m/n --> U/eus/b/n on input line 33.
-)
-("C:\Program Files (x86)\MiKTeX 2.9\tex\latex\jknappen\mathrsfs.sty"
-Package: mathrsfs 1996/01/01 Math RSFS package v1.0 (jk)
-\symrsfs=\mathgroup7
 )
 ("C:\Program Files (x86)\MiKTeX 2.9\tex\latex\koma-script\scrextend.sty"
 Package: scrextend 2018/03/30 v3.25 KOMA-Script package (extend other classes w
@@ -654,12 +650,7 @@ File: umsb.fd 2013/01/14 v3.01 AMS symbols B
 LaTeX Font Info:    Try loading font information for OMS+rsfs on input line 125
 .
 
-("C:\Program Files (x86)\MiKTeX 2.9\tex\latex\calrsfs\omsrsfs.fd")
-LaTeX Font Info:    Try loading font information for U+rsfs on input line 125.
-
-("C:\Program Files (x86)\MiKTeX 2.9\tex\latex\jknappen\ursfs.fd"
-File: ursfs.fd 1998/03/24 rsfs font definition file (jk)
-) [1
+("C:\Program Files (x86)\MiKTeX 2.9\tex\latex\calrsfs\omsrsfs.fd") [1
 
 
 ]
@@ -694,7 +685,11 @@ Overfull \hbox (14.22314pt too wide) in paragraph at lines 604--605
 == 
  []
 
-[8] [9]
+[8]
+LaTeX Font Info:    Try loading font information for U+eus on input line 651.
+ ("C:\Program Files (x86)\MiKTeX 2.9\tex\latex\amsfonts\ueus.fd"
+File: ueus.fd 2013/01/14 v3.01 Euler Script
+) [9]
 Overfull \hbox (14.22314pt too wide) in paragraph at lines 671--672
 []\TU/lmr/m/n/10 ==============================================================
 == 
@@ -897,14 +892,31 @@ LaTeX Font Warning: Command \tiny invalid in math mode on input line 935.
 
 LaTeX Font Warning: Command \tiny invalid in math mode on input line 940.
 
-[14] [15] (discrete_analysis.aux) ) 
+[14]
+Overfull \hbox (14.22314pt too wide) in paragraph at lines 966--967
+[]\TU/lmr/m/n/10 ==============================================================
+== 
+ []
+
+
+Overfull \hbox (22.5383pt too wide) detected at line 982
+[]
+ []
+
+
+LaTeX Font Warning: Command \tiny invalid in math mode on input line 1010.
+
+
+LaTeX Font Warning: Command \tiny invalid in math mode on input line 1016.
+
+[15] [16] (discrete_analysis.aux) ) 
 Here is how much of TeX's memory you used:
  15093 strings out of 427839
- 297661 string characters out of 3151405
- 395182 words of memory out of 3000000
- 18771 multiletter control sequences out of 15000+200000
- 5930 words of font info for 37 fonts, out of 3000000 for 9000
+ 297622 string characters out of 3151405
+ 395111 words of memory out of 3000000
+ 18767 multiletter control sequences out of 15000+200000
+ 6546 words of font info for 42 fonts, out of 3000000 for 9000
  1328 hyphenation exceptions out of 8191
  72i,19n,88p,884b,405s stack positions out of 5000i,500n,10000p,200000b,50000s
 
-Output written on discrete_analysis.pdf (15 pages).
+Output written on discrete_analysis.pdf (16 pages).
