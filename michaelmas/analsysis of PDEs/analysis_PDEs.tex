@@ -1916,8 +1916,170 @@ B[u,v] = \big( f,v \big)_{L^2(U)} \quad \forall v\in H_0^1 (U)
 A synopsis for existential proof of a PDE : will first show that weak solutions always exist, and provided sufficient smoothness of $f$, the weak solution is in fact smooth.
 \s
 
+\newday
 
+(7th November, Wednesday)
+\s
 
+(Example class 8th November, Thursday) - group A : 2:30 - 4:00, group B : 4:00 - 5:30 pm
+\s
+
+To prove existence of weak solutions, we use some structure of Hilbert spaces. Here, we assume some results from Part II Linear Analysis course, or any first course in functional analysis.
+\s
+
+\thm \emph{(Lax-Milgram)} Let $H$ be a (real) Hilbert space, with inner product $(\cdot, \cdot)$ and suppose
+\begin{align*}
+B : H\times H \rightarrow \reals
+\end{align*}
+is a bilinear mapping such that $\exists$ $\alpha, \beta >0$ such that
+\begin{itemize}
+\item[(i)] (\textbf{Boundedness}) $|B[u,v]| \leq \alpha \norms{u}{} \norms{v}{}$ for all $u,v \in H$. 
+\item[(ii)] (\textbf{Coercivity}) $\beta \norms{u}{}^2 \leq B[u,v]$ for all $u \in H$ 
+\end{itemize}
+Finally, let $f: H\rightarrow \reals$ be a bounded linear functional on $H$. Then there exists a unique $u\in H$ such that
+\begin{align*}
+B[u,v] = \langle f, v\rangle \quad \forall v \in H
+\end{align*}
+(Here, $\langle f,v\rangle$ means $f(v)$ is a pairing of $H$ with its dual).
+\begin{proof}
+\pf \begin{itemize}
+\item[1.] For each fixed $u\in H$, the map $v\mapsto B[u,v]$ is a bounded linear functional on $H$, so by the \emph{Riesz representation theorem}, $\exists$ unique $w\in H$ satisfying
+\begin{align}
+B[u,v] = (w, v) \quad v \in H \label{13}
+\end{align}
+We write $Au =w$ when (\ref{13}) holds, so that
+\begin{align*}
+B[u,v] = (Au,v) \quad \forall u,v\in H
+\end{align*}
+\item[2.] We claim $A: H\rightarrow H$ is a bounded linear operator. If $\lambda_1, \lambda_2 \in \reals$, $u_1, u_2 \in H$ then for all $v\in H$, we compute
+\begin{align*}
+\big( A(\lambda_1 u_1 + \lambda_2 u_2), v \big) &= B[\lambda_1 u_1 + \lambda_2 u_2, v] = \lambda_1 B[u,v] + \lambda_2[u_2,v] \\
+& = \lambda_1(Au,v) + \lambda_2 (Au_2, v) = (\lambda_1 Au_1 + \lambda_2 Au_2, v)
+\end{align*}
+Since $v$ was arbitrary, we have $A(\lambda_1 u_1 + \lambda_2 u_2) = \lambda_1 A u_1 + \lambda_2 Au_2$. Further,
+\begin{align*}
+\norms{A u}{}^2 = (Au, Au) = B[u,Au] \leq \alpha \norms{u}{} \norms{Au}{}
+\end{align*}
+so $A$ is bounded.
+\item[3.] Next, we assert : $A$ is injective and $A(H)$ is closed.
+\begin{subproof}
+\pf By coercivity, 
+\begin{align*}
+\beta \norms{u}{}^2 \leq B[u,u] = (Au,u) \leq \norms{Au}{} \norms{u}{}
+\end{align*}
+This implies $A$ is injective.
+
+\quad For the second point, assume $(Au_m)_{m=1}^{\infty}$ is convergent. Then by the earlier estimate,
+\begin{align*}
+\beta \norms{u_m -u_{m'}}{} \leq \norms{Au_m - Au_{m'}}{}
+\end{align*}
+so $(u_m)_{m=1}^{\infty}$ is Cauchy in $H$, so $u_m \rightarrow u$ for some $u$. But since $A$ is bounded, it is continuous,
+\begin{align*}
+Au = A \lim_{m\rightarrow \infty} u_{m} = \lim_{m\rightarrow \infty} Au_m \in A(H)
+\end{align*}
+so $A(H)$ is closed.
+\end{subproof}
+\item[4.]  Now we show $A(H) =H$.
+\begin{subproof}
+\pf Since $A(H)$ is closed, we have
+\begin{align*}
+H = A(H) \oplus A(H)^{\perp}
+\end{align*}
+Suppose $w \in A(H)^{\perp}$. Then
+\begin{align*}
+0= (Aw,w) = B[w,w] \geq \beta \norms{w}{}^2
+\end{align*}
+and therefore $\norms{w}{} =0$. This tells us that $A(H)^{\perp}$ is trivial, and $H=A(H)$.
+\end{subproof}
+Putting two results together, $A$ has inverse $A^{-1} : H\rightarrow H$. Moreover, applying $\beta \norms{u}{} \leq \norms{Au}{}$ to $u=A^{-1}w$, we find
+\begin{align*}
+\norms{A^{-1} w}{}\leq \frac{1}{\beta} \norms{w}{}
+\end{align*}
+so $A^{-1}$ is bounded.
+\item[5.] Now consider $f$ a bounded linear functional. By Riesz representation theorem, $\exists$ unique $w\in H$ such that
+\begin{align*}
+\langle f, v\rangle = (w,v) \quad \forall v\in H
+\end{align*}
+Let $u = A^{-1} w$. Then
+\begin{align*}
+B[u,v] = (Au,v) = (w,v) = \langle f,v\rangle \quad \forall v \in H
+\end{align*}
+\item[6.] Finally $u$ is unique :
+\begin{subproof}
+If $u, \tilde{u}$ both satisfy $B[u,v] =B[\tilde{u},v]= \langle f,v\rangle$ for all $v\in H$, then
+\begin{align*}
+B[u-\tilde{u}, v] =0 \quad \forall v\in H
+\end{align*}
+by bilinearity of $B$. Set $v= u-\tilde{u}$ so
+\begin{align*}
+0 = B[u-\tilde{u}, u-\tilde{u}] \geq \beta \norms{u-\tilde{u}}{} 
+\end{align*}
+and therefore $u=\tilde{u}$.
+\end{subproof}
+\end{itemize}
+\eop
+\end{proof}
+\s
+
+\subsection*{Energy Estimates}
+
+Suppose $a^{ij}, b^i, c \in L^{\infty}(U)$ for $U$ open, bounded and let
+\begin{align*}
+B[u,v] = \int_U \Big[ \sum_{i,j} a^{ij}u_{x_i}v_{x_j} + \sum_i b^i u_{x_i} v + cu\cdot v \Big] dx
+\end{align*}
+for $U,v\in H_0^1 (U)$. Assume $a^{ij}$ satisfies the \emph{uniform ellipticity condition}.
+\s
+
+To apply Lax-Milgram theorem in a general setting, we nee some estimates related to boundedness and coercivity of $B$. 
+\s
+
+\thm There exist $\alpha, \beta >0$ and $\gamma \geq 0$ such that
+\begin{itemize}
+\item[(i)] $\big| B[u,v]\big| \leq \alpha \norms{u}{H^1(U)} \norms{v}{H^1(U)}$ \quad \emph{and}
+\item[(ii)] $\beta \norms{u}{H^1(U)}^2 \leq B[u,u] + \gamma \norms{u}{L^2(U)}^2$ (\textbf{G{\aa}rding Inequality})
+\end{itemize}
+\begin{proof}
+\pf \begin{itemize}
+\item[(i)] We estimate
+\begin{align*}
+\big| B[u,v]\big| \leq \sum_{i,j} \norms{a^{ij}}{L^{\infty}(U)} \int_U |Du||Dv| dx + \sum_{i} \norms{b^i}{L^{\infty}(U)} \int_U |Du||v| dx + \norms{c}{L^{\infty}(U)} \int_U |u||v| dx
+\end{align*}
+so
+\begin{align*}
+\big| B[u,v]\big| &\leq c_1 \norms{Du}{L^2(U)} \norms{Dv}{L^2(U)} + c_2 \norms{Du}{L^2(U)} \norms{v}{L^2(U)} + c_3 \norms{u}{L^2(U)} \norms{v}{L^2(U)} \\
+&\leq \alpha \norms{u}{H^1(U)} \norms{v}{H^1(U)}
+\end{align*}
+for some constants $c_1,c_2,c_3$ and $\alpha>0$.
+\item[(ii)] Now use the uniform ellipticity to deduce, for some $\theta >0$,
+\begin{align*}
+\theta \int_U |Du|^2 dx &\leq \int_U \sum_{i,j} a^{ij}(x) u_{x_i} u_{x_j} dx \\
+&= B[u,u] - \int_U \sum_{i=1}^n b^i u_{x_i} u + cu^2 dx \\
+&\leq B[u,u] + \sum_{i=1}^n \norms{b^i}{L^{\infty}(U)} \int_U |Du||u| dx + \norms{c}{L^{\infty}} \int_U u^2 dx
+\end{align*}
+Now, by Young's inequality(or just AG inequality),
+\begin{align*}
+\int_U |Du||u| dx \leq \epsilon \int_U |Du|^2 dx + \frac{1}{4\epsilon} \int_U |u|^2 dx \quad \forall \epsilon>0
+\end{align*}
+Choosing $\epsilon$ small, we can arrange
+\begin{align*}
+\sum_i \norms{b^i}{L^{\infty}(U)} \int_U |Du||u| dx \leq \frac{\theta}{2} \int_U |Du|^2 dx + C \int_U u^2 dx
+\end{align*}
+Putting two inequalities together, we deduce
+\begin{align*}
+\frac{\theta}{2} \int_U |Du|^2 dx \leq B[u,u] + C \int_U u^2 dx
+\end{align*}
+whence
+\begin{align*}
+\beta \norms{u}{H^1(U)}^2 \leq B[u,u] + \gamma \norms{u}{L^2(U)}^2
+\end{align*}
+for some $\beta, \gamma\geq 0$.
+\end{itemize}
+
+\eop
+\end{proof}
+\s
+
+Boundedness of $B$ follows from the first statement of the theorem, but we need some stronger conditions on $B$ to get coercivity from the second statement.
 
 
 

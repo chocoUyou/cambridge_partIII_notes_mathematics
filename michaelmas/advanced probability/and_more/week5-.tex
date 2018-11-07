@@ -41,7 +41,7 @@
     \mytemplen\dp\mytempbox
     \advance\mytemplen #2\relax
     \dp\mytempbox\mytemplen
-    \colorbox{myblue}{\hspace{1em}\usebox{\mytempbox}\hspace{1em}}}
+    \colorbox{myblue}{\hspace{0em}\usebox{\mytempbox}\hspace{0em}}}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 %%%%%%%%%%for writing symbol above an equality
@@ -363,6 +363,146 @@ The CGF(cumulant generating function) of $\mu_K$ is then given by
 \end{proof}
 
 \s
+
+\newday
+
+(7th November, Wednesday)
+\s
+
+We now start proving the following theorem.
+\s
+
+\thmnum{6.1.1} Let $(X_n : n\in \mathbb{N})$ be a sequence of integrable \emph{i.i.d.} random variables in $\reals$. Set $m = \avg(X_1)$, $S_n = X_1 + \cdots + X_n$. Then for all $a\geq m = \avg(X_1)$, as $n\rightarrow \infty$,
+\begin{align*}
+\frac{1}{n} \log \prob (S_n \geq na) \rightarrow -\psi^*(a)
+\end{align*}
+where  $\psi (\lambda) = \log (\avg(e^{\lambda X_1}))$, and $\psi^* (x) = \sup_{\lambda \in \reals} \{ \lambda x - \psi(\lambda) \}$.
+\begin{proof}
+\pf \emph{(Upper bound)} For all $\lambda \geq 0$ and $n\geq 1$
+\begin{align*}
+\prob(S_n \geq na) = \prob(e^{\lambda S_n} \geq e^{\lambda na} ) \leq e^{-\lambda na} \avg(e^{\lambda S_n})= e^{-(\lambda a -\psi(\lambda))n}
+\end{align*}
+so $\frac{1}{n} \log \prob(S_n \geq na) \leq -(\lambda a -\psi(\lambda))$ and 
+\begin{align*}
+\frac{1}{n} \log \prob (S_n \geq na) \leq -\psi^* (a)
+\end{align*}
+
+\emph{(Lower bound)} It remains to show the lower bound. That is, we aim to prove
+\begin{align*}
+\liminf_{n\rightarrow \infty} \frac{1}{n} \log \prob (S_n \geq na) \geq - \psi^* (a)
+\end{align*}
+Consider first the case where $\prob(X_1 \leq a) = 1$. Then
+\begin{align*}
+\avg(e^{\lambda(X_1-a)}) \xrightarrow{\lambda \rightarrow \infty} \prob(X_1 =a)
+\end{align*}
+Call $p = \prob(X_1 =a)$, so $\lambda a - \psi(\lambda) \rightarrow -\log (p)$. So in particular,
+\begin{align*}
+\psi^* (a) \geq -\log (p)
+\end{align*}
+Now $\prob (S_n \geq na) = p^n$ so
+\begin{align*}
+\frac{1}{n} \log \prob(S_n \geq na) = \log (p) \geq -\psi^*(a)
+\end{align*}
+hence we can eliminate the case $\prob(X_1 \leq a) = 1$.
+\s
+
+\quad Next consider the case $\psi(\lambda) < \infty$ for all $\lambda \geq 0$ and $\prob(X_1 > a) >0$. Fix $\epsilon >0$ and set $b = a+ \epsilon$, $c= a+ 2\epsilon$, choosing $\epsilon$ small enough so $\prob(X_1 > b)>0$. Then there exists $\lambda$ such that $\psi'(\lambda) = b$ - where the differentiability and the existence is justified in the following proposition :
+
+\begin{subproof}
+\propnum{6.1.2} Suppose $X$ is integrable and not a.s. constant. Then 
+\begin{align*}
+& \psi_K(\lambda) = \log \avg(e^{\lambda X_1}|X_1 \leq K) < \infty \quad \forall K < \infty \\
+\text{\emph{and}} \quad & \psi_K(\lambda) \nearrow \psi(\lambda) \quad \text{as } K\rightarrow \infty
+\end{align*}
+Moreover in the case $\psi(\lambda) < \infty$ for all $\lambda \geq 0$, $\psi$ has a continuous derivative on $[0,\infty)$ and is $C^2$ on $(0,\infty)$ with
+\begin{align*}
+& \psi'(\lambda) = \int_{\reals} x\mu_{\lambda}(dx) \\
+& \psi''(\lambda) = \text{Var}(\mu_{\lambda}) > 0
+\end{align*}
+and $\psi'$ is a homeomorphism from $[0,\infty)$ to $[m, \text{sup}(\text{supp}(\mu))$.
+
+\pf (Exercise)
+\end{subproof}
+
+\quad Now we use the idea of tilting the probability measure. Define a new probability measure $\prob_{\lambda}$ by $d\prob_{\lambda} = e^{\lambda S_n -n \psi(\lambda)} d\prob$. Then observe that under $\prob_{\lambda}$ the random variables $X_1, \cdots, X_n$ are independent with distributions $\mu_{\lambda}$ and that $\avg_{\lambda}(X_1) = b$. Consider the event
+\begin{align*}
+A_n = \{\Big| \frac{S_n}{n} -b \Big| \leq \epsilon \} = \{ (b- \epsilon)n = an \leq S_n \leq (b + \epsilon)n =cn \}
+\end{align*}
+By the weak law of large numbers, $\prob_{\lambda}(A_n ) \rightarrow 1$. So
+\begin{align*}
+\prob(S_n \geq na) \geq \prob(A_n) &= \avg_{\lambda} \Big( 1_{A_n} e^{-\lambda S_n + \psi(\lambda)n} \Big) \\
+&\geq e^{-\lambda cn + \psi(\lambda) n} \prob_{\lambda}(A_n)
+\end{align*}
+So 
+\begin{align*}
+\frac{1}{n} \log \prob (S_n \geq na) \geq -\lambda c + \psi(\lambda) + \frac{\log (\prob_{\lambda} (A_n))}{n}
+\end{align*}
+and
+\begin{align*}
+\liminf_{n\rightarrow \infty} \frac{1}{n} \log \prob(S_n \geq na) \geq -(\lambda c - \psi(\lambda)) \geq -\psi^* (c)
+\end{align*}
+Now $\psi^*$ is continuous at $a$ (recall, $\psi^*$ is a Legendre transform of a convex function so is convex, and therefore continuous. Or, see \textbf{Lemma 6.1.3}) and $\epsilon >0$ is arbitrary so the desired lower bound follows on letting  $\epsilon \rightarrow 0$.
+\s
+
+\quad Finally, consider the general case $\prob(X_1 >a) >0$ but allowing $\psi(\lambda) = \infty$ for some $\lambda \geq 0$. For $K>a$, we have $\prob(X_1 >a | X_1 \leq K) >0$ and $\psi_K(\lambda) < \infty$ for all $\lambda \geq 0$. So preceding argument shows
+\begin{align*}
+\liminf_{n\rightarrow \infty} \frac{1}{n} \log \prob_K (S_n > na) \geq -\psi_K^* (a)
+\end{align*}
+where $\prob_K$ is the probability measure given by
+\begin{align*}
+d\prob^{(n)}_K \propto 1_{ \{ X_1 \leq K, \cdots, X_n \leq K \}} d\prob
+\end{align*}
+(To see this, note, under $\prob_K$, random variables $X_1, \cdots X_n$ are independent with distribution $\mu(\cdot | x\leq K)$). But
+\begin{align*}
+\prob(S_n \geq na) \geq \prob(S_n \geq na | X_1\leq K, \cdots, X_n \leq K)  = \prob_K(S_n \geq na)
+\end{align*}
+and $\psi^*_K(a) \searrow \psi^*(a)$ as $K\rightarrow \infty$ (by \textbf{Lemma 6.1.3}) so we see
+\begin{align*}
+\liminf_{n\rightarrow \infty} \frac{1}{n} \log \prob(S_n \geq na) \geq -\psi^*_K(a) \nearrow -\psi^*(a)
+\end{align*}
+
+\eop
+\end{proof}
+\s
+
+One different way to see that $\psi^*$ is continuous at $a$ is presented in the following lemma.
+\s
+
+\lemnum{6.1.3} For all $a\geq m$, with $\prob(X_1 > 0) > 0$ we have $\psi^*_K(a) \searrow \psi^*(a)$ as $K\rightarrow \infty$. Moreover in the case $\psi(\lambda) < \infty$ for all $\lambda \geq 0$, $\psi^*$ is continuous at $a$ and we have $\psi^*(a) =\lambda^* a - \psi(\lambda^*)$ where $\lambda^*$ is uniquely determined by $\psi'(\lambda^*) = a$.
+\begin{proof}
+\pf Consider first the later case where $\psi(\lambda) < \infty$ for $\lambda \geq 0$. Then by \textbf{Proposition 6.1.2} wee see that
+\begin{align*}
+\psi^*(a) = \lambda^* a -\psi(\lambda^*)
+\end{align*}
+where $a= \psi' (\lambda^*)$ and $\psi^*$ is continuous at $a$ with $\lambda^* = (\psi')^{-1}(a)$.
+\s
+
+\quad For the first part, note that $\psi_K^*$ is non-increasing in $K$. For $K$ sufficiently large, we have
+\begin{align*}
+\prob(X_1>a | X_1 \leq K) >0
+\end{align*}
+and $a\geq m \geq m_K$ (where $m_K = \avg(X_1 |\leq X_1 \leq K)$) and $\psi_K(\lambda) < \infty$ for all $\lambda \geq 0$, so we may apply the preceding argument to $\mu_K$ to see that
+\begin{align*}
+\psi^*_K(a) = \lambda_K^* a - \psi_K(\lambda_K^*)
+\end{align*}
+where $\lambda_K^* \geq 0$ is determined by $\psi_K'(\lambda_K^*) = a$. Now $\psi_K'(\lambda)$ is non-decreasing in $K$ and $\lambda$, so $\lambda_K^* \searrow \lambda^*$ for some $\lambda^* \geq 0$. Also $\psi_K'(\lambda) \geq m_K$ for all $\lambda \geq 0$ so
+\begin{align*}
+\psi_K(\lambda_K^*) \geq \psi_K(\lambda^*) + m_K(\lambda_K^* - \lambda^*)
+\end{align*}
+Then
+\begin{align*}
+\psi^*_K(a) = \lambda_K^* a - \psi_K(\lambda^*_K) \leq \lambda^*_K a - \psi_K(\lambda^*) - m_K(\lambda^*_K - \lambda^*) \rightarrow \lambda^* a - \psi(\lambda^*) \leq \psi^*(a)
+\end{align*}
+So $\psi_K^*(a) \searrow \psi^*(a)$ as $K\rightarrow \infty$ as claimed.
+
+\eop
+\end{proof}
+\s
+
+
+
+
+
 
 
 
