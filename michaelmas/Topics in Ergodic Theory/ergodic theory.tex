@@ -2042,4 +2042,153 @@ and form the previous lemma, has $H_{\mu}(\eta |\xi) \leq H_{\mu}(\eta)$
 
 \eop
 \end{proof}
+\s
+
+\newday
+
+(8th November, Thursday)
+\s
+
+\lem Let $(X,\borel, \mu, T)$ be an MPS. Let $\xi, \eta$ be countable measurable partitions. Then :
+\begin{align*}
+& I_{\mu}(T^{-1}\xi | T^{-1} \eta ) = I_{\mu}(\xi | \eta)(Tx) \\
+& H_{\mu}(T^{-1} \xi | T^{-1} \eta) = H_{\mu}(\xi | \eta)
+\end{align*}
+where $T^{-1} \xi$ is the partition whose atoms are $T^{-1}([x]_{\xi})$.
+
+\begin{proof}
+\pf Has 
+\begin{align*}
+I_{\mu}(T^{-1} \xi | T^{-1} \eta)(x)  = -\log \Big( \frac{\mu([x]_{T^{-1}\xi \vee T^{-1}\eta} )}{\mu([x])_{T^{-1}\eta}} \Big)
+\end{align*}
+Note
+\begin{align*}
+T^{-1} \xi \vee T^{-1}\eta = T^{-1}(\xi \vee \eta) \quad \text{and} \quad [x]_{T^{-1} \xi \vee T^{-1}\eta} = T^{-1} [Tx]_{\xi \vee \eta}
+\end{align*}
+hence $\mu([x]_{T^{-1} \xi \vee T^{-1}\eta}) = \mu([Tx]_{\xi \vee \eta})$ by the measure preserving property. Similarly $\mu([x]_{T^{-1}\eta}) = \mu ([Tx]_{\eta})$. Then $I_{\mu}(T^{-1}\xi | T^{-1} \eta ) = -\log \Big( \frac{\mu([x]_{T^{-1}\xi \vee T^{-1}\eta} )}{\mu([x])_{T^{-1}\eta}} \Big) =  I_{\mu}(\xi | \eta)(Tx)$
+
+\quad The statement on $H_{\mu}$ follows by integrating $I_{\mu}$
+
+\eop
+\end{proof}
+\s
+
+\cor Writing $\xi_m^n = T^{-m} \xi \vee T^{-(m+1)}\xi \vee \cdots \vee T^{-n} \xi$, has
+\begin{align*}
+H_{\mu}(\xi_0^{n+m-1}) \leq H_{\mu}(\xi_0^{n-1}) + H_{\mu}(\xi_0^{m-1})
+\end{align*}
+\begin{proof}
+\pf Note that $\xi_0^{n+m-1} = \xi_0^{n-1} \vee \xi_n^{n+m-1}$. So we have
+\begin{align*}
+H_{\mu}(\xi_0^{n+m-1}) &\leq H_{\mu}(\xi_0^{n-1})+ H_{\mu}(\xi_n^{n+m-1}) = H_{\mu}(\xi_0^{n-1}) + H_{\mu}(T^{-n}\xi_0^{m-1}) \\
+&= H_{\mu}(\xi_0^{n-1}) + H_{\mu}(\xi_0^{m-1})
+\end{align*}
+where the last equality follows from the previous lemma.
+
+\eop
+\end{proof}
+\s
+
+\lem \emph{(Felate's lemma)} Let $(a_n)\subset \reals$ be a subadditive sequence, that is
+\begin{align*}
+a_{n+m} \leq a_n + a_m \quad \forall n,m
+\end{align*}
+Then $\lim_{n\rightarrow \infty} a_n/n$ exists and equals $\inf_{n} a_n /n $.
+\begin{proof}
+\textbf{proof sketch)} Need to show that $\limsup_{n\rightarrow \infty} \frac{a_n}{n} \leq \frac{a_{n_0}}{n_0}$ for all $n_0$. For each fixed $n_0$, we can write $n = j(n)n_0 + i(n)$, where $i(n) \in [0,n_0-1]$. Iterate sub-additivity to get $a_n \leq j(n) a_{n_0} + a_{i(n)}$.
+
+\quad See the online note for the full proof.
+\end{proof}
+\s
+
+\defi Let $(X,\borel, \mu, T)$ be an MPS. Let $\xi, \eta$ be countable measurable partitions such that $H_{\mu}(\xi) < \infty$. The \textbf{entropy of the MPS w.r.t. $\xi$} is :
+\begin{align*}
+h_{\mu} (\xi) = \lim_{n\rightarrow \infty} \frac{H_{\mu}(\xi_0^{n-1})}{n} = \inf_n \frac{H_{\mu}(\xi_0^{n-1})}{n}
+\end{align*}
+whose existence of the limit is guaranteed by \emph{Felate's lemma}.(in fact, $\frac{H_{\mu}(\xi_0^{n-1})}{n}$ is a monotone decreasing sequence - will show in the example sheet)
+
+\quad The \textbf{entropy of the MPS} is $h_{\mu}(T) = \sup_{\xi : H_{\mu}(\xi)<\infty} h_{\mu}(T|\xi)$.
+\s
+
+$h_{\mu} (\xi)$ expresses how fast we can learn information from a particular experiment $\xi$, and $h_{\mu}(T)$ is the maximal information we can obtain from the system when an appropriate experiment is chosen.
+\s
+
+The problem of this definition is that it is generally difficult to find out the supremum $\sup_{\xi : H_{\mu}(\xi)<\infty} h_{\mu}(T|\xi)$ - since this requires computing entropy w.r.t $\xi$ for each $\xi$. The good news is that (at least for the Bernoulli shifts), if we can find a partition that satisfies a particular property(so called \textbf{2-sided generator}), then in fact the supremum is achieved by the partition.
+\s
+
+\defi Let $(X,\borel, \mu, T)$ be an invertible MPS. Let $\xi \subset \borel$ be a countable measurable partitions. We say that $\xi$ is a \textbf{2-sided generator} if $\forall A\in \borel$ and $\forall \epsilon >0$, $\exists k\in \mathbb{Z}_{>0}$ such that $\exists A'\in \sigma( \xi^k_{-k} )$ and $\mu(A \triangle A') <\epsilon$.
+\s
+
+\thm \emph{(Kolmogorov-Sinai)} Let $(X,\borel, \mu, T)$ be an \emph{invertible} measure preserving system. Let $\xi$ be a countable measurable partition with $H_{\mu}(\xi) < \infty$, which is a 2-sided generator. Then
+\begin{align*}
+h_{\mu}(T) = h_{\mu}(T,\xi)
+\end{align*}
+\s
+
+We delay the proof of this theorem until next lecture. Instead, we start to compute something useful.
+\s
+
+\textbf{Example :} Let $(\{1,2,\cdots, k\}^{\mathbb{Z}}, \borel, \mu, \sigma)$ be the $(p_1, \cdots, p_k)$-Bernoulli shift. Let $X =\{1,2,\cdots, k\}^{\mathbb{Z}}$.
+\begin{itemize}
+\item \textbf{Claim :} The partition $\xi = \{ \{x\in X: x_0 =j \} : j=1, \cdots, k \}$ is a 2-sided generator.
+\begin{subproof}
+\pf The collection of sets
+\begin{align*}
+\{ A\in \borel : \forall \epsilon, \,\, \exists k \,\, \exists A' \in \xi^{k}_{-k} \text{ with } \mu(A\triangle A') < \epsilon \} \subset \sigma(\xi) \subset \borel
+\end{align*}
+is a $\sigma$-algebra, and it contains cylinder sets. Hence it is equal to $\borel$, as $\borel$ is generated by cylinder sets.
+
+\eop
+\end{subproof}
+\s
+
+\item \textbf{Claim :} With $\xi$ defined as above, we have 
+\begin{align*}
+H_{\mu}(\xi | \xi_{1}^n) = H(p_1, p_2, \cdots, p_k) = -p_1 \log p_1 -\cdots -p_k \log p_k
+\end{align*}
+for all $n \in \mathbb{Z}_{\geq 0}$.
+\begin{subproof}
+\pf Calculate the information function : 
+\begin{align*}
+I_{\mu}(\xi | \xi_1^n) (x)  = \log \Big( \frac{\mu([x]_{\xi_1^n})}{\mu([x]_{\xi_0^n})} \Big)
+\end{align*}
+Note $[x]_{\xi_0^n} = \{y\in X : y_0=x_0, \cdots, y_n =x_n \}$, so $\mu([x]_{\xi_0^n}) = p_{x_0}\cdots p_{x_n}$. Similarly, has $\mu([x]_{\xi_1^n})=p_{x_1} \cdots p_{x_n}$, and
+\begin{align*}
+I_{\mu}(\xi|\xi_1^n) (x) = - \log p_{x_0} 
+\end{align*}
+therefore $H_{\mu} (\xi |\xi_1^n) = \sum_{j=1}^{k} p_j (-\log (p_j)) = H(p_1, \cdots, p_k)$. 
+
+\eop
+\end{subproof}
+\s
+
+\item Hence
+\begin{align*}
+H_{\mu}(\xi_1^{n-1}) &= H_{\mu}(\xi_{n-1}^{n-1}) + H_{\mu}(\xi_{n-2}^{n-2} | \xi_{n-1}^{n-1}) + H_{\mu}(\xi_{n-3}^{n-3} | \xi_{n-2}^{n-1}) + \cdots + H_{\mu}(\xi | \xi^{n-1}_{1}) \quad (\text{Chain rule}) \\
+&= H_{\mu}(\xi) + H(\xi |\xi_1^1) + \cdots + H_{\mu}(\xi | \xi_1^{n-1}) \quad (\text{invariance, first lemma of the day}) \\
+&= nH(p_1, \cdots, p_k)
+\end{align*}
+Divide by $n$ and take the limit, 
+\begin{align*}
+h_{\mu}(T) = h_{\mu}(T,\xi) = H(p_1, \cdots, p_k)
+\end{align*}
+
+So the entropy of $(1/2,1/2)$ shift is $\log2$ and $(1/3,1/3,1/3)$ shift is $\log3$ - which shows that two systems cannot be isomorphic.
+\end{itemize}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 \end{document}

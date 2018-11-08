@@ -1,7 +1,7 @@
-This is XeTeX, Version 3.14159265-2.6-0.99998 (MiKTeX 2.9.6500) (preloaded format=xelatex 2018.2.4)  8 NOV 2018 19:32
+This is XeTeX, Version 3.14159265-2.6-0.99998 (MiKTeX 2.9.6500) (preloaded format=xelatex 2018.2.4)  8 NOV 2018 20:18
 entering extended mode
-**./discrete_analysis.tex
-(discrete_analysis.tex
+**./entropy.tex
+(entropy.tex
 LaTeX2e <2017-04-15>
 Babel <3.15> and hyphenation patterns for 75 language(s) loaded.
 ("C:\Program Files (x86)\MiKTeX 2.9\tex\latex\base\report.cls"
@@ -137,54 +137,6 @@ Package: euscript 2009/06/22 v3.00 Euler Script fonts
 LaTeX Font Info:    Overwriting math alphabet `\EuScript' in version `bold'
 (Font)                  U/eus/m/n --> U/eus/b/n on input line 33.
 )
-("C:\Program Files (x86)\MiKTeX 2.9\tex\latex\koma-script\scrextend.sty"
-Package: scrextend 2018/03/30 v3.25 KOMA-Script package (extend other classes w
-ith features of KOMA-Script classes)
-
-("C:\Program Files (x86)\MiKTeX 2.9\tex\latex\koma-script\scrkbase.sty"
-Package: scrkbase 2018/03/30 v3.25 KOMA-Script package (KOMA-Script-dependent b
-asics and keyval usage)
-
-("C:\Program Files (x86)\MiKTeX 2.9\tex\latex\koma-script\scrbase.sty"
-Package: scrbase 2018/03/30 v3.25 KOMA-Script package (KOMA-Script-independent 
-basics and keyval usage)
-
-("C:\Program Files (x86)\MiKTeX 2.9\tex\latex\koma-script\scrlfile.sty"
-Package: scrlfile 2018/03/30 v3.25 KOMA-Script package (loading files)
-))))
-("C:\Program Files (x86)\MiKTeX 2.9\tex\latex\mathtools\mathtools.sty"
-Package: mathtools 2018/01/08 v1.21 mathematical typesetting tools
-
-("C:\Program Files (x86)\MiKTeX 2.9\tex\latex\tools\calc.sty"
-Package: calc 2014/10/28 v4.3 Infix arithmetic (KKT,FJ)
-\calc@Acount=\count103
-\calc@Bcount=\count104
-\calc@Adimen=\dimen120
-\calc@Bdimen=\dimen121
-\calc@Askip=\skip46
-\calc@Bskip=\skip47
-LaTeX Info: Redefining \setlength on input line 80.
-LaTeX Info: Redefining \addtolength on input line 81.
-\calc@Ccount=\count105
-\calc@Cskip=\skip48
-)
-("C:\Program Files (x86)\MiKTeX 2.9\tex\latex\mathtools\mhsetup.sty"
-Package: mhsetup 2017/03/31 v1.3 programming setup (MH)
-)
-LaTeX Info: Thecontrolsequence`\('isalreadyrobust on input line 129.
-LaTeX Info: Thecontrolsequence`\)'isalreadyrobust on input line 129.
-LaTeX Info: Thecontrolsequence`\['isalreadyrobust on input line 129.
-LaTeX Info: Thecontrolsequence`\]'isalreadyrobust on input line 129.
-\g_MT_multlinerow_int=\count106
-\l_MT_multwidth_dim=\dimen122
-\origjot=\skip49
-\l_MT_shortvdotswithinadjustabove_dim=\dimen123
-\l_MT_shortvdotswithinadjustbelow_dim=\dimen124
-\l_MT_above_intertext_sep=\dimen125
-\l_MT_below_intertext_sep=\dimen126
-\l_MT_above_shortintertext_sep=\dimen127
-\l_MT_below_shortintertext_sep=\dimen128
-)
 ("C:\Program Files (x86)\MiKTeX 2.9\tex\latex\tikz-cd\tikz-cd.sty"
 Package: tikz-cd 2014/10/30 v0.9e Commutative diagrams with tikz
 
@@ -194,8 +146,8 @@ Package: tikz-cd 2014/10/30 v0.9e Commutative diagrams with tikz
 ("C:\Program Files (x86)\MiKTeX 2.9\tex\generic\pgf\utilities\pgfutil-common.te
 x"
 \pgfutil@everybye=\toks23
-\pgfutil@tempdima=\dimen129
-\pgfutil@tempdimb=\dimen130
+\pgfutil@tempdima=\dimen120
+\pgfutil@tempdimb=\dimen121
 
 ("C:\Program Files (x86)\MiKTeX 2.9\tex\generic\pgf\utilities\pgfutil-common-li
 sts.tex"))
@@ -227,8 +179,8 @@ Package graphics Info: Driver file: xetex.def on input line 99.
 ("C:\Program Files (x86)\MiKTeX 2.9\tex\latex\graphics-def\xetex.def"
 File: xetex.def 2017/06/24 v5.0h Graphics/color driver for xetex
 ))
-\Gin@req@height=\dimen131
-\Gin@req@width=\dimen132
+\Gin@req@height=\dimen122
+\Gin@req@width=\dimen123
 )
 ("C:\Program Files (x86)\MiKTeX 2.9\tex\latex\pgf\systemlayer\pgfsys.sty"
 ("C:\Program Files (x86)\MiKTeX 2.9\tex\generic\pgf\systemlayer\pgfsys.code.tex
@@ -243,20 +195,20 @@ Package: pgfsys 2014/07/09 v3.0.1a (rcs-revision 1.48)
 ode.tex"
 \pgfkeys@tmptoks=\toks26
 ))
-\pgf@x=\dimen133
-\pgf@y=\dimen134
-\pgf@xa=\dimen135
-\pgf@ya=\dimen136
-\pgf@xb=\dimen137
-\pgf@yb=\dimen138
-\pgf@xc=\dimen139
-\pgf@yc=\dimen140
+\pgf@x=\dimen124
+\pgf@y=\dimen125
+\pgf@xa=\dimen126
+\pgf@ya=\dimen127
+\pgf@xb=\dimen128
+\pgf@yb=\dimen129
+\pgf@xc=\dimen130
+\pgf@yc=\dimen131
 \w@pgf@writea=\write3
 \r@pgf@reada=\read1
-\c@pgf@counta=\count107
-\c@pgf@countb=\count108
-\c@pgf@countc=\count109
-\c@pgf@countd=\count110
+\c@pgf@counta=\count103
+\c@pgf@countb=\count104
+\c@pgf@countc=\count105
+\c@pgf@countd=\count106
 \t@pgf@toka=\toks27
 \t@pgf@tokb=\toks28
 \t@pgf@tokc=\toks29
@@ -278,13 +230,13 @@ File: pgfsys-dvipdfmx.def 2014/07/09  (rcs-revision 1.14)
 df.def"
 File: pgfsys-common-pdf.def 2013/10/10  (rcs-revision 1.13)
 )
-\pgfsys@objnum=\count111
+\pgfsys@objnum=\count107
 )))
 ("C:\Program Files (x86)\MiKTeX 2.9\tex\generic\pgf\systemlayer\pgfsyssoftpath.
 code.tex"
 File: pgfsyssoftpath.code.tex 2013/09/09  (rcs-revision 1.9)
-\pgfsyssoftpath@smallbuffer@items=\count112
-\pgfsyssoftpath@bigbuffer@items=\count113
+\pgfsyssoftpath@smallbuffer@items=\count108
+\pgfsyssoftpath@bigbuffer@items=\count109
 )
 ("C:\Program Files (x86)\MiKTeX 2.9\tex\generic\pgf\systemlayer\pgfsysprotocol.
 code.tex"
@@ -313,8 +265,8 @@ Package: pgfcore 2010/04/11 v3.0.1a (rcs-revision 1.7)
 ("C:\Program Files (x86)\MiKTeX 2.9\tex\generic\pgf\math\pgfmathutil.code.tex")
 ("C:\Program Files (x86)\MiKTeX 2.9\tex\generic\pgf\math\pgfmathparser.code.tex
 "
-\pgfmath@dimen=\dimen141
-\pgfmath@count=\count114
+\pgfmath@dimen=\dimen132
+\pgfmath@count=\count110
 \pgfmath@box=\box29
 \pgfmath@toks=\toks30
 \pgfmath@stack@operand=\toks31
@@ -339,37 +291,37 @@ code.tex")
 ("C:\Program Files (x86)\MiKTeX 2.9\tex\generic\pgf\math\pgfmathfunctions.integ
 erarithmetics.code.tex")))
 ("C:\Program Files (x86)\MiKTeX 2.9\tex\generic\pgf\math\pgfmathfloat.code.tex"
-\c@pgfmathroundto@lastzeros=\count115
+\c@pgfmathroundto@lastzeros=\count111
 ))
 ("C:\Program Files (x86)\MiKTeX 2.9\tex\generic\pgf\basiclayer\pgfcorepoints.co
 de.tex"
 File: pgfcorepoints.code.tex 2013/10/07  (rcs-revision 1.27)
-\pgf@picminx=\dimen142
-\pgf@picmaxx=\dimen143
-\pgf@picminy=\dimen144
-\pgf@picmaxy=\dimen145
-\pgf@pathminx=\dimen146
-\pgf@pathmaxx=\dimen147
-\pgf@pathminy=\dimen148
-\pgf@pathmaxy=\dimen149
-\pgf@xx=\dimen150
-\pgf@xy=\dimen151
-\pgf@yx=\dimen152
-\pgf@yy=\dimen153
-\pgf@zx=\dimen154
-\pgf@zy=\dimen155
+\pgf@picminx=\dimen133
+\pgf@picmaxx=\dimen134
+\pgf@picminy=\dimen135
+\pgf@picmaxy=\dimen136
+\pgf@pathminx=\dimen137
+\pgf@pathmaxx=\dimen138
+\pgf@pathminy=\dimen139
+\pgf@pathmaxy=\dimen140
+\pgf@xx=\dimen141
+\pgf@xy=\dimen142
+\pgf@yx=\dimen143
+\pgf@yy=\dimen144
+\pgf@zx=\dimen145
+\pgf@zy=\dimen146
 )
 ("C:\Program Files (x86)\MiKTeX 2.9\tex\generic\pgf\basiclayer\pgfcorepathconst
 ruct.code.tex"
 File: pgfcorepathconstruct.code.tex 2013/10/07  (rcs-revision 1.29)
-\pgf@path@lastx=\dimen156
-\pgf@path@lasty=\dimen157
+\pgf@path@lastx=\dimen147
+\pgf@path@lasty=\dimen148
 )
 ("C:\Program Files (x86)\MiKTeX 2.9\tex\generic\pgf\basiclayer\pgfcorepathusage
 .code.tex"
 File: pgfcorepathusage.code.tex 2014/11/02  (rcs-revision 1.24)
-\pgf@shorten@end@additional=\dimen158
-\pgf@shorten@start@additional=\dimen159
+\pgf@shorten@end@additional=\dimen149
+\pgf@shorten@start@additional=\dimen150
 )
 ("C:\Program Files (x86)\MiKTeX 2.9\tex\generic\pgf\basiclayer\pgfcorescopes.co
 de.tex"
@@ -377,19 +329,19 @@ File: pgfcorescopes.code.tex 2015/05/08  (rcs-revision 1.46)
 \pgfpic=\box30
 \pgf@hbox=\box31
 \pgf@layerbox@main=\box32
-\pgf@picture@serial@count=\count116
+\pgf@picture@serial@count=\count112
 )
 ("C:\Program Files (x86)\MiKTeX 2.9\tex\generic\pgf\basiclayer\pgfcoregraphicst
 ate.code.tex"
 File: pgfcoregraphicstate.code.tex 2014/11/02  (rcs-revision 1.12)
-\pgflinewidth=\dimen160
+\pgflinewidth=\dimen151
 )
 ("C:\Program Files (x86)\MiKTeX 2.9\tex\generic\pgf\basiclayer\pgfcoretransform
 ations.code.tex"
 File: pgfcoretransformations.code.tex 2015/08/07  (rcs-revision 1.20)
-\pgf@pt@x=\dimen161
-\pgf@pt@y=\dimen162
-\pgf@pt@temp=\dimen163
+\pgf@pt@x=\dimen152
+\pgf@pt@y=\dimen153
+\pgf@pt@temp=\dimen154
 )
 ("C:\Program Files (x86)\MiKTeX 2.9\tex\generic\pgf\basiclayer\pgfcorequick.cod
 e.tex"
@@ -406,13 +358,13 @@ File: pgfcorepathprocessing.code.tex 2013/09/09  (rcs-revision 1.9)
 ("C:\Program Files (x86)\MiKTeX 2.9\tex\generic\pgf\basiclayer\pgfcorearrows.co
 de.tex"
 File: pgfcorearrows.code.tex 2015/05/14  (rcs-revision 1.43)
-\pgfarrowsep=\dimen164
+\pgfarrowsep=\dimen155
 )
 ("C:\Program Files (x86)\MiKTeX 2.9\tex\generic\pgf\basiclayer\pgfcoreshade.cod
 e.tex"
 File: pgfcoreshade.code.tex 2013/07/15  (rcs-revision 1.15)
-\pgf@max=\dimen165
-\pgf@sys@shading@range@num=\count117
+\pgf@max=\dimen156
+\pgf@sys@shading@range@num=\count113
 )
 ("C:\Program Files (x86)\MiKTeX 2.9\tex\generic\pgf\basiclayer\pgfcoreimage.cod
 e.tex"
@@ -447,8 +399,8 @@ File: pgfmoduleplot.code.tex 2015/08/03  (rcs-revision 1.13)
 ("C:\Program Files (x86)\MiKTeX 2.9\tex\latex\pgf\compatibility\pgfcomp-version
 -0-65.sty"
 Package: pgfcomp-version-0-65 2007/07/03 v3.0.1a (rcs-revision 1.7)
-\pgf@nodesepstart=\dimen166
-\pgf@nodesepend=\dimen167
+\pgf@nodesepstart=\dimen157
+\pgf@nodesepend=\dimen158
 )
 ("C:\Program Files (x86)\MiKTeX 2.9\tex\latex\pgf\compatibility\pgfcomp-version
 -1-18.sty"
@@ -463,8 +415,8 @@ Package: pgfcomp-version-1-18 2007/07/23 v3.0.1a (rcs-revision 1.1)
 Package: pgffor 2013/12/13 v3.0.1a (rcs-revision 1.25)
 
 ("C:\Program Files (x86)\MiKTeX 2.9\tex\generic\pgf\math\pgfmath.code.tex")
-\pgffor@iter=\dimen168
-\pgffor@skip=\dimen169
+\pgffor@iter=\dimen159
+\pgffor@skip=\dimen160
 \pgffor@stack=\toks33
 \pgffor@toks=\toks34
 ))
@@ -475,32 +427,32 @@ Package: tikz 2015/08/07 v3.0.1a (rcs-revision 1.151)
 ("C:\Program Files (x86)\MiKTeX 2.9\tex\generic\pgf\libraries\pgflibraryplothan
 dlers.code.tex"
 File: pgflibraryplothandlers.code.tex 2013/08/31 v3.0.1a (rcs-revision 1.20)
-\pgf@plot@mark@count=\count118
-\pgfplotmarksize=\dimen170
+\pgf@plot@mark@count=\count114
+\pgfplotmarksize=\dimen161
 )
-\tikz@lastx=\dimen171
-\tikz@lasty=\dimen172
-\tikz@lastxsaved=\dimen173
-\tikz@lastysaved=\dimen174
-\tikzleveldistance=\dimen175
-\tikzsiblingdistance=\dimen176
+\tikz@lastx=\dimen162
+\tikz@lasty=\dimen163
+\tikz@lastxsaved=\dimen164
+\tikz@lastysaved=\dimen165
+\tikzleveldistance=\dimen166
+\tikzsiblingdistance=\dimen167
 \tikz@figbox=\box35
 \tikz@figbox@bg=\box36
 \tikz@tempbox=\box37
 \tikz@tempbox@bg=\box38
-\tikztreelevel=\count119
-\tikznumberofchildren=\count120
-\tikznumberofcurrentchild=\count121
-\tikz@fig@count=\count122
+\tikztreelevel=\count115
+\tikznumberofchildren=\count116
+\tikznumberofcurrentchild=\count117
+\tikz@fig@count=\count118
 
 ("C:\Program Files (x86)\MiKTeX 2.9\tex\generic\pgf\modules\pgfmodulematrix.cod
 e.tex"
 File: pgfmodulematrix.code.tex 2013/09/17  (rcs-revision 1.8)
-\pgfmatrixcurrentrow=\count123
-\pgfmatrixcurrentcolumn=\count124
-\pgf@matrix@numberofcolumns=\count125
+\pgfmatrixcurrentrow=\count119
+\pgfmatrixcurrentcolumn=\count120
+\pgf@matrix@numberofcolumns=\count121
 )
-\tikz@expandcount=\count126
+\tikz@expandcount=\count122
 
 ("C:\Program Files (x86)\MiKTeX 2.9\tex\generic\pgf\frontendlayer\tikz\librarie
 s\tikzlibrarytopaths.code.tex"
@@ -519,84 +471,61 @@ File: tikzlibraryquotes.code.tex 2014/03/21 v3.0.1a (rcs-revision 1.4)
 ("C:\Program Files (x86)\MiKTeX 2.9\tex\generic\pgf\libraries\pgflibraryarrows.
 meta.code.tex"
 File: pgflibraryarrows.meta.code.tex 2015/05/13 v3.0.1a (rcs-revision 1.13)
-\pgfarrowinset=\dimen177
-\pgfarrowlength=\dimen178
-\pgfarrowwidth=\dimen179
-\pgfarrowlinewidth=\dimen180
+\pgfarrowinset=\dimen168
+\pgfarrowlength=\dimen169
+\pgfarrowwidth=\dimen170
+\pgfarrowlinewidth=\dimen171
 )))
-("C:\Program Files (x86)\MiKTeX 2.9\tex\latex\scalerel\scalerel.sty"
-Package: scalerel 2016/12/29 v1.8 Routines for constrained scaling and stretchi
-ng of objects, relative to a reference object or in absolute terms
+("C:\Program Files (x86)\MiKTeX 2.9\tex\latex\mathtools\mathtools.sty"
+Package: mathtools 2018/01/08 v1.21 mathematical typesetting tools
 
-("C:\Program Files (x86)\MiKTeX 2.9\tex\latex\etoolbox\etoolbox.sty"
-Package: etoolbox 2018/02/11 v2.5e e-TeX tools for LaTeX (JAW)
-\etb@tempcnta=\count127
+("C:\Program Files (x86)\MiKTeX 2.9\tex\latex\tools\calc.sty"
+Package: calc 2014/10/28 v4.3 Infix arithmetic (KKT,FJ)
+\calc@Acount=\count123
+\calc@Bcount=\count124
+\calc@Adimen=\dimen172
+\calc@Bdimen=\dimen173
+\calc@Askip=\skip46
+\calc@Bskip=\skip47
+LaTeX Info: Redefining \setlength on input line 80.
+LaTeX Info: Redefining \addtolength on input line 81.
+\calc@Ccount=\count125
+\calc@Cskip=\skip48
 )
-\thesrwidth=\skip50
-\thesrheight=\skip51
-\srblobheight=\skip52
-\srblobdepth=\skip53
-\mnxsrwidth=\skip54
-\LMex=\skip55
-\LMpt=\skip56
+("C:\Program Files (x86)\MiKTeX 2.9\tex\latex\mathtools\mhsetup.sty"
+Package: mhsetup 2017/03/31 v1.3 programming setup (MH)
 )
-("C:\Program Files (x86)\MiKTeX 2.9\tex\latex\stackengine\stackengine.sty"
-Package: stackengine 2017/02/13 v4.01\ Stacking text and objects in convenient 
-ways
+LaTeX Info: Thecontrolsequence`\('isalreadyrobust on input line 129.
+LaTeX Info: Thecontrolsequence`\)'isalreadyrobust on input line 129.
+LaTeX Info: Thecontrolsequence`\['isalreadyrobust on input line 129.
+LaTeX Info: Thecontrolsequence`\]'isalreadyrobust on input line 129.
+\g_MT_multlinerow_int=\count126
+\l_MT_multwidth_dim=\dimen174
+\origjot=\skip49
+\l_MT_shortvdotswithinadjustabove_dim=\dimen175
+\l_MT_shortvdotswithinadjustbelow_dim=\dimen176
+\l_MT_above_intertext_sep=\dimen177
+\l_MT_below_intertext_sep=\dimen178
+\l_MT_above_shortintertext_sep=\dimen179
+\l_MT_below_shortintertext_sep=\dimen180
+)
+No file entropy.aux.
+\openout1 = `entropy.aux'.
 
-("C:\Program Files (x86)\MiKTeX 2.9\tex\latex\listofitems\listofitems.sty"
-("C:\Program Files (x86)\MiKTeX 2.9\tex\generic\listofitems\listofitems.tex"
-\loi_nestcnt=\count128
-)
-Package: listofitems 2018/03/13 v1.53 Grab items in lists using user-specified 
-sep char (CT)
-)
-\c@@stackindex=\count129
-\@boxshift=\skip57
-\stack@tmplength=\skip58
-\temp@stkl=\skip59
-\@stackedboxwidth=\skip60
-\@addedbox=\box39
-\@anchorbox=\box40
-\stackedbox=\box41
-\@centerbox=\box42
-\c@ROWcellindex@=\count130
-) ("C:\Program Files (x86)\MiKTeX 2.9\tex\latex\mathtools\empheq.sty"
-Package: empheq 2017/03/31 v2.15 Emphasizing equations
-\l_EQ_equationtype_int=\count131
-\l_EQ_alignmentmode_int=\count132
-\l_EQ_totalwidth_dim=\dimen181
-\l_EQ_displaywidth_dim=\dimen182
-\l_EQ_temp_linewidth_dim=\dimen183
-\EmphEqdelimitershortfall=\dimen184
-\EmphEqdelimiterfactor=\count133
-\g_EQ_toptag_height_dim=\dimen185
-\g_EQ_bottomtag_depth_dim=\dimen186
-\g_EQ_toprow_height_dim=\dimen187
-\g_EQ_bottomrow_depth_dim=\dimen188
-\g_EQ_widesttag_dim=\dimen189
-\EQ_mathdisplay_box=\box43
-\EQ_tag_box=\box44
-\g_EQ_temprow_int=\count134
-)
-(discrete_analysis.aux)
-\openout1 = `discrete_analysis.aux'.
-
-LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 67.
-LaTeX Font Info:    ... okay on input line 67.
-LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 67.
-LaTeX Font Info:    ... okay on input line 67.
-LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 67.
-LaTeX Font Info:    ... okay on input line 67.
-LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 67.
-LaTeX Font Info:    ... okay on input line 67.
-LaTeX Font Info:    Checking defaults for TU/lmr/m/n on input line 67.
-LaTeX Font Info:    ... okay on input line 67.
-LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 67.
-LaTeX Font Info:    ... okay on input line 67.
-LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 67.
-LaTeX Font Info:    ... okay on input line 67.
-
+LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 39.
+LaTeX Font Info:    ... okay on input line 39.
+LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 39.
+LaTeX Font Info:    ... okay on input line 39.
+LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 39.
+LaTeX Font Info:    ... okay on input line 39.
+LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 39.
+LaTeX Font Info:    ... okay on input line 39.
+LaTeX Font Info:    Checking defaults for TU/lmr/m/n on input line 39.
+LaTeX Font Info:    ... okay on input line 39.
+LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 39.
+LaTeX Font Info:    ... okay on input line 39.
+LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 39.
+LaTeX Font Info:    ... okay on input line 39.
 *geometry* detected driver: pdftex
 *geometry* verbose mode - [ preamble ] result:
 * driver: pdftex
@@ -631,298 +560,47 @@ LaTeX Font Info:    ... okay on input line 67.
 * (1in=72.27pt=25.4mm, 1cm=28.453pt)
 
 ABD: EveryShipout initializing macros
-\Hy@linkcounter=\count135
+LaTeX Font Info:    Try loading font information for U+msa on input line 78.
 
-Overfull \hbox (14.22314pt too wide) in paragraph at lines 121--122
-[]\TU/lmr/m/n/10 ==============================================================
-== 
- []
-
-LaTeX Font Info:    Try loading font information for U+msa on input line 129.
 ("C:\Program Files (x86)\MiKTeX 2.9\tex\latex\amsfonts\umsa.fd"
 File: umsa.fd 2013/01/14 v3.01 AMS symbols A
 )
-LaTeX Font Info:    Try loading font information for U+msb on input line 129.
+LaTeX Font Info:    Try loading font information for U+msb on input line 78.
 
 ("C:\Program Files (x86)\MiKTeX 2.9\tex\latex\amsfonts\umsb.fd"
 File: umsb.fd 2013/01/14 v3.01 AMS symbols B
 )
-LaTeX Font Info:    Try loading font information for OMS+rsfs on input line 129
-.
+LaTeX Font Info:    Try loading font information for OMS+rsfs on input line 78.
 
-("C:\Program Files (x86)\MiKTeX 2.9\tex\latex\calrsfs\omsrsfs.fd") [1
+
+("C:\Program Files (x86)\MiKTeX 2.9\tex\latex\calrsfs\omsrsfs.fd")
+LaTeX Font Info:    Try loading font information for U+eus on input line 81.
+
+("C:\Program Files (x86)\MiKTeX 2.9\tex\latex\amsfonts\ueus.fd"
+File: ueus.fd 2013/01/14 v3.01 Euler Script
+) [1
 
 
 ]
-Overfull \hbox (169.82315pt too wide) in paragraph at lines 202--205
+Overfull \hbox (60.9031pt too wide) in paragraph at lines 148--150
 []\TU/lmr/m/n/10 ==============================================================
-======================
+======== 
  []
 
-[2]
-Overfull \hbox (14.22314pt too wide) in paragraph at lines 280--281
+[2] [3]
+Overfull \hbox (60.9031pt too wide) in paragraph at lines 294--295
 []\TU/lmr/m/n/10 ==============================================================
-== 
+======== 
  []
 
-[3]
-\tmpboxcontent=\box45
- [4]
-Overfull \hbox (14.22314pt too wide) in paragraph at lines 384--385
-[]\TU/lmr/m/n/10 ==============================================================
-== 
- []
-
-[5] [6]
-Overfull \hbox (14.22314pt too wide) in paragraph at lines 496--497
-[]\TU/lmr/m/n/10 ==============================================================
-== 
- []
-
-[7]
-Overfull \hbox (14.22314pt too wide) in paragraph at lines 608--609
-[]\TU/lmr/m/n/10 ==============================================================
-== 
- []
-
-[8]
-LaTeX Font Info:    Try loading font information for U+eus on input line 655.
- ("C:\Program Files (x86)\MiKTeX 2.9\tex\latex\amsfonts\ueus.fd"
-File: ueus.fd 2013/01/14 v3.01 Euler Script
-) [9]
-Overfull \hbox (14.22314pt too wide) in paragraph at lines 675--676
-[]\TU/lmr/m/n/10 ==============================================================
-== 
- []
-
-File: 1.png Graphic file (type bmp)
-<1.png>
-
-LaTeX Warning: `h' float specifier changed to `ht'.
-
-[10]
-Overfull \hbox (14.22314pt too wide) in paragraph at lines 752--753
-[]\TU/lmr/m/n/10 ==============================================================
-== 
- []
-
-
-LaTeX Font Warning: Command \tiny invalid in math mode on input line 767.
-
-
-LaTeX Font Warning: Command \tiny invalid in math mode on input line 767.
-
-
-LaTeX Font Warning: Command \tiny invalid in math mode on input line 771.
-
-
-LaTeX Font Warning: Command \tiny invalid in math mode on input line 771.
-
-[11]
-
-LaTeX Font Warning: Command \tiny invalid in math mode on input line 787.
-
-
-LaTeX Font Warning: Command \tiny invalid in math mode on input line 787.
-
-
-LaTeX Font Warning: Command \tiny invalid in math mode on input line 787.
-
-
-LaTeX Font Warning: Command \tiny invalid in math mode on input line 787.
-
-
-LaTeX Font Warning: Command \tiny invalid in math mode on input line 787.
-
-
-LaTeX Font Warning: Command \tiny invalid in math mode on input line 787.
-
-
-LaTeX Font Warning: Command \tiny invalid in math mode on input line 787.
-
-
-LaTeX Font Warning: Command \tiny invalid in math mode on input line 787.
-
-
-LaTeX Font Warning: Command \tiny invalid in math mode on input line 807.
-
-
-LaTeX Font Warning: Command \tiny invalid in math mode on input line 815.
-
-
-LaTeX Font Warning: Command \tiny invalid in math mode on input line 815.
-
-
-LaTeX Font Warning: Command \tiny invalid in math mode on input line 815.
-
-
-LaTeX Font Warning: Command \tiny invalid in math mode on input line 815.
-
-
-LaTeX Font Warning: Command \tiny invalid in math mode on input line 815.
-
-
-LaTeX Font Warning: Command \tiny invalid in math mode on input line 815.
-
-
-LaTeX Font Warning: Command \tiny invalid in math mode on input line 815.
-
-
-LaTeX Font Warning: Command \tiny invalid in math mode on input line 815.
-
-
-LaTeX Font Warning: Command \tiny invalid in math mode on input line 815.
-
-
-LaTeX Font Warning: Command \tiny invalid in math mode on input line 815.
-
-
-LaTeX Font Warning: Command \tiny invalid in math mode on input line 815.
-
-
-LaTeX Font Warning: Command \tiny invalid in math mode on input line 815.
-
-
-LaTeX Font Warning: Command \tiny invalid in math mode on input line 815.
-
-
-LaTeX Font Warning: Command \tiny invalid in math mode on input line 815.
-
-
-LaTeX Font Warning: Command \tiny invalid in math mode on input line 824.
-
-
-LaTeX Font Warning: Command \tiny invalid in math mode on input line 824.
-
-
-LaTeX Font Warning: Command \tiny invalid in math mode on input line 825.
-
-
-LaTeX Font Warning: Command \tiny invalid in math mode on input line 831.
-
-
-LaTeX Font Warning: Command \tiny invalid in math mode on input line 831.
-
-
-LaTeX Font Warning: Command \tiny invalid in math mode on input line 839.
-
-
-LaTeX Font Warning: Command \tiny invalid in math mode on input line 841.
-
-
-LaTeX Font Warning: Command \tiny invalid in math mode on input line 845.
-
-
-LaTeX Font Warning: Command \tiny invalid in math mode on input line 845.
-
-[12]
-
-LaTeX Font Warning: Command \tiny invalid in math mode on input line 851.
-
-
-LaTeX Font Warning: Command \tiny invalid in math mode on input line 851.
-
-
-LaTeX Font Warning: Command \tiny invalid in math mode on input line 861.
-
-
-LaTeX Font Warning: Command \tiny invalid in math mode on input line 861.
-
-
-Overfull \hbox (14.22314pt too wide) in paragraph at lines 865--866
-[]\TU/lmr/m/n/10 ==============================================================
-== 
- []
-
-
-LaTeX Font Warning: Command \tiny invalid in math mode on input line 874.
-
-
-LaTeX Font Warning: Command \tiny invalid in math mode on input line 874.
-
-
-LaTeX Font Warning: Command \tiny invalid in math mode on input line 884.
-
-
-LaTeX Font Warning: Command \tiny invalid in math mode on input line 889.
-
-
-LaTeX Font Warning: Command \tiny invalid in math mode on input line 889.
-
-
-LaTeX Font Warning: Command \tiny invalid in math mode on input line 889.
-
-
-LaTeX Font Warning: Command \tiny invalid in math mode on input line 889.
-
-
-LaTeX Font Warning: Command \tiny invalid in math mode on input line 890.
-
-
-LaTeX Font Warning: Command \tiny invalid in math mode on input line 890.
-
-
-LaTeX Font Warning: Command \tiny invalid in math mode on input line 896.
-
-
-LaTeX Font Warning: Command \tiny invalid in math mode on input line 896.
-
-
-LaTeX Font Warning: Command \tiny invalid in math mode on input line 907.
-
-
-LaTeX Font Warning: Command \tiny invalid in math mode on input line 907.
-
-[13]
-File: 2.png Graphic file (type bmp)
-<2.png>
-
-
-LaTeX Font Warning: Command \tiny invalid in math mode on input line 924.
-
-
-LaTeX Font Warning: Command \tiny invalid in math mode on input line 929.
-
-
-LaTeX Font Warning: Command \tiny invalid in math mode on input line 939.
-
-
-LaTeX Font Warning: Command \tiny invalid in math mode on input line 939.
-
-
-LaTeX Font Warning: Command \tiny invalid in math mode on input line 944.
-
-[14]
-Overfull \hbox (14.22314pt too wide) in paragraph at lines 970--971
-[]\TU/lmr/m/n/10 ==============================================================
-== 
- []
-
-
-Overfull \hbox (22.5383pt too wide) detected at line 986
-[]
- []
-
-
-LaTeX Font Warning: Command \tiny invalid in math mode on input line 1014.
-
-
-LaTeX Font Warning: Command \tiny invalid in math mode on input line 1020.
-
-[15]
-Overfull \hbox (14.22314pt too wide) in paragraph at lines 1067--1068
-[]\TU/lmr/m/n/10 ==============================================================
-== 
- []
-
-[16] [17] [18] (discrete_analysis.aux) ) 
+[4] [5] [6] (entropy.aux) ) 
 Here is how much of TeX's memory you used:
- 15093 strings out of 427839
- 297622 string characters out of 3151405
- 395111 words of memory out of 3000000
- 18767 multiletter control sequences out of 15000+200000
- 6546 words of font info for 42 fonts, out of 3000000 for 9000
+ 13399 strings out of 427839
+ 270356 string characters out of 3151405
+ 331955 words of memory out of 3000000
+ 17116 multiletter control sequences out of 15000+200000
+ 6514 words of font info for 38 fonts, out of 3000000 for 9000
  1328 hyphenation exceptions out of 8191
- 72i,19n,88p,884b,405s stack positions out of 5000i,500n,10000p,200000b,50000s
+ 61i,13n,84p,951b,265s stack positions out of 5000i,500n,10000p,200000b,50000s
 
-Output written on discrete_analysis.pdf (18 pages).
+Output written on entropy.pdf (6 pages).

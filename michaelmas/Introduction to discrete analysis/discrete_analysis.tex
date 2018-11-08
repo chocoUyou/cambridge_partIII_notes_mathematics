@@ -92,14 +92,18 @@
 \newcommand{\prob}{\mathbb{P}}
 \newcommand{\osc}{\text{\osc}}
 
-\newcommand{\boxnorm}[1]{\norms{#1}{\tiny{\square}}}
+\renewcommand{\P}{\mathscr{P}}
 
+%%%%%%%box norms%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\newcommand{\boxnorm}[1]{\norms{#1}{\tiny{\square}}}
 \newcommand{\boxinn}[4]{\begin{array}{|cc|} 
 \cline{1-2}
 #1 & #2 \\
 #3 & #4 \\
 \cline{1-2}
 \end{array}}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
 
 \newcommand{\newday}{================================================================}
 \newcommand{\digression}{**********************************************************************************************}
@@ -895,10 +899,10 @@ so $\norms{g}{2} \leq \sqrt{\frac{c}{2}}\delta$.
 \end{proof}
 \s
 
-We are now ready to do some quasirandom graphs.
+We are now ready to do some quasirandom graphs. The followings are \textbf{quasirandomness conditions}
 \s
 
-\lemnum{6} Let $G$ be a bipartite graph of density $\delta$ with finite vertex sets $X,Y$. Then the following statements are "equivalent", in the sense that if one holds for sufficiently small $c_i$, then the others hold for small $c_j$.
+\lemnum{6} \emph{(Quasirandomness Conditions)} Let $G$ be a bipartite graph of density $\delta$ with finite vertex sets $X,Y$. Then the following statements are "equivalent", in the sense that if one holds for sufficiently small $c_i$, then the others hold for small $c_j$.
 \begin{itemize}
 \item[(i)] $\boxnorm{G}^4 \leq \delta^4 (1+c_1)$. ($\boxnorm{G}^4$ is the \textbf{4-cycle density} of $G$.)
 \item[(ii)] For each vertex $x,x_1, x_2 \in X$, let $\delta(x) = \avg_y G(x,y) =$(density of neighbourhood of $x$ in $Y$), and let $\delta(x_1,x_2) = \avg_y G(x_1,y)G(x_2,y)=$(density of neighbourhood intersection). Similarly define $\delta(y)$, $\delta(y_1,y_2)$ for $y,y_1,y_2 \in Y$. Then
@@ -1029,7 +1033,7 @@ with $\norms{u}{\infty},\norms{v}{\infty} \leq 1$ if we fix all variables other 
 
 \subsection*{Szemer\'{e}di's Regularity Lemma}
 
-Szemer\'{e}di's regularity lemma says that almost every $k$-partite graph is actually very close to a quasirandom graph. We are not going to state the result in the section and delay the proof for later.
+Szemer\'{e}di's regularity lemma says that almost every $k$-partite graph is actually very close to a quasirandom graph.
 \s
 
 Let $X$ be a finite set and let $\mathscr{P}= \{ X_1, \cdots, X_k \}$ be a partition $X=X_1 \cup \cdots \cup X_k$. Given a function $f: X\rightarrow \reals$, define the conditional expectation of $f$ with respect to $\mathscr{P}$ by
@@ -1058,6 +1062,115 @@ It follows from (iv) applied to $\avg[f|\mathscr{Q}]$ that
 \avg[\avg[f|\mathscr{Q}]^2 ] \geq \avg [ \avg[f|\mathscr{P}]^2 ]
 \end{align*}
 \end{itemize}
+\s
+
+\newday
+
+(8th November, Thursday)
+\s
+
+(Second Example Class at 16th November, Friday, 2 pm)
+\s
+
+\begin{itemize}
+\item Let $G$ be a bipartite graph with (finite) vertex sets $X,Y$. Let $A\subset X$, $B\subset Y$. Then the \textbf{density} $d(A,B)=d_G(A,B)$ is
+\begin{align*}
+\avg_{x\in A, y\in B} G(x,y)
+\end{align*}
+\item We shall say that $(A,B)$ is \textbf{$\epsilon$-regular} if $\forall A' \subset A$, $B'\subset B$, we have
+\begin{align*}
+\Big| \avg_{x\in A, y\in B} G(x,y) A'(x) B'(y) - d(A,B)\avg_{x\in A, y\in B}A'(x)B'(y) \Big| \leq \epsilon
+\end{align*}
+Note, this is one of the quasirandomness conditions on the subgraph of $G$ induced by $A'$ and $B'$.
+\end{itemize}
+\s
+
+\thmnum{8} \emph{(Szemer\'{e}di's regularity lemma)} Let $G$ be a bipartite graph with vertex sets $X,Y$ and let $\epsilon>0$. Then there exist partitions $X = X_1 \cup \cdots \cup X_r$, $Y = Y_1\cup \cdots \cup Y_s$ with $r,s\leq k(\epsilon)$ such that if you choose $(x,y) \in X\times Y$ at random, then the probability that it belongs to an $\epsilon$-regular pair $(X_i, Y_j)$ is at least $1-\epsilon$.
+\s
+
+Can actually make stronger statements - such as making the partition sets of almost the same size.
+\s
+
+\defi Given partitions $X_1 \cup \cdots \cup X_r$ of $X$ and $Y_1 \cup \cdots \cup Y_s$ of $Y$, let $\mathscr{P}$ be the partition of $X\times Y$ into the sets $X_i \times Y_j$. The \textbf{mean-square density of $G$} w.r.t. the partition $X_1 \cup \cdots \cup X_r$ and $Y_1 \cup \cdots \cup Y_s$ is $\avg[\avg[G|\mathscr{P}]^2]$.
+
+\emph{i.e.} It is the expectation of $d(X_i, Y_j)^2$ where $(X_i, Y_j)$ is the pair containing a random edge $(x,y)$.
+\s
+
+The following lemma holds the key fact deriving the result.
+\s
+
+\lemnum{9} Let $A\subset X$, $B\subset Y$ and suppose that $(A,B)$ is not $\epsilon$-regular. Then there are partitions $A = A_0 \cup A_1$, $B =B_0 \cup B_1$ such that the mean-square density of $G\big|_{A\times B}$ is at least $d(A,B)^2 + \epsilon^2$.
+\begin{proof}
+\pf By hypothesis we can find $A_0 \subset A$, $B_0\subset B$ such that 
+\begin{align*}
+\Big| \avg_{x\in A, y\in B} \Big(G(x,y) - d(A,B) \Big) A_0(x) B_0(y) \Big| \geq \epsilon
+\end{align*}
+Set $A_1 = A \backslash A_0$, $B_1 = B \backslash B_0$. Then
+\begin{align*}
+\avg[\avg[G|\P]^2] =& \big( \avg[\avg[G|\P]] \big)^2 + \text{Var}(\avg[G|\P]) \\
+=& d(A,B)^2 + \avg \big( \avg[G|\P] - d(A,B) \big)^2
+\end{align*}
+But
+\begin{align*}
+\avg \big( \avg[G|\P] - d(A,B) \big)^2 & \geq \prob [x\in A_0, y\in B_0] \Big( d(A_0, B_0) - d(A,B) \Big)^2 \\
+& =  \frac{|A_0| |B_0|}{|A||B|} \Big( \frac{1}{|A_0||B_0|} \sum_{x\in A_0,y\in B_0} \big(G(x,y)-d(A,B)\big) \Big)^2 \\
+& \geq \Big( \avg_{x\in A, y\in B} \big(G(x,y)-d(A,B)\big) A_0(x) B_0(y) \Big)^2 \geq \epsilon^2
+\end{align*}
+
+\eop
+\end{proof}
+\s
+
+\lemnum{10} Suppose that the partition $X_1 \cup \cdots \cup X_r$, $Y_1 \cup \cdots \cup Y_s$ do not satisfy the conclusion of \textbf{Theorem 8}. Suppose also that $r,s\leq m$. Then there are refinements of the partition into at most $m\cdot 2^m$ sets each, such that the mean square density goes up by at least $\epsilon^3$.
+\begin{proof}
+\pf For each pair $(X_i, Y_j)$ that is not $\epsilon$-regular, find a partition $X_i = X_{ij}^0 \cup X_{ij}^1$, $Y_j = Y_{ij}^0 \cup Y_{ij}^1$ w.r.t. the mean-square density of $G\big|_{X_i \times Y_j}$ is at least $d(X_i, Y_j)^2 + \epsilon^2$. For each $i$ take a common refinement of the partitions $X_{ij}^0 \cup X_{ij}^1$ into at most $2^m$ sets, and do similarly for $Y_j$.
+
+\quad Pick a random edge $(x,y)$ and suppose that it belongs to $(X_i, Y_j)$.
+\begin{itemize}
+\item If $(X_i, Y_j)$ is not $\epsilon$-regular (observe that this happens with probability $\geq \epsilon$ by the assumption), then the mean square density of the cell of the refined partition is at least $d(X_i, Y_j)^2 + \epsilon^2$, because inside $(X_i, Y_j)$ the refined partition refines the partitions $X_{ij}^0 \cup X_{ij}^1$, $Y_{ij}^0 \cup Y_{ij}^1$.
+\item Otherwise, it is at least $d(X_i, Y_j)^2$. 
+\end{itemize}
+So the result follows.
+
+\eop
+\end{proof}
+\s
+
+Finally we prove the Szemer\'{e}di's reglarity leamma.
+\s
+
+\begin{proof}
+\textbf{proof of Theorem 8)} Start with the trivial partitions of $X$ and $Y$. If those don't work, apply \textbf{Lemma 10} repeatedly. Since mean-square density is $\leq 1$, there can be at most $\epsilon^{-3}$ iterations before partitions are found that work. This gives an upper bound on $k$ obtained by iterating the function $m \mapsto m2^m$ by $\epsilon^{-3}$ times. Since $m \cdot 2^m \leq 4^m$, this gives a bound of
+\begin{align*}
+4^{4^{\cdot^{{\cdot}^{\cdot^{4}}}}}
+\end{align*}
+with $\epsilon^{-3}$ number of 4s.
+
+\eop
+
+(Note, this is less or equal to $2^{2^{\cdot^{{\cdot}^{\cdot^{2}}}}}$ with $2+\epsilon^{-3}$ number of 2s.)
+
+
+\end{proof}
+\s
+
+\thmnum{11} \emph{(The triangle-removed lemma)} For every $\epsilon>0$ there exists $\delta >0$ such that if $G$ is any graph with $n$ vertices and at most $\delta n^3$ triangles then there is a subgraph $H\subset G$ such that $G \backslash H$ contains at most $\epsilon n^2$ edges and $H$ is triangle free.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 

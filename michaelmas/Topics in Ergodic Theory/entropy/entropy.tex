@@ -1,0 +1,441 @@
+\documentclass[10pt,a4paper]{report}
+
+
+\usepackage{amsmath}
+\usepackage[utf8]{inputenc}
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{amssymb}
+\usepackage{calrsfs}
+\usepackage[left=2cm,right=2cm,top=2cm,bottom=2cm]{geometry}
+\usepackage[mathscr]{euscript}
+
+%%%for drawing commutative diagrams.%%%%%%
+\usepackage{tikz-cd}  
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%for writing large parallel%%%%%%
+\usepackage{mathtools}
+\DeclarePairedDelimiter\bignorm{\lVert}{\rVert}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%for changing margin
+\def\changemargin#1#2{\list{}{\rightmargin#2\leftmargin#1}\item[]}
+\let\endchangemargin=\endlist 
+
+\newenvironment{proof}
+{\begin{changemargin}{1cm}{0.5cm} 
+	}%your text here
+	{\end{changemargin}
+}
+
+\newenvironment{subproof}
+{\begin{changemargin}{0.5cm}{0.5cm}
+	}%your text here
+	{\end{changemargin}
+}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{document}
+\newcommand{\thm}{\textbf{Theorem) }}
+\newcommand{\thmnum}[1]{\textbf{Theorem #1) }}
+\newcommand{\defi}{\textbf{Definition) }}
+\newcommand{\lem}{\textbf{Lemma) }}
+\newcommand{\lemnum}[1]{\textbf{Lemma #1) }}
+\newcommand{\prop}{\textbf{Proposition) }}
+\newcommand{\pf}{\textbf{proof) }}
+\newcommand{\cor}{\textbf{Corollary) }}
+\newcommand{\cornum}[1]{\textbf{Corollary #1) }}
+
+\newcommand{\lap}{\triangle} %%Laplacian
+\newcommand{\s}{\vspace{10pt}}
+\newcommand{\bull}{$\bullet$}
+\newcommand{\sta}{$\star$}
+\newcommand{\reals}{\mathbb{R}}
+
+\newcommand{\eop}{\hfill  \textsl{(End of proof)} $\square$} %end of proof
+
+\newcommand{\intN}{\mathbb{Z}_N}
+\newcommand{\norms}[2]{\bignorm[\big]{#1}_{#2}}
+\newcommand{\abs}[1]{\big| #1 \big|}
+\newcommand{\avg}{\mathbb{E}}
+\newcommand{\borel}{\mathscr{B}}
+\newcommand{\setlimsup}[2]{\bigcap_{#1=1}^{\infty}\bigcup_{#2=#1}^{\infty}}
+\newcommand{\dlim}{D-\lim}
+\newcommand{\clim}{C-\lim}
+
+\newcommand{\newday}{======================================================================}
+\newcommand{\digression}{**********************************************************************************************}
+
+\setlength\parindent{0pt}
+\noindent
+
+\chapter*{Topics in Ergodic Theory}
+\s
+
+\section*{9. Entropy}
+
+\textbf{Bernoulli Shift : } Let $(P_1, P_2,\cdots, P_d)$ be a probability vector. The \textbf{$(P_1, \cdots, P_d)$-Bernoulli shift} is the MPS
+\begin{align*}
+\big( \{1,\cdots, d\}^{\mathbb{Z}}, \borel, \mu_{P_1,\cdots, P_d},\sigma \big)
+\end{align*}
+where $\mu_{P_1,\cdots, P_d}$ is the product measure with $(P_1,\cdots, P_d)$ on the coordinates and $\sigma$ is the shift map.
+\s
+
+\defi The MPS $(X_1, \borel_1, \mu_1, T_1)$ and $(X_2,\borel_2, \mu_2, T_2)$ are called \textbf{isomorphic}, if there are maps
+\begin{align*}
+S_1 : X_1\rightarrow X_2,\quad S_2 : X_2 \rightarrow X_1
+\end{align*}
+such that $S_1 \circ S_2 = id_{X_2}$ a.e., $S_2 \circ S_1 = id_{X_1}$ a.e., $(S_1)_* \mu_1 =\mu_2$, $(S_2)_* \mu_2 =\mu_1$ and $T_1 \circ S_2 = T_1 \circ T_2$ a.e.
+\s
+
+\textbf{The Question :} Are the $(\frac{1}{2}, \frac{1}{2})$ and $(\frac{1}{3},\frac{1}{3},\frac{1}{3})$ Bernoulli-shift isomorphic?
+\s
+
+This question does not seem very difficult, but this had been unsolved for a long time. These two shifts have "the same" Koopman operators, and moreover Meshalkin proved that $(\frac{1}{4},\frac{1}{4},\frac{1}{4},\frac{1}{4})$ and $(\frac{1}{2},\frac{1}{8},\frac{1}{8},\frac{1}{8},\frac{1}{8})$-Bernoulli shifts are isomorphic. This problem was finally solved by Kolmogorov. He proved that these two systems are not isomorphic by attaching a quantity called \emph{entropy}, which should be preserved by isomorphism, on each system and by showing they are not equal. Later, Ornstein showed that two Bernoulli shifts are isomorphic if and only if they have the same entropy. Actually, the introduction of notion of entropy in measure preserving systems was the starting point of ergodic theory being identified as an independent subject, so the importance of entropy in the field of ergodic theory cannot be overemphasize.
+\s
+
+Let us do some actual mathematics now. We define the entropy as the measure of the amount how difficult it is to predict the system.
+\s
+
+\defi Let $(X,\borel, \mu)$ be a probability space. A \textbf{countable measurable partition} is a collection of measurable sets $A_1, A_2, \cdots$ such that $A_i \cap A_j =\phi$ for all $i\neq j$ and $\bigcup A_i = X$. The sets $A_i$ are called the atoms of partition. 
+
+\quad The \textbf{join} or \textbf{coarsest common refinement} of two countable measurable partiotion $\xi, \eta$ is
+\begin{align*}
+\xi \vee \eta = \{A \cap B : A\in \xi, B \in \eta \}
+\end{align*}
+
+\quad Define a function
+\begin{align*}
+H(p_1, \cdots, p_d) = - \sum_{j=1}^d p_j \log (p_j)
+\end{align*}
+for all probability vector $(p_1, \cdots, p_d)$ with the convention $0 \cdot \log 0 =0$. The \textbf{entropy} of a countable measurable partition $\xi$ is
+\begin{align*}
+H_{\mu}(\xi) = H(\mu(A_1), \mu(A_2), \cdots)
+\end{align*}
+where $\xi = \{A_1, A_2, \cdots \}$.
+
+\quad The \textbf{conditional entropy} of $\xi = \{A_1, A_2, \cdots \}$ relative to $\eta = \{B_1, B_2, \cdots \}$ is 
+\begin{align*}
+H_{\mu} (\xi | \eta) = \sum_{n=1}^{\infty} \mu(B_n) \cdot H\Big( \frac{\mu(A_1 \cap B_n)}{\mu(B_n)},\frac{\mu(A_2 \cap B_n)}{\mu(B_n)},\cdots \Big)
+\end{align*}
+This is the average average of entropy conditioned on each partition of 
+\s
+
+$\star$ Very Useful Interpretations : 
+
+\quad Entropy of $\xi$ provides the amount of information we can obtain from an experiment $\xi$. Conditional entropy of $\xi$ relative to $\eta$ provides the amount of information we can get from $\xi$ given the information about experiment $\eta$. Entropy of join $\xi \vee \eta$ gives the amount of information we can get if we perform both experiments $\xi$ and $\eta$.
+\s
+
+\lem
+\begin{itemize}
+\item[(1)] $H_{\mu} (\xi) \geq 0$.
+\item[(2)] The value of $H_{\mu}(\xi)$ is maximal among partition $\xi$ with $k$ atoms if all atoms have the same measure $\frac{1}{k}$.
+\item[(3)] $H_{\mu}(\{A_1, \cdots, A_k \}) = H_{\mu}(A_{\rho (1)}, \cdots, A_{\rho (k)})$ for all permutations $\rho \in \text{Sym}(\{1,\cdots,k\})$.
+\item[(4)] $H_{\mu} (\xi \vee \eta) = H_{\mu}(\xi) + H_{\mu}(\eta |\xi)$. This is called \emph{chain rule.}
+\end{itemize}
+\begin{proof}
+\pf \begin{itemize}
+\item (1) is trivial and (2) is going to be proved shortly using Jensen's inequality.
+\item (3) and (4) are going to be proved later, in more general setting.
+\end{itemize}
+\end{proof}
+\s
+
+\textbf{Khinchin)} Let $H_{\cdot}(\cdot) : P(X) \times \borel$ be a function satisfying the conditions (1)-(4) of the lemma, where $P(X)$ is the set of Borel probability measures on $(X,\borel)$. Then $H_{\cdot}(\cdot)$ is uniquely determined by these properties, up to a multiplication of a scalar factor.
+\s
+
+\newday
+\s
+
+(6th November, Tuesday)
+
+\defi A function $[a,b] \rightarrow \reals \cup \{ \infty \}$ is \textbf{convex}, if $\forall x \in (a,b)$, $\exists \alpha_x \in \reals$ such that
+\begin{align*}
+f(y) \geq f(x) + \alpha_x (y-x) \quad \forall y \in [a,b]
+\end{align*}
+$f$ is \textbf{strictly convex} if the equality occurs only for $x=y$. 
+\s
+
+\textbf{Remark :} If $f$ is $C^2([a,b])$ and $f''(x) >0$ for all $x\in (a,b)$, then $f$ is strictly convex.
+\s
+
+\textbf{Jensen's inequality)} Let $f:[a,b] \rightarrow \reals \cup \{\infty\}$ be a convex function. Let $p_1, p_2, \cdots$ be a probability vector (possibly countably infinite). Let $x_1, x_2, \cdots \in [a,b]$. Then
+\begin{align*}
+f(p_1 x_1 + p_2 x_2 + \cdots) \leq \sum_i p_i f(x_i)
+\end{align*}
+If $f$ is strictly convex, then equality occurs \emph{iff} those $x_i$ for which $p_i >0$ coincide.
+\s
+
+\textbf{Claim :} Let $(X,\borel, \mu)$ be a probability space. Let $\xi$ be a measurable partition with $k$ atoms. Then
+\begin{align*}
+H_{\mu}(\xi) \leq \log (k)
+\end{align*}
+and equality occurs only if each atom of $\xi$ has measures $\frac{1}{k}$.
+\begin{proof}
+\pf Apply Jensen's inequality to the function $x\mapsto x \log (x)$ with weights $p_i = \frac{1}{k}$ at the point $\mu(A_i)$, where $A_i$ are the atoms of $\xi$. Note,
+\begin{align*}
+& \sum p_i \mu(A_i) = \frac{1}{k} \sum \mu(A_i) = \frac{1}{k} \\
+\Rightarrow \quad & \frac{1}{k} \log (\frac{1}{k}) \leq \sum \frac{1}{k} \mu(A_i) \log (\mu(A_i))
+\end{align*}
+so
+\begin{align*}
+\log k \geq \sum (-1) \mu(A_i) \log \mu(A_i) = H_{\mu}(\xi)
+\end{align*}
+
+\eop
+\end{proof}
+
+\s
+
+\defi Let $(X, \borel, \mu)$ be a probability space and let $\xi$ be a countable measurable partition. The \textbf{information function} of $\xi$ is
+\begin{align*}
+I_{\mu} (\xi) : & X \rightarrow \reals \cup \{\infty \} \\
+& x\mapsto -\log \mu \big( [x]_{\xi} \big)
+\end{align*}
+where $[x]_{\xi}$ is the atom of $\xi$ where $x$ belongs.
+
+\quad If $\eta$ is another partition, then the \textbf{conditional information function} of $\xi$ relative to $x$ is
+\begin{align*}
+I_{\mu} (\xi | \eta) (x)  = - \log \frac{\mu \big( [x]_{\xi \vee \eta} \big)}{\mu \big( [x]_{\eta} \big)}
+\end{align*}
+\s
+
+It is apparent that the information function is related to entropy. This is summarized in the following lemma.
+\s
+
+\lem With notation as above,
+\begin{align*}
+& H_{\mu}(\xi) = \int I_{\mu} (\xi) d \mu \\
+& H_{\mu}(\xi | \eta) = \int I_{\mu} (\xi | \eta) d \mu
+\end{align*}
+\begin{proof}
+\pf The first equality is direct from the definition. For the second equality,
+\begin{align*}
+I_{\mu} (\xi |\eta) d\mu &= \sum_{A\in \xi, B \in \eta} \int_{A \cap B} I_{\mu}(\xi | \eta) d\mu = - \sum_{A \in \xi, B\in \eta} \mu(A\cap B) \log \Big( \frac{\mu(A \cap B)}{\mu(B)}\Big) \\
+&= -\sum_{B\in \eta} \mu(B) \cdot \sum_{A\in \xi} \frac{\mu(A\cap B)}{\mu(B)} \log \Big( \frac{\mu(A\cap B)}{\mu(B)} \Big)
+\end{align*}
+
+\eop
+\end{proof}
+\s
+
+One reason we use information function is that it is much easier to prove chain rule with information function.
+\s
+
+\lem \emph{(Chain rule)} Let $(X,\borel, \mu)$ be a probability space and let $\xi, \eta, \lambda$ be countable measurable partitions. Then
+\begin{align*}
+I_{\mu} (\xi \vee \eta | \lambda)(x) &= I_{\mu}(\xi | \lambda) (x) + I_{\mu}(\eta | \xi \vee \lambda)(x) \quad \forall x \in X \\
+H_{\mu} (\xi \vee \eta | \lambda) &= H_{\mu}(\xi | \lambda)  + H_{\mu}(\eta | \xi \vee \lambda)
+\end{align*}
+\begin{proof}
+\pf For the first equality,
+\begin{align*}
+I_{\mu} (\xi \vee \eta |\lambda) (x)  &= \log \frac{\mu ([x]_{\lambda})}{\mu([x]_{\xi \vee \eta \vee \lambda})} \\
+I_{\mu} (\xi |\lambda) (x)  &= \log \frac{\mu ([x]_{\lambda})}{\mu([x]_{\xi \vee \lambda})} \\
+I_{\mu} (\eta |\lambda \vee \xi) (x)  &= \log \frac{\mu ([x]_{\xi \vee \lambda})}{\mu([x]_{\xi \vee \eta \vee \lambda})} \\
+\end{align*}
+and this proves the chain rule for information function.
+
+\quad The second equality follows from the first equality by integration the information function (as in the previous lemma).
+
+\eop
+\end{proof}
+\s
+
+The following inequality is very important in theory of mathematics of information.
+\s
+
+\lem Let notation be as above. Then
+\begin{align*}
+H_{\mu}(\xi | \eta) \geq H_{\mu}(\xi | \eta \vee \lambda)
+\end{align*}
+
+"The amount of information obtained from $\xi$ given $\eta$ is larger than information obtained from $\xi$ given $\eta$ and $\lambda$."
+\begin{proof}
+\pf 
+\begin{align*}
+H_{\mu}(\xi | \eta \vee \lambda) &= \sum_{A \in \xi, B \in \eta, C \in \lambda} \mu(A\cap B \cap C) \log \Big( \frac{\mu(B\cap C)}{\mu(A\cap B \cap C)}\Big) \\
+H_{\mu}(\xi | \eta ) &= \sum_{A \in \xi, B \in \eta} \mu(A\cap B ) \log \Big( \frac{\mu(B)}{\mu(A\cap B )}\Big)
+\end{align*}
+It is enough to show that for all fixed $A \in \xi$, $B\in \eta$, we have
+\begin{align*}
+\mu(A\cap B) \log \Big( \frac{\mu(B)}{\mu(A\cap B)}\Big) \geq \sum_{C \in \lambda} \mu(A \cap B \cap C) \log \Big( \frac{\mu(B\cap C)}{\mu(A\cap B \cap C)} \Big)
+\end{align*}
+To see this, apply Jensen's inequality for $x\mapsto x\log x$ at points $\frac{\mu(A\cap B\cap C)}{\mu(B \cap C)}$ for $C \in \lambda$ with weights $\frac{\mu(B\cap C)}{\mu(B)}$. Write
+\begin{align*}
+\sum_{C\in \lambda } \frac{\mu(B\cap C)}{\mu(B)} \cdot \frac{\mu(A\cap B \cap C)}{\mu(B\cap C)} = \frac{1}{\mu(B)} \sum_{C\in \lambda} \mu(A\cap B \cap C) = \frac{\mu(A\cap B)}{\mu(B)}
+\end{align*}
+and application of Jensen gives
+\begin{align*}
+\frac{\mu(A\cap B)}{\mu(B)}\cdot \log \Big( \frac{\mu(A\cap B)}{\mu(B)} \Big) \leq \sum_{C\in \lambda} \frac{\mu(B\cap C)}{\mu(B)} \cdot \log\Big( \frac{\mu(A\cap B \cap C)}{\mu(B\cap C)} \Big)
+\end{align*}
+and therefore
+\begin{align*}
+\mu(A\cap B)\cdot \log \Big( \frac{\mu(A\cap B)}{\mu(B)} \Big) \leq \sum_{C\in \lambda} \mu(B\cap C) \cdot \log \Big( \frac{\mu(A\cap B \cap C)}{\mu(B\cap C)} \Big)
+\end{align*}
+
+\eop
+\end{proof}
+\s
+
+\cor $H_{\mu}(\xi) \leq H_{\mu}(\xi \vee \eta) \leq H_{\mu}(\xi) + H_{\mu}(\eta)$.
+\begin{proof}
+\pf Using the chain rule, obtain
+\begin{align*}
+H_{\mu}(\xi \vee \eta) = H_{\mu} (\xi)  + H_{\mu}(\eta | \xi)
+\end{align*}
+and form the previous lemma, has $H_{\mu}(\eta |\xi) \leq H_{\mu}(\eta)$
+
+\eop
+\end{proof}
+\s
+
+\newday
+
+(8th November, Thursday)
+\s
+
+\lem Let $(X,\borel, \mu, T)$ be an MPS. Let $\xi, \eta$ be countable measurable partitions. Then :
+\begin{align*}
+& I_{\mu}(T^{-1}\xi | T^{-1} \eta ) = I_{\mu}(\xi | \eta)(Tx) \\
+& H_{\mu}(T^{-1} \xi | T^{-1} \eta) = H_{\mu}(\xi | \eta)
+\end{align*}
+where $T^{-1} \xi$ is the partition whose atoms are $T^{-1}([x]_{\xi})$.
+
+\begin{proof}
+\pf Has 
+\begin{align*}
+I_{\mu}(T^{-1} \xi | T^{-1} \eta)(x)  = -\log \Big( \frac{\mu([x]_{T^{-1}\xi \vee T^{-1}\eta} )}{\mu([x])_{T^{-1}\eta}} \Big)
+\end{align*}
+Note
+\begin{align*}
+T^{-1} \xi \vee T^{-1}\eta = T^{-1}(\xi \vee \eta) \quad \text{and} \quad [x]_{T^{-1} \xi \vee T^{-1}\eta} = T^{-1} [Tx]_{\xi \vee \eta}
+\end{align*}
+hence $\mu([x]_{T^{-1} \xi \vee T^{-1}\eta}) = \mu([Tx]_{\xi \vee \eta})$ by the measure preserving property. Similarly $\mu([x]_{T^{-1}\eta}) = \mu ([Tx]_{\eta})$. Then $I_{\mu}(T^{-1}\xi | T^{-1} \eta ) = -\log \Big( \frac{\mu([x]_{T^{-1}\xi \vee T^{-1}\eta} )}{\mu([x])_{T^{-1}\eta}} \Big) =  I_{\mu}(\xi | \eta)(Tx)$
+
+\quad The statement on $H_{\mu}$ follows by integrating $I_{\mu}$
+
+\eop
+\end{proof}
+\s
+
+\cor Writing $\xi_m^n = T^{-m} \xi \vee T^{-(m+1)}\xi \vee \cdots \vee T^{-n} \xi$, has
+\begin{align*}
+H_{\mu}(\xi_0^{n+m-1}) \leq H_{\mu}(\xi_0^{n-1}) + H_{\mu}(\xi_0^{m-1})
+\end{align*}
+\begin{proof}
+\pf Note that $\xi_0^{n+m-1} = \xi_0^{n-1} \vee \xi_n^{n+m-1}$. So we have
+\begin{align*}
+H_{\mu}(\xi_0^{n+m-1}) &\leq H_{\mu}(\xi_0^{n-1})+ H_{\mu}(\xi_n^{n+m-1}) = H_{\mu}(\xi_0^{n-1}) + H_{\mu}(T^{-n}\xi_0^{m-1}) \\
+&= H_{\mu}(\xi_0^{n-1}) + H_{\mu}(\xi_0^{m-1})
+\end{align*}
+where the last equality follows from the previous lemma.
+
+\eop
+\end{proof}
+\s
+
+\lem \emph{(Felate's lemma)} Let $(a_n)\subset \reals$ be a subadditive sequence, that is
+\begin{align*}
+a_{n+m} \leq a_n + a_m \quad \forall n,m
+\end{align*}
+Then $\lim_{n\rightarrow \infty} a_n/n$ exists and equals $\inf_{n} a_n /n $.
+\begin{proof}
+\textbf{proof sketch)} Need to show that $\limsup_{n\rightarrow \infty} \frac{a_n}{n} \leq \frac{a_{n_0}}{n_0}$ for all $n_0$. For each fixed $n_0$, we can write $n = j(n)n_0 + i(n)$, where $i(n) \in [0,n_0-1]$. Iterate sub-additivity to get $a_n \leq j(n) a_{n_0} + a_{i(n)}$.
+
+\quad See the online note for the full proof.
+\end{proof}
+\s
+
+\defi Let $(X,\borel, \mu, T)$ be an MPS. Let $\xi, \eta$ be countable measurable partitions such that $H_{\mu}(\xi) < \infty$. The \textbf{entropy of the MPS w.r.t. $\xi$} is :
+\begin{align*}
+h_{\mu} (\xi) = \lim_{n\rightarrow \infty} \frac{H_{\mu}(\xi_0^{n-1})}{n} = \inf_n \frac{H_{\mu}(\xi_0^{n-1})}{n}
+\end{align*}
+whose existence of the limit is guaranteed by \emph{Felate's lemma}.(in fact, $\frac{H_{\mu}(\xi_0^{n-1})}{n}$ is a monotone decreasing sequence - will show in the example sheet)
+
+\quad The \textbf{entropy of the MPS} is $h_{\mu}(T) = \sup_{\xi : H_{\mu}(\xi)<\infty} h_{\mu}(T|\xi)$.
+\s
+
+$h_{\mu} (\xi)$ expresses how fast we can learn information from a particular experiment $\xi$, and $h_{\mu}(T)$ is the maximal information we can obtain from the system when an appropriate experiment is chosen.
+\s
+
+The problem of this definition is that it is generally difficult to find out the supremum $\sup_{\xi : H_{\mu}(\xi)<\infty} h_{\mu}(T|\xi)$ - since this requires computing entropy w.r.t $\xi$ for each $\xi$. The good news is that (at least for the Bernoulli shifts), if we can find a partition that satisfies a particular property(so called \textbf{2-sided generator}), then in fact the supremum is achieved by the partition.
+\s
+
+\defi Let $(X,\borel, \mu, T)$ be an invertible MPS. Let $\xi \subset \borel$ be a countable measurable partitions. We say that $\xi$ is a \textbf{2-sided generator} if $\forall A\in \borel$ and $\forall \epsilon >0$, $\exists k\in \mathbb{Z}_{>0}$ such that $\exists A'\in \sigma( \xi^k_{-k} )$ and $\mu(A \triangle A') <\epsilon$.
+\s
+
+\thm \emph{(Kolmogorov-Sinai)} Let $(X,\borel, \mu, T)$ be an \emph{invertible} measure preserving system. Let $\xi$ be a countable measurable partition with $H_{\mu}(\xi) < \infty$, which is a 2-sided generator. Then
+\begin{align*}
+h_{\mu}(T) = h_{\mu}(T,\xi)
+\end{align*}
+\s
+
+We delay the proof of this theorem until next lecture. Instead, we start to compute something useful.
+\s
+
+\textbf{Example :} Let $(\{1,2,\cdots, k\}^{\mathbb{Z}}, \borel, \mu, \sigma)$ be the $(p_1, \cdots, p_k)$-Bernoulli shift. Let $X =\{1,2,\cdots, k\}^{\mathbb{Z}}$.
+\begin{itemize}
+\item \textbf{Claim :} The partition $\xi = \{ \{x\in X: x_0 =j \} : j=1, \cdots, k \}$ is a 2-sided generator.
+\begin{subproof}
+\pf The collection of sets
+\begin{align*}
+\{ A\in \borel : \forall \epsilon, \,\, \exists k \,\, \exists A' \in \xi^{k}_{-k} \text{ with } \mu(A\triangle A') < \epsilon \} \subset \sigma(\xi) \subset \borel
+\end{align*}
+is a $\sigma$-algebra, and it contains cylinder sets. Hence it is equal to $\borel$, as $\borel$ is generated by cylinder sets.
+
+\eop
+\end{subproof}
+\s
+
+\item \textbf{Claim :} With $\xi$ defined as above, we have 
+\begin{align*}
+H_{\mu}(\xi | \xi_{1}^n) = H(p_1, p_2, \cdots, p_k) = -p_1 \log p_1 -\cdots -p_k \log p_k
+\end{align*}
+for all $n \in \mathbb{Z}_{\geq 0}$.
+\begin{subproof}
+\pf Calculate the information function : 
+\begin{align*}
+I_{\mu}(\xi | \xi_1^n) (x)  = \log \Big( \frac{\mu([x]_{\xi_1^n})}{\mu([x]_{\xi_0^n})} \Big)
+\end{align*}
+Note $[x]_{\xi_0^n} = \{y\in X : y_0=x_0, \cdots, y_n =x_n \}$, so $\mu([x]_{\xi_0^n}) = p_{x_0}\cdots p_{x_n}$. Similarly, has $\mu([x]_{\xi_1^n})=p_{x_1} \cdots p_{x_n}$, and
+\begin{align*}
+I_{\mu}(\xi|\xi_1^n) (x) = - \log p_{x_0} 
+\end{align*}
+therefore $H_{\mu} (\xi |\xi_1^n) = \sum_{j=1}^{k} p_j (-\log (p_j)) = H(p_1, \cdots, p_k)$. 
+
+\eop
+\end{subproof}
+\s
+
+\item Hence
+\begin{align*}
+H_{\mu}(\xi_1^{n-1}) &= H_{\mu}(\xi_{n-1}^{n-1}) + H_{\mu}(\xi_{n-2}^{n-2} | \xi_{n-1}^{n-1}) + H_{\mu}(\xi_{n-3}^{n-3} | \xi_{n-2}^{n-1}) + \cdots + H_{\mu}(\xi | \xi^{n-1}_{1}) \quad (\text{Chain rule}) \\
+&= H_{\mu}(\xi) + H(\xi |\xi_1^1) + \cdots + H_{\mu}(\xi | \xi_1^{n-1}) \quad (\text{invariance, first lemma of the day}) \\
+&= nH(p_1, \cdots, p_k)
+\end{align*}
+Divide by $n$ and take the limit, 
+\begin{align*}
+h_{\mu}(T) = h_{\mu}(T,\xi) = H(p_1, \cdots, p_k)
+\end{align*}
+
+So the entropy of $(1/2,1/2)$ shift is $\log2$ and $(1/3,1/3,1/3)$ shift is $\log3$ - which shows that two systems cannot be isomorphic.
+\end{itemize}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+\end{document}

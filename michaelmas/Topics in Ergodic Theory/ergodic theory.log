@@ -1,4 +1,4 @@
-This is XeTeX, Version 3.14159265-2.6-0.99998 (MiKTeX 2.9.6500) (preloaded format=xelatex 2018.2.4)  6 NOV 2018 15:00
+This is XeTeX, Version 3.14159265-2.6-0.99998 (MiKTeX 2.9.6500) (preloaded format=xelatex 2018.2.4)  8 NOV 2018 20:16
 entering extended mode
 **"./ergodic theory.tex"
 ("ergodic theory.tex"
@@ -614,7 +614,20 @@ Overfull \hbox (60.9031pt too wide) in paragraph at lines 379--380
 ======== 
  []
 
-[5] [6] [7]
+[5]
+
+LaTeX Warning: Reference `*' on page 6 undefined on input line 438.
+
+
+LaTeX Warning: Reference `*' on page 6 undefined on input line 443.
+
+
+LaTeX Warning: Reference `*' on page 6 undefined on input line 447.
+
+
+LaTeX Warning: Reference `*' on page 6 undefined on input line 447.
+
+[6] [7]
 Overfull \hbox (60.9031pt too wide) in paragraph at lines 557--558
 []\TU/lmr/m/n/10 ==============================================================
 ======== 
@@ -711,14 +724,27 @@ Overfull \hbox (60.9031pt too wide) in paragraph at lines 1901--1903
 ======== 
  []
 
-[31] [32] [33] ("ergodic theory.aux") ) 
+[31] [32]
+Overfull \hbox (60.9031pt too wide) in paragraph at lines 2047--2048
+[]\TU/lmr/m/n/10 ==============================================================
+======== 
+ []
+
+[33] [34] [35] ("ergodic theory.aux")
+
+LaTeX Warning: There were undefined references.
+
+
+LaTeX Warning: Label(s) may have changed. Rerun to get cross-references right.
+
+ ) 
 Here is how much of TeX's memory you used:
  13553 strings out of 427839
  273574 string characters out of 3151405
- 333963 words of memory out of 3000000
+ 333955 words of memory out of 3000000
  17250 multiletter control sequences out of 15000+200000
  12271 words of font info for 64 fonts, out of 3000000 for 9000
  1328 hyphenation exceptions out of 8191
  61i,21n,84p,960b,1019s stack positions out of 5000i,500n,10000p,200000b,50000s
 
-Output written on ergodic theory.pdf (33 pages).
+Output written on ergodic theory.pdf (35 pages).
