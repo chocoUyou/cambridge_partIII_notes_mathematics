@@ -422,20 +422,131 @@ h_{\mu}(T) = h_{\mu}(T,\xi) = H(p_1, \cdots, p_k)
 
 So the entropy of $(1/2,1/2)$ shift is $\log2$ and $(1/3,1/3,1/3)$ shift is $\log3$ - which shows that two systems cannot be isomorphic.
 \end{itemize}
+\s
 
+\newday
 
+(10th November, Saturday)
+\s
 
+\thm \emph{(Kolmogorov-Sinai)} Let $(X,\borel, \mu, T)$ be an \emph{invertible} measure preserving system. Let $\xi$ be a countable measurable partition with $H_{\mu}(\xi) < \infty$, which is a 2-sided generator. Then
+\begin{align*}
+h_{\mu}(T) = h_{\mu}(T,\xi)
+\end{align*}
+\s
 
+We will need three lemmas.
+\s
 
+\lemnum{1} Let $(X,\borel, \mu, T)$ be an \emph{invertible} measure preserving system. Let $\xi \subset B$ be a countable partition. Then
+\begin{align*}
+h_{\mu}(T, \xi^n_{-n}) = h_{\mu}(T,\xi)
+\end{align*}
+\s
 
+\lemnum{2} Let $(X,\borel, \mu, T)$ be an MPS. Let $\xi, \eta \subset \borel$ be two countable partitions. Then
+\begin{align*}
+h_{\mu}(T,\eta) \leq h_{\mu}(T, \xi) + H_{\mu}(\eta | \xi)
+\end{align*}
+\s
 
+\lemnum{3} For any $\epsilon>0$ and $k\in \mathbb{Z}_{>0}$, $\exists \delta >0$ such that the following holds : let $(X, \borel, \mu)$ be a probability space. Let $\xi \subset \borel$ be a countable and $\eta \subset \borel$ a finite partition. Suppose that $\eta$ has $k$ atoms and for each $A\in \eta$, $\exists B\in \sigma(\xi)$ such that $\mu(A \triangle B) <\delta$. Then 
+\begin{align*}
+H_{\mu}(\eta | \xi) \leq \epsilon
+\end{align*}
+\s
 
+Let us prove the theorem assuming the lemmas. We will come hack to the proof of the lemmas later.
+\s
 
+\begin{proof}
+\textbf{proof of Theorem)} We first show $h_{\mu} (T,\xi) = \sup_{\eta \text{ finite}} h_{\mu} (T,\eta)$. We need to show that for all finite partition $\eta \subset \borel$, we have $h_{\mu}(T,\eta) \leq h_{\mu}(T,\xi)$. Fix $\epsilon>0$. By \textbf{Lemma 3} and definition of 2-sided generator, $\exists n$ such that $H_{\mu}(\eta | \xi^n_{-n}) \leq \epsilon$. Then we have
+\begin{align*}
+h_{\mu}(T,\eta) & \leq h_{\mu}(T,\xi_{-n}^n) + H_{\mu}(\eta | \xi^n_{-n}) \leq \leq h_{\mu}(T,\xi_{-n}^n) + \epsilon \quad (\text{Lemma 2}) \\
+& = h_{\mu} (T,\xi) + \epsilon \quad (\text{Lemma 1})
+\end{align*}
+We are done if we take $\epsilon \searrow 0$.
+\s
 
+Now it is left to show that $\forall \epsilon >0$, for every countable partition $\eta \subset \borel$, $\exists \tilde{\eta} \subset \borel$ finite such that $h_{\mu}(T,\eta) \leq h_{\mu}(T, \tilde{\eta}) + \epsilon$. By \textbf{Lemma 2,} it is enough to show $H_{\mu}(\eta |\tilde{\eta}) \leq \epsilon$. When $\eta = \{A_1, A_2, \cdots \}$, let $\tilde{\eta} = (A_1, A_2, \cdots, A_n, \bigcup_{j>n} A_j)$ for sufficiently large $n$ . Then
+\begin{align*}
+H_{\mu}(\eta) = H_{\mu} (\eta \vee \tilde{\eta}) = H_{\mu}(\tilde{\eta}) + H_{\mu}(\eta |\tilde{\eta})
+\end{align*}
+Thus
+\begin{align*}
+H_{\mu}(\eta | \tilde{\eta}) &= H_{\mu}(\eta) - H_{\mu}(\tilde{\eta}) = \sum_{j>n} (-1) \mu(A_j) \log \mu(A_j) + \mu \Big( \cup_{j=n+1}^{\infty} A_j \Big) \log \mu \Big( \bigcup_{j=n+1}^{\infty} A_j \Big) \\
+& \leq \sum_{j>n} (-1) \mu(A_j) \log \mu(A_j) \leq \epsilon
+\end{align*}
+if $n$ is sufficiently large.
 
+\eop
+\end{proof}
+\s
 
+Now we prove the lemmas.
+\s
 
+\begin{proof}
+\textbf{proof of Lemma 1)} \begin{align*}
+h_{\mu}(T, \xi_{-m}^m) &= \lim_{n\rightarrow \infty} \frac{1}{n} H_{\mu}(\xi^{n+m-1}_{-m}) = \lim_{n\rightarrow \infty} \frac{1}{n} H_{\mu} (\xi_0^{n+2m -1}) \\
+&= \lim_{n\rightarrow \infty} \frac{1}{n+2m-1} H_{\mu}(\xi_0^{n+2m-1}) = h_{\mu}(T,\xi)
+\end{align*}
 
+\eop
+\end{proof}
+\s
+
+\begin{proof}
+\textbf{proof of Lemma 2)} \begin{align*}
+h_{\mu}(T,\eta) &= \lim_{n\rightarrow \infty} \frac{1}{n} H_{\mu}(\eta^{n-1}_0) \\
+& \leq \lim_{n\rightarrow \infty} \frac{1}{n} H_{\mu}((\xi \vee \eta)_0^{n-1}) \\
+&= \lim_{n\rightarrow \infty} \frac{1}{n}\Big( H_{\mu}(\xi_0^{n-1}) + H_{\mu}(\eta_0^{n-1} | \xi_0^{n-1}) \Big) \\
+&= h_{\mu}(T,\xi) + \lim_{n\rightarrow \infty} \frac{1}{n} \Big( \sum_{j=0}^{n-1} H_{\mu}(\eta_j^1 | \xi_0^{n-1} \vee \eta_{j+1}^{n-1})  \Big) \quad \text{(Chain rule)} \\ 
+&= h_{\mu}(T,\xi) + \lim_{n\rightarrow \infty} \frac{1}{n} \Big( \sum_{j=0}^{n-1} H_{\mu} (\eta_j^j | \xi_j^j) \Big) \quad \text{(throwing away kwown information increases entropy)}\\
+&= h_{\mu}(T, \xi) + H_{\mu}(\eta |\xi)
+\end{align*}
+where the last equality follows because $H_{\mu} (\eta_j^j | \xi_j^j) = H_{\mu}(\eta |\xi)$.
+
+\eop
+\end{proof}
+\s
+
+\begin{proof}
+\textbf{proof of Lemma 3)} Write $A_1, \cdots, A_k$ for the atoms of $\eta$ and for each $i \in \{1,\cdots, k\}$. Let $B_i \in \sigma(\xi)$ such that $\mu(A_i \triangle B_i) < \delta$. We consider the partition $\lambda$, which has the following $k+1$ atoms
+\begin{subproof}
+: $C_0 = \bigcup_{i=1}^k (A_i \cap (B_i \backslash \bigcup_{j\neq i} B_j ) )$ and $C_i = A_i \backslash C_0$ for $i=1, \cdots, k$.
+
+They have some useful properties :
+\begin{itemize}
+\item[-] $C_{0}$ is big, i.e. $\mu(C_0) \geq \sum_{i=1}^k (\mu(A_i) - k\delta) = 1-k^2 \delta$.
+\item[-] If $x\in C_0$, then $x\in A_i$ $\Leftrightarrow$ $x\in B_i$.
+\end{itemize}
+Also note, 
+\begin{align*}
+H_{\mu} (\lambda) &= -\mu(C_0) \log (\mu(C_0)) - \sum_{i=1}^k \mu(C_i) \log \mu (C_i) \\
+&\leq -\mu(C_0) \log (\mu (C_0)) - \sum_{i=1}^n \mu(C_i) \log \Big( \frac{\sum_{i=1}^k \mu(C_i)}{k} \Big) \quad \text{(Jensen to }x\mapsto x\log x) 
+\end{align*}
+\end{subproof}
+If $\delta$ is sufficiently small, then $\mu(C_0)$ can be made as close to $1$ as we want and $\sum_{i=1}^k \mu(C_i)$ is as small as we want. Then
+$H_{\mu}(\lambda) < \epsilon$ if $\delta$ is sufficiently small. Now, we may write
+\begin{align*}
+H_{\mu}(\eta | \xi) &\leq H_{\mu}(\eta \vee \lambda | \xi) \leq H_{\mu}(\lambda | \xi) + H_{\mu}(\eta | \xi \vee \lambda) \\
+& \leq H_{\mu} + H_{\mu}(\eta | \xi \vee \lambda) < \epsilon + H_{\mu}(\eta | \xi \vee \lambda)
+\end{align*}
+so it is enough to show that
+\begin{align*}
+H_{\mu}(\eta | \xi \vee \lambda) =0
+\end{align*}
+However, this trivially holds because $\sigma (\eta) \subset \sigma(\xi \vee \lambda)$, i.e. $[x]_{\xi \vee \lambda} \subset [x]_{\eta}$.
+\begin{subproof}
+: formally, this can be deduced from the fact \begin{align*}
+A_i &= C_i \cup (C_0 \cap A_i) = C_i \cup (A_i \cap (B_i \backslash \cup_{j\neq i} B_j)) \\
+&= C_i \cup (C_0 \cap (B_i \backslash \cup_{j\neq i} B_j)) \in \sigma(\xi \vee \lambda)
+\end{align*}
+\end{subproof}
+
+\eop
+\end{proof}
 
 
 \end{document}

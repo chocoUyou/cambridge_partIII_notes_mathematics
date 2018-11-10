@@ -88,7 +88,7 @@
 
 Claude Warnick(cmw50)
 
-www.dpmms.cam.ac.uk/~cmw50
+www.dpmms.cam.ac.uk/$\sim$cmw50
 
 Example Classes : Dr. Ivan Moyano
 \s
@@ -96,7 +96,7 @@ Example Classes : Dr. Ivan Moyano
 Texts : (1)Evans. PDEs, (2)Rauch, PDEs, (3)F.John, PDEs, (4)Gilberg + Raudinger, Elliptic PDE, (5) Ladyzhenskay, The Boundary Value Problems of Mathematical Physics.
 \s
 
-=====================================================================================
+\newday
 
 (5th October 2018, Friday)
 \s
@@ -1945,7 +1945,7 @@ B[u,v] = \langle f, v\rangle \quad \forall v \in H
 \pf \begin{itemize}
 \item[1.] For each fixed $u\in H$, the map $v\mapsto B[u,v]$ is a bounded linear functional on $H$, so by the \emph{Riesz representation theorem}, $\exists$ unique $w\in H$ satisfying
 \begin{align}
-B[u,v] = (w, v) \quad v \in H \label{13}
+B[u,v] = (w, v) \quad \forall v \in H \label{13}
 \end{align}
 We write $Au =w$ when (\ref{13}) holds, so that
 \begin{align*}
@@ -2035,7 +2035,7 @@ To apply Lax-Milgram theorem in a general setting, we nee some estimates related
 
 \thm There exist $\alpha, \beta >0$ and $\gamma \geq 0$ such that
 \begin{itemize}
-\item[(i)] $\big| B[u,v]\big| \leq \alpha \norms{u}{H^1(U)} \norms{v}{H^1(U)}$ \quad \emph{and}
+\item[(i)] $\big| B[u,v]\big| \leq \alpha \norms{u}{H^1(U)} \norms{v}{H^1(U)}$ for all $u,v\in H^1(U)$ \quad \emph{and}
 \item[(ii)] $\beta \norms{u}{H^1(U)}^2 \leq B[u,u] + \gamma \norms{u}{L^2(U)}^2$ (\textbf{G{\aa}rding Inequality})
 \end{itemize}
 \begin{proof}
@@ -2080,11 +2080,113 @@ for some $\beta, \gamma\geq 0$.
 \s
 
 Boundedness of $B$ follows from the first statement of the theorem, but we need some stronger conditions on $B$ to get coercivity from the second statement.
+\s
+
+\newday
+
+(9th November, Friday)
+\s
+
+\textbf{Remark :} If $B[\cdot,\cdot]$ is a bilinear form corresponding to an operator with $b^i=0$, $c\geq 0$ then \emph{uniform ellipticity} immediately gives
+\begin{align*}
+\theta \int_U |Du|^2 dx \leq B[u,u]
+\end{align*}
+recall Poincar\'{e}'s inequality,
+\begin{align*}
+\norms{u}{L^2(U)} \leq C \norms{Du}{L^2(U)} \quad \forall u\in H_0^1 (U)
+\end{align*}
+We can deduce G{\aa}rding's inequality holds with $\gamma =0$ for $u\in H_0^1 (U)$ by modifying the above proof with choosing $\epsilon$ appropriately.
+\s
+
+\thm \emph{(First Existence Theorem for Weak Solutions)} Let $U\subset \reals^n$ be open, bounded and $L$ be as before. Then there exists $\gamma \geq 0$ such that for any $\mu \geq \gamma$ and any $f\in L^2(U)$ there exists a unique weak solution to the boundary value problem(BVP) :
+\begin{align*}
+\begin{cases}
+\begin{array}{ll}
+Lu + \mu u =f & \text{in } U  \quad \cdots\cdots (\dagger) \\
+u = 0 & \text{on } \pa U
+\end{array}
+\end{cases}
+\end{align*}
+Moreover, $\norms{u}{H^1(U)} \leq C \norms{f}{L^2(U)}$ for some $C = C(L,U,\mu)$
+\s
+
+This tells us that the weak solution has an improved regularity compared to the source term $f$, and uniqueness of weak solution also follows from the last inequality.
+\begin{proof}
+\pf \begin{itemize}
+\item[1.] Take $\gamma$ from G{\aa}rding's inequality for the blinear form $B$ corresponding to $L$. Let $\mu \geq \gamma$ and set
+\begin{align*}
+B_{\mu}[u,v] = B[u,v] + \mu (u,v)_{L^2(U)}
+\end{align*}
+This is the bilinear form associated to $L_{\mu}  = L+\mu$. By G{\aa}rding,
+\begin{align*}
+\beta \norms{u}{H^1(U)}^2 \leq B[u,u] + \gamma \norms{u}{L^2(U)}^2 \leq B_{\mu} [u,u]
+\end{align*}
+Also
+\begin{align*}
+|B_{\mu}[u,v]| \leq \tilde{\alpha}\norms{u}{H^1(U)} \norms{v}{H^1(U)}
+\end{align*}
+Thus $B_{\mu}$ satisfies hypotheses of Lax-Milgram with $H=H^1(U)$.
+\item[2.] Fix $f\in L^2(U)$, for $v\in H^1(U)$. Define $\langle f,v\rangle = (f,v)_{L^2(U)}$. This is a bounded linear functional on $H^1_0(U)$. We apply Lax-Milgram to find a unique $u\in H_0^1(U)$ satisfying
+\begin{align*}
+B_{\mu}[u,v] = \langle f,v\rangle \quad \forall v\in H_0^1(U)
+\end{align*}
+This is precisely the condition that $u$ is a weak solution of ($\dagger$).
+\item[3.] From G{\aa}rding, we have
+\begin{align*}
+\beta \norms{u}{H^1(U)}^2 \leq B_{\mu} (u,u) = (f,u)_{L^2(U)} \leq \norms{f}{L^2(U)} \norms{u}{L^2(U)}
+\end{align*}
+and therefore $\norms{u}{H^1(U)} \leq \frac{1}{\beta} \norms{f}{L^2(U)}$.
+\end{itemize}
+
+\eop
+\end{proof}
+\s
+
+There is a couple of issues with this result :
+\begin{itemize}
+\item We would like to get rid of $\mu$.
+\item We would like to know when our weak solution is actually a strong solution
+\end{itemize}
+\s
+
+For a moment, consider the matrix problem of finding $u\in \reals^n$ such that
+\begin{align*}
+Au = f
+\end{align*}
+for $f\in \reals^n$, $A\in \text{Mat}(n\times n)$. If $\exists \gamma$ such that $A- \mu I$  is invertible for all $\mu \geq \gamma$, we can always solve $Au - \mu u =f$ for such $\mu$. However, in fact there are only finite number of values of $\mu$ such that $A - \mu I$ is not invertible - we want to do something similar in the case of solving PDEs. To do this, we need to have some knowledge on spectral theorem of linear operators.
+\s
+
+An important concept in the study of PDEs is the idea of compactness. We can often find a bounded sequence (say of approximations to the solution of some PDE) and we would like to extract a subsequence which converges, e.g. \emph{Bolzanno-Weierstrass theorem}
+\s
+
+\defi Suppose $(U_n)_{n=1}^{\infty}$ is a sequence in a Hilbert space $\big( H,(\cdot,\cdot) \big)$. We say that $u_n$ converges \textbf{weakly} to $u\in H$, written $u_n \rightarrow u$ if
+\begin{align*}
+(u_n, w) \rightarrow (u,w) \quad \forall w\in H
+\end{align*}
+A weak limit, if it exists, is unique.
+\s
+
+\thm Let $H$ be a separable Hilbert space and suppose $(u_n)_{n=1}^{\infty}$ is a bounded sequence, $u_n \in H$, $\norms{u_n}{} \leq K$ for all $n$. Then $(u_n)_{n=1}^{\infty}$ admits a weakly convergent subsequence.
+\begin{proof}
+\pf Let $(e_i)_{i=1}^{\infty}$ be an orthonormal basis for $H$. Consider $(e_1, u_n)$. We have
+\begin{align*}
+|(e_1, u_n)| \leq \norms{e_1}{} \norms{u_n}{} \leq K
+\end{align*}
+so by Bolzonno-Weierstrass, $\exists (n_k)_{k} \subset \mathbb{N}$ such that $(e_1, u_n) \rightarrow c_1$ with $|c_1| \leq K$. We set $u_{1,j} = u_{n_j}$. Repeating the same argument with $(e_2, u_{1,j})$ we deduce $\exists j_k$ such that $(e_2, u_{1,j_k}) \rightarrow c_2$ with $|c_2| \leq K$. Set $u_{2,k} = u_{1,j_k}$. Continue inductively to define $u_{l,m}$ where $(u_{l+1,m})_{m=1}^{\infty}$ is a subsequence of $(u_{l,m})_{m=1}^{\infty}$ and such that $(e_j, u_{l,m}) \rightarrow c_j$ as $m\rightarrow \infty$ for all $j\leq l$ where $|c_j| \leq K$. Now consider a diagonal sequence $(u_{l,l})_{l=1}^{\infty}$. This is a subsequence of $(u_m)_{m=1}^{\infty}$ and $(e_j, u_{l,l}) \rightarrow c_j$ for all $j$ as $l\rightarrow \infty$ with $|c_1| \leq K$.
+\end{proof}
+
+
+
+
+
+
+
+
+
+
+
 
 
 
 
 \end{document}
-
-
-

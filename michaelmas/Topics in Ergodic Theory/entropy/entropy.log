@@ -1,4 +1,4 @@
-This is XeTeX, Version 3.14159265-2.6-0.99998 (MiKTeX 2.9.6500) (preloaded format=xelatex 2018.2.4)  8 NOV 2018 20:18
+This is XeTeX, Version 3.14159265-2.6-0.99998 (MiKTeX 2.9.6500) (preloaded format=xelatex 2018.2.4)  10 NOV 2018 17:59
 entering extended mode
 **./entropy.tex
 (entropy.tex
@@ -509,7 +509,7 @@ LaTeX Info: Thecontrolsequence`\]'isalreadyrobust on input line 129.
 \l_MT_above_shortintertext_sep=\dimen179
 \l_MT_below_shortintertext_sep=\dimen180
 )
-No file entropy.aux.
+(entropy.aux)
 \openout1 = `entropy.aux'.
 
 LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 39.
@@ -526,6 +526,7 @@ LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 39.
 LaTeX Font Info:    ... okay on input line 39.
 LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 39.
 LaTeX Font Info:    ... okay on input line 39.
+
 *geometry* detected driver: pdftex
 *geometry* verbose mode - [ preamble ] result:
 * driver: pdftex
@@ -593,14 +594,25 @@ Overfull \hbox (60.9031pt too wide) in paragraph at lines 294--295
 ======== 
  []
 
-[4] [5] [6] (entropy.aux) ) 
+[4] [5]
+Overfull \hbox (60.9031pt too wide) in paragraph at lines 427--428
+[]\TU/lmr/m/n/10 ==============================================================
+======== 
+ []
+
+[6]
+Overfull \hbox (5.86388pt too wide) detected at line 507
+[]
+ []
+
+[7] [8] (entropy.aux) ) 
 Here is how much of TeX's memory you used:
- 13399 strings out of 427839
- 270356 string characters out of 3151405
- 331955 words of memory out of 3000000
+ 13401 strings out of 427839
+ 270378 string characters out of 3151405
+ 332955 words of memory out of 3000000
  17116 multiletter control sequences out of 15000+200000
  6514 words of font info for 38 fonts, out of 3000000 for 9000
  1328 hyphenation exceptions out of 8191
- 61i,13n,84p,951b,265s stack positions out of 5000i,500n,10000p,200000b,50000s
+ 61i,13n,84p,951b,268s stack positions out of 5000i,500n,10000p,200000b,50000s
 
-Output written on entropy.pdf (6 pages).
+Output written on entropy.pdf (8 pages).
