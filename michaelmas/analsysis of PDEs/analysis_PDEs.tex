@@ -2174,7 +2174,117 @@ A weak limit, if it exists, is unique.
 \end{align*}
 so by Bolzonno-Weierstrass, $\exists (n_k)_{k} \subset \mathbb{N}$ such that $(e_1, u_n) \rightarrow c_1$ with $|c_1| \leq K$. We set $u_{1,j} = u_{n_j}$. Repeating the same argument with $(e_2, u_{1,j})$ we deduce $\exists j_k$ such that $(e_2, u_{1,j_k}) \rightarrow c_2$ with $|c_2| \leq K$. Set $u_{2,k} = u_{1,j_k}$. Continue inductively to define $u_{l,m}$ where $(u_{l+1,m})_{m=1}^{\infty}$ is a subsequence of $(u_{l,m})_{m=1}^{\infty}$ and such that $(e_j, u_{l,m}) \rightarrow c_j$ as $m\rightarrow \infty$ for all $j\leq l$ where $|c_j| \leq K$. Now consider a diagonal sequence $(u_{l,l})_{l=1}^{\infty}$. This is a subsequence of $(u_m)_{m=1}^{\infty}$ and $(e_j, u_{l,l}) \rightarrow c_j$ for all $j$ as $l\rightarrow \infty$ with $|c_1| \leq K$.
 \end{proof}
+\s
 
+\newday
+
+(12th November, Monday)
+\s
+
+\begin{proof}
+\textbf{proof continues)} Last lecture we constructed a subsequence $(u_{m_j})_{j=1}^{\infty}$ such that
+\begin{align*}
+(e_i, u_{m_j}) \rightarrow c_i \quad\quad \text{with } |c_i| \leq K \quad \forall i=1,2,\cdots
+\end{align*}
+where $\{e_j \}$ is an o.n. basis. After relabelling, assume $(e_i ,u_m) \rightarrow c_i$ for $i=1,2\cdots$.
+\s
+
+Consider 
+\begin{align*}
+\sum_{j=1}^p |c_j|^2 &= \lim_{m\rightarrow \infty} \sum_{j=1}^p |(e_j, u_m)|^2 \leq \sup_{m} \sum_{j=1}^p |(e_j, u_m)|^2 \\
+&\leq  \sup_{m} \norms{u_m}{}^2 \leq K^2
+\end{align*}
+so $\sum_{j=1}^{\infty} |c_j|^2$ converges, hence $u= \sum_{j=1}^{\infty} c_j e_j$ defines an element of $H$ and $\norms{u}{} \leq K$. We have
+\begin{align*}
+(e_j, u_m) \rightarrow (e_j, u) \quad \forall j
+\end{align*}
+It remains to show that $(w, u_m) \rightarrow (w,u)$ for any $w\in H$.
+\begin{subproof}
+: to see this, for $w\in H$ write
+\begin{align*}
+w= \sum_{i=1}^p (w,e_j) e_j + w_p \quad p\in \mathbb{N}
+\end{align*}
+Note $w_p \rightarrow 0$ as $p\rightarrow \infty$. We consider
+\begin{align*}
+(w,u_m) - (w,u) = (w-w_p, u_m -u) + (w_p, u_m-u)
+\end{align*}
+By Cauchy-Schwarz, has $|(w_p, u_m -u)| \leq \norms{w_p}{} \norms{u_m -u}{} \leq 2K \norms{w_p}{} < \epsilon/2$ for sufficiently large $p$. Now $w-w_p$ is a finite combination of $e_j$'s, so for $m$ large enough, $|(w-w_p, u_m -u)| < \epsilon/2$.
+\end{subproof}
+
+\eop
+\end{proof}
+
+This fact is important and useful, but we shall require a slightly stronger version which tells us that a bounded sequence in $H^1$ has a subsequence which converges strongly in $L^2(U)$ for $U$ bounded.
+\s
+
+First we revisit Poincar\'{e} :
+\s
+
+\lem \emph{(Poincar\'{e} revisited)} Suppose $u\in H^1(\reals^n)$. Let
+\begin{align*}
+Q = [\xi_1, \xi_1 +L] \times [\xi_2, \xi_2 +L] \times \cdots \times [\xi_n, \xi_n +L]
+\end{align*}
+be a cube of side length $L$. Then we have:
+\begin{align*}
+\norms{u}{L^2(Q)}^2 \leq \frac{1}{|Q|} \Big( \int_Q udx \Big)^2 + \frac{n}{2} |L|^2 \norms{Du}{L^2(Q)}^2
+\end{align*}
+\s
+
+Note, this is equivalent to saying $\norms{u - \overline{u}}{L^2(Q)}^2 \leq \frac{n}{2} |L|^2 \norms{Du}{L^2(Q)}^2$ where $\overline{u} = \frac{1}{|Q|} \int_Q u(x) dx$ - which makes explicit connecting with Poincar\'{e} inequality.
+\s
+
+\begin{proof}
+\textbf{proof of Lemma)} By approximation, assume $u\in C^{\infty}(\bar{Q})$. By convexity of $Q$ plus Fundamental Theorem of Calculus,
+\begin{align*}
+u(x) -u(y) = \int_0^1 \frac{d}{dt} u(tx + (1-t)y) dt = \int_0^1 (x-y) \cdot Du(tx + (1-t)y) dt
+\end{align*}
+Squaring and using Cauchy-Schwartz, obtains
+\begin{align*}
+u(x)^2 + u(y)^2 - 2u(x) u(y) \leq \int_0^1 |x-y|^2 |Du(tx + (1-t)y)|^2 dt
+\end{align*}
+Integrating $dx dy$ over $Q$ and using the fact that $|x-y| \leq nL^2$ for $x,y\in Q$, gets
+\begin{align*}
+2|Q| \norms{u}{L^2(Q)}^2 -2 \Big( \int_Q u(x) dx\Big)^2 &\leq nL^2 \int_Q \int_Q \int_0^1 |Du(tx + (1-t)y)|^2 dtdxdy \\
+&= nL^2 \int_Q  \int_0^1 dt \int_{Qt} |Du(\zeta)|^2 d\zeta dtdy \quad \quad  (x = \zeta - (1-t)y/t) \\
+&= nL^2 |Q| \times 1 \times \norms{Du}{L^2(Q)}^2
+\end{align*}
+Result follows on rearranging.
+
+\eop
+\end{proof}
+\s
+
+\thm \emph{(Rellich-Kondrachov)} Suppose $u \subset \reals^n$ is open, bounded $C^1$-domain. Let $(u_m)_{m=1}^{\infty}$ be a sequence in $H^1(U)$ with
+\begin{align*}
+\norms{u_m}{H^1(U)} \leq K
+\end{align*}
+Then there exists $u\in H^1(U)$ and a subsequence $(u_{m_j})_{j=1}^{\infty}$ such that $u_{m_j}$ tends to $u$ weakly in $H^1(U)$ and strongly in $L^2(U)$, i.e.
+\begin{align*}
+u_{m_j} \rightarrow u \quad \text{in } L^2(U), \quad u_{m_j} \xrightarrow{weak} u \quad \text{in } H^1(U)
+\end{align*}
+
+\textbf{Remark :} Could replace $H^1(U)$ with $H_0^1(U)$ everywhere and the result will hold. Then we could drop $C^1$ regularity of $\pa U$. 
+\begin{proof}
+\pf By extension theorem, we can assume $u_m \in H_0^1$ for some cube $Q$ with $U \subset \subset Q$. By the weak compactness result from earlier, $\exists u\in H_0^1(Q)$ and a subsequence $(u_{m_j})_{j=1}^{\infty}$ with $u_{m_j} \xrightarrow{w} u$ in $H_0^1(Q)$. Let $w_j = u_{m_j}$. We need to show $(w_j)_{j=1}^{\infty}$ converges in $L^2(Q)$.
+
+\quad Fix $\epsilon >0$, pick $\delta >0$ that divides the side length of $Q$. We can cover $Q$ by $k(\delta)$ cubes, intersecting only on their faces with side lengths $(\leq)\delta$. Call these cubes $\{Q_a \}_{a=1}^{k(\delta)}$. Applying Poincar\'{e}'s inequality separately on each cube, we have
+\begin{align*}
+\norms{w_i - w_j}{L^2(Q)}^2 &= \sum_{a=1}^{k(\delta)} \norms{w_i -w_j}{L^2(Q_n)}^2 \\
+& \leq  \sum_{a=1}^{k(\delta)} \Big[ \frac{1}{|Q_n|} \Big( \int w_i - w_j dx\Big)^2 + \frac{n^2 \delta^2}{2} \norms{Dw_i -Dw_j}{L^2(Q_n)}^2\Big] \\
+& \leq \sum_{a=1}^{k(\delta)} \frac{1}{|Q_n|} \Big( \int w_i - w_j dx\Big)^2 + \frac{n^2 \delta^2}{2} \norms{Dw_i -Dw_j}{L^2(Q_n)}^2
+\end{align*}
+Note that $\frac{n^2 \delta^2}{2} \norms{Dw_i - Dw_j}{L^2(U)}^2 \leq C \frac{n^2\delta^2}{2} K^2$ where $C = C(U,Q)$ is the constant from extension, so for $\delta$ sufficiently small, 
+\begin{align*}
+\frac{n^2 \delta^2}{2}\norms{Dw_i - Dw_j}{L^2(U)}^2 < \epsilon/2
+\end{align*}
+- fix such $\delta$. Also, $u \mapsto \int_{Q_a} u(x)dx$ is a bounded linear functional on $H^1(Q)$ so since $w_j \xrightarrow{w} u$ in $H^1(Q)$, $(\int_{Q_n} w_i dx)_{i=1}^{\infty}$ is a Cauchy sequence. Since $k(\delta)$ is a fixed finite number, we conclude $\exists N$ such that if $i,j\geq N$ then
+\begin{align*}
+\sum_{a=1}^{k(\delta)} \frac{1}{|Q_n|} \Big( \int w_i - w_j dx\Big)^2 < \epsilon/2
+\end{align*}
+Putting these together, $\norms{w_i -w}{L^2(Q)}^2 < \epsilon$ for $i,j\geq N$. Thus $w_i$ is Cauchy, hence convergent in $L^2(Q)$. By uniqueness of weak limits, $w_i \rightarrow u$ in $L^2(Q)$.
+
+\eop
+\end{proof}
 
 
 

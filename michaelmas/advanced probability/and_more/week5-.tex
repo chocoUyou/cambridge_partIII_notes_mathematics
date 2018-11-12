@@ -592,6 +592,148 @@ Also for any interval $(u,v]$ disjoint from $(r,s]$ with $u,v\in \mathbb{D}_{N+1
 So the induction proceeds.
 \end{subproof}
 \end{proof}
+\s
+
+\newday
+
+(12th November, Monday)
+\s
+
+\begin{proof}
+\textbf{proof of Wiener's theorem continues)} We constructed $(\xi_t : t\in \mathbb{D})$ such that for all $s,t\geq 0$, $\xi_{s+t} -\xi_s \sim N(0,t)$ and is independent of $\sigma(\xi_r : r\leq s , r\in \mathbb{D})$. Choose $p>2$ and set $C_p = \avg(|\xi_1|^p)$. Then $C_p <\infty$ and $\avg(|\xi_t - \xi_s|^p) = C_p|t-s|^{p/2}$ so by Kolmogorov's lemma(\textbf{Theorem 4.2.1}), there exists a continuous process $(X_t)_{t\geq 0}$ such that $X_t = \xi_t$ a.s. for all $t\in \mathbb{D}$.
+\s
+
+For $s\geq 0$, $t>0$ and for any $A\in \F_s^X$ there exist sequence $(s_n)$ in $[0,\infty)$, $(t_n)$ in $(0,\infty)$ and $A_0 \in \sigma(\xi_r : r\leq s, r \in \mathbb{D} )$. s.t. $s_n \rightarrow s$, $t_n \rightarrow t$ as $n\rightarrow \infty$ and $1_A =1_{A_0}$ a.s. (to check this, consider $\{ A \in \F_s : $ this holds $\}$). Then for any $f\in C_b(\reals)$,
+\begin{align*}
+\avg(f (X_{s_n + t_n} - X_{s_n})1_A) &= \avg( f(\xi_{s_n + t_n} - \xi_{s_n})1_{A_0} ) \\
+&= \prob(A_0) \int_{\reals} p(t_0, 0,y) f(y)dy
+\end{align*}
+so letting $n\rightarrow \infty$ using bounded convergence theorem gives
+\begin{align*}
+\avg(f(X_{t+s}-X_s)1_{A}) = \prob(A) \int_{\reals} p(t,0,y) f(y)dy
+\end{align*}
+so $X$ is a Brownian motion as required.
+
+\eop
+\end{proof}
+
+\subsection*{7.3. Symmetries of Brownian Motion}
+
+\propnum{7.3.1} Let $(X_t)_{t\geq 0}$ be a $\text{BM}_0(\reals^d)$ and let $\sigma \in (0,\infty)$ and $U\in O(d)$. Then the following processes are also $\text{BM}_0(\reals^d)$.
+\begin{itemize}
+\item[(i)] \textbf{(Scaling property)} $(\sigma X_{\sigma^{-2}t})_{t\geq 0}$,
+\item[(ii)] \textbf{(Rotation invariance)} $(UX_t)_{t\geq 0}$.
+\end{itemize}
+In fact $\text{BM}_0(\reals^d)$ is characterized among continuous Gaussian processes by its means and covariances,
+\begin{align*}
+\avg(X_t) =0, \quad \text{cov}(X_s^i, X_t^j) = \avg(X^i_s X^j_t) = \delta_{ij} (s\wedge t)
+\end{align*}
+\begin{proof}
+\pf Exercise.
+\end{proof}
+
+\subsection*{7.4. Brownian Motion in a Given Filtration}
+
+Suppose given a filtration $(\F_t)_{t\geq 0}$ on $(\Omega, \F, \prob)$.
+\begin{itemize}
+\item We say that $(X_t)_{t\geq 0}$ is a \textbf{$(\F_t)_{t\geq 0}$-BM} if
+\begin{itemize}
+\item[(a)] $X_t$ is $\F_t$-measurable,
+\item[(b)] for all $s,t \geq 0$, the random variable $X_{s+t} - X_s \sim N(0, tI)$ and is independent of $\F_s$,
+\item[(c)] for all $\omega \in \Omega$, the map $t\mapsto \Big( X_t(\omega) : [0,\infty ) \rightarrow \reals^d \Big)$ is continuous.
+\end{itemize}
+This implies that $X$ is a BM in the old sense and any process $X$ which is a BM in the old sense is an $(\F_t^X)_{t\geq 0}$-BM.
+\end{itemize}
+
+\propnum{7.4.1} Let $X = (X_t)_{t\geq 0}$ be a $\text{BM}(\reals^d)$ and let $F$ be a bounded measurable function on $W_d$. Define
+\begin{align*}
+f(x) = \int F(\omega) \mu_x (d\omega), \quad x\in \reals^d
+\end{align*}
+Then $f$ is measurable on $\reals^d$ and $\avg(F(X) |\F_0)  = f(X_0)$ a.s. (recall, $\mu_x$ is the law of $\text{BM}_x$)
+\begin{proof}
+\pf (Was an exercise.) First consider $F$ of form $1_{A^{(a,\eta)}}$ where $A^{(a,\underline{\eta)} } = \{ g \in W_d : g(a) \geq (\eta_1, \cdots, \eta_d ) \} \subset W_d$. Then
+\begin{align*}
+\int A^{(a,\eta)}(\omega) \mu_x( d\omega) = \prob ( B^{(x)} (a) \geq \eta) = \int_{\eta_1}^{\infty} \cdots \int_{\eta_d}^{\infty} \frac{1}{(2\pi)^{d/2}}e^{-y^2 /2} d^d y
+\end{align*}
+where $B^{(x)}$ is a Brownian motion starting at $x$, so this is measurable. Also, we easily see that any finite intersection of sets $A^{(a,\eta)}$ if of form
+\begin{align*}
+B^{(a_1, \cdots, a_m)}_{(\eta_1, \cdots, \eta_m)} = \{ g \in W_d : g(a_1) \geq \eta_1, \cdots, g(a_1 + \cdots + a_m) \geq \eta_m \}
+\end{align*}
+with $a_1, \cdots a_m \geq 0$ so
+\begin{align*}
+\int B^{(a_1, \cdots, a_m)}_{(\eta_1, \cdots, \eta_m)} \mu_x( d\omega) =  \int A^{(a_1,\eta_1)}(\omega) \mu_x( d\omega) \prod_{k=2}^m \int A^{(a_k,\eta_{k} - \eta_{k-1})}(\omega) \mu_0( d\omega)
+\end{align*}
+is measurable. We also see that $\avg(F(X) | \F_0 ) = f(X_0)$ a.s. for each case $F = 1_{A^{(a,\eta)}}$ or $F = 1_{B^{(a_1, \cdots, a_m)_{(\eta_1, \cdots, \eta_m)}}}$.
+
+\quad Now notice that the sets $(B^{(a_1, \cdots, a_m)}_{(\eta_1, \cdots, \eta_m)} : m\geq 1, a_j \geq 0, \eta_j \in \reals)$ forms a $\pi$-system generating the $\sigma$-algebra $\mathscr{W}_d$. Since any limit of measurable functions is measurable, and $\avg(F_n(X) | \F_0 ) = f_n(X_0)$ $\forall n$, $F_n \nearrow F$ implies $\avg(F(X) | \F_0 ) = f(X_0)$, we see from monotone class theorem that the statement also holds for general bounded measurable functions $F$.
+
+\eop
+\end{proof}
+\s
+
+\subsection*{7.5. Martingales of BM}
+
+\thmnum{7.5.1} Let $(X_t)_{t\geq 0}$ be an $(\F_t)_{t\geq 0}$-BM in $\reals^d$ and let $f\in C_b^2(\reals^d)$ . Define
+\begin{align*}
+M_t = f(X_t) - f(X_0) - \int_0^t \frac{1}{2} \Delta f(X_s) ds
+\end{align*}
+Then $(M_t)_{t\geq 0}$ is an $(\F_t)_{t\geq 0}$-martingale.
+\s
+
+There are two ways for doing this. One is to use stochastic calculus, and the other is to do Markovian-way(which would be made clear soon). You will see the first method in Stochastic Calculus course next term, and we are going to prove this in the second way.
+\begin{proof}
+\pf It is clear that $(M_t)_{t\geq 0}$ is adapted and integrable. Consider for now the case $X_0 =x \in \reals^d$. Set
+\begin{align*}
+m(x) = \avg(M_t) = \int_{W_d} \Big[ f(\omega(t)) - f(\omega(0)) -\int_0^t \frac{1}{2} \Delta f(\omega(s)) ds \Big] \mu_x(d\omega) 
+\end{align*}
+Fix $s\in (0,t]$. We have
+\begin{align*}
+M_t - M_s = f(X_t) - f(X_s) - \int_s^t \frac{1}{2} \Delta f(X_r) dr
+\end{align*}
+so using Fubini,
+\begin{align*}
+\avg(M_t - M_s) = \int_{\reals^d} p(t,x,y)f(y)dy - \int p(s,x,y) f(y)dy - \int_s^t \int_{\reals^d} p(r,x,y) \times \frac{1}{2}\Delta f(y) dy
+\end{align*}
+But since $p$ is a heat kernel, has $\frac{d}{dt}p = \frac{1}{2} \Delta p$ so
+\begin{align*}
+\int_{\reals^d} p(r,x,y) \times \frac{1}{2} \Delta f(y) dy &= \int_{\reals} \frac{1}{2} \Delta_y p(r,x,y) f(y) dy \\
+&= \int_{\reals} \frac{d}{dt} p(r,x,y) f(y) dy
+\end{align*}
+and
+\begin{align*}
+\int_s^t \int_{\reals^d} p(r,x,y) \times \frac{1}{2} \Delta f(y) dy dr &= \int_s^t \int_{\reals} \frac{d}{dt} p(r,x,y) f(y) dy dr \\
+&= \int_{\reals^d} (p(t,x,y) - p(s,x,y) ) dy
+\end{align*}
+so $\avg(M_t -M_s) =0$. But $M_s \rightarrow 0$ a.s. as $s\rightarrow 0$ so by bounded convergence, $\avg(M_s) \rightarrow 0$. Hence $m(x) = \avg(M_t) =0$ for all $x$.
+
+\quad Return to the case of general $X_0$. By \textbf{Prop 7.4.1},
+\begin{align*}
+\avg(M_t | \F_0) = m(X_0) =0 \quad \text{a.s.}
+\end{align*}
+\s
+
+Now for any $s,t\geq 0$,
+\begin{align*}
+M_{s+t} - M_s = f(X_{s+t}) - f(X_s) - \frac{1}{2}\int_0^s \Delta f(X_{s+r}) dr
+\end{align*}
+and $(X_{s+t})_{t\geq 0}$ is an $(\F_{s+t})_{t\geq 0}$-BM. So we see that 
+\begin{align*}
+\avg(M_{s+t} - M_s | \F_s)  =0\quad \text{a.s.}
+\end{align*}
+as required.
+
+\eop
+\end{proof}
+
+We are in fact apply the theorem in the case where the assumption $f \in C_b^2(\reals^d)$ does not hold. We can actually relax this condition using almost the same proof, e.g. any $f$ of polynomial growth rate would work.
+\s
+
+\textbf{Exercise :} see how much we can relax $C_b^2(\reals^d)$.
+\begin{proof}
+-Every step other than the integration by parts $\int_{\reals^d} p(r,x,y) \times \frac{1}{2} \Delta f(y) dy = \int_{\reals} \frac{1}{2} \Delta_y p(r,x,y) f(y) dy$ works without assumption that $f\in C_b^2(\reals^d)$. Hence, it is enough to have $f \in W^{2,1}(\reals^d)$(the Sobolev space) with sub-exponential growth rate.
+\end{proof}
+
+
 
 
 
