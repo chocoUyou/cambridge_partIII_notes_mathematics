@@ -1154,7 +1154,7 @@ with $\epsilon^{-3}$ number of 4s.
 \end{proof}
 \s
 
-\thmnum{11} \emph{(The triangle-removed lemma)} For every $\epsilon>0$ there exists $\delta >0$ such that if $G$ is any graph with $n$ vertices and at most $\delta n^3$ triangles then there is a subgraph $H\subset G$ such that $G \backslash H$ contains at most $\epsilon n^2$ edges and $H$ is triangle free.
+\thmnum{11} \emph{(The triangle-removed lemma)} For every $\epsilon>0$ there exists $\delta >0$ such that if $G$ is any graph with $n$ vertices and at most $\delta n^3$ triangles. Then there is a subgraph $H\subset G$ such that $G \backslash H$ contains at most $\epsilon n^2$ edges and $H$ is triangle free.
 \s
 
 \newday
@@ -1197,27 +1197,30 @@ As long as $\theta \leq \epsilon/3$, the total density of removed edges is at mo
 \end{figure}
 Now suppose that after these deletions, there is still a triangle. Let its vertices belong to $V_i, V_j, V_k$. ($V_i, V_j, V_k$ not necessarily distinct) Then the pairs $(V_i, V_j)$, $(V_j, V_k)$, $(V_i, V_k)$ are all $\theta$-regular of density $\delta' \geq \epsilon/3$ so
 \begin{align*}
-\big| \avg_{x\in V_i, y\in V_j, z\in V_k} G(x,y)G(y,z)G(x,z) - \delta'^3 \big| \leq \big| \avg_{x,y,z} (G(x,y)-\delta') G(y,z)G(x,z) \big| + \delta' \big| \avg_{x,y,z} (G(y,z)-\delta')G(x,z) \big| \\
-&\leq \theta + \delta' \theta \leq 2\theta
+&\big| \avg_{x\in V_i, y\in V_j, z\in V_k} G(x,y)G(y,z)G(x,z) - \delta'^3 \big| \\
+\leq &\big| \avg_{x,y,z} (G(x,y)-\delta') G(y,z)G(x,z) \big| + \delta' \big| \avg_{x,y,z} (G(y,z)-\delta')G(x,z) \big| \\
+\leq & \theta + \delta' \theta \leq 2\theta
 \end{align*}
-(recall, the definition of being $\theta$-regular was equivalent to having $\Big| \avg(G(x,y)-\delta) A(x)B(y)  \Big| \leq \theta$). So the number of triangles in $G$ is at least $|V_i||V_j||V_k| \Big( \frac{\epsilon}{3} \Big)^2 - 2\theta$ which is at least
+(recall, the definition of being $\theta$-regular was equivalent to having $\Big| \avg(G(x,y)-\delta) A(x)B(y)  \Big| \leq \theta$). So the number of triangles in $G$ is at least $|V_i||V_j||V_k| \Big( \frac{\epsilon}{3} \Big)^2 - 2\theta$. Since $\theta$ was arbitrary, if we pick $\theta \leq \frac{\epsilon^3}{108}$, then 
 \begin{align*}
-\Big( \frac{\epsilon}{6K} \Big)^3 \Big( \frac{\epsilon^3}{54} \Big) n^3 \quad \text{if } \theta \leq \frac{\epsilon^3}{108}
+|V_i||V_j||V_k| \Big( \frac{\epsilon}{3} \Big)^2 - 2\theta \geq \Big( \frac{\epsilon}{6K} \Big)^3 \Big( \frac{\epsilon^3}{54} \Big) n^3
 \end{align*}
-so taking $\delta = \Big( \frac{\epsilon}{6K} \Big)^3 \frac{\epsilon^3}{54}$ gives the result.
+So if we choose $\delta = \frac{1}{2 }\Big( \frac{\epsilon}{6K} \Big)^3 \frac{\epsilon^3}{54}$, and $G$ was assumed to have $\leq \delta n^3$ from the start, then this result makes a contradiction, i.e. removal of edges from $G$ as in the start of the theorem gives a subgraph without any triangle.
 
 \eop
 \end{proof}
 \s
 
-\thmnum{12} \emph{(The corners theorem)} For every $\delta_0 >0$ there exists $n$ such that every subset $A$ of $[n]^2$ of density at least $\delta\geq \delta_0$ contains a triple $(x,y),(x+d,y),(x,y+d)$ with $d\neq 0$ (called a corner).
+\thmnum{12} \emph{(The corners theorem)} For every $\delta_0 >0$ there exists $n$ such that every subset $A$ of $[n]^2$ of density at least $\delta \geq \delta0$ contains a triple $(x,y),(x+d,y),(x,y+d)$ with $d\neq 0$ (called a corner).
 
 (this does not guarantee the containment of the triangle ordered in the reverse direction, but will be asked to prove this in the 3rd example sheet)
 \begin{proof}
-\pf For a tripartite graph with vertex sets $X=Y=[n]$, $Z=[2n]$. Join $x\in X$ to $y\in Y$ if $(x,y) \in A$, join $x\in X$ to $z\in Z$ if $(x,z-x) \in A$, join $y\in Y$ to $z\in Z$ if $(z-y,y) \in A$. If $(x,y,z)$ is a triangle, then, writing $d = z-x-y$, we have $(x,y)\in A$< $(x,z-x)=(x,y+d)\in A$, $(z-y,y) = (x+d,y) \in A$.
+\pf For a tripartite graph with vertex sets $X=Y=[n]$, $Z=[2n]$. Join $x\in X$ to $y\in Y$ if $(x,y) \in A$, join $x\in X$ to $z\in Z$ if $(x,z-x) \in A$, join $y\in Y$ to $z\in Z$ if $(z-y,y) \in A$. If $(x,y,z)$ is a triangle, then, writing $d = z-x-y$, we have $(x,y)\in A$, $(x,z-x)=(x,y+d)\in A$, $(z-y,y) = (x+d,y) \in A$.
 
-\quad So if $A$ contains no corners(i.e. the triple of edges in the statement of the theorem), then the only triangles in the graph are ``degenerate" triangles where $x+y=z$, so $d=0$. So the number of triangles is exactly $\delta n^2 = o(n^3)$. But the degenerate triangles are edge disjoint, since any two of $x,y,z$ determine the third if $x+y =z$. So the number of edges you have to remove to get rid of all triangles is at least $\delta n^2$. For sufficiently large $n$, this contradicts the triangle removal lemma.
-
+\quad So if $A$ contains no corners(i.e. the triple of edges in the statement of the theorem), then the only triangles in the graph are ``degenerate" triangles where $x+y=z$, so $d=0$. So the number of triangles is exactly $\delta n^2 = o(n^3)$. But the degenerate triangles are edge disjoint, since any two of $x,y,z$ determine the third if $x+y =z$(that is, if $(x,y)\in A$ then $(x,z-x) \in A$ and $(z-y,y) \in A$). So the number of edges you have to remove to get rid of all triangles is at least $\delta n^2$. For sufficiently large $n$, this contradicts the triangle removal lemma.
+\begin{subproof}
+: if we choose $\epsilon = \frac{1}{2} \delta_0$, then we should have $\delta'$ such that the \textbf{Theorem 11} holds, but $\delta n^2 < \delta' n^3$ in the limit $n\rightarrow \infty$, so we should be able to find only $\frac{1}{2} \delta_0$ edges that removes all triangles, which is a contradiction.
+\end{subproof}
 \eop
 
 This theorem was proved by Ruzsa, Szemer\'{e}di and Solymosi.
@@ -1226,6 +1229,17 @@ This theorem was proved by Ruzsa, Szemer\'{e}di and Solymosi.
 
 This lemma actually implies Roth's theorem - turn the sets in the diagonal arrangement.
 \s
+
+\begin{proof}
+\textbf{second proof of Roth's theorem)}
+\begin{figure}[h]
+	\centering
+	\includegraphics[width=0.3\textwidth]{4}
+\end{figure}
+Let $B \subset [n]$ be a subset of density $\delta$. Consider the following subset $A = \{(x,y) \in [2n]^2 : (y-x) \in B$ (mod $n) \}\subset [2n]^2$. Then $A$ has density at least $\frac{1}{2}\delta$ in $[2n]^2$. Then by the corners theorem, for sufficiently large $n$, we have $d\neq 0$ such that $(x,y), (x+d,y),(x,y+d) \in A$, which implies $y-x-d,y-x,y-x+ d\in B$ mod $n$. Hence $B$ contains an arithmetic progression of length 3.
+
+\eop
+\end{proof}
 
 \section*{4. The Polynomial Method}
 
