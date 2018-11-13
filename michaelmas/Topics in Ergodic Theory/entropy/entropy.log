@@ -1,4 +1,4 @@
-This is XeTeX, Version 3.14159265-2.6-0.99998 (MiKTeX 2.9.6500) (preloaded format=xelatex 2018.2.4)  10 NOV 2018 17:59
+This is XeTeX, Version 3.14159265-2.6-0.99998 (MiKTeX 2.9.6500) (preloaded format=xelatex 2018.2.4)  13 NOV 2018 14:44
 entering extended mode
 **./entropy.tex
 (entropy.tex
@@ -605,7 +605,13 @@ Overfull \hbox (5.86388pt too wide) detected at line 507
 []
  []
 
-[7] [8] (entropy.aux) ) 
+[7]
+Overfull \hbox (60.9031pt too wide) in paragraph at lines 552--553
+[]\TU/lmr/m/n/10 ==============================================================
+======== 
+ []
+
+[8] [9] [10] (entropy.aux) ) 
 Here is how much of TeX's memory you used:
  13401 strings out of 427839
  270378 string characters out of 3151405
@@ -613,6 +619,6 @@ Here is how much of TeX's memory you used:
  17116 multiletter control sequences out of 15000+200000
  6514 words of font info for 38 fonts, out of 3000000 for 9000
  1328 hyphenation exceptions out of 8191
- 61i,13n,84p,951b,268s stack positions out of 5000i,500n,10000p,200000b,50000s
+ 61i,18n,84p,951b,268s stack positions out of 5000i,500n,10000p,200000b,50000s
 
-Output written on entropy.pdf (8 pages).
+Output written on entropy.pdf (10 pages).

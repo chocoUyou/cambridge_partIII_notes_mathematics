@@ -1155,14 +1155,84 @@ with $\epsilon^{-3}$ number of 4s.
 \s
 
 \thmnum{11} \emph{(The triangle-removed lemma)} For every $\epsilon>0$ there exists $\delta >0$ such that if $G$ is any graph with $n$ vertices and at most $\delta n^3$ triangles then there is a subgraph $H\subset G$ such that $G \backslash H$ contains at most $\epsilon n^2$ edges and $H$ is triangle free.
+\s
 
+\newday
 
+(13th November, Tuesday)
+\s
 
+(due to Alan Baker's memorial, cannot give example class next Friday 2pm - but will be some time next week)
 
+\s
 
+A quick remark : The graphs version (as opposed to bipartite graphs version) of \emph{Szemer\'{e}di's regularity lemma} is essentially the same but with just one partition of $V(G)$. 
+\s
+\begin{proof}
+\thmnum{8'} Let $G$ be a graph and $\epsilon>0$. Then there exists partition $G = X_1 \cup \cdots \cup X_r$ with $r<k(\epsilon)$, such that if you choose $(x,y) \in G\times G$ at random, then the probability that it belongs to an $\epsilon$-regular pair $(X_i, X_j)$ is at least $1-\epsilon$.
+\begin{subproof}
+To prove it, form a bipartite graph with two copies of $V(G)$ and run the previous argument, but at each iteration do a further refinement to keep the two partitions ``the same", so instead of having $m \mapsto m\cdot 2^m$, would have $m\mapsto m\cdot 4^m$.
+\end{subproof}
+\end{proof}
+\s
 
+We use \textbf{Theorem 8'} in the proof of \textbf{Theorem 11}.
+\s
 
+\begin{proof}
+\textbf{proof of Theorem 11)} Apply the regularity lemma with parameter $\theta$. It gives us a partition of the vertex set into sets $V_1, \cdots, V_K$. Throw away :
+\begin{itemize}
+\item all edges with a vertex in some $V_i$ of density $< \epsilon/6K$
+\item all edges joining $V_i$ to $V_j$ if $d(V_i, V_j) < \epsilon/3$
+\item all edges joining $V_i$ to $V_j$ if $(V_i, V_j)$ is not a $\theta$-regular pair.
+\end{itemize}
+%ㅋㅋㅋㅋㅋㅋㅋㅋ 수업시간에 들리는 학생들 한숨소리가 너무 재밌다.
+As long as $\theta \leq \epsilon/3$, the total density of removed edges is at most
+\begin{align*}
+2K \frac{\epsilon}{6K} + \frac{\epsilon}{3} + \theta \leq \epsilon
+\end{align*}
+\begin{figure}[h]
+	\centering
+	\includegraphics[width=0.3\textwidth]{3}
+\end{figure}
+Now suppose that after these deletions, there is still a triangle. Let its vertices belong to $V_i, V_j, V_k$. ($V_i, V_j, V_k$ not necessarily distinct) Then the pairs $(V_i, V_j)$, $(V_j, V_k)$, $(V_i, V_k)$ are all $\theta$-regular of density $\delta' \geq \epsilon/3$ so
+\begin{align*}
+\big| \avg_{x\in V_i, y\in V_j, z\in V_k} G(x,y)G(y,z)G(x,z) - \delta'^3 \big| \leq \big| \avg_{x,y,z} (G(x,y)-\delta') G(y,z)G(x,z) \big| + \delta' \big| \avg_{x,y,z} (G(y,z)-\delta')G(x,z) \big| \\
+&\leq \theta + \delta' \theta \leq 2\theta
+\end{align*}
+(recall, the definition of being $\theta$-regular was equivalent to having $\Big| \avg(G(x,y)-\delta) A(x)B(y)  \Big| \leq \theta$). So the number of triangles in $G$ is at least $|V_i||V_j||V_k| \Big( \frac{\epsilon}{3} \Big)^2 - 2\theta$ which is at least
+\begin{align*}
+\Big( \frac{\epsilon}{6K} \Big)^3 \Big( \frac{\epsilon^3}{54} \Big) n^3 \quad \text{if } \theta \leq \frac{\epsilon^3}{108}
+\end{align*}
+so taking $\delta = \Big( \frac{\epsilon}{6K} \Big)^3 \frac{\epsilon^3}{54}$ gives the result.
 
+\eop
+\end{proof}
+\s
+
+\thmnum{12} \emph{(The corners theorem)} For every $\delta_0 >0$ there exists $n$ such that every subset $A$ of $[n]^2$ of density at least $\delta\geq \delta_0$ contains a triple $(x,y),(x+d,y),(x,y+d)$ with $d\neq 0$ (called a corner).
+
+(this does not guarantee the containment of the triangle ordered in the reverse direction, but will be asked to prove this in the 3rd example sheet)
+\begin{proof}
+\pf For a tripartite graph with vertex sets $X=Y=[n]$, $Z=[2n]$. Join $x\in X$ to $y\in Y$ if $(x,y) \in A$, join $x\in X$ to $z\in Z$ if $(x,z-x) \in A$, join $y\in Y$ to $z\in Z$ if $(z-y,y) \in A$. If $(x,y,z)$ is a triangle, then, writing $d = z-x-y$, we have $(x,y)\in A$< $(x,z-x)=(x,y+d)\in A$, $(z-y,y) = (x+d,y) \in A$.
+
+\quad So if $A$ contains no corners(i.e. the triple of edges in the statement of the theorem), then the only triangles in the graph are ``degenerate" triangles where $x+y=z$, so $d=0$. So the number of triangles is exactly $\delta n^2 = o(n^3)$. But the degenerate triangles are edge disjoint, since any two of $x,y,z$ determine the third if $x+y =z$. So the number of edges you have to remove to get rid of all triangles is at least $\delta n^2$. For sufficiently large $n$, this contradicts the triangle removal lemma.
+
+\eop
+
+This theorem was proved by Ruzsa, Szemer\'{e}di and Solymosi.
+\end{proof}
+\s
+
+This lemma actually implies Roth's theorem - turn the sets in the diagonal arrangement.
+\s
+
+\section*{4. The Polynomial Method}
+
+Let $X$ be a finite set and let $f: X^3 \rightarrow \mathbb{F}$ for some field $\mathbb{F}$. The \textbf{slice rank} of $f$ is the smallest $k$ such that there are functions $u_1, \cdots, u_k : X\rightarrow \mathbb{F}$, $v_1, \cdots, v_k : X^2 \rightarrow \mathbb{F}$, $k_1, k_2$ such that
+\begin{align*}
+f(x,y,z) = \sum_{i=1}^{k_1} u_i (x) v_i(y,z) + \sum_{i=k_1+1}^{k_2}u_i(y) v_i(x,z) + \sum_{i=k_2+1}^k u_i(z) v_i(x,y)
+\end{align*}
 
 
 

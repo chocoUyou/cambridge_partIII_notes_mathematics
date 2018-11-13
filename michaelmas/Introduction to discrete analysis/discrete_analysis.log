@@ -1,4 +1,4 @@
-This is XeTeX, Version 3.14159265-2.6-0.99998 (MiKTeX 2.9.6500) (preloaded format=xelatex 2018.2.4)  8 NOV 2018 19:32
+This is XeTeX, Version 3.14159265-2.6-0.99998 (MiKTeX 2.9.6500) (preloaded format=xelatex 2018.2.4)  13 NOV 2018 15:19
 entering extended mode
 **./discrete_analysis.tex
 (discrete_analysis.tex
@@ -915,14 +915,27 @@ Overfull \hbox (14.22314pt too wide) in paragraph at lines 1067--1068
 == 
  []
 
-[16] [17] [18] (discrete_analysis.aux) ) 
+[16] [17]
+Overfull \hbox (14.22314pt too wide) in paragraph at lines 1160--1161
+[]\TU/lmr/m/n/10 ==============================================================
+== 
+ []
+
+File: 3.png Graphic file (type bmp)
+<3.png>
+
+Overfull \hbox (120.00331pt too wide) detected at line 1202
+[]
+ []
+
+[18] [19] (discrete_analysis.aux) ) 
 Here is how much of TeX's memory you used:
- 15093 strings out of 427839
- 297622 string characters out of 3151405
+ 15097 strings out of 427839
+ 297655 string characters out of 3151405
  395111 words of memory out of 3000000
- 18767 multiletter control sequences out of 15000+200000
+ 18770 multiletter control sequences out of 15000+200000
  6546 words of font info for 42 fonts, out of 3000000 for 9000
  1328 hyphenation exceptions out of 8191
  72i,19n,88p,884b,405s stack positions out of 5000i,500n,10000p,200000b,50000s
 
-Output written on discrete_analysis.pdf (18 pages).
+Output written on discrete_analysis.pdf (19 pages).
