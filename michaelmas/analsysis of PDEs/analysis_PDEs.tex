@@ -1,4 +1,4 @@
-\documentclass[10pt,a4paper]{report}
+\documentclass[12pt,a4paper]{report}
 
 
 \usepackage{amsmath}
@@ -2285,16 +2285,170 @@ Putting these together, $\norms{w_i -w}{L^2(Q)}^2 < \epsilon$ for $i,j\geq N$. T
 
 \eop
 \end{proof}
+\s
 
+\newday
 
+(14th November, Wednesday)
+\s
 
+We will improve our existence result for the elliptic boundary value problem. For this we require some results concerning compact operators.
+\s
 
+\defi A bounded linear operator $K:H\rightarrow H$, for $H$ a Hilbert space is \textbf{compact} if for each bounded sequence $(u_m)_{m=1}^{\infty}$ with $u_m \in H$, $\norms{u_m}{} \leq M$, there exists a subsequence $(u_{m_j})_{j=1}^{\infty}$ such that $(Ku_{m_j})_{j=1}^{\infty}$ converges strongly in $H$.
+\s
 
+In our setting, the compact operator is going to the solution operator. Recall :
+\s
 
+\thm \emph{(Fredholm alternative for compact operators)} Let $K:H\rightarrow H$ be a compact operator. Then
+\begin{itemize}
+\item[(i)] $\ker (I-K)$ is finite dimensional.
+\item[(ii)] $\text{Im} (I-K)$ is closed.
+\item[(iii)] $\text{Im} (I-K) = \ker (I-K^{\dagger})^{\perp}$
+\item[(iv)] $\text{dim} \ker (I-K) = \text{dim} \ker (I-K^{\dagger})$
+\item[(v)] $\ker (I-K)= \{ 0 \}$ \emph{iff} $\text{Im} (I-K) =H$.
+\end{itemize}
+\s
 
+We return to the Boundary value problem. Recall
+\begin{align*}
+Lu = -\sum_{i,j=1}^n (a^{ij}(x) u_{x_j})_{x_i} + \sum_{i=1}^n b^i(x)u_{x_i} + c(x) u
+\end{align*}
+Assume $a^{ij}, b^i, c\in L^{\infty}(U)$, $U\subset \reals^n$ open, bounded, $C^1$-domain. Associated bilinear form is
+\begin{align*}
+B[u,v] = \int_U \Big( \sum_{i,j} a^{ij} u_{x_i}v_{x_j} + \sum_{i} b^i u_{x_i} v + cuv \Big) dx
+\end{align*}
+and we are considering
+\begin{align*}
+\begin{cases}
+\begin{array}{ll}
+Lu = f & \text{in } U,\quad f\in L^2(U) \\
+u = 0 & \text{on } \pa U
+\end{array}
+\end{cases}
+\end{align*}
+We define the formal adjoint of $L$ by
+\begin{align*}
+L^{\dagger} v = -\sum_{i,j=1}^n (a^{ij}(x) v_{x_j})_{x_i} - \sum_{i=1}^n b^i(x)v_{x_i} + (c(x) - \sum_{i=1}^n b_{x_i}^i ) v
+\end{align*}
+Formal adjoint means $(v,Lu)_{L^2(U)} = (L^{\dagger}v,u)_{L^2(U)}$ for all $u,v\in C_c^{\infty}(U)$.
 
+\quad If $b\in C^1(U)$, this is an elliptic operator itself, otherwise we have to understand this as a formal expression through the following definition.
+\s
 
+\defi We say $v\in H_0^1(U)$ is a weak solution of the \textbf{adjoint problem} if
+\begin{align*}
+\begin{cases}
+\begin{array}{ll}
+L^{\dagger}v = f & \text{in } U, \quad f\in L^2(U) \\
+v = 0 & \text{on } \pa U
+\end{array}
+\end{cases}
+\end{align*}
+provided $B[u,v] = B^{\dagger}[u,v] = (f,u)_{L^2(U)}$ for all $u \in H_0^1(U)$.
+\s
 
+With this setting, along with the additional assumption that $a^{ij}$ is \emph{uniformly elliptic}, we have the following result. \s
+
+\thm \emph{(Fredhold alternative for elliptic BVP)} Consider
+\begin{align}
+\begin{cases}
+\begin{array}{ll}
+Lu = f & \text{in } U, \quad f\in L^2(U) \\
+u = 0 & \text{on } \pa U
+\end{array}
+\end{cases} \label{14}
+\end{align}
+Then \emph{either} \begin{itemize}
+\item[(a)] for each $f\in L^2(U)$, (13) admits a \emph{unique} weak solution, \emph{or}
+\item[(b)] there exist a weak solution to
+\begin{align}
+\begin{cases}
+\begin{array}{ll}
+Lu = 0 & \text{in } U, \quad f\in L^2(U) \\
+u = 0 & \text{on } \pa U
+\end{array}
+\end{cases} \label{15}
+\end{align}
+with $u \neq 0$.
+\end{itemize}
+If (b) holds, the dimension of the space $N \subset H_0^1(U)$ of weak solutions to (14) is finite and equals the dimension of $N^* \subset H_0^1(U)$, the space of weak solutions to the homogeneous adjoint problem
+\begin{align*}
+\begin{cases}
+\begin{array}{ll}
+L^{\dagger}v = f & \text{in } U, \quad f\in L^2(U) \\
+v = 0 & \text{on } \pa U
+\end{array}
+\end{cases}
+\end{align*}
+\quad Finally (14) has a solution \emph{iff}
+\begin{align*}
+(f,v)_{L^2(U)} = 0 \quad \forall v\in N^*
+\end{align*}
+(Think of problems in finite dimensional vector space to interpret this result)
+\begin{proof}
+\pf By the first existence theorem, there exists $\gamma >0$ such that for any $f\in L^2(U)$, a unique solution to 
+\begin{align}
+\begin{cases}
+\begin{array}{ll}
+Lu + \gamma u = f & \text{in } U \\
+u = 0 & \text{on } \pa U
+\end{array}
+\end{cases}
+\end{align}
+exists, i.e. $\exists u \in H_0^1 (U)$ such that 
+\begin{align*}
+B[u,v] + \gamma (u,v)_{L^2(U)} = (f,v)_{L^2(U)} \quad \forall v \in H_0^1(U)
+\end{align*}
+Moreover, $\exists C = C(L,U,\gamma,n)$ such that
+\begin{align*}
+\norms{u}{H^1(U)} \leq C \norms{f}{L^2(U)}
+\end{align*}
+Write $u = L^{-1}_{\gamma}f$. Clearly $L_{\gamma}^{-1} : L^2(U) \rightarrow H_0^1(U)$ is a bounded linear operator. Now suppose $u\in H_0^1(U)$ is a weak solution to (13). Then
+\begin{align*}
+&B[u,v] = (f,v)_{L^2(U)} \quad \forall v \in H_0^1(U) \\
+\Leftrightarrow \quad & B_{\gamma}[u,v] = B[u,v] + \gamma(u,v)_{L^2(U)} = (f+ \gamma u, v)_{L^2(U)} \quad \forall v \in H_0^1(U)
+\end{align*}
+Thus $u$ solves (13) \emph{iff}
+\begin{align*}
+& u = L^{-1}_{\gamma} (f+ \gamma u) = \gamma L^{-1}_{\gamma}u + L^{-1}_{\gamma} f \\
+\Leftrightarrow \quad & (I-K)u =h \quad \text{for } K = \gamma L_{\gamma}^{-1}, h= L_{\gamma}^{-1} f
+\end{align*}
+\s
+
+Next we claim $K = \gamma L_{\gamma}^{-1} : L^2(U) \rightarrow L^2(U)$ is compact.
+\begin{subproof}
+: Suppose $(f_n)_{n=1}^{\infty}$ is a bounded sequence in $L^2(U)$. Then
+\begin{align*}
+\norms{Kf_n}{H^1(U)} = \gamma \norms{L_{\gamma}^{-1} f_n}{H^1(U)} \leq \gamma C \norms{f_n}{L^2(U)}
+\end{align*}
+so $(Kf_n)_{n=1}^{\infty}$ is a bounded sequence in $H_0^1(U)$ hence by \emph{Rellich theorem}, this admits a subseqeunce which converges strongly in $L^2(U)$. Hence $K$ is compact.
+\end{subproof}
+We can invoke \emph{usual Fredholm alternative} for compact operator to deduce that \emph{either} \textit{(a)} $u-Ku =h$ has a solution $u \in L^2(U)$ for all $h \in L^2(U)$ \emph{or} \textit{(b)} $\exists u \in L^2(U)$ s.t. $u-Ku =0$ with dimension of space of such $u$ finite.
+
+\quad Suppose (a) holds. Then setting $h = L^{-1}_{\gamma} f$, $\exists u \in L^2(U)$ such that $u = \gamma L_{\gamma}^{-1} u + L_{\gamma}^{-1} f$ but both $\gamma L_{\gamma}^{-1} u$ and $L_{\gamma}^{-1} f$ are in $H_0^1(U)$ so $u\in H_0^1(U)$. By our previous computation, $u$ is the weak solution to (13).
+
+\quad Suppose (b) hods. Then $\exists u \in L^2(U)$ such that $u = \gamma L^{-1}_{\gamma}(u) \in H_0^1(U)$ and
+\begin{align*}
+B[u,v] + \gamma (u,v)_{L^2(U)} = (\gamma u, v)_{L^2(U)} \quad \forall v\in H_0^1(U)
+\end{align*}
+So $u$ is a weak solution of (14). Further, the dimension of the space of such solutions, $N$, is finite and moreover equals the dimension of the space of solutions to (by (iv) of Fredholm alternative)
+\begin{align*}
+v - K^{\dagger} v =0 \quad &\Leftrightarrow \quad (w,v)_{L^2(U)} = (w,K^{\dagger}v)_{L^2(U)} \quad \forall w \in L^2(U) \\
+& \Leftrightarrow \quad (w,v)_{L^2(U)} = (Kw, v)_{L^2(U)} \quad \forall w \in L^2(U) \\
+& \Leftrightarrow \quad B[L_{\gamma}^{-1}w, v] + \gamma (L_{\gamma}^{-1}w, v)_{L^2} = \gamma(L_{\gamma}^{-1}w, v)_{L^2} \quad \forall w \in L^2(U) \\
+& \Leftrightarrow \quad B^{\dagger}[v,L_{\gamma}^{-1}w] =0 \quad \forall w \in L^2(U) \\
+& \Leftrightarrow \quad B^{\dagger}[v,u] =0 \quad \forall u \in H_0^1(U)
+\end{align*}
+where the last equivalence follows because $L_{\gamma}^{-1}(L^2(U))$ is dense in $H_0^1(U)$(see example sheet for this point). So $\text{dim} N^* =\text{dim} N$. Since $\text{Im}(I-K) = (\ker (I-K^{\dagger}))^{\perp}$, $u-Ku = h$ has a solution \emph{iff} $(v,h)_{L^2(U)} =0$ for all $v\in \ker(I-K^{\dagger})$. Recalling $h = \gamma^{-1}Kf$, this holds \emph{iff}
+\begin{align*}
+0 = (h,v)_{L^2(U)} = (\gamma^{-1}Kf, v)_{L^2(U)} = \gamma^{-1}(f, K^{\dagger}v)_{L^2(U)} = \gamma^{-1}(f,v)_{L^2(U)}
+\end{align*}
+So (13) has a solution \emph{iff} $(f,v)_{L^2(U)}=0$ for all weak solutions to the adjoint problem.
+
+\eop
+\end{proof}
 
 
 

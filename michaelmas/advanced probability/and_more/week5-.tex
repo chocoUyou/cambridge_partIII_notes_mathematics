@@ -732,17 +732,105 @@ We are in fact apply the theorem in the case where the assumption $f \in C_b^2(\
 \begin{proof}
 -Every step other than the integration by parts $\int_{\reals^d} p(r,x,y) \times \frac{1}{2} \Delta f(y) dy = \int_{\reals} \frac{1}{2} \Delta_y p(r,x,y) f(y) dy$ works without assumption that $f\in C_b^2(\reals^d)$. Hence, it is enough to have $f \in W^{2,1}(\reals^d)$(the Sobolev space) with sub-exponential growth rate.
 \end{proof}
+\s
 
+\newday
 
+(14th November, Wednesday)
+\s
 
+\textbf{Examples : } Let $(X_t^i)_{t\geq 0}$, $i=1, \cdots, n$ be a BM.
+\begin{itemize}
+\item $f(x) = x^i$ then $\Delta f =0$, so is a martingale.
+\item $f(x) = x^i x^j$ then $\Delta f=0$, so is a martingale.
+\item $(X_t^i X_t^j - \delta_j t)_{t\geq 0}$ is a martingale.
+\item $\exp(\lambda X_t - \frac{1}{2} \lambda^2 t)_{t\geq 0}$ is a martingale.
+\item For all harmonic functions $f$ bounded, $(f(X_t))_{t\geq 0}$ is a martingale.
+\end{itemize}
 
+\subsection*{7.6. Strong Markov Property}
 
+Strong Markov Property of Brownian Motion would be particularly useful.
+\s
 
+\thmnum{7.6.1} Let $(X_t)_{t\geq 0}$ be an $(\F_t)_{t\geq 0}$-BM and let $T$ be a stopping time. Then conditioned on $\{T<\infty \}$, $(X_{T+t})_{t\geq 0}$ is an $(\F_{T+t})_{t\geq 0}$-BM.
+\begin{proof}
+\pf Clearly on $\{T<\infty \}$, $(X_{T<t})_{t\geq 0}$ is continuous on $[0,\infty)$. Also on $\{T<\infty \}$, $X_{T+t}$ is $\F_{T+t}$-measurable. Fix $s\geq 0$, $t>0$, $f\in C_b(\reals^d)$, $m,n\in \mathbb{N}$, $A\in \F_{T+s}$ with $A\subset \{T\leq m\}$. For $k=0,1,\cdots 2^{n}m$, set $t_k = k2^{-n}$ and $A_k = A \cap \{t_k -2^{-n}< T \leq t_k \}$. Note $A_k \in \F_{t_k +s}$ and $A_k = A \cap \{T_n = t_k \}$ where $T_n = 2^{-n} \lceil 2^n T \rceil$, so
+\begin{align*}
+& \avg(f(X_{T_n + s+t}) 1_{A_k}) = \avg(f(X_{t_k +s +t}) 1_{A_k}) \\
+=& \avg(P_t f(X_{t_k+s}) 1_{A_k}) = \avg(P_t f(X_{T_n +s}) 1_{A_k})
+\end{align*}
+Now sum over $k$ and let $n\rightarrow \infty $ using bounded convergence to obtain
+\begin{align*}
+\avg(f(X_{T+s+t})1_A) = \avg( P_t f(X_{T+s}) 1_A)
+\end{align*}
+But $m$ and $A$ were arbitrary so this implies, on $\{ T< \infty \}$,
+\begin{align*}
+\avg (f(X_{T+t+s}) |\F_{T+s}) = P_t f(X_{T+s}) \quad \text{a.s.}
+\end{align*}
+as required.
 
+\eop
+\end{proof}
 
+\subsection*{7.7. Properties of 1-d BM}
 
+\propnum{7.7.1} Let $(X_t)_{t\geq 0}$ be a $\text{BM}_0(\reals)$. Set $T_a = \inf \{t\geq 0 : X_t =a \}$. Then
+\begin{align*}
+& \prob(T_a < \infty) =1 \quad \text{for all } a\in \reals \quad \text{\emph{and}} \\
+& \prob(T_{-a} \leq T_b) = \frac{b}{a+b} \quad \forall a,b\geq 0 \quad \text{\emph{and}} \\
+& \avg(T_a \wedge T_b) = ab
+\end{align*}
+Moreover $T_a$ has a density $f_a$ on $[0,\infty)$ given by
+\begin{align*}
+f_a(t) = \frac{1}{\sqrt{2\pi t^3}} e^{-a^2/2t} \quad t\geq 0
+\end{align*}
+Moreover the following holds almost surely.
+\begin{itemize}
+\item[(a)] $X_{t} /t \rightarrow 0$ as $t\rightarrow \infty$.
+\item[(b)] $\inf_{t\geq 0} X_t = -\infty$, $\sup_{t\geq 0} X_t =\infty$. 
+\item[(c)] for all $s\geq 0$, there exist $t,n\geq s$ such that $X_t < 0 < X_n$.
+\item[(d)] for all $s>0$ there exist $t,n \in [0,s)$ such that $X_t < 0<X_n$.
+\end{itemize}
+\begin{proof}
+\pf Exercise.
+\end{proof}
+\s
 
+\thmnum{7.7.2} Let $X \sim \text{BM}_0(\reals)$. Then the following properties hold almost surely : 
+\begin{itemize}
+\item[(a)] for all $\alpha < 1/2$, $(X_t)_{t\geq 0}$ is locally H\"{o}lder continuous of exponent $\alpha$.
+\item[(b)] for all $\alpha >1/2$ there is no non-trivial interval on which $X$ is H\"{o}lder continuous of exponent $\alpha$.
+\end{itemize}
+\begin{proof}
+\pf \begin{itemize}
+\item[(a)] For $s,t\geq 0$ with $s<t$, $X_t - X_s \sim (t-s)^{1/2} X_1$ so for all $p< \infty$,
+\begin{align*}
+\avg( |X_t-X_s|^p ) = (t-s)^{p/2} C_p
+\end{align*}
+where $C_p = \avg( |X_1|^p ) < \infty$. Given $\alpha < 1/2$ we can find $p<\infty$ so that $\alpha + \frac{1}{p} < \frac{1}{2}$. Then by Kolmogorov's lemma there exist $K\in L^p(\prob)$ such that
+\begin{align*}
+|X_t - X_s| \leq K|t-s|^{\alpha} \quad \text{for all } s,t\in [0,1]
+\end{align*}
+So by scaling of BM, $(X_t)_{t\geq 0}$ is locally H\"{o}lder continuous of exponent $\alpha$ a.s.
 
+\quad Finally consider $\alpha_n \nearrow 1/2$, $\alpha_n < 1/2$ to see $(X_t)_{t\geq 0}$ is H\"{o}lder continuous of exponent $\alpha$ a.s. for all $\alpha <1/2$.
+\item[(b)] Let $m,n\in \mathbb{N}$ with $m\geq n$. For $s,t\in \mathbb{D}_n$, define
+\begin{align*}
+[X]^m_{s,t} = \sum_{\tau} (X_{\tau + 2^{-m}} -X_{\tau})^2
+\end{align*}
+where we sum over all $\tau \in \mathbb{D}_n$ with $\tau \in (s,t]$. The random variables $(X_{\tau + 2^{-m}} - X_{\tau})^2$ are independent of mean $2^{-m}$ and variance $2^{-2m +1}$ (Here we need $\avg(X_1^4)=3$, $\text{Var}(X_1^2)=2$). So $\avg([X]_{s,t}^m) = 2^m (t-s) 2^{-m} =t-s$ and $\text{Var}([X]_{s,t}) = 2^m (t-s)2^{-2m+1}$. So $[X]_{s,t}^m \rightarrow t-s$ a.s.
+
+\quad Suppose $X$ is H\"{o}lder $\alpha$ on $[s,t]$ then for some constant $K$, 
+\begin{align*}
+|X_{\tau + 2^{-m}} - X_{\tau}|^2 \leq K^2 (2^{-m})^{2\alpha}
+\end{align*}
+so $[X]^{m}_{s,t} \leq 2^m (t-s) K^2 2^{-2m\alpha} \rightarrow 0$ as $m\rightarrow \infty$. So $(X_t)_{t\geq 0}$ is not H\"{o}lder $\alpha$ on $[s,t]$, which contradicts with our earlier result.
+\end{itemize}
+
+\eop
+\end{proof}
+\s
 
 
 \end{document}

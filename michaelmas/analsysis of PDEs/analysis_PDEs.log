@@ -1,4 +1,4 @@
-This is XeTeX, Version 3.14159265-2.6-0.99998 (MiKTeX 2.9.6500) (preloaded format=xelatex 2018.2.4)  12 NOV 2018 17:28
+This is XeTeX, Version 3.14159265-2.6-0.99998 (MiKTeX 2.9.6500) (preloaded format=xelatex 2018.2.4)  14 NOV 2018 16:35
 entering extended mode
 **./analysis_PDEs.tex
 (analysis_PDEs.tex
@@ -6,8 +6,8 @@ LaTeX2e <2017-04-15>
 Babel <3.15> and hyphenation patterns for 75 language(s) loaded.
 ("C:\Program Files (x86)\MiKTeX 2.9\tex\latex\base\report.cls"
 Document Class: report 2014/09/29 v1.4h Standard LaTeX document class
-("C:\Program Files (x86)\MiKTeX 2.9\tex\latex\base\size10.clo"
-File: size10.clo 2014/09/29 v1.4h Standard LaTeX file (size option)
+("C:\Program Files (x86)\MiKTeX 2.9\tex\latex\base\size12.clo"
+File: size12.clo 2014/09/29 v1.4h Standard LaTeX file (size option)
 )
 \c@part=\count79
 \c@chapter=\count80
@@ -544,12 +544,12 @@ LaTeX Font Info:    ... okay on input line 43.
 * \topmargin=-52.36449pt
 * \headheight=12.0pt
 * \headsep=25.0pt
-* \topskip=10.0pt
+* \topskip=12.0pt
 * \footskip=30.0pt
-* \marginparwidth=57.0pt
-* \marginparsep=11.0pt
+* \marginparwidth=35.0pt
+* \marginparsep=10.0pt
 * \columnsep=10.0pt
-* \skip\footins=9.0pt plus 4.0pt minus 2.0pt
+* \skip\footins=10.8pt plus 4.0pt minus 2.0pt
 * \hoffset=0.0pt
 * \voffset=0.0pt
 * \mag=1000
@@ -574,153 +574,179 @@ LaTeX Font Info:    Try loading font information for OMS+rsfs on input line 91.
 
 
 ("C:\Program Files (x86)\MiKTeX 2.9\tex\latex\calrsfs\omsrsfs.fd")
-Overfull \hbox (6.44315pt too wide) in paragraph at lines 99--100
-[]\TU/lmr/m/n/10 ==============================================================
+Overfull \hbox (92.37515pt too wide) in paragraph at lines 99--100
+[]\TU/lmr/m/n/12 ==============================================================
 = 
  []
 
 [1
 
 
-]
-Overfull \hbox (45.34311pt too wide) in paragraph at lines 214--217
-[]\TU/lmr/m/n/10 ==============================================================
+] [2]
+Overfull \hbox (138.09512pt too wide) in paragraph at lines 214--217
+[]\TU/lmr/m/n/12 ==============================================================
 ======
  []
 
-[2] [3]
-Overfull \hbox (6.44315pt too wide) in paragraph at lines 319--320
-[]\TU/lmr/m/n/10 ==============================================================
+[3] [4]
+Overfull \hbox (92.37515pt too wide) in paragraph at lines 319--320
+[]\TU/lmr/m/n/12 ==============================================================
 = 
  []
 
-[4] [5] [6]
-Overfull \hbox (6.44315pt too wide) in paragraph at lines 457--458
-[]\TU/lmr/m/n/10 ==============================================================
+[5] [6] [7]
+Overfull \hbox (92.37515pt too wide) in paragraph at lines 457--458
+[]\TU/lmr/m/n/12 ==============================================================
 = 
  []
 
-[7]
-Overfull \hbox (6.44315pt too wide) in paragraph at lines 567--568
-[]\TU/lmr/m/n/10 ==============================================================
+[8] [9]
+Overfull \hbox (92.37515pt too wide) in paragraph at lines 567--568
+[]\TU/lmr/m/n/12 ==============================================================
 = 
  []
 
-[8] [9] [10]
-Overfull \hbox (6.44315pt too wide) in paragraph at lines 710--711
-[]\TU/lmr/m/n/10 ==============================================================
-= 
+[10]
+Overfull \hbox (11.51952pt too wide) detected at line 600
+[]
  []
 
 [11] [12]
-Overfull \hbox (6.44315pt too wide) in paragraph at lines 831--832
-[]\TU/lmr/m/n/10 ==============================================================
+Overfull \hbox (92.37515pt too wide) in paragraph at lines 710--711
+[]\TU/lmr/m/n/12 ==============================================================
 = 
  []
 
-[13]
-Overfull \hbox (6.44315pt too wide) in paragraph at lines 933--934
-[]\TU/lmr/m/n/10 ==============================================================
+[13] [14]
+Overfull \hbox (92.37515pt too wide) in paragraph at lines 831--832
+[]\TU/lmr/m/n/12 ==============================================================
 = 
  []
 
-[14] [15]
-Overfull \hbox (6.44315pt too wide) in paragraph at lines 1068--1069
-[]\TU/lmr/m/n/10 ==============================================================
+[15] [16]
+Overfull \hbox (92.37515pt too wide) in paragraph at lines 933--934
+[]\TU/lmr/m/n/12 ==============================================================
 = 
  []
 
-[16]
+[17] [18] [19]
+Overfull \hbox (92.37515pt too wide) in paragraph at lines 1068--1069
+[]\TU/lmr/m/n/12 ==============================================================
+= 
+ []
+
+[20]
 File: kernel.png Graphic file (type bmp)
 <kernel.png>
- [17] [18]
-Overfull \hbox (6.44315pt too wide) in paragraph at lines 1207--1208
-[]\TU/lmr/m/n/10 ==============================================================
+ [21] [22]
+Overfull \hbox (92.37515pt too wide) in paragraph at lines 1207--1208
+[]\TU/lmr/m/n/12 ==============================================================
 = 
  []
 
 File: 2.png Graphic file (type bmp)
 <2.png>
-File: 3.png Graphic file (type bmp)
-<3.png>
 
 LaTeX Warning: `h' float specifier changed to `ht'.
 
-[19]
+File: 3.png Graphic file (type bmp)
+<3.png>
+[23] [24]
 File: 4.png Graphic file (type bmp)
 <4.png>
- [20]
-Overfull \hbox (0.74467pt too wide) in paragraph at lines 1326--1327
-\TU/lmr/m/n/10 Setting $\OML/cmm/m/it/10 Eu \OT1/cmr/m/n/10 = []$\TU/lmr/m/n/10
- , clearly $[]$ depends on $\OML/cmm/m/it/10 u$ \TU/lmr/m/n/10 linearly, and a 
-computation shows $[]\OML/cmm/m/it/10 Eu[][] \OMS/cmsy/m/n/10 ^^T \OML/cmm/m/it
-/10 C[]u[][]$ 
- []
 
-
-Overfull \hbox (6.44315pt too wide) in paragraph at lines 1332--1333
-[]\TU/lmr/m/n/10 ==============================================================
-= 
- []
-
-[21]
-File: 5.png Graphic file (type bmp)
-<5.png>
- [22] [23]
-Overfull \hbox (6.44315pt too wide) in paragraph at lines 1486--1487
-[]\TU/lmr/m/n/10 ==============================================================
-= 
- []
-
-[24]
-Overfull \hbox (1.50659pt too wide) in paragraph at lines 1543--1544
-[]\TU/lmr/bx/n/10 Lemma) \TU/lmr/m/n/10 Let $\OML/cmm/m/it/10 n \OMS/cmsy/m/n/1
-0 ^^U \OT1/cmr/m/n/10 2$ \TU/lmr/m/n/10 and $\OML/cmm/m/it/10 f[]; []  ; f[] \O
-MS/cmsy/m/n/10 2 \OML/cmm/m/it/10 L[]\OT1/cmr/m/n/10 (\U/msb/m/n/10 R[]\OT1/cmr
-/m/n/10 )$\TU/lmr/m/n/10 . For any $\OT1/cmr/m/n/10 1 \OMS/cmsy/m/n/10 ^^T \OML
-/cmm/m/it/10 i \OMS/cmsy/m/n/10 ^^T \OML/cmm/m/it/10 n$\TU/lmr/m/n/10 , denote 
-$[] \OT1/cmr/m/n/10 = (\OML/cmm/m/it/10 x[]; []  ; x[]; x[]; []  ; x[]\OT1/cmr/
-m/n/10 ) \OMS/cmsy/m/n/10 2
+Overfull \hbox (45.97606pt too wide) in paragraph at lines 1270--1271
+[]\TU/lmr/m/n/12 Let $\OMS/cmsy/m/n/12 f\OML/cmm/m/it/12 ^^X[]\OMS/cmsy/m/n/12 
+g[]$ \TU/lmr/m/n/12 be a smooth partition of unity subordinated to the open set
+s $\OMS/cmsy/m/n/12 f\OML/cmm/m/it/12 V[]; \OMS/cmsy/m/n/12 f\OML/cmm/m/it/12 B
+[]\OT1/cmr/m/n/12 (\OML/cmm/m/it/12 x[]\OT1/cmr/m/n/12 )\OMS/cmsy/m/n/12 g[]g$
  []
 
 [25]
-Overfull \hbox (6.44315pt too wide) in paragraph at lines 1606--1607
-[]\TU/lmr/m/n/10 ==============================================================
+Overfull \hbox (5.4295pt too wide) in paragraph at lines 1326--1327
+\TU/lmr/m/n/12 Setting $\OML/cmm/m/it/12 Eu \OT1/cmr/m/n/12 = []$\TU/lmr/m/n/12
+ , clearly $[]$ depends on $\OML/cmm/m/it/12 u$ \TU/lmr/m/n/12 linearly, and a 
+computation shows $[]\OML/cmm/m/it/12 Eu[][] \OMS/cmsy/m/n/12 ^^T
+ []
+
+
+Overfull \hbox (92.37515pt too wide) in paragraph at lines 1332--1333
+[]\TU/lmr/m/n/12 ==============================================================
 = 
  []
 
-[26] [27]
-Overfull \hbox (6.44315pt too wide) in paragraph at lines 1755--1756
-[]\TU/lmr/m/n/10 ==============================================================
+[26]
+File: 5.png Graphic file (type bmp)
+<5.png>
+ [27] [28]
+Overfull \hbox (92.37515pt too wide) in paragraph at lines 1486--1487
+[]\TU/lmr/m/n/12 ==============================================================
 = 
  []
 
-[28] [29] [30]
-Overfull \hbox (6.44315pt too wide) in paragraph at lines 1919--1920
-[]\TU/lmr/m/n/10 ==============================================================
+[29] [30]
+Overfull \hbox (23.05467pt too wide) in paragraph at lines 1563--1565
+\TU/lmr/m/n/12 by Hölder inequality. We apply the result for $\OML/cmm/m/it/12 
+n$ \TU/lmr/m/n/12 to $\OMS/cmsy/m/n/12 j\OML/cmm/m/it/12 f[]\OMS/cmsy/m/n/12 j[
+]\OT1/cmr/m/n/12 (\OMS/cmsy/m/n/12 ^^A\OML/cmm/m/it/12 ; x[]\OT1/cmr/m/n/12 ) \
+OMS/cmsy/m/n/12 ^^B [] ^^B j\OML/cmm/m/it/12 f[]\OMS/cmsy/m/n/12 j[]\OT1/cmr/m/
+n/12 (\OMS/cmsy/m/n/12 ^^A\OML/cmm/m/it/12 ; x[]\OT1/cmr/m/n/12 )$
+ []
+
+[31]
+Overfull \hbox (92.37515pt too wide) in paragraph at lines 1606--1607
+[]\TU/lmr/m/n/12 ==============================================================
 = 
  []
 
-[31] [32]
-Overfull \hbox (6.44315pt too wide) in paragraph at lines 2085--2086
-[]\TU/lmr/m/n/10 ==============================================================
+[32] [33] [34]
+Overfull \hbox (92.37515pt too wide) in paragraph at lines 1755--1756
+[]\TU/lmr/m/n/12 ==============================================================
 = 
  []
 
-[33] [34]
-Overfull \hbox (6.44315pt too wide) in paragraph at lines 2179--2180
-[]\TU/lmr/m/n/10 ==============================================================
+[35] [36] [37]
+Overfull \hbox (92.37515pt too wide) in paragraph at lines 1919--1920
+[]\TU/lmr/m/n/12 ==============================================================
 = 
  []
 
-[35] [36] [37] (analysis_PDEs.aux) ) 
+[38] [39]
+Overfull \hbox (56.30225pt too wide) detected at line 2046
+[]
+ []
+
+[40]
+Overfull \hbox (92.37515pt too wide) in paragraph at lines 2085--2086
+[]\TU/lmr/m/n/12 ==============================================================
+= 
+ []
+
+[41] [42]
+Overfull \hbox (92.37515pt too wide) in paragraph at lines 2179--2180
+[]\TU/lmr/m/n/12 ==============================================================
+= 
+ []
+
+[43]
+Overfull \hbox (25.4415pt too wide) detected at line 2250
+[]
+ []
+
+[44]
+Overfull \hbox (92.37515pt too wide) in paragraph at lines 2290--2291
+[]\TU/lmr/m/n/12 ==============================================================
+= 
+ []
+
+[45] [46] [47] [48] (analysis_PDEs.aux) ) 
 Here is how much of TeX's memory you used:
- 13594 strings out of 427839
- 274226 string characters out of 3151405
- 335099 words of memory out of 3000000
- 17290 multiletter control sequences out of 15000+200000
- 11087 words of font info for 60 fonts, out of 3000000 for 9000
+ 13595 strings out of 427839
+ 274236 string characters out of 3151405
+ 333144 words of memory out of 3000000
+ 17296 multiletter control sequences out of 15000+200000
+ 11988 words of font info for 63 fonts, out of 3000000 for 9000
  1328 hyphenation exceptions out of 8191
  61i,22n,84p,787b,1062s stack positions out of 5000i,500n,10000p,200000b,50000s
 
-Output written on analysis_PDEs.pdf (37 pages).
+Output written on analysis_PDEs.pdf (48 pages).
