@@ -1247,16 +1247,86 @@ Let $X$ be a finite set and let $f: X^3 \rightarrow \mathbb{F}$ for some field $
 \begin{align*}
 f(x,y,z) = \sum_{i=1}^{k_1} u_i (x) v_i(y,z) + \sum_{i=k_1+1}^{k_2}u_i(y) v_i(x,z) + \sum_{i=k_2+1}^k u_i(z) v_i(x,y)
 \end{align*}
+\s
 
+\newday
 
+(15th November, Thursday)
+\s
 
+The frameworks we are working on is established by Croot, Lev, Pach / Ellenberg, Gijswijt/ and worked in the form we are presenting by T. Tao
+\s
 
+\lemnum{1} Let $X$ be a finite set, let $A\subset X$ and let $f: X^3 \rightarrow \mathbb{F}$ be a function such that $f(x,y,z) \neq 0$ \emph{iff} $x=y=z\in A$. (can think of $f$ as a diagonal matrix) Then $f$ has slice rank $|A|$. 
+\begin{proof}
+\pf We can rewrite $f(x,y,z)$ as $\sum_{a\in A} \lambda \delta_a (x) \delta_a(y) \delta_a(z)$ so the slice rank is at most $|A|$. 
 
+\quad Now suppose that 
+\begin{align*}
+f(x,y,z) = \sum_{i=1}^{k_1} u_i(x) v_i(y,z) + \sum_{k_1 +1}^{k_2} u_i(y)v_i(x,z) + \sum_{k_2+1}^k u_i(z)v_i(x,y)
+\end{align*}
+Let $V$ be the subspace of $\mathbb{F}^{X}$ that consist of functions orthogonal to all of $u_1, \cdots, u_{k_1}$. That is, $h\in V$ \emph{iff} $\sum_{x}h(x)u_i(x) =0$ for all $i\leq k$. Then $V$ has codimension at most $k_1$. It follows that $V$ contains some function $h$ that vanishes at most $k_1$ times.(i.e. there are at most $k_1$ number of $x\in X$ s.t. $h(x) =0$.)
+\begin{subproof}
+: to see this, form an $m\times n$ matrix whose rows are a basis for $V$ (so $m\geq n-k_1$). Put the matrix into reduced row-echelon form. Add up the rows to get the desired function.
+\end{subproof}
+Now define $g : X^2 \rightarrow \mathbb{F}$ by $g(y,z) = \sum_x f(x,y,z) h(x)$. Then $g(y,z) \neq 0$ \emph{iff} $y = z \in A$ and $h(y)\neq 0$. This holds at least $|A|-k_1$ times, so $g$ has rank $\geq |A|-k_1$. But also $g(y,z)$ has a formula of the form
+\begin{align*}
+\sum_{k_1 + 1}^{k_2} u_i(y) w_i(z) + \sum_{k_2 +1}^k u_i(z)w_i(y) \quad \text{for some functions } w_i
+\end{align*}
+(e.g. if $k_1 < i \leq k_2$ then $w_i(z) = \sum_{x}u_i(x,z)h(x)$) since $h$ is orthogonal to each $u_1, \cdots, u_{k_1}$. Therefore, $g$ has rank at most $k-k_1$. Therefore, $|A| \leq k$.
 
+\eop
+\end{proof}
+\s
+%진짜 미친 사람들인가? 이런 생각을 어떻게 하지 ㅋㅋㅋㅋ
 
+Let $F(n)$ be the number of sequences $\{0,1,2\}$ of length $n$ that add up to at most $\frac{2n}{3}$.
+\s
 
+\lemnum{2} Let $A$ be a subset of $\mathbb{F}_3^n$ such that if $x,y,z\in A$ and $x+y+z = 0$ (this is precisely an AP of length 3) then $x=y=z$. Then $|A| \leq 3F(n)$.
+\begin{proof}
+\pf The function $f(x,y,z)=\sum_{a\in A} \delta_a(x) \delta_a(y) \delta_a(z)$ on $A^3$ can be expressed by the formula
+\begin{align*}
+f(x,y,z) = \prod_{i=1}^n (1-(x_i+y_i + z_i))(1+(x_i+y_i + z_i)) = \prod_{i=1}^n (1-(x_i+y_i + z_i)^2)
+\end{align*}
+This is a polynomial in $x_1, \cdots, x_n, y_1, \cdots, y_n, z_1, \cdots, z_n$ with each $x_i, y_i, z_i$ occurring with degree 0,1 or 2. Also, it has total degree $2n$. It is therefore a linear combination of monomials, and in each one, either $x$ variables or $y$ variables or $z$ variables occur with total degree at most $\frac{2n}{3}$. Partition the monomials into three sets accordingly. It follows that we can write $\sum_{a\in A} \delta_a(x) \delta_a(y) \delta_a(z)$ as
+\begin{align*}
+\sum_{i=1}^{m_1} u_i(x) v_i(y,z) + \sum_{i=m_1+1}^{m_2} u_i(y) v_i(x,z) + \sum_{i=m_1+1}^m u_i(z) v_i(x,y)
+\end{align*}
+where the $u_i$ are monomials of total degree at most $\frac{2n}{3}$ and the $v_i$ are polynomials (in $2n$ variables). The number of monomials in $x_1, \cdots, x_n$ such that each $x_i$ occurs with degree $0,1$ or 2 and the total degree is $\leq \frac{2n}{3}$ is $F(u)$. So $|A| \leq 3F(n)$ by \textbf{Lemma 1}.
 
+\eop 
+\end{proof}
+\s
 
+\lemnum{3} $F(n) \leq e^{-n/12} 3^n$
+\begin{proof}
+\pf Let $x$ be a random sequence in $\{ 0,1,2 \}^{2n}$ and let $X_1, \cdots, X_n$ be independent random variables uniformly distributed in $\{-1,0,1\}$. Then
+\begin{align*}
+\prob \Big[\sum (1-X_i) \leq \frac{2n}{3} \Big] &= \prob \Big[\sum_{i=1}^n X_i \geq n/3 \Big] = \prob \Big[e^{\lambda \sum_{i=1}^n X_i} \geq e^{\lambda n/3} \Big] \quad \text{(for any } \lambda) \\
+&\leq e^{-\lambda n/3} \avg \Big[e^{\lambda \sum_{i=1}^n X_i}\Big] = e^{-\lambda n/3} \prod_{i=1}^n \Big( \avg e^{\lambda X_i} \Big) \\
+&= e^{-\lambda n/3} \Big( \frac{1+e^{\lambda}+e^{-\lambda}}{3} \Big)^n 
+\end{align*}
+But
+\begin{align*}
+& \frac{1+e^{\lambda}+e^{-\lambda}}{3} = 1+ \frac{2}{3} \Big( \frac{\lambda^2}{2!} + \frac{\lambda^4}{4!} + \cdots  \Big) \\
+\leq & 1+ \frac{\lambda^2}{3} + \Big( \frac{\lambda^2}{2} \Big)^2 \frac{1}{2!}  + \Big( \frac{\lambda^2}{3} \Big)^3 \frac{1}{3!} + \cdots = e^{\lambda^2/3}
+\end{align*}
+so the probability is at most $e^{-\frac{\lambda n}{3} + \frac{\lambda^2 n}{3}}$. Choosing $\lambda =1/2$ gives an upper bound of $e^{-n/12}$
+
+\eop
+\end{proof}
+\s
+
+This estimate gives the following theorem. 
+\s
+
+\thmnum{4} Let $A\subset \mathbb{F}^n_3$ contain no non-trivial solutions to $x+y+z=0$. Then $|A| \leq e^{-n/12} 3^n$.
+\begin{proof}
+\pf Follows directly from \textbf{Lemma 2} and \textbf{Lemma 3} 
+
+\eop
+\end{proof}
 
 
 
