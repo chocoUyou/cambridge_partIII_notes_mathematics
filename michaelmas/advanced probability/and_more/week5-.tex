@@ -832,5 +832,130 @@ so $[X]^{m}_{s,t} \leq 2^m (t-s) K^2 2^{-2m\alpha} \rightarrow 0$ as $m\rightarr
 \end{proof}
 \s
 
+\newday
 
+(16th November, Friday)
+\s
+
+\subsection*{7.8. Recurrence and Transience of Brownian Motion}
+
+The following theorem tells about recurrence and transience in different dimensions.
+\s
+
+\thmnum{7.8.1} Let $(X_t)_{t\geq 0}$ is a $\textbf{BM}_0(\reals^d)$.
+\begin{itemize}
+\item[(a)] For $d=1$, $\prob(\{t\geq 0 : X_t =0 \}$ is unbounded$) =1$. \textbf{(Point recurrent)}
+\item[(b)] For $d=2$, and all $\epsilon>0$, $\prob (X_t =0$ for some $t>0) =0$ but $\prob(\{ t\geq 0 : |X_t| \leq \epsilon \}$ is unbounded$)=1$. \textbf{(Neighbourhood recurrent}, but not recurrent\textbf{)}
+\item[(c)] For $d\geq 3$, $\prob(|X_t| \rightarrow \infty$ as $t\rightarrow \infty ) =1$. \textbf{(Transient)}
+\end{itemize}
+\begin{proof}
+\pf \begin{itemize}
+\item[(a)] Is direct from \textbf{Prop 7.7.1 (b)}\\
+\item[(b)] Note that $x\mapsto \log |x|$ is harmonic in $\reals^2 \backslash \{0\}$. Let $(X_t)_{t\geq 0} \sim \text{BM}_x(\reals^2)$. For $\epsilon >0$, set 
+\begin{align*}
+p_0(x) = \prob(X_t =0 \text{ for some }t>0 ), \quad p_{\epsilon}(x) = \prob(|X_t| \leq \epsilon \text{ for some } t>0)
+\end{align*}
+Consider the case $|x|=1$. For $a<1<b$, there is a function $f\in C_b^2 (\reals^2)$ such that $f(x) = \log |x|$ for $|x| \in [a,b]$. Also consider the martingale (a martingale by \textbf{Theorem 7.5.1})
+\begin{align*}
+M_t = f(X_t) - f(X_0) - \int_0^t \frac{1}{2} \Delta f(X_s) ds
+\end{align*}
+and the stopping time
+\begin{align*}
+T = \inf \{ t\geq 0 : |X_t| \in \{ a,b\} \}
+\end{align*}
+\begin{figure}[h]
+	\centering
+	\includegraphics[width=0.33\textwidth]{2}
+\end{figure}
+Note that $\prob (T< \infty ) =1$. Also for $t\leq T$, $M_t = \log |X_t|$ so $M$ is bounded up to $T$. So optional stopping theorem applies to show
+\begin{align*}
+0 = \avg (M_0) = \avg(M_T) = \avg( \log |X_t|) = p\log a + (1-b) \log b
+\end{align*}
+where $p = p(a,b) =\prob (|X_T| =a)$. Consider the limit $a\rightarrow 0$, then $\log a \rightarrow -\infty$, so $p\rightarrow 0$. Hence for $|x|=1$, $p_0(x) = \lim_{b\rightarrow \infty} \lim_{a\rightarrow 0} p(a,b) =0$. By scaling, we see $p_0(x) =0$ for all $x\neq 0$.
+
+\quad In the case $x=0$, for $n\in \mathbb{N}$, by Markov property,
+\begin{align*}
+\prob (|X_t| =0 \text{ for some }  t \geq \frac{1}{n}) = \int_{\reals^2} p(\frac{1}{n},0,y) p_0(y) dy =0
+\end{align*} 
+Let $n\rightarrow \infty$ to see $p_0(0) =0$.
+\s
+
+For $|x|=1$, let $b\rightarrow \infty$ with $a= \epsilon$ fixed. Since $\log b \rightarrow \infty$, $p(a,b)  \rightarrow 1$ so
+\begin{align*}
+p_{\epsilon} (x) = \lim_{b\rightarrow \infty} p(\epsilon, b)=1.
+\end{align*}
+By scaling $p_{\epsilon}(x) =1$ for all $x\neq 0$.
+
+\quad If $x=0$, for $n\in \mathbb{N}$, by Markov property
+\begin{align*}
+\prob(|X_t| \leq \epsilon \text{ for some } t\geq n) = \int_{\reals^2} p(n,x,y) p_{\epsilon}(y) dy =1
+\end{align*}
+Hence $\prob(\{ t\geq 0, |X_t| \leq \epsilon \}$ is unbounded $)=1$.
+\item[(c)] It will suffice to consider case $d=3$ and to show for all $N\in \mathbb{N}$ that
+\begin{align*}
+\prob ( \{ t\geq 0 : |X_t| \leq N  \} \text{ is unbounded} ) =0
+\end{align*}
+We repeat the argument from (b) with $1/|x|$ in place of $\log (|x|)$ - in $d=3$, $1/|x|$ is the harmonic function on $\reals^3 \backslash \{ 0 \}$ - to obtain
+\begin{align*}
+\frac{p}{a} + \frac{1-p}{b} =1
+\end{align*}
+for $p = \prob(|X_T|=a)$ and $(X_T)_{t\geq 0} \sim \text{BM}_x (\reals^3)$, $|x|=1$. Let $b\rightarrow \infty$ to see 
+\begin{align*}
+\lim_{b\rightarrow \infty} p(a,b)  =\prob (|X_t| \leq a \text{ for some } t\geq 0) =a
+\end{align*} 
+By scaling, for $|x| = N+1$,
+\begin{align*}
+\prob( |X_t| \leq N \text{ for some } t\geq 0) = \frac{N}{N+1}
+\end{align*}
+Set $T_0 =0$ and for $k\geq 1$,
+\begin{align*}
+S_k = \inf \{ t\geq T_{k-1} : |X_t| = N+1 \}, \quad T_k = \inf \{ t \geq S_k : |X_t| =N \}
+\end{align*}
+
+Then
+\begin{align*}
+\prob( T_k < \infty) \leq \frac{N}{N+1} \prob (T_{k-1} < \infty) \leq \Big(\frac{N}{N+1} \Big)^k \rightarrow 0
+\end{align*}
+by strong Markov property and induction. Set $K = \sup \{ k : T_k < \infty  \}$. Then $K< \infty$ a.s. Now for all $k \geq 1$, on $\{T_{k-1} < \infty \}$, has $S_{k} < \infty$ a.s. Hence $S_{K+1} < \infty$ a.s. But on $\{S_{K+1} \leq \infty \}$, has $|X_t| >N$ for all $t\geq S_{K+1}$ hence $\prob( \{ t\geq 0 : |X_t | \leq N \}$ is unbounded $)= 0$.
+\end{itemize}
+
+\eop
+\end{proof}
+
+\subsection*{7.9. Brownian Motion and the Dirichlet Problem}
+
+Let $D$ be a connected open set in $\reals^d$. Write $\partial D$ for the boundary. Let $c: D \rightarrow [0,\infty)$, $f: \partial D \rightarrow [0,\infty)$ be measurable functions. For $x\in \overline{D}$, let $(X_t)_{t\geq 0}$ be a Brownian motion starting at $x$.
+
+\quad Define the \textbf{expected total cost} by
+\begin{align*}
+\phi(x) = \avg \Big( \int_0^T c(X_t) dt + f(X_T) 1_{t< \infty} \Big)
+\end{align*}
+where $T = \inf \{ t\geq 0 : X_t \not\in D \}$. By a
+
+\quad By a \textbf{solution of the Dirichlet problem (in $D$ with data $c$ and $f$)}, we mean a function $\psi \in C(\overline{D}) \cap C^2 (D)$ such that
+\begin{align*}
+\begin{cases}
+\begin{array}{ll}
+-\frac{1}{2} \Delta \psi = c & \text{in } D \\
+\psi = f & \text{on } \partial D
+\end{array}
+\end{cases}
+\end{align*}
+
+\quad Suppose $\psi \in C_b^2(\reals^d)$ restrict to a solution of Dirichlet problem on $D$. Consider the martingale (as in \textbf{Theorem 7.5.1})
+\begin{align*}
+M_t = \psi(X_t) - \psi(X_0) - \int_0^t \frac{1}{2} \Delta \psi (X_s) ds
+\end{align*}
+Suppose we could justify optional stopping theorem at $T$ and suppose $T< \infty $ a.s. Then
+\begin{align*}
+0 = \avg(M_0) = \avg(M_T) = \avg(\phi(X_T)) - \psi(x) - \avg(\int_0^T \frac{1}{2} \Delta \psi(X_s) ds)
+\end{align*} 
+so 
+\begin{align*}
+\psi(x) = \avg(f(X_T)) + \avg(\int_0^T c(X_s) ds) = \phi(x)
+\end{align*}
+We will spend time in exploring the condition in which this holds.
 \end{document}
+
+
+

@@ -2234,6 +2234,9 @@ Note, this is equivalent to saying $\norms{u - \overline{u}}{L^2(Q)}^2 \leq \fra
 \s
 
 \begin{proof}
+\textbf{(This proof is written as done in the lecture but is faulty - correct proof is followed right after this)}
+\s
+
 \textbf{proof of Lemma)} By approximation, assume $u\in C^{\infty}(\bar{Q})$. By convexity of $Q$ plus Fundamental Theorem of Calculus,
 \begin{align*}
 u(x) -u(y) = \int_0^1 \frac{d}{dt} u(tx + (1-t)y) dt = \int_0^1 (x-y) \cdot Du(tx + (1-t)y) dt
@@ -2253,6 +2256,43 @@ Result follows on rearranging.
 \eop
 \end{proof}
 \s
+
+\begin{proof}
+\textbf{(This proof is the corrected proof. Handout was distributed on 16th November, Friday)}
+\s
+
+\textbf{proof of Lemma)} By approximation, we can assume $u\in C^{\infty}(\overline{Q})$. For $x,y\in Q$ we use the fundamental theorem of calculus to write
+\begin{align*}
+u(x)-u(y) = \int_{y_1}^{x_1} \frac{d}{dt} u(t,x_2, \cdots, x_n) dt &+ \int_{y_2}^{x_2} \frac{d}{dt} u(y,t,x_3, \cdots, x_n) dt \\
+& + \cdots + \int_{y_n}^{x_n} \frac{d}{dt} u(y_1, \cdots, y_{n-1},t)dt
+\end{align*}
+Squaring this identity, we have
+\begin{align*}
+u(x)^2 + u(y)^2 - 2u(x)u(y) \leq & n \Big( \int_{y_1}^{x_1} \frac{d}{dt} u(t,x_2, \cdots, x_n)dt \Big)^2 \\
+& + \cdots + n\Big( \int_{y_n}^{x_n} \frac{d}{dt} u(y_1, \cdots, y_{n-1},t)dt \Big)^2 \quad \cdots \cdots \cdots \textbf{(A)}
+\end{align*}
+where on the RHS we have use $(a_1 + \cdots + a_n)^2 \leq n(a_1 + \cdots + a_n^2)$ which follows from Cauchy-Schwarz inequality. Integrating the above inequality over $x$ and $y$ in $Q$ gives
+\begin{align*}
+\int_Q dx \int_Q dy (u(x)^2 + u(y)^2 -2u(x)u(y)) = 2|Q|\norms{u}{L^(Q)}^2 -2 \Big( \int_Q u(x) dx \Big)^2
+\end{align*}
+Now consider
+\begin{align*}
+I_1 = \Big( \int_{y_1}^{x_1} \frac{d}{dt} u(t,x_2, \cdots, x_n) dt\Big)^2 &\leq \Big( \int_{y_1}^{x_1} dt\Big) \Big( \int_{y_1}^{x_1} (\frac{d}{dt}u(t,x_2, \cdots, x_n))^2 \Big) \\
+&\leq L \int_{\xi_1}^{\xi_1 +L} (\frac{d}{dt} u(t,x_2\cdots,x_n))^2 dt
+\end{align*}
+Again integrating over $x$ and $y$ in $Q$, we have
+\begin{align*}
+\int_Q dx \int_Q dy I_1 \leq L^2 |Q| \norms{D_1 u}{L^2(Q)}^2
+\end{align*}
+where the extra factor of $L(Q)$ arises due to the integrand in independent of $y$ and $x_1$. Estimating the other terms on the RHS of (A) similarly yields
+\begin{align*}
+2 |Q| \norms{u}{L^2(Q)}^2 - 2 \Big( \int_Q u(x) dx\Big)^2 \leq nL^2 |Q| \times (\norms{D_1 u}{L^2(Q)}^2 + \cdots + \norms{D_n u}{L^2(Q)}^2)
+\end{align*}
+and the result follows on rearrangement.
+
+\eop
+\end{proof}
+
 
 \thm \emph{(Rellich-Kondrachov)} Suppose $u \subset \reals^n$ is open, bounded $C^1$-domain. Let $(u_m)_{m=1}^{\infty}$ be a sequence in $H^1(U)$ with
 \begin{align*}
@@ -2449,6 +2489,173 @@ So (13) has a solution \emph{iff} $(f,v)_{L^2(U)}=0$ for all weak solutions to t
 
 \eop
 \end{proof}
+\s
+
+\newday
+
+(16th November, Friday)
+
+(handout distributed - some corrections on Poincare revisited)
+\s
+
+\subsection*{Spectrum of Elliptic Operators}
+
+Suppose $A: H\rightarrow H$ is a bounded linear operator on a Hilbert space $H$. Let
+\begin{align*}
+\rho(A) = \{ \lambda \in \reals : A - \lambda I \text{ is bijective} \}
+\end{align*}
+(we are only working in real Hilbert spaces) This is called the \textbf{resolvent set} of $A$.
+\begin{align*}
+\sigma(A) = \reals \backslash \rho(A)
+\end{align*}
+is the \textbf{spectrum} of $A$.
+
+\quad We say $\eta  \in \sigma (A)$ belongs to the \textbf{point spectrum} of $A$ if $\ker (A- \eta I) \neq \{ 0 \}$, i.e. is not injective. We write $\sigma_p(A)$ for the set of such points, so $\sigma_p(A) \subset \sigma(A)$. For $\eta \in \sigma_p(A)$ then $\exists w \in \ker (A- \eta I)$, and equivalently $A w = \eta w$. So $\eta \in \sigma_p (A)$ \emph{iff} $\exists w \in H$ such that $Aw = \eta w$. Call $\eta$ is an \textbf{eigenvalue}  and $w$ the corresponding \textbf{eigenvector}.
+\s
+
+\thm \emph{(Spectrum of a compact operator)} Assume $\text{dim}(H) = \infty$ and $K : H\rightarrow K$ is compact and $H$ is separable, then
+\begin{itemize}
+\item[(i)] $0 \in \sigma (K)$,
+\item[(ii)] $\sigma(K) - \{0\} = \sigma_p(K) - \{0\}$ \emph{and}
+\item[(iii)] either $\sigma(K) - \{0\} \text{ is finite}$ or $\sigma(K) - \{0\} \text{ is a seqeunce tending to 0}$.
+\end{itemize}
+If moreover $K$ is symmetric, $K= K^{\dagger}$, then there exists a countable orthonormal basis of $H$ consisting of eigenvectors.
+\s
+
+\thm \emph{(Spectrum of $L$)} Let $L$, $B$, $U$ be as in the last theorem. Then
+\begin{itemize}
+\item[(i)] there exists an at most countable set $\Sigma \subset \reals$ such that the BVP
+\begin{align*}
+\begin{cases}
+\begin{array}{ll}
+Lu = \lambda u + f & \text{in } U \\
+u = 0 & \text{on } \pa U
+\end{array}
+\end{cases} \quad \cdots \cdots \cdots (\lozenge)
+\end{align*}
+has a unique weak solution for each $f\in L^2(U)$ \emph{iff} $\lambda \not\in \Sigma$.
+\item[(ii)] If $\Sigma$ is infinite then $\Sigma = \{\lambda_k \}_{k=1}^{\infty}$(i.e. is at most countably infinite) and up to reordering, $\lambda_k \nearrow \infty$ as $k\rightarrow \infty$.
+\item[(iii)] To each $\lambda \in \Sigma$, there is a attached a finite dimensional space
+\begin{align*}
+\mathscr{E}(\lambda) = \{ u \in H_0^1(U) : u \text{ is a weak soution of } Lu=\lambda u \text{ in } U, u=0 \text{ on } U \}
+\end{align*}
+\end{itemize}
+We say $\lambda \in \Sigma$ is an \textbf{eigenvalue of $L$} and $u\in \mathscr{E}(\lambda)$ is the \textbf{corresponding eigenfunction}.
+\begin{proof}
+\pf Pick $\gamma >0$ as in \emph{Fredholm alternative for elliptic operators} proof. For $\lambda \leq -\gamma$, we have
+\begin{align*}
+\begin{cases}
+\begin{array}{ll}
+Lu - \lambda u = f & \text{in } U \\
+u =0  & \text{on } \pa U
+\end{array}
+\end{cases}
+\end{align*}
+admits a unique weak solution for all $f\in L^2(U)$.
+
+\quad Now consider the remaining case where $\lambda > -\gamma$. By \emph{Fredholm alternative}, we know that ($\lozenge$) faild to have a solution for all $f\in L^2(U)$ \emph{iff} $\exists u \neq 0$ such that
+\begin{align*}
+\begin{cases}
+\begin{array}{ll}
+Lu = \lambda u  & \text{in } U \\
+u = 0 & \text{on } \pa U
+\end{array}
+\end{cases} \quad  \cdots\cdots\cdots (\star)
+\end{align*}
+We can solve ($\lozenge$) for all $f \in L^2(U)$ \emph{iff} $u=0$ is the only solution to ($\star$) \emph{iff} $u=0$ is the only solution of 
+\begin{align}
+\begin{cases}
+\begin{array}{ll}
+(L+\gamma)u = (\lambda +\gamma) u  & \text{in } U\\
+u = 0 & \text{on } \pa U
+\end{array}
+\end{cases}
+\end{align}
+Note this holds \emph{iff} 
+\begin{align*}
+u = L_{\gamma}^{-1} (\lambda + \gamma) u = \frac{\gamma+\lambda}{\gamma} Ku
+\end{align*}
+where $L_{\gamma}^{-1}$ and $K$ are as in the proof of \emph{Fredholm alternative}. Thus ($\lozenge$) is solvable for all $f\in L^2(U)$ \emph{iff} $\mu = \frac{\gamma}{\gamma + \lambda}$ is \emph{not} an eigenvalue of $K$.
+
+\quad By the general theory of compact operators, $K$ has at most countably many eigenvalue $\mu$, say $\{\mu_k \}$ and if $\{ \mu_k \}$ is infinite, then $\mu_k \rightarrow 0$. So the set $\Sigma$ of $\lambda$ such that ($\lozenge$) does not have a solution for all $f\in L^2(U)$ is at most countable and if the sequence is infinite, it tends to $\infty$.
+\s
+
+Parts (ii) and (iii) follow from \emph{Fredholm alternative.}
+
+\eop
+\end{proof}
+\s
+
+Note that we are working in a bounded domain, and if we drop the boundedness condition, things get more complicated.
+\s
+
+In the case $b^i \equiv 0$ (we always assume that $(a_ij)_{ij}$ is symmetric), the operator $L$ has form
+\begin{align*}
+Lu = -\sum_{i,j} \big( a^{ij}u_{x_i} \big)_{x_j} + cu
+\end{align*}
+is formally self-adjoint (i.e. $L = L^{\dagger}$) we can make a stronger statement.
+\s
+
+\thm \emph{(Spectrum of symmetric elliptic operators)} Suppose $L$ is a symmetric uniformly elliptic operator
+\begin{align*}
+Lu = -\sum_{i,j=1}^n (a^{ij}u_{x_i})_{x_j} + cu
+\end{align*}
+on $U \subset \reals^n$ open, bounded, $C^1$ domian. Then we can represent the eigenvalues of $L$ as
+\begin{align*}
+\lambda_1 \leq \lambda_2 \leq \cdots
+\end{align*}
+where each eigenvalue appears multiple times according to its multiplicity (dim($\mathscr{E}(\lambda)$)), and there exists an orthonormal basis $\{w_k \}_{k=1}^{\infty}$ for $L^2(U)$ with $w_k \in H_0^1(U)$ an eigenfunction of $L$ corresponding to $\lambda_k$, i.e.
+\begin{align*}
+\begin{cases}
+\begin{array}{ll}
+Lw_k = \lambda w_k & \text{in } U \\
+w_k = 0 & \text{on } \pa U
+\end{array}
+\end{cases}
+\end{align*}
+\begin{proof}
+\pf By considering $L+\gamma$ for $\gamma$ large enough, we can assume wlog that $L^{-1} : L^2(U) \rightarrow H_0^1(U)$ is a bounded linear operator. Let $S = L^{-1}$. By \emph{Rellich}, $S: L^2(U) \rightarrow L^2(U)$ is compact.
+\s
+
+\textbf{Claim :} $S$ is symmetric.
+\begin{subproof}
+Pick $f,g \in L^2(U)$. $Sf = u$ and $Sg =v$ means $u,v\in H_0^1(U)$ are the unique weak solution to
+\begin{align*}
+\begin{cases}
+\begin{array}{ll}
+Lu = f & \text{in } U \\
+u = 0 & \text{on } \pa U
+\end{array}
+\end{cases} / \quad \begin{cases}
+\begin{array}{ll}
+Lv = g & \text{in } U \\
+v = 0 & \text{on } \pa U
+\end{array}
+\end{cases}
+\end{align*}
+respectively. Now 
+\begin{align*}
+(Sf, g)_{L^2(U)} =(u,g)_{L^2(U)} = B[v,u] = B[u,v] = (v,f)_{L^2(U)} = (f, Sg)_{L^2(U)}
+\end{align*}
+Hence, $S$ is symmetric and compact.
+\end{subproof}
+Thus $\exists \{ \eta_k \}_{k=1}^{\infty}$ and $\{w_k \}_{k=1}^{\infty}$ with $\eta_k \in \reals$, $w_k \in L^2(U)$ such that $\eta_k \rightarrow 0$ and $Sw_{k} = \eta_k w_k$ and $\{w_k \}_{k=1}^{\infty}$ are an orthonormal basis for $L^2(U)$. Reordering if necessary, has $\eta_1 \geq \eta_2 \geq \cdots$. Note if $w_k = \frac{1}{\eta_k} L^{-1} w_k$ then $w_k \in H_0^1(U)$ and
+\begin{align*}
+S w_k = \eta_k w_k \quad \Leftrightarrow \quad Lw_k = \frac{1}{\eta_k} w_k 
+\end{align*}
+
+\eop
+\end{proof}
+
+
+
+
+
+
+
+
+
+
 
 
 

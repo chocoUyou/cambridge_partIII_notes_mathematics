@@ -1,4 +1,4 @@
-This is XeTeX, Version 3.14159265-2.6-0.99998 (MiKTeX 2.9.6500) (preloaded format=xelatex 2018.2.4)  14 NOV 2018 16:35
+This is XeTeX, Version 3.14159265-2.6-0.99998 (MiKTeX 2.9.6500) (preloaded format=xelatex 2018.2.4)  16 NOV 2018 17:03
 entering extended mode
 **./analysis_PDEs.tex
 (analysis_PDEs.tex
@@ -729,24 +729,35 @@ Overfull \hbox (92.37515pt too wide) in paragraph at lines 2179--2180
  []
 
 [43]
-Overfull \hbox (25.4415pt too wide) detected at line 2250
+Overfull \hbox (25.4415pt too wide) detected at line 2253
 []
  []
 
-[44]
-Overfull \hbox (92.37515pt too wide) in paragraph at lines 2290--2291
+[44] [45]
+Overfull \hbox (92.37515pt too wide) in paragraph at lines 2330--2331
 []\TU/lmr/m/n/12 ==============================================================
 = 
  []
 
-[45] [46] [47] [48] (analysis_PDEs.aux) ) 
+[46] [47] [48]
+Overfull \hbox (92.37515pt too wide) in paragraph at lines 2494--2495
+[]\TU/lmr/m/n/12 ==============================================================
+= 
+ []
+
+[49]
+LaTeX Font Info:    Try loading font information for U+eus on input line 2541.
+ ("C:\Program Files (x86)\MiKTeX 2.9\tex\latex\amsfonts\ueus.fd"
+File: ueus.fd 2013/01/14 v3.01 Euler Script
+) [50]
+[51] (analysis_PDEs.aux) ) 
 Here is how much of TeX's memory you used:
- 13595 strings out of 427839
- 274236 string characters out of 3151405
+ 13607 strings out of 427839
+ 274426 string characters out of 3151405
  333144 words of memory out of 3000000
- 17296 multiletter control sequences out of 15000+200000
- 11988 words of font info for 63 fonts, out of 3000000 for 9000
+ 17303 multiletter control sequences out of 15000+200000
+ 12588 words of font info for 66 fonts, out of 3000000 for 9000
  1328 hyphenation exceptions out of 8191
  61i,22n,84p,787b,1062s stack positions out of 5000i,500n,10000p,200000b,50000s
 
-Output written on analysis_PDEs.pdf (48 pages).
+Output written on analysis_PDEs.pdf (51 pages).

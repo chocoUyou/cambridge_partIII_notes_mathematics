@@ -1,4 +1,4 @@
-This is XeTeX, Version 3.14159265-2.6-0.99998 (MiKTeX 2.9.6500) (preloaded format=xelatex 2018.2.4)  14 NOV 2018 15:08
+This is XeTeX, Version 3.14159265-2.6-0.99998 (MiKTeX 2.9.6500) (preloaded format=xelatex 2018.2.4)  16 NOV 2018 15:39
 entering extended mode
 **./week5-.tex
 (week5-.tex
@@ -647,14 +647,27 @@ Overfull \hbox (6.44315pt too wide) in paragraph at lines 737--738
 = 
  []
 
-[11] [12] (week5-.aux) ) 
-Here is how much of TeX's memory you used:
- 13682 strings out of 427839
- 275529 string characters out of 3151405
- 338965 words of memory out of 3000000
- 17382 multiletter control sequences out of 15000+200000
- 7451 words of font info for 45 fonts, out of 3000000 for 9000
- 1328 hyphenation exceptions out of 8191
- 61i,21n,84p,538b,312s stack positions out of 5000i,500n,10000p,200000b,50000s
+[11]
+Overfull \hbox (6.44315pt too wide) in paragraph at lines 835--836
+[]\TU/lmr/m/n/10 ==============================================================
+= 
+ []
 
-Output written on week5-.pdf (12 pages).
+[12]
+Underfull \hbox (badness 10000) in paragraph at lines 853--854
+
+ []
+
+File: 2.png Graphic file (type bmp)
+<2.png>
+[13] [14] [15] (week5-.aux) ) 
+Here is how much of TeX's memory you used:
+ 13697 strings out of 427839
+ 275737 string characters out of 3151405
+ 338965 words of memory out of 3000000
+ 17387 multiletter control sequences out of 15000+200000
+ 7467 words of font info for 47 fonts, out of 3000000 for 9000
+ 1328 hyphenation exceptions out of 8191
+ 61i,21n,84p,538b,349s stack positions out of 5000i,500n,10000p,200000b,50000s
+
+Output written on week5-.pdf (15 pages).
