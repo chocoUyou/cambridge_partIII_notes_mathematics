@@ -1,4 +1,4 @@
-\documentclass[10pt,a4paper]{report}
+\documentclass[12pt,a4paper]{report}
 
 
 \usepackage{amsmath}
@@ -73,7 +73,7 @@
 \chapter*{Topics in Ergodic Theory}
 \s
 
-\section*{9. Entropy}
+\section*{10. Entropy}
 
 \textbf{Bernoulli Shift : } Let $(P_1, P_2,\cdots, P_d)$ be a probability vector. The \textbf{$(P_1, \cdots, P_d)$-Bernoulli shift} is the MPS
 \begin{align*}
@@ -554,6 +554,8 @@ A_i &= C_i \cup (C_0 \cap A_i) = C_i \cup (A_i \cap (B_i \backslash \cup_{j\neq 
 (13th November, Tuesday)
 \s
 
+\section*{11. The Shannon McMillan Breiman theorem}
+
 \thm \emph{(Shannon-McMillan-Breiman)} Let $(X, \borel, \mu, T)$ be an ergodic MPS. Let $\xi \subset \borel$ be a countable measurable partition. with $H\mu(\xi) < \infty$. Then
 \begin{align*}
 \frac{1}{n} I(\xi^{n-1}_0) \xrightarrow{n\rightarrow \infty} h_{\mu}(T,\xi) 
@@ -770,6 +772,147 @@ so we have pointwise convergence.
 
 \eop
 \end{proof}
+\s
+
+\newday
+
+(17th November, Saturday)
+
+\section*{12. Mixing and Entropy}
+
+\defi An MPS $(X,\borel, \mu, T)$ is called \textbf{K(olmogorov)-mixing} if $\forall \epsilon >0$, $A\in \borel$ and $\xi\subset \borel$ finite partition, $\exists N \in \mathbb{Z}_{>0}$ such that : $\forall B \in \sigma( \xi^{\infty}_N)$ we have
+\begin{align*}
+|\mu(A \cap B) - \mu(A) \mu(B)| < \epsilon
+\end{align*}
+\emph{Invertible} MPS's that are K-mixing are called \textbf{K-automorphism}.(this is more common notion in literatures)
+\s
+
+From now on in the course, we are only using finite partitions. Some results also holds for countable partitions, but we do not need such stronger results.
+\s
+
+\textbf{Remark :} This implies mixing
+\begin{proof}
+: Let $A, C \in \borel$ and consider $\xi = \{C, X \backslash C \}$. Then for $N$ sufficiently large, we can take $B = T^{-N}(C)$ in the definition. 
+\end{proof}
+
+\defi Let $(X,\borel, \mu, T)$ be an MPS. Let $\xi \subset \borel$ be a finite partition. Then the \textbf{tail $\sigma$-algebra of $\xi$} is
+\begin{align*}
+\tau (\xi) = \bigcap_{n=1}^{\infty} \sigma(\xi_n^{\infty})
+\end{align*}
+\s
+
+\thm Let $(X,\borel, \mu, T)$ be an MPS. The following are equivalent.
+\begin{itemize}
+\item[(1)] $(X,\borel, \mu, T)$ is a K-mixing.
+\item[(2)] $\tau(\xi)$ is \emph{trivial} for all finite partition $\xi \subset \borel$. That is, $\forall A \in \tau(\xi)$, we have $\mu(A) \in \{0,1\}$.
+\item[(3)] $(X,\borel, \mu, T)$ is of \emph{totally positive entropy}. That is, $h_{\mu}(T,\xi) >0$ for all partition $\xi \subset \borel$ finite such that $H_{\mu}(\xi) >0$.
+\end{itemize}
+\s
+
+-Note : Bernoulli shift is a K-mixing and so (2) implies the Kolmogorov 0-1 law.
+\s
+
+\begin{proof}
+\textbf{proof of (1) $\Leftrightarrow$ (2))} \begin{itemize}
+\item[(1) $\Rightarrow$ (2)] Suppose (1) holds and let $A\in \tau(\xi)$. Then $A \in \sigma(\xi^{\infty}_n)$ for all $n$, by the definition of tail $\sigma$-algebra. For any $\epsilon >0$, by K-mixing property,
+\begin{align*}
+| \mu(A \cap A) - \mu(A) \mu(A)| < \epsilon
+\end{align*}
+so $\mu(A) = \mu(A)^2$. Hence $\mu(A) \in \{0,1\}$.
+\item[(2) $\Rightarrow$ (1)] Suppose that (2) holds. Let $A, \xi, \epsilon$ be as in the definition of $K$-mixing. Let $N$ be sufficiently large and $B\in \borel(\xi_N^{\infty})$. Then
+\begin{align*}
+\mu(A \cap B) = \int_B \chi_A d\mu = \int_B \avg[ \chi_A | \sigma(\xi_N^{\infty})]  d\mu
+\end{align*}
+By (backward) martingale convergence, if $N$ is sufficiently large,
+\begin{align*}
+\big| \mu(A \cap B) - \int_B \avg[\chi_A | \tau (\xi)] d\mu \big| < \epsilon
+\end{align*}
+\textbf{Claim :} $\avg[\chi_A | \tau(\xi)] (x) = \mu(A)$ for $\mu$-a.e. x.
+\begin{subproof}
+: suppose the contrary. Letting $C_{\epsilon} = \{ x\in X : \avg[\chi_A | \tau()\xi] > \mu(A) + \epsilon  \}$. Then $\exists \epsilon >0$ such that $\mu(C_{\epsilon}) >0$. Note $C \in \tau(\xi)$ so $\mu(C_{\epsilon})=1$. But then
+\begin{align*}
+\mu(A) =\int_C \avg[ \chi_A | \tau(\xi)] d\mu > \mu(A) + \epsilon
+\end{align*}
+which is a contradiction.
+\end{subproof}
+From the claim, we see that $\int_B \avg[\chi_A |\tau(\xi)] d\mu = \mu(A) \mu(B)$, and hence the desired result.
+\end{itemize}
+\end{proof}
+\s
+
+For the rest of the theorem, we need additional results.
+\s
+
+\lem Let $\xi, \eta \subset \borel$ be a finite partition, let $\mathscr{A} \subset \borel$ be a sub-$\sigma$-algebra. Suppose that $\exists$ a sequence of finite partitions $\lambda_1, \lambda_2, \cdots$ such that $\mathscr{A}$ is the smallest $\sigma$-algebra that contains the atoms of $\tau_n$ for all $n$. Then
+\begin{itemize}
+\item[(1)] $I_{\mu}(T^{-1}\xi | T^{-1} \mathscr{A})(x) = I_{\mu}(\xi | \mathscr{A}) (Tx)$.
+\item[(2)] $H_{\mu}(T^{-1}\xi | T^{-1} \mathscr{A})= H_{\mu}(\xi | \mathscr{A})$.
+\item[(3)] $I_{\mu}(\xi \vee \eta  | \mathscr{A}) = I_{\mu}(\xi | \mathscr{A}) + I_{\mu}(\eta | \xi \vee \mathscr{A})$.
+\item[(4)] $H_{\mu}(\xi \vee \eta  | \mathscr{A}) = H_{\mu}(\xi | \mathscr{A}) + H_{\mu}(\eta | \xi \vee \mathscr{A})$.
+\item[(5)] $H_{\mu}(\xi | \mathscr[A] \vee \eta) \leq H_{\mu}(\xi | \mathscr{A})$.
+\end{itemize}
+\begin{proof}
+The assumption of existence of such $\lambda_1, \lambda_2 \cdots$ is not essential, but makes the proof much easier. However, the assumption is not very serious restriction. The proof is to be done on the example sheet. - if you like measure theory, try proving the general version.
+\end{proof}
+\s
+
+\prop Let $(X,\borel, \mu)$ be a probability space. Let $\xi \subset \borel$ be a finite partition. Let $\mathscr{A}_1 \supset \mathscr{A}_2 \supset \cdots$ be sub-$\sigma$-algebras of $\borel$ and let $\mathscr{A} = \cap_{n=1}^{\infty} \mathscr{A}_n$. Then
+\begin{align*}
+I_{\mu} (\xi | \mathscr{A}_n) \rightarrow I_{\mu}(\xi |\mathscr{A}) \quad \mu \text{-a.e. and in } L^1
+\end{align*}
+\begin{proof}
+\pf We prove the stronger result
+\begin{align*}
+H_{\mu} (\xi | \mathscr{A}_n) \rightarrow H_{\mu}(\xi |\mathscr{A}) \quad \mu \text{-a.e. and in } L^1
+\end{align*}
+This is a result of backward-martingale convergence and dominated convergence : we clearly have pointwise convergence by continuity of logarithm function. Also, each $H_{\mu}(\xi | \mathscr{A}_n)$ is dominated by $\log(|xi|)$, so we may apply dominated convergence to obtain $L^1$-convergence.
+
+\eop
+\end{proof}
+\s
+
+\lem Let $(X, \borel, \mu, T)$ be an MPS and let $\xi \subset \borel$ be a finite partition. Then
+\begin{align*}
+h_{\mu} (T, \xi ) = H_{\mu}(\xi | \sigma(\xi_1^{\infty}))
+\end{align*}
+\begin{proof}
+\pf We have already seen that
+\begin{align*}
+h_{\mu}(T, \xi )= \lim_{n\rightarrow \infty} H_{\mu}(\xi | \xi_1^n) 
+\end{align*}
+and this equals $H_{\mu}(\xi | \sigma(\xi_1^{\infty}))$ by the statement of \emph{maximal inequality}.
+
+\eop
+\end{proof}
+\s
+
+\lem Let $(X,\borel, \mu, T)$ be an MPS. Let $\xi \subset \borel$ be a finite partition such that $h_{\mu}(T, \xi) =0$. Then $H_{\mu}(\xi | \tau(\xi)) =0$. 
+\begin{proof}
+\pf From the previous lemma, we already know $H_{\mu}(\xi | \sigma(\xi_1^{\infty})) =0$. We show that $H_{\mu}(\xi | \sigma(\xi_n^{\infty})) =0$ for all $n$ and then we are done by the previous proposition. To this end, we write
+\begin{align*}
+H_{\mu}(\xi | \sigma(\xi_n^{\infty})) &\leq H_{\mu} (\xi_0^{n-1} | \sigma(\xi_n^{\infty})) \\
+&= \sum_{j=0}^{n-1} H_{\mu}(\xi_j^j | \sigma(\xi_{j+1}^{\infty})) \quad \text{(chain rule)} \\
+&= nH_{\mu}(\xi | \sigma(\xi_1^{\infty})) =0 \quad \text{(invariance)}
+\end{align*}
+
+\eop
+\end{proof}
+\s
+
+\begin{proof}
+\textbf{proof of (2) $\Rightarrow$ (3) in Theorem)} We assume $\tau (\xi)$ is trivial, $h_{\mu}(T, \xi) =0$ and we show $H_{\mu}(\xi) =0$. By the lemma, we have $H_{\mu}(\xi | \tau(\xi)) =0$. We have already seen that condition (2) implies (as in proof of (2) $\Rightarrow$ (1) of the theorem)
+\begin{align*}
+\avg [\chi_A | \tau(\xi)](x) = \mu(A) \quad \mu \text{-a.e.} \quad \forall A \in \borel
+\end{align*}
+so
+\begin{align*}
+0=H_{\mu}(\xi | \tau(\xi)) &= \int I_{\mu}(\xi | \tau(\xi))d\mu = -\int \log \avg \big[ \chi_{[x]_{\xi}} | \tau(\xi) \big](x) d\mu(x) \\
+&= - \int \log \mu([x]_{\xi}) d\mu(x) \\
+&= - \sum_{A \in \xi} \log( \mu(A)) \mu(A) = H_{\mu} (\xi)
+\end{align*}
+\end{proof}
+
+
 
 
 
