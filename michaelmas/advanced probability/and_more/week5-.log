@@ -1,4 +1,4 @@
-This is XeTeX, Version 3.14159265-2.6-0.99998 (MiKTeX 2.9.6500) (preloaded format=xelatex 2018.2.4)  16 NOV 2018 15:39
+This is XeTeX, Version 3.14159265-2.6-0.99998 (MiKTeX 2.9.6500) (preloaded format=xelatex 2018.2.4)  19 NOV 2018 15:36
 entering extended mode
 **./week5-.tex
 (week5-.tex
@@ -6,8 +6,8 @@ LaTeX2e <2017-04-15>
 Babel <3.15> and hyphenation patterns for 75 language(s) loaded.
 ("C:\Program Files (x86)\MiKTeX 2.9\tex\latex\base\report.cls"
 Document Class: report 2014/09/29 v1.4h Standard LaTeX document class
-("C:\Program Files (x86)\MiKTeX 2.9\tex\latex\base\size10.clo"
-File: size10.clo 2014/09/29 v1.4h Standard LaTeX file (size option)
+("C:\Program Files (x86)\MiKTeX 2.9\tex\latex\base\size12.clo"
+File: size12.clo 2014/09/29 v1.4h Standard LaTeX file (size option)
 )
 \c@part=\count79
 \c@chapter=\count80
@@ -148,12 +148,6 @@ Package color Info: Driver file: xetex.def on input line 147.
 ("C:\Program Files (x86)\MiKTeX 2.9\tex\latex\graphics-def\xetex.def"
 File: xetex.def 2017/06/24 v5.0h Graphics/color driver for xetex
 ))
-("C:\Program Files (x86)\MiKTeX 2.9\tex\latex\mathtools\empheq.sty"
-Package: empheq 2017/03/31 v2.15 Emphasizing equations
-
-("C:\Program Files (x86)\MiKTeX 2.9\tex\latex\mathtools\mhsetup.sty"
-Package: mhsetup 2017/03/31 v1.3 programming setup (MH)
-)
 ("C:\Program Files (x86)\MiKTeX 2.9\tex\latex\mathtools\mathtools.sty"
 Package: mathtools 2018/01/08 v1.21 mathematical typesetting tools
 
@@ -170,6 +164,9 @@ LaTeX Info: Redefining \addtolength on input line 81.
 \calc@Ccount=\count105
 \calc@Cskip=\skip48
 )
+("C:\Program Files (x86)\MiKTeX 2.9\tex\latex\mathtools\mhsetup.sty"
+Package: mhsetup 2017/03/31 v1.3 programming setup (MH)
+)
 LaTeX Info: Thecontrolsequence`\('isalreadyrobust on input line 129.
 LaTeX Info: Thecontrolsequence`\)'isalreadyrobust on input line 129.
 LaTeX Info: Thecontrolsequence`\['isalreadyrobust on input line 129.
@@ -184,6 +181,8 @@ LaTeX Info: Thecontrolsequence`\]'isalreadyrobust on input line 129.
 \l_MT_above_shortintertext_sep=\dimen127
 \l_MT_below_shortintertext_sep=\dimen128
 )
+("C:\Program Files (x86)\MiKTeX 2.9\tex\latex\mathtools\empheq.sty"
+Package: empheq 2017/03/31 v2.15 Emphasizing equations
 \l_EQ_equationtype_int=\count107
 \l_EQ_alignmentmode_int=\count108
 \l_EQ_totalwidth_dim=\dimen129
@@ -542,20 +541,20 @@ File: pgflibraryarrows.meta.code.tex 2015/05/13 v3.0.1a (rcs-revision 1.13)
 ))) (week5-.aux)
 \openout1 = `week5-.aux'.
 
-LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 72.
-LaTeX Font Info:    ... okay on input line 72.
-LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 72.
-LaTeX Font Info:    ... okay on input line 72.
-LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 72.
-LaTeX Font Info:    ... okay on input line 72.
-LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 72.
-LaTeX Font Info:    ... okay on input line 72.
-LaTeX Font Info:    Checking defaults for TU/lmr/m/n on input line 72.
-LaTeX Font Info:    ... okay on input line 72.
-LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 72.
-LaTeX Font Info:    ... okay on input line 72.
-LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 72.
-LaTeX Font Info:    ... okay on input line 72.
+LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 77.
+LaTeX Font Info:    ... okay on input line 77.
+LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 77.
+LaTeX Font Info:    ... okay on input line 77.
+LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 77.
+LaTeX Font Info:    ... okay on input line 77.
+LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 77.
+LaTeX Font Info:    ... okay on input line 77.
+LaTeX Font Info:    Checking defaults for TU/lmr/m/n on input line 77.
+LaTeX Font Info:    ... okay on input line 77.
+LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 77.
+LaTeX Font Info:    ... okay on input line 77.
+LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 77.
+LaTeX Font Info:    ... okay on input line 77.
 
 *geometry* detected driver: pdftex
 *geometry* verbose mode - [ preamble ] result:
@@ -575,12 +574,12 @@ LaTeX Font Info:    ... okay on input line 72.
 * \topmargin=-52.36449pt
 * \headheight=12.0pt
 * \headsep=25.0pt
-* \topskip=10.0pt
+* \topskip=12.0pt
 * \footskip=30.0pt
-* \marginparwidth=57.0pt
-* \marginparsep=11.0pt
+* \marginparwidth=35.0pt
+* \marginparsep=10.0pt
 * \columnsep=10.0pt
-* \skip\footins=9.0pt plus 4.0pt minus 2.0pt
+* \skip\footins=10.8pt plus 4.0pt minus 2.0pt
 * \hoffset=0.0pt
 * \voffset=0.0pt
 * \mag=1000
@@ -592,82 +591,137 @@ LaTeX Font Info:    ... okay on input line 72.
 
 \Hy@linkcounter=\count131
 ABD: EveryShipout initializing macros
-Overfull \hbox (6.44315pt too wide) in paragraph at lines 117--118
-\TU/lmr/m/n/10 =============================================================== 
+Overfull \hbox (92.37515pt too wide) in paragraph at lines 121--122
+\TU/lmr/m/n/12 =============================================================== 
 
  []
 
-LaTeX Font Info:    Try loading font information for U+msa on input line 125.
+LaTeX Font Info:    Try loading font information for U+msa on input line 129.
 ("C:\Program Files (x86)\MiKTeX 2.9\tex\latex\amsfonts\umsa.fd"
 File: umsa.fd 2013/01/14 v3.01 AMS symbols A
 )
-LaTeX Font Info:    Try loading font information for U+msb on input line 125.
+LaTeX Font Info:    Try loading font information for U+msb on input line 129.
 
 ("C:\Program Files (x86)\MiKTeX 2.9\tex\latex\amsfonts\umsb.fd"
 File: umsb.fd 2013/01/14 v3.01 AMS symbols B
 )
-LaTeX Font Info:    Try loading font information for OMS+rsfs on input line 125
+LaTeX Font Info:    Try loading font information for OMS+rsfs on input line 129
 .
 
 ("C:\Program Files (x86)\MiKTeX 2.9\tex\latex\calrsfs\omsrsfs.fd")
-LaTeX Font Info:    Try loading font information for U+eus on input line 136.
+LaTeX Font Info:    Try loading font information for U+eus on input line 140.
 
 ("C:\Program Files (x86)\MiKTeX 2.9\tex\latex\amsfonts\ueus.fd"
 File: ueus.fd 2013/01/14 v3.01 Euler Script
 ) [1
 
 
-] [2]
-Overfull \hbox (6.44315pt too wide) in paragraph at lines 250--251
-[]\TU/lmr/m/n/10 ==============================================================
+]
+Overfull \hbox (7.84695pt too wide) in paragraph at lines 198--199
+[] \TU/lmr/m/n/12 Since $\OT1/cmr/m/n/12 (\OML/cmm/m/it/12 ^^V[] \OT1/cmr/m/n/1
+2 : \OML/cmm/m/it/12 n \OMS/cmsy/m/n/12 2 \U/msb/m/n/12 N\OT1/cmr/m/n/12 )$ \TU
+/lmr/m/n/12 is tight, given $\OML/cmm/m/it/12 ^^O > \OT1/cmr/m/n/12 0$\TU/lmr/m
+/n/12 , there exists $\OML/cmm/m/it/12 R < \OMS/cmsy/m/n/12 1$ \TU/lmr/m/n/12 s
+uch that $\OML/cmm/m/it/12 ^^V[]\OT1/cmr/m/n/12 (\U/msb/m/n/12 R\OMS/cmsy/m/n/1
+2 n\OT1/cmr/m/n/12 (\OMS/cmsy/m/n/12 ^^@\OML/cmm/m/it/12 R; R\OT1/cmr/m/n/12 ))
+ \OMS/cmsy/m/n/12 ^^T
+ []
+
+[2]
+Overfull \hbox (92.37515pt too wide) in paragraph at lines 254--255
+[]\TU/lmr/m/n/12 ==============================================================
 = 
  []
 
-[3] [4]
-Overfull \hbox (6.44315pt too wide) in paragraph at lines 368--369
-[]\TU/lmr/m/n/10 ==============================================================
+[3] [4] [5]
+Overfull \hbox (92.37515pt too wide) in paragraph at lines 372--373
+[]\TU/lmr/m/n/12 ==============================================================
 = 
  []
 
-[5] [6]
-Overfull \hbox (6.44315pt too wide) in paragraph at lines 503--504
-[]\TU/lmr/m/n/10 ==============================================================
+[6] [7]
+Overfull \hbox (92.37515pt too wide) in paragraph at lines 507--508
+[]\TU/lmr/m/n/12 ==============================================================
 = 
  []
 
-[7]
-Overfull \hbox (6.44315pt too wide) in paragraph at lines 597--598
-[]\TU/lmr/m/n/10 ==============================================================
+[8] [9]
+Overfull \hbox (92.37515pt too wide) in paragraph at lines 601--602
+[]\TU/lmr/m/n/12 ==============================================================
 = 
  []
 
-[8] [9] [10]
-Overfull \hbox (6.44315pt too wide) in paragraph at lines 737--738
-[]\TU/lmr/m/n/10 ==============================================================
-= 
- []
-
-[11]
-Overfull \hbox (6.44315pt too wide) in paragraph at lines 835--836
-[]\TU/lmr/m/n/10 ==============================================================
-= 
+[10] [11]
+Overfull \hbox (3.41873pt too wide) detected at line 700
+[]
  []
 
 [12]
-Underfull \hbox (badness 10000) in paragraph at lines 853--854
+Overfull \hbox (46.87132pt too wide) in paragraph at lines 737--738
+[]\TU/lmr/m/n/12 -Every step other than the integration by parts $[][] \OML/cmm
+/m/it/12 p\OT1/cmr/m/n/12 (\OML/cmm/m/it/12 r; x; y\OT1/cmr/m/n/12 ) \OMS/cmsy/
+m/n/12 ^^B []\OT1/cmr/m/n/12 ^^A\OML/cmm/m/it/12 f\OT1/cmr/m/n/12 (\OML/cmm/m/i
+t/12 y\OT1/cmr/m/n/12 )\OML/cmm/m/it/12 dy \OT1/cmr/m/n/12 = [][] []^^A[]\OML/c
+mm/m/it/12 p\OT1/cmr/m/n/12 (\OML/cmm/m/it/12 r; x; y\OT1/cmr/m/n/12 )\OML/cmm/
+m/it/12 f\OT1/cmr/m/n/12 (\OML/cmm/m/it/12 y\OT1/cmr/m/n/12 )\OML/cmm/m/it/12 d
+y$
+ []
+
+
+Overfull \hbox (10.458pt too wide) in paragraph at lines 737--738
+\TU/lmr/m/n/12 works without assumption that $\OML/cmm/m/it/12 f \OMS/cmsy/m/n/
+12 2 \OML/cmm/m/it/12 C[]\OT1/cmr/m/n/12 (\U/msb/m/n/12 R[]\OT1/cmr/m/n/12 )$\T
+U/lmr/m/n/12 . Hence, it is enough to have $\OML/cmm/m/it/12 f \OMS/cmsy/m/n/12
+ 2 \OML/cmm/m/it/12 W[]\OT1/cmr/m/n/12 (\U/msb/m/n/12 R[]\OT1/cmr/m/n/12 )$\TU/
+lmr/m/n/12 (the
+ []
+
+
+Overfull \hbox (92.37515pt too wide) in paragraph at lines 741--742
+[]\TU/lmr/m/n/12 ==============================================================
+= 
+ []
+
+[13] [14]
+Overfull \hbox (92.37515pt too wide) in paragraph at lines 839--840
+[]\TU/lmr/m/n/12 ==============================================================
+= 
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 857--858
 
  []
 
 File: 2.png Graphic file (type bmp)
 <2.png>
-[13] [14] [15] (week5-.aux) ) 
+
+LaTeX Warning: `h' float specifier changed to `ht'.
+
+[15] [16]
+Overfull \hbox (92.37515pt too wide) in paragraph at lines 965--966
+[]\TU/lmr/m/n/12 ==============================================================
+= 
+ []
+
+[17]
+Overfull \hbox (37.00658pt too wide) detected at line 995
+[]
+ []
+
+[18]
+Overfull \hbox (37.00658pt too wide) detected at line 1038
+[]
+ []
+
+[19] [20] (week5-.aux) ) 
 Here is how much of TeX's memory you used:
- 13697 strings out of 427839
- 275737 string characters out of 3151405
- 338965 words of memory out of 3000000
- 17387 multiletter control sequences out of 15000+200000
- 7467 words of font info for 47 fonts, out of 3000000 for 9000
+ 13719 strings out of 427839
+ 276076 string characters out of 3151405
+ 337340 words of memory out of 3000000
+ 17405 multiletter control sequences out of 15000+200000
+ 10416 words of font info for 57 fonts, out of 3000000 for 9000
  1328 hyphenation exceptions out of 8191
  61i,21n,84p,538b,349s stack positions out of 5000i,500n,10000p,200000b,50000s
 
-Output written on week5-.pdf (15 pages).
+Output written on week5-.pdf (20 pages).

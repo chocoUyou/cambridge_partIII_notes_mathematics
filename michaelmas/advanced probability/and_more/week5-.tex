@@ -1,4 +1,4 @@
-\documentclass[10pt,a4paper]{report}
+\documentclass[12pt,a4paper]{report}
 
 
 \usepackage{amsmath}
@@ -12,6 +12,11 @@
 \usepackage[mathscr]{euscript}
 
 \usepackage{color}
+
+%%%%%%%%%%for writing large parallel%%%%%%
+\usepackage{mathtools}
+\DeclarePairedDelimiter\bignorm{\lVert}{\rVert}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 %%%%%%%%Draws Pretty Box%%%%%%%
 %%%Use with \bluebox[<top pad>][<bot pad>]{<contents>}
@@ -95,7 +100,7 @@
 
 \newcommand{\intN}{\mathbb{Z}_N}
 \newcommand{\nat}{\mathbb{N}}
-\newcommand{\norms}[2]{\parallel #1 \parallel_{#2}}
+\newcommand{\norms}[2]{\bignorm[\big]{#1}_{#2}}
 \newcommand{\avg}{\mathbb{E}}
 \newcommand{\prob}{\mathbb{P}}
 \newcommand{\borel}{\mathscr{B}}
@@ -105,7 +110,6 @@
 \newcommand{\cov}{\text{Cov}}
 \newcommand{\var}{\text{Var}}
 \newcommand{\cha}{1}
-
 
 \newcommand{\newday}{===============================================================}
 
@@ -510,13 +514,13 @@ So $\psi_K^*(a) \searrow \psi^*(a)$ as $K\rightarrow \infty$ as claimed.
 \subsection*{7.1. Definition}
 
 \begin{tabular}{|p{0.9\textwidth}|}
-\hline\\
+\hline \\
 Let $(X_t)_{t\geq 0}$ is a random process in $\reals^d$. We say $(X_t)_{t\geq 0}$ is a \textbf{Brownian motion} if :
 \begin{itemize}
 \item[(i)] For all $s,t\geq 0$, the random variable $X_{s+t}-X_s$ is Gaussian, of mean 0 and variance $tI$ and is independent of $\F_s^X = \sigma(X_r : r\leq s)$
 \item[(ii)] for all $\omega \in \Omega$ the map $t\mapsto X_{t} (\omega) : [0,\infty ) \rightarrow \reals^d$ is \emph{continuous}.
 \end{itemize}
-\\\\\hline
+\\ \hline
 \end{tabular}
 \s
 
@@ -941,6 +945,7 @@ where $T = \inf \{ t\geq 0 : X_t \not\in D \}$. By a
 \end{array}
 \end{cases}
 \end{align*}
+Accordingly, say $\psi$ is a \textbf{super-solution} if $-\frac{1}{2} \Delta \psi \geq c$, $\psi \geq f$, and call $\psi$ a \textbf{sub-solution} with inverse inequalities.
 
 \quad Suppose $\psi \in C_b^2(\reals^d)$ restrict to a solution of Dirichlet problem on $D$. Consider the martingale (as in \textbf{Theorem 7.5.1})
 \begin{align*}
@@ -955,6 +960,153 @@ so
 \psi(x) = \avg(f(X_T)) + \avg(\int_0^T c(X_s) ds) = \phi(x)
 \end{align*}
 We will spend time in exploring the condition in which this holds.
+\s
+
+\newday
+
+(19th November, Monday)
+\s
+
+Settings from the last lecture : $D$ a connected open set $\subset \reals^d$, $c: D \rightarrow [0,\infty)$, $f: \partial D \rightarrow [0,\infty)$ measurable functions,
+\begin{align*}
+\phi(x) = \avg\Big[ \int_0^T c(X_t) dt + f(X_T) 1_{T<\infty} \Big]
+\end{align*}
+$(X_t)_{t\geq 0} \sim \text{BM}_x(\reals^d)$, $T= \inf \{ t\geq 0 : X_t \not\in D \}$, times spent in $B\subset D$ before leaving.
+\s
+
+\thmnum{7.9.2 (a)} Let $\psi$ be a \emph{non-negative super-solution} of the Dirichlet Problem(DP), $\psi \in C(\overline{D}) \cap C^2(D)$,
+\begin{align*}
+\begin{cases}
+\begin{array}{ll}
+-\frac{1}{2} \Delta \psi \geq c & \text{in } D \\
+\psi \geq f & \text{on } \partial D
+\end{array}
+\end{cases}
+\end{align*}
+Then $\psi \geq \phi$.
+\begin{proof}
+\pf Clear that $\psi \geq \phi$ on $\partial D$. Fix $x\in D$ and $N\geq 1$ such that $x\in D_N = \{ y\in D : |y|<N, \text{dist}(y,\partial D) > 1/N \}$. There exists $g\in C_b^2(\reals^d)$ such that $g= \psi$ on $D_N$. Consider
+\begin{align*}
+M_t = g(X_t) - g(X_0) - \int_0^t \frac{1}{2} \Delta g(X_s) ds
+\end{align*}
+and $T_N =\inf \{ t\geq 0 : X_t \not\in D_N \}$. Then $M$ is a martingale. By the optional stopping theorem, has
+\begin{align*}
+0 = \avg(M_0) = \avg(M_{T_N \wedge t} ) = \avg(\psi(X_{T_N \wedge t})) - \psi(x) + \avg \Big[ \int_0^{T_N \wedge t} \Big(-\frac{1}{2} \Delta \psi \Big) (X_s) ds \Big]  \quad \cdots \cdots\cdots (\star)
+\end{align*}
+Consider the limit $N\rightarrow \infty$ and then $t\rightarrow \infty$. Then $T_N \wedge t \nearrow T$, hence
+\begin{align*}
+\avg \int_0^{T_N \wedge t} \Big(-\frac{1}{2} \Delta \psi \Big) (X_s) ds \geq \avg \int_0^{T_N \wedge t} c(X_s) ds \rightarrow \avg \int_0^T c(X_s) ds
+\end{align*}
+by monotone convergence. On $\{T < \infty \}$,
+\begin{align*}
+\psi( X_{T_N \wedge t}) \rightarrow \psi(X_T) \quad \text{a.s.}
+\end{align*}
+so sine $\psi \geq 0$, by Fatou's lemma,
+\begin{align*}
+\liminf \avg( \psi(X_{T_N \wedge t})) \geq \avg(\psi(X_T) 1_{T<\infty}) \geq \avg(f(X_T) 1_{T<\infty})
+\end{align*}
+So taking $\liminf$ in ($\star$), we see $\psi \geq \phi$.
+
+\eop
+\end{proof}
+\s
+
+\thmnum{7.9.2 (b)} Let $\psi$ be a \emph{non-negative bounded solution} of the Dirichlet Problem, $\psi \in C(\overline{D}) \cap C^2(D)$
+\begin{align*}
+\begin{cases}
+\begin{array}{ll}
+-\frac{1}{2} \Delta \psi = c & \text{in } D \\
+\psi = f & \text{on } \partial D
+\end{array}
+\end{cases}
+\end{align*}
+and suppose that $\avg(\psi(X_t)1_{t<T}) \rightarrow 0$ as $t\rightarrow \infty$($\cdots (\dagger$)). Then $\psi = \phi$.
+
+\textbf{Remark about the condition ($\dagger$) :} Since we assume $\psi$ bounded and
+\begin{align*}
+|\avg(\psi | X_t) 1_{t<T}| \leq \norms{\psi}{\infty} \prob(t< T)
+\end{align*}
+We see condition ($\dagger$) holds whenever $T< \infty$ a.s. for all starting points $x$. e.g. we're OK if ($d=1$ and $\partial D \neq \varnothing$) or ($d=2$ and $\reals^2 \backslash D$ contains an open ball) or ($d\geq 3$ and $D$ bounded).
+\begin{proof}
+\pf Clear that $\psi = \phi$ on $\partial D$. Fix $x\in D$ and $N\geq 1$ such that $x\in D_N = \{ y\in D : |y|<N, \text{dist}(y,\partial D) > 1/N \}$. There exists $g\in C_b^2(\reals^d)$ such that $g= \psi$ on $D_N$. Consider
+\begin{align*}
+M_t = g(X_t) - g(X_0) - \int_0^t \frac{1}{2} \Delta g(X_s) ds
+\end{align*}
+and $T_N =\inf \{ t\geq 0 : X_t \not\in D_N \}$. Then $M$ is a martingale. By the optional stopping theorem, has
+\begin{align*}
+0 = \avg(M_0) = \avg(M_{T_N \wedge t} ) = \avg(\psi(X_{T_N \wedge t})) - \psi(x) + \avg \Big[ \int_0^{T_N \wedge t} \Big(-\frac{1}{2} \Delta \psi \Big) (X_s) ds \Big]  \quad \cdots \cdots\cdots (\star)
+\end{align*}
+Consider the limit $N\rightarrow \infty$ and then $t\rightarrow \infty$. Then $T_N \wedge t \nearrow T$, hence
+\begin{align*}
+\avg \int_0^{T_N \wedge t} \Big(-\frac{1}{2} \Delta \psi\Big) (X_s) ds = \avg \int_0^{T_N \wedge t} c(X_s) ds \rightarrow \avg \int_0^T c(X_s) ds
+\end{align*}
+by monotone convergence. Now 
+\begin{align*}
+\avg(\psi (X_{T_N \wedge t})) = \avg( \psi(X_{T_N}) 1_{T_N \leq t} ) + \avg(\psi(X_t) 1_{t< T_N})
+\end{align*}
+We have, sine $\psi \in C(\overline{D})$,
+\begin{align*}
+\psi(X_{T_N}) 1_{T_N \leq t} \rightarrow \psi(X_T) 1_{T< \infty} \quad \text{a.s.}
+\end{align*}
+and since $\psi$ is bounded, by dominated convergence,
+\begin{align*}
+\avg \Big[ \psi(X_{T_N}) 1_{T_N \leq t} \Big] \rightarrow \avg (\psi(X_T) 1_{T<\infty}) = \avg (f(X_T) 1_{T<\infty})
+\end{align*}
+Also by the assumption
+\begin{align*}
+\lim_{N\rightarrow \infty} \avg (\psi(X_t) 1_{t< T_N}) = \avg(\psi(X_t) 1_{t<T}) \rightarrow 0 \quad \text{as } t\rightarrow \infty
+\end{align*}
+Take limit in ($\star$) to see $\psi = \phi$.
+\eop
+\end{proof}
+\s
+
+This theorem tells us about uniqueness of solution of the Dirichlet problem, but it does not say anything about existence of the solution. We are next going to examine this problem.
+\s
+
+\thmnum{7.9.2 (c).(I)} Assume $d\geq 3$ and $D= \reals^d$ and $c$ has compact support and $c\in C^2(D)$. Then $\phi \in C^2(\reals^d)$ and $-\frac{1}{2} \Delta \phi =c$.
+\begin{proof}
+\pf Suppose $g$ is continuous and of compact support on $\reals^d$. Note
+\begin{align*}
+P_t g(x) = \avg g(x+X_t) = \int_{\reals^d} (2\pi t)^{-d/2} e^{-|x-y|^2/2t} g(y) dy
+\end{align*}
+where $(X_t)_{t\geq 0} \sim \text{BM}(\reals^d)$ so 
+\begin{align*}
+\begin{cases}
+\norms{P_t g}{\infty}  \leq \norms{g}{\infty} \quad \text{\emph{and also}} \\
+\norms{P_t g}{\infty} \leq (2\pi t)^{-d/2} \text{vol}(\text{supp}(g)) \norms{g}{\infty}
+\end{cases} \quad \cdots \cdots\cdots (\diamond)
+\end{align*}
+So splitting the integral at 1 gives
+\begin{align*}
+\avg \int_0^t g(x+X_t) dt = \int_0^{\infty} P_t g(x) dt \leq (1+ \text{vol}(\text{supp}(g))) \norms{g}{\infty}
+\end{align*}
+Hence also for $\epsilon >0$,
+\begin{align*}
+\avg \int_0^{\infty} \sup_{|x-y|< \epsilon} |g(y+X_t)| dt < \infty
+\end{align*}
+(note, $g_{\epsilon}(x) = \sup_{|y-x| < \epsilon } |g(y)|$ is also continuous of compact support.) Now we can apply this to and its derivative to justify differentiating
+\begin{align*}
+\phi(x) = \avg \int_0^{\infty} c(x+X_t) dt
+\end{align*}
+under the integrals to obtain $\phi \in C^2(D)$ and 
+\begin{align*}
+\Delta  \phi(x) = \avg \int_0^{\infty} \Delta c(x+X_t) dt = \Big( \int_0^s + \int_s^t + \int_t^{\infty} \Big) \avg(\Delta c(x+X_r)) dr
+\end{align*} 
+for $0<s<t$. Consider the limits $s\rightarrow 0$ and $t\rightarrow \infty$. First and the third integrals tend to 0 using the estimates above. Now
+\begin{align*}
+\frac{1}{2} \int_s^t  \avg(\Delta c(x+X_r)) dr &= \frac{1}{2} \int_s^t \int_{\reals^d} \Delta c(y) p(r,x,y) dydr \\
+&= \frac{1}{2} \int_s^t \int_{\reals^d} c(y) \Delta p(t,x,y) dy dr \\
+& = \int_s^t \int_{\reals^d} c(y) \dot{p} (r,x,y) dydr \\
+&= \int_{\reals^d} c(y) (p(t,x,y)-p(s,x,y)) dy \quad (\text{FTC})
+\end{align*}
+But $\int c(y) p(t,x,y) dy \rightarrow 0$ as $t\rightarrow \infty$ and $\int c(y)p(s,x,y) dy = \avg (c(x+X_s)) \rightarrow c(x)$ as $s\rightarrow 0$. Hence $-\frac{1}{2} \Delta \psi =c$ as required.
+
+\eop 
+\end{proof}
+
+
+
 \end{document}
 
 
