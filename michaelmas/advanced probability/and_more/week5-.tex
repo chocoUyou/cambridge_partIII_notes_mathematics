@@ -1104,7 +1104,114 @@ But $\int c(y) p(t,x,y) dy \rightarrow 0$ as $t\rightarrow \infty$ and $\int c(y
 
 \eop 
 \end{proof}
+\s
 
+\newday
+
+(21st November, Wednesday)
+\s
+
+(part iii drop-in hours tomorrow 10:30 - 12:30).
+
+(Bring a few different colored pens to class on Friday, if possible)
+
+(Office hours on Monday, time and place TBD)
+\s
+
+\thmnum{7.9.4} Let $D$ be a connected open set $\subset \reals^d$ and let $\phi$ be a non-negative measurable function on $D$. Suppose
+\begin{align*}
+\phi(x) = \int_{S(x,p)} \phi(y) \sigma_{x,p}(dy)
+\end{align*}
+whenever $B(x,p) \subset D$ where $\sigma_{x,p}$ is the uniform distribution on $S(x,p) = \{ y : |x-y| =p \}$. Then \emph{either} $\phi(x) = \infty$ for all $x$ \emph{or} $\phi \in C^{\infty}(D)$ with $\Delta \phi =0$.
+\s
+
+This would not be examinable, and will not be proved in the lecture - see online notes for proof.
+\s
+
+\thmnum{7.9.5} \emph{(Blumenthal's zero-one law)} Let $(X_t)_{t\geq 0} \sim \text{BM}_x(\reals^d)$. Then for all $A\in \F_{0+}^{X} = \bigcap_{t>0} \F_{t}^X$, then $\prob(A) \in \{ 0,1\}$.
+\begin{proof}
+\pf Consider the $\pi$-system $\mathscr{A} = \bigcup_{s>0} \sigma (X_t - X_s : t\geq s)$. Then for all $A_0 \in \F_{0+}^X$ and all $A \in \mathscr{A}$, we have $\prob(A_0 \cap A) = \prob(A_0) \prob(A)$. By Dynkin's lemma, this extend to all $A\in \sigma(\mathscr{A})$ (check details).
+
+Now for all $s>0, t\geq s$, $X_t - X_s$ is $\sigma(\mathscr{A})$-measurable. But $X_s \rightarrow 0$ as $s\rightarrow 0$, so $X_t $is $\sigma(\mathscr{A})$-measurable. So $\F_{\infty}^X = \sigma(\mathscr{A}) \supset \F_{0+}^X$. So for $A\in \F_{0+}^X$,
+\begin{align*}
+\prob(A) = \prob(A\cap A) = \prob(A)\prob(A) \in \{0,1\}
+\end{align*}
+\eop
+\end{proof}
+\s
+
+\propnum{7.9.6} \emph{(Brownina motion enters all cones immediately)}Let $A$ be an open subset of $S^{d-1}$ and let $\epsilon>0$. Set $C$ a cone,
+\begin{align*}
+C = \{ty : y\in A, t\in (0,\epsilon) \}
+\end{align*} 
+Let $X \sim \text{BM}_0(\reals^d)$, and define $T_C = \inf \{ t\geq 0: X_t \in T_C \}$. Then $\prob(T_C =0)=1$. 
+\begin{proof}
+See example sheet.
+\end{proof}
+Note, if a subset $B \subset S^{d}$ does not contain any ball, then this does not hold true in general.(write out clearly?)
+\s
+
+Some definition : \textbf{External cone condition(ECC)} : Let $D \subset \reals^d$ be open and connected. Then $D$ satisfies ECC if for all $x\in \partial D$ , there exist $A$ open $\subset S^{d-1}$, $\epsilon >0$ such that
+\begin{align*}
+\{x+ty : t\in (0,\epsilon), y\in A \} \cap D = \phi
+\end{align*}
+This is weaker than the Lipschitz boundary condition.
+
+\s
+\thmnum{7.9.2(c)} Let $D$ be a connected open set $\subset \reals^d$. Let $c\in C^2(\reals^d)$, $f\in C(\partial D)$. Set
+\begin{align*}
+\phi(x) = \avg \Big( \int_0^T c(X_t) dt + f(X_T) 1_{T<\infty} \Big) \quad \forall x\in \overline{D}
+\end{align*}
+where $X \sim \text{BM}_0(\reals^d)$ and $T = \inf \{ t\geq 0: X_t \not\in D \}$. Assume $D$ satisfies the \emph{external cone condition(ECC)} and that $\phi$ is locally bounded. Then $\phi \in C^2(D) \cap C(\overline{D})$ and $-\frac{1}{2}\Delta \phi =c$ in $D$ and $\phi =f$ on $\partial D$. i.e. $\phi$ solves the Dirichlet condition.
+\s
+
+This is significant - the proof using ECC is hard to achieve just using usual theories of partial differential equations.(recall, we usually prove theorems under Lipschitz boundary condition in PDEs). Probability wins!
+\s
+
+\lemnum{7.9.3} Let $D_0$ be a \emph{bounded subset} of $D$. Define $T_0 = \inf \{t\geq 0: X_t \not\in D_0 \}$, $x\in \overline{D}$. Then
+\begin{align*}
+\phi(x) = \avg \Big( \int_0^{T_0} c(X_t) dt + \phi(X_{T_{0}}) \Big)
+\end{align*}
+\begin{proof}
+\pf Set $\tilde{X}_t = X_{T_0 +t}$, $\tilde{\F}_{t} = \F_{T_0 +t}$, and $\tilde{T} = \inf \{ t\geq 0 : \tilde{X}_t \not\in D \}$. By \emph{Strong Markov property}, $(\tilde{X}_t)$ is an $(\tilde{\F}_t)$-BM. Now
+\begin{align*}
+\int_0^T c(X_t) dt + f(X_T) 1_{T<\infty} = \int_0^{T_0} c(X_t) dt + \int_0^{\tilde{T}} c(X_t) dt + f(\tilde{X}_{\tilde{T}})1_{\tilde{T}<\infty} \quad \cdots\cdots\cdots (\dagger)
+\end{align*}
+Here we used that $\tilde{T}<\infty$ \emph{iff} $T<\infty$ and $X_T = \tilde{X}_{\tilde{T}}$. By \textbf{Prop 7.4.1},
+\begin{align*}
+\avg( \int_0^{\tilde{T}} c(X_t) dt + f(\tilde{X}_{\tilde{T}})1_{\tilde{T}<\infty} | \F_{T_0} ) = \phi(X_{T_0}) \quad \text{a.s.}
+\end{align*}
+So we obtain result on taking $\avg$ in ($\dagger$)
+
+\eop
+\end{proof}
+\s
+
+Recall, we proved \textbf{Theorem 7.9.2(c)} in a weaker setting earlier. Here, we prove in a slightly more general setting.
+\begin{proof}
+\textbf{proof of Theorem 7.9.2(c) II} We show in the case $c=0$ that $\phi \in C^{\infty}(D)$ with $\Delta \phi =0$.
+
+See online notes.
+\end{proof}
+\s
+
+\begin{proof}
+\textbf{proof of Theorem 7.9.2(c) III} We show for all $y \in \partial D$ that
+\begin{align*}
+\lim_{x\rightarrow y, x\in \overline{D}} \phi(x) = \phi(y)
+\end{align*}
+Fix $y\in \partial D$ and choose $U$ bounded open set $\subset \reals^d$ with $u\in U$. Set $D_0 = D \cap U$. By \emph{exterior con condition}, there exist $A\in S^{d-1}$, $\epsilon>0$ such that $\{y+tz : t \in (0,\epsilon) , z\in A \} \cap D = \phi$. Let $(X_t)_{t\geq 0}$ be a $\text{BM}_0(\reals^d)$. Set $T_0(x) = \inf \{ t\geq 0: x+ X_t \not\in D \}$. By \textbf{Prop 7.9.6}, for $T_C = \inf \{t\geq 0 : y+X_t \in C \}$ we have $T_C =0$ a.s. Now on the the event $\{ T_C =0 \}$, we have $T_0(x) \rightarrow 0$ as $x\rightarrow y$, $x\in \overline{D}$ so $X_{T_0(x)} + x \in \partial D$ eventually as $x\rightarrow y$ and $X_{T_0(x)} +x \rightarrow y$ as $x\rightarrow y$. Hence
+\begin{align*}
+\phi(X_{T_0(x)} +x) = f(X_{T_0(x)} +x) \rightarrow f(y) \quad \text{as }x\rightarrow y
+\end{align*}
+Also by \textbf{Prop 7.7.1}, $\avg(\sup_{x\in D_0} T_0(x)) < \infty$. Now
+\begin{align*}
+\phi(x) = \avg \Big( \int_0^{T_0(x)} c(x+X_t)dt + \phi(X_{T_0(x)} + x) \Big)
+\end{align*}
+Let $x\rightarrow y$, then using dominated convergence to see $\phi(x) \rightarrow f(y)$ as $x\rightarrow y$.
+
+\eop
+\end{proof}
 
 
 \end{document}

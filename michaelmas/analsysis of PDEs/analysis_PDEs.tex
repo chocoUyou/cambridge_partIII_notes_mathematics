@@ -2769,7 +2769,154 @@ A \geq \frac{\theta}{2} \int_U \zeta^2 |\Delta^h_k Du| dx - C \int_W |Du|^2 dx
 \end{align*}
 \end{itemize}
 \end{proof}
+\s
+
+\newday
+
+(21st October, Wednesday)
+\s
+
+(Problem Class tomoroow, Thursday 22nd November, MR 11, Group A 2:30 - 4:00, Group B 4:00 - 5:30)
+\s
+
+\textbf{Last lecture :} 
+\begin{align*}
+\textbf{(A)} = \sum_{i,j} \int a^{ij} u_{x_i}v_{x_j} dx = \int (f- \sum_i b^i u_{x_i} -cn) vdx = \textbf{(B)}
+\end{align*}
+where $v = -\Delta^{-h}_k (\zeta^2 \Delta^h_k u)$, and 
+\begin{align}
+\sum_{i,j} \int a^{ij} u_{x_i}v_{x_j} dx  \geq \frac{\theta}{2} \int_U \zeta^2 |\Delta_k^h Du |^2 dx - c\int_W |du|^2 dx \label{20}
+\end{align}
+\s
+
+\begin{proof}
+\textbf{proof continues)} \begin{itemize}
+\item[5.] Returning to \textbf{(B)}, we have
+\begin{align*}
+\Big| \int (f- \sum_i b^i u_{x_i} -cn) vdx \Big| \leq C \int_U (|f|+|Du|+|u|) | \Delta_k^{-h}(\zeta^2 \Delta_k^h u) | dx
+\end{align*}
+By the lemma on difference quotients,
+\begin{align*}
+\int_W (\Delta^{-h}_k (\zeta^2 \Delta^h_k u))^2 dx &\leq C \int_U \Big| D(\zeta^2 \Delta_k^h u) \Big|^2 dx \\
+&\leq C \int \zeta^2 |\Delta_k^h|^2 + \zeta^2 |\Delta_k^h Du|^2 dx \\
+&\leq C\int_W |Du|^2 dx + C \int_U \zeta^2 |\Delta_k^h Du|^2 dx
+\end{align*}
+Again using Young's inequality,
+\begin{align}
+|B| \leq \epsilon \int_W \zeta^2 |\Delta_k^h Du|^2 dx + \frac{C}{\epsilon} \int_W f^2 + u^2 +|Du|^2 dx \label{21}
+\end{align}
+Setting $\epsilon = \epsilon/4$ and combining (\ref{20}) and (\ref{21}), using \textbf{(A)}=\textbf{(B)} and $\zeta \equiv 1$ on $V$, has
+\begin{align*}
+\int_V |\Delta_k^h Du|^2 dx \leq \int_U \zeta^2 |\Delta_k^h Du|^2 dx \leq C\int_W f^2 + u^2 +|Du|^2 dx
+\end{align*}
+We conclude that $Du \in H^1_{\text{loc}}(U)$, and
+\begin{align*}
+\norms{D^2 u}{L^2(U)} \leq C(U,V,W,L) \Big( \norms{f}{L^2(W)} + \norms{u}{H^1(W)} \Big)
+\end{align*}
+\item[6.] Finally, let $\xi \in C^{\infty}_c(U)$ with $\xi =1$ on $W$. Set $v = \xi^2 u$ in the equation $B[u,v] = (f,v)_{L^2(U)}$.
+\begin{align*}
+\int_U \sum_{i,j} a^{i,j}u_{x_i}(\xi^2 u_{x_j}) + \sum_i b^i u_{x_i} \xi^2 u + cu^2 \xi^2 dx = \int_U \xi^2 f udx
+\end{align*}
+Similar manipulations to proof of G{\aa}rding's inequality give
+\begin{align*}
+\int_W \xi^2 |Du|^2 dx \leq C \int_U f^2 +u^2 dx
+\end{align*}
+so $\norms{u}{H^1(W)} \leq C\norms{u}{L^2(U)}$.
+\end{itemize}
+\eop
+\end{proof}
+\s
+
+We have shown $f\in L^2(U)$ implies $u\in H^2_{\text{loc}}(U)$. We can improve this result iteratively (see example sheet) to obtain the following important result :
+\s
+
+\thm \emph{(Higher interior regularity)} Let $m$ be a non-negative integer, assume $a^{ij},b^{ij}, c\in C^{m+1}(U)$ and $f\in H^m (U)$. Suppose $u\in H^1(U)$ satisfies $B[u,v] = (f,v)_{L^2(U)}$ for all $v\in H_0^1(U)$. Then in fact $u\in H^{m+2}_{\text{loc}}(U)$ and for each $V\subset\subset U$ we have
+\begin{align*}
+\norms{u}{H^{m+2}(V)} \leq C \big( \norms{f}{L^m(U)} + \norms{u}{L^2(Y)} \big)
+\end{align*}
+where $C= C(U,V,L)$ does not depend on $u$ or $f$.
+\s
+
+\textbf{Remarks :}
+\begin{itemize}
+\item Note this is a \emph{local} result : the regularity of $u$ in $V$ is determined by the regularity of $f$ on a slightly larger set. Singularity do not propagate for elliptic PDE.
+\item This result allows us to understand the equation as holding pointwise almost everywhere. Let $v\in C_c^{\infty}(U)$ and $B[u,v] = (f,v)_{L^2(U)}$. Since $u\in H^2_{\text{loc}}(U)$, we can integrate by parts to find
+\begin{align*}
+\int_U (Lu -f) v dx = 0
+\end{align*}
+This holds for any $v\in C_c^{\infty}(U)$, so $Lu = f$ almost everywhere. If $m$ is large enough, $f\in H^m(U)$ implies $u\in C^2_{\text{loc}}(U)$ and solution is classical. (\textbf{Exercise} : figure out how large $m$ should be, using Sobolev embedding).
+\end{itemize}
+\s
+
+\thm \emph{(Boundary $H^2$ regularity)} Assume $a^{ij}\in C^1(\overline{U})$, $b^i,c\in L^{\infty}(U)$ and $f\in L^2(U)$. Suppose $u\in H_0^1(U)$ is a weak solution of $Lu =f$ in $U$, $u=0$ on $\partial U$($\diamond$) and finally assume $\pa U$ is $C^2$. Then $u\in H^2(U)$ and we have the estimate
+\begin{align*}
+\norms{u}{H^2(U)} \leq C \big( \norms{f}{L^2(U)} + \norms{u}{L^2(U)} \big)
+\end{align*}
+If the BVP has a \emph{unique} solution for each $f\in L^2(U)$, we can drop the $\norms{u}{L^2(U)}$ term from RHS.
+\begin{proof}
+\textbf{sketh proof)} We restrict to the situation where $U = B_1(0) \cap \{ x_n >0 \}$. Let $V= B_{1/2}(0) \cap \{x_n >0 \}$. Choose $\zeta \in C_c^{\infty}(B_1(0))$ with $\zeta \equiv 1$ on $B_{1/2}(0)$, $0\leq \zeta \leq 1$ so $\zeta$ vanishes enar coloured part of boundary of $U$ since $u$ is a weak solution of ($\diamond$), as before, fore any $v\in H_0^1(U)$ we can write
+\begin{align}
+\sum_{i,j} \int_U a^{ij}u_{x_i}v_{x_j} dx = \int_U \tilde{f}vdx \label{22}
+\end{align}
+with $\tilde{f} = f- \sum_i b^i u_{x_i} -cu \in L^2(U)$. Now let $|h|>0$ be small and fix $k\in \{1,\cdots, n-1\}$ and set $v= -\Delta_k^{-h} (\zeta^2 \Delta_k^h u)$. Note that
+\begin{align*}
+v(x) &= \frac{-1}{h} \Delta^{-h}_k (\zeta^2 (x) (u(x+ he_k) - u(x))) \\
+&= \frac{1}{h^2} (\zeta^2 (x-he_k)[u(x) - u(x-he_k)] - \zeta^2(x)[u(x+he_k)-u(x)]) \quad \forall x\in U
+\end{align*}
+Now since $u=0$ on $\{x_n =0\}$ in the trace sense and $\zeta =0$ near the curved part of the boundary, we have $v\in H_0^1(U)$. Taking $v$ as a test function in (\ref{22}), estimating as before, we have
+\begin{align*}
+\int_V |\Delta_k^h Du|^2 dx \leq C \int_U f^2 + u^2 + |Du|^2 dx
+\end{align*}
+We deduce that $D_k Du \in L^2(V)$ and
+\begin{align*}
+\norms{D_k Du }{L^2(U)} \leq C(\norms{f}{L^2(U)} + \norms{u}{L^2(U)})
+\end{align*}
+where we used G{\aa}rding inequality to control $\norms{Du}{L^2(U)}$. We control all 2nd derivatives of $u$, \emph{except} $u_{x_n x_n}$. To recover this, we return to the PDE, which we know holds pointwise a.e. Write this as
+\begin{align*}
+a^{nn}u_{x_n x_n} = F = f- \sum_{(i,j) \neq (n,n)} (a^{ij}u_{x_i})_{x_j} - (a^{nn})_{x_n} u_{x_n} - \sum_{i} b^i u_{x_i} -cu
+\end{align*}
+Uniform ellipticity implies $a^{nn} \geq \theta$, further $\norms{F}{L^2(U)} \leq C( \norms{f}{L^2(U)} + \norms{u}{L^2(U)})$ so $u_{x_n x_n}$ is in $L^2(U)$.
+
+\eop
+\end{proof}
+\s
+
+We can still do better.
+\s
+
+\thm \emph{(Higher boundary regularity)} Let $m\in \mathbb{N}$, assume $a^{ij},b^i,c\in C^{m+}(\overline{U})$, $f\in H^m(U)$ and $\pa U$ is $C^{m+2}$. Then if $u\in H_0^1()U$ is the weak solution of
+\begin{align*}
+\begin{cases}
+\begin{array}{ll}
+Lu =f  & \text{in } U \\
+u =0 & \text{on } \pa U
+\end{array}
+\end{cases}
+\end{align*}
+We in fact have $u\in H^{m+2}(U)$ with
+\begin{align*}
+\norms{u}{H^{m+1}(U)} \leq C(\norms{f}{H^{m}(i)} + \norms{u}{L^2(U)})
+\end{align*}
+and can drop $\norms{u}{L^2(U)}$ if solution for the BVP exists for all $f\in L^2(U)$.
+\s
+
+This is the end of elliptic part of the lecture. We will be going into evolution problems in hyperbolic equations. We can also use lots of results from elliptic theory, and can be applied to parabolic equations.
 
 
-%졸라 배고파,,,,,,,
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 \end{document}

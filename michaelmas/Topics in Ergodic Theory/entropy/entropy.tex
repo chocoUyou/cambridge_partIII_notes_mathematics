@@ -462,7 +462,7 @@ Let us prove the theorem assuming the lemmas. We will come hack to the proof of 
 \begin{proof}
 \textbf{proof of Theorem)} We first show $h_{\mu} (T,\xi) = \sup_{\eta \text{ finite}} h_{\mu} (T,\eta)$. We need to show that for all finite partition $\eta \subset \borel$, we have $h_{\mu}(T,\eta) \leq h_{\mu}(T,\xi)$. Fix $\epsilon>0$. By \textbf{Lemma 3} and definition of 2-sided generator, $\exists n$ such that $H_{\mu}(\eta | \xi^n_{-n}) \leq \epsilon$. Then we have
 \begin{align*}
-h_{\mu}(T,\eta) & \leq h_{\mu}(T,\xi_{-n}^n) + H_{\mu}(\eta | \xi^n_{-n}) \leq \leq h_{\mu}(T,\xi_{-n}^n) + \epsilon \quad (\text{Lemma 2}) \\
+h_{\mu}(T,\eta) & \leq h_{\mu}(T,\xi_{-n}^n) + H_{\mu}(\eta | \xi^n_{-n}) \leq h_{\mu}(T,\xi_{-n}^n) + \epsilon \quad (\text{Lemma 2}) \\
 & = h_{\mu} (T,\xi) + \epsilon \quad (\text{Lemma 1})
 \end{align*}
 We are done if we take $\epsilon \searrow 0$.
@@ -556,7 +556,7 @@ A_i &= C_i \cup (C_0 \cap A_i) = C_i \cup (A_i \cap (B_i \backslash \cup_{j\neq 
 
 \section*{11. The Shannon McMillan Breiman theorem}
 
-\thm \emph{(Shannon-McMillan-Breiman)} Let $(X, \borel, \mu, T)$ be an ergodic MPS. Let $\xi \subset \borel$ be a countable measurable partition. with $H\mu(\xi) < \infty$. Then
+\thm \emph{(Shannon-McMillan-Breiman)} Let $(X, \borel, \mu, T)$ be an ergodic MPS. Let $\xi \subset \borel$ be a countable measurable partition. with $H_{\mu}(\xi) < \infty$. Then
 \begin{align*}
 \frac{1}{n} I(\xi^{n-1}_0) \xrightarrow{n\rightarrow \infty} h_{\mu}(T,\xi) 
 \end{align*}
@@ -659,7 +659,7 @@ I_{\mu}(\eta | \mathscr{A}_n) \rightarrow I_{\mu}(\eta | \mathscr{A}) \quad \tex
 \end{align*}
 pointwise $\mu$-a.e. and in $L^1$, where $\mathscr{A} = \sigma(\cup_n \mathscr{A}_n)$.
 
-\quad Moreover, $I^*(x) = \sup_{n\in \mathbb{Z}_{>0}}I_{\mu}(\eta | \mathscr{A}) (x) \in L^1$.
+\quad Moreover, $I^*(x) = \sup_{n\in \mathbb{Z}_{>0}}I_{\mu}(\eta | \mathscr{A}_n) (x) \in L^1$.
 \begin{proof}
 \textbf{proof for $\eta$ finite)} By definition and martingale convergence,
 \begin{align*}
@@ -712,7 +712,7 @@ hence
 \begin{align*}
 h_{\mu}(T,\xi) = \clim_{n\rightarrow \infty} H_{\mu}(\xi | \xi_1^n)
 \end{align*}
-Observe that $\mu(\xi | \xi_1^n)$ is a monotone decreasing sequence, hence it converges, so in fact the Ces\`{a}ro limit implies strong limit.
+Observe that $H_{\mu}(\xi | \xi_1^n)$ is a monotone decreasing sequence, hence it converges, so in fact the Ces\`{a}ro limit implies strong limit.
 
 \eop
 \end{proof}
@@ -911,16 +911,156 @@ so
 &= - \sum_{A \in \xi} \log( \mu(A)) \mu(A) = H_{\mu} (\xi)
 \end{align*}
 \end{proof}
+\s
 
+\newday
 
+(20th November, Tuesday)
+\s
 
+Left to prove : If $h_{\mu}(T, \xi)>0$ for all $\xi \subset \borel$ finite with $H_{\mu}(\xi) >0$ then $\tau(\xi)$ is trivial $\forall \xi \subset \borel$ finite.
+\s
 
+\prop Let $(X, \borel, \mu, T)$ be an MPS. Let $\xi, \eta \subset \borel$ be two finite partitions. Then
+\begin{align*}
+h_{\mu}(T, \xi) = H_{\mu}(\xi | \sigma(\xi_1^{\infty}) \vee \tau (\eta))
+\end{align*}
+\s
 
+\textbf{Note :} This tells us that if the entropy is positive, then the tail-$\sigma$-algebra cannot be too big.
+\s
 
+\lem Let $(X, \borel, \mu, T)$ be an MPS. Let $\xi \subset \borel$ be a finite partition. Then
+\begin{align*}
+h_{\mu}(T, \xi) = \frac{1}{n} H_{\mu} (\xi_0^{n-1} | \sigma(\xi_n^{\infty})) \quad \forall n \in \mathbb{Z}_{>0}
+\end{align*}
+\begin{proof}
+\pf By chain rule and invariance :
+\begin{align*}
+H_{\mu}(\xi_0^{n-1} | \sigma(\xi_n^{\infty})) &= \sum_{j=0}^{n-1} H_{\mu}(\xi_j^j | \sigma(\xi_j^{\infty})) \\
+&= n H_{\mu}(\xi | \sigma(\xi_1^{\infty})) = nh_{\mu}(T, \xi)
+\end{align*}
+as claimed.
 
+\eop
+\end{proof}
+\s
 
+The next lemma is bit harder, and where all the magic happens.
+\s
 
+\lem Let $(X, \borel, \mu, T)$ be an MPS. Let $\xi, \eta \subset \borel$ be finite measurable partitions. Then
+\begin{align*}
+h_{\mu}(T, \xi) = \lim_{n\rightarrow \infty} \frac{1}{n} H_{\mu} (\xi_0^{n-1} | \sigma(\xi_n^{\infty}) \vee \sigma(\eta_n^{\infty})  )
+\end{align*}
+That is, ``$\sigma(\eta_n^{\infty})$ does not add to much information if $n$ is sufficiently large". 
+\begin{proof}
+\pf Observe that $\forall n \in \mathbb{Z}_{>0}$, has
+\begin{align*}
+H_{\mu}(\xi_0^{n-1} | \sigma(\xi_n^{\infty}) \vee \sigma(\eta_n^{\infty})) &\leq H_{\mu} (\xi_0^{n-1} | \sigma(\xi_n^{\infty})) \\
+&= nh_{\mu}(T, \xi)
+\end{align*}
+by the last lemma so we already have the inequality in one direction.
 
+\quad Now we do the following : we choose two sequence $a_n$ and $b_n$ such that $a_n \leq b_n$ for all $n$ and
+\begin{align*}
+\lim_{n} \frac{1}{n} \Big[ H_{\mu}(\xi_0^{n-1} | \sigma(\xi_n^{\infty}) \vee \sigma(\eta_n^{\infty})) + a_n \Big] = \lim_{n} \frac{1}{n} \Big[ H_{\mu}(\xi_0^{n-1} | \sigma(\xi_n^{\infty})) + b_n \Big] \quad \cdots\cdots\cdots (\diamond)
+\end{align*}
+
+Suppose to the contrary that
+\begin{align*}
+\liminf_{n\rightarrow \infty} \frac{1}{n} H_{\mu}(\xi_0^{n-1} | \sigma(\xi_n^{\infty}) \vee \sigma(\eta_n^{\infty})) < h_{\mu}(T, \xi) = \frac{1}{n} H_{\mu}(\xi_0^{n-1} | \sigma(\xi_n^{\infty}))
+\end{align*}
+Then $a_n \leq b_n$ and this contradicts our assumption ($\diamond$) on $a_n, b_n$. This means that :
+\begin{align*}
+h_{\mu}(T, \xi) &\leq \liminf_{n\rightarrow \infty} \frac{1}{n} H_{\mu} (\xi_0^{n-1} | \sigma(\xi_n^{\infty}) \vee \sigma(\eta_n^{\infty})) \\
+&\leq \limsup_{n\rightarrow \infty} \frac{1}{n} H_{\mu} (\xi_0^{n-1} | \sigma(\xi_n^{\infty}) \vee \sigma(\eta_n^{\infty})) \\
+&\leq h_{\mu}(T,\xi)
+\end{align*}
+so this prove the lemma, given the existence of $a_n, b_n$ with the required property ($\diamond$).
+\s
+
+For the existence of such $(a_n),(b_n)$, we take
+\begin{align*}
+a_n &= H_{\mu} (\eta_0^{n-1} | \sigma(\xi_0^{\infty}) \vee \sigma(\eta_n^{\infty})) \\
+b_n &= H_{\mu} (\eta_0^{n-1} | \sigma(\xi_0^{\infty}) )
+\end{align*}
+Clearly, $a_n \leq b_n$ and indeed
+\begin{align*}
+& \textbf{(A)} = H_{\mu}(\xi_0^{n-1} | \sigma(\xi_n^{\infty}) \vee \sigma(\eta_n^{\infty})) + a_n = H_{\mu}(\xi_0^{n-1} \vee \eta_0^{n-1} | \sigma (\xi_n^{\infty}) \vee \sigma(\eta_n^{\infty})) \\
+& \textbf{(B)} = H_{\mu}(\xi_0^{n-1} | \sigma(\xi_n^{\infty})) + b_n = H_{\mu}(\xi_0^{n-1} \vee \eta_0^{n-1} | \sigma (\xi_n^{\infty}))
+\end{align*}
+By the last lemma,
+\begin{align*}
+\frac{\textbf{(A)}}{n} = h_{\mu}(T, \xi \vee \eta) \quad \forall n
+\end{align*}
+and therefore
+\begin{align*}
+h_{\mu}(T, \xi\vee \eta) = \frac{\textbf{(A)}}{n} \leq \frac{\textbf{(B)}}{n} \leq \frac{H_{\mu}(\xi_0^{n-1} \vee \eta_{0}^{n-1})}{n} \xrightarrow{n\rightarrow \infty} h_{\mu}(T, \xi\vee \eta)
+\end{align*}
+
+\eop
+\end{proof}
+\s
+
+\begin{proof}
+\textbf{proof of the proposition)} Using the chain rule and invariance, we have
+\begin{align*}
+H_{\mu}(\xi_0^{n-1} | \sigma(\xi_n^{\infty} \vee \sigma(\eta_n^{\infty}))) &= \sum_{j=0}^{n-1} H_{\mu}(\xi_j^j | \sigma(\xi_{j+1}^{\infty}) \vee \sigma(\eta_{n}^{\infty})) \\
+&= \sum_{j=0}^{n-1} H_{\mu}(\xi | \sigma(\xi_1^{\infty}) \vee \sigma(\eta_{n-j}^{\infty}))
+\end{align*}
+Therefore, it follows from the previous lemma that
+\begin{align*}
+h_{\mu}(\xi, T) = \clim_{n\rightarrow \infty} H_{\mu}(\xi | \sigma(\xi_1^{\infty}) \vee \sigma(\eta_n^{\infty}))
+\end{align*}
+But by the the previous lemma, we already know
+\begin{align*}
+\lim_{n\rightarrow \infty} H_{\mu}(\xi | \sigma(\xi_1^{\infty})\vee \sigma(\eta_n^{\infty})) = H_{\mu}(\xi | \sigma(\xi_1^{\infty})\vee \tau(\eta))
+\end{align*}
+and therefore the claim follows.
+
+\eop
+\end{proof}
+
+We finally conclude the main theorem of the chapter.
+\s
+
+\begin{proof}
+\textbf{proof of Theorem (3) $\Rightarrow$ (2))} Suppose that $h_{\mu}(T, \xi ) >0$ for all $\xi \subset \borel$ finite with $H_{\mu}(\xi) >0$. 
+
+\quad Suppose to the contrary that $\tau(\xi)$ is non-trivial for some $\xi \subset \borel$ finite. Then $\exists A \subset \tau(\xi)$ s.t. $0< \mu(A) <1$. Define $\eta = \{A, X\backslash A \}$. Apply the proposition with the roles of $\xi$ and $\eta$ interchanged,
+\begin{align*}
+h_{\mu}(T, \eta) = H_{\mu} (\eta | \sigma(\eta_1^{\infty}) \vee \tau(\xi) ) 
+\end{align*}
+If we prove $h_{\mu}(T, \eta) =0$, this gives a contradiction, as $H_{\mu}(\eta) >0$.
+\begin{subproof}
+: In fact, we will show $I_{\mu}(\eta | \sigma(\eta_1^{\infty}) \vee \tau(\xi)) (x) =0$ for a.e. $x$. Indeed, since $\eta \in \tau(\xi)$, has
+\begin{align*}
+I_{\mu}(\eta | \sigma(\eta_1^{\infty}) \vee \tau(\xi)) &= -\log \avg [\chi_{[x]_{\eta}} | \sigma(\eta_1^{\infty} \vee \tau(\xi))] \\
+&= -\log \chi_{[x]_{\eta}} =0
+\end{align*}
+\end{subproof}
+\eop
+\end{proof}
+
+\section*{13. Rudolph's Theorem}
+
+\thm \emph{(Rudolph)} Let $\mu$ be a probability measure on $\reals/ \mathbb{Z}$ that is invariant and \emph{ergodic} with respect to the joint action of $T_2 : x \mapsto 2x$ and $T_3 : x\mapsto 3x$. That is to say, if $A \subset \borel$ is such that $T_2^{-1} A =A$ and $T_3^{-1} A =A$ then $\mu(A) \in \{0,1\}$. 
+
+\quad Suppose that $h_{\mu}(T_2)>0$ or $h_{\mu}(T_3) >0$. Then $\mu$ is the Lebesgue measure on $\reals/\mathbb{Z}$.
+\s
+
+If we drop the assumption of positive entropy, then we might expect the measure to be Lebesgue measure or a measure supported on some set of rational numbers (this is a conjecture).
+\s
+
+\thm \emph{(Host)} Let $\mu$ be an \emph{ergodic} $T$-invariant measure on $\reals/\mathbb{Z}$ with $h_{\mu}(T_3)>0$. Then $\mu$-a.e. $x\in \reals/\mathbb{Z}$ is \textbf{normal} in base 2, i.e. the sequence $T_2^n x$ is equi-distributed in $\reals/ \mathbb{Z}$.
+
+\quad Moreover, if $\mu$ is not necessarily ergodic, but the other assumptions holds, then
+\begin{align*}
+\mu (x\in \reals/\mathbb{Z} : x \text{ is normal in base} 2) \geq \frac{h_{\mu}(T_3)}{\log 3}
+\end{align*}
+
+Notice this result does not depend on the measure.
 
 
 \end{document}

@@ -1,4 +1,4 @@
-\documentclass[10pt,a4paper]{report}
+\documentclass[12pt,a4paper]{report}
 
 
 \usepackage{amsmath}
@@ -1327,6 +1327,105 @@ This estimate gives the following theorem.
 
 \eop
 \end{proof}
+\s
+
+\newday
+
+(20th November, Tuesday)
+\s
+
+(Problem class 21st November, Wednesday(tomorrow!), MR5, 3:15 - 4:45)
+
+(Example sheet 3 distributed - next problem class is in next term, 2pm 16th January, Wednesday. Will circulate e-mails when the date closes)
+\s
+
+Our next target is the \textbf{finite-fields Kakeya theorem} of Zeev Dvir.
+\s
+
+Kakeya set : How to construct a set with line segment in every direction but with measure 0 on the plane? 
+
+Kakeya problem : What is the Hausdorff dimension of this object? Or, how fast does the measure converge to 0 in the construction of Kakeya set? 
+
+What about in 3-dimensions? Katz taba, Tao $\rightarrow$ had set some bound, but still an open problem.
+
+\quad There is a annoying technical prlbem when finitizing this problem, as the size of the intersection differs depending on the orientation. But in the finite field setting, the intersections are very nice. But unfortunately, the proof of Zeev Dvir does not transfer back to the original setting.
+\s
+
+\lemnum{5} Let $A \subset \mathbb{F}_p^n$. If $|A| < \begin{pmatrix}
+n+d \\
+n
+\end{pmatrix}$, then there exists a non-zero polynomial of degree at most $d$ that vanishes everywhere on $A$.
+\begin{proof}
+\pf A polynomial $P$ of degree $\leq d$ has a formula
+\begin{align*}
+P(x) = \sum_{|E|\leq d} \lambda_E \prod_{i\in E} x_i
+\end{align*}
+where $E$ is a multi-set, $x_i$ is multiplied the number of time $i$ appears in $E$. For $P$ to vanish on $A$, we need $\sum_{|E| \leq d} \lambda_E \prod_{i\in E} a_i$ to be zero for every $a\in A$. That gives us $|A|$ (independent) linear equations that the coefficients $\lambda_E$ must solve. Given a subset $\{m_1 < m_2 < \cdots <m_n \}$ of $[n+d]$ we can define a monomial $x_1^{r_1} \cdots x_n^{r_n}$ of degree $\leq d$ by setting $r_1 = m_1 -1$, $r_i = m_i - m_{i-1} -1$ for $i>1$ since $r_1 + \cdots + r_n = m_n -n \leq d$. Moreover, this is a bijection, so the number of monomial is $\begin{pmatrix}
+n+d \\
+n
+\end{pmatrix}$. So if $|A| < \begin{pmatrix}
+n+d \\
+n
+\end{pmatrix}$ we get a non-trivial choice for the $\lambda_E$.
+
+\eop
+\end{proof}
+\s
+
+\lemnum{6} Let $P$ be a polynomial of degree $<p$ that vanishes everywhere on $\mathbb{F}_p^n$. Then $P$ is the zero polynomial.
+
+\quad That is, the ``zero polynomial" is unique.
+\begin{proof}
+\pf (Clear from the definition, but let us just prove anyway)
+
+\quad If $n=1$, then $P$ has $p$ roots and degree $<p$ so it must be the zero polynomial.
+
+\quad If $n>1$, then we can write 
+\begin{align*}
+P(x) = P_0(x_2, \cdots, x_n) + x_1 P_1(x_2, \cdots, x_n) + x_1^2 P_2(x_2, \cdots, x_n) + \cdots + x_1^{p-1} P_{p-1}(x_2, \cdots, x_n)
+\end{align*}
+For every choice of $x_2, \cdots, x_n$, the RHS vanishes for all $x_1$, so is the zero polynomial and therefore all the $P_i$ vanish everywhere. Hence, by induction, the $P_i$ are all the zero polynomial.
+
+\eop
+\end{proof}
+\s
+
+The following is the only non-trivial result in the lecture...
+\s
+
+\thmnum{7} \emph{(finite-fields Kakeya theorem)} Let $A\subset \mathbb{F}_p^n$ and suppose that for every $\vec{d} \neq 0$ there exists $\vec{a}$ such that $\{ \vec{a} + \lambda \vec{d} : \lambda \in \mathbb{F}_p \} \subset A $. Then $|A| \geq p^n / n!$.
+\begin{proof}
+\pf By \textbf{Lemma 5}, if $|A| < \begin{pmatrix}
+n+p-1 \\
+n
+\end{pmatrix}$, then there is a non-zero polynomial $Q$ of degree $<p$ that vanishes on $A$. Let $\text{deg}(Q) =m$ and let $Q_m$ be the homogeneous polynomial consisting of the degree-$m$ terms of $Q$.
+
+\quad For each $\vec{d} \neq 0$, we know that $Q$ vanishes on some line $\{ \vec{a} + \lambda \vec{d} \}$. But $Q$ restricted to $\{ \vec{a} + \lambda \vec{d} \}$ is a polynomial in $\lambda$ of degree $<p$, so it is the zero polynomial. The degree-$m$ coefficient of this restriction is $Q_m(\vec{d})$ (since ``to get $\lambda^m$ we must choose $\lambda d_i$ from each bracket"). So $Q_m(\vec{d}) =0$ for very $\vec{d} \neq 0$. Trivially $Q_m(\vec{0}) =0$ too. So $Q_m$ is a zero-polynomial. $m$ is chosen to be $\text{deg}(Q)$ so this implies $Q$ is a zero polynomial, a contradiction.
+
+\quad Therefore, 
+\begin{align*}
+|A| \geq \begin{pmatrix}
+n+p-1 \\
+n
+\end{pmatrix} = \frac{(n+p-1)\cdots p}{n!} \geq p^n /n!
+\end{align*}
+
+\eop
+\end{proof}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
