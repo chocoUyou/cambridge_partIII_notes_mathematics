@@ -1,4 +1,4 @@
-This is XeTeX, Version 3.14159265-2.6-0.99998 (MiKTeX 2.9.6500) (preloaded format=xelatex 2018.2.4)  20 NOV 2018 14:28
+This is XeTeX, Version 3.14159265-2.6-0.99998 (MiKTeX 2.9.6500) (preloaded format=xelatex 2018.2.4)  22 NOV 2018 13:32
 entering extended mode
 **./entropy.tex
 (entropy.tex
@@ -561,21 +561,21 @@ LaTeX Font Info:    ... okay on input line 39.
 * (1in=72.27pt=25.4mm, 1cm=28.453pt)
 
 ABD: EveryShipout initializing macros
-LaTeX Font Info:    Try loading font information for U+msa on input line 78.
+LaTeX Font Info:    Try loading font information for U+msa on input line 80.
 
 ("C:\Program Files (x86)\MiKTeX 2.9\tex\latex\amsfonts\umsa.fd"
 File: umsa.fd 2013/01/14 v3.01 AMS symbols A
 )
-LaTeX Font Info:    Try loading font information for U+msb on input line 78.
+LaTeX Font Info:    Try loading font information for U+msb on input line 80.
 
 ("C:\Program Files (x86)\MiKTeX 2.9\tex\latex\amsfonts\umsb.fd"
 File: umsb.fd 2013/01/14 v3.01 AMS symbols B
 )
-LaTeX Font Info:    Try loading font information for OMS+rsfs on input line 78.
+LaTeX Font Info:    Try loading font information for OMS+rsfs on input line 80.
 
 
 ("C:\Program Files (x86)\MiKTeX 2.9\tex\latex\calrsfs\omsrsfs.fd")
-LaTeX Font Info:    Try loading font information for U+eus on input line 81.
+LaTeX Font Info:    Try loading font information for U+eus on input line 83.
 
 ("C:\Program Files (x86)\MiKTeX 2.9\tex\latex\amsfonts\ueus.fd"
 File: ueus.fd 2013/01/14 v3.01 Euler Script
@@ -583,26 +583,26 @@ File: ueus.fd 2013/01/14 v3.01 Euler Script
 
 
 ]
-Overfull \hbox (156.38315pt too wide) in paragraph at lines 148--150
+Overfull \hbox (156.38315pt too wide) in paragraph at lines 150--152
 []\TU/lmr/m/n/12 ==============================================================
 ======== 
  []
 
 [2] [3] [4]
-Overfull \hbox (156.38315pt too wide) in paragraph at lines 294--295
+Overfull \hbox (156.38315pt too wide) in paragraph at lines 296--297
 []\TU/lmr/m/n/12 ==============================================================
 ======== 
  []
 
 [5]
-Overfull \hbox (47.24081pt too wide) in paragraph at lines 363--365
+Overfull \hbox (47.24081pt too wide) in paragraph at lines 365--367
 []\TU/lmr/m/n/12 The problem of this definition is that it is generally difficu
 lt to find out the supremum $[][] \OML/cmm/m/it/12 h[]\OT1/cmr/m/n/12 (\OML/cmm
 /m/it/12 T\OMS/cmsy/m/n/12 j\OML/cmm/m/it/12 ^^X\OT1/cmr/m/n/12 )$
  []
 
 
-Overfull \hbox (15.66124pt too wide) in paragraph at lines 378--379
+Overfull \hbox (15.66124pt too wide) in paragraph at lines 380--381
 []\TU/lmr/bx/n/12 Example : \TU/lmr/m/n/12 Let $\OT1/cmr/m/n/12 (\OMS/cmsy/m/n/
 12 f\OT1/cmr/m/n/12 1\OML/cmm/m/it/12 ; \OT1/cmr/m/n/12 2\OML/cmm/m/it/12 ; [] 
  ; k\OMS/cmsy/m/n/12 g[]\OML/cmm/m/it/12 ; \U/eus/m/n/12 B\OML/cmm/m/it/12 ; ^^
@@ -614,39 +614,39 @@ mm/m/it/12 X \OT1/cmr/m/n/12 = \OMS/cmsy/m/n/12 f\OT1/cmr/m/n/12 1\OML/cmm/m/it
  []
 
 [6]
-Overfull \hbox (3.07898pt too wide) detected at line 417
+Overfull \hbox (3.07898pt too wide) detected at line 419
 []
  []
 
 
-Overfull \hbox (156.38315pt too wide) in paragraph at lines 427--428
+Overfull \hbox (156.38315pt too wide) in paragraph at lines 429--430
 []\TU/lmr/m/n/12 ==============================================================
 ======== 
  []
 
 [7]
-Overfull \hbox (0.41238pt too wide) detected at line 479
+Overfull \hbox (0.41238pt too wide) detected at line 481
 []
  []
 
 [8]
-Overfull \hbox (78.55463pt too wide) detected at line 507
+Overfull \hbox (78.55463pt too wide) detected at line 509
 []
  []
 
 
-Overfull \hbox (15.46022pt too wide) detected at line 528
+Overfull \hbox (15.46022pt too wide) detected at line 530
 []
  []
 
 [9]
-Overfull \hbox (156.38315pt too wide) in paragraph at lines 552--553
+Overfull \hbox (156.38315pt too wide) in paragraph at lines 554--555
 []\TU/lmr/m/n/12 ==============================================================
 ======== 
  []
 
 [10]
-Overfull \hbox (6.05879pt too wide) in paragraph at lines 634--636
+Overfull \hbox (6.05879pt too wide) in paragraph at lines 636--638
 []\TU/lmr/bx/n/12 Definition) \TU/lmr/m/n/12 The \TU/lmr/bx/n/12 conditional en
 tropy of $\OML/cmm/m/it/12 ^^Q$ \TU/lmr/bx/n/12 relative to $\U/eus/m/n/12 A$ \
 TU/lmr/m/n/12 is defined as $\OML/cmm/m/it/12 H[]\OT1/cmr/m/n/12 (\OML/cmm/m/it
@@ -656,36 +656,42 @@ cmr/m/n/12 )\OML/cmm/m/it/12 d^^V$\TU/lmr/m/n/12 .
  []
 
 [11]
-Overfull \hbox (156.38315pt too wide) in paragraph at lines 648--649
+Overfull \hbox (156.38315pt too wide) in paragraph at lines 650--651
 []\TU/lmr/m/n/12 ==============================================================
 ======== 
  []
 
 [12] [13]
-Overfull \hbox (43.44778pt too wide) detected at line 760
+Overfull \hbox (43.44778pt too wide) detected at line 762
 []
  []
 
 
-Overfull \hbox (156.38315pt too wide) in paragraph at lines 777--778
+Overfull \hbox (156.38315pt too wide) in paragraph at lines 779--780
 []\TU/lmr/m/n/12 ==============================================================
 ======== 
  []
 
 [14] [15] [16]
-Overfull \hbox (156.38315pt too wide) in paragraph at lines 916--917
+Overfull \hbox (156.38315pt too wide) in paragraph at lines 918--919
 []\TU/lmr/m/n/12 ==============================================================
 ======== 
  []
 
-[17] [18] [19] (entropy.aux) ) 
+[17] [18]
+Overfull \hbox (156.38315pt too wide) in paragraph at lines 1068--1069
+[]\TU/lmr/m/n/12 ==============================================================
+======== 
+ []
+
+[19] [20] [21] (entropy.aux) ) 
 Here is how much of TeX's memory you used:
- 13420 strings out of 427839
- 270632 string characters out of 3151405
+ 13421 strings out of 427839
+ 270636 string characters out of 3151405
  330980 words of memory out of 3000000
- 17128 multiletter control sequences out of 15000+200000
+ 17129 multiletter control sequences out of 15000+200000
  9477 words of font info for 50 fonts, out of 3000000 for 9000
  1328 hyphenation exceptions out of 8191
  61i,18n,84p,951b,306s stack positions out of 5000i,500n,10000p,200000b,50000s
 
-Output written on entropy.pdf (19 pages).
+Output written on entropy.pdf (21 pages).

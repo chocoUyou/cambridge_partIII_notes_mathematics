@@ -1118,7 +1118,7 @@ But $\int c(y) p(t,x,y) dy \rightarrow 0$ as $t\rightarrow \infty$ and $\int c(y
 (Office hours on Monday, time and place TBD)
 \s
 
-\thmnum{7.9.4} Let $D$ be a connected open set $\subset \reals^d$ and let $\phi$ be a non-negative measurable function on $D$. Suppose
+\thmnum{7.9.4} Let $D$ be a connected open set $\subset \reals^d$ and let $\phi$ be a \emph{non-negative} measurable function on $D$. Suppose
 \begin{align*}
 \phi(x) = \int_{S(x,p)} \phi(y) \sigma_{x,p}(dy)
 \end{align*}
@@ -1128,19 +1128,21 @@ whenever $B(x,p) \subset D$ where $\sigma_{x,p}$ is the uniform distribution on 
 This would not be examinable, and will not be proved in the lecture - see online notes for proof.
 \s
 
-\thmnum{7.9.5} \emph{(Blumenthal's zero-one law)} Let $(X_t)_{t\geq 0} \sim \text{BM}_x(\reals^d)$. Then for all $A\in \F_{0+}^{X} = \bigcap_{t>0} \F_{t}^X$, then $\prob(A) \in \{ 0,1\}$.
+\thmnum{7.9.5} \emph{(Blumenthal's zero-one law)} Let $(X_t)_{t\geq 0} \sim \text{BM}_x(\reals^d)$. Then for all $A\in \F_{0+}^{X} = \bigcap_{t>0} \F_{t}^X$, has $\prob(A) \in \{ 0,1\}$.
 \begin{proof}
 \pf Consider the $\pi$-system $\mathscr{A} = \bigcup_{s>0} \sigma (X_t - X_s : t\geq s)$. Then for all $A_0 \in \F_{0+}^X$ and all $A \in \mathscr{A}$, we have $\prob(A_0 \cap A) = \prob(A_0) \prob(A)$. By Dynkin's lemma, this extend to all $A\in \sigma(\mathscr{A})$ (check details).
 
-Now for all $s>0, t\geq s$, $X_t - X_s$ is $\sigma(\mathscr{A})$-measurable. But $X_s \rightarrow 0$ as $s\rightarrow 0$, so $X_t $is $\sigma(\mathscr{A})$-measurable. So $\F_{\infty}^X = \sigma(\mathscr{A}) \supset \F_{0+}^X$. So for $A\in \F_{0+}^X$,
+Now for all $s>0, t\geq s$, $X_t - X_s$ is $\sigma(\mathscr{A})$-measurable. But $X_s \rightarrow 0$ as $s\rightarrow 0$, so $X_t$ is $\sigma(\mathscr{A})$-measurable. So $\F_{\infty}^X = \sigma(\mathscr{A}) \supset \F_{0+}^X$. So for $A\in \F_{0+}^X$,
 \begin{align*}
-\prob(A) = \prob(A\cap A) = \prob(A)\prob(A) \in \{0,1\}
+\prob(A) = \prob(A\cap A) = \prob(A)\prob(A)
 \end{align*}
+and therefore $\prob(A) \in \{0,1\}$.
+
 \eop
 \end{proof}
 \s
 
-\propnum{7.9.6} \emph{(Brownina motion enters all cones immediately)}Let $A$ be an open subset of $S^{d-1}$ and let $\epsilon>0$. Set $C$ a cone,
+\propnum{7.9.6} \emph{(Brownina motion enters all cones immediately)} Let $A$ be an open subset of $S^{d-1}$ and let $\epsilon>0$. Set $C$ a cone,
 \begin{align*}
 C = \{ty : y\in A, t\in (0,\epsilon) \}
 \end{align*} 
@@ -1148,10 +1150,9 @@ Let $X \sim \text{BM}_0(\reals^d)$, and define $T_C = \inf \{ t\geq 0: X_t \in T
 \begin{proof}
 See example sheet.
 \end{proof}
-Note, if a subset $B \subset S^{d}$ does not contain any ball, then this does not hold true in general.(write out clearly?)
 \s
 
-Some definition : \textbf{External cone condition(ECC)} : Let $D \subset \reals^d$ be open and connected. Then $D$ satisfies ECC if for all $x\in \partial D$ , there exist $A$ open $\subset S^{d-1}$, $\epsilon >0$ such that
+Some definition (\textbf{External cone condition, ECC))} : Let $D \subset \reals^d$ be open and connected. Then $D$ satisfies ECC if for all $x\in \partial D$ , there exist $A$ open $\subset S^{d-1}$, $\epsilon >0$ such that
 \begin{align*}
 \{x+ty : t\in (0,\epsilon), y\in A \} \cap D = \phi
 \end{align*}
@@ -1189,18 +1190,18 @@ So we obtain result on taking $\avg$ in ($\dagger$)
 
 Recall, we proved \textbf{Theorem 7.9.2(c)} in a weaker setting earlier. Here, we prove in a slightly more general setting.
 \begin{proof}
-\textbf{proof of Theorem 7.9.2(c) II} We show in the case $c=0$ that $\phi \in C^{\infty}(D)$ with $\Delta \phi =0$.
+\textbf{proof of Theorem 7.9.2(c) II.} We show in the case $c=0$ that $\phi \in C^{\infty}(D)$ with $\Delta \phi =0$ -then follows from a simple argument using symmetry of a sphere and \textbf{Theorem 7.9.4}.
 
 See online notes.
 \end{proof}
 \s
 
 \begin{proof}
-\textbf{proof of Theorem 7.9.2(c) III} We show for all $y \in \partial D$ that
+\textbf{proof of Theorem 7.9.2(c) III.} We show for all $y \in \partial D$ that
 \begin{align*}
 \lim_{x\rightarrow y, x\in \overline{D}} \phi(x) = \phi(y)
 \end{align*}
-Fix $y\in \partial D$ and choose $U$ bounded open set $\subset \reals^d$ with $u\in U$. Set $D_0 = D \cap U$. By \emph{exterior con condition}, there exist $A\in S^{d-1}$, $\epsilon>0$ such that $\{y+tz : t \in (0,\epsilon) , z\in A \} \cap D = \phi$. Let $(X_t)_{t\geq 0}$ be a $\text{BM}_0(\reals^d)$. Set $T_0(x) = \inf \{ t\geq 0: x+ X_t \not\in D \}$. By \textbf{Prop 7.9.6}, for $T_C = \inf \{t\geq 0 : y+X_t \in C \}$ we have $T_C =0$ a.s. Now on the the event $\{ T_C =0 \}$, we have $T_0(x) \rightarrow 0$ as $x\rightarrow y$, $x\in \overline{D}$ so $X_{T_0(x)} + x \in \partial D$ eventually as $x\rightarrow y$ and $X_{T_0(x)} +x \rightarrow y$ as $x\rightarrow y$. Hence
+Fix $y\in \partial D$ and choose $U$ bounded open set $\subset \reals^d$ with $u\in U$. Set $D_0 = D \cap U$. By \emph{exterior cone condition}, there exist $A\in S^{d-1}$, $\epsilon>0$ such that $\{y+tz : t \in (0,\epsilon) , z\in A \} \cap D = \phi$. Let $(X_t)_{t\geq 0}$ be a $\text{BM}_0(\reals^d)$. Set $T_0(x) = \inf \{ t\geq 0: x+ X_t \not\in D \}$. By \textbf{Proposition 7.9.6}, for $T_C = \inf \{t\geq 0 : y+X_t \in C \}$ we have $T_C =0$ a.s. Now on the event $\{ T_C =0 \}$, we have $T_0(x) \rightarrow 0$ as $x\rightarrow y$, $x\in \overline{D}$ so $X_{T_0(x)} + x \in \partial D$ eventually as $x\rightarrow y$ and $X_{T_0(x)} +x \rightarrow y$ as $x\rightarrow y$. Hence
 \begin{align*}
 \phi(X_{T_0(x)} +x) = f(X_{T_0(x)} +x) \rightarrow f(y) \quad \text{as }x\rightarrow y
 \end{align*}

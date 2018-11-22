@@ -104,7 +104,6 @@
 \end{array}}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-
 \newcommand{\newday}{================================================================}
 \newcommand{\digression}{**********************************************************************************************}
 
@@ -1412,25 +1411,91 @@ n
 
 \eop
 \end{proof}
+\s
 
+\newday
 
+(22nd November, Thursday)
+\s
 
+(remark on the example sheet 2 question 8 - the last statement is \textbf{NOT TRUE} - some assumption on regularity of the graph is essential!)
 
+\section*{5. (A taste of) Higher-order Fourier analysis}
 
+Let $k\geq 1$. Given finite sets $X_1, \cdots, X_k$ and a function $f: X_1 \times \cdots \times X_k \rightarrow \mathbb{C}$, we define the $k$-dimensional box norms $\boxnorm{f}$ of $f$ by the formula
+\begin{align*}
+\boxnorm{f}^{2^k} = \avg_{x_1^0,\cdots, x_k^0, x_1^1,\cdots, x_k^1} \prod_{\epsilon \in \{0,1\}} C^{|\epsilon|} f(x_1^{\epsilon_1},\cdots, x_k^{\epsilon_k})
+\end{align*}
+where $|\epsilon| = \epsilon_1 + \cdots + \epsilon_k$ and $C : \mathbb{C} \rightarrow \mathbb{C}$, $z\mapsto \bar{z}$ is complex conjugation. It can be shown that this is a norm.
 
+\subsubsection*{The $U^k$-norm}
 
+Let $G$ be a finite Abelian group and let $f: G\rightarrow \mathbb{C}$. Then we define $\norms{f}{U^2}$ by the formula
+\begin{align*}
+\norms{f}{U^2}^4 &= \avg_{x,a,b} f(x) \bar{f(x+a)}\bar{f(x+b)}f(x+a+b) \\
+&= \avg_{x+y =z+w} f(x)f(y)\bar{f(z)}\bar{f(w)} \\
+&= \langle f * f, f*f \rangle = \norms{f* f}{2}^2 = \norms{\hat{f}^2}{2}^2 = \sum_{\chi} |\hat{f}(\chi)|^4
+\end{align*}
+where $\hat{f}(\chi)$ is the Fourier coefficient of a generalized Fourier transform on Abelian groups corresponding to character $\chi$ of $G$.
 
+\quad We also define $\norms{f}{U^3}$ by the formula
+\begin{align*}
+\norms{f}{U^3}^8 = \avg_{x,a,b,c} f(x) \overline{f(x-a)} \overline{f(x-b)} f(x-a-b) \overline{f(x-c)} f(x-a-c) f(x-b-c)\overline{f(x-a-b-c)}
+\end{align*}
+It seems there is a nice way of expanding this in terms of Fourier transform, but sadly this is not the case. In higher order Fourier analysis, we attempt to solve problems similar to those in 1-dimensional Fourier analysis in absence of such nice expressions.
+\s
 
+\textbf{Exercise 1:} If $F(x,y,z) = f(x+y+z)$, then $\norms{f}{U^3} = \boxnorm{F}$. If fact, if $r,s,t$ are coprime to the order of $G$ then the same is true of $F(x,y,z) = f(rx+sy+tz)$.
+\s
 
+\textbf{Exercies 2:} The 3D box norm satisfies the box-norm inequality
+\begin{align*}
+\Big| \avg_{x,y,z} f(x,y,z) u(x,y) v(x,z) w(y,z) \Big| \leq \boxnorm{f} \norms{u}{\infty} \norms{v}{\infty} \norms{w}{\infty}
+\end{align*}
+(see example sheet 3)
+\s
 
+\lemnum{1} Let $G$ be a finite Abelian group with order not divisible by 2 or 3 and let $f_1, f_2, f_3, f_4 : G \rightarrow \mathbb{C}$. Then
+\begin{align*}
+\Big| \avg_{x,d} f_1(x) f_2(x+d) f_3(x+2d) f_4(x+3d) \Big| \leq \norms{f_1}{U^3} \norms{f_2}{\infty} \norms{f_3}{\infty}\norms{f_4}{\infty}
+\end{align*}
+\begin{proof}
+\pf The left hand side is
+\begin{align*}
+\textbf{LHS} = \Big| \avg_{x,y,z} f_1(-3x-2y-z) f_2(-2x-y) f_3(-x+z) f_4(y+2z) \Big| \leq \norms{f_1}{U^3} \norms{f_2}{\infty} \norms{f_3}{\infty}\norms{f_4}{\infty}
+\end{align*}
+by the previous remarks.
 
+\eop 
+\end{proof}
+\s
 
+\cornum{2} Let $A,B$ be subsets of a finite Abelian group $G$ with order coprime to 2 and 3. Let $A$ have density $\alpha$, $B$ have density $\beta$. Suppose that $f=A-\alpha$ has the property that $\norms{f}{U^3} \leq c$. Then
+\begin{align*}
+\Big| \avg_{x,d} A(x) A(x+d) B(x+2d) B(x+3d) - \alpha^2 \beta^2 \Big| \leq 2c
+\end{align*}
+\begin{proof}
+\pf Let $B = \beta + g$. Then
+\begin{align*}
+&\avg_{x,d} A(x) A(x+d) B(x+2d) B(x+3d) \\
+=& \avg_{x,d} (\alpha + f(x)) (\alpha + f(x+d)) (\beta + g(x+2d))(\beta + g(x+3d)) 
+\end{align*}
+This splits into 16 terms, one of which the main term is $\alpha^2 \beta^2$.
 
+\quad Of the remaining terms, we have a contribution of $\avg_{x,d} f(x)A(x+d) B(x+2d) B(x+3d)$ from the terms where we pick $f(x)$ from the first bracket. By \textbf{Lemma 1}, this is at most $c$. If we choose $\alpha$ from the first bracket and $f(x+d)$ from the second, we get a contribution $\alpha \avg_{x,d} f(x+d) B(x+2d) B(x+3d) = \alpha \avg_{x,d} f(x) B(x+d) B(x+2d)$ which also has magnitude at most $c$ (or even $\alpha c$). All other contributions are 0. 
 
+\eop
+\end{proof}
+\s
 
+How do we use this? In analogy to proof of Roth's theorem - Instead of taking one third of the middle of $\mathbb{Z}_n$, take $\sim 1/5$ of $\mathbb{Z}_n$. Divide cases as in the proof of Roth's theorem. However, we do not have any tools to deal with the case $\norms{f}{U^3} > c$. To overcome this, and make use of various other things in the course.
+\s
 
-
-
+\textbf{Example :} (where $U_3$ norm is very large while $U_2$ norms is small) In $\mathbb{Z}_n$, consider $f(x) = \omega^{x^2}$ where $\omega = \exp(2\pi i /r)$ for some $r$. Then
+\begin{align*}
+\avg_{x,a,b,c} \omega^{x^2 - (x-a)^2 - (x-b)^2 - (x-c)^2 - (x-a-b)^2  + (x-a-c)^2 + (x-b-c)^2 - (x-a-b-c)^2} = 1 
+\end{align*}
+But recall from first example sheet, this has very small Fourier coefficients depending on choice of $r$. It seems like higher order Fourier analysis is to deal with these quadratic behaviour - but it is in fact bit more complicated.
 
 
 \end{document}
