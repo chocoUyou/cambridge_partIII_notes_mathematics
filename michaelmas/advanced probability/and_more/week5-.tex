@@ -1201,7 +1201,7 @@ See online notes.
 \begin{align*}
 \lim_{x\rightarrow y, x\in \overline{D}} \phi(x) = \phi(y)
 \end{align*}
-Fix $y\in \partial D$ and choose $U$ bounded open set $\subset \reals^d$ with $u\in U$. Set $D_0 = D \cap U$. By \emph{exterior cone condition}, there exist $A\in S^{d-1}$, $\epsilon>0$ such that $\{y+tz : t \in (0,\epsilon) , z\in A \} \cap D = \phi$. Let $(X_t)_{t\geq 0}$ be a $\text{BM}_0(\reals^d)$. Set $T_0(x) = \inf \{ t\geq 0: x+ X_t \not\in D \}$. By \textbf{Proposition 7.9.6}, for $T_C = \inf \{t\geq 0 : y+X_t \in C \}$ we have $T_C =0$ a.s. Now on the event $\{ T_C =0 \}$, we have $T_0(x) \rightarrow 0$ as $x\rightarrow y$, $x\in \overline{D}$ so $X_{T_0(x)} + x \in \partial D$ eventually as $x\rightarrow y$ and $X_{T_0(x)} +x \rightarrow y$ as $x\rightarrow y$. Hence
+Fix $y\in \partial D$ and choose $U$ bounded open set $\subset \reals^d$ with $u\in U$. Set $D_0 = D \cap U$. By \emph{exterior cone condition}, there exist $A\in S^{d-1}$, $\epsilon>0$ such that $\{y+tz : t \in (0,\epsilon) , z\in A \} \cap D = \phi$. Let $(X_t)_{t\geq 0}$ be a $\text{BM}_0(\reals^d)$. Set $T_0(x) = \inf \{ t\geq 0: x+ X_t \not\in D \}$. By \textbf{Proposition 7.9.6}, for $T_C = \inf \{t\geq 0 : y+X_t \in C \}$ we have $T_C =0$ a.s. Now on the event $\{ T_C =0 \}$, we have $T_0(x) \rightarrow 0$ as $x\rightarrow y$($x$ staying in $\overline{D}$) so $X_{T_0(x)} + x \in \partial D$ eventually as $x\rightarrow y$ and $X_{T_0(x)} +x \rightarrow y$ as $x\rightarrow y$. Hence
 \begin{align*}
 \phi(X_{T_0(x)} +x) = f(X_{T_0(x)} +x) \rightarrow f(y) \quad \text{as }x\rightarrow y
 \end{align*}
@@ -1213,6 +1213,138 @@ Let $x\rightarrow y$, then using dominated convergence to see $\phi(x) \rightarr
 
 \eop
 \end{proof}
+\s
+
+\newday
+
+(23rd November, Friday)
+\s
+
+The following is the last part of proof of \textbf{Theorem 7.9.2(c)}
+\s
+
+\begin{proof}
+\textbf{\textbf{proof of Theorem 7.9.2(c) IV.}} It will suffice to consider the case where $d\geq 3$, or set $\tilde{D} = D \times \reals^2$ and extend $c$ as a constant in new directions. 
+
+\quad Consider for now the case $D$ bounded. There exists $\tilde{c} \in C^2(\reals^d)$ of compact support with $\tilde{c} = c$ in $D$. Set
+\begin{align*}
+\phi_0(x) = \avg \int_0^{\infty} \tilde{c}(X_t) dt
+\end{align*}
+By \textbf{part I}, $\phi_0 \in C^2(\reals^d)$ with $-\frac{1}{2}\Delta \phi_0 = \tilde{c}$. Now
+\begin{align*}
+\phi_0(x) = \avg \Big( \int_0^T \tilde{c}(X_t) dt + \phi_0(X_T) \Big) = \phi(x) + \phi_1(x)
+\end{align*}
+(by \textbf{Lemma 7.9.3}) where $\phi_1(x)  = \avg(\phi_0(X_T))$. By \textbf{part II}, $\phi_1 \in C^{\infty}(D)$ and $\Delta \phi_1 =0$. So $\phi \in C^2 (D)$ and $-\frac{1}{2} \Delta \phi =c$.
+
+\quad Turn to the case $D$ unbounded. Choose any bounded open $D_0 \subset D$. Then
+\begin{align*}
+\phi (x) = \phi_0(x) + \phi_1(x)
+\end{align*}
+(new $\phi_0$ and $\phi_1$) where $\phi_0$ and $\phi_1$ are defined by
+\begin{align*}
+\phi_0(x) = \avg \Big( \int_0^{T_0} c(X_t) dt \Big), \quad \phi_1(x) = \avg(\phi(X_{T_0}))
+\end{align*}
+where $T_0  = \inf \{ t\geq 0 : X_t \not\in D_0 \}$. We know $\phi_0 \in C^2(D)$ and $-\frac{1}{2}\Delta \phi_0 = c$ and since $\phi$ is locally bounded, $\phi_1 \in C^{\infty}(D_0)$ with $\Delta \phi_1 =0$. Hence $\phi \in C^2(D_0)$ and $-\frac{1}{2}\Delta \phi =c$.
+
+\eop
+\end{proof}
+\s
+
+Plan for the rest of the course : we will not cover all the materials(e.g. Donsker's invariance principle or Skorohod embedding for random walks) - do not have enough time. But will discuss about Poisson random measures.
+
+\section*{8. Poisson Random Measures}
+
+Our ambition is to classify all stationary independent increments - this is what L\'{e}vy-Khinchin theorem tells us. To prove this, we need some works on Poisson random measures.
+
+\subsection*{8.1. Construction}
+
+For $\lambda \in (0,\infty)$, a random variable $X$ with values in $\mathbb{Z}^+ \cup \{\infty \}$ has distribution $P(\lambda)$ if
+\begin{align*}
+\prob(X = x) = e^{-\lambda} \frac{\lambda^x}{x!}, \quad x\in \mathbb{Z}^+
+\end{align*}
+Also conventionally write $X \sim P(0)$ if $X \equiv 0$, and $P \sim P(\infty) $ if $X \equiv \infty$.
+\s
+
+\propnum{8.1.1.}\emph{(Addition property)} Let $(N_k : k\in \mathbb{N})$ be a sequence of independent random variables with $N_k \sim P(\lambda_k)$ for all $k$. Then 
+\begin{align*}
+\sum_{k} N_k \sim P \big( \sum_k \lambda_k \big)
+\end{align*}
+\s
+
+\propnum{8.1.2.}\emph{(Splitting property)} Suppose $N\sim P(\lambda)$. Let $(Y_n : n\in \mathbb{N})$ be a sequence of i.i.d. random variables in $\mathbb{N}$. Set $N_k = \sum_{n=1}^N 1_{Y_n =k}$ for $k\geq 1$. Then $(N_k : k\in \mathbb{N})$ is a sequence of independent $P(\lambda_k)$ random variables with $\lambda_k = \lambda \prob(Y_1) =k$.
+\s
+
+The proofs are just elementary calculations, but please do them!!!
+\s
+
+Let $(E, \mathscr{E}, \mu)$ be a \emph{$\sigma$-finite} measure space.
+
+\begin{itemize}
+\item A \textbf{Poisson random measure} of intensity $\mu$ is a map $M : \Omega \times \mathscr{E} \rightarrow \mathbb{Z}^+ \cup \{\infty \}$ (for $A \in \mathscr{E}$, think of $M(A)$ as $M(\{\omega \} \times A)$, a random variable) such that for any disjoint sequence $(A_k : k\in \mathbb{N})$ in $\mathscr{E}$,
+\begin{itemize}
+\item[(i)] $M(\cup_k A_k) = \sum_k M(A_k)$. 
+\item[(ii)] $M(A_k)$ is a $P(\mu(A_k))$ random variable for all $k$.
+\item[(iii)] The random variables $M(A_k)$, $k\in \mathbb{N}$ are independent.
+\end{itemize}
+\item We can construct a $\text{PRM}(\mu)$ as follows.
+
+\quad First in case $\mu(E) < \infty$, take $N\sim P(\lambda)$, $\lambda = \mu(E)$ and take independent random variables $(Y_n : n\in \mathbb{N})$ independent of $N$ with distribution $\frac{1}{\lambda} \mu$. Define $M(A) = \sum_{n=1}^{N} 1_{Y_n \in A}$ Then $M \sim \text{PRM}(\mu)$, i.e. $M(A) \sim P(\mu(A))$. (\textbf{an exercise})
+
+\quad In general, if $\mu(E) = \infty$, as $E$ is $\sigma$-finite, there exist disjoint $E_n \in \mathscr{E}$ with $\cup_{n} E_{n} = E$ such that $\mu(E_n) < \infty$ for all $n$. Using preceding construction, we obtain $(M_n)_n$ independent $\text{PRM}(\mu 1_{E_n})$'s. Then set $M = \sum_n M_n$. Then $M \sim \text{PRM}(\mu)$. (\textbf{also an exercise})
+
+\item The uniqueness of such map also can be shown - refer to the online lecture notes.
+\end{itemize}
+
+\subsection*{8.2. Integrals with respect to Poisson Random Measures}
+
+\thmnum{8.2.1} Let $M$ be a $\text{PRM}(\mu)$ and let $g$ be a measurable function on $(E, \mathscr{E})$. Assume $\mu(E) < \infty$. Define
+\begin{align*}
+M(g) = \begin{cases}
+\begin{array}{ll}
+\int_E g(y) M(dy) & \text{if  } M(E) < \infty \\
+0 & \text{o/w}
+\end{array}
+\end{cases}
+\end{align*}
+Then $M(g)$ is a well-defined random variable and 
+\begin{align*}
+\avg(e^{inM(g)}) = \exp \Big[ \int_E (e^{ing(y)} -1) \mu(dy) \Big]
+\end{align*}
+and if $g\in L^1(\mu)$ then $M(g) \in L^1(\prob)$ with $\avg(M(g)) = \mu(g)$ and $\text{Var}(M(g)) = \mu(g^2)$.
+\begin{proof}
+\pf Let's see these all true in the case $M(A) = \sum_{n=1}^N 1_{Y_n \in A}$. Then $M(g) = \sum_{n=1}^N g(Y_n)$ and this is clearly a well-defined measurable function. We have
+\begin{align*}
+\avg(e^{in M(g)} | N=n) = \avg( e^{in \sum_{k=1}^n g(Y_k) }) =\prod_{k=1}^n \avg( e^{in  g(Y_k) }) = \Big( \int_E e^{in g(y)} \frac{\mu(dy)}{\lambda} \Big)^n
+\end{align*}
+So 
+\begin{align*}
+\avg(e^{in M(g)}) &= \sum_{n=0}^{\infty} e^{-\lambda} \frac{\lambda^n}{n!} \Big( \int_E e^{ing(y)} \frac{\mu(dy)}{\lambda} \Big)^n \\
+&= e^{-\lambda} \exp \Big( \int_E e^{ing(y)} \mu(dy) \Big)
+\end{align*}
+so we obtain the average and variance of $M(g)$ from the moment generating function.
+
+\quad For the general case, since $(E, \mathscr{E},\mu)$ is $\sigma$-finite, let $E = \cup_n E_n$ where $E_n \in \mathscr{E}$, disjoint and $\mu(E_n) < \infty$. Let $M_n$ be the Poisson random measure on each $E_n$. Then $1_{M<\infty} \sum_{n=1}^{\infty} M_{n} \rightarrow M 1_{M<\infty}$ . The statement holds for each $M_n$ by above, so by dominated convergence(dominated by 1),
+\begin{align*}
+\avg(e^{in M(g)}) &= \sum_{n=0}^{\infty} e^{-\lambda} \frac{\lambda^n}{n!} \Big( \int_E e^{ing(y)} \frac{\mu(dy)}{\lambda} \Big)^n \\
+&= e^{-\lambda} \exp \Big( \int_E e^{ing(y)} \mu(dy) \Big)
+\end{align*}
+also holds.
+
+\eop
+\end{proof}
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 \end{document}
