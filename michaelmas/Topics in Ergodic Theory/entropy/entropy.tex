@@ -1153,6 +1153,123 @@ Therefore
 
 \eop
 \end{proof}
+\s
+
+\newday
+
+(24th November, Saturday)
+\s
+
+\prop Let $\mu$ be an ergodic $T_{3}$-invariant probability measure on $\reals/\mathbb{Z}$. Let $k\in \mathbb{Z}_{>0}$. Write
+\begin{align*}
+\mu_k(A) = \sum_{a=0}^{3^k-1} \mu(A + \frac{a}{3^k}) \quad \forall A \in \borel
+\end{align*}
+Let $\xi = \{[0,\frac{1}{3}), [\frac{1}{3},\frac{2}{3}), [\frac{2}{3},1) \}$. Let $\epsilon>0$. Then
+\begin{align*}
+\mu_{k}([x]_{\xi_0^K}) \geq \exp( (h_{\mu}(T_3)-\epsilon)k) \mu([x]_{\xi_0^K})
+\end{align*}
+holds for $\mu$-a.e. $x$, provided $k$ is sufficiently large depending on $\epsilon, x$ and $K$ is sufficiently large depending on $\epsilon, x,k$.
+
+``$\mu$ does not concentrate too much on a particular atom."
+\s
+
+\textbf{Remark :} We may think of $[x]_{\xi_0^K}$ as
+\begin{align*}
+[x]_{\xi_0^K} = \{ y\in \reals/\mathbb{Z} =[0,1) : y = 0.y_1y_2\cdots_{(3)}, y_1=x_2, \cdots, y_{K+1} = x_{K+1} \}
+\end{align*}
+where $x=0.x_1x_2 \cdots_{(3)}$. This is an interval of length $3^{-(K+1)}$ containing $x$. Hence, whenever $K\geq k$,
+\begin{align*}
+\mu_k([x]_{\xi_0^K}) = \mu \Big( \bigcup_{a=0}^{3^k-1} [x]_{\xi_0^K} + \frac{a}{3^k} \Big) 
+\end{align*}
+\s
+
+\lem In the above setting, we have
+\begin{align*}
+\frac{1}{k}I_{\mu}(\xi_0^{k-1}|\sigma(\xi_k^{\infty}))(x) \rightarrow h_{\mu}(T_3) \quad \mu\text{-a.e.}
+\end{align*}
+\begin{proof}
+\pf Similar to Shannon-Mcmillan-Breiman, but much simpler. Using chain rule and invariance, one obtains, for $\mu$-a.e. $x$,
+\begin{align*}
+\frac{1}{k}I_{\mu}(\xi_0^{k-1} | \sigma(\xi_k^{\infty}))(x) =& \frac{1}{k} \sum_{j=0}^{k-1} I_{\mu}(\xi_j^j | \sigma(\xi_{j+1}^{\infty}))(x) \\
+=& \frac{1}{k} \sum_{j=0}^{k-1} I_{\mu}(\xi | \sigma(\xi_1^{\infty})) (T^j x) \\
+\xrightarrow{\text{by P.E.T}} & \int I_{\mu}(\xi | \sigma(\xi_1^{\infty})) d\mu = H_{\mu}(\xi|\sigma(\xi^{\infty}_1))= h_{\mu}(T_3,\xi)
+\end{align*}
+Proof will be complete with the following lemma.
+\begin{subproof}
+\lem The partition $\xi$ as in the setting is a 1-sided generator for $(\reals/ \mathbb{Z}, \borel, \mu, T_3)$. That is, $\forall A \in \borel$, $\forall \epsilon>0$, $\exists u \in \mathbb{Z}_{>0}$ and $B\in \sigma(\xi_0^n)$ such that $\mu(A \triangle B) < \epsilon$.
+
+\quad In particular, $\xi$ is a 2-sided generator, and therefore $h_{\mu}(T,\xi) = h_{\mu}(T)$.
+
+\pf Consider
+\begin{align*}
+\mathscr{C} = \{ A\in \borel : \forall\epsilon >0, \exists n\in \mathbb{Z}_{>0},B\in \sigma(\xi_0^{n})\text{ s.t. } \mu(A\triangle B)<\epsilon \}
+\end{align*}
+This is a $\sigma$-algebra, so it is enough to show that it contains all open sets. 
+
+\quad Let $U\subset \reals/\mathbb{Z}$ be open. We claim that
+\begin{align*}
+U = \bigcup_{x\in U, n\in \mathbb{Z}_{>0}, [x]_{\xi_0^n} \subset U} [x]_{\xi_0^n}
+\end{align*}
+Note that this is a countable union and $[x]_{\xi_0^n} \in \mathscr{C}$ for all $x$, $n$. To see the claim, it is enough to show that $[x]_{\xi_0^n} \subset U$ for any $x\in U$ for $n$ sufficiently large. But if $n$ is sufficiently large, then $[x]_{\xi_0^n}$ is contained in an arbitrarily small neighbourhood of $x$.
+\end{subproof}
+
+\eop
+\end{proof}
+\s
+
+\begin{proof}
+\textbf{proof of Proposition)} By the lemma, if $k$ is sufficienlty large depending on $x,\epsilon$, then
+\begin{align*}
+I_{\mu} (\xi_0^{k-1} | \sigma(\xi_k^{\infty})) \geq k(h_{\mu}(T_3) - \epsilon/2)
+\end{align*}
+If $K$ is sufficiently large, then
+\begin{align*}
+I_{\mu}(\xi_0^{k-1}| \xi_k^K)(x) \geq k (h_{\mu}(T_3) - \epsilon)
+\end{align*}
+Observe : $[x]_{\xi_k^K} = \bigcup_{a\in 0, \cdots, 3^k-1} \Big( [x]_{\xi_0^K} + \frac{a}{3^k} \Big)$. Therefore $\mu_{k}([x]_{\xi_0^K}) = \mu([x]_{\xi_k^K})$. So
+\begin{align*}
+I_{\mu}(\xi_0^{k-1}| \xi_k^K)(x) = \log \Big( \frac{\mu([x]_{\xi_k^K})}{\mu([x]_{\xi_0^K})} \Big) = \log\Big( \frac{\mu_k([x]_{\xi_0^K})}{\mu([x]_{\xi_0^K})} \Big)
+\end{align*}
+
+\eop
+\end{proof}
+\s
+
+\cor Let $\mu$ be a $T_3$-invariant ergodic probability measure on $\reals/\mathbb{Z}$ and $\mu_k$ be defined as in the previous proposition. Then we can find a family $(A_{k})_{k\in \mathbb{Z}_{>0}} \subset \borel$ such that
+\begin{itemize}
+\item[(1)] $\mu$-a.e. $x$ is contained in $A_k$ for $k$ sufficiently large.
+\item[(2)] $\mu_k(U) \geq \exp(k h_{\mu}(T_3)/2) \mu(A_k \cap U)$ holds for all open sets $U\subset \reals/\mathbb{Z}$.
+\end{itemize}
+\begin{proof}
+\pf Let $A_k$ be the set of points $x$ such that
+\begin{align*}
+\mu_k([x]_{\xi_0^K}) \geq \exp(k h_{\mu}(T_3)/2) \mu([x]_{\xi_0^K}) \quad \cdots\cdots\cdots (\divideontimes)
+\end{align*}
+for all sufficiently large $K$. Then the first point (1) follows from the proposition. 
+
+\quad To prove point (2), fix $k\in \mathbb{Z}_{>0}$ and fix $U\subset \reals/\mathbb{Z}$ open. For $K\in \mathbb{Z}_{>k}$ write $\mathscr{A}_K$ for collection of atoms $[x]_{\xi_0^K}$ such that $[x]_{\xi_0^K} \subset U$ and ($\divideontimes$) holds for this atom. Since $U$ is open and by the definition of $A_k$, if $x\in A_k \cap U$ and $K$ is sufficiently large, then $[x]_{\xi_0^K} \in \mathscr{A}_K$. Let $B_K = \bigcup_{A\in \mathscr{A}_K} A$. Then
+\begin{align*}
+\mu_k(B_K) \geq \exp (k h_{\mu}(T_3)/2) \mu(B_K)
+\end{align*}
+follows by summing ($\divideontimes$), and $\mu_k(B_K) \leq \mu_k(U)$. Now consider $\bigcap_{K\geq L} B_K$ for $L \in \mathbb{Z}_{>k}$. These sets increase as $L$ grows, and their union is $A_k \cap U$. (Recall that $\forall x\in A_k$, we have $[x]_{\xi_0^K} \in \mathscr{A}_K$ for $K$ sufficiently large. Therefore $x\in B_K$ if $K$ is sufficiently large so $x\in \bigcap_{K \geq L} B_K$ if $L$ is sufficiently large.) Moreover, since we have $\bigcap_{K\geq L} B_K \subset B_L$ for each $L$, the desired result follows.
+\s
+
+\eop
+\end{proof}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
