@@ -1332,19 +1332,112 @@ also holds.
 
 \eop
 \end{proof}
+\s
 
+\newday
 
+(26th November, Monday)
+\s
 
+Last time : $(E,\mathscr{E},\mu)$, then $M : \Omega \times \mathscr{E} \rightarrow \mathbb{Z}^+ \cup \{\infty\}$. Then $M\sim \text{PRM}(\mu)$ if for any $(A_k : k\in \mathbb{N})$ in $\mathscr{E}$ \emph{disjoint},
+\begin{itemize}
+\item[(i)] $M(\cup_k A_k) = \sum_k M(A_k)$. 
+\item[(ii)] $M(A_k)$ is a $P(\mu(A_k))$ random variable for all $k$.
+\item[(iii)] The random variables $M(A_k)$, $k\in \mathbb{N}$ are independent.
+\end{itemize}
+If $\mu(E) =\lambda < \infty$, $M(A) = \sum_{k=1}^N 1_{Y_k \in A}$ with $N\sim P(\lambda)$, $(Y_n : n\in \mathbb{N})$ i.i.d $\sim \frac{1}{\lambda
+}\mu$. Also, $M(g) = \sum_{n=1}^N g(Y_n)$, for $g: E \rightarrow \reals$, $\avg(M(g)) = \mu(g)$, $\text{Var}(M(g)) = \mu (g^2)$, and $\avg(e^{inM(g)}) = \exp \int_E (e^{ing(y)}-1) \mu(dy)$.
+\s
 
+Now we want to introduce time to this construction. Let $(E, \mathscr{E} , K)$ be a $\sigma$-finite measure space. Then let $\mu = dt \otimes K$ on $(0, \infty) \times E$. Let $M$ be a $\text{PRM}$ on $(0,\infty) \times E$ with intensity $\mu$. Write $\tilde{M} = M-\mu$. Call $\tilde{M}$ a \textbf{compensated Poisson Random Measure.} Use filtration $(\F_t)_{t\geq 0}$, $\F_t = \sigma (\F_t^M, \mathscr{N})$ where $\F_t^M = \sigma \big( M([0,s) \times A ) : s\leq t, A\in \mathscr{E} \big)$ and $\mathscr{N} = \{B\in \F_{\infty}^M : P(B) =0\}$ is the set of null sets.
+\s
 
+Similarly as above, can use, for case $K(E)<\infty$, that $M_t(g) = \sum_{n=1}^{N_t} g(Y_n)$ for $N \sim \text{PP}(\lambda)$, $g: E\rightarrow \reals$.
+\s
 
+\propnum{8.2.2} Assume $K(E) < \infty$ and $g\in L^1(K)$. Set
+\begin{align*}
+\tilde{M}_t(g) = \begin{cases}
+\begin{array}{ll}
+\int_{(0,t] \times E} g(y) \tilde{M} (ds,dy) & \text{if }  \mu( (0,t] \times E) < \infty \,\, \forall t\geq 0 \\
+0 & \text{otherwise}
+\end{array}
+\end{cases}
+\end{align*}
+Then $(\tilde{M}_t(g))_{t\geq 0}$ is a \emph{cadlag martingale} with \emph{stationary independent increments}. Moreover,
+\begin{align*}
+\begin{array}{ll}
+\avg(\tilde{M}_t(g))^2 = t\int_E g(y)^2 K(dy) & \cdots\cdots\cdots (\heartsuit) \\
+\avg(e^{iu\tilde{M}_t(g)}) =\exp\Big[ t\int_E (e^{iug(y)}-1) K(dy) \Big] & \cdots\cdots\cdots (\oplus)
+\end{array}
+\end{align*}
+\begin{proof}
+\pf Exercise.
+\end{proof}
+\s
 
+This can be thought of a sort of pre-view of what we do in stochastic calculus course, in which we use Gaussian random variables instead of Poissons.
+\s
 
+\thmnum{8.2.3} Let $g\in L^2(K)$. Take $E_n \in \mathscr{E}$ with $E_n \nearrow E$ and $K(E_n) < \infty$. Set $X_t^N = \tilde{M}_t(g1_{E_n})$. Then there exists a \emph{cadlag martingale} $(X_t)_{t\geq 0}$ such that $\avg(\sup_{s\leq t} |X_s^n - X_s|^2) \rightarrow 0$ as $n\rightarrow \infty$ for all $t\geq 0$. 
 
+\quad Define $\tilde{M}_t(g) = X_t$. Then $(\tilde{M}_t(g))_{t\geq 0}$ has \emph{stationary independent increments} and ($\heartsuit$) and $(\oplus)$ still hold - so we may write, in convention,
+\begin{align*}
+\tilde{M}_t(g) = \int_{(0,t] \times E} g(y) \tilde{M}(ds,dy)
+\end{align*}
+and call $(\tilde{M}_t(g))_{t\geq 0}$ (a version of the stochastic) integral of $g$ with respect to $\tilde{M}$. (Although the integral does not converge absolutely!!!)
+\begin{proof}
+\pf For $n\leq m$,
+\begin{align*}
+\avg( |X^n_t - X^m_t|^2) = \avg( \tilde{M}_t(g1_{E_m \backslash E_n})^2) =  t\cdot \int_{E_m \backslash E_n} g(y)^2 K(dy) \rightarrow 0 \quad \text{(dominated convergence)}
+\end{align*}\\
+So by Doob's $L^2$-inequality,
+\begin{align*}
+\avg(\sup_{s\leq t} |X_s^n - X_s^m|^2) \leq 4\avg(|X_t^n - X_t^m|^2) \rightarrow 0 \quad \text{as } n,m\rightarrow \infty \quad \cdots\cdots\cdots (\otimes)
+\end{align*}
+So there exists $(n_k)$ such that
+\begin{align*}
+\sup_{s \leq t} |X_s^{n_k} - X_s^{n_j}| \rightarrow 0 \quad \text{a.s. as } j,k\rightarrow \infty 
+\end{align*}
+Since the uniform limit of cadlag function is cadlag, there exists a cadlag process $(X_t)_{t\geq 0}$ such that
+\begin{align*}
+\sup_{s\leq t} |X_s^{n_k} - X_s| \rightarrow 0 \quad \text{a.s. as } k \rightarrow \infty
+\end{align*}
+Note that $X_s \in L^2(\prob)$, because $X_t \leq X^0 + \sup_{n}(\sup_{s\leq t} (X_s^n - X^0))$. By Fatou's lemma with $(\otimes)$, has
+\begin{align*}
+\avg(\sup_{s\leq t} |X_s^n - X_s|^2 ) \rightarrow 0 \quad \text{as } n\rightarrow \infty
+\end{align*}
+Now for $A \in \F_s$, has
+\begin{align*}
+& \avg( (X_t^n - X_s^n) 1_A ) =0 \\
+& \avg(e^{iu (X_t^n - X_s^n)} 1_A) = \prob(A) \times \exp \Big[ t\int_{E_n} (e^{iug(y)-1-ug(y)}) K(dy) \Big]
+\end{align*}
+But $X_t^n \rightarrow X_t$ in $L^2(\prob)$ for all $t$ so on letting $n\rightarrow \infty$ in these equations we see (using $|e^{iug}-1-iug| \leq \frac{1}{2}u^2 g^2)$)
+\begin{align*}
+& \avg( (X_t - X_s) 1_A ) =0 \\
+& \avg(e^{in (X_t - X_s)} 1_A) = \prob(A) \times \exp \Big[ t\int_{n} (e^{iug(y)-1-ug(y)}) K(dy) \Big]
+\end{align*}
+so $(X_t)_{t\geq 0}$ is a martingale and both $(\heartsuit)$ and $(\oplus)$ hold and $(X_t)_{t\geq 0}$ has stationary independent increments.\\
 
+\eop
+\end{proof}
 
+\section*{9. L\'{e}vy Processes}
 
-
+A \textbf{L\'{e}vy process} is a cadlag process with stationary independent increments. Say that $(a,b,K)$ is a \textbf{L\'{e}vy triple} if $a\in [0,\infty)$, $b\in \reals$ and $K$ is a Borel measure on $\reals$ with $K(\{0\}) =0$ and
+\begin{align*}
+\int_{\reals} (|y|^2 \wedge 1) K(dy) < \infty
+\end{align*}
+We call $a$ the \textbf{diffusivity}, $b$ the \textbf{drift} and $K$ the \textbf{L\'{e}vy measure}. These notions generalize naturally to processes with values in $\reals^d$ but we will consider only the case $d = 1$. Take a Brownian motion $(B_t)$ and a Poisson random measure $M$ on $(0,\infty) \times \reals$ of intensity $\mu = dt \otimes K$. Set
+\begin{align*}
+X_t = bt + \sqrt{a} B_t \int_{(0,t]\times \reals} y1_{|y| \leq 1} \tilde{M}(ds,dy) + \int_{(0,t] \times \reals} y1_{|y|>1} M(ds,dy)
+\end{align*}
+Note that the first integral exists because $|y|\wedge 1 \in L^2(K)$ and the second integral exists because $\mu((0,\infty] \times \{y: |y|\geq 1\}   ) < \infty$. Now putting the results from \textbf{Section 8} together, we see that, $(X_t)$ is \emph{cadlag with stationary independent increments} and
+\begin{align*}
+\avg(e^{iu X_t}) = e^{t\psi_{a,b,K}(u)}
+\end{align*}
+where $\psi_{a,b,K}(u) = iub - \frac{1}{2}u^2a  + \int_E (e^{iuy} - 1 -y1_{|y|\leq 1}) K(dy)$. Thus, to every L\'{e}vy triple there corresponds a L\'{e}vy process.
+\s
 
 
 \end{document}

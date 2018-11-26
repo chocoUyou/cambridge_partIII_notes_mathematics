@@ -216,8 +216,101 @@ With $\lambda -2C \geq 0$, we have $u\equiv 0$
 
 \eop
 \end{proof}
+\s
 
+\newday
 
+(26th November, Monday)
+\s
+
+\thm Given $\psi \in H_0^1(U)$, $\psi' \in L^2(U)$ and $f\in L^2(U_T)$, there exists a weak solution $u\in H^1(U_T)$ and
+\begin{align}
+\norms{u}{H^1(U_T)} \leq C(\norms{\psi}{H^1(U)} +\norms{\psi'}{L^2(U)} + \norms{f}{L^2(U_T)}) \label{33}
+\end{align}
+for some $C = C(U,T,a^{ij},a^i,b,c)$ not depending on $u$.
+\begin{proof}
+\pf We use \emph{Galerkin's method}. The idea is to project the equation onto a finite dimensional subspace of $L^2(U)$, spanned by the first $N$ eigenfunctions of the Dirichlet Laplacian (or some other convenient basis for $L^2(U)$). We assume that $\psi, \psi' \in C_c^{\infty}(U)$, $f\in C_c^{\infty}(U_T)$. Since these spaces are dense in $H_0^1(U), L^2(U), L^2(U_T)$ respectively, we can recover the result for general $\psi, \psi',f$ using a continuity argument once (\ref{33}) is established.
+
+\quad Let $\{\varphi_k \}_{k=1}^{\infty}$ be an orthonormal basis for $L^2(U)$ with $\varphi_k \in H_0^1(U)$, e.g. take $\varphi_k$ to be the $k^{\text{th}}$ eigenfunction of
+\begin{align*}
+\begin{cases}
+\begin{array}{ll}
+- \Delta \varphi_k = \lambda_k \varphi_k & \text{in } U \\
+\varphi_k =0 & \text{on } \pa U
+\end{array}
+\end{cases}
+\end{align*}
+Now, define
+\begin{align*}
+u^N(x,t) = \sum_{k=1}^N u_k(t) \varphi_k(x)
+\end{align*}
+where $u_k(t)$ are determined by solving the ordinary differential equation :
+\begin{align}
+\Big( \frac{d^2 u^N}{dt^2}, \varphi_k \Big) + \int_{\Sigma_t} \Big[ \sum_{i,j} a^{ij}u_{x_j}^N (\varphi_k)_{x_j} + \sum_i b^i u_{x_i}^N \varphi_k + bu_t^N \varphi_k + cu^N \varphi_k \Big] dx = \int_{\Sigma_t} f\varphi_k dx \label{34}
+\end{align}
+and $u_k^N(0)= (\psi, \varphi_k)_{L^2(U)}$, $\dot{u}_k^N(0) = (\psi', \varphi_k)_{L^2(U)}$ for $k=1, \cdots, N$. This is the projection of the PDE onto $\langle \varphi_1, \cdots, \varphi_N \rangle$. Note that (\ref{34}) is a system of $N$-ODE's for the unknowns $u_k^N(t)$, $k=1, \cdots, N$ which is linear in $u_k^N$ with coefficients which are $C^1$ in $t$. By Picard-Lindel\"{o}f, a unique solution exists for $u_k^N:[0,T] \rightarrow \reals$. We now estimate $u^N$. Multiply (\ref{34}) by $e^{-\lambda t} \dot{u}_k^N(t)$ and sum over $k=1, \cdots, N$. Noting that $\sum_{k=1}^N e^{-\lambda t} \dot{u}_k^N(t) \varphi_k(x) = \dot{u}^N e^{-\lambda t}$, we find after integrating over $t\in [0,\tau]$ for some $\tau \in (0,T]$,
+\begin{align*}
+\int_0^{\tau} dt \int_U dx \Big[ &\ddot{u}^N \dot{u}^N e^{-\lambda t} + \sum_{i,j=1} a^{ij}u_{x_i}^N \dot{u}_{x_j}^N e^{-\lambda t} + \sum_{i}b^i u_{x_i}^N \dot{u}_{x_j}^N e^{-\lambda t} \\
+& + b(\dot{u}^{N})^2 e^{-\lambda t} + u^N \dot{u}^N e^{-\lambda t} + (c-1)u^N \dot{u}^N e^{-\lambda t} \Big] = \int_0^{\tau} dt \int_U dx (f\dot{u}^N e^{-\lambda t})
+\end{align*}
+Rearranging,
+\begin{align*}
+\textbf{(A)} = \int_0^{\tau} dt \int_U dx \bigg[ &\frac{d}{dt} \Big[ \Big( \frac{1}{2}(\dot{u}^N)^2 + \frac{1}{2} \sum_{i,j} a^{ij} u_{x_i}^N u_{x_j}^N + \frac{1}{2} (u^N)^2 \Big) e^{-\lambda t} \Big] \\
+&+ \frac{\lambda}{2} \Big( (\dot{u}^N)^2 + \frac{1}{2} \sum_{i,j}a^{ij}u^N_{x_i}u^N_{x_j} + (u^N)^2 \Big)e^{-\lambda t} \bigg] \\
+= \int_0^{\tau}dt \int_U dx \Big[ &\frac{1}{2} \sum_{ij} \dot{a}^{ij} u_{x_i}^N u_{x_j}^N - \sum_i b^i u_{x_i}^N \dot{u}^N - b(\dot{u}^N)^2 + (1-c)u^N \dot{u}^N + f\dot{u}^N \Big]e^{-\lambda t} = \textbf{(B)}
+\end{align*}
+We may write
+\begin{align*}
+\textbf{(A)} =& \frac{e^{-\lambda \tau}}{2} \int_{\Sigma_{\tau}} ( \dot{u}^N)^2 + \sum_{i,j} a^{ij} u^N_{x_i} u^N_{x_j} +(u^N)^2 )dx - \frac{1}{2} \int_{\Sigma_{0}} ( \dot{u}^N)^2 + \sum_{i,j} a^{ij} u^N_{x_i} u^N_{x_j} +(u^N)^2 )dx \\
+&+ \frac{\lambda}{2} \int_0^{\tau} dt \int_U dx \Big[ (\dot{u}^N)^2 + \frac{1}{2} \sum_{i,j}a^{ij}u_{x_i}^N u_{x_j}^N + (u^N)^2 \Big] e^{-\lambda t}
+\end{align*}
+so can bound
+\begin{align*}
+\textbf{(A)} \geq & \frac{e^{-\lambda \tau}}{2} \int_{\Sigma_{\tau}} ( ( \dot{u}^N)^2 + (u^N)^2 + \theta |Du^N|^2  ) dx \\
+&+ \frac{\lambda}{2} \int_0^{\tau} dt \int_U dx \Big( (\dot{u}^N)^2 + (u^N)^2 + \theta |Du^N|^2 \Big) e^{-\lambda t} - C_1 \big( \norms{\psi'}{L^2(U)}^2 + \norms{\psi}{H^1(U)}^2 \big)
+\end{align*}
+where $C_1$ is independent of $N, \lambda$. On the other hand,
+\begin{align*}
+\textbf{(B)} \leq C_2 \int_0^{\tau} dt \int_U dx \Big( (\dot{u}^N)^2 + (u^N)^2 + \theta |Du^N|^2 \Big) e^{-\lambda t} + C_3 \int_0^{\tau} \int_U dx f^2 e^{-\lambda t} 
+\end{align*}
+with $C_2, C_3$ again independent of $N, \lambda$, where the last term is estimated using Cauchy-Schwarz inequality. Combining these estimates, choosing $\lambda > C_2$, we conclude
+\begin{align*}
+&\sup_{\tau \in [0,T]} \big( \norms{u^N}{H^1(\Sigma_{\tau})}^2 + \norms{\dot{u}^N}{L^2(\Sigma_{\tau})}^2 \big) + \norms{u^N}{H^1(U_T)}^2  \\
+& \leq C_4 \big( \norms{\psi'}{L^(U)}^2 + \norms{\psi}{H^1(U)}^2 + \norms{f}{L^2(U_T)}^2 \big)
+\end{align*}
+where $C_4$ is independent of $N$. Thus we can extract a subsequence $u^{N_m} \xrightarrow{w} u$ in $H^1(U_T)$.
+
+\quad It remains to show $u$ is a weak solution. To see this, consider $v$ of form $v= \sum_{k=1}^M v_k(t) \varphi_k(x)$. For some $v_k \in C^1([0,T])$ with $v_k(T) =0$. Multiply the ODE for $u^N$ by $v_K(t)$, summing over $k=1, \cdots, M$ and integrating over $[0,T]$ in $t$. We can integrate the $\ddot{u}^N$ term by parts to find
+\begin{align*}
+\int_{U_T} \Big( -u_t^N v_t + \sum_{i,j}a^{ij}u_{x_i}^N v_{x_j} + \sum_{i}b^i u^N_{x_i} v + b\dot{u}^N v + c\cdot uv \Big) dxdt - \int_{\Sigma_0} u_t^N v dx = \int_{U_T} fv dxdt
+\end{align*}
+Now if $N>M$, we have
+\begin{align*}
+\int_{\Sigma_0} u^N_t vdx = \int_{\Sigma_0} \psi' vdx 
+\end{align*}
+Setting $N = N_m$ and sending $m\rightarrow \infty$, we find 
+\begin{align*}
+\int_{U_T} \Big( -u_t v_t + \sum_{i,j} a^{ij} u_{x_i}v_{x_j} + \sum_i b^i u_{x_i} v + b\dot{u} v + c\cdot uv \Big) dxdt - \int_{\Sigma_0} \psi' v dx = \int_{U_T} fv dxdt
+\end{align*}
+Note that $v$'s of the form $v= \sum_{k=1}^M v_k(t) \varphi_k(x)$ are dense in $H^1(U_T)$ with $v=0$ on $\Sigma_T \cup \pa^* U_T$ so $u$ satisfies  the identity to be a weak solution.
+
+\quad Finally, we check the boundary conditions. We note for $k=1,2,\cdots,$ we have
+\begin{align*}
+w \mapsto \int_{\Sigma_0} w \varphi_n dx
+\end{align*}
+is a bounded linear functional on $H^1(U_T)$ so we can conclude
+\begin{align*}
+\int_{\Sigma_0} u\varphi_k dx = \lim_{M\rightarrow \infty} \int_{\Sigma_0} u^{N_M} \varphi_k dx = (\psi, \varphi_k)_{L^2(U)} 
+\end{align*}
+so $u = \psi$ on $\Sigma_0$.
+
+\quad Note we actually have established a stronger estimate :
+\begin{align*}
+\sup_{\tau \in [0,T]} ( \norms{u}{H^1(\Sigma_{\tau})}^2 + \norms{\dot{u}}{L^2(\Sigma_t)}^2) + \norms{u}{H^1(U_T)}^2 \leq C_4(\norms{\psi'}{L^2(U)}^2 + \norms{\psi}{H^1(U)}^2 + \norms{f}{L^2(U_T)}^2)
+\end{align*}
+
+\eop
+\end{proof}
 
 
 
