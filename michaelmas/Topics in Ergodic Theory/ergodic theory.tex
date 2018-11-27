@@ -1,4 +1,4 @@
-\documentclass[10pt,a4paper]{report}
+\documentclass[12pt,a4paper]{report}
 
 
 \usepackage{amsmath}
@@ -36,6 +36,15 @@
 }
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
+%%%%%%%%%%%%%%double rules%%%%%%%%%%%%%%%%%%%
+\usepackage{lipsum}% Just for this example
+
+\newcommand{\doublerule}[1][.4pt]{%
+  \noindent
+  \makebox[0pt][l]{\rule[.7ex]{\linewidth}{#1}}%
+  \rule[.3ex]{\linewidth}{#1}}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
 \begin{document}
 \newcommand{\thm}{\textbf{Theorem) }}
 \newcommand{\thmnum}[1]{\textbf{Theorem #1) }}
@@ -64,7 +73,10 @@
 \newcommand{\dlim}{D-\lim}
 \newcommand{\clim}{C-\lim}
 
-\newcommand{\newday}{======================================================================}
+\newcommand{\ndiv}{\hspace{-5pt}\not|\hspace{3pt}}
+
+\newcommand{\newday}{\doublerule[0.5pt]}
+%\newcommand{\newday}{======================================================================}
 \newcommand{\digression}{**********************************************************************************************}
 
 \setlength\parindent{0pt}
@@ -73,7 +85,8 @@
 \chapter*{Topics in Ergodic Theory}
 \s
 
-=====================================================================================
+\newday
+
 (4th October 2018, Thursday)
 \s
 
@@ -167,7 +180,8 @@ Then $S$ contains arbitrary long arithmetic progressions. That is, $\forall l$, 
 \end{align*}
 \s
 
-=====================================================================================
+\newday
+
 (6th October 2018, Saturday)
 \s
 
@@ -274,7 +288,8 @@ Note $A$ is also a cylinder set. Then $\mu(A)= \lim_{m} \mu_m (A)$ and
 by assumption that $S$ is of positive upper Banach density, and therefore we can prove Szemer\'{e}di when assuming Furstenberg.
 \s
 
-========================================================================================================
+\newday
+
 (9th October, Tuesday)
 \s
 
@@ -685,7 +700,7 @@ Therefore $f^*(x) - f^*(Tx) = \lim_{N\rightarrow \infty} \frac{1}{N}f(x) = 0$
 \eop
 \end{proof}
 
-==============================================================================
+\newday
 
 \begin{proof}
 \textbf{a more elegant proof) }
@@ -746,7 +761,7 @@ and put $f^* = \bar{f}^+ - \bar{f}^-$, then we have the desired result.
 \end{proof}
 \s
 
-=======================================================================
+\newday
 
 (not done in the lecture. a question in example sheet.)
 
@@ -2177,20 +2192,983 @@ h_{\mu}(T) = h_{\mu}(T,\xi) = H(p_1, \cdots, p_k)
 
 So the entropy of $(1/2,1/2)$ shift is $\log2$ and $(1/3,1/3,1/3)$ shift is $\log3$ - which shows that two systems cannot be isomorphic.
 \end{itemize}
+\s
 
+\newday
 
+(10th November, Saturday)
+\s
 
+\thm \emph{(Kolmogorov-Sinai)} Let $(X,\borel, \mu, T)$ be an \emph{invertible} measure preserving system. Let $\xi$ be a countable measurable partition with $H_{\mu}(\xi) < \infty$, which is a 2-sided generator. Then
+\begin{align*}
+h_{\mu}(T) = h_{\mu}(T,\xi)
+\end{align*}
+\s
 
+We will need three lemmas.
+\s
 
+\lemnum{1} Let $(X,\borel, \mu, T)$ be an \emph{invertible} measure preserving system. Let $\xi \subset B$ be a countable partition. Then
+\begin{align*}
+h_{\mu}(T, \xi^n_{-n}) = h_{\mu}(T,\xi)
+\end{align*}
+\s
 
+\lemnum{2} Let $(X,\borel, \mu, T)$ be an MPS. Let $\xi, \eta \subset \borel$ be two countable partitions. Then
+\begin{align*}
+h_{\mu}(T,\eta) \leq h_{\mu}(T, \xi) + H_{\mu}(\eta | \xi)
+\end{align*}
+\s
 
+\lemnum{3} For any $\epsilon>0$ and $k\in \mathbb{Z}_{>0}$, $\exists \delta >0$ such that the following holds : let $(X, \borel, \mu)$ be a probability space. Let $\xi \subset \borel$ be a countable and $\eta \subset \borel$ a finite partition. Suppose that $\eta$ has $k$ atoms and for each $A\in \eta$, $\exists B\in \sigma(\xi)$ such that $\mu(A \triangle B) <\delta$. Then 
+\begin{align*}
+H_{\mu}(\eta | \xi) \leq \epsilon
+\end{align*}
+\s
 
+Let us prove the theorem assuming the lemmas. We will come hack to the proof of the lemmas later.
+\s
 
+\begin{proof}
+\textbf{proof of Theorem)} We first show $h_{\mu} (T,\xi) = \sup_{\eta \text{ finite}} h_{\mu} (T,\eta)$. We need to show that for all finite partition $\eta \subset \borel$, we have $h_{\mu}(T,\eta) \leq h_{\mu}(T,\xi)$. Fix $\epsilon>0$. By \textbf{Lemma 3} and definition of 2-sided generator, $\exists n$ such that $H_{\mu}(\eta | \xi^n_{-n}) \leq \epsilon$. Then we have
+\begin{align*}
+h_{\mu}(T,\eta) & \leq h_{\mu}(T,\xi_{-n}^n) + H_{\mu}(\eta | \xi^n_{-n}) \leq h_{\mu}(T,\xi_{-n}^n) + \epsilon \quad (\text{Lemma 2}) \\
+& = h_{\mu} (T,\xi) + \epsilon \quad (\text{Lemma 1})
+\end{align*}
+We are done if we take $\epsilon \searrow 0$.
+\s
 
+Now it is left to show that $\forall \epsilon >0$, for every countable partition $\eta \subset \borel$, $\exists \tilde{\eta} \subset \borel$ finite such that $h_{\mu}(T,\eta) \leq h_{\mu}(T, \tilde{\eta}) + \epsilon$. By \textbf{Lemma 2,} it is enough to show $H_{\mu}(\eta |\tilde{\eta}) \leq \epsilon$. When $\eta = \{A_1, A_2, \cdots \}$, let $\tilde{\eta} = (A_1, A_2, \cdots, A_n, \bigcup_{j>n} A_j)$ for sufficiently large $n$ . Then
+\begin{align*}
+H_{\mu}(\eta) = H_{\mu} (\eta \vee \tilde{\eta}) = H_{\mu}(\tilde{\eta}) + H_{\mu}(\eta |\tilde{\eta})
+\end{align*}
+Thus
+\begin{align*}
+H_{\mu}(\eta | \tilde{\eta}) &= H_{\mu}(\eta) - H_{\mu}(\tilde{\eta}) = \sum_{j>n} (-1) \mu(A_j) \log \mu(A_j) + \mu \Big( \cup_{j=n+1}^{\infty} A_j \Big) \log \mu \Big( \bigcup_{j=n+1}^{\infty} A_j \Big) \\
+& \leq \sum_{j>n} (-1) \mu(A_j) \log \mu(A_j) \leq \epsilon
+\end{align*}
+if $n$ is sufficiently large.
 
+\eop
+\end{proof}
+\s
 
+Now we prove the lemmas.
+\s
 
+\begin{proof}
+\textbf{proof of Lemma 1)} \begin{align*}
+h_{\mu}(T, \xi_{-m}^m) &= \lim_{n\rightarrow \infty} \frac{1}{n} H_{\mu}(\xi^{n+m-1}_{-m}) = \lim_{n\rightarrow \infty} \frac{1}{n} H_{\mu} (\xi_0^{n+2m -1}) \\
+&= \lim_{n\rightarrow \infty} \frac{1}{n+2m-1} H_{\mu}(\xi_0^{n+2m-1}) = h_{\mu}(T,\xi)
+\end{align*}
 
+\eop
+\end{proof}
+\s
+
+\begin{proof}
+\textbf{proof of Lemma 2)} \begin{align*}
+h_{\mu}(T,\eta) &= \lim_{n\rightarrow \infty} \frac{1}{n} H_{\mu}(\eta^{n-1}_0) \\
+& \leq \lim_{n\rightarrow \infty} \frac{1}{n} H_{\mu}((\xi \vee \eta)_0^{n-1}) \\
+&= \lim_{n\rightarrow \infty} \frac{1}{n}\Big( H_{\mu}(\xi_0^{n-1}) + H_{\mu}(\eta_0^{n-1} | \xi_0^{n-1}) \Big) \\
+&= h_{\mu}(T,\xi) + \lim_{n\rightarrow \infty} \frac{1}{n} \Big( \sum_{j=0}^{n-1} H_{\mu}(\eta_j^1 | \xi_0^{n-1} \vee \eta_{j+1}^{n-1})  \Big) \quad \text{(Chain rule)} \\ 
+&= h_{\mu}(T,\xi) + \lim_{n\rightarrow \infty} \frac{1}{n} \Big( \sum_{j=0}^{n-1} H_{\mu} (\eta_j^j | \xi_j^j) \Big) \quad \text{(throwing away kwown information increases entropy)}\\
+&= h_{\mu}(T, \xi) + H_{\mu}(\eta |\xi)
+\end{align*}
+where the last equality follows because $H_{\mu} (\eta_j^j | \xi_j^j) = H_{\mu}(\eta |\xi)$.
+
+\eop
+\end{proof}
+\s
+
+\begin{proof}
+\textbf{proof of Lemma 3)} Write $A_1, \cdots, A_k$ for the atoms of $\eta$ and for each $i \in \{1,\cdots, k\}$. Let $B_i \in \sigma(\xi)$ such that $\mu(A_i \triangle B_i) < \delta$. We consider the partition $\lambda$, which has the following $k+1$ atoms
+\begin{subproof}
+: $C_0 = \bigcup_{i=1}^k (A_i \cap (B_i \backslash \bigcup_{j\neq i} B_j ) )$ and $C_i = A_i \backslash C_0$ for $i=1, \cdots, k$.
+
+They have some useful properties :
+\begin{itemize}
+\item[-] $C_{0}$ is big, i.e. $\mu(C_0) \geq \sum_{i=1}^k (\mu(A_i) - k\delta) = 1-k^2 \delta$.
+\item[-] If $x\in C_0$, then $x\in A_i$ $\Leftrightarrow$ $x\in B_i$.
+\end{itemize}
+Also note, 
+\begin{align*}
+H_{\mu} (\lambda) &= -\mu(C_0) \log (\mu(C_0)) - \sum_{i=1}^k \mu(C_i) \log \mu (C_i) \\
+&\leq -\mu(C_0) \log (\mu (C_0)) - \sum_{i=1}^n \mu(C_i) \log \Big( \frac{\sum_{i=1}^k \mu(C_i)}{k} \Big) \quad \text{(Jensen to }x\mapsto x\log x) 
+\end{align*}
+\end{subproof}
+If $\delta$ is sufficiently small, then $\mu(C_0)$ can be made as close to $1$ as we want and $\sum_{i=1}^k \mu(C_i)$ is as small as we want. Then
+$H_{\mu}(\lambda) < \epsilon$ if $\delta$ is sufficiently small. Now, we may write
+\begin{align*}
+H_{\mu}(\eta | \xi) &\leq H_{\mu}(\eta \vee \lambda | \xi) \leq H_{\mu}(\lambda | \xi) + H_{\mu}(\eta | \xi \vee \lambda) \\
+& \leq H_{\mu} + H_{\mu}(\eta | \xi \vee \lambda) < \epsilon + H_{\mu}(\eta | \xi \vee \lambda)
+\end{align*}
+so it is enough to show that
+\begin{align*}
+H_{\mu}(\eta | \xi \vee \lambda) =0
+\end{align*}
+However, this trivially holds because $\sigma (\eta) \subset \sigma(\xi \vee \lambda)$, i.e. $[x]_{\xi \vee \lambda} \subset [x]_{\eta}$.
+\begin{subproof}
+: formally, this can be deduced from the fact \begin{align*}
+A_i &= C_i \cup (C_0 \cap A_i) = C_i \cup (A_i \cap (B_i \backslash \cup_{j\neq i} B_j)) \\
+&= C_i \cup (C_0 \cap (B_i \backslash \cup_{j\neq i} B_j)) \in \sigma(\xi \vee \lambda)
+\end{align*}
+\end{subproof}
+
+\eop
+\end{proof}
+\s
+
+\newday
+
+(13th November, Tuesday)
+\s
+
+\section*{11. The Shannon McMillan Breiman theorem}
+
+\thm \emph{(Shannon-McMillan-Breiman)} Let $(X, \borel, \mu, T)$ be an ergodic MPS. Let $\xi \subset \borel$ be a countable measurable partition. with $H_{\mu}(\xi) < \infty$. Then
+\begin{align*}
+\frac{1}{n} I(\xi^{n-1}_0) \xrightarrow{n\rightarrow \infty} h_{\mu}(T,\xi) 
+\end{align*}
+pointwise $\mu$-a.e. and in $L^1$.
+\s
+
+\textbf{Recall :} $I(\xi_0^{n-1})(x) = -\log \mu([x]_{\xi_0^{n-1}})$, so get $\mu([x]_{\xi_0^{n-1}})\approx \exp( -n h_{\mu}(T,\xi))$ approximately.
+\s
+
+A lecture and a half would be devoted in proving this theorem.
+
+\begin{proof}
+\textbf{Idea :} Using the chain rule and then invariance,
+\begin{align*}
+\frac{1}{n} I_{\mu}(\xi^{n-1}_0)(x) &= \frac{1}{n} \sum_{j=0}^{n-1} I_{\mu}(\xi_j^j |\xi_{j+1}^{n-1})(x) \\
+&= \frac{1}{n} \sum_{j=0}^{n-1} I_{\mu}(\xi | \xi_1^{n-j-1})(T^j x)
+\end{align*}
+so this looks as if we can apply pointwise ergodic theorem. However, we still the notion of conditional entropy to develop this idea.
+\end{proof}
+
+\subsubsection*{Conditional expectation}
+
+Let $(X,\borel, \mu)$ be a probability space, and let $\mathscr{A} \subset \borel$ be a sub-$\sigma$-algebra. The for all $f\in L^1(X,\borel, \mu)$, $\exists f^* \in L^1(X, \borel, \mu)$ such that
+\begin{itemize}
+\item[(1)] $f^*$ is $\mathscr{A}$-measurable.
+\item[(2)] $\int_A fd\mu = \int_A f^* d\mu$ for all $A \in \mathscr{A}$.
+\end{itemize}
+If $f_1^*$ and $f_2^*$ both satisfy (1) and (2) in the role of $f^*$, then $f_1^* = f_2^*$ $\mu$-a.e. The function $f^*$ is called the \textbf{condition expectation} of $f$ relative to $\mathscr{A}$ and it is denoted by $\avg  [f| \mathscr{A}]$.
+\s
+
+\textbf{Remarks :}
+\begin{itemize}
+\item Writing $V_{\mathscr{A}}$ for the closed subspace of $L^2(X,\borel, \mu)$ consisting of $\mathscr{A}$-measurable functions, $\avg[f|\mathscr{A}]$ is the orthogonal projection of $f$ to $V_{\mathscr{A}}$ provided $f\in L^2$. 
+\item If $\mathscr{A}$ is generated by a countable partition $\xi$, then
+\begin{align*}
+\avg[f | \mathscr{A}](x)  = \mu([x]_{\xi})^{-1} \int_{[x]_{\xi}} fd\mu
+\end{align*}
+\end{itemize}
+\s
+
+\thm Let $(X, \borel, \mu)$ be the probability space, let $f,f_1,f_2\in L^1(X, \borel, \mu)$, $\mathscr{A},\mathscr{A}_1,\mathscr{A}_2 \subset \borel$ be sub-$\sigma$-algebra. Then
+\begin{itemize}
+\item[(1)] $\avg[f_1 + f_2 | \mathscr{A}] = \avg[f_1 |\mathscr{A}] + \avg{f_2 | \mathscr{A}}$.
+\item[(2)] If $f_1$ is $\mathscr{A}$-measurable, then $\avg[f_1 f | \mathscr{A}] = f_1 \avg[f|\mathscr{A}]$.
+\item[(3)] If $\mathscr{A}_1 \subset \mathscr{A}_2$ then $\avg[f|\mathscr{A}_1] = \avg[\avg[\mathscr{A}|\mathscr{A}_2]|\mathscr{A}_1]$.
+\end{itemize}
+\s
+
+\thm \emph{(Martingale theorems)} Let $(X,\borel, \mu)$ be a probability space, let $f\in L^1$ and let $\mathscr{A},\mathscr{A}_1,\mathscr{A}_2, \cdots \subset \borel$ be sub-$\sigma$-algebras. Assume that \emph{either} (1) $\mathscr{A}_1 \subset \mathscr{A}_2 \subset \cdots$ and $\mathscr{A} = \sigma(\mathscr{A}_j : j\geq 1)$ \emph{or} (2) $\mathscr{A}_1 \supset \mathscr{A}_2 \supset \cdots$ and $\mathscr{A} = \cap \mathscr{A}_j$. Then
+\begin{align*}
+\lim_{n\rightarrow \infty} \avg[f| \mathscr{A}_n] = \avg[f|\mathscr{A}]
+\end{align*}
+both pointwise $\mu$-a.e. and in $L^1$.
+\s
+
+If you have not seen these theorems but too lazy to go over the proofs, you can see these easily for $f\in L^2$ case.
+
+\subsubsection*{Conditional information and entropy and entropy relative to $\sigma$-algebra}
+
+Let $(X,\borel, \mu)$ be a probability space, let $\eta \subset \borel$ be a countable partition let $\mathscr{A} \subset \borel$ be a sub-$\sigma$-algebra. Then the \textbf{conditional information function of $\eta$ relative to $\mathscr{A}$} is
+\begin{align*}
+I_{\mu}(\eta | \mathscr{A}) (x) = \sum_{A \in \eta} -\chi_A \cdot \log \Big( \avg[\chi_A | \mathscr{A}] \Big)
+\end{align*}
+\s
+
+\textbf{Example :} Suppose that $\mathscr{A}$ is generated by a countable partition $\xi \subset \borel$. Then
+\begin{align*}
+I_{\mu}(\eta | \mathscr{A})(x) &= \sum_{A \in \eta} -\chi_A \log \avg [\chi_A | \mathscr{A}](x) \\
+&= -\log \avg[ \chi_{[x]_{\eta}} | \mathscr{A}] (x)  \\
+&= -\log \frac{1}{\mu([x]_{\xi})} \int_{[x]_{\xi}} \chi_{[x]_{\eta}} d\mu \\
+&= -\log \frac{\mu([x]_{\eta} \cap [x]_{\xi} )}{\mu([x]_{\xi})} = -\log \frac{[x]_{\eta \vee \xi}}{\mu([x]_{\xi})}
+\end{align*}
+\s
+
+\defi The \textbf{conditional entropy of $\eta$ relative to $\mathscr{A}$} is defined as $H_{\mu}(\eta | \mathscr{A}) = \int I_{\mu}(\eta | \mathscr{A}) d\mu$. 
+\s
+
+\thm \emph{(Maximal inequality)} Let $(X,\borel, \mu)$ be a probability space, and let $\xi_1, \xi_2, \cdots$ be countable measurable partitions such that $\sigma(\xi_1) \subset \sigma(\xi_2) \subset \cdots$. Let $\mathscr{A} = \sigma(\xi_j:j\geq 1)$. Let $\eta \subset \borel$ be another countable partition. Then 
+\begin{align*}
+I_{\mu}(\eta | \xi_n) \xrightarrow{n\rightarrow \infty} I_{\mu}(\eta | \mathscr{A}) \quad \text{pointwise a.e. and in } L^1
+\end{align*}
+
+\quad Moreover, $I^*$ defined by $I^* = \sup_{n\in \mathbb{Z}_{>0}} I_{\mu}(\eta | \xi_n)$ is in $L^1(X,\borel, \mu)$.
+\s
+
+The theorem gives a useful tool to deal with $I_{\mu}(\eta | \mathscr{A})$ when $\mathscr{A}$ can be approximated by countable partitions. 
+\s
+
+\newday
+
+(15th November, Thursday)
+\s
+
+(??? Why are we using the different version of Maximal inequality?)
+\s
+
+\thm \emph{(Maximal inequality)} Let $(X,\borel, \mu)$ be a probability space. Let $\mathscr{A}_1 \subset \mathscr{A}_2 \subset \cdots$ be a sequence of sub-$\sigma$-algebras of $\borel$, and let $\eta \subset \borel$ be a countable partition with $H_{\mu}(\eta) >\infty$. Then :
+\begin{align*}
+I_{\mu}(\eta | \mathscr{A}_n) \rightarrow I_{\mu}(\eta | \mathscr{A}) \quad \text{as } n\rightarrow \infty
+\end{align*}
+pointwise $\mu$-a.e. and in $L^1$, where $\mathscr{A} = \sigma(\cup_n \mathscr{A}_n)$.
+
+\quad Moreover, $I^*(x) = \sup_{n\in \mathbb{Z}_{>0}}I_{\mu}(\eta | \mathscr{A}_n) (x) \in L^1$.
+\begin{proof}
+\textbf{proof for $\eta$ finite)} By definition and martingale convergence,
+\begin{align*}
+I_{\mu}(\eta | \mathscr{A}_n)(x) = -\log \avg [ \chi_{[x]_{\eta}} | \mathscr{A}_n ](x) \xrightarrow{n\rightarrow \infty} -\log \avg [ \chi_{[x]_{\eta}} | \mathscr{A}](x) = I_{\mu}(\eta | \mathscr{A})(x)
+\end{align*}
+This proves pointwise convergence. By dominated convergence, $L^1$ convergence follows if assuming $I^* \in L^1$.
+
+\quad Now it is enough to show $I^* \in L^1$
+\begin{subproof}
+: fix $A \in \eta$, fix $\alpha>0$. For $x\in X_1$, let $n(x)$ be defined by
+\begin{align*}
+n(x) = \min \{ n : \log (\avg[\chi_A | \mathscr{A}_n](x)) > \alpha \}
+\end{align*}
+If the above does not hold for any $n$, the we write $n(x) = \infty$. Define $B_n = \{ x\in X : n(x) =n \}$. Note that $B_n$ is $\mathscr{A}_n$-measurable as we may write
+\begin{align*}
+B_n = \{ x\in X : \avg[\chi_A | \mathscr{A}_n](x) < \exp(-\alpha) \text{ but } \avg[\chi_A |\mathscr{A}(x) \geq \exp(-\alpha) \,\, \forall j<n ] \}
+\end{align*}
+Then
+\begin{align*}
+\mu(B_n) \exp(-\alpha) \geq \int_{B_n} \avg[\chi_A | \mathscr{A}_n] d\mu = \int_{B_n} \chi_A d\mu = \mu(B_n \cap A)
+\end{align*}
+Define $A^* = \{ x\in A : I^*(x) > \alpha \} \subset A \cap (\cup_n B_n)$. Then since $B_n$'s are disjoint,
+\begin{align*}
+\mu(A^*) \leq \sum_{n=1}^{\infty} \mu(A\cap B_n) \leq \exp(-\alpha) \sum_{n=1}^{\infty} \mu(B_n) \leq \exp(-\alpha)
+\end{align*}
+and summing these over all elements of $\eta$, we obtain
+\begin{align*}
+\mu \big( \{ x\in X : I^*(x) > \alpha \} \big) \leq |\eta| \exp(-\alpha)
+\end{align*}
+Then
+\begin{align*}
+\int I^*(x) d\mu \leq \sum_{n=1}^{\infty} \mu(x\in X : I^*(x) > n-1) \cdot n \leq \sum_{n=1}^{\infty} |\eta| \exp(-(n-1))\cdot n < \infty
+\end{align*}
+\end{subproof}
+
+\eop
+\end{proof}
+\s
+
+\lem Let $(X,\borel, \mu, T)$ be an MPS. Let $\xi \subset \borel$ be a countable partition with $H_{\mu}(\xi)< \infty$. Then
+\begin{align*}
+h_{\mu}(T,\xi) = \lim_{n\rightarrow \infty} H_{\mu}(\xi | \xi_1^n)
+\end{align*}
+\begin{proof}
+\pf By chain rule and invariance of $T$,
+\begin{align*}
+\frac{1}{n} H_{\mu}(\xi_0^{n-1}) = \frac{1}{n} \sum_{j=0}^{n-1} H_{\mu}(\xi | \xi_1^j)
+\end{align*}
+hence
+\begin{align*}
+h_{\mu}(T,\xi) = \clim_{n\rightarrow \infty} H_{\mu}(\xi | \xi_1^n)
+\end{align*}
+Observe that $H_{\mu}(\xi | \xi_1^n)$ is a monotone decreasing sequence, hence it converges, so in fact the Ces\`{a}ro limit implies strong limit.
+
+\eop
+\end{proof}
+\s
+
+We are now ready to prove Shannon-McMillan-Breiman theorem.
+\s
+
+\thm Let $(X,\borel, \mu, T)$ be an ergodic MPS. Let $\xi \subset \borel$ be a countable partition with $H_{\mu}(\xi) < \infty$. Then
+\begin{align*}
+\frac{1}{N} I_{\mu}(\xi_0^{N-1})(x) \rightarrow h_{\mu}(\xi, T)
+\end{align*}
+pointwise a.e. and in $L^1$.
+\begin{proof}
+\pf
+\begin{align*}
+\frac{1}{N} I_{\mu}(\xi_{0}^{N-1})(x) = &\frac{1}{N} \sum_{n=0}^{N-1} I_{\mu} (\xi | \xi_1^{N-n-1}) (T^n x) \\
+& + \frac{1}{N}\sum_{n=0}^{N-1} I_{\mu}(\xi | \borel(\xi_1^{\infty}))(T^n x) \\
+& + \frac{1}{N} \sum_{n=0}^{N-1} \Big( I_{\mu}(\xi | \xi_1^{N-n-1})(T^n x) - I_{\mu}(\xi | \borel(\xi_1^{\infty})(T^n x) \Big)
+\end{align*}
+where $\borel(\xi_1^{\infty})$ is the $\sigma$-algebra generated by $\bigcup_{n=1}^{\infty} \xi_1^n$.
+
+\quad By the pointwise ergodic theorem, has
+\begin{align*}
+\frac{1}{N} \sum_{n=0}^{N-1} I_{\mu}( \xi | \borel(\xi_1^{\infty}) ) (T^n x) \rightarrow & \int I_{\mu}(\xi | \borel(\xi_1^{\infty})) d\mu \\
+& = \lim_{n\rightarrow \infty} \int I_{\mu}(\xi | \xi_1^n) d\mu \\
+& = \lim_{n\rightarrow \infty} H(\xi | \xi_1^n) = h_{\mu}(T, \xi)
+\end{align*}
+Define
+\begin{align*}
+I_K^* (x) = \sup_{k\geq K} \Big| I_{\mu}(\xi | \xi_1^k)(x) - I_{\mu}(\xi | \borel(\xi_1^{\infty}))(x) \Big|
+\end{align*}
+By the maximal inequality, $I_K^* \in L^1$ for all $x$ and $I_K^*(x) \rightarrow 0$ for $\mu$-a.e. $x$. $I_K^*$ are pointwise monotone decreasing, so we have
+\begin{align*}
+\int I_K^* d\mu \rightarrow 0 \quad \text{as } K \rightarrow \infty
+\end{align*}
+Now again by pointwise ergodic theorem,
+\begin{align*}
+& \Big| \frac{1}{N} \sum_{n=0}^{N-1} \Big( I_{\mu}(\xi | \xi_1^{N-n-1})(T^n x) - I_{\mu}(\xi | \borel(\xi_1^{\infty})(T^n x) \Big) \Big| \\
+\leq & \frac{1}{N} \sum_{n=0}^{N-K-1} I_K^* (T^n x) + \frac{1}{N} \sum_{n=N-K}^{N-1} I_0^* (T^n x) \xrightarrow{N\rightarrow \infty} \int I_K^* d\mu
+\end{align*}
+as 
+\begin{align*}
+\frac{1}{N} \sum_{n=N-K}^{N-1} I_0^* (T^n x) = \frac{1}{N} \sum_{n=0}^{N-1}I_0^* (T^n x) - \frac{N-K}{N} \frac{1}{N-K} \sum_{n=0}^{N-K-1} I_0^*(T^n x) \rightarrow \int I_0^* d\mu -\int I_0^* d\mu =0
+\end{align*}
+Hence,
+\begin{align*}
+\limsup_{N\rightarrow \infty} \Big| \frac{1}{N} \sum_{n=0}^{N-1} \Big( I_{\mu}(\xi | \xi_1^{N-n-1})(T^n x) - I_{\mu}(\xi | \borel(\xi_1^{\infty})(T^n x) \Big) \Big| \leq \int I_K^* d\mu
+\end{align*}
+Since $K$ was arbitrary, and $\int I_K^* d\mu \xrightarrow{K\rightarrow \infty} =0$, so 
+\begin{align*}
+\limsup_{N\rightarrow \infty} \Big| \frac{1}{N} \sum_{n=0}^{N-1} \Big( I_{\mu}(\xi | \xi_1^{N-n-1})(T^n x) - I_{\mu}(\xi | \borel(\xi_1^{\infty})(T^n x) \Big) \Big| =0
+\end{align*}
+so we have pointwise convergence.
+
+\quad Moreover, if we observe carefully, we have $L^1$ convergence at each line of the proof, so we also have the $L^1$ convergence.
+
+\eop
+\end{proof}
+\s
+
+\newday
+
+(17th November, Saturday)
+
+\section*{12. Mixing and Entropy}
+
+\defi An MPS $(X,\borel, \mu, T)$ is called \textbf{K(olmogorov)-mixing} if $\forall \epsilon >0$, $A\in \borel$ and $\xi\subset \borel$ finite partition, $\exists N \in \mathbb{Z}_{>0}$ such that : $\forall B \in \sigma( \xi^{\infty}_N)$ we have
+\begin{align*}
+|\mu(A \cap B) - \mu(A) \mu(B)| < \epsilon
+\end{align*}
+\emph{Invertible} MPS's that are K-mixing are called \textbf{K-automorphism}.(this is more common notion in literatures)
+\s
+
+From now on in the course, we are only using finite partitions. Some results also holds for countable partitions, but we do not need such stronger results.
+\s
+
+\textbf{Remark :} This implies mixing
+\begin{proof}
+: Let $A, C \in \borel$ and consider $\xi = \{C, X \backslash C \}$. Then for $N$ sufficiently large, we can take $B = T^{-N}(C)$ in the definition. 
+\end{proof}
+
+\defi Let $(X,\borel, \mu, T)$ be an MPS. Let $\xi \subset \borel$ be a finite partition. Then the \textbf{tail $\sigma$-algebra of $\xi$} is
+\begin{align*}
+\tau (\xi) = \bigcap_{n=1}^{\infty} \sigma(\xi_n^{\infty})
+\end{align*}
+\s
+
+\thm Let $(X,\borel, \mu, T)$ be an MPS. The following are equivalent.
+\begin{itemize}
+\item[(1)] $(X,\borel, \mu, T)$ is a K-mixing.
+\item[(2)] $\tau(\xi)$ is \emph{trivial} for all finite partition $\xi \subset \borel$. That is, $\forall A \in \tau(\xi)$, we have $\mu(A) \in \{0,1\}$.
+\item[(3)] $(X,\borel, \mu, T)$ is of \emph{totally positive entropy}. That is, $h_{\mu}(T,\xi) >0$ for all partition $\xi \subset \borel$ finite such that $H_{\mu}(\xi) >0$.
+\end{itemize}
+\s
+
+-Note : Bernoulli shift is a K-mixing and so (2) implies the Kolmogorov 0-1 law.
+\s
+
+\begin{proof}
+\textbf{proof of (1) $\Leftrightarrow$ (2))} \begin{itemize}
+\item[(1) $\Rightarrow$ (2)] Suppose (1) holds and let $A\in \tau(\xi)$. Then $A \in \sigma(\xi^{\infty}_n)$ for all $n$, by the definition of tail $\sigma$-algebra. For any $\epsilon >0$, by K-mixing property,
+\begin{align*}
+| \mu(A \cap A) - \mu(A) \mu(A)| < \epsilon
+\end{align*}
+so $\mu(A) = \mu(A)^2$. Hence $\mu(A) \in \{0,1\}$.
+\item[(2) $\Rightarrow$ (1)] Suppose that (2) holds. Let $A, \xi, \epsilon$ be as in the definition of $K$-mixing. Let $N$ be sufficiently large and $B\in \borel(\xi_N^{\infty})$. Then
+\begin{align*}
+\mu(A \cap B) = \int_B \chi_A d\mu = \int_B \avg[ \chi_A | \sigma(\xi_N^{\infty})]  d\mu
+\end{align*}
+By (backward) martingale convergence, if $N$ is sufficiently large,
+\begin{align*}
+\big| \mu(A \cap B) - \int_B \avg[\chi_A | \tau (\xi)] d\mu \big| < \epsilon
+\end{align*}
+\textbf{Claim :} $\avg[\chi_A | \tau(\xi)] (x) = \mu(A)$ for $\mu$-a.e. x.
+\begin{subproof}
+: suppose the contrary. Letting $C_{\epsilon} = \{ x\in X : \avg[\chi_A | \tau()\xi] > \mu(A) + \epsilon  \}$. Then $\exists \epsilon >0$ such that $\mu(C_{\epsilon}) >0$. Note $C \in \tau(\xi)$ so $\mu(C_{\epsilon})=1$. But then
+\begin{align*}
+\mu(A) =\int_C \avg[ \chi_A | \tau(\xi)] d\mu > \mu(A) + \epsilon
+\end{align*}
+which is a contradiction.
+\end{subproof}
+From the claim, we see that $\int_B \avg[\chi_A |\tau(\xi)] d\mu = \mu(A) \mu(B)$, and hence the desired result.
+\end{itemize}
+\end{proof}
+\s
+
+For the rest of the theorem, we need additional results.
+\s
+
+\lem Let $\xi, \eta \subset \borel$ be a finite partition, let $\mathscr{A} \subset \borel$ be a sub-$\sigma$-algebra. Suppose that $\exists$ a sequence of finite partitions $\lambda_1, \lambda_2, \cdots$ such that $\mathscr{A}$ is the smallest $\sigma$-algebra that contains the atoms of $\tau_n$ for all $n$. Then
+\begin{itemize}
+\item[(1)] $I_{\mu}(T^{-1}\xi | T^{-1} \mathscr{A})(x) = I_{\mu}(\xi | \mathscr{A}) (Tx)$.
+\item[(2)] $H_{\mu}(T^{-1}\xi | T^{-1} \mathscr{A})= H_{\mu}(\xi | \mathscr{A})$.
+\item[(3)] $I_{\mu}(\xi \vee \eta  | \mathscr{A}) = I_{\mu}(\xi | \mathscr{A}) + I_{\mu}(\eta | \xi \vee \mathscr{A})$.
+\item[(4)] $H_{\mu}(\xi \vee \eta  | \mathscr{A}) = H_{\mu}(\xi | \mathscr{A}) + H_{\mu}(\eta | \xi \vee \mathscr{A})$.
+\item[(5)] $H_{\mu}(\xi | \mathscr[A] \vee \eta) \leq H_{\mu}(\xi | \mathscr{A})$.
+\end{itemize}
+\begin{proof}
+The assumption of existence of such $\lambda_1, \lambda_2 \cdots$ is not essential, but makes the proof much easier. However, the assumption is not very serious restriction. The proof is to be done on the example sheet. - if you like measure theory, try proving the general version.
+\end{proof}
+\s
+
+\prop Let $(X,\borel, \mu)$ be a probability space. Let $\xi \subset \borel$ be a finite partition. Let $\mathscr{A}_1 \supset \mathscr{A}_2 \supset \cdots$ be sub-$\sigma$-algebras of $\borel$ and let $\mathscr{A} = \cap_{n=1}^{\infty} \mathscr{A}_n$. Then
+\begin{align*}
+I_{\mu} (\xi | \mathscr{A}_n) \rightarrow I_{\mu}(\xi |\mathscr{A}) \quad \mu \text{-a.e. and in } L^1
+\end{align*}
+\begin{proof}
+\pf We prove the stronger result
+\begin{align*}
+H_{\mu} (\xi | \mathscr{A}_n) \rightarrow H_{\mu}(\xi |\mathscr{A}) \quad \mu \text{-a.e. and in } L^1
+\end{align*}
+This is a result of backward-martingale convergence and dominated convergence : we clearly have pointwise convergence by continuity of logarithm function. Also, each $H_{\mu}(\xi | \mathscr{A}_n)$ is dominated by $\log(|xi|)$, so we may apply dominated convergence to obtain $L^1$-convergence.
+
+\eop
+\end{proof}
+\s
+
+\lem Let $(X, \borel, \mu, T)$ be an MPS and let $\xi \subset \borel$ be a finite partition. Then
+\begin{align*}
+h_{\mu} (T, \xi ) = H_{\mu}(\xi | \sigma(\xi_1^{\infty}))
+\end{align*}
+\begin{proof}
+\pf We have already seen that
+\begin{align*}
+h_{\mu}(T, \xi )= \lim_{n\rightarrow \infty} H_{\mu}(\xi | \xi_1^n) 
+\end{align*}
+and this equals $H_{\mu}(\xi | \sigma(\xi_1^{\infty}))$ by the statement of \emph{maximal inequality}.
+
+\eop
+\end{proof}
+\s
+
+\lem Let $(X,\borel, \mu, T)$ be an MPS. Let $\xi \subset \borel$ be a finite partition such that $h_{\mu}(T, \xi) =0$. Then $H_{\mu}(\xi | \tau(\xi)) =0$. 
+\begin{proof}
+\pf From the previous lemma, we already know $H_{\mu}(\xi | \sigma(\xi_1^{\infty})) =0$. We show that $H_{\mu}(\xi | \sigma(\xi_n^{\infty})) =0$ for all $n$ and then we are done by the previous proposition. To this end, we write
+\begin{align*}
+H_{\mu}(\xi | \sigma(\xi_n^{\infty})) &\leq H_{\mu} (\xi_0^{n-1} | \sigma(\xi_n^{\infty})) \\
+&= \sum_{j=0}^{n-1} H_{\mu}(\xi_j^j | \sigma(\xi_{j+1}^{\infty})) \quad \text{(chain rule)} \\
+&= nH_{\mu}(\xi | \sigma(\xi_1^{\infty})) =0 \quad \text{(invariance)}
+\end{align*}
+
+\eop
+\end{proof}
+\s
+
+\begin{proof}
+\textbf{proof of (2) $\Rightarrow$ (3) in Theorem)} We assume $\tau (\xi)$ is trivial, $h_{\mu}(T, \xi) =0$ and we show $H_{\mu}(\xi) =0$. By the lemma, we have $H_{\mu}(\xi | \tau(\xi)) =0$. We have already seen that condition (2) implies (as in proof of (2) $\Rightarrow$ (1) of the theorem)
+\begin{align*}
+\avg [\chi_A | \tau(\xi)](x) = \mu(A) \quad \mu \text{-a.e.} \quad \forall A \in \borel
+\end{align*}
+so
+\begin{align*}
+0=H_{\mu}(\xi | \tau(\xi)) &= \int I_{\mu}(\xi | \tau(\xi))d\mu = -\int \log \avg \big[ \chi_{[x]_{\xi}} | \tau(\xi) \big](x) d\mu(x) \\
+&= - \int \log \mu([x]_{\xi}) d\mu(x) \\
+&= - \sum_{A \in \xi} \log( \mu(A)) \mu(A) = H_{\mu} (\xi)
+\end{align*}
+\end{proof}
+\s
+
+\newday
+
+(20th November, Tuesday)
+\s
+
+Left to prove : If $h_{\mu}(T, \xi)>0$ for all $\xi \subset \borel$ finite with $H_{\mu}(\xi) >0$ then $\tau(\xi)$ is trivial $\forall \xi \subset \borel$ finite.
+\s
+
+\prop Let $(X, \borel, \mu, T)$ be an MPS. Let $\xi, \eta \subset \borel$ be two finite partitions. Then
+\begin{align*}
+h_{\mu}(T, \xi) = H_{\mu}(\xi | \sigma(\xi_1^{\infty}) \vee \tau (\eta))
+\end{align*}
+\s
+
+\textbf{Note :} This tells us that if the entropy is positive, then the tail-$\sigma$-algebra cannot be too big.
+\s
+
+\lem Let $(X, \borel, \mu, T)$ be an MPS. Let $\xi \subset \borel$ be a finite partition. Then
+\begin{align*}
+h_{\mu}(T, \xi) = \frac{1}{n} H_{\mu} (\xi_0^{n-1} | \sigma(\xi_n^{\infty})) \quad \forall n \in \mathbb{Z}_{>0}
+\end{align*}
+\begin{proof}
+\pf By chain rule and invariance :
+\begin{align*}
+H_{\mu}(\xi_0^{n-1} | \sigma(\xi_n^{\infty})) &= \sum_{j=0}^{n-1} H_{\mu}(\xi_j^j | \sigma(\xi_j^{\infty})) \\
+&= n H_{\mu}(\xi | \sigma(\xi_1^{\infty})) = nh_{\mu}(T, \xi)
+\end{align*}
+as claimed.
+
+\eop
+\end{proof}
+\s
+
+The next lemma is bit harder, and where all the magic happens.
+\s
+
+\lem Let $(X, \borel, \mu, T)$ be an MPS. Let $\xi, \eta \subset \borel$ be finite measurable partitions. Then
+\begin{align*}
+h_{\mu}(T, \xi) = \lim_{n\rightarrow \infty} \frac{1}{n} H_{\mu} (\xi_0^{n-1} | \sigma(\xi_n^{\infty}) \vee \sigma(\eta_n^{\infty})  )
+\end{align*}
+That is, ``$\sigma(\eta_n^{\infty})$ does not add to much information if $n$ is sufficiently large". 
+\begin{proof}
+\pf Observe that $\forall n \in \mathbb{Z}_{>0}$, has
+\begin{align*}
+H_{\mu}(\xi_0^{n-1} | \sigma(\xi_n^{\infty}) \vee \sigma(\eta_n^{\infty})) &\leq H_{\mu} (\xi_0^{n-1} | \sigma(\xi_n^{\infty})) \\
+&= nh_{\mu}(T, \xi)
+\end{align*}
+by the last lemma so we already have the inequality in one direction.
+
+\quad Now we do the following : we choose two sequence $a_n$ and $b_n$ such that $a_n \leq b_n$ for all $n$ and
+\begin{align*}
+\lim_{n} \frac{1}{n} \Big[ H_{\mu}(\xi_0^{n-1} | \sigma(\xi_n^{\infty}) \vee \sigma(\eta_n^{\infty})) + a_n \Big] = \lim_{n} \frac{1}{n} \Big[ H_{\mu}(\xi_0^{n-1} | \sigma(\xi_n^{\infty})) + b_n \Big] \quad \cdots\cdots\cdots (\diamond)
+\end{align*}
+
+Suppose to the contrary that
+\begin{align*}
+\liminf_{n\rightarrow \infty} \frac{1}{n} H_{\mu}(\xi_0^{n-1} | \sigma(\xi_n^{\infty}) \vee \sigma(\eta_n^{\infty})) < h_{\mu}(T, \xi) = \frac{1}{n} H_{\mu}(\xi_0^{n-1} | \sigma(\xi_n^{\infty}))
+\end{align*}
+Then $a_n \leq b_n$ and this contradicts our assumption ($\diamond$) on $a_n, b_n$. This means that :
+\begin{align*}
+h_{\mu}(T, \xi) &\leq \liminf_{n\rightarrow \infty} \frac{1}{n} H_{\mu} (\xi_0^{n-1} | \sigma(\xi_n^{\infty}) \vee \sigma(\eta_n^{\infty})) \\
+&\leq \limsup_{n\rightarrow \infty} \frac{1}{n} H_{\mu} (\xi_0^{n-1} | \sigma(\xi_n^{\infty}) \vee \sigma(\eta_n^{\infty})) \\
+&\leq h_{\mu}(T,\xi)
+\end{align*}
+so this prove the lemma, given the existence of $a_n, b_n$ with the required property ($\diamond$).
+\s
+
+For the existence of such $(a_n),(b_n)$, we take
+\begin{align*}
+a_n &= H_{\mu} (\eta_0^{n-1} | \sigma(\xi_0^{\infty}) \vee \sigma(\eta_n^{\infty})) \\
+b_n &= H_{\mu} (\eta_0^{n-1} | \sigma(\xi_0^{\infty}) )
+\end{align*}
+Clearly, $a_n \leq b_n$ and indeed
+\begin{align*}
+& \textbf{(A)} = H_{\mu}(\xi_0^{n-1} | \sigma(\xi_n^{\infty}) \vee \sigma(\eta_n^{\infty})) + a_n = H_{\mu}(\xi_0^{n-1} \vee \eta_0^{n-1} | \sigma (\xi_n^{\infty}) \vee \sigma(\eta_n^{\infty})) \\
+& \textbf{(B)} = H_{\mu}(\xi_0^{n-1} | \sigma(\xi_n^{\infty})) + b_n = H_{\mu}(\xi_0^{n-1} \vee \eta_0^{n-1} | \sigma (\xi_n^{\infty}))
+\end{align*}
+By the last lemma,
+\begin{align*}
+\frac{\textbf{(A)}}{n} = h_{\mu}(T, \xi \vee \eta) \quad \forall n
+\end{align*}
+and therefore
+\begin{align*}
+h_{\mu}(T, \xi\vee \eta) = \frac{\textbf{(A)}}{n} \leq \frac{\textbf{(B)}}{n} \leq \frac{H_{\mu}(\xi_0^{n-1} \vee \eta_{0}^{n-1})}{n} \xrightarrow{n\rightarrow \infty} h_{\mu}(T, \xi\vee \eta)
+\end{align*}
+
+\eop
+\end{proof}
+\s
+
+\begin{proof}
+\textbf{proof of the proposition)} Using the chain rule and invariance, we have
+\begin{align*}
+H_{\mu}(\xi_0^{n-1} | \sigma(\xi_n^{\infty} \vee \sigma(\eta_n^{\infty}))) &= \sum_{j=0}^{n-1} H_{\mu}(\xi_j^j | \sigma(\xi_{j+1}^{\infty}) \vee \sigma(\eta_{n}^{\infty})) \\
+&= \sum_{j=0}^{n-1} H_{\mu}(\xi | \sigma(\xi_1^{\infty}) \vee \sigma(\eta_{n-j}^{\infty}))
+\end{align*}
+Therefore, it follows from the previous lemma that
+\begin{align*}
+h_{\mu}(\xi, T) = \clim_{n\rightarrow \infty} H_{\mu}(\xi | \sigma(\xi_1^{\infty}) \vee \sigma(\eta_n^{\infty}))
+\end{align*}
+But by the the previous lemma, we already know
+\begin{align*}
+\lim_{n\rightarrow \infty} H_{\mu}(\xi | \sigma(\xi_1^{\infty})\vee \sigma(\eta_n^{\infty})) = H_{\mu}(\xi | \sigma(\xi_1^{\infty})\vee \tau(\eta))
+\end{align*}
+and therefore the claim follows.
+
+\eop
+\end{proof}
+
+We finally conclude the main theorem of the chapter.
+\s
+
+\begin{proof}
+\textbf{proof of Theorem (3) $\Rightarrow$ (2))} Suppose that $h_{\mu}(T, \xi ) >0$ for all $\xi \subset \borel$ finite with $H_{\mu}(\xi) >0$. 
+
+\quad Suppose to the contrary that $\tau(\xi)$ is non-trivial for some $\xi \subset \borel$ finite. Then $\exists A \subset \tau(\xi)$ s.t. $0< \mu(A) <1$. Define $\eta = \{A, X\backslash A \}$. Apply the proposition with the roles of $\xi$ and $\eta$ interchanged,
+\begin{align*}
+h_{\mu}(T, \eta) = H_{\mu} (\eta | \sigma(\eta_1^{\infty}) \vee \tau(\xi) ) 
+\end{align*}
+If we prove $h_{\mu}(T, \eta) =0$, this gives a contradiction, as $H_{\mu}(\eta) >0$.
+\begin{subproof}
+: In fact, we will show $I_{\mu}(\eta | \sigma(\eta_1^{\infty}) \vee \tau(\xi)) (x) =0$ for a.e. $x$. Indeed, since $\eta \in \tau(\xi)$, has
+\begin{align*}
+I_{\mu}(\eta | \sigma(\eta_1^{\infty}) \vee \tau(\xi)) &= -\log \avg [\chi_{[x]_{\eta}} | \sigma(\eta_1^{\infty} \vee \tau(\xi))] \\
+&= -\log \chi_{[x]_{\eta}} =0
+\end{align*}
+\end{subproof}
+\eop
+\end{proof}
+
+\section*{13. Rudolph's Theorem}
+
+\thm \emph{(Rudolph)} Let $\mu$ be a probability measure on $\reals/ \mathbb{Z}$ that is invariant and \emph{ergodic} with respect to the joint action of $T_2 : x \mapsto 2x$ and $T_3 : x\mapsto 3x$. That is to say, if $A \subset \borel$ is such that $T_2^{-1} A =A$ and $T_3^{-1} A =A$ then $\mu(A) \in \{0,1\}$. 
+
+\quad Suppose that $h_{\mu}(T_2)>0$ or $h_{\mu}(T_3) >0$. Then $\mu$ is the Lebesgue measure on $\reals/\mathbb{Z}$.
+\s
+
+If we drop the assumption of positive entropy, then we might expect the measure to be Lebesgue measure or a measure supported on some set of rational numbers (this is a conjecture).
+\s
+
+\thm \emph{(Host)} Let $\mu$ be an \emph{ergodic} $T$-invariant measure on $\reals/\mathbb{Z}$ with $h_{\mu}(T_3)>0$. Then $\mu$-a.e. $x\in \reals/\mathbb{Z}$ is \textbf{normal} in base 2, i.e. the sequence $T_2^n x$ is equi-distributed in $\reals/ \mathbb{Z}$.
+
+\quad Moreover, if $\mu$ is not necessarily ergodic, but the other assumptions holds, then
+\begin{align*}
+\mu (x\in \reals/\mathbb{Z} : x \text{ is normal in base} 2) \geq \frac{h_{\mu}(T_3)}{\log 3}
+\end{align*}
+
+Notice this result does not depend on the measure.
+\s
+
+\newday
+
+(22nd November, Thursday)
+\s
+
+\thm \emph{(Host)} Let $\mu$ be an \emph{ergodic} $T$-invariant measure on $\reals/\mathbb{Z}$ with $h_{\mu}(T_3)>0$. Then $\mu$-a.e. $x\in \reals/\mathbb{Z}$ is \textbf{normal} in base 2, i.e. the sequence $T_2^n x$ is equi-distributed in $\reals/ \mathbb{Z}$.
+
+\quad Moreover, if $\mu$ is not necessarily ergodic, but the other assumptions holds, then
+\begin{align*}
+\mu (x\in \reals/\mathbb{Z} : x \text{ is normal in base} 2) \geq \frac{h_{\mu}(T_3)}{\log 3}
+\end{align*}
+\s
+
+\lem We have $\text{ord}_{3^k}{2} = 2 \cdot 3^{k-1}$, where $\text{ord}_{3^k}(2)$ is the order of $2$ modulo $3^k$. That is, the smallest integer $n$ such that $3^k | 2^n -1$.
+\begin{proof}
+\pf By induction on $k$, we prove that $\text{ord}_{3^k} = 2\cdot 3^{k-1}$ and $3^{k+1} \ndiv 2^{2\cdot 3^{k-1}} -1$
+\begin{subproof}
+: Easy to check for $k=0,1$. Assume that $k\geq 2$ and the claim holds for $k-1$. Then $3^k | 2^{\text{ord}_{3^k}(2)} -1$, so $3^{k-1} | 2^{\text{ord}_{3^k}(2)}-1$ hence $\text{ord}_{3^k}(2)=a\cdot 2\cdot 3^{k-2}$ for some $a\in \mathbb{Z}_{>0}$. We also know $2^{2\cdot 3^{k-2}} = b\cdot 3^{k-1} +1$ for some $b\in \mathbb{Z}_{>0}$ and $3\ndiv b$. Then by the binomial theorem we have
+\begin{align*}
+& 2^{2\cdot 2\cdot 3^{k-2}} = b^2 \cdot 3^{2(k-1)} + 2b3^{k-1} +1 \\
+& 2^{3\cdot 2\cdot 3^{k-2}} = b^3 \cdot 3^{3(k-1)} + 3b^2\cdot 3^{2(k-1)} + 3\cdot b\cdot 3^{k-1}
+\end{align*}
+From this we see that $3^k \ndiv 2^{2\cdot 2 \cdot 3^{k-2}} -1$ but $3^k | 2^{3\cdot 2\cdot 3^{k-2}} -1$ and $3^{k+1} \ndiv 2^{3\cdot 2\cdot 3^{k-2}} -1$.
+\end{subproof}
+
+\eop
+\end{proof}
+\s
+
+\textit{Observations} : look at the $T_2$ orbit of $a/3^k$ where $a\in  \mathbb{Z}$ and $3 \ndiv a$. This orbit is
+\begin{align*}
+\{ \frac{b}{3^k} : b\in [0, \cdots, 3^{k} -1], 3\ndiv b \}
+\end{align*}
+Also, $T_2^n (x+ \frac{a}{3^k}) = T_2^n (x) + T_2^n (\frac{a}{3^k})$. 
+\s
+
+\textit{Another idea} : If $h_{\mu}(T_3) >0$, then $\mu$ will not ``concentrate" on a few element of the set
+\begin{align*}
+\{ x+ \frac{a}{3^k} : a\in [0, \cdots, 3^k -1], 3\ndiv a \}
+\end{align*}
+\s
+
+We need to show that for $\mu$-a.e. $x$ and for all $f\in C(\reals/\mathbb{Z})$ we have 
+\begin{align*}
+\frac{1}{N} \sum_{n=0}^{N-1} f(T_2^n x) \rightarrow \int f(x) dx
+\end{align*}
+In fact, it is enough to prove this for functions of the form
+\begin{align*}
+f(x) = \exp(2\pi imx), \quad m\in \mathbb{Z}
+\end{align*}
+because linear combinations of trigonometric functions is dense in the set of continuous functions.
+\s
+
+\textbf{Notation :} for $N\in \mathbb{Z}_{>0}$, let
+\begin{align*}
+P_{N,m}(x) = \frac{1}{N} \sum_{n=0}^{N-1} \exp(2\pi im 2^n x)
+\end{align*}
+Now it is enough to show : for all fixed $m \neq 0$ and for $\mu$-a.e. $x$, we have $P_{N,m}(x) \rightarrow 0$.
+\s
+
+\lem Fix $m\neq 0$ and $x\in \reals/\mathbb{Z}$. Let $\alpha$ be the largest exponent such that $3^{\alpha} | m$. Let $N < 2\cdot 3^{k-\alpha -1}$ for some $k\in \mathbb{Z}_{>0}$. Then
+\begin{align*}
+\sum_{a=0}^{3^{k}-1} \big| P_{N,m}(x + \frac{a}{3^k}) \big|^2 = \frac{3^k}{N}
+\end{align*}
+\begin{proof}
+\pf \begin{align*}
+\big| P_{N,m}(x) \big|^2 &= \big| \frac{1}{N} \sum_{n=0}^{N-1} \exp(2\pi i m 2^n x) \big|^2 \\
+&= \frac{1}{N^2} \sum_{n_1=0}^{N-1} \sum_{n_2=0}^{N-1} \exp(2\pi im2^{n_1} x) \overline{\exp(2\pi im2^{n_2} x)} \\
+&= \frac{1}{N^2} \sum_{n_1=0}^{N-1} \exp(2\pi i m(2^{n_1} - 2^{n_2}) x)
+\end{align*}
+Note that for each $b\in \mathbb{Z}_{>0}$, :
+\begin{align*}
+\sum_{a=0}^{3^k-1} \exp(2\pi ib(x+ \frac{a}{3^k})) = \exp(2\pi i bx) \sum_{a=0}^{3^k -1} \exp(2\pi iba/3^k) \quad \cdots \cdots\cdots (\star)
+\end{align*}
+If $3^k \ndiv b$, then $(\star)=0$. If $3^k | b$, then $(\star) = 3^k \exp(2\pi ibx)$.
+\s
+
+When does it happen that $3^k | m \cdot (2^{n_1} - 2^{n_2})$?
+\begin{subproof}
+Suppose $n_1>n_2$. Then $m\cdot (2^{n_1} - 2^{n_2}) = m\cdot 2^{n_1}(2^{n_1 - n_2} -1)$ Since $n_1-n_2 \leq N < 2\cdot 3^{k - \alpha -1}$, we have $3^{k-\alpha} \ndiv 2^{n_1-n_2} - 1$. So, $3^k \ndiv m\cdot (2^{n_1} - 2^{n_2})$ (recall $\alpha$ was chosen to be the largest s.t. $3^{\alpha} | m$). Same applies if $n_2 >n_1$. We get that $3^k | m(2^{n_1}-2^{n_2})$ \emph{iff} $n_1 =n_2$.
+\end{subproof}
+Therefore
+\begin{align*}
+|P_{N,m}(x)|^2 = \frac{1}{N^2} \sum_{n=0}^{N-1} 3^k = \frac{3^k}{N} 
+\end{align*}
+
+\eop
+\end{proof}
+\s
+
+\newday
+
+(24th November, Saturday)
+\s
+
+\prop Let $\mu$ be an ergodic $T_{3}$-invariant probability measure on $\reals/\mathbb{Z}$. Let $k\in \mathbb{Z}_{>0}$. Write
+\begin{align*}
+\mu_k(A) = \sum_{a=0}^{3^k-1} \mu(A + \frac{a}{3^k}) \quad \forall A \in \borel
+\end{align*}
+Let $\xi = \{[0,\frac{1}{3}), [\frac{1}{3},\frac{2}{3}), [\frac{2}{3},1) \}$. Let $\epsilon>0$. Then
+\begin{align*}
+\mu_{k}([x]_{\xi_0^K}) \geq \exp( (h_{\mu}(T_3)-\epsilon)k) \mu([x]_{\xi_0^K})
+\end{align*}
+holds for $\mu$-a.e. $x$, provided $k$ is sufficiently large depending on $\epsilon, x$ and $K$ is sufficiently large depending on $\epsilon, x,k$.
+
+``$\mu$ does not concentrate too much on a particular atom."
+\s
+
+\textbf{Remark :} We may think of $[x]_{\xi_0^K}$ as
+\begin{align*}
+[x]_{\xi_0^K} = \{ y\in \reals/\mathbb{Z} =[0,1) : y = 0.y_1y_2\cdots_{(3)}, y_1=x_2, \cdots, y_{K+1} = x_{K+1} \}
+\end{align*}
+where $x=0.x_1x_2 \cdots_{(3)}$. This is an interval of length $3^{-(K+1)}$ containing $x$. Hence, whenever $K\geq k$,
+\begin{align*}
+\mu_k([x]_{\xi_0^K}) = \mu \Big( \bigcup_{a=0}^{3^k-1} [x]_{\xi_0^K} + \frac{a}{3^k} \Big) 
+\end{align*}
+\s
+
+\lem In the above setting, we have
+\begin{align*}
+\frac{1}{k}I_{\mu}(\xi_0^{k-1}|\sigma(\xi_k^{\infty}))(x) \rightarrow h_{\mu}(T_3) \quad \mu\text{-a.e.}
+\end{align*}
+\begin{proof}
+\pf Similar to Shannon-Mcmillan-Breiman, but much simpler. Using chain rule and invariance, one obtains, for $\mu$-a.e. $x$,
+\begin{align*}
+\frac{1}{k}I_{\mu}(\xi_0^{k-1} | \sigma(\xi_k^{\infty}))(x) =& \frac{1}{k} \sum_{j=0}^{k-1} I_{\mu}(\xi_j^j | \sigma(\xi_{j+1}^{\infty}))(x) \\
+=& \frac{1}{k} \sum_{j=0}^{k-1} I_{\mu}(\xi | \sigma(\xi_1^{\infty})) (T^j x) \\
+\xrightarrow{\text{by P.E.T}} & \int I_{\mu}(\xi | \sigma(\xi_1^{\infty})) d\mu = H_{\mu}(\xi|\sigma(\xi^{\infty}_1))= h_{\mu}(T_3,\xi)
+\end{align*}
+Proof will be complete with the following lemma.
+\begin{subproof}
+\lem The partition $\xi$ as in the setting is a 1-sided generator for $(\reals/ \mathbb{Z}, \borel, \mu, T_3)$. That is, $\forall A \in \borel$, $\forall \epsilon>0$, $\exists u \in \mathbb{Z}_{>0}$ and $B\in \sigma(\xi_0^n)$ such that $\mu(A \triangle B) < \epsilon$.
+
+\quad In particular, $\xi$ is a 2-sided generator, and therefore $h_{\mu}(T,\xi) = h_{\mu}(T)$.
+
+\pf Consider
+\begin{align*}
+\mathscr{C} = \{ A\in \borel : \forall\epsilon >0, \exists n\in \mathbb{Z}_{>0},B\in \sigma(\xi_0^{n})\text{ s.t. } \mu(A\triangle B)<\epsilon \}
+\end{align*}
+This is a $\sigma$-algebra, so it is enough to show that it contains all open sets. 
+
+\quad Let $U\subset \reals/\mathbb{Z}$ be open. We claim that
+\begin{align*}
+U = \bigcup_{x\in U, n\in \mathbb{Z}_{>0}, [x]_{\xi_0^n} \subset U} [x]_{\xi_0^n}
+\end{align*}
+Note that this is a countable union and $[x]_{\xi_0^n} \in \mathscr{C}$ for all $x$, $n$. To see the claim, it is enough to show that $[x]_{\xi_0^n} \subset U$ for any $x\in U$ for $n$ sufficiently large. But if $n$ is sufficiently large, then $[x]_{\xi_0^n}$ is contained in an arbitrarily small neighbourhood of $x$.
+\end{subproof}
+
+\eop
+\end{proof}
+\s
+
+\begin{proof}
+\textbf{proof of Proposition)} By the lemma, if $k$ is sufficienlty large depending on $x,\epsilon$, then
+\begin{align*}
+I_{\mu} (\xi_0^{k-1} | \sigma(\xi_k^{\infty})) \geq k(h_{\mu}(T_3) - \epsilon/2)
+\end{align*}
+If $K$ is sufficiently large, then
+\begin{align*}
+I_{\mu}(\xi_0^{k-1}| \xi_k^K)(x) \geq k (h_{\mu}(T_3) - \epsilon)
+\end{align*}
+Observe : $[x]_{\xi_k^K} = \bigcup_{a\in 0, \cdots, 3^k-1} \Big( [x]_{\xi_0^K} + \frac{a}{3^k} \Big)$. Therefore $\mu_{k}([x]_{\xi_0^K}) = \mu([x]_{\xi_k^K})$. So
+\begin{align*}
+I_{\mu}(\xi_0^{k-1}| \xi_k^K)(x) = \log \Big( \frac{\mu([x]_{\xi_k^K})}{\mu([x]_{\xi_0^K})} \Big) = \log\Big( \frac{\mu_k([x]_{\xi_0^K})}{\mu([x]_{\xi_0^K})} \Big)
+\end{align*}
+
+\eop
+\end{proof}
+\s
+
+\cor Let $\mu$ be a $T_3$-invariant ergodic probability measure on $\reals/\mathbb{Z}$ and $\mu_k$ be defined as in the previous proposition. Then we can find a family $(A_{k})_{k\in \mathbb{Z}_{>0}} \subset \borel$ such that
+\begin{itemize}
+\item[(1)] $\mu$-a.e. $x$ is contained in $A_k$ for $k$ sufficiently large.
+\item[(2)] $\mu_k(U) \geq \exp(k h_{\mu}(T_3)/2) \mu(A_k \cap U)$ holds for all open sets $U\subset \reals/\mathbb{Z}$.
+\end{itemize}
+\begin{proof}
+\pf Let $A_k$ be the set of points $x$ such that
+\begin{align*}
+\mu_k([x]_{\xi_0^K}) \geq \exp(k h_{\mu}(T_3)/2) \mu([x]_{\xi_0^K}) \quad \cdots\cdots\cdots (\divideontimes)
+\end{align*}
+for all sufficiently large $K$. Then the first point (1) follows from the proposition. 
+
+\quad To prove point (2), fix $k\in \mathbb{Z}_{>0}$ and fix $U\subset \reals/\mathbb{Z}$ open. For $K\in \mathbb{Z}_{>k}$ write $\mathscr{A}_K$ for collection of atoms $[x]_{\xi_0^K}$ such that $[x]_{\xi_0^K} \subset U$ and ($\divideontimes$) holds for this atom. Since $U$ is open and by the definition of $A_k$, if $x\in A_k \cap U$ and $K$ is sufficiently large, then $[x]_{\xi_0^K} \in \mathscr{A}_K$. Let $B_K = \bigcup_{A\in \mathscr{A}_K} A$. Then
+\begin{align*}
+\mu_k(B_K) \geq \exp (k h_{\mu}(T_3)/2) \mu(B_K)
+\end{align*}
+follows by summing ($\divideontimes$), and $\mu_k(B_K) \leq \mu_k(U)$. Now consider $\bigcap_{K\geq L} B_K$ for $L \in \mathbb{Z}_{>k}$. These sets increase as $L$ grows, and their union is $A_k \cap U$. (Recall that $\forall x\in A_k$, we have $[x]_{\xi_0^K} \in \mathscr{A}_K$ for $K$ sufficiently large. Therefore $x\in B_K$ if $K$ is sufficiently large so $x\in \bigcap_{K \geq L} B_K$ if $L$ is sufficiently large.) Moreover, since we have $\bigcap_{K\geq L} B_K \subset B_L$ for each $L$, the desired result follows.
+\s
+
+\eop
+\end{proof}
+\s
+
+\newday
+
+(27th November, Tuesday)
+\s
+
+(Last example class is 24th January, Thursday)
+\s
+
+\thm \emph{(Host)} Let $\mu$ be a $T_3$-invariant ergodic probability measure on $\reals/ \mathbb{Z}$ with $h_{\mu}(T_3)>0$. Then $\mu$-a.e. $x$ is normal in base 2.
+
+\quad Without assuming ergodicity, we have
+\begin{align*}
+\mu(x \in \reals/\mathbb{Z},\,\, x \text{is normal in base 2})\geq \frac{h_{\mu}(T_3)}{\log 3}
+\end{align*}
+\s
+
+We only prove the first part of the theorem, but use the second part of the theorem to deduce Rudolf's result.
+\s
+
+\textbf{Recall: } $P_{N,m}(x) = \frac{1}{N}\sum_{n=0}^{N-1} \exp(2\pi i m2^n x)$. We already reduced Host's theorem (in the ergodic case) to showing $P_{N,m}(x) \rightarrow 0$ for $\mu$-a.e. $x$ for all $m\neq 0$.
+
+\quad We also have prove the following results.
+\s
+
+\lemnum{1} Let $\alpha$ be the largest exponent such that $3^{\alpha} | m$ and let $N< 2\cdot 3^{k-1-\alpha}$. Then
+\begin{align*}
+\sum_{a=0}^{3^k -1} \Big| P_{N,m}(x+ \frac{a}{3^k}) \Big|^2 = \frac{3^k}{N}
+\end{align*}
+\s
+
+\cor Let $\mu$ be a $T_3$-invariant, ergodic probability measure on $\reals/\mathbb{Z}$. For $k \in \mathbb{Z}_{>0}$, we write $\mu_k(A) = \sum_{a=0}^{3^k-1} \mu(A + \frac{a}{3^k})$ for $A \in \borel$. Then for all $k$, $A_k \in \borel$ such that the following holds :
+\begin{itemize}
+\item[(1)] For $\mu$-a.e. $x$, we have $x\in A_k$ for all $k$ sufficiently large.
+\item[(2)] $\forall U \subset \reals/ \mathbb{Z}$ open, we have
+\begin{align*}
+\mu(U \cap A_k) \leq \exp(-k h_{\mu}(T_3)/2) \mu_k(U)
+\end{align*}
+\end{itemize}
+\s
+
+Borel-Cantelli lemma would also be useful in our proof.
+\s
+
+\lem \emph{(Borel-Cantelli)} Let $(X, \borel, \mu)$ be a probability space. Let $B_1, B_2, \cdots \in \borel$. Suppose 
+\begin{align*}
+\sum_{n=1}^{\infty} \mu(B_n) < \infty
+\end{align*}
+The for $\mu$-a.e. $x$, $x\in B_n$ holds for at most finitely many $n$'s.
+\s
+
+To check $P_{N,m}(x) \rightarrow 0$, it is enough to check a cleverly chosen subsequence of $P_{N,m}(x)$ converges, since $P_{N,m}$ is given as an average, and hence cannot oscillate too fast. The following version of this claim would be useful in the proof of our theorem.
+\s
+
+\lemnum{2} $\forall m\neq 0$, and $c\in \mathbb{Z}_{>0}$, we have
+\begin{align*}
+P_{N,m}(x) \xrightarrow{N\rightarrow \infty} 0 \quad \Leftrightarrow \quad P_{L^c, m} (x) \xrightarrow{L\rightarrow \infty} 0
+\end{align*}
+\begin{proof}
+\pf See online notes.
+\end{proof}
+\s
+
+We put these results together to prove the first part of Host's theorem.
+\s
+
+\begin{proof}
+\textbf{proof of Host's theorem)} By \textbf{Lemma 2}, it is enough to show that $P_{L^c(m)}(x) \rightarrow 0$ on $L\rightarrow \infty$ for some $c$ (to be chosen later) and all $m\neq 0$. Fix $m\neq 0$ and $\epsilon>0$ and let $\alpha$ be as in the statement of \textbf{Lemma 1}. For $N\in \mathbb{Z}_{>0}$, we set $k =k(N)$ to be an integer such that $2\cdot 3^{k-2-\alpha} \leq N < 2\cdot 3^{k-1-\alpha}$. By \textbf{Lemma 1}, we have
+\begin{align*}
+\sum_{a=0}^{3^k-1} |P_{N,m}(x + \frac{a}{3^k})|^2 = \frac{3^k}{N} \leq \frac{N}{2} \frac{3^{\alpha+2}}{N} = \frac{3^{\alpha+2}}{2}
+\end{align*}
+By the definition of $\mu_{k}$, we have
+\begin{align*}
+\int |P_{N,m}(x)|^2 d\mu_k(x) = \int \sum_{a=0}^{3^k -1}|P_{N,m}(x+ \frac{a}{3^k})|^2 d\mu \leq \frac{3^{\alpha+2}}{2}
+\end{align*}
+Using this estimate in Markov's inequality,
+\begin{align*}
+\mu_k(x : \big| P_{N,m}(x)\big| > \epsilon) \leq \frac{3^{\alpha +2}}{2\epsilon^2}
+\end{align*}
+By the \textbf{Corollary}, with $A_k$ set as in the \textbf{Corollary}, we have
+\begin{align*}
+\mu(x : \big| P_{N,m}(x) \big| > \epsilon, x\in A_k ) \leq \exp(-k h_{\mu} (T_3)/2) \cdot \frac{3^{\alpha+2}}{2\epsilon^2}
+\end{align*}
+\s
+
+Let $B_{\epsilon} = \{ x: |P_{L^c,m}(x)|>\epsilon$ for infinitely many $L$'s$\}$. Our goal is equivalent to showing that $\mu(B_{\epsilon}) =0$ for each $\epsilon>0$. 
+
+\quad Write $D_{L,\epsilon} = \{ x: x\in A_{k(L^c)}, |P_{L^c,m}(x)|>\epsilon \}$. Note that if $x\in B_{\epsilon}$ then $x\in D_{L,\epsilon}$ for infinitely many $L$'s and sufficiently large $k(L^c)$. So if we invoke \emph{Borel-Cantelli lemma}, it is enough to show $\sum_{L=1}^{\infty} \mu(D_{L,\epsilon}) < \infty$. Recall we have
+\begin{align*}
+\mu(D_{L,\epsilon}) \leq \exp( - k(L^c) h_{\mu}(T_3)/2) \cdot \frac{3^{\alpha +2}}{2\epsilon^2}
+\end{align*}
+We may choose $c$ sufficiently large so that, then
+\begin{align*}
+k(L^c) > 4 \log (L)/ h_{\mu}(T_3)
+\end{align*}
+Therefore,
+\begin{align*}
+\sum \mu(D_{L,\epsilon}) \leq \sum L^{-2} \frac{3^{\alpha +2}}{2\epsilon^2} < +\infty
+\end{align*}
+\eop
+\end{proof}
+\s
+
+We have not proved the second part of Host's theorem, but we will use it to prove Rudolph's theorem.
+\s
+
+\thm \emph{(Rudolph)} Let $\mu$ be a probability measure on $\reals/ \mathbb{Z}$ that is invariant and \emph{ergodic} with respect to the joint action of $T_2 : x \mapsto 2x$ and $T_3 : x\mapsto 3x$. Suppose that $h_{\mu}(T_3) >0$. Then $\mu$ is the Lebesgue measure on $\reals/\mathbb{Z}$.
+\begin{proof}
+\pf Write $A = \{ x: \text{is normal in base 2}\}$. By \emph{Host's theorem}, has $\mu(A)>0$. First observe that $x\in A$ \emph{iff} $T_2 x \in A$, so $A = T_2^{-1} A$.
+\s
+
+\textbf{Claim :} if $x\in A$, then $T_3 x\in A$.
+\begin{subproof}
+\textbf{proof of claim)} This claim is a consequence of the fact that $T_2$ and $T_3$ commute. If $x\in A$, then $\forall f \in C(X)$, by definition of being normal, we have
+\begin{align*}
+\frac{1}{N} \sum_{n=0}^{N-1} f(T_2^n x) \rightarrow \int f(x)dx \quad \cdots\cdots\cdots (\heartsuit)
+\end{align*}
+Now we can write
+\begin{align*}
+\frac{1}{N} \sum_{n=0}^{N-1} f(T_2^n T_3 x) =& \frac{1}{N} \sum_{n=0}^{N-1} f(T_3 T_2^n x) \\
+\xrightarrow{(\heartsuit)} & \int f \circ T_3 (x) dx = \int f(x)dx
+\end{align*}
+\end{subproof}
+The claim implies $A \subset T_3^{-1} A$. Since $\mu(A) = \mu(T_3^{-1} A)$, we have $\mu(A \triangle T_3^{-1}A) =0$. Take
+\begin{align*}
+B = \bigcup_{k=0}^{\infty} T_3^{-k} A
+\end{align*}
+then we have $T_2^{-1}B= B$, $T_3^{-1} B = B$ and $\mu(B \backslash A) =0$. Using ergodicity assumption, we have $\mu(B) =1$, and hence $\mu(A)=1$. Therefore ($\heartsuit$) holds for $\mu$-a.e. $x$, i.e.
+\begin{align*}
+\frac{1}{N} \sum_{n=0}^{N-1} f(T^n_2 x) \rightarrow \int f(x) dx \quad \forall f\in C(X) \text{ and for } \mu \text{-a.e. }x
+\end{align*}
+Now by dominated convergence, we have
+\begin{align*}
+\frac{1}{N} \sum_{n=0}^{N-1} \int f(T_2^n x) d\mu = \int f(x) dx
+\end{align*}
+But since $\mu$ was $T_2$-invariant, we have $\int f(T_2^n x)d\mu = \int f(x) d\mu$ and so 
+\begin{align*}
+\int f d\mu = \int f(x)dx
+\end{align*}
+for each continuous $f$. This proves $\mu$ is the Lebesgue measure.
+\s
+
+\eop
+\end{proof}
 
 
 \end{document}

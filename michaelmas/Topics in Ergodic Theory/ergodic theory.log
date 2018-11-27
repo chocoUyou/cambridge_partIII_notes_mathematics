@@ -1,4 +1,4 @@
-This is XeTeX, Version 3.14159265-2.6-0.99998 (MiKTeX 2.9.6500) (preloaded format=xelatex 2018.2.4)  17 NOV 2018 13:04
+This is XeTeX, Version 3.14159265-2.6-0.99998 (MiKTeX 2.9.6500) (preloaded format=xelatex 2018.2.4)  27 NOV 2018 14:58
 entering extended mode
 **"./ergodic theory.tex"
 ("ergodic theory.tex"
@@ -6,8 +6,8 @@ LaTeX2e <2017-04-15>
 Babel <3.15> and hyphenation patterns for 75 language(s) loaded.
 ("C:\Program Files (x86)\MiKTeX 2.9\tex\latex\base\report.cls"
 Document Class: report 2014/09/29 v1.4h Standard LaTeX document class
-("C:\Program Files (x86)\MiKTeX 2.9\tex\latex\base\size10.clo"
-File: size10.clo 2014/09/29 v1.4h Standard LaTeX file (size option)
+("C:\Program Files (x86)\MiKTeX 2.9\tex\latex\base\size12.clo"
+File: size12.clo 2014/09/29 v1.4h Standard LaTeX file (size option)
 )
 \c@part=\count79
 \c@chapter=\count80
@@ -509,23 +509,27 @@ LaTeX Info: Thecontrolsequence`\]'isalreadyrobust on input line 129.
 \l_MT_above_shortintertext_sep=\dimen179
 \l_MT_below_shortintertext_sep=\dimen180
 )
+("C:\Program Files (x86)\MiKTeX 2.9\tex\latex\lipsum\lipsum.sty"
+Package: lipsum 2014/07/27 v1.3 150 paragraphs of Lorem Ipsum dummy text
+\c@lips@count=\count127
+)
 ("ergodic theory.aux")
 \openout1 = `"ergodic theory.aux"'.
 
-LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 39.
-LaTeX Font Info:    ... okay on input line 39.
-LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 39.
-LaTeX Font Info:    ... okay on input line 39.
-LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 39.
-LaTeX Font Info:    ... okay on input line 39.
-LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 39.
-LaTeX Font Info:    ... okay on input line 39.
-LaTeX Font Info:    Checking defaults for TU/lmr/m/n on input line 39.
-LaTeX Font Info:    ... okay on input line 39.
-LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 39.
-LaTeX Font Info:    ... okay on input line 39.
-LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 39.
-LaTeX Font Info:    ... okay on input line 39.
+LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 48.
+LaTeX Font Info:    ... okay on input line 48.
+LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 48.
+LaTeX Font Info:    ... okay on input line 48.
+LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 48.
+LaTeX Font Info:    ... okay on input line 48.
+LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 48.
+LaTeX Font Info:    ... okay on input line 48.
+LaTeX Font Info:    Checking defaults for TU/lmr/m/n on input line 48.
+LaTeX Font Info:    ... okay on input line 48.
+LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 48.
+LaTeX Font Info:    ... okay on input line 48.
+LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 48.
+LaTeX Font Info:    ... okay on input line 48.
 
 *geometry* detected driver: pdftex
 *geometry* verbose mode - [ preamble ] result:
@@ -545,12 +549,12 @@ LaTeX Font Info:    ... okay on input line 39.
 * \topmargin=-52.36449pt
 * \headheight=12.0pt
 * \headsep=25.0pt
-* \topskip=10.0pt
+* \topskip=12.0pt
 * \footskip=30.0pt
-* \marginparwidth=57.0pt
-* \marginparsep=11.0pt
+* \marginparwidth=35.0pt
+* \marginparsep=10.0pt
 * \columnsep=10.0pt
-* \skip\footins=9.0pt plus 4.0pt minus 2.0pt
+* \skip\footins=10.8pt plus 4.0pt minus 2.0pt
 * \hoffset=0.0pt
 * \voffset=0.0pt
 * \mag=1000
@@ -561,170 +565,136 @@ LaTeX Font Info:    ... okay on input line 39.
 * (1in=72.27pt=25.4mm, 1cm=28.453pt)
 
 ABD: EveryShipout initializing macros
-Overfull \hbox (177.60312pt too wide) in paragraph at lines 76--79
-\TU/lmr/m/n/10 ================================================================
-=====================
- []
+LaTeX Font Info:    Try loading font information for U+msa on input line 95.
 
-LaTeX Font Info:    Try loading font information for U+msa on input line 82.
 ("C:\Program Files (x86)\MiKTeX 2.9\tex\latex\amsfonts\umsa.fd"
 File: umsa.fd 2013/01/14 v3.01 AMS symbols A
 )
-LaTeX Font Info:    Try loading font information for U+msb on input line 82.
+LaTeX Font Info:    Try loading font information for U+msb on input line 95.
 
 ("C:\Program Files (x86)\MiKTeX 2.9\tex\latex\amsfonts\umsb.fd"
 File: umsb.fd 2013/01/14 v3.01 AMS symbols B
 )
-LaTeX Font Info:    Try loading font information for OMS+rsfs on input line 82.
+LaTeX Font Info:    Try loading font information for OMS+rsfs on input line 95.
 
 
 ("C:\Program Files (x86)\MiKTeX 2.9\tex\latex\calrsfs\omsrsfs.fd")
-LaTeX Font Info:    Try loading font information for U+eus on input line 82.
+LaTeX Font Info:    Try loading font information for U+eus on input line 95.
 
 ("C:\Program Files (x86)\MiKTeX 2.9\tex\latex\amsfonts\ueus.fd"
 File: ueus.fd 2013/01/14 v3.01 Euler Script
 ) [1
 
 
-]
-Overfull \hbox (177.60312pt too wide) in paragraph at lines 170--173
-[]\TU/lmr/m/n/10 ==============================================================
-=======================
- []
-
-[2]
-Overfull \hbox (325.42313pt too wide) in paragraph at lines 277--280
-[]\TU/lmr/m/n/10 ==============================================================
-==========================================
- []
-
-[3] [4]
-Overfull \hbox (35.31023pt too wide) in paragraph at lines 351--352
-\TU/lmr/m/n/10 shows $\OML/cmm/m/it/10 B\OMS/cmsy/m/n/10 n\OML/cmm/m/it/10 A \O
-MS/cmsy/m/n/10 ^^Z [] \OML/cmm/m/it/10 T[]A\OMS/cmsy/m/n/10 n\OML/cmm/m/it/10 T
-[]$\TU/lmr/m/n/10 . But $\OML/cmm/m/it/10 T[]A\OMS/cmsy/m/n/10 n\OML/cmm/m/it/1
-0 T[]$ \TU/lmr/m/n/10 has measure 0 because $\OML/cmm/m/it/10 ^^V\OT1/cmr/m/n/1
-0 (\OML/cmm/m/it/10 T[]A\OMS/cmsy/m/n/10 n\OML/cmm/m/it/10 T[]A\OT1/cmr/m/n/10 
-) =
- []
-
-
-Overfull \hbox (60.9031pt too wide) in paragraph at lines 379--380
-[]\TU/lmr/m/n/10 ==============================================================
-======== 
- []
-
-[5] [6] [7]
-Overfull \hbox (60.9031pt too wide) in paragraph at lines 557--558
-[]\TU/lmr/m/n/10 ==============================================================
-======== 
- []
-
-[8] [9]
-Overfull \hbox (123.14316pt too wide) in paragraph at lines 688--689
-[]\TU/lmr/m/n/10 ==============================================================
-================ 
- []
-
-[10]
-Overfull \hbox (68.68314pt too wide) in paragraph at lines 749--750
-[]\TU/lmr/m/n/10 ==============================================================
-========= 
- []
-
-[11]
-Overfull \hbox (60.9031pt too wide) in paragraph at lines 790--791
-[]\TU/lmr/m/n/10 ==============================================================
-======== 
- []
-
-[12] [13]
-Overfull \hbox (60.9031pt too wide) in paragraph at lines 921--922
-[]\TU/lmr/m/n/10 ==============================================================
-======== 
- []
-
-[14] [15]
-Overfull \hbox (60.9031pt too wide) in paragraph at lines 1044--1045
-[]\TU/lmr/m/n/10 ==============================================================
-======== 
- []
-
-[16] [17]
-Overfull \hbox (60.9031pt too wide) in paragraph at lines 1160--1161
-[]\TU/lmr/m/n/10 ==============================================================
-======== 
- []
-
-[18]
-Overfull \hbox (38.02707pt too wide) in paragraph at lines 1228--1229
-[]\TU/lmr/m/it/10 General case : \TU/lmr/m/n/10 Let $\OML/cmm/m/it/10 j$ \TU/lm
-r/m/n/10 be maximal such that $\OML/cmm/m/it/10 a[]$ \TU/lmr/m/n/10 is irration
-al. Let $\OML/cmm/m/it/10 q \OMS/cmsy/m/n/10 2 \U/msb/m/n/10 Z[]$ \TU/lmr/m/n/1
-0 be such that $\OML/cmm/m/it/10 qa[]; []  ; qa[]; []  ; qa[] \OMS/cmsy/m/n/10 
-2
- []
-
+] [2]
+[3] [4] [5] [6] [7] [8] [9] [10] [11] [12] [13] [14] [15] [16] [17] [18]
 [19]
-Overfull \hbox (60.9031pt too wide) in paragraph at lines 1284--1285
-[]\TU/lmr/m/n/10 ==============================================================
-======== 
+Overfull \hbox (3.69028pt too wide) detected at line 1081
+[]
  []
 
-[20] [21] [22]
-Overfull \hbox (60.9031pt too wide) in paragraph at lines 1436--1437
-[]\TU/lmr/m/n/10 ==============================================================
-======== 
+[20] [21]
+Overfull \hbox (14.14754pt too wide) detected at line 1161
+[]
  []
 
-[23] [24]
-Overfull \hbox (60.9031pt too wide) in paragraph at lines 1554--1555
-[]\TU/lmr/m/n/10 ==============================================================
-======== 
+[22] [23] [24]
+Overfull \hbox (45.02225pt too wide) detected at line 1343
+[]
  []
 
-[25]
+[25] [26]
+Overfull \hbox (27.41069pt too wide) detected at line 1428
+[]
+ []
+
+[27] [28] [29] [30] [31]
+Overfull \hbox (69.0231pt too wide) in paragraph at lines 1658--1659
+[]\TU/lmr/m/n/12 **************************************************************
+******************************** 
+ []
+
 File: 1.png Graphic file (type bmp)
 <1.png>
-
-
-LaTeX Warning: `h' float specifier changed to `ht'.
-
-[26]
+[32]
 File: 2.png Graphic file (type bmp)
 <2.png>
 
-Overfull \hbox (60.9031pt too wide) in paragraph at lines 1695--1696
-[]\TU/lmr/m/n/10 ==============================================================
-======== 
+Overfull \hbox (69.0231pt too wide) in paragraph at lines 1707--1708
+[]\TU/lmr/m/n/12 **************************************************************
+******************************** 
  []
 
-[27] [28]
-Overfull \hbox (60.9031pt too wide) in paragraph at lines 1792--1793
-[]\TU/lmr/m/n/10 ==============================================================
-======== 
+[33] [34] [35] [36] [37] [38] [39] [40]
+Overfull \hbox (47.24081pt too wide) in paragraph at lines 2133--2135
+[]\TU/lmr/m/n/12 The problem of this definition is that it is generally difficu
+lt to find out the supremum $[][] \OML/cmm/m/it/12 h[]\OT1/cmr/m/n/12 (\OML/cmm
+/m/it/12 T\OMS/cmsy/m/n/12 j\OML/cmm/m/it/12 ^^X\OT1/cmr/m/n/12 )$
  []
 
-[29] [30]
-Overfull \hbox (60.9031pt too wide) in paragraph at lines 1903--1905
-[]\TU/lmr/m/n/10 ==============================================================
-======== 
+
+Overfull \hbox (15.66124pt too wide) in paragraph at lines 2148--2149
+[]\TU/lmr/bx/n/12 Example : \TU/lmr/m/n/12 Let $\OT1/cmr/m/n/12 (\OMS/cmsy/m/n/
+12 f\OT1/cmr/m/n/12 1\OML/cmm/m/it/12 ; \OT1/cmr/m/n/12 2\OML/cmm/m/it/12 ; [] 
+ ; k\OMS/cmsy/m/n/12 g[]\OML/cmm/m/it/12 ; \U/eus/m/n/12 B\OML/cmm/m/it/12 ; ^^
+V; ^^[\OT1/cmr/m/n/12 )$ \TU/lmr/m/n/12 be the $\OT1/cmr/m/n/12 (\OML/cmm/m/it/
+12 p[]; []  ; p[]\OT1/cmr/m/n/12 )$\TU/lmr/m/n/12 -Bernoulli shift. Let $\OML/c
+mm/m/it/12 X \OT1/cmr/m/n/12 = \OMS/cmsy/m/n/12 f\OT1/cmr/m/n/12 1\OML/cmm/m/it
+/12 ; \OT1/cmr/m/n/12 2\OML/cmm/m/it/12 ; []  ; k\OMS/cmsy/m/n/12 g[]$\TU/lmr/m
+/n/12 . 
  []
 
-[31] [32]
-Overfull \hbox (60.9031pt too wide) in paragraph at lines 2049--2050
-[]\TU/lmr/m/n/10 ==============================================================
-======== 
+[41]
+Overfull \hbox (3.07898pt too wide) detected at line 2187
+[]
  []
 
-[33] [34] [35] ("ergodic theory.aux") ) 
+[42]
+Overfull \hbox (0.41238pt too wide) detected at line 2249
+[]
+ []
+
+
+Overfull \hbox (78.55463pt too wide) detected at line 2277
+[]
+ []
+
+[43]
+Overfull \hbox (15.46022pt too wide) detected at line 2298
+[]
+ []
+
+[44] [45]
+Overfull \hbox (6.05879pt too wide) in paragraph at lines 2404--2406
+[]\TU/lmr/bx/n/12 Definition) \TU/lmr/m/n/12 The \TU/lmr/bx/n/12 conditional en
+tropy of $\OML/cmm/m/it/12 ^^Q$ \TU/lmr/bx/n/12 relative to $\U/eus/m/n/12 A$ \
+TU/lmr/m/n/12 is defined as $\OML/cmm/m/it/12 H[]\OT1/cmr/m/n/12 (\OML/cmm/m/it
+/12 ^^Q\OMS/cmsy/m/n/12 j\U/eus/m/n/12 A\OT1/cmr/m/n/12 ) = [] \OML/cmm/m/it/12
+ I[]\OT1/cmr/m/n/12 (\OML/cmm/m/it/12 ^^Q\OMS/cmsy/m/n/12 j\U/eus/m/n/12 A\OT1/
+cmr/m/n/12 )\OML/cmm/m/it/12 d^^V$\TU/lmr/m/n/12 .
+ []
+
+[46] [47] [48]
+Overfull \hbox (43.44778pt too wide) detected at line 2530
+[]
+ []
+
+[49] [50] [51] [52] [53] [54] [55] [56]
+Overfull \hbox (3.30591pt too wide) in paragraph at lines 2967--2968
+[]\TU/lmr/bx/n/12 Lemma) \TU/lmr/m/n/12 The partition $\OML/cmm/m/it/12 ^^X$ \T
+U/lmr/m/n/12 as in the setting is a 1-sided generator for $\OT1/cmr/m/n/12 (\U/
+msb/m/n/12 R\OML/cmm/m/it/12 =\U/msb/m/n/12 Z\OML/cmm/m/it/12 ; \U/eus/m/n/12 B
+\OML/cmm/m/it/12 ; ^^V; T[]\OT1/cmr/m/n/12 )$\TU/lmr/m/n/12 .
+ []
+
+[57] [58] [59] [60] [61] ("ergodic theory.aux") ) 
 Here is how much of TeX's memory you used:
- 13553 strings out of 427839
- 273574 string characters out of 3151405
- 333963 words of memory out of 3000000
- 17250 multiletter control sequences out of 15000+200000
- 12271 words of font info for 64 fonts, out of 3000000 for 9000
+ 13758 strings out of 427839
+ 276002 string characters out of 3151405
+ 433870 words of memory out of 3000000
+ 17450 multiletter control sequences out of 15000+200000
+ 14197 words of font info for 74 fonts, out of 3000000 for 9000
  1328 hyphenation exceptions out of 8191
- 61i,21n,84p,960b,1019s stack positions out of 5000i,500n,10000p,200000b,50000s
+ 61i,21n,84p,960b,1017s stack positions out of 5000i,500n,10000p,200000b,50000s
 
-Output written on ergodic theory.pdf (35 pages).
+Output written on ergodic theory.pdf (61 pages).

@@ -64,6 +64,17 @@
 \newcommand{\xeq}[1]{\stackrel{\mathclap{\normalfont\mbox{\tiny{#1}}}}{=}}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
+
+%%%%%%%%%%%%%%double rules%%%%%%%%%%%%%%%%%%%
+\usepackage{lipsum}% Just for this example
+
+\newcommand{\doublerule}[1][.4pt]{%
+  \noindent
+  \makebox[0pt][l]{\rule[.7ex]{\linewidth}{#1}}%
+  \rule[.3ex]{\linewidth}{#1}}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
 \begin{document}
 \newcommand{\thm}{\textbf{Theorem) }}
 \newcommand{\thmnum}[1]{\textbf{Theorem #1) }}
@@ -104,7 +115,8 @@
 \end{array}}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-\newcommand{\newday}{================================================================}
+\newcommand{\newday}{\doublerule[0.5pt]}
+%\newcommand{\newday}{================================================================}
 \newcommand{\digression}{**********************************************************************************************}
 
 \renewcommand{\bar}{\overline}
@@ -197,8 +209,10 @@ Basic strategy : show that if $A$ has density $\geq \delta$ and no 3AP, then the
 \begin{align*}
 |A\cap P| \geq (\delta + c(\delta)) |P|
 \end{align*}
+\s
 
-====================================================================================
+\newday
+
 (9th October, Tuesday)
 \s
 
@@ -628,7 +642,7 @@ We shall now start with a set $A\subset \mathbb{Z}$ with $|A+A| \leq C|A|$ and p
 \item By Bogolyubov's lemma, $2A'' - 2A''$ contains a Bohr set $B(K,1/4)$ with $|K|\leq \alpha^{-2}$, which is 2-isomorphic to a set $B$ that is the intersection of a symmetric convex with a lattice of dimension at most $\alpha^{-2}$. But $2A'' - 2A'' \xeq{2} 2A' -2A'$ (think for a minute - if $A' \xeq{8} A''$ then we should have $2A'-2A' \xeq{2} 2A''-2A''$), and therefore $2A' - 2A'$ has a subset $B$ that is isomorphic to $B'$. 
 \item Now let $X \subset A$ be maximal such that the sets $x + B$ with $x\in X$ are disjoint. Then $A \subset X + B-B$, by maximality. Also,
 \begin{align*}
-|X||B| = |X+B| \leq |3A-2A| \leq C^5 |A| \quad \Rightarrow |X|\leq \quad C^5 |A|/|B|
+|X||B| = |X+B| \leq |3A-2A| \leq C^5 |A| \quad \Rightarrow \quad  |X|\leq C^5 |A|/|B|
 \end{align*}
 But by \textbf{Lemma 8} about Bohr sets, $|B| \geq 4^{\alpha^{-2}} |A|$, so $|X| \leq 4^{\alpha^{-2}}C^5 \leq 4^{1024 C^{32}} C^5$. So $A$ is contained in the union of at most $4^{1024 C^{32}} C^5$ translates of $B-B$
 \item If $B = \Lambda \cap K_0$ (where $K_0$ is a symmetric convex body) then $B-B \subset \Lambda \cap 2K_0$, and also $|B-B|\leq C^2 |A| \leq 5^{\alpha^{-2}}|B|$. So this 
@@ -1488,7 +1502,7 @@ This splits into 16 terms, one of which the main term is $\alpha^2 \beta^2$.
 \end{proof}
 \s
 
-How do we use this? In analogy to proof of Roth's theorem - Instead of taking one third of the middle of $\mathbb{Z}_n$, take $\sim 1/5$ of $\mathbb{Z}_n$. Divide cases as in the proof of Roth's theorem. However, we do not have any tools to deal with the case $\norms{f}{U^3} > c$. To overcome this, and make use of various other things in the course.
+How do we use this? In analogy to proof of Roth's theorem, can prove if $\norms{f}{U^3} = \norms{A-\delta}{U^3}$ is small($\delta$ the density of $A$ in $\mathbb{Z}_n$), then $A$ contains roughly the right number of arithmetic progression of length 4 - instead of taking one third of the middle of $\mathbb{Z}_n$, take $\sim 1/5$ of $\mathbb{Z}_n$. Divide cases as in the proof of Roth's theorem. However, we do not have any tools to deal with the case $\norms{f}{U^3} > c$. To overcome this, and make use of various other things in the course.
 \s
 
 \textbf{Example :} (where $U_3$ norm is very large while $U_2$ norms is small) In $\mathbb{Z}_n$, consider $f(x) = \omega^{x^2}$ where $\omega = \exp(2\pi i /r)$ for some $r$. Then
@@ -1496,6 +1510,97 @@ How do we use this? In analogy to proof of Roth's theorem - Instead of taking on
 \avg_{x,a,b,c} \omega^{x^2 - (x-a)^2 - (x-b)^2 - (x-c)^2 - (x-a-b)^2  + (x-a-c)^2 + (x-b-c)^2 - (x-a-b-c)^2} = 1 
 \end{align*}
 But recall from first example sheet, this has very small Fourier coefficients depending on choice of $r$. It seems like higher order Fourier analysis is to deal with these quadratic behaviour - but it is in fact bit more complicated.
+\s
 
+\newday
+
+(27th November, Tuesday)
+\s
+
+Have shown that if $\norms{f}{U^3} = \norms{A-\delta}{U^3}$ is small($\delta$ the density of $A$ in $\mathbb{Z}_n$), then $A$ contains roughly the right number of arithmetic progression of length 4.
+
+\quad But what happens if $\norms{f}{U^3}$ is large?
+\s
+
+\defi Let $G$ be a finite Abelian group, $f: G\rightarrow \mathbb{C}$, $a\in G$. Write $\partial_a f$ for the function
+\begin{align*}
+\partial_a f(x) = f(x) \overline{f(x-a)}
+\end{align*}
+e.g. if $f(x) = \omega^{\phi(x)}$, then $\partial_a f(x) = \omega^{\phi(x) - \phi(x-a)}$.
+\s
+
+Observe that 
+\begin{align*}
+\norms{f}{U^3}^8 =& \avg_{x,a,b,c} f(x) \bar{f(x-a)} \cdots \bar{f(x-a-b-c)} \\
+=& \avg_{x,a,b,c} \partial_a f(x) \bar{\partial_a f(x-b)} \bar{\partial_a f(x-c)} \partial_a f(x-b-c) = \avg_a \norms{\partial_a f}{U^2}^4 \\
+=& \avg_a \sum_r |\hat{\partial_a f}(r)|^4 \\
+\leq & \avg_a \max_r |\hat{\partial_a f}(r)|^2 \sum_r |\hat{\partial_a f}(r)|^2 = \avg_a \max_r |\hat{\partial_a f}(r)|^2 \avg_x | \partial_a f(x) |^2 \\
+\leq & \avg_a \max_r |\hat{\partial_a f}(r)|^2
+\end{align*}
+So if $\norms{f}{U^3}^8 \geq c$, then $\avg_a  \max_r |\hat{\partial_a f}(r)|^2 \geq c$. This implies
+\begin{align*}
+\exists B \text{ s.t. } |B|\geq \frac{c}{2}|G| \text{ and } \max_r |\hat{\partial_a f}(r)|^2 \geq \frac{c}{2} \text{ for every } a\in B
+\end{align*}
+Choose $\phi : B \rightarrow \hat{G}$ such that $|\hat{\partial_{a}f}(\phi(a))|^2 = \max_r |\hat{\partial_a f}(r)|^2$. Then this can be written as
+\begin{align*}
+\exists B, \phi: B \rightarrow \hat{G} \text{ s.t. } \avg_a B(a) | \hat{\partial_a f}(\phi(a)) |^2 \geq \frac{c^2}{4}
+\end{align*}
+So using clever change of variables,
+\begin{align*}
+\frac{c^2}{4} \leq & \avg_a B(a) |\hat{\partial_a f}(\phi(a))|^2 \\
+= & \avg_a B(a) \avg_{x,y} f(x) \bar{f(x-a)} \bar{f(y)} f(y-a) \omega^{-\phi(a) \cdot (x-y)} \\
+= & \avg_{b,x,z} B(x-z) f(x) \bar{f(z)} \bar{f(x-b)} f(z-b) \omega^{-\phi(x-z) \cdot b} \quad (a=x-z,\,\, y=x-b) \\
+\leq & \avg_b \boxnorm{F_b} \quad \quad (\text{ where } F_b(x,z) = \omega^{-b\cdot \phi(x-z)} B(x-z) ) \\
+\leq & (\avg_b \boxnorm{F_b}^4)^{1/4} \quad (\text{by H\"{o}lder})
+\end{align*}
+Just carrying on the calculation, we obtain
+\begin{align*}
+= & \Big( \avg_b \avg_{x_1,x_2, z_1, z_2} B(x_1 - z_1) B(x_1 - z_2)B(x_2 - z_1) B(x_2 - z_2) \omega^{-b \big( \phi(x_1 - z_1) - \phi(x_1 - z_2) - \phi(x_2 - z_1) + \phi(x_2 -z_2) \big)} \Big)^{1/4} \\
+= & \Big( \avg_{t+u = v+w} B(t)B(v)B(w)B(u) \avg_b \omega^{-b(\phi(t) + \phi(u) - \phi(v) -\phi(w))} \Big)^{1/4} \\
+= & \Big( \avg_{t+u = v+w} B(t)B(v)B(w)B(u) 1_{\phi(t)+\phi(u) = \phi(v) + \phi(w)} \Big)^{1/4} \\
+= & \Big( \prob_{t+u = v+w} \Big[ t,u,v,w\in B \text{ and } \phi(t)+\phi(u) = \phi(v) + \phi(w) \Big] \Big)^{1/4}
+\end{align*}
+Equivalently, if $\Gamma = \{ (x,\phi(x)) : x\in B \}$ is the graph of $\phi$, then $\Gamma$ contains at least $\frac{c^8}{256}|\Gamma|^3$ additive quadruples.
+
+\quad So by BSG, $\Gamma$ has a large subset $\Gamma'$ such that $|\Gamma' - \Gamma'| \leq C |\Gamma '|$. Then by the proof of Freiman's theorem, $|2\Gamma' - 2\Gamma'|$ contains a subset isomorphic to a low-dimensional Bohr set $B$. But low-dimensional Bohr sets contain longish arithmetic progressions. So $2\Gamma' - 2\Gamma'$ contains a fairly long arithmetic progression $P$.
+
+\quad Let $X\subset \Gamma'$ be maximal such that sets $x+ P$, $x\in X$ are disjoint. Then
+\begin{align*}
+|X||P| = |X+P| \leq |3\Gamma' - 2\Gamma'| \leq C^5 |\Gamma '|
+\end{align*}
+Also, $\Gamma ' \subset X+P-P$ by maximality, so $\Gamma'$ is contained in the union of $\leq \frac{C^5 |\Gamma'|}{|P|}$ translates of $P$. So one of these translates contains at least $\frac{|P|}{C^5}$ points of $\Gamma'$.
+\s
+
+\emph{Now let's oversimplify and assume that $B= \mathbb{Z}_N$ and $\phi(x) = 2\lambda x$ for every $x$}. Then
+\begin{align*}
+c\leq \avg_a |\hat{\partial_a f}(2\lambda a)|^2 = \avg_a \avg_{x} f(x,b) \bar{f(x-a)} \bar{f(x-b)} f(x-a-b) \omega^{-b\cdot 2\lambda a}
+\end{align*}
+But $2ab = x^2 - (x-a)^2 - (x-b)^2 + (x-a-b)^2$ for any $x$, $a$ and $b$, so
+\begin{align*}
+\textbf{RHS} =& \avg_{x,a,b} g(x) \bar{g(x-a)} \bar{g(x-b)} g(x-a-b) \quad \text{ where } g(x) = f(x) \omega^{-\lambda x^2} \\
+=& \norms{g}{U^2}^4 = \sum_r |\hat{g}(r)|^4 \leq \max_r |\hat{g}(r)|^2
+\end{align*}
+so $\exists r$ such that $c^{1/2} \leq |\hat{g}(r)| = |\avg_x f(x)\omega^{-\lambda x^2 - rx}|$. 
+\s
+
+\textbf{Claim :} for all $r$, we can find $d\leq m$ such that $\omega^{rd^2}$ is close to $1$.
+\begin{proof}
+\pf Divide the circle into arcs of length $\leq \epsilon$. By van der Waerden's theorem(which is implied by Roth's theorem) we can find $x-d,x,x+d$ such that $\frac{(x-d)^2}{2}, \frac{x^2}{2}, \frac{(x+d)^2}{2}$ all live in the same interval. But then
+\begin{align*}
+d^2 = \frac{(x-d)^2}{2} - 2\cdot \frac{x^2}{2} + \frac{(x+d)^2}{2}
+\end{align*}
+is small, so $\omega^{d^2} \simeq 1$
+
+\eop
+\end{proof}
+
+etc. Can complete the proof using Roth-like argument to show existence 4AP.
+\s
+
+To learn more about higher order Fourier analysis, see the article ``Generalizations of Fourier Analysis, and How to Apply Them" written by Tim Gowers.(can be found at arXiv:1608.04127v1) Here I just attach the abstract of the article.
+
+\begin{changemargin}{1.5cm}{1.5cm}
+\textit{Abstract :} This is a survey of the use of Fourier analysis in additive combinatorics, with a particular focus on situations where it cannot be straightforwardly applied, but needs to be generalized first. Sometimes very satisfactory generalizations exist, while sometimes we have to make do with theories that have some of the desirable properties of Fourier analysis but not all of them. In the latter case, there are intriguing hints that there may be more satisfactory theories yet to be discovered. This article grew out of the Colloquium Lectures at the Joint Meeting of the AMS and the MAA, given in Seattle in January 2016.
+\end{changemargin}
 
 \end{document}
