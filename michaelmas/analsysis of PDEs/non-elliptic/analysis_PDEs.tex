@@ -40,6 +40,15 @@
 }
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
+%%%%%%%%%%%%%%double rules%%%%%%%%%%%%%%%%%%%
+\usepackage{lipsum}% Just for this example
+
+\newcommand{\doublerule}[1][.4pt]{%
+  \noindent
+  \makebox[0pt][l]{\rule[.7ex]{\linewidth}{#1}}%
+  \rule[.3ex]{\linewidth}{#1}}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
 \begin{document}
 \newcommand{\thm}{\textbf{Theorem) }}
 \newcommand{\thmnum}[1]{\textbf{Theorem #1) }}
@@ -79,7 +88,7 @@
 
 \def\doubleunderline#1{\underline{\underline{#1}}}
 
-\newcommand{\newday}{===============================================================}
+\newcommand{\newday}{\doublerule[0.5pt]}
 \newcommand{\digression}{**********************************************************************************************}
 
 
@@ -311,15 +320,135 @@ so $u = \psi$ on $\Sigma_0$.
 
 \eop
 \end{proof}
+\s
 
+\newday
 
+(28th November, Wednesday)
+\s
 
+(Handout on improvement of regularity for the hyperbolic IBVP distributed)
+\s
 
+We define for a Banach space $X$,
+\begin{align*}
+L^p((0,T); X) = \{ u : (0,T) \rightarrow X | \norms{u}{L^p} < +\infty \}
+\end{align*}
+with norm
+\begin{align*}
+\norms{u}{L^p((0,T);X)} = \begin{cases}
+\begin{array}{ll}
+(\int_0^T \norms{u(t)}{X}^p dt)^{1/p} & 1\leq p < \infty \\
+\text{ess}\,\text{sup}_{t\in (0,T)} \norms{u(t)}{X}
+\end{array}
+\end{cases}
+\end{align*}
+\s
 
+\thm \emph{(Higher Regularity for IBVP)} If $a^{ij}, b^i, b, c\in C^{k+1}(\bar{U}_T)$, $\pa U$ is $C^{k+1}$ and 
+\begin{align*}
+& \pa^i_t u \big|_{\Sigma_0} \in H_0^1(U), \quad i=0, \cdots,k \\
+& \pa_t^{k+1} u \big|_{\Sigma_0} \in L^2(U) \\
+& \pa_t^i f \in L^2((0,T) ; H^{k-i}(U)), \quad i=0, \cdots, k
+\end{align*}
+Then $u\in H^{k+1}(U_T)$ and
+\begin{align*}
+\pa_t^i u \in L^{\infty}((0,T) ; H^{k+1-i}(U)), \quad i=0, \cdots, k+1
+\end{align*}
+\begin{proof}
+\pf See the handout
+\end{proof}
+\s
 
+Note that since $u_{tt}|_{\Sigma_0} = (f-Lu)|_{\Sigma_0}$ etc, the conditions on $\Sigma_0$ can be reduced tot he requirements that
+\begin{align*}
+\psi \in H^{k+1}(U), \quad \psi' \in H^k(U)
+\end{align*}
+together with some compatibility condition hold at $\pa \Sigma_0$.
 
+\textit{e.g.} if $u\in C^{\infty}(\bar{U}_T)$ satisfies $u_{tt} - \Delta u =0$ in $U_T$, $u=\psi$, $u_t = \psi'$ on $\Sigma_0$ and $u=0$ on $\pa^* U_T$, then $u=0$ on $\pa^* U_T$ implies $\pa_t^i u=0$ on $\pa^* U_T$ so $u_{tt} =0$ on $\pa^* U_T$ implies $\Delta \phi =0$ on $\pa \Sigma_0$ and $u_{ttt} =0$ on $\pa^* U_T$ implies $\Delta \psi' =0$. In fact, require $\Delta^k \psi =0$, $\Delta^k \psi' =0$ on $\pa \Sigma_0$.
 
+\subsubsection*{Finite propagation speed}
 
+A critical feature of hyperbolic equations such as these we consider is that information travels at a finite speed. We wish to make a precise statement about this.
 
+\quad Let $S_0 \subset U$ be an open set with smooth boundary and let
+\begin{align*}
+D = \{ (t,x) \in U_T : x\in S_0, t\in (0, \tau(x)) \}
+\end{align*}
+where $\tau : S_0 \rightarrow \reals$ is a smooth function vanishing at $\pa S_0$. We say $S' = \{ (\tau(x), x) : x\in S_0 \}$ is \textbf{space-like} if 
+\begin{align*}
+\sum_{ij} a^{ij} (\tau(x),x) \tau_{x_i} \tau_{x_j} < 1 \quad \forall x\in S_0
+\end{align*}
+\s
 
+\thm If $S_0, D, S'$ are as above with $S'$ \emph{space-like} and $u\in H^1(U_T)$ is a weak solution to the IBVP. Then $u|_D$ depends only on $\psi|_{S_0}, \psi|_{S_0}$ and $f|_D$. 
+\begin{proof}
+\pf The proof is a slight generalization of the proof of uniqueness proof.
+
+\quad Return to the definition of weak solutions :
+\begin{align*}
+\int_U \Big(-u_t v_t + \sum_{i,j} a^{ij} u_{x_i} v_{x_j} + \sum_{i}b^i u_{x_i} v + bu_t v + cuv \Big) dxdt - \int_{\Sigma_0} \psi' v dx = \int_{U_T} fv dxdt
+\end{align*}
+for all $v\in H^1(U_T)$, and $v=0$ on $\pa^* U_T \cup \Sigma_T$. By linearity, it is sufficient to prove that $u=0$ in $D$ if $\psi|_{S_0} = \psi_{S_0'}=0$ and $f|_D =0$. Take as test function
+\begin{align*}
+v = \begin{cases}
+\begin{array}{ll}
+\int^{\tau(x)}_t e^{-\lambda s} u(s,x) ds & \text{if } (x,t) \in D \\
+0 & \text{if } (x,t) \not\in D
+\end{array}
+\end{cases}
+\end{align*}
+with $\lambda >0$ to be chosen later. This is in $H^1(U_T)$ with
+\begin{align*}
+& v_{x_i} = \tau_{x_i} e^{-\lambda \tau(x)} u(x, \tau(x)) + \int_t^{\tau(x)} e^{-\lambda s} u_{x_i}(x,s) dx \\
+& v_t = -e^{-\lambda t} u(x,t)
+\end{align*}
+In $D$, has $v_{x_i} = v_t =0$ on $U_T \backslash D$. Inserting this as a test function, arguing as in the proof of uniqueness proof, have
+\begin{align*}
+\int_D \Big[& \frac{d}{dt} \Big( \frac{1}{2}u^2 e^{-\lambda t} - \frac{1}{2} \sum_{i,j}a^{ij}v_{x_i}v_{x_j} e^{\lambda t} - \frac{1}{2} v^2 e^{\lambda t} \Big) \\
+&+ \frac{\lambda}{2} \Big( u^2e^{-\lambda t} + \sum_{i,j}a^{i}v_{x_i}v_{x_j} e^{\lambda t} + v^2 e^{\lambda t} \Big) \Big] \\
+= \int_D \Big[& \frac{1}{2} \sum_{i,j} \dot{a}^{ij}v_{x_i} v_{x_j} e^{\lambda t} - \sum_i b^i u_{x_i} v + bu\cdot u^{-\lambda t} - \dot{b}uv + (c-1) uv \Big] dxdt
+\end{align*}
+Perform the $t$ integral of the $\frac{d}{dt}(\cdots)$ term - we can not discard the term $\sum_{ij}a^{ij}v_{x_i} v_{x_j}$ in the upper limit (as we did in uniqueness proof). However,
+\begin{align*}
+v_{x_i} \big|_{t= \tau(x)} = \tau_{x_i} e^{-\lambda \tau(x)} u(x, \tau(x))
+\end{align*}
+So we find
+\begin{align*}
+&\int_{S_0} e^{-\lambda \tau(x)} u^2 - \frac{1}{2} \sum_{ij} a^{ij} v_{x_i}v_{x_j} e^{\lambda \tau} dx \\
+=& \int_{S_0} \big( 1- \sum_{i,j}a^{ij}\tau_{x_i} \tau_{x_j} \big) u^2 e^{\lambda \tau} dx \geq 0
+\end{align*}
+where the last inequality follows from the assumption of space-likeness of $S'$. The rest of the proof goes through as in the proof of uniqueness sand $u \equiv 0$ in $D$.
+
+\eop
+\end{proof}
+
+This implies in particular that signals propagate at finite speed. Suppose
+\begin{align*}
+\sum_{i,j} a^{ij} \xi_i \xi_j \leq \mu |\xi|^2 \quad \forall (x,t) \in U_T, \,\, \xi \in \reals^n
+\end{align*}
+Then no signal propagates faster than $\sqrt{\mu}$. 
+\begin{figure}[h]
+\begin{center}
+	\includegraphics[scale=0.6]{11}
+\end{center}
+\end{figure}
+If $\frac{\Delta t}{\Delta x} < \mu^{-1/2}$, can find $S'$ with $|D\tau |< \mu^{-1/2}$ such that $P\in D$ and $S_0$ outside support of data so $\sum_{i,j} a^{ij} \tau_{x_i} \tau_{x_j} \leq \mu |D\tau|^2 <1$. Thus $u=0$ at $P$. i.e.
+\begin{align*}
+\frac{\Delta t}{\Delta x} < \mu^{-1/2} \quad \text{implies we must tarvel faster than } \mu^{1/2} \text{ to travel from supp(Data) to } P
+\end{align*}
+\s
+
+Using this property, we can construct solutions on \emph{unbounded domains} by reducing locally to a bounded problem and using this uniqueness result.
+\begin{itemize}
+\item Find $D$ containing $P$ with $S'$ space-like 
+\item Put an artificial boundary outside $D$.
+\item Use uniqueness to see that inside $D$, solving on the whole domain gives the same answer as solving on the bounded region.
+\end{itemize}
+\begin{figure}[h]
+	\begin{center}
+		\includegraphics[scale=0.6]{13}
+	\end{center}
+\end{figure}
 \end{document}

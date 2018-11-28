@@ -1,4 +1,4 @@
-This is XeTeX, Version 3.14159265-2.6-0.99998 (MiKTeX 2.9.6500) (preloaded format=xelatex 2018.2.4)  31 OCT 2018 15:48
+This is XeTeX, Version 3.14159265-2.6-0.99998 (MiKTeX 2.9.6500) (preloaded format=xelatex 2018.2.4)  28 NOV 2018 17:14
 entering extended mode
 **./martingales.tex
 (martingales.tex
@@ -148,15 +148,12 @@ Package color Info: Driver file: xetex.def on input line 147.
 ("C:\Program Files (x86)\MiKTeX 2.9\tex\latex\graphics-def\xetex.def"
 File: xetex.def 2017/06/24 v5.0h Graphics/color driver for xetex
 ))
-("C:\Program Files (x86)\MiKTeX 2.9\tex\latex\mathtools\empheq.sty"
-Package: empheq 2017/03/31 v2.15 Emphasizing equations
+("C:\Program Files (x86)\MiKTeX 2.9\tex\latex\pdfpages\pdfpages.sty"
+Package: pdfpages 2017/10/31 v0.5l Insert pages of external PDF documents (AM)
 
-("C:\Program Files (x86)\MiKTeX 2.9\tex\latex\mathtools\mhsetup.sty"
-Package: mhsetup 2017/03/31 v1.3 programming setup (MH)
+("C:\Program Files (x86)\MiKTeX 2.9\tex\latex\base\ifthen.sty"
+Package: ifthen 2014/09/29 v1.1c Standard LaTeX ifthen package (DPC)
 )
-("C:\Program Files (x86)\MiKTeX 2.9\tex\latex\mathtools\mathtools.sty"
-Package: mathtools 2018/01/08 v1.21 mathematical typesetting tools
-
 ("C:\Program Files (x86)\MiKTeX 2.9\tex\latex\tools\calc.sty"
 Package: calc 2014/10/28 v4.3 Infix arithmetic (KKT,FJ)
 \calc@Acount=\count103
@@ -170,64 +167,18 @@ LaTeX Info: Redefining \addtolength on input line 81.
 \calc@Ccount=\count105
 \calc@Cskip=\skip48
 )
-LaTeX Info: Thecontrolsequence`\('isalreadyrobust on input line 129.
-LaTeX Info: Thecontrolsequence`\)'isalreadyrobust on input line 129.
-LaTeX Info: Thecontrolsequence`\['isalreadyrobust on input line 129.
-LaTeX Info: Thecontrolsequence`\]'isalreadyrobust on input line 129.
-\g_MT_multlinerow_int=\count106
-\l_MT_multwidth_dim=\dimen122
-\origjot=\skip49
-\l_MT_shortvdotswithinadjustabove_dim=\dimen123
-\l_MT_shortvdotswithinadjustbelow_dim=\dimen124
-\l_MT_above_intertext_sep=\dimen125
-\l_MT_below_intertext_sep=\dimen126
-\l_MT_above_shortintertext_sep=\dimen127
-\l_MT_below_shortintertext_sep=\dimen128
+("C:\Program Files (x86)\MiKTeX 2.9\tex\latex\eso-pic\eso-pic.sty"
+Package: eso-pic 2018/04/12 v2.0h eso-pic (RN)
+
+("C:\Program Files (x86)\MiKTeX 2.9\tex\generic\oberdiek\atbegshi.sty"
+Package: atbegshi 2016/06/09 v1.18 At begin shipout hook (HO)
+
+("C:\Program Files (x86)\MiKTeX 2.9\tex\generic\oberdiek\infwarerr.sty"
+Package: infwarerr 2016/05/16 v1.4 Providing info/warning/error messages (HO)
 )
-\l_EQ_equationtype_int=\count107
-\l_EQ_alignmentmode_int=\count108
-\l_EQ_totalwidth_dim=\dimen129
-\l_EQ_displaywidth_dim=\dimen130
-\l_EQ_temp_linewidth_dim=\dimen131
-\EmphEqdelimitershortfall=\dimen132
-\EmphEqdelimiterfactor=\count109
-\g_EQ_toptag_height_dim=\dimen133
-\g_EQ_bottomtag_depth_dim=\dimen134
-\g_EQ_toprow_height_dim=\dimen135
-\g_EQ_bottomrow_depth_dim=\dimen136
-\g_EQ_widesttag_dim=\dimen137
-\EQ_mathdisplay_box=\box28
-\EQ_tag_box=\box29
-\g_EQ_temprow_int=\count110
-)
-\mytemplen=\skip50
-\mytempbox=\box30
-
-("C:\Program Files (x86)\MiKTeX 2.9\tex\latex\tikz-cd\tikz-cd.sty"
-Package: tikz-cd 2014/10/30 v0.9e Commutative diagrams with tikz
-
-("C:\Program Files (x86)\MiKTeX 2.9\tex\latex\pgf\frontendlayer\tikz.sty"
-("C:\Program Files (x86)\MiKTeX 2.9\tex\latex\pgf\basiclayer\pgf.sty"
-("C:\Program Files (x86)\MiKTeX 2.9\tex\latex\pgf\utilities\pgfrcs.sty"
-("C:\Program Files (x86)\MiKTeX 2.9\tex\generic\pgf\utilities\pgfutil-common.te
-x"
-\pgfutil@everybye=\toks23
-\pgfutil@tempdima=\dimen138
-\pgfutil@tempdimb=\dimen139
-
-("C:\Program Files (x86)\MiKTeX 2.9\tex\generic\pgf\utilities\pgfutil-common-li
-sts.tex"))
-("C:\Program Files (x86)\MiKTeX 2.9\tex\generic\pgf\utilities\pgfutil-latex.def
-"
-\pgfutil@abb=\box31
- ("C:\Program Files (x86)\MiKTeX 2.9\tex\latex\ms\everyshi.sty"
-Package: everyshi 2001/05/15 v3.00 EveryShipout Package (MS)
-))
-("C:\Program Files (x86)\MiKTeX 2.9\tex\generic\pgf\utilities\pgfrcs.code.tex"
-Package: pgfrcs 2015/08/07 v3.0.1a (rcs-revision 1.31)
-))
-Package: pgf 2015/08/07 v3.0.1a (rcs-revision 1.15)
- ("C:\Program Files (x86)\MiKTeX 2.9\tex\latex\pgf\basiclayer\pgfcore.sty"
+("C:\Program Files (x86)\MiKTeX 2.9\tex\generic\oberdiek\ltxcmds.sty"
+Package: ltxcmds 2016/05/16 v1.23 LaTeX kernel commands for general use (HO)
+)))
 ("C:\Program Files (x86)\MiKTeX 2.9\tex\latex\graphics\graphicx.sty"
 Package: graphicx 2017/06/01 v1.1a Enhanced LaTeX Graphics (DPC,SPQR)
 
@@ -242,39 +193,117 @@ File: graphics.cfg 2016/06/04 v1.11 sample graphics configuration
 )
 Package graphics Info: Driver file: xetex.def on input line 99.
 )
-\Gin@req@height=\dimen140
-\Gin@req@width=\dimen141
+\Gin@req@height=\dimen122
+\Gin@req@width=\dimen123
 )
+\AM@pagewidth=\dimen124
+\AM@pageheight=\dimen125
+
+("C:\Program Files (x86)\MiKTeX 2.9\tex\latex\pdfpages\ppxetex.def"
+File: ppxetex.def 2017/10/31 v0.5l Pdfpages driver for XeTeX (AM)
+)
+\AM@pagebox=\box28
+\AM@global@opts=\toks23
+\AM@toc@title=\toks24
+\c@AM@survey=\count106
+\AM@templatesizebox=\box29
+)
+("C:\Program Files (x86)\MiKTeX 2.9\tex\latex\mathtools\empheq.sty"
+Package: empheq 2017/03/31 v2.15 Emphasizing equations
+
+("C:\Program Files (x86)\MiKTeX 2.9\tex\latex\mathtools\mhsetup.sty"
+Package: mhsetup 2017/03/31 v1.3 programming setup (MH)
+)
+("C:\Program Files (x86)\MiKTeX 2.9\tex\latex\mathtools\mathtools.sty"
+Package: mathtools 2018/01/08 v1.21 mathematical typesetting tools
+LaTeX Info: Thecontrolsequence`\('isalreadyrobust on input line 129.
+LaTeX Info: Thecontrolsequence`\)'isalreadyrobust on input line 129.
+LaTeX Info: Thecontrolsequence`\['isalreadyrobust on input line 129.
+LaTeX Info: Thecontrolsequence`\]'isalreadyrobust on input line 129.
+\g_MT_multlinerow_int=\count107
+\l_MT_multwidth_dim=\dimen126
+\origjot=\skip49
+\l_MT_shortvdotswithinadjustabove_dim=\dimen127
+\l_MT_shortvdotswithinadjustbelow_dim=\dimen128
+\l_MT_above_intertext_sep=\dimen129
+\l_MT_below_intertext_sep=\dimen130
+\l_MT_above_shortintertext_sep=\dimen131
+\l_MT_below_shortintertext_sep=\dimen132
+)
+\l_EQ_equationtype_int=\count108
+\l_EQ_alignmentmode_int=\count109
+\l_EQ_totalwidth_dim=\dimen133
+\l_EQ_displaywidth_dim=\dimen134
+\l_EQ_temp_linewidth_dim=\dimen135
+\EmphEqdelimitershortfall=\dimen136
+\EmphEqdelimiterfactor=\count110
+\g_EQ_toptag_height_dim=\dimen137
+\g_EQ_bottomtag_depth_dim=\dimen138
+\g_EQ_toprow_height_dim=\dimen139
+\g_EQ_bottomrow_depth_dim=\dimen140
+\g_EQ_widesttag_dim=\dimen141
+\EQ_mathdisplay_box=\box30
+\EQ_tag_box=\box31
+\g_EQ_temprow_int=\count111
+)
+\mytemplen=\skip50
+\mytempbox=\box32
+
+("C:\Program Files (x86)\MiKTeX 2.9\tex\latex\tikz-cd\tikz-cd.sty"
+Package: tikz-cd 2014/10/30 v0.9e Commutative diagrams with tikz
+
+("C:\Program Files (x86)\MiKTeX 2.9\tex\latex\pgf\frontendlayer\tikz.sty"
+("C:\Program Files (x86)\MiKTeX 2.9\tex\latex\pgf\basiclayer\pgf.sty"
+("C:\Program Files (x86)\MiKTeX 2.9\tex\latex\pgf\utilities\pgfrcs.sty"
+("C:\Program Files (x86)\MiKTeX 2.9\tex\generic\pgf\utilities\pgfutil-common.te
+x"
+\pgfutil@everybye=\toks25
+\pgfutil@tempdima=\dimen142
+\pgfutil@tempdimb=\dimen143
+
+("C:\Program Files (x86)\MiKTeX 2.9\tex\generic\pgf\utilities\pgfutil-common-li
+sts.tex"))
+("C:\Program Files (x86)\MiKTeX 2.9\tex\generic\pgf\utilities\pgfutil-latex.def
+"
+\pgfutil@abb=\box33
+ ("C:\Program Files (x86)\MiKTeX 2.9\tex\latex\ms\everyshi.sty"
+Package: everyshi 2001/05/15 v3.00 EveryShipout Package (MS)
+))
+("C:\Program Files (x86)\MiKTeX 2.9\tex\generic\pgf\utilities\pgfrcs.code.tex"
+Package: pgfrcs 2015/08/07 v3.0.1a (rcs-revision 1.31)
+))
+Package: pgf 2015/08/07 v3.0.1a (rcs-revision 1.15)
+ ("C:\Program Files (x86)\MiKTeX 2.9\tex\latex\pgf\basiclayer\pgfcore.sty"
 ("C:\Program Files (x86)\MiKTeX 2.9\tex\latex\pgf\systemlayer\pgfsys.sty"
 ("C:\Program Files (x86)\MiKTeX 2.9\tex\generic\pgf\systemlayer\pgfsys.code.tex
 "
 Package: pgfsys 2014/07/09 v3.0.1a (rcs-revision 1.48)
  ("C:\Program Files (x86)\MiKTeX 2.9\tex\generic\pgf\utilities\pgfkeys.code.tex
 "
-\pgfkeys@pathtoks=\toks24
-\pgfkeys@temptoks=\toks25
+\pgfkeys@pathtoks=\toks26
+\pgfkeys@temptoks=\toks27
 
 ("C:\Program Files (x86)\MiKTeX 2.9\tex\generic\pgf\utilities\pgfkeysfiltered.c
 ode.tex"
-\pgfkeys@tmptoks=\toks26
+\pgfkeys@tmptoks=\toks28
 ))
-\pgf@x=\dimen142
-\pgf@y=\dimen143
-\pgf@xa=\dimen144
-\pgf@ya=\dimen145
-\pgf@xb=\dimen146
-\pgf@yb=\dimen147
-\pgf@xc=\dimen148
-\pgf@yc=\dimen149
+\pgf@x=\dimen144
+\pgf@y=\dimen145
+\pgf@xa=\dimen146
+\pgf@ya=\dimen147
+\pgf@xb=\dimen148
+\pgf@yb=\dimen149
+\pgf@xc=\dimen150
+\pgf@yc=\dimen151
 \w@pgf@writea=\write3
 \r@pgf@reada=\read1
-\c@pgf@counta=\count111
-\c@pgf@countb=\count112
-\c@pgf@countc=\count113
-\c@pgf@countd=\count114
-\t@pgf@toka=\toks27
-\t@pgf@tokb=\toks28
-\t@pgf@tokc=\toks29
+\c@pgf@counta=\count112
+\c@pgf@countb=\count113
+\c@pgf@countc=\count114
+\c@pgf@countd=\count115
+\t@pgf@toka=\toks29
+\t@pgf@tokb=\toks30
+\t@pgf@tokc=\toks31
 
 ("C:\Program Files (x86)\MiKTeX 2.9\tex\generic\pgf\systemlayer\pgf.cfg"
 File: pgf.cfg 2008/05/14  (rcs-revision 1.7)
@@ -293,13 +322,13 @@ File: pgfsys-dvipdfmx.def 2014/07/09  (rcs-revision 1.14)
 df.def"
 File: pgfsys-common-pdf.def 2013/10/10  (rcs-revision 1.13)
 )
-\pgfsys@objnum=\count115
+\pgfsys@objnum=\count116
 )))
 ("C:\Program Files (x86)\MiKTeX 2.9\tex\generic\pgf\systemlayer\pgfsyssoftpath.
 code.tex"
 File: pgfsyssoftpath.code.tex 2013/09/09  (rcs-revision 1.9)
-\pgfsyssoftpath@smallbuffer@items=\count116
-\pgfsyssoftpath@bigbuffer@items=\count117
+\pgfsyssoftpath@smallbuffer@items=\count117
+\pgfsyssoftpath@bigbuffer@items=\count118
 )
 ("C:\Program Files (x86)\MiKTeX 2.9\tex\generic\pgf\systemlayer\pgfsysprotocol.
 code.tex"
@@ -329,12 +358,12 @@ Package: pgfcore 2010/04/11 v3.0.1a (rcs-revision 1.7)
 ("C:\Program Files (x86)\MiKTeX 2.9\tex\generic\pgf\math\pgfmathutil.code.tex")
 ("C:\Program Files (x86)\MiKTeX 2.9\tex\generic\pgf\math\pgfmathparser.code.tex
 "
-\pgfmath@dimen=\dimen150
-\pgfmath@count=\count118
-\pgfmath@box=\box32
-\pgfmath@toks=\toks30
-\pgfmath@stack@operand=\toks31
-\pgfmath@stack@operation=\toks32
+\pgfmath@dimen=\dimen152
+\pgfmath@count=\count119
+\pgfmath@box=\box34
+\pgfmath@toks=\toks32
+\pgfmath@stack@operand=\toks33
+\pgfmath@stack@operation=\toks34
 )
 ("C:\Program Files (x86)\MiKTeX 2.9\tex\generic\pgf\math\pgfmathfunctions.code.
 tex"
@@ -355,57 +384,57 @@ code.tex")
 ("C:\Program Files (x86)\MiKTeX 2.9\tex\generic\pgf\math\pgfmathfunctions.integ
 erarithmetics.code.tex")))
 ("C:\Program Files (x86)\MiKTeX 2.9\tex\generic\pgf\math\pgfmathfloat.code.tex"
-\c@pgfmathroundto@lastzeros=\count119
+\c@pgfmathroundto@lastzeros=\count120
 ))
 ("C:\Program Files (x86)\MiKTeX 2.9\tex\generic\pgf\basiclayer\pgfcorepoints.co
 de.tex"
 File: pgfcorepoints.code.tex 2013/10/07  (rcs-revision 1.27)
-\pgf@picminx=\dimen151
-\pgf@picmaxx=\dimen152
-\pgf@picminy=\dimen153
-\pgf@picmaxy=\dimen154
-\pgf@pathminx=\dimen155
-\pgf@pathmaxx=\dimen156
-\pgf@pathminy=\dimen157
-\pgf@pathmaxy=\dimen158
-\pgf@xx=\dimen159
-\pgf@xy=\dimen160
-\pgf@yx=\dimen161
-\pgf@yy=\dimen162
-\pgf@zx=\dimen163
-\pgf@zy=\dimen164
+\pgf@picminx=\dimen153
+\pgf@picmaxx=\dimen154
+\pgf@picminy=\dimen155
+\pgf@picmaxy=\dimen156
+\pgf@pathminx=\dimen157
+\pgf@pathmaxx=\dimen158
+\pgf@pathminy=\dimen159
+\pgf@pathmaxy=\dimen160
+\pgf@xx=\dimen161
+\pgf@xy=\dimen162
+\pgf@yx=\dimen163
+\pgf@yy=\dimen164
+\pgf@zx=\dimen165
+\pgf@zy=\dimen166
 )
 ("C:\Program Files (x86)\MiKTeX 2.9\tex\generic\pgf\basiclayer\pgfcorepathconst
 ruct.code.tex"
 File: pgfcorepathconstruct.code.tex 2013/10/07  (rcs-revision 1.29)
-\pgf@path@lastx=\dimen165
-\pgf@path@lasty=\dimen166
+\pgf@path@lastx=\dimen167
+\pgf@path@lasty=\dimen168
 )
 ("C:\Program Files (x86)\MiKTeX 2.9\tex\generic\pgf\basiclayer\pgfcorepathusage
 .code.tex"
 File: pgfcorepathusage.code.tex 2014/11/02  (rcs-revision 1.24)
-\pgf@shorten@end@additional=\dimen167
-\pgf@shorten@start@additional=\dimen168
+\pgf@shorten@end@additional=\dimen169
+\pgf@shorten@start@additional=\dimen170
 )
 ("C:\Program Files (x86)\MiKTeX 2.9\tex\generic\pgf\basiclayer\pgfcorescopes.co
 de.tex"
 File: pgfcorescopes.code.tex 2015/05/08  (rcs-revision 1.46)
-\pgfpic=\box33
-\pgf@hbox=\box34
-\pgf@layerbox@main=\box35
-\pgf@picture@serial@count=\count120
+\pgfpic=\box35
+\pgf@hbox=\box36
+\pgf@layerbox@main=\box37
+\pgf@picture@serial@count=\count121
 )
 ("C:\Program Files (x86)\MiKTeX 2.9\tex\generic\pgf\basiclayer\pgfcoregraphicst
 ate.code.tex"
 File: pgfcoregraphicstate.code.tex 2014/11/02  (rcs-revision 1.12)
-\pgflinewidth=\dimen169
+\pgflinewidth=\dimen171
 )
 ("C:\Program Files (x86)\MiKTeX 2.9\tex\generic\pgf\basiclayer\pgfcoretransform
 ations.code.tex"
 File: pgfcoretransformations.code.tex 2015/08/07  (rcs-revision 1.20)
-\pgf@pt@x=\dimen170
-\pgf@pt@y=\dimen171
-\pgf@pt@temp=\dimen172
+\pgf@pt@x=\dimen172
+\pgf@pt@y=\dimen173
+\pgf@pt@temp=\dimen174
 )
 ("C:\Program Files (x86)\MiKTeX 2.9\tex\generic\pgf\basiclayer\pgfcorequick.cod
 e.tex"
@@ -422,13 +451,13 @@ File: pgfcorepathprocessing.code.tex 2013/09/09  (rcs-revision 1.9)
 ("C:\Program Files (x86)\MiKTeX 2.9\tex\generic\pgf\basiclayer\pgfcorearrows.co
 de.tex"
 File: pgfcorearrows.code.tex 2015/05/14  (rcs-revision 1.43)
-\pgfarrowsep=\dimen173
+\pgfarrowsep=\dimen175
 )
 ("C:\Program Files (x86)\MiKTeX 2.9\tex\generic\pgf\basiclayer\pgfcoreshade.cod
 e.tex"
 File: pgfcoreshade.code.tex 2013/07/15  (rcs-revision 1.15)
-\pgf@max=\dimen174
-\pgf@sys@shading@range@num=\count121
+\pgf@max=\dimen176
+\pgf@sys@shading@range@num=\count122
 )
 ("C:\Program Files (x86)\MiKTeX 2.9\tex\generic\pgf\basiclayer\pgfcoreimage.cod
 e.tex"
@@ -437,7 +466,7 @@ File: pgfcoreimage.code.tex 2013/07/15  (rcs-revision 1.18)
 ("C:\Program Files (x86)\MiKTeX 2.9\tex\generic\pgf\basiclayer\pgfcoreexternal.
 code.tex"
 File: pgfcoreexternal.code.tex 2014/07/09  (rcs-revision 1.21)
-\pgfexternal@startupbox=\box36
+\pgfexternal@startupbox=\box38
 ))
 ("C:\Program Files (x86)\MiKTeX 2.9\tex\generic\pgf\basiclayer\pgfcorelayers.co
 de.tex"
@@ -454,7 +483,7 @@ File: pgfcorepatterns.code.tex 2013/11/07  (rcs-revision 1.5)
 ("C:\Program Files (x86)\MiKTeX 2.9\tex\generic\pgf\modules\pgfmoduleshapes.cod
 e.tex"
 File: pgfmoduleshapes.code.tex 2014/03/21  (rcs-revision 1.35)
-\pgfnodeparttextbox=\box37
+\pgfnodeparttextbox=\box39
 )
 ("C:\Program Files (x86)\MiKTeX 2.9\tex\generic\pgf\modules\pgfmoduleplot.code.
 tex"
@@ -463,8 +492,8 @@ File: pgfmoduleplot.code.tex 2015/08/03  (rcs-revision 1.13)
 ("C:\Program Files (x86)\MiKTeX 2.9\tex\latex\pgf\compatibility\pgfcomp-version
 -0-65.sty"
 Package: pgfcomp-version-0-65 2007/07/03 v3.0.1a (rcs-revision 1.7)
-\pgf@nodesepstart=\dimen175
-\pgf@nodesepend=\dimen176
+\pgf@nodesepstart=\dimen177
+\pgf@nodesepend=\dimen178
 )
 ("C:\Program Files (x86)\MiKTeX 2.9\tex\latex\pgf\compatibility\pgfcomp-version
 -1-18.sty"
@@ -479,10 +508,10 @@ Package: pgfcomp-version-1-18 2007/07/23 v3.0.1a (rcs-revision 1.1)
 Package: pgffor 2013/12/13 v3.0.1a (rcs-revision 1.25)
 
 ("C:\Program Files (x86)\MiKTeX 2.9\tex\generic\pgf\math\pgfmath.code.tex")
-\pgffor@iter=\dimen177
-\pgffor@skip=\dimen178
-\pgffor@stack=\toks33
-\pgffor@toks=\toks34
+\pgffor@iter=\dimen179
+\pgffor@skip=\dimen180
+\pgffor@stack=\toks35
+\pgffor@toks=\toks36
 ))
 ("C:\Program Files (x86)\MiKTeX 2.9\tex\generic\pgf\frontendlayer\tikz\tikz.cod
 e.tex"
@@ -491,32 +520,32 @@ Package: tikz 2015/08/07 v3.0.1a (rcs-revision 1.151)
 ("C:\Program Files (x86)\MiKTeX 2.9\tex\generic\pgf\libraries\pgflibraryplothan
 dlers.code.tex"
 File: pgflibraryplothandlers.code.tex 2013/08/31 v3.0.1a (rcs-revision 1.20)
-\pgf@plot@mark@count=\count122
-\pgfplotmarksize=\dimen179
+\pgf@plot@mark@count=\count123
+\pgfplotmarksize=\dimen181
 )
-\tikz@lastx=\dimen180
-\tikz@lasty=\dimen181
-\tikz@lastxsaved=\dimen182
-\tikz@lastysaved=\dimen183
-\tikzleveldistance=\dimen184
-\tikzsiblingdistance=\dimen185
-\tikz@figbox=\box38
-\tikz@figbox@bg=\box39
-\tikz@tempbox=\box40
-\tikz@tempbox@bg=\box41
-\tikztreelevel=\count123
-\tikznumberofchildren=\count124
-\tikznumberofcurrentchild=\count125
-\tikz@fig@count=\count126
+\tikz@lastx=\dimen182
+\tikz@lasty=\dimen183
+\tikz@lastxsaved=\dimen184
+\tikz@lastysaved=\dimen185
+\tikzleveldistance=\dimen186
+\tikzsiblingdistance=\dimen187
+\tikz@figbox=\box40
+\tikz@figbox@bg=\box41
+\tikz@tempbox=\box42
+\tikz@tempbox@bg=\box43
+\tikztreelevel=\count124
+\tikznumberofchildren=\count125
+\tikznumberofcurrentchild=\count126
+\tikz@fig@count=\count127
 
 ("C:\Program Files (x86)\MiKTeX 2.9\tex\generic\pgf\modules\pgfmodulematrix.cod
 e.tex"
 File: pgfmodulematrix.code.tex 2013/09/17  (rcs-revision 1.8)
-\pgfmatrixcurrentrow=\count127
-\pgfmatrixcurrentcolumn=\count128
-\pgf@matrix@numberofcolumns=\count129
+\pgfmatrixcurrentrow=\count128
+\pgfmatrixcurrentcolumn=\count129
+\pgf@matrix@numberofcolumns=\count130
 )
-\tikz@expandcount=\count130
+\tikz@expandcount=\count131
 
 ("C:\Program Files (x86)\MiKTeX 2.9\tex\generic\pgf\frontendlayer\tikz\librarie
 s\tikzlibrarytopaths.code.tex"
@@ -535,28 +564,28 @@ File: tikzlibraryquotes.code.tex 2014/03/21 v3.0.1a (rcs-revision 1.4)
 ("C:\Program Files (x86)\MiKTeX 2.9\tex\generic\pgf\libraries\pgflibraryarrows.
 meta.code.tex"
 File: pgflibraryarrows.meta.code.tex 2015/05/13 v3.0.1a (rcs-revision 1.13)
-\pgfarrowinset=\dimen186
-\pgfarrowlength=\dimen187
-\pgfarrowwidth=\dimen188
-\pgfarrowlinewidth=\dimen189
-))) (martingales.aux)
+\pgfarrowinset=\dimen188
+\pgfarrowlength=\dimen189
+\pgfarrowwidth=\dimen190
+\pgfarrowlinewidth=\dimen191
+)))
+No file martingales.aux.
 \openout1 = `martingales.aux'.
 
-LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 72.
-LaTeX Font Info:    ... okay on input line 72.
-LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 72.
-LaTeX Font Info:    ... okay on input line 72.
-LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 72.
-LaTeX Font Info:    ... okay on input line 72.
-LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 72.
-LaTeX Font Info:    ... okay on input line 72.
-LaTeX Font Info:    Checking defaults for TU/lmr/m/n on input line 72.
-LaTeX Font Info:    ... okay on input line 72.
-LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 72.
-LaTeX Font Info:    ... okay on input line 72.
-LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 72.
-LaTeX Font Info:    ... okay on input line 72.
-
+LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 76.
+LaTeX Font Info:    ... okay on input line 76.
+LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 76.
+LaTeX Font Info:    ... okay on input line 76.
+LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 76.
+LaTeX Font Info:    ... okay on input line 76.
+LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 76.
+LaTeX Font Info:    ... okay on input line 76.
+LaTeX Font Info:    Checking defaults for TU/lmr/m/n on input line 76.
+LaTeX Font Info:    ... okay on input line 76.
+LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 76.
+LaTeX Font Info:    ... okay on input line 76.
+LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 76.
+LaTeX Font Info:    ... okay on input line 76.
 *geometry* detected driver: pdftex
 *geometry* verbose mode - [ preamble ] result:
 * driver: pdftex
@@ -590,35 +619,325 @@ LaTeX Font Info:    ... okay on input line 72.
 * \@reversemarginfalse
 * (1in=72.27pt=25.4mm, 1cm=28.453pt)
 
-\Hy@linkcounter=\count131
+\AtBeginShipoutBox=\box44
+("C:\Program Files (x86)\MiKTeX 2.9\tex\latex\oberdiek\pdflscape.sty"
+Package: pdflscape 2016/05/14 v0.11 Display of landscape pages in PDF (HO)
+
+("C:\Program Files (x86)\MiKTeX 2.9\tex\latex\graphics\lscape.sty"
+Package: lscape 2000/10/22 v3.01 Landscape Pages (DPC)
+)
+Package pdflscape Info: Auto-detected driver: dvipdfm (xetex) on input line 99.
+
+)
+\Hy@linkcounter=\count132
+
 ABD: EveryShipout initializing macros
-Overfull \hbox (6.44315pt too wide) in paragraph at lines 119--120
+
+! Package pdfpages Error: Cannot find file `part-iii_probability_advanced-proba
+bility.pdf'.
+
+See the pdfpages package documentation for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.77 ...-iii_probability_advanced-probability.pdf}
+                                                  
+This error message was generated by an \errmessage
+command, so I can't give any explicit help.
+Pretend that you're Hercule Poirot: Examine all clues,
+and deduce the truth by order and method.
+
+! Undefined control sequence.
+\AM@checkpagenumber #1->\ifnum #1>\AM@pagecount 
+                                                \relax \ifthenelse {\boolean...
+l.77 ...-iii_probability_advanced-probability.pdf}
+                                                  
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+! Missing number, treated as zero.
+<to be read again> 
+                   \relax 
+l.77 ...-iii_probability_advanced-probability.pdf}
+                                                  
+A number should have been here; I inserted `0'.
+(If you can't figure out why I needed to see a number,
+look up `weird error' in the index to The TeXbook.)
+
+
+! Package pdfpages Error: Page 1 of `\AM@currentdocname ' does not exist.
+
+See the pdfpages package documentation for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.77 ...-iii_probability_advanced-probability.pdf}
+                                                  
+You have set a wrong page number in the `pages' option. Document 
+`\AM@currentdocname ' does not have 1 pages.
+
+! Missing \endcsname inserted.
+<to be read again> 
+                   \AM@currentdocname 
+l.77 ...-iii_probability_advanced-probability.pdf}
+                                                  
+The control sequence marked <to be read again> should
+not appear between \csname and \endcsname.
+
+! Extra \endcsname.
+\@ifundefined ...dafter \ifx \csname #1\endcsname 
+                                                  \relax \expandafter \@firs...
+l.77 ...-iii_probability_advanced-probability.pdf}
+                                                  
+I'm ignoring this, since I wasn't doing a \csname.
+
+
+! LaTeX Error: Cannot determine size of graphic in \AM@currentdocname .bb (no B
+oundingBox).
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.77 ...-iii_probability_advanced-probability.pdf}
+                                                  
+Try typing  <return>  to proceed.
+If that doesn't work, type  X <return>  to quit.
+
+File: \AM@currentdocname .pdf Graphic file (type pdf)
+! Missing \endcsname inserted.
+<to be read again> 
+                   \AM@currentdocname 
+l.77 ...-iii_probability_advanced-probability.pdf}
+                                                  
+The control sequence marked <to be read again> should
+not appear between \csname and \endcsname.
+
+<use \AM@currentdocname .pdf, page 1>
+! Unable to load picture or PDF file ''.
+<to be read again> 
+                   \AM@currentdocname 
+l.77 ...-iii_probability_advanced-probability.pdf}
+                                                  
+The requested image couldn't be read because
+it was not a recognized image format.
+
+! Missing \endcsname inserted.
+<to be read again> 
+                   \AM@currentdocname 
+l.77 ...-iii_probability_advanced-probability.pdf}
+                                                  
+The control sequence marked <to be read again> should
+not appear between \csname and \endcsname.
+
+! Extra \endcsname.
+\@ifundefined ...dafter \ifx \csname #1\endcsname 
+                                                  \relax \expandafter \@firs...
+l.77 ...-iii_probability_advanced-probability.pdf}
+                                                  
+I'm ignoring this, since I wasn't doing a \csname.
+
+
+! LaTeX Error: Cannot determine size of graphic in \AM@currentdocname .bb (no B
+oundingBox).
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.77 ...-iii_probability_advanced-probability.pdf}
+                                                  
+Try typing  <return>  to proceed.
+If that doesn't work, type  X <return>  to quit.
+
+File: \AM@currentdocname .pdf Graphic file (type pdf)
+! Missing \endcsname inserted.
+<to be read again> 
+                   \AM@currentdocname 
+l.77 ...-iii_probability_advanced-probability.pdf}
+                                                  
+The control sequence marked <to be read again> should
+not appear between \csname and \endcsname.
+
+<use \AM@currentdocname .pdf, page 1>
+! Unable to load picture or PDF file ''.
+<to be read again> 
+                   \AM@currentdocname 
+l.77 ...-iii_probability_advanced-probability.pdf}
+                                                  
+The requested image couldn't be read because
+it was not a recognized image format.
+
+! Missing \endcsname inserted.
+<to be read again> 
+                   \AM@currentdocname 
+l.77 ...-iii_probability_advanced-probability.pdf}
+                                                  
+The control sequence marked <to be read again> should
+not appear between \csname and \endcsname.
+
+! Extra \endcsname.
+\@ifundefined ...dafter \ifx \csname #1\endcsname 
+                                                  \relax \expandafter \@firs...
+l.77 ...-iii_probability_advanced-probability.pdf}
+                                                  
+I'm ignoring this, since I wasn't doing a \csname.
+
+
+! LaTeX Error: Cannot determine size of graphic in \AM@currentdocname .bb (no B
+oundingBox).
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.77 ...-iii_probability_advanced-probability.pdf}
+                                                  
+Try typing  <return>  to proceed.
+If that doesn't work, type  X <return>  to quit.
+
+File: \AM@currentdocname .pdf Graphic file (type pdf)
+! Missing \endcsname inserted.
+<to be read again> 
+                   \AM@currentdocname 
+l.77 ...-iii_probability_advanced-probability.pdf}
+                                                  
+The control sequence marked <to be read again> should
+not appear between \csname and \endcsname.
+
+<use \AM@currentdocname .pdf, page 1>
+! Unable to load picture or PDF file ''.
+<to be read again> 
+                   \AM@currentdocname 
+l.77 ...-iii_probability_advanced-probability.pdf}
+                                                  
+The requested image couldn't be read because
+it was not a recognized image format.
+
+! Missing \endcsname inserted.
+<to be read again> 
+                   \AM@currentdocname 
+l.77 ...-iii_probability_advanced-probability.pdf}
+                                                  
+The control sequence marked <to be read again> should
+not appear between \csname and \endcsname.
+
+! Extra \endcsname.
+\@ifundefined ...dafter \ifx \csname #1\endcsname 
+                                                  \relax \expandafter \@firs...
+l.77 ...-iii_probability_advanced-probability.pdf}
+                                                  
+I'm ignoring this, since I wasn't doing a \csname.
+
+
+! LaTeX Error: Cannot determine size of graphic in \AM@currentdocname .bb (no B
+oundingBox).
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.77 ...-iii_probability_advanced-probability.pdf}
+                                                  
+Try typing  <return>  to proceed.
+If that doesn't work, type  X <return>  to quit.
+
+File: \AM@currentdocname .pdf Graphic file (type pdf)
+! Missing \endcsname inserted.
+<to be read again> 
+                   \AM@currentdocname 
+l.77 ...-iii_probability_advanced-probability.pdf}
+                                                  
+The control sequence marked <to be read again> should
+not appear between \csname and \endcsname.
+
+<use \AM@currentdocname .pdf, page 1>
+! Unable to load picture or PDF file ''.
+<to be read again> 
+                   \AM@currentdocname 
+l.77 ...-iii_probability_advanced-probability.pdf}
+                                                  
+The requested image couldn't be read because
+it was not a recognized image format.
+
+! Missing \endcsname inserted.
+<to be read again> 
+                   \AM@currentdocname 
+l.77 ...-iii_probability_advanced-probability.pdf}
+                                                  
+The control sequence marked <to be read again> should
+not appear between \csname and \endcsname.
+
+! Extra \endcsname.
+\@ifundefined ...dafter \ifx \csname #1\endcsname 
+                                                  \relax \expandafter \@firs...
+l.77 ...-iii_probability_advanced-probability.pdf}
+                                                  
+I'm ignoring this, since I wasn't doing a \csname.
+
+
+! LaTeX Error: Cannot determine size of graphic in \AM@currentdocname .bb (no B
+oundingBox).
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.77 ...-iii_probability_advanced-probability.pdf}
+                                                  
+Try typing  <return>  to proceed.
+If that doesn't work, type  X <return>  to quit.
+
+File: \AM@currentdocname .pdf Graphic file (type pdf)
+! Missing \endcsname inserted.
+<to be read again> 
+                   \AM@currentdocname 
+l.77 ...-iii_probability_advanced-probability.pdf}
+                                                  
+The control sequence marked <to be read again> should
+not appear between \csname and \endcsname.
+
+<use \AM@currentdocname .pdf, page 1>
+! Unable to load picture or PDF file ''.
+<to be read again> 
+                   \AM@currentdocname 
+l.77 ...-iii_probability_advanced-probability.pdf}
+                                                  
+The requested image couldn't be read because
+it was not a recognized image format.
+
+[1
+
+]
+Overfull \hbox (6.44315pt too wide) in paragraph at lines 125--126
 []\TU/lmr/m/n/10 ==============================================================
 = 
  []
 
-LaTeX Font Info:    Try loading font information for U+msa on input line 131.
+LaTeX Font Info:    Try loading font information for U+msa on input line 137.
 ("C:\Program Files (x86)\MiKTeX 2.9\tex\latex\amsfonts\umsa.fd"
 File: umsa.fd 2013/01/14 v3.01 AMS symbols A
 )
-LaTeX Font Info:    Try loading font information for U+msb on input line 131.
+LaTeX Font Info:    Try loading font information for U+msb on input line 137.
 
 ("C:\Program Files (x86)\MiKTeX 2.9\tex\latex\amsfonts\umsb.fd"
 File: umsb.fd 2013/01/14 v3.01 AMS symbols B
 )
-LaTeX Font Info:    Try loading font information for OMS+rsfs on input line 131
+LaTeX Font Info:    Try loading font information for OMS+rsfs on input line 137
 .
 
 ("C:\Program Files (x86)\MiKTeX 2.9\tex\latex\calrsfs\omsrsfs.fd")
-LaTeX Font Info:    Try loading font information for U+eus on input line 131.
+LaTeX Font Info:    Try loading font information for U+eus on input line 137.
 
 ("C:\Program Files (x86)\MiKTeX 2.9\tex\latex\amsfonts\ueus.fd"
 File: ueus.fd 2013/01/14 v3.01 Euler Script
-) [1
-
+) [2
 
 ]
-Overfull \hbox (5.0501pt too wide) in paragraph at lines 233--235
+Overfull \hbox (5.0501pt too wide) in paragraph at lines 239--241
 \TU/lmr/m/n/10 but since $\OT1/cmr/m/n/10 (\OML/cmm/m/it/10 X[]\OT1/cmr/m/n/10 
 )$ \TU/lmr/m/n/10 was a super-martingale, $\U/msb/m/n/10 E\OT1/cmr/m/n/10 [\OML
 /cmm/m/it/10 X[] \OMS/cmsy/m/n/10 ^^@ \OML/cmm/m/it/10 X[]\OMS/cmsy/m/n/10 j\U/
@@ -628,25 +947,35 @@ eus/m/n/10 F[]\OT1/cmr/m/n/10 ] \OMS/cmsy/m/n/10 ^^T \OT1/cmr/m/n/10 0$ \TU/lmr
 /10 ^^T
  []
 
-[2]
-Overfull \hbox (6.44315pt too wide) in paragraph at lines 303--304
+[3]
+Overfull \hbox (6.44315pt too wide) in paragraph at lines 309--310
 []\TU/lmr/m/n/10 ==============================================================
 = 
  []
 
-[3]
-File: upcrossing.png Graphic file (type bmp)
-<upcrossing.png>
- [4]
-Overfull \hbox (6.44315pt too wide) in paragraph at lines 435--436
-[]\TU/lmr/m/n/10 ==============================================================
-= 
- []
+[4]
+
+! LaTeX Error: File `upcrossing' not found.
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.326 ...^I\includegraphics[scale=0.5]{upcrossing}
+                                                  
+I could not locate the file with any of these extensions:
+.pdf,.PDF,.ai,.AI,.png,.PNG,.jpg,.JPG,.jpeg,.JPEG,.jp2,.JP2,.jpf,.JPF,.bmp,.BMP
+,.ps,.PS,.eps,.EPS,.mps,.MPS,.pz,.eps.Z,.ps.Z,.ps.gz,.eps.gz
+Try typing  <return>  to proceed.
+If that doesn't work, type  X <return>  to quit.
 
 [5]
+Overfull \hbox (6.44315pt too wide) in paragraph at lines 441--442
+[]\TU/lmr/m/n/10 ==============================================================
+= 
+ []
 
-Package xcolor Warning: Incompatible color definition on input line 454.
-
+[6]
 
 Package xcolor Warning: Incompatible color definition on input line 460.
 
@@ -654,25 +983,28 @@ Package xcolor Warning: Incompatible color definition on input line 460.
 Package xcolor Warning: Incompatible color definition on input line 466.
 
 
-Package xcolor Warning: Incompatible color definition on input line 513.
+Package xcolor Warning: Incompatible color definition on input line 472.
 
 
-Package xcolor Warning: Incompatible color definition on input line 513.
+Package xcolor Warning: Incompatible color definition on input line 519.
 
-[6]
-Overfull \hbox (6.44315pt too wide) in paragraph at lines 566--567
+
+Package xcolor Warning: Incompatible color definition on input line 519.
+
+[7]
+Overfull \hbox (6.44315pt too wide) in paragraph at lines 572--573
 []\TU/lmr/m/n/10 ==============================================================
 = 
  []
 
-[7] [8]
-Overfull \hbox (6.44315pt too wide) in paragraph at lines 691--692
+[8] [9]
+Overfull \hbox (6.44315pt too wide) in paragraph at lines 697--698
 []\TU/lmr/m/n/10 ==============================================================
 = 
  []
 
-[9] [10]
-Overfull \hbox (3.94426pt too wide) in paragraph at lines 773--774
+[10] [11]
+Overfull \hbox (3.94426pt too wide) in paragraph at lines 779--780
 [] \TU/lmr/m/n/10 Observe that $\OT1/cmr/m/n/10 (\U/eus/m/n/10 F[]\OT1/cmr/m/n/
 10 )[]$ \TU/lmr/m/n/10 is a filtration and $\OT1/cmr/m/n/10 (\OML/cmm/m/it/10 X
 []\OT1/cmr/m/n/10 )[]$ \TU/lmr/m/n/10 is a non-negative martingale adapted to $
@@ -680,31 +1012,31 @@ Overfull \hbox (3.94426pt too wide) in paragraph at lines 773--774
  []
 
 
-Overfull \hbox (6.44315pt too wide) in paragraph at lines 789--790
+Overfull \hbox (6.44315pt too wide) in paragraph at lines 795--796
 []\TU/lmr/m/n/10 ==============================================================
 = 
  []
 
-[11] [12]
-Overfull \hbox (6.44315pt too wide) in paragraph at lines 911--912
+[12] [13]
+Overfull \hbox (6.44315pt too wide) in paragraph at lines 917--918
 []\TU/lmr/m/n/10 ==============================================================
 = 
  []
 
-[13] [14]
-Overfull \hbox (6.44315pt too wide) in paragraph at lines 1013--1014
+[14] [15]
+Overfull \hbox (6.44315pt too wide) in paragraph at lines 1019--1020
 []\TU/lmr/m/n/10 ==============================================================
 = 
  []
 
-[15] [16] [17] (martingales.aux) ) 
+[16] [17] [18] (martingales.aux) ) 
 Here is how much of TeX's memory you used:
- 13689 strings out of 427839
- 275629 string characters out of 3151405
- 339965 words of memory out of 3000000
- 17385 multiletter control sequences out of 15000+200000
+ 14608 strings out of 427839
+ 289666 string characters out of 3151405
+ 357757 words of memory out of 3000000
+ 18255 multiletter control sequences out of 15000+200000
  6546 words of font info for 42 fonts, out of 3000000 for 9000
  1328 hyphenation exceptions out of 8191
- 61i,18n,84p,637b,289s stack positions out of 5000i,500n,10000p,200000b,50000s
+ 61i,18n,84p,637b,472s stack positions out of 5000i,500n,10000p,200000b,50000s
 
-Output written on martingales.pdf (17 pages).
+Output written on martingales.pdf (18 pages).

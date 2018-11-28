@@ -57,6 +57,15 @@
 \usepackage{tikz-cd}  
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
+%%%%%%%%%%%%%%double rules%%%%%%%%%%%%%%%%%%%
+\usepackage{lipsum}% Just for this example
+
+\newcommand{\doublerule}[1][.4pt]{%
+  \noindent
+  \makebox[0pt][l]{\rule[.7ex]{\linewidth}{#1}}%
+  \rule[.3ex]{\linewidth}{#1}}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
 %%%%%%%%%%for changing margin
 \def\changemargin#1#2{\list{}{\rightmargin#2\leftmargin#1}\item[]}
 \let\endchangemargin=\endlist 
@@ -111,7 +120,7 @@
 \newcommand{\var}{\text{Var}}
 \newcommand{\cha}{1}
 
-\newcommand{\newday}{===============================================================}
+\newcommand{\newday}{\doublerule[0.5pt]}
 
 \setlength\parindent{0pt}
 
@@ -1424,7 +1433,9 @@ so $(X_t)_{t\geq 0}$ is a martingale and both $(\heartsuit)$ and $(\oplus)$ hold
 
 \section*{9. L\'{e}vy Processes}
 
-A \textbf{L\'{e}vy process} is a cadlag process with stationary independent increments. Say that $(a,b,K)$ is a \textbf{L\'{e}vy triple} if $a\in [0,\infty)$, $b\in \reals$ and $K$ is a Borel measure on $\reals$ with $K(\{0\}) =0$ and
+\subsection{9.1. Definitions}
+
+A \textbf{L\'{e}vy process} is a cadlag process with stationary independent increments starting at 0. Say that $(a,b,K)$ is a \textbf{L\'{e}vy triple} if $a\in [0,\infty)$, $b\in \reals$ and $K$ is a Borel measure on $\reals$ with $K(\{0\}) =0$ and
 \begin{align*}
 \int_{\reals} (|y|^2 \wedge 1) K(dy) < \infty
 \end{align*}
@@ -1436,11 +1447,114 @@ Note that the first integral exists because $|y|\wedge 1 \in L^2(K)$ and the sec
 \begin{align*}
 \avg(e^{iu X_t}) = e^{t\psi_{a,b,K}(u)}
 \end{align*}
-where $\psi_{a,b,K}(u) = iub - \frac{1}{2}u^2a  + \int_E (e^{iuy} - 1 -y1_{|y|\leq 1}) K(dy)$. Thus, to every L\'{e}vy triple there corresponds a L\'{e}vy process.
+where $\psi_{a,b,K}(u) = iub - \frac{1}{2}u^2a  + \int_E (e^{iuy} - 1 - iuy1_{|y|\leq 1}) K(dy)$. Thus, to every L\'{e}vy triple there corresponds a L\'{e}vy process.
 \s
+
+\newday
+
+(28th November, Wednesday)
+
+\subsection*{9.2. L\'{e}vy-Khinchine Theorem}
+
+\thmnum{9.2.1} Let $(X_t)_{t\geq 0}$ be a L\'{e}vy process (i.e. cadlag, stationary independent increments with $X_0=0$.) Then there exists a L\'{e}vy triple $(a,b,K)$ such that $\avg(e^{iuX_t}) = e^{t\psi(u)}$ for all $t\geq 0$, $u \in \reals$ where
+\begin{align*}
+\psi(u) \equiv \psi_{a,b,K}(u) =ibu - \frac{1}{2}au^2 + \int_{\reals} (e^{iuy}-1-iuy 1_{|y|\leq 1}) K(dy)
+\end{align*}
+and $\int_{\reals} (1\wedge |y|^2) K(dy) < \infty$.
+\begin{proof}
+\pf
+\begin{itemize}
+\item[I.] Set $\phi_t(y) = \avg(e^{iuX_t})$. We'll show $\phi_t(y) = e^{t\psi(u)}$ for some $\psi : \reals \rightarrow \mathbb{C}$ continuous.
+
+\quad First note $\phi_t : \reals \rightarrow \mathbb{C}$ is continuous. Since $X$ has stationary independent increments and
+\begin{align*}
+X_{nt} = X_t + (X_{2t} - X_t) + \cdots + (X_{nt}- X_{(n-1)t})
+\end{align*}
+so we have $\phi_{nt}(u) = (\phi_t(u))^n$. Since $X$ is cadlag, for all $s\geq 0$, for $t>s$, has $X_t \rightarrow X_s$ as $t\rightarrow s$ so 
+\begin{align*}
+| \phi_t(u) - \phi_s(u)| \leq \avg (|e^{iu(X_t-X_s)} -1|) \leq \avg((u|X_t-X_s|\wedge 2))
+\end{align*}
+So $\phi_t(u) \rightarrow \phi_s(u)$ uniformly in $u$ on compact domains. Since $X_0 =0$, $\phi_0(u)=1$, now $|\phi_t(u)|^{1/n} = |\phi_{t/n}(u)| \rightarrow 1$ so $\phi_t(y) \neq 0$ for all $t\geq 0$, $u\in \reals$.
+
+\begin{figure}[h]
+	\begin{center}
+		\includegraphics[scale=0.3]{3}
+	\end{center}
+\end{figure}
+\quad Consider path $(\phi_t(r) : r\in [0,n])$. Define 
+\begin{align*}
+\psi_t(u) = \int_1^{\phi_t(u)} \frac{dz}{z}
+\end{align*}
+where we integrate along contour homotopic to the path $(\phi_t(r) : r\in [0,u])$ in $\mathbb{C} \backslash \{0 \}$. 
+Then $\psi_t : \reals \rightarrow \mathbb{C}$ is continuous and
+\begin{align*}
+\phi_t(u) = e^{\psi_t(u)}
+\end{align*}
+Now $\psi_{nt}(u) = n\psi_t(u)$, $\psi_0(u) =0$, and $t\mapsto \psi_t(y)$ is right-continuous. Hence $\psi_t(u) = t\psi_1(u)$ for all $t\geq 0$ - so define $\psi$ to be $\psi =\psi_1$, then $\psi_t(u) = t\psi(u)$.
+\item[II.] We produce a limit object.
+
+Set $\nu_n =\text{law of }X_{1/n}$. Then
+\begin{align*}
+\psi(u) = \lim_{n\rightarrow \infty} n( \phi_{1/n}(u) -1)
+\end{align*}
+uniformly in $u$ on compact domains and $n(\phi_{1/n}(u)-1) = \int_{\reals} (e^{iuy}-1) n\nu_n(dy)$ so
+\begin{align*}
+\int_{\reals} (1-\cos (uy)) n\nu_n (dy) \rightarrow - \text{Re} \psi(u)
+\end{align*}
+uniformly in $u$ on compact domains. There exists $C< \infty$ such that
+\begin{align*}
+y^2 1_{|y|\leq 1} \leq C (1-\cos (u)) \quad \forall y \in \reals
+\end{align*}
+and also for all $\lambda >0$, has
+\begin{align*}
+1_{|y| \geq \lambda} \leq C\lambda \int_0^{1/\lambda} (1-\cos (uy)) du
+\end{align*}
+Set $\eta_n(dy) = n \nu_n (dy) (1\wedge y^2)$. Then integration gives 
+\begin{align*}
+\eta_n ([-1,1]) \leq \int_{\reals} C(1-\cos (y)) n\nu_n (dy) \rightarrow -C \cdot \text{Re}(\psi(1))
+\end{align*}
+and for $\lambda >1$
+\begin{align*}
+\eta_n (\reals \backslash (-\lambda, \lambda)) \leq & C \lambda \int_{\reals} \int_0^{1/\lambda} (1- \cos (uy))du \cdot n \nu_n(dy) \\
+=& C\lambda \int_0^{1/\lambda} \int_{\reals} (1- \cos(uy)) n\nu_n (dy) du  \\
+\xrightarrow{n\rightarrow \infty} &C \lambda \int_0^{1/\lambda} (-\text{Re}(\psi(u))) du
+\end{align*}
+Since $\psi(0)=0$ and $\psi$ continuous, this converges to 0 as $\lambda \rightarrow \infty$. Hence $(\eta_n : n\in \mathbb{N})$ is bounded in total mass and tight, so by Prohorov's theorem, there exists a finite Borel masure $\eta$ and a subsequence $(n_k)_k \subset \mathbb{N}$ such that $\eta_{n_k } \rightarrow \eta$ weakly.
+\item[III.] Now divide $\psi$ into two parts by
+\begin{align*}
+\psi(u) &= \lim_{n\rightarrow \infty} \int_{\reals} \frac{(e^{iuy}-1)}{1\wedge |y|^2} \eta_n(dy) \\
+&= \lim_{k\rightarrow \infty} (\int_{\reals} \mathscr{O}(u,y)\eta_{n_k}(dy)  + iu\beta_{n_k})
+\end{align*}
+where
+\begin{align*}
+\mathscr{O}(u,y) = \begin{cases}
+\begin{array}{ll}
+(e^{iuy}-1-iuy \chi(y)/(1\wedge y^2) & \text{if } y \neq 0\\
+-u^2/2 & \text{if } y=0
+\end{array}
+\end{cases}
+\end{align*}
+$\chi : \reals \rightarrow [0,1]$ continuous, $1_{|y|\leq 1} \leq  \chi \leq 1_{|y|\leq 2}$ and
+\begin{align*}
+\beta_n = \int_{\reals} \frac{y \chi(y)}{1\wedge y^2} \cdot \eta_n (dy)
+\end{align*}
+Now $\mathscr{O}(u, \cdot) \in C_b(\reals)$ so $\int_{\reals} \mathscr{O}(u,y) \eta_{n_k} (dy)$ converges as $k\rightarrow \infty $ and in turn $\beta_{n_k}$ converges as $k\rightarrow \infty$, say $\beta_{n_k} \rightarrow \beta$ for some $\beta \in \reals$. Hence $\psi(u) = \psi_{a,b,K}(u)$ where
+\begin{align*}
+a &= \eta(\{0\}) \\
+K(dy) &= 1_{y\neq 0} \eta(dy) / (1\wedge y^2) \\
+b &= \beta - \int_{\reals} y \Big( \chi(y) - 1_{|y|\leq 1} \Big) K(dy)
+\end{align*}
+That is,
+\begin{align*}
+\psi(u) = iub - \frac{1}{2}u^2a  + \int_E (e^{iuy} - 1 - iuy1_{|y|\leq 1}) K(dy)
+\end{align*}
+\end{itemize}
+
+\eop
+\end{proof}
+
+
+
 
 
 \end{document}
-
-
-
