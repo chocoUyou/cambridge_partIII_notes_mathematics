@@ -1,4 +1,4 @@
-This is XeTeX, Version 3.14159265-2.6-0.99998 (MiKTeX 2.9.6500) (preloaded format=xelatex 2018.2.4)  27 NOV 2018 14:17
+This is XeTeX, Version 3.14159265-2.6-0.99998 (MiKTeX 2.9.6500) (preloaded format=xelatex 2018.2.4)  28 NOV 2018 17:28
 entering extended mode
 **./discrete_analysis.tex
 (discrete_analysis.tex
@@ -881,7 +881,7 @@ LaTeX Font Warning: Command \tiny invalid in math mode on input line 952.
 LaTeX Font Warning: Command \tiny invalid in math mode on input line 957.
 
 
-Overfull \hbox (81.71895pt too wide) detected at line 999
+Overfull \hbox (67.49257pt too wide) detected at line 999
 []
  []
 
