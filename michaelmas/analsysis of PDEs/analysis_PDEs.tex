@@ -1583,7 +1583,7 @@ The Sobolev embeddings tell us we can exchange 'differentiability' (i.e. $k$ in 
 \end{align*}
 \s
 
-\lem Let $n\geq 2$ and $f_1, \cdots, f_n \in L^{n-1}(\reals^{n-1})$. For any $1\leq i\leq n$, denote $\tilde{x}_i = (x_1, \cdots, x_{i-1}, x_{i+1}, \cdots, x_n) \in \reals^{n-1}$ (remove $i^{\text{th}}$ component from $(x_1, \cdots, x_n) \in \reals^n$) and
+\lem \emph{(projection lemma)} Let $n\geq 2$ and $f_1, \cdots, f_n \in L^{n-1}(\reals^{n-1})$. For any $1\leq i\leq n$, denote $\tilde{x}_i = (x_1, \cdots, x_{i-1}, x_{i+1}, \cdots, x_n) \in \reals^{n-1}$ (remove $i^{\text{th}}$ component from $(x_1, \cdots, x_n) \in \reals^n$) and
 \begin{align*}
 f : \reals^n \rightarrow \reals \quad f(t) = f_1(\tilde{x}_1) f_2(\tilde{x}_2) \cdots f_n(\tilde{x}_n)
 \end{align*}
@@ -1950,7 +1950,7 @@ u =0 & \text{on } \pa U
 \end{array}
 \end{cases}
 \end{align*}
-For $y\in L^2(U)$ given, if
+For $f\in L^2(U)$ given, if
 \begin{align*}
 B[u,v] = \big( f,v \big)_{L^2(U)} \quad \forall v\in H_0^1 (U)
 \end{align*}
@@ -1977,7 +1977,7 @@ B : H\times H \rightarrow \reals
 is a bilinear mapping such that $\exists$ $\alpha, \beta >0$ such that
 \begin{itemize}
 \item[(i)] (\textbf{Boundedness}) $|B[u,v]| \leq \alpha \norms{u}{} \norms{v}{}$ for all $u,v \in H$. 
-\item[(ii)] (\textbf{Coercivity}) $\beta \norms{u}{}^2 \leq B[u,v]$ for all $u \in H$ 
+\item[(ii)] (\textbf{Coercivity}) $\beta \norms{u}{}^2 \leq B[u,u]$ for all $u \in H$ 
 \end{itemize}
 Finally, let $f: H\rightarrow \reals$ be a bounded linear functional on $H$. Then there exists a unique $u\in H$ such that
 \begin{align*}
@@ -2070,7 +2070,7 @@ Suppose $a^{ij}, b^i, c \in L^{\infty}(U)$ for $U$ open, bounded and let
 \begin{align*}
 B[u,v] = \int_U \Big[ \sum_{i,j} a^{ij}u_{x_i}v_{x_j} + \sum_i b^i u_{x_i} v + cu\cdot v \Big] dx
 \end{align*}
-for $U,v\in H_0^1 (U)$. Assume $a^{ij}$ satisfies the \emph{uniform ellipticity condition}.
+for $u,v\in H_0^1 (U)$. Assume $a^{ij}$ satisfies the \emph{uniform ellipticity condition}.
 \s
 
 To apply Lax-Milgram theorem in a general setting, we nee some estimates related to boundedness and coercivity of $B$. 
@@ -2337,7 +2337,7 @@ and the result follows on rearrangement.
 \end{proof}
 
 
-\thm \emph{(Rellich-Kondrachov)} Suppose $u \subset \reals^n$ is open, bounded $C^1$-domain. Let $(u_m)_{m=1}^{\infty}$ be a sequence in $H^1(U)$ with
+\thm \emph{(Rellich-Kondrachov)} Suppose $U \subset \reals^n$ is open, bounded $C^1$-domain. Let $(u_m)_{m=1}^{\infty}$ be a sequence in $H^1(U)$ with
 \begin{align*}
 \norms{u_m}{H^1(U)} \leq K
 \end{align*}
@@ -2356,11 +2356,11 @@ u_{m_j} \rightarrow u \quad \text{in } L^2(U), \quad u_{m_j} \xrightarrow{weak} 
 & \leq  \sum_{a=1}^{k(\delta)} \Big[ \frac{1}{|Q_n|} \Big( \int w_i - w_j dx\Big)^2 + \frac{n^2 \delta^2}{2} \norms{Dw_i -Dw_j}{L^2(Q_n)}^2\Big] \\
 & \leq \sum_{a=1}^{k(\delta)} \frac{1}{|Q_n|} \Big( \int w_i - w_j dx\Big)^2 + \frac{n^2 \delta^2}{2} \norms{Dw_i -Dw_j}{L^2(Q_n)}^2
 \end{align*}
-Note that $\frac{n^2 \delta^2}{2} \norms{Dw_i - Dw_j}{L^2(U)}^2 \leq C \frac{n^2\delta^2}{2} K^2$ where $C = C(U,Q)$ is the constant from extension, so for $\delta$ sufficiently small, 
+Note that $\frac{n^2 \delta^2}{2} \norms{Dw_i - Dw_j}{L^2(Q)}^2 \leq C \frac{n^2\delta^2}{2} K^2$ where $C = C(U,Q)$ is the constant from extension, so for $\delta$ sufficiently small, 
 \begin{align*}
-\frac{n^2 \delta^2}{2}\norms{Dw_i - Dw_j}{L^2(U)}^2 < \epsilon/2
+\frac{n^2 \delta^2}{2}\norms{Dw_i - Dw_j}{L^2(Q)}^2 < \epsilon/2
 \end{align*}
-- fix such $\delta$. Also, $u \mapsto \int_{Q_a} u(x)dx$ is a bounded linear functional on $H^1(Q)$ so since $w_j \xrightarrow{w} u$ in $H^1(Q)$, $(\int_{Q_n} w_i dx)_{i=1}^{\infty}$ is a Cauchy sequence. Since $k(\delta)$ is a fixed finite number, we conclude $\exists N$ such that if $i,j\geq N$ then
+- fix such $\delta$. Also, $u \mapsto \int_{Q_a} u(x)dx$ is a bounded linear functional on $H^1(Q)$ and since $w_j \xrightarrow{w} u$ in $H^1(Q)$, $(\int_{Q_n} w_i dx)_{i=1}^{\infty}$ is a Cauchy sequence. Since $k(\delta)$ is a fixed finite number, we conclude $\exists N$ such that if $i,j\geq N$ then
 \begin{align*}
 \sum_{a=1}^{k(\delta)} \frac{1}{|Q_n|} \Big( \int w_i - w_j dx\Big)^2 < \epsilon/2
 \end{align*}
@@ -2449,7 +2449,7 @@ Then \emph{either} \begin{itemize}
 \begin{align}
 \begin{cases}
 \begin{array}{ll}
-Lu = 0 & \text{in } U, \quad f\in L^2(U) \\
+Lu = 0 & \text{in } U \\
 u = 0 & \text{on } \pa U
 \end{array}
 \end{cases} \label{15}
@@ -2460,12 +2460,12 @@ If (b) holds, the dimension of the space $N \subset H_0^1(U)$ of weak solutions 
 \begin{align*}
 \begin{cases}
 \begin{array}{ll}
-L^{\dagger}v = f & \text{in } U, \quad f\in L^2(U) \\
+L^{\dagger}v = 0 & \text{in } U \\
 v = 0 & \text{on } \pa U
 \end{array}
 \end{cases}
 \end{align*}
-\quad Finally (14) has a solution \emph{iff}
+\quad Finally (13) has a solution \emph{iff}
 \begin{align*}
 (f,v)_{L^2(U)} = 0 \quad \forall v\in N^*
 \end{align*}
@@ -2651,7 +2651,7 @@ where each eigenvalue appears multiple times according to its multiplicity (dim(
 \begin{align*}
 \begin{cases}
 \begin{array}{ll}
-Lw_k = \lambda w_k & \text{in } U \\
+Lw_k = \lambda_k w_k & \text{in } U \\
 w_k = 0 & \text{on } \pa U
 \end{array}
 \end{cases}
@@ -2735,7 +2735,7 @@ and define
 Note $\Delta_i^h(x) u \in H^1(V)$ if $u\in H^1(U)$.
 \s
 
-\lem Suppose $u \in L^2(U)$. Then $u\in H^1(V)$, then $u\in H^1(V)$ with $\norms{Du}{L^2(V)} \leq K$ \emph{iff}
+\lem Suppose $u \in L^2(U)$. Then $u\in H^1(V)$ with $\norms{Du}{L^2(V)} \leq K$ \emph{iff}
 \begin{align*}
 \norms{\Delta^h u}{L^2(V)} \leq K
 \end{align*}
@@ -2873,9 +2873,9 @@ so $\norms{u}{H^1(W)} \leq C\norms{u}{L^2(U)}$.
 We have shown $f\in L^2(U)$ implies $u\in H^2_{\text{loc}}(U)$. We can improve this result iteratively (see example sheet) to obtain the following important result :
 \s
 
-\thm \emph{(Higher interior regularity)} Let $m$ be a non-negative integer, assume $a^{ij},b^{ij}, c\in C^{m+1}(U)$ and $f\in H^m (U)$. Suppose $u\in H^1(U)$ satisfies $B[u,v] = (f,v)_{L^2(U)}$ for all $v\in H_0^1(U)$. Then in fact $u\in H^{m+2}_{\text{loc}}(U)$ and for each $V\subset\subset U$ we have
+\thm \emph{(Higher interior regularity)} Let $m$ be a non-negative integer, assume $a^{ij},b^{i}, c\in C^{m+1}(U)$ and $f\in H^m (U)$. Suppose $u\in H^1(U)$ satisfies $B[u,v] = (f,v)_{L^2(U)}$ for all $v\in H_0^1(U)$. Then in fact $u\in H^{m+2}_{\text{loc}}(U)$ and for each $V\subset\subset U$ we have
 \begin{align*}
-\norms{u}{H^{m+2}(V)} \leq C \big( \norms{f}{L^m(U)} + \norms{u}{L^2(Y)} \big)
+\norms{u}{H^{m+2}(V)} \leq C \big( \norms{f}{H^m(U)} + \norms{u}{L^2(U)} \big)
 \end{align*}
 where $C= C(U,V,L)$ does not depend on $u$ or $f$.
 \s
@@ -2897,7 +2897,7 @@ This holds for any $v\in C_c^{\infty}(U)$, so $Lu = f$ almost everywhere. If $m$
 \end{align*}
 If the BVP has a \emph{unique} solution for each $f\in L^2(U)$, we can drop the $\norms{u}{L^2(U)}$ term from RHS.
 \begin{proof}
-\textbf{sketh proof)} We restrict to the situation where $U = B_1(0) \cap \{ x_n >0 \}$. Let $V= B_{1/2}(0) \cap \{x_n >0 \}$. Choose $\zeta \in C_c^{\infty}(B_1(0))$ with $\zeta \equiv 1$ on $B_{1/2}(0)$, $0\leq \zeta \leq 1$ so $\zeta$ vanishes enar coloured part of boundary of $U$ since $u$ is a weak solution of ($\diamond$), as before, fore any $v\in H_0^1(U)$ we can write
+\textbf{sketch proof)} We restrict to the situation where $U = B_1(0) \cap \{ x_n >0 \}$. Let $V= B_{1/2}(0) \cap \{x_n >0 \}$. Choose $\zeta \in C_c^{\infty}(B_1(0))$ with $\zeta \equiv 1$ on $B_{1/2}(0)$, $0\leq \zeta \leq 1$ so $\zeta$ vanishes enar coloured part of boundary of $U$ since $u$ is a weak solution of ($\diamond$), as before, fore any $v\in H_0^1(U)$ we can write
 \begin{align}
 \sum_{i,j} \int_U a^{ij}u_{x_i}v_{x_j} dx = \int_U \tilde{f}vdx \label{22}
 \end{align}
@@ -2927,7 +2927,7 @@ Uniform ellipticity implies $a^{nn} \geq \theta$, further $\norms{F}{L^2(U)} \le
 We can still do better.
 \s
 
-\thm \emph{(Higher boundary regularity)} Let $m\in \mathbb{N}$, assume $a^{ij},b^i,c\in C^{m+}(\overline{U})$, $f\in H^m(U)$ and $\pa U$ is $C^{m+2}$. Then if $u\in H_0^1()U$ is the weak solution of
+\thm \emph{(Higher boundary regularity)} Let $m\in \mathbb{N}$, assume $a^{ij},b^i,c\in C^{m+1}(\overline{U})$, $f\in H^m(U)$ and $\pa U$ is $C^{m+2}$. Then if $u\in H_0^1(U)$ is the weak solution of
 \begin{align*}
 \begin{cases}
 \begin{array}{ll}

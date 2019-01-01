@@ -1,4 +1,4 @@
-This is XeTeX, Version 3.14159265-2.6-0.99998 (MiKTeX 2.9.6500) (preloaded format=xelatex 2018.2.4)  28 NOV 2018 17:31
+This is XeTeX, Version 3.14159265-2.6-0.99998 (MiKTeX 2.9.6500) (preloaded format=xelatex 2018.2.4)  1 JAN 2019 16:31
 entering extended mode
 **./analysis_PDEs.tex
 (analysis_PDEs.tex
@@ -722,14 +722,14 @@ File: ueus.fd 2013/01/14 v3.01 Euler Script
 [54]
 File: 7.png Graphic file (type bmp)
 <7.png>
- [55] [56] [57] [58]
-File: 9.png Graphic file (type bmp)
-<9.png>
 
 
 LaTeX Warning: `h' float specifier changed to `ht'.
 
-[59] [60] [61] [62]
+[55] [56] [57] [58] [59]
+File: 9.png Graphic file (type bmp)
+<9.png>
+ [60] [61] [62]
 Overfull \hbox (33.97366pt too wide) detected at line 3119
 []
  []
@@ -759,11 +759,15 @@ LaTeX Warning: `h' float specifier changed to `ht'.
 [66]
 File: 13.png Graphic file (type bmp)
 <13.png>
- [67] (analysis_PDEs.aux) ) 
+ [67] (analysis_PDEs.aux)
+
+LaTeX Warning: Label(s) may have changed. Rerun to get cross-references right.
+
+ ) 
 Here is how much of TeX's memory you used:
  14730 strings out of 427839
  291014 string characters out of 3151405
- 453841 words of memory out of 3000000
+ 452841 words of memory out of 3000000
  18388 multiletter control sequences out of 15000+200000
  12588 words of font info for 66 fonts, out of 3000000 for 9000
  1328 hyphenation exceptions out of 8191
