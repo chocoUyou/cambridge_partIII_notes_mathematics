@@ -2955,7 +2955,7 @@ This is the end of elliptic part of the lecture. We will be going into evolution
 
 Suppose $U\subset \reals^n$ is open with $C^1$-boundary. We define 
 \begin{align*}
-U_T = U \times (0,T), \quad \Sigma_t = U \times \{t \}, \quad \pa^* U_T = \pa U \times [0,T]
+U_T = U \times (0,T), \quad \Sigma_t = U \times \{t \}, \quad \pa^* U_T = \pa U \times (0,T)
 \end{align*}
 \begin{figure}[h]
 	\begin{center}
@@ -2995,13 +2995,13 @@ Integrating by parts, we find
 \end{align}
 Conversely, if (\ref{32}) holds for all $v\in C^2(\bar{U}_T)$ which vanish on $\Sigma_T \cup \pa^* U_T$ and $u\in C^2(\bar{U}_T)$ satisfies $u= \psi$ on $\Sigma_0$, $u=0$ on $\pa^* U_T$, undoing the integration by parts gives
 \begin{align*}
-\int_{U_T} (u_{tt}v + Lv - fv) dxdt + \int_{\Sigma_0} (u_t - \psi') vdx =0
+\int_{U_T} (u_{tt}v + Luv - fuv) dxdt + \int_{\Sigma_0} (u_t - \psi') vdx =0
 \end{align*}
-Taking $v\in C_c^{\infty}(U_T)$, the $\Sigma_0$ term vanishes and we deduce $u_{tt} + Lu = f$ in $U_T$. This implies
+Taking $v\in C_c^{\infty}(U_T)$, the $\Sigma_0$ term vanishes and we deduce $u_{tt} + Lu = f$ in $U_T$. We also have
 \begin{align*}
-\int_{\Sigma_0} (u_t - \psi') vdx =0 \quad \forall v \in C_c^{\infty}(\Sigma_0) \quad \Rightarrow \quad u_t = \psi'
+\int_{\Sigma_0} (u_t - \psi') vdx =0 \quad \forall v \in C_c^{\infty}(\Sigma_0)
 \end{align*}
-The expression (\ref{32}) makes sense if $u\in H^1(U_T)$, $v\in H^1(U_T)$. This motivates the definition :
+so these facts imply $\quad u_t = \psi'$. The expression (\ref{32}) makes sense if $u\in H^1(U_T)$, $v\in H^1(U_T)$. This motivates the definition :
 \s
 
 \defi Suppose $f\in L^2(U_T)$, $\psi \in H_0^1(\Sigma_0)$, $\psi \in L^2(\Sigma_0)$ and $a^{ij}, b^i, b, c \in C^1(\bar{U}_T)$ with $a^{ij}$ satisfying uniform ellipticity condition in $U_T$. We say $u\in H^1(U_T)$ is a weak solution of the IBVP (\ref{31}) if
@@ -3019,7 +3019,7 @@ and (\ref{32}) holds for all $v\in H^1(U_T)$ with $v=0$ on $\Sigma_T \cup \pa^* 
 Note that, we could not say $\pa_t u = \psi'$ on $\Sigma_0$ in trace sense, because $\pa_t u$ is just a $L^2$-function while we do not have trace theorem for $L^2$ functions.
 \s
 
-We cannot use Lax-Milgrim theorem as it is. But we can do something different to show unique existence of the solution in a different way.
+For the first existential result, we cannot use Lax-Milgrim theorem as it is. But we can do something different to show unique existence of the solution in a different way.
 \s
 
 \thm A weak solution to (\ref{31}), if it exists, is unique.
@@ -3029,7 +3029,7 @@ We cannot use Lax-Milgrim theorem as it is. But we can do something different to
 \begin{align*}
 u_{tt}  - \Delta u = 0 \quad \text{in } U_T
 \end{align*}
-with the initial and boundary conditions as in (\ref{31}). Assume $u\in C^2(U_T)$. To show the solution is unique, sufficient to consider $\psi= \psi' =0$. Multiply by $u_t$ and integrate over $x\in U$.
+with the initial and boundary conditions as in (\ref{31}). Assume $u\in C^2(U_T)$. By linearity of the problem, to show the solution is unique, it is sufficient to consider $\psi= \psi' =0$. Multiply by $u_t$ and integrate over $x\in U$.
 \begin{align*}
 \int_U u_{tt} u_t - \Delta u \cdot u_t dx =  \int_U u_{tt} u_t + Du \cdot Du_t dx = \frac{d}{dt} \int_U \frac{1}{2} u_t^2 + \frac{1}{2} |Du|^2 dx
 \end{align*}
@@ -3045,7 +3045,7 @@ and therefore $u=0$ in $U_T$.
 \begin{proof}
 \textbf{proof of theorem)} Note that by linearity, sufficient to prove that if $\psi = 0$, $\psi'=0$, $f=0$ then $u=0$. We want to use $u_t$ as a test function but it is not regular enough (does not vanish on $\Sigma_T$). Take
 \begin{align*}
-v(x,y) = \int_t^T e^{-\lambda s} u(x,s) ds
+v(x,t) = \int_t^T e^{-\lambda s} u(x,s) ds
 \end{align*}
 for $\lambda\in \reals$ we choose later. We find $v\in H^1(U_T)$, $v=0$ on $\pa^* U_T \cup \Sigma_T$ and $v_t = -e^{-\lambda t} u \in H^1(U_T)$. Putting this into (\ref{32}) with $\psi = \psi' =f=0$, we have
 \begin{align*}
@@ -3217,7 +3217,7 @@ Note that since $u_{tt}|_{\Sigma_0} = (f-Lu)|_{\Sigma_0}$ etc, the conditions on
 together with some compatibility condition hold at $\pa \Sigma_0$.
 \s
 
-\textit{e.g.} if $u\in C^{\infty}(\bar{U}_T)$ satisfies $u_{tt} - \Delta u =0$ in $U_T$, $u=\psi$, $u_t = \psi'$ on $\Sigma_0$ and $u=0$ on $\pa^* U_T$, then $u=0$ on $\pa^* U_T$ implies $\pa_t^i u=0$ on $\pa^* U_T$ so $u_{tt} =0$ on $\pa^* U_T$ implies $\Delta \phi =0$ on $\pa \Sigma_0$ and $u_{ttt} =0$ on $\pa^* U_T$ implies $\Delta \psi' =0$. In fact, we require $\Delta^k \psi =0$, $\Delta^k \psi' =0$ on $\pa \Sigma_0$.
+\textit{e.g.} if $u\in C^{\infty}(\bar{U}_T)$ satisfies $u_{tt} - \Delta u =0$ in $U_T$, $u=\psi$, $u_t = \psi'$ on $\Sigma_0$ and $u=0$ on $\pa^* U_T$, then $u=0$ on $\pa^* U_T$ implies $\pa_t^i u=0$ on $\pa^* U_T$ so $u_{tt} =0$ on $\pa^* U_T$ implies $\Delta \psi =0$ on $\pa \Sigma_0$ and $u_{ttt} =0$ on $\pa^* U_T$ implies $\Delta \psi' =0$. In fact, we require $\Delta^i \psi =0$, $\Delta^i \psi' =0$ on $\pa \Sigma_0$.
 
 \subsubsection*{Finite propagation speed and solutions on unbounded domains}
 
