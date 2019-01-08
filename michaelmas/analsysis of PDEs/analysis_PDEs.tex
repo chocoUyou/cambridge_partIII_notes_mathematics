@@ -2741,7 +2741,7 @@ Note $\Delta_i^h(x) u \in H^1(V)$ if $u\in H^1(U)$.
 \end{align*}
 for some $K\geq 0$ and all $0< |h|< \frac{1}{2}\text{dist}(V, \pa U)$.
 \begin{proof}
-\pf See example sheet \#3 - you would like to use mean value theorem and approximation by smooth functions(???). 
+\pf See example sheet \#3 - you would like to use mean value theorem and approximation by smooth functions. 
 \end{proof}
 \s
 
@@ -2873,11 +2873,14 @@ so $\norms{u}{H^1(W)} \leq C\norms{u}{L^2(U)}$.
 We have shown $f\in L^2(U)$ implies $u\in H^2_{\text{loc}}(U)$. We can improve this result iteratively (see example sheet) to obtain the following important result :
 \s
 
-\thm \emph{(Higher interior regularity)} Let $m$ be a non-negative integer, assume $a^{ij},b^{i}, c\in C^{m+1}(U)$ and $f\in H^m (U)$. Suppose $u\in H^1(U)$ satisfies $B[u,v] = (f,v)_{L^2(U)}$ for all $v\in H_0^1(U)$. Then in fact $u\in H^{m+2}_{\text{loc}}(U)$ and for each $V\subset\subset U$ we have
+\thm \emph{(Higher interior regularity)} Let $m$ be a non-negative integer, assume $a^{ij},b^{i}, c\in C^{m+1}(U)$ and $f\in H^m (U)$(or $\in L^2(U)\cap H^m_{\text{loc}}(U)$). Suppose $u\in H^1(U)$ satisfies $B[u,v] = (f,v)_{L^2(U)}$ for all $v\in H_0^1(U)$. Then in fact $u\in H^{m+2}_{\text{loc}}(U)$ and for each $V\subset\subset U$ we have
 \begin{align*}
 \norms{u}{H^{m+2}(V)} \leq C \big( \norms{f}{H^m(U)} + \norms{u}{L^2(U)} \big)
 \end{align*}
 where $C= C(U,V,L)$ does not depend on $u$ or $f$.
+\begin{proof}
+\pf For proof, see example sheet {\#}4.
+\end{proof}
 \s
 
 \textbf{Remarks :}
@@ -2955,7 +2958,7 @@ This is the end of elliptic part of the lecture. We will be going into evolution
 
 Suppose $U\subset \reals^n$ is open with $C^1$-boundary. We define 
 \begin{align*}
-U_T = U \times (0,T), \quad \Sigma_t = U \times \{t \}, \quad \pa^* U_T = \pa U \times (0,T)
+U_T = (0,T)\times U, \quad \Sigma_t = \{t \}\times U , \quad \pa^* U_T = [0,T]\times \pa U
 \end{align*}
 \begin{figure}[h]
 	\begin{center}
@@ -3106,7 +3109,7 @@ where $u_k(t)$ are determined by solving the ordinary differential equation :
 \begin{align}
 \Big( \frac{d^2 u^N}{dt^2}, \varphi_k \Big) + \int_{\Sigma_t} \Big[ \sum_{i,j} a^{ij}u_{x_j}^N (\varphi_k)_{x_j} + \sum_i b^i u_{x_i}^N \varphi_k + bu_t^N \varphi_k + cu^N \varphi_k \Big] dx = \int_{\Sigma_t} f\varphi_k dx \label{34}
 \end{align}
-and $u_k^N(0)= (\psi, \varphi_k)_{L^2(U)}$, $\dot{u}_k^N(0) = (\psi', \varphi_k)_{L^2(U)}$ for $k=1, \cdots, N$. This is the projection of the PDE onto $\langle \varphi_1, \cdots, \varphi_N \rangle$. Note that (\ref{34}) is a system of $N$-ODE's for the unknowns $u_k^N(t)$, $k=1, \cdots, N$ which is linear in $u_k^N$ with coefficients which are $C^1$ in $t$. By Picard-Lindel\"{o}f, a unique solution exists for $u_k^N:[0,T] \rightarrow \reals$. We now estimate $u^N$. Multiply (\ref{34}) by $e^{-\lambda t} \dot{u}_k^N(t)$ and sum over $k=1, \cdots, N$. Noting that $\sum_{k=1}^N e^{-\lambda t} \dot{u}_k^N(t) \varphi_k(x) = \dot{u}^N e^{-\lambda t}$, we find after integrating over $t\in [0,\tau]$ for some $\tau \in (0,T]$,
+and $u_k^N(0)= (\psi, \varphi_k)_{L^2(U)}$, $\dot{u}_k^N(0) = (\psi', \varphi_k)_{L^2(U)}$ for $k=1, \cdots, N$. This is the projection of the PDE onto $\langle \varphi_1, \cdots, \varphi_N \rangle$. Note that (\ref{34}) is a system of $N$-ODE's for the unknowns $u_k^N(t)$, $k=1, \cdots, N$ which is linear in $u_k^N$ with coefficients which are $C^1$ in $t$. By Picard-Lindel\"{o}f, a unique solution exists for $u_k^N:[0,T] \rightarrow \reals$. We now estimate $u^N$. Multiply (\ref{34}) by $e^{-\lambda t} \dot{u}_k^N(t)$ and sum over $k=1, \cdots, N$. Noting that $\sum_{k=1}^N e^{-\lambda t} \dot{u}_k^N(t) \varphi_k(x) = \dot{u}^N e^{-\lambda t}$, we find after integrating over $t\in [0,\tau]$ for each $\tau \in (0,T]$,
 \begin{align*}
 \int_0^{\tau} dt \int_U dx \Big[ &\ddot{u}^N \dot{u}^N e^{-\lambda t} + \sum_{i,j=1} a^{ij}u_{x_i}^N \dot{u}_{x_j}^N e^{-\lambda t} + \sum_{i}b^i u_{x_i}^N \dot{u}_{x_j}^N e^{-\lambda t} \\
 & + b(\dot{u}^{N})^2 e^{-\lambda t} + u^N \dot{u}^N e^{-\lambda t} + (c-1)u^N \dot{u}^N e^{-\lambda t} \Big] = \int_0^{\tau} dt \int_U dx (f\dot{u}^N e^{-\lambda t})
@@ -3134,7 +3137,7 @@ where $C_1$ is independent of $N, \lambda$. On the other hand,
 with $C_2, C_3$ again independent of $N, \lambda$, where the last term is estimated using Cauchy-Schwarz inequality. Combining these estimates, choosing $\lambda > C_2$, we conclude
 \begin{align*}
 &\sup_{\tau \in [0,T]} \big( \norms{u^N}{H^1(\Sigma_{\tau})}^2 + \norms{\dot{u}^N}{L^2(\Sigma_{\tau})}^2 \big) + \norms{u^N}{H^1(U_T)}^2  \\
-& \leq C_4 \big( \norms{\psi'}{L^(U)}^2 + \norms{\psi}{H^1(U)}^2 + \norms{f}{L^2(U_T)}^2 \big)
+& \leq C_4 \big( \norms{\psi'}{L^2(U)}^2 + \norms{\psi}{H^1(U)}^2 + \norms{f}{L^2(U_T)}^2 \big)
 \end{align*}
 where $C_4$ is independent of $N$. Thus we can extract a subsequence $u^{N_m} \xrightarrow{w} u$ in $H^1(U_T)$.
 
@@ -3164,7 +3167,7 @@ so $u = \psi$ on $\Sigma_0$.
 
 \quad Note we actually have established a stronger estimate :
 \begin{align*}
-\sup_{\tau \in [0,T]} ( \norms{u}{H^1(\Sigma_{\tau})}^2 + \norms{\dot{u}}{L^2(\Sigma_t)}^2) + \norms{u}{H^1(U_T)}^2 \leq C_4(\norms{\psi'}{L^2(U)}^2 + \norms{\psi}{H^1(U)}^2 + \norms{f}{L^2(U_T)}^2)
+\sup_{\tau \in [0,T]} ( \norms{u}{H^1(\Sigma_{\tau})}^2 + \norms{\dot{u}}{L^2(\Sigma_{\tau})}^2) + \norms{u}{H^1(U_T)}^2 \leq C_4(\norms{\psi'}{L^2(U)}^2 + \norms{\psi}{H^1(U)}^2 + \norms{f}{L^2(U_T)}^2)
 \end{align*}
 
 \eop

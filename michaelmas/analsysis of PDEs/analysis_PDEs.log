@@ -1,4 +1,4 @@
-This is XeTeX, Version 3.14159265-2.6-0.99998 (MiKTeX 2.9.6500) (preloaded format=xelatex 2018.2.4)  1 JAN 2019 17:57
+This is XeTeX, Version 3.14159265-2.6-0.99998 (MiKTeX 2.9.6500) (preloaded format=xelatex 2018.2.4)  1 JAN 2019 20:47
 entering extended mode
 **./analysis_PDEs.tex
 (analysis_PDEs.tex
@@ -730,22 +730,22 @@ LaTeX Warning: `h' float specifier changed to `ht'.
 File: 9.png Graphic file (type bmp)
 <9.png>
  [60] [61] [62]
-Overfull \hbox (33.97366pt too wide) detected at line 3119
+Overfull \hbox (33.97366pt too wide) detected at line 3122
 []
  []
 
 
-Overfull \hbox (14.13431pt too wide) detected at line 3124
+Overfull \hbox (14.13431pt too wide) detected at line 3127
 []
  []
 
 [63]
-Overfull \hbox (18.74571pt too wide) detected at line 3144
+Overfull \hbox (18.74571pt too wide) detected at line 3147
 []
  []
 
 
-Overfull \hbox (2.2066pt too wide) detected at line 3152
+Overfull \hbox (2.2066pt too wide) detected at line 3155
 []
  []
 
@@ -758,11 +758,7 @@ File: 13.png Graphic file (type bmp)
 
 LaTeX Warning: `h' float specifier changed to `ht'.
 
-[67] [68] (analysis_PDEs.aux)
-
-LaTeX Warning: Label(s) may have changed. Rerun to get cross-references right.
-
- ) 
+[67] [68] (analysis_PDEs.aux) ) 
 Here is how much of TeX's memory you used:
  14730 strings out of 427839
  291014 string characters out of 3151405

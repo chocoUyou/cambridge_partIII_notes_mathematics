@@ -1976,7 +1976,7 @@ Condition (i) means that, for all $s\geq 0$, $t>0$, all Borel sets $B\subset \re
 \end{align*}
 \emph{Or}, in terms of conditional expectation, (i) is equivalent to : for all $s,t \geq 0$ and all $f\in C_b (\reals^d)$,
 \begin{align*}
-\avg (f(X)_{s+t} | \F^X_s) = P_t f(X_x) \quad \text{a.s.} 
+\avg (f(X)_{s+t} | \F^X_s) = P_t f(X_s) \quad \text{a.s.} 
 \end{align*}
 where $P_t$ is the \textbf{heat semigroup}, i.e. 
 \begin{align*}
@@ -2006,7 +2006,7 @@ Given a continuous process $(X_t)_{t\geq 0}$ in $\reals^d$ on $\Omega$, we can d
 \begin{align*}
 X : \Omega \rightarrow W_d, \quad X(\omega)(t) = X_t(\omega)
 \end{align*}
-then $X$ is $\W_d$-measurable so $X$ has a law on $(W_d, \W_d)$.
+then $X$ is $\W_d$-measurable (this is because $\W_d=\sigma(x_t:t\geq0)$ and $x_t \circ X$ is measurable for all $t\geq0$) so $X$ has a law on $(W_d, \W_d)$.
 \s
 
 \thmnum{7.2.1.}\emph{(Wiener)} For all $d\geq 1$ and $x\in \reals^d$, there exist a unique probability measure $\mu_x$ on $(W_d, \W_d)$ such that $(x_t)_{t\geq 0}$ is a Brownian motion in $\reals^d$ staring from $x$. In particular, Brownian motion exists.
@@ -2021,7 +2021,7 @@ then $X$ is $\W_d$-measurable so $X$ has a law on $(W_d, \W_d)$.
 \end{align*}
 Then $(\xi_n)_{n \in \mathbb{D}_0}$ is Gaussian and $(\xi_{t+1} - \xi_t : t\in \mathbb{D}_0)$ are independent and has distribution $\sim N(0,1)$. We define recursively $(\xi_t)_{t\in \mathsf{D}_N}$ as follows for $t\in \mathbb{D}_{N+1} \backslash \mathbb{D}_N$ :
 \begin{subproof}
-: set $r = t-2^{-N-1}$, $s=t+2^{-N-1} \in \mathbb{D_N}$, set $Z_t = 2^{- \frac{N+2}{2}} Y_t$ and define $\xi_t = \frac{\xi_r + \xi_s}{2} + Z_t$.
+: set $r = t-2^{-N-1}$, $s=t+2^{-N-1} \in \mathbb{D}_N$, set $Z_t = 2^{- \frac{N+2}{2}} Y_t$ and define $\xi_t = \frac{\xi_r + \xi_s}{2} + Z_t$.
 \end{subproof}
 We will show by induction that for all $N\geq 0$, $(\xi_{t+2^{-N}} - \xi_t: t\in \mathbb{D}_N)$ are independent, $\sim N(0,2^{-N})$ random variables
 \begin{subproof}
@@ -2032,7 +2032,7 @@ We will show by induction that for all $N\geq 0$, $(\xi_{t+2^{-N}} - \xi_t: t\in
 \end{align*}
 so
 \begin{align*}
-& \text{Var}(\xi_t - \xi_r) = \frac{1}{4} 2^{-N} + 2^{-N-2} = 2^{-N-1} = \text{Var} (\xi_s -\xi_r) \\
+& \text{Var}(\xi_t - \xi_r) = \frac{1}{4} 2^{-N} + 2^{-N-2} = 2^{-N-1} = \text{Var} (\xi_s -\xi_t) \\
 & \text{cov}(\xi_t -\xi_r, \xi_s - \xi_t) =0
 \end{align*}
 Also for any interval $(u,v]$ disjoint from $(r,s]$ with $u,v\in \mathbb{D}_{N+1}$,
@@ -2056,7 +2056,7 @@ So the induction proceeds.
 For $s\geq 0$, $t>0$ and for any $A\in \F_s^X$ there exist sequence $(s_n)$ in $[0,\infty)$, $(t_n)$ in $(0,\infty)$ and $A_0 \in \sigma(\xi_r : r\leq s, r \in \mathbb{D} )$. s.t. $s_n \rightarrow s$, $t_n \rightarrow t$ as $n\rightarrow \infty$ and $1_A =1_{A_0}$ a.s. (to check this, consider $\{ A \in \F_s : $ this holds $\}$). Then for any $f\in C_b(\reals)$,
 \begin{align*}
 \avg(f (X_{s_n + t_n} - X_{s_n})1_A) &= \avg( f(\xi_{s_n + t_n} - \xi_{s_n})1_{A_0} ) \\
-&= \prob(A_0) \int_{\reals} p(t_0, 0,y) f(y)dy
+&= \prob(A_0) \int_{\reals} p(t_n, 0,y) f(y)dy
 \end{align*}
 so letting $n\rightarrow \infty$ using bounded convergence theorem gives
 \begin{align*}
@@ -2101,7 +2101,7 @@ f(x) = \int F(\omega) \mu_x (d\omega), \quad x\in \reals^d
 \end{align*}
 Then $f$ is measurable on $\reals^d$ and $\avg(F(X) |\F_0)  = f(X_0)$ a.s. (recall, $\mu_x$ is the law of $\text{BM}_x$)
 \begin{proof}
-\pf (Was an exercise.) First consider $F$ of form $1_{A^{(a,\eta)}}$ where $A^{(a,\underline{\eta)} } = \{ g \in W_d : g(a) \geq (\eta_1, \cdots, \eta_d ) \} \subset W_d$. Then
+\pf (Was an exercise.) (Has much simpler proof. See the solution for the example sheet {\#}3.) First consider $F$ of form $1_{A^{(a,\eta)}}$ where $A^{(a,\underline{\eta)} } = \{ g \in W_d : g(a) \geq (\eta_1, \cdots, \eta_d ) \} \subset W_d$. Then
 \begin{align*}
 \int A^{(a,\eta)}(\omega) \mu_x( d\omega) = \prob ( B^{(x)} (a) \geq \eta) = \int_{\eta_1}^{\infty} \cdots \int_{\eta_d}^{\infty} \frac{1}{(2\pi)^{d/2}}e^{-y^2 /2} d^d y
 \end{align*}
@@ -2152,7 +2152,7 @@ But since $p$ is a heat kernel, has $\frac{d}{dt}p = \frac{1}{2} \Delta p$ so
 and
 \begin{align*}
 \int_s^t \int_{\reals^d} p(r,x,y) \times \frac{1}{2} \Delta f(y) dy dr &= \int_s^t \int_{\reals} \frac{d}{dt} p(r,x,y) f(y) dy dr \\
-&= \int_{\reals^d} (p(t,x,y) - p(s,x,y) ) dy
+&= \int_{\reals^d} (p(t,x,y) - p(s,x,y) ) f(y)dy
 \end{align*}
 so $\avg(M_t -M_s) =0$. But $M_s \rightarrow 0$ a.s. as $s\rightarrow 0$ so by bounded convergence, $\avg(M_s) \rightarrow 0$. Hence $m(x) = \avg(M_t) =0$ for all $x$.
 
@@ -2205,7 +2205,7 @@ Strong Markov Property of Brownian Motion would be particularly useful.
 
 \thmnum{7.6.1} Let $(X_t)_{t\geq 0}$ be an $(\F_t)_{t\geq 0}$-BM and let $T$ be a stopping time. Then conditioned on $\{T<\infty \}$, $(X_{T+t})_{t\geq 0}$ is an $(\F_{T+t})_{t\geq 0}$-BM.
 \begin{proof}
-\pf Clearly on $\{T<\infty \}$, $(X_{T<t})_{t\geq 0}$ is continuous on $[0,\infty)$. Also on $\{T<\infty \}$, $X_{T+t}$ is $\F_{T+t}$-measurable. Fix $s\geq 0$, $t>0$, $f\in C_b(\reals^d)$, $m,n\in \mathbb{N}$, $A\in \F_{T+s}$ with $A\subset \{T\leq m\}$. For $k=0,1,\cdots 2^{n}m$, set $t_k = k2^{-n}$ and $A_k = A \cap \{t_k -2^{-n}< T \leq t_k \}$. Note $A_k \in \F_{t_k +s}$ and $A_k = A \cap \{T_n = t_k \}$ where $T_n = 2^{-n} \lceil 2^n T \rceil$, so
+\pf Clearly on $\{T<\infty \}$, $(X_{T+t})_{t\geq 0}$ is continuous on $[0,\infty)$. Also on $\{T<\infty \}$, $X_{T+t}$ is $\F_{T+t}$-measurable. Fix $s\geq 0$, $t>0$, $f\in C_b(\reals^d)$, $m,n\in \mathbb{N}$, $A\in \F_{T+s}$ with $A\subset \{T\leq m\}$. For $k=0,1,\cdots 2^{n}m$, set $t_k = k2^{-n}$ and $A_k = A \cap \{t_k -2^{-n}< T \leq t_k \}$. Note $A_k \in \F_{t_k +s}$ and $A_k = A \cap \{T_n = t_k \}$ where $T_n = 2^{-n} \lceil 2^n T \rceil$, so
 \begin{align*}
 & \avg(f(X_{T_n + s+t}) 1_{A_k}) = \avg(f(X_{t_k +s +t}) 1_{A_k}) \\
 =& \avg(P_t f(X_{t_k+s}) 1_{A_k}) = \avg(P_t f(X_{T_n +s}) 1_{A_k})
@@ -2233,7 +2233,7 @@ as required.
 \end{align*}
 Moreover $T_a$ has a density $f_a$ on $[0,\infty)$ given by
 \begin{align*}
-f_a(t) = \frac{1}{\sqrt{2\pi t^3}} e^{-a^2/2t} \quad t\geq 0
+f_a(t) = \frac{a}{\sqrt{2\pi t^3}} e^{-a^2/2t} \quad t\geq 0
 \end{align*}
 Moreover the following holds almost surely.
 \begin{itemize}
@@ -2399,7 +2399,7 @@ M_t = \psi(X_t) - \psi(X_0) - \int_0^t \frac{1}{2} \Delta \psi (X_s) ds
 \end{align*}
 Suppose we could justify optional stopping theorem at $T$ and suppose $T< \infty $ a.s. Then
 \begin{align*}
-0 = \avg(M_0) = \avg(M_T) = \avg(\phi(X_T)) - \psi(x) - \avg(\int_0^T \frac{1}{2} \Delta \psi(X_s) ds)
+0 = \avg(M_0) = \avg(M_T) = \avg(\psi(X_T)) - \psi(x) - \avg(\int_0^T \frac{1}{2} \Delta \psi(X_s) ds)
 \end{align*} 
 so 
 \begin{align*}
@@ -2525,7 +2525,7 @@ where $(X_t)_{t\geq 0} \sim \text{BM}(\reals^d)$ so
 \end{align*}
 So splitting the integral at 1 gives
 \begin{align*}
-\avg \int_0^t g(x+X_t) dt = \int_0^{\infty} P_t g(x) dt \leq (1+ \text{vol}(\text{supp}(g))) \norms{g}{\infty}
+\avg \int_0^{\infty} g(x+X_t) dt = \int_0^{\infty} P_t g(x) dt \leq (1+ \text{vol}(\text{supp}(g))) \norms{g}{\infty}
 \end{align*}
 Hence also for $\epsilon >0$,
 \begin{align*}
@@ -2546,7 +2546,7 @@ for $0<s<t$. Consider the limits $s\rightarrow 0$ and $t\rightarrow \infty$. Fir
 & = \int_s^t \int_{\reals^d} c(y) \dot{p} (r,x,y) dydr \\
 &= \int_{\reals^d} c(y) (p(t,x,y)-p(s,x,y)) dy \quad (\text{FTC})
 \end{align*}
-But $\int c(y) p(t,x,y) dy \rightarrow 0$ as $t\rightarrow \infty$ and $\int c(y)p(s,x,y) dy = \avg (c(x+X_s)) \rightarrow c(x)$ as $s\rightarrow 0$. Hence $-\frac{1}{2} \Delta \psi =c$ as required.
+But $\int c(y) p(t,x,y) dy \rightarrow 0$ as $t\rightarrow \infty$ and $\int c(y)p(s,x,y) dy = \avg (c(x+X_s)) \rightarrow c(x)$ as $s\rightarrow 0$. Hence $-\frac{1}{2} \Delta \phi =c$ as required.
 
 \eop 
 \end{proof}
@@ -2588,7 +2588,7 @@ and therefore $\prob(A) \in \{0,1\}$.
 \end{proof}
 \s
 
-\propnum{7.9.6} \emph{(Brownina motion enters all cones immediately)} Let $A$ be an open subset of $S^{d-1}$ and let $\epsilon>0$. Set $C$ a cone,
+\propnum{7.9.6} \emph{(Brownian motion enters all cones immediately)} Let $A$ be an open subset of $S^{d-1}$ and let $\epsilon>0$. Set $C$ a cone,
 \begin{align*}
 C = \{ty : y\in A, t\in (0,\epsilon) \}
 \end{align*} 
@@ -2609,7 +2609,7 @@ This is weaker than the Lipschitz boundary condition.
 \begin{align*}
 \phi(x) = \avg \Big( \int_0^T c(X_t) dt + f(X_T) 1_{T<\infty} \Big) \quad \forall x\in \overline{D}
 \end{align*}
-where $X \sim \text{BM}_0(\reals^d)$ and $T = \inf \{ t\geq 0: X_t \not\in D \}$. Assume $D$ satisfies the \emph{external cone condition(ECC)} and that $\phi$ is locally bounded. Then $\phi \in C^2(D) \cap C(\overline{D})$ and $-\frac{1}{2}\Delta \phi =c$ in $D$ and $\phi =f$ on $\partial D$. i.e. $\phi$ solves the Dirichlet condition.
+where $X \sim \text{BM}_x(\reals^d)$ and $T = \inf \{ t\geq 0: X_t \not\in D \}$. Assume $D$ satisfies the \emph{external cone condition(ECC)} and that $\phi$ is locally bounded. Then $\phi \in C^2(D) \cap C(\overline{D})$ and $-\frac{1}{2}\Delta \phi =c$ in $D$ and $\phi =f$ on $\partial D$. i.e. $\phi$ solves the Dirichlet condition.
 \s
 
 This is significant - the proof using ECC is hard to achieve just using usual theories of partial differential equations.(recall, we usually prove theorems under Lipschitz boundary condition in PDEs). Probability wins!
@@ -2622,11 +2622,11 @@ This is significant - the proof using ECC is hard to achieve just using usual th
 \begin{proof}
 \pf Set $\tilde{X}_t = X_{T_0 +t}$, $\tilde{\F}_{t} = \F_{T_0 +t}$, and $\tilde{T} = \inf \{ t\geq 0 : \tilde{X}_t \not\in D \}$. By \emph{Strong Markov property}, $(\tilde{X}_t)$ is an $(\tilde{\F}_t)$-BM. Now
 \begin{align*}
-\int_0^T c(X_t) dt + f(X_T) 1_{T<\infty} = \int_0^{T_0} c(X_t) dt + \int_0^{\tilde{T}} c(X_t) dt + f(\tilde{X}_{\tilde{T}})1_{\tilde{T}<\infty} \quad \cdots\cdots\cdots (\dagger)
+\int_0^T c(X_t) dt + f(X_T) 1_{T<\infty} = \int_0^{T_0} c(X_t) dt + \int_0^{\tilde{T}} c(\tilde{X}_t) dt + f(\tilde{X}_{\tilde{T}})1_{\tilde{T}<\infty} \quad \cdots\cdots\cdots (\dagger)
 \end{align*}
 Here we used that $\tilde{T}<\infty$ \emph{iff} $T<\infty$ and $X_T = \tilde{X}_{\tilde{T}}$. By \textbf{Prop 7.4.1},
 \begin{align*}
-\avg( \int_0^{\tilde{T}} c(X_t) dt + f(\tilde{X}_{\tilde{T}})1_{\tilde{T}<\infty} | \F_{T_0} ) = \phi(X_{T_0}) \quad \text{a.s.}
+\avg( \int_0^{\tilde{T}} c(\tilde{X}_t) dt + f(\tilde{X}_{\tilde{T}})1_{\tilde{T}<\infty} | \F_{T_0} ) = \phi(X_{T_0}) \quad \text{a.s.}
 \end{align*}
 So we obtain result on taking $\avg$ in ($\dagger$)
 
@@ -2643,11 +2643,11 @@ See online notes.
 \s
 
 \begin{proof}
-\textbf{proof of Theorem 7.9.2(c) III.} We show for all $y \in \partial D$ that
+\textbf{proof of Theorem 7.9.2(c) III.} Given the setting of the theorem, we show for all $y \in \partial D$ that
 \begin{align*}
-\lim_{x\rightarrow y, x\in \overline{D}} \phi(x) = \phi(y)
+\lim_{x\rightarrow y, x\in \overline{D}} \phi(x) = f(y)
 \end{align*}
-Fix $y\in \partial D$ and choose $U$ bounded open set $\subset \reals^d$ with $u\in U$. Set $D_0 = D \cap U$. By \emph{exterior cone condition}, there exist $A\in S^{d-1}$, $\epsilon>0$ such that $\{y+tz : t \in (0,\epsilon) , z\in A \} \cap D = \phi$. Let $(X_t)_{t\geq 0}$ be a $\text{BM}_0(\reals^d)$. Set $T_0(x) = \inf \{ t\geq 0: x+ X_t \not\in D \}$. By \textbf{Proposition 7.9.6}, for $T_C = \inf \{t\geq 0 : y+X_t \in C \}$ we have $T_C =0$ a.s. Now on the event $\{ T_C =0 \}$, we have $T_0(x) \rightarrow 0$ as $x\rightarrow y$($x$ staying in $\overline{D}$) so $X_{T_0(x)} + x \in \partial D$ eventually as $x\rightarrow y$ and $X_{T_0(x)} +x \rightarrow y$ as $x\rightarrow y$. Hence
+Fix $y\in \partial D$ and choose $U$ bounded open set $\subset \reals^d$ with $u\in U$ be such that $y\in D_0=D\cap U$. By \emph{exterior cone condition}, there exist $A\in S^{d-1}$, $\epsilon>0$ such that $\{y+tz : t \in (0,\epsilon) , z\in A \} \cap D = \phi$. Let $(X_t)_{t\geq 0}$ be a $\text{BM}_0(\reals^d)$. Set $T_0(x) = \inf \{ t\geq 0: x+ X_t \not\in D \}$. By \textbf{Proposition 7.9.6}, for $T_C = \inf \{t\geq 0 : y+X_t \in C \}$ we have $T_C =0$ a.s. Now on the event $\{ T_C =0 \}$, we have $T_0(x) \rightarrow 0$ as $x\rightarrow y$($x$ staying in $\overline{D}$) so $X_{T_0(x)} + x \in \partial D$ eventually as $x\rightarrow y$ and $X_{T_0(x)} +x \rightarrow y$ as $x\rightarrow y$. Hence
 \begin{align*}
 \phi(X_{T_0(x)} +x) = f(X_{T_0(x)} +x) \rightarrow f(y) \quad \text{as }x\rightarrow y
 \end{align*}
@@ -2717,7 +2717,7 @@ Also conventionally write $X \sim P(0)$ if $X \equiv 0$, and $P \sim P(\infty) $
 \end{align*}
 \s
 
-\propnum{8.1.2.}\emph{(Splitting property)} Suppose $N\sim P(\lambda)$. Let $(Y_n : n\in \mathbb{N})$ be a sequence of i.i.d. random variables in $\mathbb{N}$. Set $N_k = \sum_{n=1}^N 1_{Y_n =k}$ for $k\geq 1$. Then $(N_k : k\in \mathbb{N})$ is a sequence of independent $P(\lambda_k)$ random variables with $\lambda_k = \lambda \prob(Y_1) =k$.
+\propnum{8.1.2.}\emph{(Splitting property)} Suppose $N\sim P(\lambda)$. Let $(Y_n : n\in \mathbb{N})$ be a sequence of i.i.d. random variables in $\mathbb{N}$. Set $N_k = \sum_{n=1}^N 1_{Y_n =k}$ for $k\geq 1$. Then $(N_k : k\in \mathbb{N})$ is a sequence of independent $P(\lambda_k)$ random variables with $\lambda_k = \lambda \prob(Y_1 =k)$.
 \s
 
 The proofs are just elementary calculations, but please do them!!!
@@ -2769,7 +2769,7 @@ So
 \end{align*}
 so we obtain the average and variance of $M(g)$ from the moment generating function.
 
-\quad For the general case, since $(E, \mathscr{E},\mu)$ is $\sigma$-finite, let $E = \cup_n E_n$ where $E_n \in \mathscr{E}$, disjoint and $\mu(E_n) < \infty$. Let $M_n$ be the Poisson random measure on each $E_n$. Then $1_{M<\infty} \sum_{n=1}^{\infty} M_{n} \rightarrow M 1_{M<\infty}$ . The statement holds for each $M_n$ by above, so by dominated convergence(dominated by 1),
+\quad For the general case, since $(E, \mathscr{E},\mu)$ is $\sigma$-finite, let $E = \cup_n E_n$ where $E_n \in \mathscr{E}$, disjoint and $\mu(E_n) < \infty$. Let $M_n$ be the Poisson random measure on each $E_n$. Then $1_{M<\infty} \sum_{n=1}^{m} M_{n} \rightarrow M 1_{M<\infty}$ as $m\rightarrow \infty$. The statement holds for each $M_n$ by above, so by dominated convergence(dominated by 1),
 \begin{align*}
 \avg(e^{in M(g)}) &= \sum_{n=0}^{\infty} e^{-\lambda} \frac{\lambda^n}{n!} \Big( \int_E e^{ing(y)} \frac{\mu(dy)}{\lambda} \Big)^n \\
 &= e^{-\lambda} \exp \Big( \int_E e^{ing(y)} \mu(dy) \Big)
@@ -2813,7 +2813,7 @@ Similarly as above, can use, for case $K(E)<\infty$, that $M_t(g) = \sum_{n=1}^{
 Then $(\tilde{M}_t(g))_{t\geq 0}$ is a \emph{cadlag martingale} with \emph{stationary independent increments}. Moreover,
 \begin{align*}
 \begin{array}{ll}
-\avg(\tilde{M}_t(g))^2 = t\int_E g(y)^2 K(dy) & \cdots\cdots\cdots (\heartsuit) \\
+\avg(\tilde{M}_t(g)^2) = t\int_E g(y)^2 K(dy) & \cdots\cdots\cdots (\heartsuit) \\
 \avg(e^{iu\tilde{M}_t(g)}) =\exp\Big[ t\int_E (e^{iug(y)}-1) K(dy) \Big] & \cdots\cdots\cdots (\oplus)
 \end{array}
 \end{align*}
@@ -2825,7 +2825,7 @@ Then $(\tilde{M}_t(g))_{t\geq 0}$ is a \emph{cadlag martingale} with \emph{stati
 This can be thought of a sort of pre-view of what we do in stochastic calculus course, in which we use Gaussian random variables instead of Poissons.
 \s
 
-\thmnum{8.2.3} Let $g\in L^2(K)$. Take $E_n \in \mathscr{E}$ with $E_n \nearrow E$ and $K(E_n) < \infty$. Set $X_t^N = \tilde{M}_t(g1_{E_n})$. Then there exists a \emph{cadlag martingale} $(X_t)_{t\geq 0}$ such that $\avg(\sup_{s\leq t} |X_s^n - X_s|^2) \rightarrow 0$ as $n\rightarrow \infty$ for all $t\geq 0$. 
+\thmnum{8.2.3} Let $g\in L^2(K)$. Take $E_n \in \mathscr{E}$ with $E_n \nearrow E$ and $K(E_n) < \infty$. Set $X_t^n = \tilde{M}_t(g1_{E_n})$. Then there exists a \emph{cadlag martingale} $(X_t)_{t\geq 0}$ such that $\avg(\sup_{s\leq t} |X_s^n - X_s|^2) \rightarrow 0$ as $n\rightarrow \infty$ for all $t\geq 0$. 
 
 \quad Define $\tilde{M}_t(g) = X_t$. Then $(\tilde{M}_t(g))_{t\geq 0}$ has \emph{stationary independent increments} and ($\heartsuit$) and $(\oplus)$ still hold - so we may write, in convention,
 \begin{align*}
@@ -2878,9 +2878,9 @@ A \textbf{L\'{e}vy process} is a cadlag process with stationary independent incr
 \end{align*}
 We call $a$ the \textbf{diffusivity}, $b$ the \textbf{drift} and $K$ the \textbf{L\'{e}vy measure}. These notions generalize naturally to processes with values in $\reals^d$ but we will consider only the case $d = 1$. Take a Brownian motion $(B_t)$ and a Poisson random measure $M$ on $(0,\infty) \times \reals$ of intensity $\mu = dt \otimes K$. Set
 \begin{align*}
-X_t = bt + \sqrt{a} B_t \int_{(0,t]\times \reals} y1_{|y| \leq 1} \tilde{M}(ds,dy) + \int_{(0,t] \times \reals} y1_{|y|>1} M(ds,dy)
+X_t = bt + \sqrt{a} B_t +\int_{(0,t]\times \reals} y1_{|y| \leq 1} \tilde{M}(ds,dy) + \int_{(0,t] \times \reals} y1_{|y|>1} M(ds,dy)
 \end{align*}
-Note that the first integral exists because $|y|\wedge 1 \in L^2(K)$ and the second integral exists because $\mu((0,\infty] \times \{y: |y|\geq 1\}   ) < \infty$. Now putting the results from \textbf{Section 8} together, we see that, $(X_t)$ is \emph{cadlag with stationary independent increments} and
+Note that the first integral exists because $|y|\wedge 1 \in L^2(K)$ and the second integral exists because $\mu((0,t] \times \{y: |y|\geq 1\}   ) < \infty$. Now putting the results from \textbf{Section 8} together, we see that, $(X_t)$ is \emph{cadlag with stationary independent increments} and
 \begin{align*}
 \avg(e^{iu X_t}) = e^{t\psi_{a,b,K}(u)}
 \end{align*}
