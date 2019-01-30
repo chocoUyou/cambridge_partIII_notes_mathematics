@@ -794,7 +794,7 @@ This theorem does not seem to have any significance at the moment, but it will t
 
 \subsection*{2.4. Doob's maximal inequalities.}
 
-\quad Define $X_n^* = \sum_{k\geq n} |X_k|$
+\quad Define $X_n^* = \sup_{k\geq n} |X_k|$
 \s
 
 In the next two theorems, we see that the martingale(or sub-martingale) property allows us to obtain estimates on this $X_n^*$ in terms of expectations for $X_n$.\\
@@ -1401,7 +1401,7 @@ so
 \end{align*}
 For $s,t\in D$, with $s<t$, choose $m\geq 0$ such that $2^{-m-1} <t-s \leq 2^{-m}$. Then interval $[s,t)$ can be expressed as a finite disjoint union of intervals of the form $[r, r+ 2^{-n})$ where $r\in D_n$ and $n\geq m+1$ and no 3 intervals have the same length. Hence $|\xi_t - \xi_s | \leq 2\sum_{n\geq m+1} K_n$ and so 
 \begin{align*}
-\frac{|\xi_t - \xi_s|}/{(t-s)^{\alpha}} \leq 2\sum_{n\geq m+1} K_n 2^{(m+1)\alpha} \leq K_{\alpha}
+\frac{|\xi_t - \xi_s|}{(t-s)^{\alpha}} \leq 2\sum_{n\geq m+1} K_n 2^{(m+1)\alpha} \leq K_{\alpha}
 \end{align*}
 Now define
 \begin{align*}
