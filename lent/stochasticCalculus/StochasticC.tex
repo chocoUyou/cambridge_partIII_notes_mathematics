@@ -112,7 +112,8 @@
 \newcommand{\eop}{\hfill  \textsl{(End of proof)} $\square$} %end of proof
 \newcommand{\eos}{\hfill  \textsl{(End of statement)} $\square$} %end of proof
 
-\newcommand{\charac}{\mathrel{\raisebox{0pt}{\scalebox{1}[1.2]{$1$}} \mkern-5.5mu \raisebox{0.04pt}{\scalebox{1}[1.2]{$\_$}} \mkern-5.5mu\raisebox{2.5pt}{\scalebox{1}[0.8]{$\bm{|}$}} }}
+\newcommand{\charac}{\bm{1}}
+%\newcommand{\charac}{\mathrel{\raisebox{0pt}{\scalebox{1}[1.2]{$1$}} \mkern-5.5mu \raisebox{0.04pt}{\scalebox{1}[1.2]{$\_$}} \mkern-5.5mu\raisebox{2.5pt}{\scalebox{1}[0.8]{$\bm{|}$}} }}
 
 \newcommand{\norms}[2]{\bignorm[\big]{#1}_{#2}}
 \newcommand{\snorms}[2]{\bignorm[\small]{#1}_{#2}}
@@ -1948,11 +1949,39 @@ Indeed, then
 =& \int_0^{\infty} \prob \big( \sup_t L_t \geq \log \lambda \big) d\lambda \\
 \leq& 1+ \int_1^{\infty} e^{- \frac{(\log \lambda)^2}{2C}} d\lambda < \infty
 \end{align*}
-so $\EE(L)_t$ is bounded by the random variable $\sup_t \EE(L)_t \in L^1$ and thus $\EE(L)$ is uniformly intgrable.
+so $\EE(L)_t$ is bounded by the random variable $\sup_t \EE(L)_t \in L^1$ and thus $\EE(L)$ is uniformly integrable.
 \s
 
-Checking the tail bound is an exercise (on the Example Sheet)
+(Checking the tail bound is an exercise, on the Example Sheet)
 
+\textbf{$\heartsuit$ Claim :} Let $M$ be a continuous local martingale with $M_0 =0$. Then for any $a,b>0$,
+\begin{align*}
+\prob\Big( \sup_{t\geq 0} M_t \geq a, \langle M\rangle_{\infty} \leq b\Big) \leq \exp \Big( -\frac{a^2}{2b} \Big)
+\end{align*}
+\begin{subproof}
+: Let $T=\inf \{t\geq 0 : M_t =a \}$, then $\{M_{\infty}^{T} =a \} \supset \{ \sup_t M_t >a\}$. Fix $\lambda \in \reals_{>0}$, and let
+\begin{align*}
+Z_t = \exp \Big( \lambda M_t^T -\frac{1}{2} \lambda^2 \langle M \rangle_t^T \Big)
+\end{align*}
+By \emph{Ito's formula}, $Z$ is a continuous local martingale and $Z_t \leq e^{\lambda a}$ for all $t\geq 0$, so is bounded. Hence, $Z$ is in fact a true martingale. Now
+\begin{align*}
+1 = Z_0 = \avg Z_{\infty} &\geq \avg(Z_{\infty} \charac_{\sup_{t} M_t >a, \langle M \rangle_{\infty} \leq b}) \\
+&\geq \avg (\exp (\lambda a -\frac{1}{2} \lambda^2 b) \charac_{\sup_{t} M_t >a, \langle M \rangle_{\infty} \leq b})
+\end{align*}
+since upon the event $\{\sup_{t} M_t >a\}$, we always have $M_{\infty}^T =a$. Hence
+\begin{align*}
+\prob (\sup_t M_t >a, \langle M \rangle_{\infty} \leq b) \leq e^{-\lambda a + \frac{1}{2} \lambda^2 b}
+\end{align*} 
+Optimizing over $\lambda$, we get
+\begin{align*}
+\prob (\sup M_t >a, \langle M \rangle_{\infty} \leq b) \leq e{-\frac{a^2}{2b}}
+\end{align*}
+and
+\begin{align*}
+\prob(\sup_t M_t \geq a, \langle M \rangle_{\infty} \leq b) \leq \inf \{ \prob(\sup_t M_t >a', \langle M\rangle_{\infty} \leq b) ; a'<a \} \leq e^{-a^2 /2b}
+\end{align*}
+as desired.
+\end{subproof}
 \eop 
 \end{p}
 \s
