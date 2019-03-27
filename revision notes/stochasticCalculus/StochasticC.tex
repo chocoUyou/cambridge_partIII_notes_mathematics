@@ -1,0 +1,2865 @@
+\documentclass[12pt,a4paper]{article}
+
+
+\usepackage{amsmath}
+\usepackage[utf8]{inputenc}
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{amssymb}
+\usepackage{calrsfs}
+\usepackage[left=2cm,right=2cm,top=2cm,bottom=2cm]{geometry}
+\usepackage[mathscr]{euscript}
+\usepackage{bm}
+
+\usepackage{lmodern}
+
+%%%%%%%%%%%attach pdf%%%%%%%%%%%%
+\usepackage[final]{pdfpages}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%%%%%For writing large opertors%%%%%%%%%%%
+%\usepackage{stmaryrd}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%for writing large parallel%%%%%%
+\usepackage{mathtools}
+\DeclarePairedDelimiter\bignorm{\lVert}{\rVert}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%%%for drawing commutative diagrams.%%%%%%
+\usepackage{tikz-cd}  
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%for changing margin
+\def\changemargin#1#2{\list{}{\rightmargin#2\leftmargin#1}\item[]}
+\let\endchangemargin=\endlist 
+
+\newenvironment{proof}
+{\begin{changemargin}{0.5cm}{0.5cm} 
+	}%your text here
+	{\end{changemargin}
+}
+
+\newenvironment{subproof}
+{\begin{changemargin}{0.5cm}{0.5cm} 
+	}%your text here
+	{\end{changemargin}
+}
+
+\renewenvironment{i}
+{\begin{itemize} 
+	}%your text here
+	{\end{itemize}
+}
+
+\newenvironment{p}
+{\begin{proof} 
+	}%your text here
+	{\end{proof}
+}
+
+\newenvironment{boxing}
+    {\begin{center}
+    \begin{tabular}{|p{0.9\textwidth}|}
+    \hline\\
+    }
+    { 
+    \\\\\hline
+    \end{tabular} 
+    \end{center}
+    }
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%double rules%%%%%%%%%%%%%%%%%%%
+\usepackage{lipsum}% Just for this example
+
+\newcommand{\doublerule}[1][.4pt]{%
+  \noindent
+  \makebox[0pt][l]{\rule[.7ex]{\linewidth}{#1}}%
+  \rule[.3ex]{\linewidth}{#1}}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{document}
+
+\title{Stochastic Calculus and Applications}
+\author{Lectured by Dr. Roland Bauerschmidt, Typed by Jiwoon Park}
+\date{Lent 2019}
+
+\maketitle
+
+\newcommand{\latinmodern}[1]{{\fontfamily{lmss}\selectfont
+\textbf{#1}
+}}
+
+\newcommand{\thm}{\latinmodern{Theorem) }}
+\newcommand{\thmnum}[1]{\latinmodern{Theorem #1) }}
+\newcommand{\defi}{\latinmodern{Definition) }}
+\newcommand{\definum}[1]{\latinmodern{Definition #1) }}
+\newcommand{\lem}{\latinmodern{Lemma) }}
+\newcommand{\lemnum}[1]{\latinmodern{Lemma #1) }}
+\newcommand{\prop}{\latinmodern{Proposition) }}
+\newcommand{\propnum}[1]{\latinmodern{Proposition #1) }}
+\newcommand{\corr}{\latinmodern{Corollary) }}
+\newcommand{\corrnum}[1]{\latinmodern{Corollary #1) }}
+\newcommand{\pf}{\textbf{proof) }}
+\newcommand{\fact}{\latinmodern{Fact : }}
+\newcommand{\statement}[1]{\latinmodern{#1) }}
+
+\newcommand{\lap}{\triangle} %%Laplacian
+\newcommand{\s}{\vspace{10pt}}
+\newcommand{\reals}{\mathbb{R}}
+
+\newcommand{\eop}{\hfill  \textsl{(End of proof)} $\square$} %end of proof
+\newcommand{\eos}{\hfill  \textsl{(End of statement)} $\square$} %end of proof
+
+\newcommand{\charac}{\bm{1}}
+%\newcommand{\charac}{\mathrel{\raisebox{0pt}{\scalebox{1}[1.2]{$1$}} \mkern-5.5mu \raisebox{0.04pt}{\scalebox{1}[1.2]{$\_$}} \mkern-5.5mu\raisebox{2.5pt}{\scalebox{1}[0.8]{$\bm{|}$}} }}
+
+\newcommand{\norms}[2]{\bignorm[\big]{#1}_{#2}}
+\newcommand{\snorms}[2]{\bignorm[\small]{#1}_{#2}}
+\newcommand{\tnorms}[2]{\mathrel{\raisebox{0pt}{\scalebox{1}[1.5]{$|$}}\mkern-2.0mu \raisebox{0pt}{\scalebox{1}[1.5]{$|$}}\mkern-2.0mu \raisebox{0pt}{\scalebox{1}[1.5]{$|$}} #1 \raisebox{0pt}{\scalebox{1}[1.5]{$|$}}\mkern-2.0mu \raisebox{0pt}{\scalebox{1}[1.5]{$|$}}\mkern-2.0mu \raisebox{0pt}{\scalebox{1}[1.5]{$|$}}}_{#2}} %norm with triple bars.
+\newcommand{\avg}{\mathbb{E}}
+\newcommand{\prob}{\mathbb{P}}
+\newcommand{\borel}{\mathscr{B}}
+\newcommand{\EE}{\mathscr{E}}
+\newcommand{\FF}{\mathscr{F}}
+\newcommand{\pa}{\partial}
+
+\newcommand{\call}[1]{\quad \cdots\cdots\cdots\,\,(#1)}
+
+\renewcommand{\vec}{\underline}
+\renewcommand{\bar}{\overline}
+
+\def\doubleunderline#1{\underline{\underline{#1}}}
+
+\newcommand{\newday}{\doublerule[0.5pt]}
+\newcommand{\digression}{**********************************************************************************************}
+
+\setlength\parindent{0pt}
+
+\textbf{Stochastic Calculus}
+
+$\exists$ website : http://www.statslab.cam.ac.uk/$\sim$rb812/teaching/sc2019/
+
+Roland Bauerschmidt
+
+Example Classes given by Daniel Heydecker, location and time is posted on the website.
+\s
+
+\newday
+
+(18th January, Friday)
+\s
+
+\section{Introduction}
+
+\subsection{Motivation}
+
+Ordinary differential equations, $\dot{x}(t) = F(x(t))$, are fundamental in analysis.
+\s
+
+A stochastic differential euqation(SDE) is given in form $\dot{x}(t) = F(x(t)) + \eta(t)$, where $\eta$ is a random noise.
+
+What should $\eta$ be? 
+\begin{itemize}
+\item For $|t-s| \gg 0$, $\eta(t)$ and $\eta(s)$ should be essentially independent.
+\item Our idealisation would be to assume $\eta(t)$ and $\eta(s)$ should be independent for any $t\neq s$. If we just assume this independence, then there is a lot of freedom of the choice of $\eta$, and there is also an issue of existence of such function $\eta$.  
+\end{itemize}
+Such an $\eta$ exists, the \textbf{White Noise}, but it is only a radom generalised function (random Schwartz distribution). But, even if $F=0$, to make sense of
+\begin{align*}
+\dot{x} = \eta, \quad \textit{i.e.} \,\, x(t)-x(0)= \int_0^t \eta(s) ds
+\end{align*}
+deterministically, $\eta$ \emph{should at least be signed measure}. However,
+\begin{itemize}
+\item White noise is \emph{not} a random signed mesure
+\item If the above equation holds, for any $0=t_0<t_2<\cdots$, the increments
+\begin{align*}
+x(t_i)-x(t_{i-1}) = \int_{t_{i-1}}^{t_i} \eta(s) ds
+\end{align*}
+should be independent and their variance should be proportional to $|t_i-t_{i-1}|$. Hence, it is reasonable to think that $x$ should be a Browninan motion.
+\end{itemize}
+In which sense can we make sense of this?
+\s
+
+Stochastic calculus is similar to ordinary calculus. First half of the course would be devoted in developing the theorems and examples to justify the stochastic integral, but once we have the tool, it is not very difficult to use it.
+
+\subsection{The Wiener Integral}
+
+The Wiener integral is the first model where the stochastic calculus makes sense most easily.
+\s
+
+\defi Let $(\Omega, \FF, \prob)$ be a probability space. Then $S\subset L^2(\Omega, \FF, \prob)$ is a \textbf{Gaussian space} if $S$ is a closed linear subspce and any $X\in S$ is a centred Gaussian random variable.
+\s
+
+\textbf{Example :} Let $(\Omega, \FF, \prob)$ be a probability space on which a sequence of independent random variables $X_i \sim N(0,1)$ is defined. Then the $X_i$ are an orthonormal system in $L^2(\Omega, \FF, \prob)$ :
+\begin{align*}
+\avg(X_i X_j) =0 \quad \text{for } i\neq j \text{ and} \quad \avg(X_i^2) =1 
+\end{align*}
+and $S= \text{span} \{X_i\}$ is a Gaussian space. (\textit{Exeercise} : the limit in $L^2$ of Gaussian random variables is Gaussian.)
+\s
+
+\prop Let $H$ be a separable Hilbert space and $(\Omega, \FF, \prob)$ as in the example. Then there is an isomtery $I: H\rightarrow S$. In particular, for every $f\in H$, there is a random variable $I(f) \in S$ such that
+\begin{align*}
+I(f) \sim N(0, (f,f)_H) \quad \text{and} \quad \avg(I(f)I(g)) = (f,g)_H
+\end{align*}
+Moreover, $I(\alpha f + \beta g) = \alpha I(f) + \beta I(g)$ a.s.
+\begin{p}
+\pf The proof would be done by identifying the basis. Let $(e_i)_{i=1}^{\infty}$ be an orthonormal basis for $H$. For $f\in H$, set
+\begin{align*}
+I(f) = \sum_{i=1}^{\infty} (f,e_i)X_i \in L^2(\Omega, \FF, \prob)
+\end{align*}
+Then the limit exists in $L^2$ since $(\sum_{i=1}^k (f, e_i)X_i)_k$ is a Cauchy sequence in $L^2$ :
+\begin{align*}
+\avg((\sum_{i=1}^k (f,e_i)X_i - \sum_{i=1}^l (f,e_i)X_i)^2) \leq \sum_{i=k}^l |(f, e_i)|^2 \rightarrow 0 \quad \text{as } k,l\rightarrow \infty
+\end{align*}
+since $f\in H$. [In fact, this convergence is also made almost surely, becuase $k\mapsto \sum_{i=1}^k (f,e_i)X_i$ is also a martingale, bounded in $L^2$, hence $L^2$-martigale convergence theorem applies.] The map $I$ is an isometry since it maps the orthonormal basis $(e_i)$ to the orthonormal system $(X_i)$ in $L^2(\Omega, \FF, \prob)$.
+
+\eop
+\end{p}
+\s
+
+\defi A Gaussian \textbf{white noise} on $\reals_+$ is an isometry $WN$ from $L^2(\reals_+)$ into a Gaussian space. For $A\subset \reals_+$ Borel, write $WN(A) = WN(1_A)$.
+\s
+
+\prop \begin{i}
+\item[(1)] For $A\subset \reals_+$, Borel, $|A|<\infty$, $WN(A) \sim N(0, |A|)$.
+\item[(2)] For $A, B\subset \reals_+$ Borel, $A\cap B =\phi$ then $WN(A)$ and $WN(B)$ are independent.
+\item[(3)] If $A = \cup_{i=1}^{\infty} A_i$ for disjoint sets $A_i$ with $|A_i|<\infty$, $|A| <\infty$, then 
+\begin{align*}
+WN(A) = \sum_{i=1}^{\infty} WN(A_i)\quad \text{in } L^2 \text{ and a.s.} \quad \cdots\cdots\cdots (\star)
+\end{align*}
+\end{i}
+\begin{p}
+\pf
+\begin{i}
+\item[(1)] This holds since $(1_A, 1_A) = |A|$
+\item[(2)] This holds since $\avg[WN(A)WN(B)] = (1_A, 1_B) = 0$.
+\item[(3)] Let $M_n = \sum_{i=1}^n WN(A_i)$. Then this is a martingale bounded in $L^2$ (the boundedness comes from $\avg(M_n^2) = \sum_{i=1}^n \avg [WN(A_i)^2] = \sum_{i=1}^n |A_i| \leq |A|$). Thus $\sum_{i=1}^{\infty} WN(A_i)$ converges a.s. and in $L^2$.
+
+\quad Similarly, we also have $\avg((WN(A)- M_n)^2) \rightarrow 0$ so ($\star$) holds.
+\end{i}
+\end{p}
+\s
+
+\textbf{Remark :} The proposition seems to indicate that the white noise is a random measure $A\in \borel (\reals_+) \mapsto WN(\omega, A)$, where $\omega \in \Omega$, but it is \emph{not}! In $(\star)$, the event $E\subset \Omega$ of $\omega$ for which $(\star)$ holds depends on the sets $A_i$.
+
+\quad However, stochastic calculus is formulated in such a way that this still is used as a useful notion of convergence, hence can be used like a random measure.
+\s
+
+For $t\geq 0$, define the Brownian motion as $B_t = WN([0,t])$, just like the integration of white noise from 0 to $t$.
+\s
+
+\newday
+
+(21st January, Monday)
+\s
+
+Last time : we examined the white noise $WN(A)\sim N(0, |A|)$ for $A\subset \reals_+$ a measurable set. For $t\geq 0$, define $B_t = WN([0, t])$.
+\s
+
+\fact For any $t_1, \cdots, t_n$, the vection $(B_{t_i})_{i=1}^n$ is jointly Gaussian and $\avg(B_s B_t) = s\wedge t$ for all $s,t\geq 0$. Moreover, $B_0 =0$ a.s. and $B_t -B_s$ is independent from $\sigma(B_r : r\leq s)$, $B_t - B_s \sim N(0, t-s)$ for $t\geq s$.
+\s
+
+\textbf{Remark :} (See \emph{Advanced Probablity}) There is a modification of $(B_t)$ such that $t\mapsto B_t$ is continuous, a.s.
+\s
+
+\textbf{Example :} Let $f\in L^2(\reals_+)$ be a step function, $f = \sum_{i=1}^n f_i 1_{[t_i, t_{i+1}]}$, $t_i < t_{i+1}$. Then
+\begin{align*}
+WN(f) = \sum_{i=1}^n f_i (B_{t_{i+1}} - B_{t_I})
+\end{align*}
+This motivates the \emph{notation} $WN(f)  = \int f(s)dB_s$. If $(B_t)_t$ was a function of finite variation for a.e. $\omega \in \Omega$, the last line could be defined as a Lebesgue-Stieltjes Integral. Though unfortunately, it is not.
+
+\quad (So we will decompose $B_t$ into a part with finite variation and a semi-martingale part to jusify this integral.)
+
+\subsection{The Lebesgue-Stieltjes Integral}
+
+For an interval $T\subset \reals$, we always use the Borel $\sigma$-algebra.
+\s
+
+\defi Let $T>0$.
+\begin{i}
+\item A \textbf{signed measure} $\mu$ on $[0, T]$ is the difference of two finite positive measure $\mu_{\pm}$ on $[0, T]$ with disjoint support.
+\item The decomposition $\mu = \mu_+ - \mu_-$ is called the \textbf{Hahn-Jordan decomposition of $\mu$}.
+\item The \textbf{total variation} of a signed measure $\mu = \mu_+ - \mu_-$ is the positive meuasre $|\mu| = \mu_+ + \mu_-$.
+\end{i}
+\s
+
+\prop \emph{(Hahn-Jordan)} For any positive measures $\mu_1, \mu_2$ on $[0, T]$(we do not require them to have disjoint support), there is a signed measure $\mu$ s.t. $\mu = \mu_1 - \mu_2$.
+\begin{p}
+\pf Let $\nu = \mu_1 + \mu_2$. Since $\mu_1,\mu_2$ are absolutely continuous with respect to $\nu$, by the \emph{Radon-Nykodym Theorem}, there are Borel functions $f_i \geq 0$($i= 1,2$) on $[0, T]$ such that 
+\begin{align*}
+\mu_i (dt) = f_i(t) \nu(dt)
+\end{align*}
+Let $f(t) = f_1(t)  - f_2(t)$. Then
+\begin{align*}
+(\mu_1 - \mu_2) (dt) = f(t) \nu (dt) & = f(t)^+ \nu(dt) - f(t)^- \nu(dt) \\
+& = \mu_+(dt) - \nu_-(dt)
+\end{align*}
+where $f(t)^+ = f(t) \vee 0$, $f(t)^- = -f(t) \wedge 0$ are the positive/negative parts of $f$. This gives the required decomposition into disjoint measures.
+
+\eop 
+\end{p}
+\s
+
+\defi Let $T \geq 0$.
+\begin{i}
+\item A function $a: [0, T] \rightarrow \reals$ is \textbf{c\`{a}dl\`{a}g}, for which we also write $a\in D([0, T])$, if $a(t_+)  = a(t)$ for all $t$ and $a(t_-)$ exists for all $t$.
+
+\quad Here, $a(t_{\pm}) = \lim_{s\rightarrow 0^{\pm}} a(t+s)$.
+\item The \textbf{total variation} of a function $a:[0, T] \rightarrow \reals$ is
+\begin{align*}
+v_a(0, T) = \sup \Big\{ \sum_{i=1}^n |a(t_i) - a(t_{i-1})|\,\, : \,\, 0 = t_0<t_1<\cdots<t_n=T \Big\}
+\end{align*}
+\item A function $a:[0, T] \rightarrow \reals$ is of \textbf{bounded variation}, for whihch we write $a\in BV([0,T])$, if $v_a(0,T) < \infty$. 
+\end{i}
+\s
+
+We find in many instances of Stochastic Calculus(and in general probability), that rather than trying to work with a measure, it is often more useful to work with distribution functions.
+\s
+
+\prop \begin{i}
+\item[(i)] Let $\mu$ be a signed measure on $[0, T]$. Then $a(t) = \mu ([0,t])$ is c\`adl\`ag and $|\mu|((0,t]) = v_a(0,t)$ (i.e. $|\mu|([0,T])) = |a(0)| + v_a(0,t)$ )
+
+\quad In particular, $a\in BV([0,T])$.
+\item[(ii)] Let $a: [0, T] \rightarrow \reals$ be c\`adl\`ag of bounded variation. The there is a signed measure $\mu$ such that $a(t) = \mu([0,t])$.
+\end{i}
+Note that,
+\fact (From Prob.\& Meas.) The map $v\mapsto f$, $f(t) = \nu ([0,T])$ (distribution function) is a bijection from finite positive measures on $[0,T]$ to increasing right-continuous functions.
+\begin{p}
+\textbf{proof of Prop.)} 
+\begin{i}
+\item[(i)] Let $\mu = \mu_+ - \mu_-$ be the Hahn-Jordan decomposition of $\mu$. Letting $\mu_+ ([0,t])= a_+(t)$, $\mu_-([0,t]) = a_-(t)$, we have $a(t) = \mu_+([0, t]) - \mu_-([0,t]) = a_+(t) - a_-(t)$ is c\`adl\`ag since $a_{\pm}$ are increasing right-continuous function.
+
+\textbf{Claim :} $v_a(0,t) \leq |\mu|([0,t])$.
+\begin{subproof}
+: For any subdivision $0 = t_0 < t_1<\cdots < t_n =t$, one has
+\begin{align*}
+\sum_{i=1}^n |a(t_i) - a(t_{i-1})|  = \sum_{i=1}^n |\mu((t_{i-1}, t_i])| \leq |\mu|((t_{i-1}, t_i])
+\end{align*}
+and so $v_a(0,t) \leq |\mu|((0,t])$.
+\end{subproof}
+
+\textbf{Claim :} For any nested sequence of partitions $0 = t_0^{(m)} < t_1^{(m)} < \cdots < t_{n_m}^{(m)} =t$ with $\max_i |t_i^{(m)} - t_{i-1}^{(m)}| \rightarrow 0$, one has
+\begin{align*}
+|\mu|((0,t]) = \lim_{m\rightarrow \infty} \sum_{i=1}^{n_m} |a(t_i^{(m)}) - a(t_{i-1}^{(m)})|
+\end{align*}
+
+\quad In particular, $v_a(0, t) \geq |\mu|((0,T])$.
+\begin{subproof}
+: Consider the probability measure $P(ds) = \frac{|\mu|(ds)}{|\mu|((0,t])}$ on $(0,t]$. Let $\FF_m = \sigma ((t_{i-1}^{(m)}, t_i^{(m)}] : 1\leq i \leq n_m)$. Then $\FF_{m+1} \supset \FF_m$. Let $X= \frac{d\mu}{d|\mu|} = 1_{\text{supp}(\mu_+)} - 1_{\text{supp}(\mu_-)}$ and let $X_m = \avg(X|\FF_m)$. Then we may write, for $s\in (t_{i-1}^{(m)}, t_i^{(m)}]$, 
+\begin{align*}
+X_m(s) = \frac{\mu((t_{i-1}^{(m)}, t_i^{(m)}])}{|\mu|((t_{i-1}^{(m)}, t_i^{(m)}])}  = \frac{a(t_i^{(m)}) - a(t_{i-1}^{(m)})}{|\mu|((t_{i-1}^{(m)}, t_i^{(m)}])}
+\end{align*}
+Since $(X_m)$ is a bounded martingale, we also have $X_m \rightarrow Y$ in $L^1$ and a.s., for some random variable $Y$. Since $\bigvee \FF_m = \borel((0,t])$ ($\bigvee \FF_m = \sigma(\cup_m \FF_m))$, it follows that $X= Y$ a.s., and therefore $\avg[|X_m|| \rightarrow \avg[|Y|] = \avg[|X|] =1$, which is equivalent to
+\begin{align*}
+\frac{1}{|\mu| ((0,t])} \sum_{i=1}^{n_m} |a(t_i^{(m)}) - a(t_{i-1}^{(m)})| \rightarrow 1
+\end{align*}
+which is the claim.
+\end{subproof}
+\end{i}
+\end{p}
+\s
+
+\newday
+
+(23rd January, Wednesday)
+\s
+
+\textbf{From Last Time :}
+
+\prop \begin{i}
+\item[(i)] Let $\mu$ be a signed measure on $[0,T]$. Then $a(t)$ is c\`adl\`ag and $|\mu|((0,t]) = v_a(0,t)$.
+\item[(ii)] Let $a: [0,T] \rightarrow \reals$ be c\`adl\`ag and of bounded variation. then there is a signed measure $\mu$ such that $\mu([0,t])$.
+\end{i}
+\begin{p}
+\textbf{proof of (ii))} Let $a$ be as in the statement (ii). Define $a_{\pm} (t) = \frac{1}{2} (v_a(0,t)\pm a(t))$. First note that both $a_{\pm}$ are positive. We would like to define $\mu$ as the difference of these two.
+
+\textbf{Claim :} $a_{\pm}$ are both increasing.
+\begin{subproof}
+: Let $0=t_0 < t_1<\cdots < t_n =t$ be a subdivision of $[0,t]$ and $s>t$. Then $t_0 < \cdots< t_n =t<s$ is a subdivision of $[0,s]$. We pick $t_0<\cdots < t_n$ such that $\sum_{i=1}^n |a(t_i)- a(t_{i=1}))| \geq v_a(0,t) - \epsilon$. Then
+\begin{align*}
+2a_{\pm}(s) = v_a(0,s) \pm a(s) &\geq \sum_{i=1}^n |a(t_i) - a(t_{i-1})| + |a(s) - a(t)| \pm a(s) \\
+& \geq v_a(0,t) - \epsilon \pm a(t) = a_{\pm}(t) - \epsilon
+\end{align*}
+This holds for any $\epsilon >0$, so we have $a_{\pm}(s) \geq a_{\pm}(t)$ for all $\epsilon>0$, and therefore $a_{\pm}$ are increasing.
+\end{subproof} 
+\textbf{Claim :} $v_a$ is right-continuous.
+\begin{subproof}
+Exercise.
+\end{subproof}
+The second claim implies that $a_{\pm}$ is right-continuous, so $a_{\pm}(t) = \tilde{\mu}_{\pm}([0,t])$ for some finite positive measure $\tilde{\mu}_{\pm}$.
+
+\quad Let $\mu = \tilde{\mu}_+ - \tilde{\mu}_-$. Then $\mu$ is a signed measure and $a(t) = a_+(t) - a_-(t) =\mu ([0,t])$.
+
+\eop
+\end{p}
+\s
+
+We are finally ready to define the Lebesgue-Stieltjes integral. Once we define this, we will be able to define stochastic integrals for stochastic processes of finite variation.
+
+\quad Having done this class of distributions that are integrable with respect to will naturally extend to more general cases, \textit{e.g.} Brownian motion as the distribution of the white noise.
+\s
+
+\defi Let $a:[0,T]\rightarrow \reals$ be c\`adl\`ag of bounded variation, and let $\mu$ be the associated signed measures. For $h\in L^1([0,T], |\mu|)$, the \textbf{Lebesgue-Stieltjes integral} is defined by
+\begin{align*}
+& \int_s^t h(u) da(u) = \int_{(s,t]} h(u) \mu(du), \quad 0\leq s<t\leq T\\
+& \int_s^t h(s) |da(u)| = \int_{(s,t]} h(u) |\mu| (du)
+\end{align*}
+We also write $(h\cdot a)(t) = \int_0^t h(s) da(s)$ for $0\leq t\leq T$.
+\s
+
+\fact Let $a: [0,T] \rightarrow \reals$ be c\`adl\`ag and BV (bounded variation), $h\in L^2([0,T], |da|)$. Then
+\begin{align*}
+\Big| \int_0^t h(s) da(s )\Big| \leq \int_0^t |h(s)| |da(s)|
+\end{align*}
+and the function $h\cdot a:[0,T]\rightarrow \reals$ is c\`adl\`ag and BV with signed measures $h(s)da(s)$, $|h(s)da(s)| = |h(s)||da(s)|$.
+\s
+
+\prop Let $a: [0,T] \rightarrow \reals$ be c\`adl\`ag and BV. Let $h:[0,T] \rightarrow \reals$ be \emph{left-continuous} and bounded. Then
+\begin{align*}
+& \int_0^t h(s) da(s) = \lim_{m\rightarrow \infty} \sum_{i=1}^{n_m} h(t_{i-1}^{(m)})(a(t_i^{(m)}) - a(t_{i-1}^{(m)})), \quad t\leq T \\
+& \int_0^t h(s) |da(s)| = \lim_{m\rightarrow \infty} \sum_{i=1}^{n_m} h(t_{i-1}^{(m)})\Big|a(t_i^{(m)}) - a(t_{i-1}^{(m)})\Big|
+\end{align*}
+for a sequence of subdivisions $0=t_0^{(m)} < \cdots < t_{n_m}^{(m)}=t$ with $\max_i |t_i^{(m)} - t_{i-1}^{(m)}| \rightarrow 0$ as $m\rightarrow \infty$.
+
+\quad \emph{[Note that we have a corresponding version of the proposition if we exchange the left continuity with right continuity. Also we do not lose much from assuming continuity.]}
+\begin{p}
+\pf Set $h_m(0)=0$, $h_m(s) = h(t_{i-1}^{(m)})$ if $s\in [t_{i-1}^{(m)}, t_i^{(m)}]$. Then $h(s) = \lim_{m\rightarrow \infty} h_m(s)$ by left-coninuity. Hence, 
+\begin{align*}
+\sum_{i=1}^{n_m} h(t_{i-1}^{(m)})(a(t_i^{(m)}) - a(t_{i-1}^{(m)})) = \int_{(0,t]} h_m(s) \mu(ds) \xrightarrow{m\rightarrow \infty} \int h(s) \mu(ds)
+\end{align*}
+where the first equality follows from $\int_y^x da(s) = a(x)-a(y)$ and the limit follows from dominated convergence theorem.
+
+\quad The cliam about $|da(s)|$ is left as an exercise. (For nested subdivisions, proceed as in the proof of the previous proposition.)
+\end{p}
+\s
+
+If we are dealing with functions $\reals_{\geq 0} \rightarrow \reals$, it is reasonable to define the local notion of bounded variation.
+\s
+
+\defi A function $a:[0,\infty)\rightarrow \reals$ is of \textbf{finite variation (FV)} if $a|_{[0,T]} \in BV([0,T])$ for all $T>0$.
+
+\section{Semimartingales}
+
+A semimartingale is sum of a finite variation process and a local martingale. It turns out that semimartingales are stable under stochastic integrals, and hence is going to be at the centre of our study - and the most general object of stochastic interal.
+\s
+
+From now on $(\Omega, \FF, (\FF_t)_{\geq 0}, \prob)$ is a filtered probability space.
+\s
+
+\defi A \textbf{c\`adl\`ag adapted process} $X$ is a map $\Omega \times[0,\infty) \rightarrow \reals$ such that
+\begin{i}
+\item[(i)] $X$ is \emph{c\`adl\`ag}, \textit{i.e.} $X(\omega, \cdot)\rightarrow \reals$ is c\`adl\`ag for all $\omega \in \Omega$.
+\item[(ii)] $X$ is \emph{adapted}, \textit{i.e.} $X_t = X(\cdot,t)$ is $\FF_t$-measurable for all $t$.
+\end{i}
+\textit{Notation : write $X\in \FF$ to denote that a random variable $X$ is measurable with respect to the sigma algebra $\FF$}.
+
+\subsection{Finite variation process}
+
+\defi \begin{i}
+\item[(i)] A c\`adl\`ag adapted process $A$ is a \textbf{finite variation process} if $A(\omega, \cdot) : [0,\infty) \rightarrow \reals$ has finite variation for all $\omega \in \Omega$.
+\item[(ii)] The \textbf{total variation process} $V$ associated to a FV process $A$ is $V_t = \int_0^t |dA_s|$. 
+\end{i}
+\s
+
+\fact The total variation process $V$ of c\`adl\`ag adpated process $A$ is also c\`adl\`ag adapted and it is also increasing.
+\begin{proof}
+\pf That $V$ is c\`adl\`ag and increasing follows from the properties in deterministic settings of \emph{Section 1.3.} To show that $V$ is adapted, let $0 = t_0^{(m)} < \cdots < t_{n_m}^{(m)} = t$ be nested sequence of subdivisions of $[0,t]$ with $\lim_{m\rightarrow \infty} \max_i |t_i^{(m)} - t_{i-1}^{(m)}| =0$. Then (\emph{Section 1.3.})
+\begin{align*}
+V_t = \lim_{m\rightarrow \infty} \sum_{i=1}^{n_,} |A_{t_i^{(m)}} - A_{t_{i-1}^{(m)}}|
+\end{align*}
+This is in $\FF_t$ since $A$ is a adapted. So $V$ is adapted.
+
+\eop
+\end{proof}
+\s
+
+\newday
+
+(25th January, Friday)
+\s
+
+\defi Let $A$ be a \emph{finite variation process} and let $H$ be a process such that $\forall \omega \in \Omega$ and $\forall t\geq 0$ : $\int_0^t |H_s(\omega)| |dA_s(\omega)|<\infty$. Then define a process $(H \cdot A_t)_{t\geq 0}$ by
+\begin{align*}
+(H\cdot A)_t = \int_0^t H_s dA_s
+\end{align*}
+\s
+
+But for $H\cdot A$ to be adapted, we need an extra condition :
+\s
+
+\defi The \textbf{predictable (or previsible) $\sigma$-algebra} $\mathscr{P}$ is the $\sigma$-algebra on $\Omega \times [0, \infty)$ generated by the sets
+\begin{align*}
+E \times (s,t], \quad E\in \FF_s, \,\, s<t
+\end{align*}
+A process $H : \Omega \times [0, \infty) \rightarrow \reals$ is \textbf{predictable} if it is $\mathscr{P}$-measurable.
+
+\quad If a finite variation process is predictable with its integral finite, then $H\cdot A$ is also a finite variation process, in particular adapted (see a proposition below).
+\s
+
+\defi A process $H: \Omega \times [0, \infty) \rightarrow \reals$ is \textbf{simple}, $H\in \mathscr{E}$, if $H(\omega, t) = \sum_{i=1}^n H_{i-1}(\omega) 1_{(t_{i-1}, t_{i}]}(t)$ for bounded random variables $H_{i-1} \in \FF_{t_{i-1}}$ and $0 =t_0 < t_1 < \cdots < t_n$.
+\s
+
+\fact \emph{Simple processes and their pointwise limits are predictable.}
+\s
+
+\fact \emph{Adapted left-continuous processes are predictable}
+\begin{proof}
+\pf Let $H$ be adapted, left-continuous. Then $H^n \rightarrow H$ as $n\rightarrow \infty$ where
+\begin{align*}
+H_t^n = \sum_{i=1}^{2^n n} H_{(i-1)2^{-n}} 1_{((i-1)2^{-n}, i2^{-n}]}(t) \wedge n
+\end{align*}
+Since $H$ is adapted, $H^n$ is simple. Thus $H$ is predictable as a pointwise limit.
+
+\eop 
+\end{proof}
+\s
+
+\fact \emph{Let $H$ be predictable. Then $H_t \in \FF_{t^-}$ where $\FF_{t^{-}} = \sigma(\FF_s : s< t)$. (See Example Sheet \#1)}
+\s
+
+\fact \emph{Let $X$ be adapted c\`adl\`ag. Then $X_{t^-} = \lim_{s\rightarrow t^-} X_s$ is left-continuous, predictable.}
+\begin{proof}
+\pf The fact that $X_{t^{-}}$ is left-continuous follows from the fact that $X$ is c\`adl\`ag. Then $X_{t^-}$ is $\FF_{t^-}$-measurable, hence is adpated. It follows that $X_{t^-}$ is predictable from a previous fact.
+\end{proof}
+\s
+
+\textbf{Examples} \begin{i}
+\item Brownian motion is predictable since continuous.
+\item A Poisson process $(N_t)$ is \emph{not} predictable since $N_t \not\in \FF_{t^-}$. More generally, jump processes are not predictable.
+\end{i}
+\s
+
+\prop Let $A$ be a finite variation process, and let $H$ be a predictable process such that $\int_0^t |H_s| |dA_s| < \infty$ for all $t$ and $\omega$. Then $H\cdot A$ is also a finite variation process.
+\begin{p}
+\pf By \textit{Section 1.3}, for every $\omega \in \Omega$, $(H\cdot A)(\omega, \cdot)$ is of finite variation and c\`adl\`ag. So we only need to show that $H\cdot A$ is adapted.
+
+\quad Consider first $H(\omega, t) = 1_{(u,v]}(t) 1_E(\omega)$, $u< v$, $E\in \FF_u$. Then
+\begin{align*}
+(H\cdot A)(\omega, t) = 1_E(\omega)(A(\omega, t\wedge v) - A(\omega, t\wedge u))
+\end{align*}
+Then this is surely in $\FF_t$.
+
+\quad We extend this argument using monote-class-type argument : Let $\Pi = \{ E\times(u,v] : E\in \FF_u, u<v\} \subset \Omega \times [0, \infty)$. Clearly, $\Pi$ is a $\pi$-system (closed under intersection and nonempty), and $\Pi$ generates the predictable $\sigma$-algebra by definition. Now let $\mathscr{V} = \{ H : \Omega \times[0, \infty) : H\cdot A$ is adapted$\}$. Then $1\in \mathscr{V}$, $1_H \in \mathscr{V}$ for $H \in \Pi$, and if $0\leq H_n \in \mathscr{V}$ with $H_n \nearrow H$ then $H\in \mathscr{V}$ since measurability is closed under pointwise limits. Thus $\mathscr{V}$ is a \emph{monotone class}. By the \emph{measure class theorem(or monotone class theorem)}, $\mathscr{V}$ contains all bounded predictable processes.
+
+\quad The general case follows by approximating $H$ by bounded $H^n$ with $|H^n|\leq |H|$. 
+
+\eop
+\end{p}
+
+\subsection{Local Martingale}
+
+From now on, we assumte that $(\Omega, \FF, (\FF_t)_{t\geq 0}, \prob)$ satisfies the \emph{usual conditions}(see \emph{Advanced Probability}).
+\begin{i}
+\item $\FF_0$ contains all $\prob$-null sets. 
+\item $(\FF_t)$ is right-continuous, \textit{i.e.} $\FF_t =\FF_{t^+} = \bigcap_{s>t} \FF_s$ for all $t\geq 0$.
+\end{i}
+\s
+
+\thm \emph{(Optional Stopping Theorem, OST)} Let $X$ be a c\`adl\`ag adapted integrable process. Then the following are equivalent :
+\begin{i}
+\item[(\textit{i})] $X$ is a martingale : $\avg[X_t | \FF_s]  = X_s$ a.s. for all $t\geq s$.
+\item[(\textit{ii})] for all stopping times $T,S$ with $T$ bounded, one has $X_T \in L^1$ and
+\begin{align*}
+\avg[X_T | \FF_S] = X_{T\wedge S} \quad \text{a.s.}
+\end{align*}
+\item[(\textit{iii})] for all stopping times $T$, the process $X^T$ where $X_t^T = X_{t\wedge T}$ is a martingale.
+\item[(\textit{iv})] for all bounded stopping times $T$, one has $X_T \in L^1$ and $\avg[X_T]= \avg[X_0]$ a.s.
+\end{i}
+For $X$ uniformly integrable, (\textit{iii}) and (\textit{iv}) hold for all (unbounded) stopping times $T$.
+\s
+
+The following definition does not look very bad and just technical, but turns out to be very useful. Most stochastic processes we will be dealing with fall in to the class of local martingale :
+\s
+
+\defi $A$ c\`adl\`ag adapted process $X$ is a \textbf{local martingale} if there are stopping times $T_n$ such that $T_n \nearrow \infty$ as $n\rightarrow \infty$ and $X^{T_n}$ is a martingale for every $n$. The sequence $(T_n)_n$ is said to \textbf{reduce} $X$.
+\s
+
+\textbf{Example :} 
+\begin{i}
+\item[(\textit{i})] Every martingale is a local martingale (Take $T_n = n$ and use \emph{OST}).
+\item[(\textit{ii})] Let $(B_t)$ be a standard Brownian motion on $\reals^3$. Then $(X_t)_{t\geq 1} = (1/|B_t|)_{t\geq 1}$ is a local maringale, but not a martingale.
+\begin{subproof}
+: First $X$ cannot be a martingale since (see \emph{Advanced Probability})
+\begin{align*}
+\sup_{t\geq 1} \avg X_t^2 < \infty, \quad \avg X_t \rightarrow 0
+\end{align*}
+To see that it is a local martingale, recall that for $f\in C_b^2(\reals^3)$,
+\begin{align*}
+f(B_t) - f(B_0) - \frac{1}{2}\int_0^t \lap f(B_s) ds =: M_s^f
+\end{align*}
+is a martingale. We woluld like to choose $f(x) = \frac{1}{|x|}$ so that $X_t = f(B_t)$, but $f$ is not bounded at 0. Choos $f_n \in C_b^2$ such that $f_n(x) =\frac{1}{|x|}$ for $|x|> \frac{1}{n}$. Let $T_n = \inf \{ t\geq 1: |B_t | < \frac{1}{n}\}$. Then
+\begin{align*}
+X_t^{T_n} - X_1^{T_n} = f_0(B_{t\wedge T_n}) - f_n(B_1) = M_{t\wedge T_n}^{f_n}
+\end{align*}
+since $\lap f_n = \lap (1/ |x|)$ for $|x| > 1/n$. So $X^{T_n}$ is a martingale.
+
+\quad To conclude that $X$ is a local martingale, it only ramains to check that $T_n\rightarrow \infty$ a.s. Let $S_m = \inf \{ t\geq 1 : |B_n| >m\}$. Since $X^{T_n}$ is a bounded martingale (bounded by $n$), we see from \emph{Optional Stopping Theorem} that
+\begin{align*}
+\avg X_{T_n \wedge S_m} = \avg X_{S_m}^{T_n} = \avg X_1 < \infty
+\end{align*}
+But also
+\begin{align*}
+& \avg X_{T_n \wedge S_m} = n \prob [T_n < S_m ] + \frac{1}{m} \prob[T_n \geq S_m] = \Big(n - \frac{1}{m} \Big) \prob [T_n <S_m] + \frac{1}{m} \\
+\Rightarrow  \,\, &  \,\, \prob [T_n < \infty] = \lim_{m\rightarrow } \prob [T_n M < S_m] = \frac{\avg X_1}{n} \\
+\Rightarrow  \,\, &  \,\,  \prob [\lim_n T_n < \infty] =0
+\end{align*}
+\end{subproof}
+\end{i}
+\s
+
+\newday
+
+(28th January, Monday)
+\s
+
+\prop Let $X$ be a \emph{local martingale} and $X_t \geq 0$ for all $t\geq 0$. Then $X$ is a supermartingale.
+\begin{proof}
+\pf Let $(T_n)$ be a reducing sequence for $X$. Then
+\begin{align*}
+\avg [X_t | \FF_s] = \avg[\lim_{n\rightarrow \infty} X_{t\wedge T_n} | \FF_s] \leq &\liminf_{n\rightarrow \infty} \avg[X_{t\wedge T_n} | \FF_s] \quad \text{by \emph{conditional Fatou}}\\
+=&\liminf_{n\rightarrow \infty} X_{s\wedge T_n}= X_s \quad \text{a.s.}
+\end{align*}
+
+\eop
+\end{proof}
+\s
+
+There are also instances where local martingales become true martingales. There are in fact a more general settings in which local martingales are true martingales, but we just state a simple version that we are going to use in practice.
+\s
+
+\prop Let $X$ be a local martingale and suppose that there is $Z\in L^1$ such that $|X_t| \leq Z$ for all $t\geq 0$. Then $X$ is a martingale. In particular, bounded local martingales are martingales.
+\begin{p}
+\pf Let $(T_n)$ be a reducing sequence for $X$. Let $S$ be a stopping time. Then
+\begin{align*}
+\avg X_0 = \avg X_0^{T_n} = \avg X_S^{T_n} = \avg X_{T_n \wedge S}
+\end{align*}
+since $|X_{T_n \wedge S}|\leq Z$, we have $X_{T_n \wedge S} \rightarrow X_S$ in $L^1$ as $n\rightarrow \infty$, so $\avg X_0 = \avg X_S$ for any stopping time $S$, which is one of the equivalent conditions for $X$ to be a martingale (by \emph{Optional Stopping Theorem}).
+
+\eop
+\end{p}
+\s
+
+\fact Let $X$ be a \emph{continuous adapted process} with $X_0 =0$. Then
+\begin{align*}
+S_n = \inf\{t\geq 0 : |X_t| =n\}
+\end{align*}
+are stopping times and $S_n \nearrow \infty$ as $n\rightarrow \infty.$
+\begin{p}
+\pf $(S_n)_{n\in \mathbb{N}}$ are stopping times since
+\begin{align*}
+\{S_n \leq t\} =\{\sup_{s\leq t} |X_s| \geq n \} = \bigcap_{k\in \mathbb{N}}\bigcup_{s\leq t, s\in \mathbb{Q}} \{|X_s| > n- \frac{1}{k}\} \in \FF_t
+\end{align*}
+were the second equality comes from continuity of $X$. Also, $S_n \nearrow \infty$ since, for every $\omega \in \Omega$, $|X_s|$ is bounded on any bounded interval of $s$ (by continuity).
+
+\eop
+\end{p}
+\s
+
+\prop Let $X$ be a continuous local martingale with $X_0 =0$. Then the sequence $(S_n)$ defined above reduces $X$.
+\begin{p}
+\pf Let $(T_k)$ be a reducing sequence for $X$. By OST, $X^{T_k \wedge S_n}$ is a martingale, so $X^{S_n}$ is also a local martingale. But $|X^{S_n}|\leq n$, so $X^{S_n}$ is a bounded local martingale for each $n$, hence $X^{S_n}$ is a martingale. So $(S_n)$ reduces $X$.
+
+\eop
+\end{p}
+\s
+
+\thm Let $X$ be a \emph{continuous local martingale} with $X_0 =0$. If $X$ is also a \emph{finite variation process}, then $X_t =0$ for all $t\geq 0$ a.s.
+\begin{p}
+\pf Let $S_n = \inf \{t\geq 0 : \int_0^t |dX_s| =n \}$. Call $v_t = \int_0^t |dX_s|$, the total variation process of $X$. Note $S_n$ is a stopping time, $S_n \nearrow \infty$, and $X^{S_n}$ is a local martingale (by \emph{Optional Stopping Theorem}, stopped local martingale is also local martingale). Also $X^{S_n}$ is bounded since 
+\begin{align*}
+|X_t^{S_n}| \leq \int_0^{t\wedge S_n} |dX_s| \leq n
+\end{align*}
+and therefore $X^{S_n}$ is a martingale using the previous proposition. Hence $(S_n)$ reduces $X$.
+
+\quad Let $0=t_0 < t_1<\cdots < t_n =t$ be a subdivision of $[0,t]$. Then, since $X^{S_n}$ is a martingale,
+\begin{align*}
+\avg (X_t^{S_n})^2 &= \sum_{i=1}^k \avg \Big( (X_{t_i}^{S_n} - X_{t_{i-1}}^{S_n})^2\Big)\quad  \text{(cross terms vanish)} \\
+&\leq \avg \Big( \max_i |X_{t_i}^{S_n} - X_{t_{i-1}}^{S_n}| \sum_{i=1}^k |X_{t_i}^{S_n} - X_{t_{i-1}}^{S_n}|\Big) \\
+&\rightarrow 0 \quad \text{as } \max_i |t_i - t_{i-1}| \rightarrow 0
+\end{align*}
+by continuity of $X$ and since $\sum_{i=1}^k |X_{t_i}^{S_n} - X_{t_{i-1}}^{S_n}| \leq \int_0^{t\wedge S_n} |dX_s| \leq n$. Hence $\avg (X_t^{S_n})^2 =0$ and in particular
+\begin{align*}
+X_{t\wedge S_n} =0 \quad \text{a.s.} \,\, t\geq 0
+\end{align*}
+so $X_t =0$ a.s. for all $t\geq 0$, and theerefore $X_t =0$ for all $t\geq 0$ a.s.
+
+\eop
+\end{p}
+\s
+
+\newday
+
+(30th January, Wednesday)
+
+\subsection{$L^2$ bounded martingales}
+
+We now turn our attention to a specific class of martingales. $L^2$-bounded martingales form a \emph{Hilbert space}, and therefore we can use various structural properties of Hilbert spaces to develop our theory.
+\s
+
+\defi Let 
+\begin{align*}
+&M^2 = \{X : \Omega \times [0, \infty) \rightarrow \reals : X \text{ is a c\`adl\`ag martingale, }\sup_{t\geq 0} \avg [X_t^2] < \infty \} / \sim \\
+&M_c^2 = \{X \in M^2 : X(\omega, \cdot) \text{ is continuous for every }\omega \in \Omega \} / \sim
+\end{align*}
+where $\sim$ means that indistinguishable processes are identified. Moreover, set
+\begin{align*}
+\norms{X}{M^2} = \big( \sup_t \avg[X_t^2] \big)^{1/2} = \big(\avg[X_{\infty}^2] \big)^{1/2}
+\end{align*}
+Here recall that if $X\in M^2$ then
+\begin{i}
+\item $X_t \rightarrow X_{\infty}$ a.s. and in $L^2$.
+\item $(X_t^2)$ is a submartingales (by Jensen's inequality), so $t\mapsto \avg X_t^2$ is increasing, so $\avg[X_{\infty}^2] = \sup_t \avg [X_t^2]$.
+\item Doob's $L^2$ inequality implies $\avg[\sup_t X_t^2] \leq 4 \avg [X_{\infty}^2]$.
+\end{i}
+In particular, $\norms{X}{M^2}=0$ implies $X=0$. This makes $\norms{\cdot}{M^2}$ a norm (the other properties are clear).
+
+\quad In fact, $(X, Y)_{M^2} = \avg[X_{\infty}Y_{\infty}]$ is an inner product on $M^2$ that induces $\norms{\cdot}{M^2}$ - to see this, it is sufficient to have parallelogram identity, but this is clear as $\avg[(A_{\infty} + B_{\infty})^2] + \avg[(A_{\infty} - B_{\infty})^2] = 2\avg[(A_{\infty})^2] + 2\avg[(B_{\infty})^2]$. 
+\s
+
+\prop $M^2$ is a \emph{Hilbert space} and $M_c^2$ is a closed subspace.
+\begin{p}
+\pf We need to prove that $M^2$ is complete. Thus let $(X^n) \subset M^2$ be a Cauchy sequence, \textit{i.e.} $\avg[X_{\infty}^n - X_{\infty}^m]^2 \rightarrow 0$ as $n,m\rightarrow \infty$. By passing to a subseqeunce, we may assume that $\avg[X_{\infty}^n - X_{\infty}^{n-1}]^2 \leq 2^{-n}$ and it suffices to show that the subsequence converges to see that the original sequence converges. To this end,
+\begin{align*}
+\avg \Big[ \sum_{n=1}^{\infty} \sup_{t\geq 0} |X_t^n - X_t^{n-1}| \Big] \leq \sum_{n=1}^{\infty} \avg \Big[\sup_{t\geq 0} |X_t^n - X_t^{n-1}|^2 & \Big]^{1/2} \quad \text{(Cauchy-Schwarz)}\\
+\leq \sum_{n=1}^{\infty} 2\avg \Big[ X_{\infty}^n - X_{\infty}^{n-1}\Big]^{1/2} \leq \sum_{n=1}^{\infty} 2\cdot 2^{-n/2} & < \infty 
+\end{align*}
+so
+$\sum_{n=1}^{\infty} \sup_{t\geq 0} |X_t^n - X_t^{n-1}|< \infty$ a.s., and hence $(X^n)$ is a Cauchy seqeunce in $(D[0, \infty),\parallel \cdot \parallel_{\infty})$ a.s. So we have that $\norms{X^n -X}{\infty} \rightarrow 0$ for some $X\in D[0, \infty)$ a.s. Set $X=0$ outside this almost sure event. Then $X\in D[0,\infty)$ for every $\omega \in \Omega$. We know $X$ is a uniform limit of c\`adl\`ag functions hence is c\`adl\`ag. It still remains to check that the converging point $X$ is in $M^2$.
+
+\textbf{$\heartsuit$ Claim :} $\avg[\sup_{t\geq 0} |X^n -X|^2] \rightarrow 0$, and in particular, $X$ is bounded in $L^2$.
+\begin{subproof}
+: We have
+\begin{align*}
+\avg \Big[\sup_{t\geq 0}|X^n -X|^2 \Big] = \avg \Big[ \lim_{m\rightarrow \infty} \sup_{t} |X_t^n -X_t^m|^2\Big] \leq \liminf_{m\rightarrow \infty}\avg\Big[ \sup_t |X_t^n -X_t^{m}|^2\Big]& \quad \text{(Fatou)} \\
+\leq \liminf_{m\rightarrow} 4 \avg(X_{\infty}^n -X_{\infty}^m)& \quad \text{(Doob)}
+\end{align*}
+This just converges to 0 as $(X^n)_n$ was a Cauchy sequence. 
+\end{subproof}
+\textbf{$\heartsuit$ Claim :} $X$ is a martingale.
+\begin{subproof}
+: We have
+\begin{align*}
+\norms{\avg[X_t | \FF_s] - X_s}{L^2}& \leq \norms{\avg[X_t -X_t^n | \FF_s]}{L^2} + \norms{X_s^n -X_s}{L^2} \\
+&\leq \norms{X_t -X_t^n}{L^2} + \norms{X_s^n - X_s}{L^2} \leq 2\avg[\sup_{s\geq 0}|X_s^n -X_s|^2]^{1/2} \rightarrow 0
+\end{align*}
+where the second inequality follows from Jensen's inequality.
+\end{subproof}
+Thus $X\in M^2$ and $X^n \rightarrow X$ in $M^2$, so we have shown that $M^2$ is complete.
+\s
+
+Clearly, $M_c^2$ is a subspace. It is a complete (thus closed) by exactly the same argument with $D[0, \infty)$ replaced by $C[0, \infty)$.
+
+\eop
+\end{p}
+
+\subsection{Quadratic Variation}
+
+The quadratic variation of a process provides a measure of the rate of martingale ``oscillation", or ``diffusion". 
+\s
+
+\defi For a sequence of processes $(X^n)$ and a process $X$, we say $X^n \rightarrow X$ \textbf{ucp (uniformly on compact intervals in probability)} \emph{iff}
+\begin{align*}
+\prob \Big[ \sup_{s\in [0,t]} |X_s^n -X_s | > \epsilon \Big] \xrightarrow{n\rightarrow 0} 0 \quad \forall t >0, \forall \epsilon >0
+\end{align*}
+\s
+
+\thm Let $M$ be a \emph{continuous} local martingale. Then there exists a unique (up to indistinguishability) \emph{continuous adapted increasing process} $\langle M \rangle = \big( \langle M \rangle_t \big)_t$ such that (is uniquely characterized by) $\langle M \rangle_0 =0$ and $M^2 -\langle M \rangle$ is a continuous local martingale.
+
+\quad Moreover, with $0=t_0^m < t_1^m < \cdots$ given by $t_i^m = 2^{-m}i$,
+\begin{align*}
+\langle M \rangle_t^{(m)} \xrightarrow{\text{ucp}} \langle M \rangle_t \quad \text{where } \langle M \rangle_t^{(m)} = \sum_{i=1}^{\lfloor 2^m t \rfloor} (M_{t_i} - M_{t_{i-1}})^2
+\end{align*}
+\emph{[In fact, the convergence is true for all locally finite subdivision of $[0, \infty)$ with $\max_i |t_i^m - t_{i-1}^m| \rightarrow 0$ as $m\rightarrow \infty$.]}
+\s
+
+\defi $\langle M \rangle$ as in the theorem is the \textbf{quadratic variation} of $M$.
+\s
+
+\textbf{Example :} Let $B$ be a standard Brownian motion. Then $B_t^2 -t$ is a martingale, so $\langle B \rangle_t =t$, since the quadratic variation is uniquely characterized by the fact that $M^2 -\langle M \rangle$ is a martingale and $\langle M \rangle_0=0$.
+\s
+
+\begin{p}
+\textbf{proof of Theorem)} By replacing $M_t$ by $M_t - M_0$, it suffices to assume that $M_0=0$.
+\s
+
+\textbf{$\heartsuit$ Uniqueness}
+\begin{subproof}
+: Suppose that $(A_t)$ and $(B_t)$ both obey the conditions required for $\langle M \rangle$. Then $A_t -B_t = (M_t^2 - B_t) - (M_t^2 - A_t)$. Here, $A_t - B_t$ is of finite variation since is a difference of two continuous incrasing processes, and $(M_t^2 -B_t), (M_t^2 -A_t)$ are continuous local martingales. So this shows $A-B=0$ a.s by an earlier result on local martingales (the last theorem of \textbf{Section 2.2}).
+\end{subproof}
+
+The rest of the theorem would be proved after proving a lemma.
+\end{p}
+\s
+
+\newday
+
+(1st February, Friday)
+\s
+
+Let us first prove the theorem in the reduced setting of (uniformly) bounded martigales.
+\s
+
+\lem \emph{(bounded case)} The theorem is true under the additional assumption $|M_t|\leq C$ for all $(\omega, t)$, $M_t = M_{t\wedge T}$ for $C,T$ determinitstic constants.
+\begin{p}
+\pf Let $X$ be an another martingale defined by
+\begin{align*}
+X_t^m = \sum_{i=1}^{\lfloor 2^m T \rfloor} M_{(i-1)2^{-m}} (M_{i2^{-m}\wedge t} - M_{(i-1)2^{-m}\wedge t})
+\end{align*}
+Then $X^m$ is bounded martingale.
+\s
+
+\textbf{$\heartsuit$ Claim :} With $\langle M \rangle^{(m)}$ defined as in the theorem, $\langle M\rangle_{k2^{-m}}^{(m)} = M^2_{k2^{-m}} - 2X^m_{k2^{-m}}$
+\begin{subproof}
+: Just see that \begin{align*}
+\langle M\rangle_{k2^{-m}}^{(m)} &= \sum_{i=1}^k (M_{i2^{-m}} - M_{(i-1)2^{-m}} )^2 \\
+=& \sum_{i=1}^{k} (M^2_{i2^{-m}} - M^2_{(i-1)2^{-m}}) - 2M_{(i-1)2^{-m}} (M_{i2^{-m}} - M_{(i-1)2^{-m}}) \\
+=& -2X^m_{k2^{-m}} + \sum_{i=1}^k (M^2_{i2^{-m}} - M^2_{(i-1)2^{-m}}) = M^2_{k2^{-m} - 2X^m_{k2^{-m}}}
+\end{align*}
+
+Also obeserve that $\langle M \rangle_t^{(m)}$ is increasing on $t\in \{2^{-m}i : i\in\mathbb{N} \}$ (from its definition).
+\end{subproof}
+\s
+
+\textbf{$\heartsuit$ Claim :} $(X^m)  \subset M^2_c$ is a Cauchy sequence. 
+\begin{subproof}
+: For $m' > m$,
+\begin{align*}
+X^{m'}_{\infty} - X^m_{\infty} = \sum_{i=1}^{\lfloor 2^{m'}T \rfloor} \big( M_{(i-1)2^{-m'}} - M_{\lfloor (i-1) 2^{m-m'} \rfloor 2^{-m}} \big) \big(M_{i2^{-m'}} - M_{(i-1)2^{-m'}}\big)
+\end{align*}
+and by martingale property, cross terms are independent, so
+\begin{align*}
+\avg \big[ ( X^{m'}_{\infty} - X^m_{\infty})^2 \big] &= \sum_{i=1}^{\lfloor 2^{m'}T \rfloor} \avg \big[ (M_{(i-1)2^{-m'}} - M_{\lfloor (i-1)2^{m-m'}\rfloor 2^{-m}} )^2 (M_{i2^{-m'}} - M_{(i-1)2^{-m'}})^2 \big] \\
+&\leq \sup_{|s-t|\leq 2^{-m}}|M_t -M_s|^2 \\
+& \leq \avg \big( \sup_{|t-s|\leq 2^{-m}} |M_t -M_s|^2 \sum_{i=1}^{\lfloor 2^{m'}T \rfloor} (M_{i2^{-m'}} - M_{(i-1)2^{-m'}})^2  \big) \\
+& \leq \avg \big( \sup_{|s-t|\leq 2^{-m}} |M_t -M_s|^4  \big)^{1/2} \avg \big( (\langle M \rangle_T^{(m')})^2 \big)^{1/2} \quad \text{(Cauchy-Schwarz)}
+\end{align*}
+Here, we have $|M_t -M_s|^4 \leq (2C)^4$ and $\sup_{|t-s|\leq 2^{-m}} |M_t -M_s| \rightarrow 0$ by uniform continuity of $M$ on $[0, T]$, so $\avg (\sup_{|t-s| \leq 2^{-m}} |M_t - M_s|^4) \rightarrow \infty$ as $m\rightarrow \infty$ by \emph{dominated convergence theorem.}
+
+\quad Also, the second term $\avg \big( (\langle M \rangle_T^{(m')})^2 \big)$ can be bounded. Indeed,
+\begin{align*}
+& \avg \big[ \big( \sum_{i=1}^n (M_{i2^{-m}} - M_{(i-1)2^{-m}})^2 \big)^2 \big] \\
+&= \sum_{i=1}^n \avg \big( (M_{i2^{-m}} - M_{(i-1)2^{-m}})^4 \big) + 2\sum_{i=1}^n \avg ((M_{i2^{-m}} - M_{(i-1)2^{-m}})^2 \sum_{k=i+1}^n (M_{k2^{-m}} - M_{(k-1)2^{-m}})^2 )  \\
+&= \sum_{i=1}^n \avg \big( (M_{i2^{-m}} - M_{(i-1)2^{-m}})^4 \big) + 2\sum_{i=1}^n \avg ((M_{i2^{-m}} - M_{(i-1)2^{-m}})^2 (M_{n2^{-m}} - M_{i2^{-m}})^2 )  \\
+&\leq (2C)^2 \sum_{i=1}^n \avg \big( (M_{i2^{-m}} - M_{(i-1)2^{-m}})^2 \big) + 2\sum_{i=1}^n \avg ((M_{i2^{-m}} - M_{(i-1)2^{-m}} )^2 (2C)^2 ) \\
+&\leq 12C^2 \sum_{i=1}^n \avg ((M_{i2^{-m}} - M_{(i-1)2^{-m}})^2) \\ 
+&= 12C^2 \avg (M_{n2^{-m}} - M_0)^2 \leq 12C^4
+\end{align*}
+Putting these altogether, we conclude that $\avg \big( (X_{\infty}^{m'}- X_{\infty}^m)^2 \big) \rightarrow 0$ as $m,m'\rightarrow \infty$. Hence $(X^m)$ is a Cauchy sequence in $M_c^2$.
+\end{subproof}
+
+As $(X^m) \subset M_c^2$ is a Cauchy sequence, we see that there exists $X\in M_c^2$ such that $X^m \rightarrow X$ in $M_c^2$. Since $X^m \rightarrow X$ in $M_c^2$, in particular $\norms{\sup_{t} |X_t^m -X_t| }{L^2} \rightarrow 0$, and hence $\sup_{t} |X_t^{m_l} - X_t| \rightarrow 0$ a.s. for some subsequence $(m_l)_l$. So set
+\begin{align*}
+\langle M \rangle_t = \begin{cases}
+M_t^2 -2X_t \quad & \text{on the event of probability 1 on which the a.s. convergence holds} \\
+0 \quad & \text{on the complementary of the event}
+\end{cases}
+\end{align*}
+
+Then $\langle M \rangle$ is continuous and adapted since $M$ and $X$ are. So $M^2 - \langle M \rangle -2X$ is a martingale since $X$ is. Also $\langle M \rangle$ is increasing since $M^2 - 2X^m$ is increasing on $\{i2^{-m} : i\in \mathbb{N} \}$ and the convergence $M^2 -2X^m \rightarrow \langle M \rangle$ is uniform almost surely.
+\s
+
+But to check the summation formula for $\langle M \rangle$, we still have to prove $\langle M \rangle^{(m)} \rightarrow \langle M \rangle$.
+
+\textbf{$\heartsuit$ Claim :} $\langle M \rangle^{(m)} \rightarrow \langle M \rangle$ ucp.
+\begin{subproof}
+: To see this, recall $\langle M \rangle_t^{(m)} = \langle M\rangle_{\lfloor 2^m t \rfloor 2^{-m}}^{(m)} = M^2_{\lfloor 2^m t\rfloor 2^{-m}} - 2X^m_{\lfloor 2^m t\rfloor 2^{-m}}$, and $\sup_{t} |X_t^m - X_t| \rightarrow 0$ in $L^2$ and thus in probability. Hence,
+\begin{align*}
+\sup_{t} |\langle M \rangle_t -\langle M \rangle_t^{(m)}| \leq &\sup_t |M^2_{\lfloor 2^m t\rfloor 2^{-m}} - M^2_t| + \sup_t |X_{\lfloor 2^m t\rfloor 2^{-m}} - X_t|\\
+&+ \sup_t |X^m_{\lfloor 2^m t\rfloor 2^{-m}} - X_{\lfloor 2^m t\rfloor 2^{-m}}|
+\end{align*}
+\end{subproof}
+but each term converges to 0 in probability - two first terms converges a.s. by uniform continuity and the third one by convergence in $L^2$. 
+
+\eop 
+\end{p}
+
+\newday
+
+(4th February, Monday)
+\s
+
+\textbf{Last time :}
+
+\thm Let $M$ be a continuous local martingale. Then there exists a unique continuous adapted increasing process $\langle M \rangle$ such that $\langle  M \rangle_0 = 0$ and $M^2 - \langle M \rangle$ is a continuous local martingale. Also,
+\begin{align*}
+\langle M \rangle_t^{(m)} = \sum_{i=1}^{\lfloor 2^n t \rfloor} (M_{2^{-m}t} - M_{2^{-m}(i-1)})^2 \xrightarrow{ucp} \langle M \rangle_t
+\end{align*}
+We proved this thoerem for the case $|M|\leq C$, $M_{t\wedge T} = M_t$ for deterministic constants $C, T$. 
+\s
+
+\lem Suppose $M$ is a continuous local martingale for which $\langle M \rangle$ exists. Let $T$ be a stopping time. Then $\langle M^T \rangle$ exists and is given by $\langle M^T\rangle_t = \langle M \rangle_{t\wedge T}$ (up to indistiguishability).
+\begin{p}
+\pf Since $M_t^2 - \langle M \rangle_t$ is a continuous local martingale, so by \emph{Optional Stopping Theorem}, $M^2_{t\wedge T} - \langle M\rangle_{t\wedge T}= (M^T)^2_t - \langle M \rangle_{t\wedge T}$ also is. By uniqueness of quadratic variation process, we have $\langle M^T \rangle = \langle M \rangle_{t\wedge T}$.
+
+\eop
+\end{p}
+\s
+
+Now we prove the main theorem of the section.
+\s
+
+\begin{p}
+\textbf{proof of the theorem, continued)} Let $M$ be a continuous local martingale. We have assumed, without losing generality, that $M_0 =0$. Let
+\begin{align*}
+T_n = \inf \{t\geq 0 : |M_t|\geq n\}, \quad S_n = T_n \wedge n
+\end{align*}
+Then $S_n \nearrow \infty$ and $M^{S_n}$ is a bounded martingale such that $(M^{S^n})_{t\wedge n} = (M^{S_n})_t$. By the special case proved last time, $\langle M^{S_n} \rangle$ exists.
+
+\quad By the previous lemma, 
+\begin{align*}
+\langle M^{S_n}\rangle_t = \langle M^{S_{n+1}} \rangle_{t\wedge S_n}
+\end{align*}
+Thus there is a continuous process $\langle M \rangle$ such that $\langle M\rangle_{t\wedge S_n}$ and $\langle M^{S_n} \rangle$ are indistinguishable for all $n\in \mathbb{N}$.
+
+\quad Clearly, $\langle M \rangle$ is increasing since the $\langle M^{S_n} \rangle$ are, and $(M^2 - \langle M \rangle)^{S_n}$ is a martingale for all $n$. Since $S_n \nearrow \infty$, thus $M^2- \langle M \rangle$ is a local martingale.
+\s
+
+\textbf{$\heartsuit$ Claim :} $\langle M \rangle^{(m)} \xrightarrow{ucp} \langle M \rangle$.
+\begin{subproof}
+: by the bounded case, $\langle M^{S_n} \rangle^{(m)} \xrightarrow{ucp} \langle M^{S_n} \rangle$ as $m\rightarrow \infty$ for every $n$. Hence
+\begin{align*}
+\prob \Big[ \sup_{t\leq T}  \big| \langle M \rangle_t^{(m)} -\langle M \rangle_t \big| > \epsilon \Big] \leq & \,\, \prob (S_n < T) + \prob \Big[ \sup_{t\leq T} \big| \langle M^{S_n} \rangle_t^{(m)} -\langle M^{S_n} \rangle_t \big| > \epsilon \Big] \\
+\rightarrow & 0 \quad \text{as } n, m\rightarrow \infty
+\end{align*}
+\end{subproof}
+So we are done.
+
+\eop
+\end{p}
+\s
+
+\fact Let $M$ be a continuous local martingale with $M_0 =0$. Then $M\equiv 0$ \emph{iff} $\langle M \rangle =0$.
+\begin{p}
+\pf If $\langle M \rangle =0$ then $M^2 - \langle M \rangle = M^2$ is a continuous local martinglae and non-negative, hence is a supermartingale. Thus $\avg [M_t^2] \leq \avg [M_0^2] =0$ for all $t$. This implies $M\equiv 0$.
+
+\eop
+\end{p}
+\s
+
+\prop Let $M\in M^2_c$ with $M_0 =0$. Then $M^2 -\langle M \rangle$ is a \emph{uniformly integrable} martingale and
+\begin{align*}
+\norms{M}{M^2} = \big( \avg \big[\langle M \rangle_{\infty} \big] \big)^{1/2}
+\end{align*}
+In particular, the norm only depends on the quadratic variation.
+\begin{p}
+\pf We will show that $\langle M \rangle_{\infty} \in L^1$. Once we show this,
+\begin{align*}
+|M_t^2 - \langle M \rangle_t| \leq \sup_{s\geq 0} M_s^2 + \langle M \rangle_{\infty} \quad \forall t \geq 0
+\end{align*}
+$\sup_{s\geq 0} M_s^2 + \langle M \rangle_{\infty} =: Z$ is in $L^1$ by Doob's $L^2$-inequality and assumptioin for $\langle M \rangle_{\infty}$. Thus $M^2 - \langle M \rangle $ is a continuous local martingale bounded by $Z \in L^1$. In particular, $M^2 - \langle M \rangle$ is a uniformly integrable martignale.
+\s
+
+\textbf{$\heartsuit$ Claim :} $\langle M \rangle_{\infty} \in L^1$.
+\begin{subproof}
+: Let $S_n = \inf \{ t\geq 0: \langle M \rangle_t >n \}$. Then $S_n \nearrow \infty$, $S_n$ is a stopping time, and $\langle M \rangle_{t\wedge S_n}\leq n$. So
+\begin{align*}
+M^2_{t\wedge S_n} - \langle M \rangle_{t\wedge S_n} \leq \sup_{s\geq 0} M_s^2 + n \in L^1 \quad \text{(by Doob's inequality)}
+\end{align*}
+so $M^2_{t\wedge S_n} - \langle M \rangle_{t\wedge S_n}$ is a \emph{true} martingale. Hence
+\begin{align*}
+\avg [M^2_{t\wedge S_n}] = \avg \langle M \rangle_{t\wedge S_n}
+\end{align*}
+Taking $t\rightarrow \infty$, has 
+\begin{align*}
+&\avg [M^2_{t\wedge S_n}] \rightarrow \avg [M^2_{S_n}] \quad \text{by Dominated convergence, as } \avg[\sup_{t} M_t^2] < \infty \\
+&\avg \langle M\rangle_{t\wedge S_n} \rightarrow \avg \langle M \rangle_{S_n} \quad \text{by Dominated convergence, as } \sup_t \langle M \rangle_{t\wedge S_n} \leq n 
+\end{align*}
+Taking $n\rightarrow \infty$, has
+\begin{align*}
+&\avg M^2_{S_n} \rightarrow \avg M^2_{\infty} \quad \text{by Dominated convergence} \\
+&\avg \langle M \rangle_{S_n} \rightarrow \avg \langle M \rangle_{\infty} \quad \text{by monotone convergence}
+\end{align*}
+hence $\avg \langle M \rangle_{\infty} = \avg M^2_{\infty} = \norms{M}{M^2} < \infty$.
+\end{subproof}
+\eop
+\end{p}
+
+\subsection{Covariation}
+
+\defi For $M$ and $N$ continuous local martingales, define,
+\begin{align*}
+\langle M, N \rangle = \frac{1}{4} \big( \langle M+N \rangle - \langle M- N\rangle \big)
+\end{align*}
+The process $\langle M, N \rangle = (\langle M, N\rangle_{t})_t$ is the \textbf{covariation} or bracket of $M$ and $N$.
+\s
+
+\prop 
+\begin{i}
+\item[(i)] $\langle M, N\rangle$ is the unique (up to indistinguishability) finite variation process such that $MN -\langle M, N\rangle$ is a continuous local martingale.
+\item[(ii)] We have $\langle M, N \rangle_t^{(m)} \xrightarrow{ucp} \langle M, N \rangle_{t}$ where
+\begin{align*}
+\langle M, N \rangle_t^{(m)} = \sum_{i=1}^{\lfloor 2^m t \rfloor} (M_{i2^{-m}}-M_{(i-1)2^{-m}})(N_{i2^{-m}}-N_{(i-1)2^{-m}})
+\end{align*}
+\item[(iii)] The mapping $M,N \mapsto \langle M, N \rangle$ is bilinear and symmetric.
+\item[(iv)] For every stopping time $T$, $\langle M^T, N^T \rangle_t = \langle M^T, N \rangle_t = \langle M, N \rangle_{T\wedge t}$.
+\item[(v)] If $M, N \in M_c^2$ with $M_0 =N_0 =0$, then $M_T N_t - \langle M, N \rangle$ is a uniformly integrable martingale and
+\begin{align*}
+(M, N)_{M^2} = \avg \langle M, N \rangle_{\infty}
+\end{align*}
+\end{i}
+\begin{p}
+\pf Prove exactly as for $M = N$.
+\end{p}
+\s
+
+\textbf{Example :} Let $B$ and $B'$ be independent Brownian motions (adapted with respect to the same filtration). Then $BB'$ is a martingale (by independence), so $\langle B, B' \rangle =0$.
+
+\quad Let $B'' = \rho B + \sqrt{1-\rho^2} B'$ for some $\rho \in [0, 1]$. Then $B''$ is also a Brownian motion, and by bilinearity,
+\begin{align*}
+\langle B, B''\rangle_t = \rho \langle B, B \rangle_t + \sqrt{1-\rho^2} \langle B, B' \rangle_t =\rho t
+\end{align*}
+\s
+
+\newday
+
+(6th February, Wednesday)
+\s
+
+\prop \emph{(Kunita-Watanabe inequality)} Let $M$ and $N$ be continuous local martingale,s and let $H$ and $K$ be measurable processes. Then a.s.
+\begin{align*}
+\int_0^{\infty} |H_s| |K_s| |d\langle M, N\rangle_s| \leq \Big( \int_{0}^{\infty} |H_s|^2 d\langle M \rangle_s \Big)^{1/2} \Big( \int_{0}^{\infty} |K_s|^2 d\langle N \rangle_s \Big)^{1/2} \call{\text{KW}}
+\end{align*}
+\begin{p}
+\pf The proof is just done by applying Cauchy-Schwarz inequality multiple times. Write $\langle M, N \rangle_s^t = \langle M, N \rangle_t - \langle M, N \rangle_s$.
+
+\textbf{$\heartsuit$ Claim 1 :} For all $0\leq s <t$, $|\langle M, N \rangle_s^t| \leq \sqrt{\langle M, M \rangle_s^t} \sqrt{\langle N,N \rangle_s^t} \call{\star}$.
+\begin{subproof}
+: By continuity, we can assume that $s$ and $t$ are dyadic rationals. Then indeed,
+\begin{align*}
+|\langle M, N \rangle_s^t| &= \lim_{n\rightarrow \infty} \Big| \sum_{i=2^n s+1}^{2^n t}(M_{2^{-n}i} -M_{2^{-n}(i-1)}) (N_{2^{-n}i} -N_{2^{-n}(i-1)})\Big| \\
+&\leq \lim_{n\rightarrow \infty} \Big( \sum_{i=2^n s+1}^{2^n t} (M_{2^{-n}i} -M_{2^{-n}(i-1)})^2 \Big)^{1/2} \Big( \sum_{i=2^n s+1}^{2^n t} (N_{2^{-n}i} -N_{2^{-n}(i-1)})^2 \Big)^{1/2} \quad \text{(CS)} \\
+&=\sqrt{\langle M, M \rangle_s^t} \sqrt{\langle N,N \rangle_s^t}
+\end{align*}
+\end{subproof}
+Now fix an event such that $(\star)$ holds for all $s<t$ (holds for rationals and thus for all irrationals as well).
+
+\textbf{$\heartsuit$ Claim 2 :} $\int_s^t |d\langle M, N \rangle| \leq \sqrt{\langle M, M \rangle_s^t} \sqrt{\langle N,N \rangle_s^t}$.
+\begin{subproof}
+: Indeed, for any subdivision $s=t_0 < \cdots < t_n =t$,
+\begin{align*}
+\sum_{i=1}^n \big| \langle M, N \rangle_{t_{i-1}}^{t_i} \big| &\leq \sum_{i=1}^n \sqrt{\langle M, M \rangle_{t_{i-1}}^{t_i}} \sqrt{\langle N, N \rangle_{t_{i-1}}^{t_i}} \quad \text{(Claim 1)}\\
+&\leq \Big(\sum_{i=1}^n \langle M, M \rangle_{t_{i-1}}^{t_i}\Big)^{1/2} \Big(\sum_{i=1}^n \langle N, N \rangle_{t_{i-1}}^{t_i}\Big)^{1/2} \\
+&=\sqrt{\langle M, M \rangle_s^t} \sqrt{\langle N, N \rangle_s^t}
+\end{align*}
+The cliam follows by taking the supremum over all subdivisions.
+\end{subproof}
+\textbf{$\heartsuit$ Claim 3 :} For all bounded Borel sets $B\subset [0, \infty)$, $\int_B \big| d\langle M, N \rangle_s \big| \leq \sqrt{\int_B |d\langle M\rangle_s|} \sqrt{\int_B |d\langle N\rangle_s|}$. 
+\begin{subproof}
+: For $B$ a finite union of intervals, this agian follows from Cauchy-Schwarz as above. Also the inequality is preserved under taking disjoint union of Borel sets, and therefore by Dynkin's lemma, we seet that the inequality holds for any Borel set.
+\end{subproof}
+\textbf{$\heartsuit$ Claim 4 :} (KW) holds for all simple functions $H= \sum_{l=1}^L h_l 1_{B_l}$ and $K= \sum_{l=1}^L k_l 1_{B_l}$ where the $B_l$ are bounded disjoint Borel sets.
+\begin{subproof}
+: just do computation,
+\begin{align*}
+\int_0^{\infty} |H_s K_s| |d\langle M, N \rangle_s| \leq & \sum_{l} |h_l k_l| \int_{B_l} |d\langle M, N \rangle_s| \\
+\leq & \sum_l |h_l k_l| \Big(\int_{B_l} d\langle M \rangle_s\Big)^{1/2} \Big(\int_{B_l} d\langle N \rangle_s\Big)^{1/2} \\
+\leq & \Big( \sum_l h_l^2 \int_{B_l} d\langle M \rangle_s \Big)^{1/2} \Big( \sum_l k_l^2 \int_{B_l} d\langle N \rangle_s \Big)^{1/2} \\
+= & \Big( \int H_s^2 d\langle M \rangle_s \Big)^{1/2} \Big( \int K_s^2 d\langle N \rangle_s \Big)^{1/2} 
+\end{align*}
+\end{subproof}
+Finally, having the claim, approximate general $H$, $K$ by simple functions as above and use monotone class argument to complete the proof.
+
+\eop
+\end{p}
+
+\subsection{Semimartingales}
+
+\defi A \textbf{(continuous) semimartingale} is a (continuous) adapted process $X$ such that 
+\begin{align*}
+X = X_0 + M +A
+\end{align*}
+with $X_0 \in \FF_0$, $M$ is a (continuous) local martingale with $M_0 =0$ and $A$ is a finite variation process with $A_0 =0$.
+\s
+
+\textbf{Remark :} The decomposition is unique (up to indistinguishability).
+\s
+
+\defi Let $X = X_0 + M +A$ and $X' = X_0' + M_0' + A_0'$ be continuous semimartingales. Set 
+\begin{align*}
+\langle X \rangle = \langle M \rangle, \quad \langle X, X' \rangle = \langle M, M' \rangle
+\end{align*}
+\s
+
+\emph{Exercise :} We agian have limit expression
+\begin{align*}
+\langle X, Y \rangle_{t}^{(m)} = \sum_{i=1}^{\lfloor 2^m t\rfloor} (X_{i2^{-m}} -X_{(i-1)2^{-m}})(Y_{i2^{-m}} -Y_{(i-1)2^{-m}}) \xrightarrow{ucp} \langle X, Y \rangle_t
+\end{align*}
+
+\section{The It\^o integral}
+
+\subsection{Simple processes}
+
+\defi The space of \textbf{simple processes} $\mathscr{E}$ consists of $H : \Omega \times [0, \infty) \rightarrow \reals$ that can be written as
+\begin{align*}
+H(\omega, t) = \sum_{i=1}^n H_{i-1}(\omega) 1_{(t_{i-1}, t_i]} (t)
+\end{align*}
+for bounded random variabes $H_{i-1} \in \FF_{t_{i-1}}$ and $0\leq t_0 < \cdots < t_n$. 
+\s
+
+\defi  For $M\in M^2_c$ and $H\in \mathscr{E}$. Set \textbf{(It\^o integral for simple processes)}
+\begin{align*}
+(H\cdot M)_t = \sum_{i=1}^n H_{i-1} (M_{t_i \wedge t} - M_{t_{i-1} \wedge t})
+\end{align*}
+We also write $\int_0^t H_s dM_s = (H\cdot M)_t$.
+
+\emph{[Note, there is no necessity in picking $H_{i-1}$ in the integral. In fact, there are different choices for this. For example, summation over $(H_{i-1} + H_i)/2$ is called the Stratonovich integral]}
+\s
+
+\prop Let $M \in M_c^2$ and $H\in \mathscr{E}$. Then $H\cdot M\in M_c^2$ and
+\begin{align*}
+\norms{H \cdot M}{M^2}^2 = \avg \Big( \int_0^{\infty} H_s^2 d\langle M \rangle_s \Big) \quad \text{(It\^o isometry for simple process)}
+\end{align*}
+\emph{[Observe that the right hand side makes sense for more general family of martingales - so this proposition plays a crucial role in extending the It\^o integral.]}
+\begin{p}
+\pf
+
+\textbf{$\heartsuit$ Claim :} $H\cdot M$ is a martingale in $M_c^2$.
+\begin{subproof}
+Let $X_t^i = H_{i-1} (M_{t_i \wedge t} - M_{t_{i-1} \wedge t})$. Then $H\cdot M = \sum_{i=1}^n X^i$ and it suffices to show that $X^i \in M_c^2$. Indeed,
+\begin{itemize}
+\item for $s\geq t_{i-1}$, $\avg (X_t^i | \FF_s) = H_{i-1} (\avg(M_{t\wedge t_i}|\FF_s) - M_{t_{i-1}}) = H_{i-1}(M_{t_i\wedge s} - M_{t_{i-1}}) = X^i_s$
+\item for $s< t_{i-1}$, $\avg(X_t^i |\FF_s) = \avg(H_{i-1} \avg(M_{t\wedge t_i} - M_{t\wedge t_{i-1}}|\FF_{t_{i-1}}) |\FF_s) = 0 = X^i_s$.
+\end{itemize}
+Also, $\norms{X^i}{M^2} \leq 2\norms{H}{\infty} \norms{M}{M^2} < \infty$, so $X\in M_c^2$.
+\end{subproof}
+\end{p}
+\s
+
+\newday
+
+(8th February, Friday)
+\s
+
+\textbf{Last time :} $H\in \mathscr{E}$ $\Leftrightarrow$ $H(\omega, t)=\sum_{i=1}^n H_{i-1}1_{(t_{i-1}-t_i]}$, $H_{i-1}\in \FF_{t_{i-1}}$ bounded. Then
+\begin{align*}
+\int_0^t H_s dM_s = (H\cdot M)_t =\sum_{i=1}^n H_{i-1} (M_{t_i \wedge t} - M_{t_{i-1}\wedge t}) \quad \text{ if } H\in \EE
+\end{align*}
+We let $X_t^i =H_{i-1} (M_{t_i \wedge t} - M_{t_{i-1}\wedge t})$.
+\s
+
+\prop Let $M\in M_c^2$ and $H\in \EE$. Then $H\cdot M \in M_c^2$ and
+\begin{align*}
+\norms{H\cdot M}{M^2}^2 = \avg \Big( \int_0^{\infty} H_s^2 d\langle M\rangle_s \Big) \call{\star}
+\end{align*}
+\begin{p}
+\textbf{proof continued)}
+
+\textbf{Claim :} $(\star)$ holds.
+\begin{subproof}
+: We have, for $j>i$,
+\begin{align*}
+& \avg X_{\infty}^i X_{\infty}^j = \avg \Big(H_{i-1} (M_{t_i}- M_{t_{i-1}}) H_{j-1} \avg (M_{t_j}- M_{t_{j-1}} | \FF_{t_{i-1}}) \Big) =0 \\
+\Rightarrow \quad &\norms{H\cdot M}{M^2}^2 = \sum_{i=1}^m \norms{X^i}{M^2}^2 = \sum_{i=1}^n \avg (X_{\infty}^i)^2
+\end{align*}
+Here, $\avg (X_{\infty}^i)^2 = \avg(H_{i-1}^2 \avg \Big( (M_{t_i} - M_{t_{i-1}})^2 | \FF_{t_{i-1}} )\Big)$ while $\avg(M_{t_i}^2 + M_{t_{i-1}}^2 - 2M_{t_i}M_{t_{i-1}} |\FF_{t_{i-1}}) = \avg(M_{t_i}^2 - M_{t_{i-1}}^2 | \FF_{t_{i-1}}) = \avg (\langle M \rangle_{t_i} - \langle M \rangle_{t_{i-1}} |\FF_{t_{i-1}} )$ so
+\begin{align*}
+\avg (X_{\infty}^i)^2 = \avg(H_{i-1}^2 \Big(\langle M \rangle_{t_i} - \langle M \rangle_{t_{i-1}}) \Big) = \avg \int_{t_{i-1}}^{t_i} H_s^2 d\langle M \rangle_s
+\end{align*}
+and therefore $\norms{H\cdot M}{M^2}^2 = \avg \int_0^{\infty} H_s^2 d\langle M \rangle_s$
+\end{subproof}
+\eop
+\end{p}
+\s
+
+\prop Let $M\in M_c^2$ and let $H\in \EE$. Then
+\begin{align*}
+\langle H\cdot M, N \rangle = H \cdot \langle M, N \rangle, \quad \forall N \in M_c^2
+\end{align*}
+\textit{i.e.} $\langle \int_0^{\cdot} H_s dM_s, N\rangle = \int_0^{\cdot} H_s d\langle M, N \rangle_s$.
+\begin{p}
+\pf Let $H\cdot M =\sum_i X^i$ as previously. Then
+\begin{align*}
+\langle X^i, N \rangle_t = H_{i-1} \langle M_{t_i \wedge \cdot} - M_{t_{i-1}\wedge \cdot}, N \rangle_t = H_{i-1} (\langle M, N \rangle_{t_i \wedge t} - \langle M, N\rangle_{t_{i-1}\wedge t})
+\end{align*}
+so
+\begin{align*}
+\langle H\cdot M, N \rangle_t = \int_0^t H_s d\langle M, N \rangle_s = (H\cdot \langle M, N \rangle)_t
+\end{align*}
+\eop
+\end{p}
+
+\subsection{It\^o isometry}
+
+We extend our definition of It\^o integral to a larger class of processes usinig It\^o isometry. During the way, the definition of integral in the usual sense does not work anymore, but would find that the commutativity of It\^o integral and the covariation is preserved under this extension, hence we would be able to use this as an alternative defining property for It\^o integral.
+\s
+
+\defi For fixed $M\in M_c^2$, define $L^2(M)$ to be the space of equivalence classes of \emph{predictable} $H: \Omega \times [0, \infty) \rightarrow \reals$ such that
+\begin{align*}
+\norms{H}{L^2(M)} = \norms{H}{M} = \avg \Big( \int_0^{\infty} H_s^2 d\langle M \rangle_s \Big)^{1/2} < \infty
+\end{align*}
+For $H, K \in L^2(M)$, set
+\begin{align*}
+(H, K)_{L^2(M)} = (H, K)_M = \avg \Big(\int_0^{\infty} H_s K_s d\langle M \rangle_s \Big)
+\end{align*}
+which is finite because of \emph{Kunita-Watanabe inequality}.
+\s
+
+\fact $L^2(M) = L^2(\Omega \times [0, \infty), \mathscr{P}, d\prob d\langle M \rangle)$ is a Hilbert space. (Recall $\mathscr{P}$ is the previsible $\sigma$-algebra)
+\s
+
+\prop Let $M\in M_c^2$. Then $\EE$, the space of simple processes, is dense in $L^2(M)$.
+\begin{p}
+\pf Since $L^2(M)$ is a Hilbert space (in particular, is complete) it suffices to show that if $(K, H)_M =0$ for all $H\in \EE$ then $K=0$.
+
+\quad So assume that $(K, H)_M =0$ for all $H\in \EE$ and set $X_t = \int_0^t K_s d\langle M \rangle_s$. $X$ is a well-defined finite variation process with $X_t \in L^1$ for all $t$ since 
+\begin{align*}
+\avg \int_0^t |K_s| d\langle M \rangle_s \leq \avg \Big( \int_0^{\infty} K_s^2 d\langle M \rangle_s \Big)^{1/2} \avg \Big( \langle M \rangle_{\infty} \Big)^{1/2} < \infty
+\end{align*}
+where we used that $K\in L^2(M)$ and let $M\in M_c^2$.
+
+\textbf{$\clubsuit$ Claim :} $X$ is a continuous martingale.
+\begin{subproof}
+: Let $0\leq s <t$, $F\in \FF_s$, $H= F1_{(s,t]} \in \EE$, $F$ bounded. By assumption,
+\begin{align*}
+0 = (K, H)_M = \avg \Big( F\int_s^t K_u d\langle M \rangle_u \Big) = \avg (F(X_t -X_s)) \quad \forall s<t, \forall F\in \FF_s \text{ bounded}
+\end{align*}
+so $\avg (X_t |\FF_s) = X_s$ almost surely, \textit{i.e.} $X$ is a (continuous) martingale. 
+\end{subproof}
+Since $X$ is a finite variation process and a continuous martingale, we see $X\equiv 0$. So $K_u =0$ for $d\langle M \rangle$-a.e. $U$, a.s. Hence $K=0$ in $L^2(M)$.
+
+\eop
+\end{p}
+\s
+
+\statement{Theorem/Definition} Let $M\in M_c^2$. Then
+\begin{i}
+\item[(i)] The map $H\in \EE\mapsto H\cdot M \in M_c^2$ extends uniquely to an isometry $L^2(M) \rightarrow M_c^2$, the \emph{It\^o isomtery}.
+\item[(ii)] $H\cdot M$ is the unique martingale in $M_c^2$ such that
+\begin{align*}
+\langle H\cdot M, N \rangle = H\cdot \langle M, N\rangle, \quad \forall N \in M_c^2
+\end{align*}
+\end{i}
+$(H\cdot M)_t = \int_0^t H_s dM_s$ is then called the \textbf{It\^o integral} of $H$ with respect to $M$.
+\s
+
+\begin{p}
+\pf \begin{i}
+\item[(i)] For $H\in \EE$, we have seen that $\norms{H\cdot M}{M^2} = \norms{H}{L^2(M)}^2$. Since $\EE\subset L^2(M)$ is dense and $M_c^2$ is a Hilbert space, it follows that the map $H\mapsto H\cdot M$ extends uniquely to all of $L^2(M)$ and the extension is also an isometry.
+\item[(ii)] Again, we have seen that $\langle H \cdot M, N\rangle = H\cdot \langle M, N\rangle$ holds for $H\in \EE$. Given $H\in L^2(M)$, choose $(H^n)_n \subset \EE$ such that $H^n \rightarrow H$ in $L^2(M)$. Then $H^n \cdot M \rightarrow H\cdot M$ by (i). We will justify
+\begin{align*}
+\langle H\cdot M, N \rangle_{\infty} =& \lim_{n\rightarrow \infty} \langle H^n \cdot M, N \rangle_{\infty} \quad \text{in } L^1 \\
+=& \lim_{n\rightarrow \infty} (H^n \cdot \langle M, N \rangle)_{\infty} \\
+=& (H \cdot \langle M, N \rangle)_{\infty} \quad \text{in } L^1
+\end{align*}
+- the equalities holds by the Kunita-Watanabe inequality.
+\end{i}
+\end{p}
+\s
+
+\newday
+
+(11th February, Monday)
+\s
+
+\begin{p}
+\textbf{proof continued)}
+
+\textbf{$\clubsuit$ Claim : } $\langle H \cdot M, N \rangle = \lim_{n\rightarrow \infty} \langle H^n \cdot M, N \rangle$ in $L^1$ and $\lim_{n\rightarrow \infty} H^n \cdot \langle M, N \rangle = H \cdot \langle M, N \rangle$ in $L^1$
+\begin{subproof}
+: One has by Kunita-Watanabe inequality,
+\begin{align*}
+\avg |\langle (H - H^n) \cdot M, N \rangle_{\infty}| \leq & \Big( \avg \langle H \cdot M - H^n \cdot M \rangle_{\infty} \Big)^{1/2} \Big( \avg \langle N \rangle_{\infty}\Big)^{1/2}\\
+= & \norms{H \cdot M - H^n \cdot M}{M^2} \norms{N}{M^2} \\
+= & \norms{H - H^n}{L^2(M)}\norms{N}{M^2}  \rightarrow 0
+\end{align*}
+Also again by Kunita-Watanabe,
+\begin{align*}\avg ((H- H^n)\cdot \langle M, N \rangle)_{\infty} \leq \norms{H-H^n}{L^2(M)} \norms{N}{M^2} \rightarrow 0
+\end{align*}
+Thus $\langle H \cdot M, N \rangle_{\infty} = (H \cdot \langle M, N \rangle)_{\infty}$ for all $N \in M_c^2$. Replacing $N$ by the stopped martingale $N^t$ gives
+\begin{align*}
+\langle H\cdot M, N \rangle_t = \langle H \cdot M, N \rangle_t = \langle H \cdot M, N^t \rangle_{\infty} = (H \cdot \langle M, N^t \rangle)_{\infty} = (H\cdot \langle M, N \rangle)_t
+\end{align*}
+\end{subproof} 
+Next, \textbf{Uniqueness} : assume that $X\in M^2_c$ also satisfies $\langle X, N \rangle = H \cdot \langle M, N \rangle = \langle H\cdot M, N \rangle$ for all $N \in M_c^2$. Then $\langle H \cdot M - X, N \rangle =0 \quad \forall N \in M^2_c$. Since $H \cdot M -X \in M_c^2$, we have
+\begin{align*}
+\langle H \cdot M -X, H \cdot M - X \rangle =0
+\end{align*}
+and therefore $\norms{H\cdot M - X}{M^2}=0$ implying $X = H\cdot M$.
+
+\eop
+\end{p}
+\s
+
+So we 
+
+\s
+\corr If $T$ is a stopping time, then
+\begin{align*}
+(1_{[0, T]}H) \cdot M = (H \cdot M)^T = H\cdot M^T
+\end{align*}
+\begin{p}
+\pf For any $N \in M_c^2$, has
+\begin{align*}
+\langle (H \cdot M)^T, N \rangle_t = \langle H \cdot M, N \rangle_{t\wedge T} = (H \cdot \langle M, N \rangle)_{t\wedge T} = \big( 1_{[0, T]} H \cdot \langle M, N \rangle \big)_t 
+\end{align*}
+and by uniqueness of such integral, has $(H \cdot M)^T = H 1_{[0, T]} \cdot M$.
+
+\quad The next equality $(H \cdot M)^T = H \cdot M^T$ follows from completely analogous argument.
+
+\eop
+\end{p}
+\s
+
+\corr $\langle H\cdot M, K\cdot N \rangle = (HK)\cdot \langle M, N \rangle$, \textit{i.e.}
+\begin{align*}
+\langle \int_0^{\cdot} H_s dM_s , \int_0^{\cdot} K_s dN_s \rangle_t = \int_0^t H_s K_s d\langle M, N \rangle_s 
+\end{align*}
+\begin{p}
+\pf Has
+\begin{align*}
+\langle H\cdot M, K\cdot N \rangle = H \cdot \langle M, K \cdot N \rangle = H \cdot (K \cdot \langle M, N \rangle) = (HK) \cdot \langle M, N \rangle 
+\end{align*}
+where the last equaility follows from associativity of finite variational integrals, \textit{i.e.} $hk df = h(kdf) = h d(k \circ f)$.
+
+\eop
+\end{p}
+\s
+
+\corr One has, if $t>u$,
+\begin{align*}
+& \avg \big( \int_0^t H_s dM_s \big) =0 \\
+& \avg \big( \int_0^t H_s dM_s | \FF_u \big) = \int_0^u H_s dM_s \\
+& \avg \big( \int_0^t H_s dM_s \int_0^t K_s dN_s \big) = \avg \big( \int_0^t H_s K_s d\langle M, N \rangle_s \big)
+\end{align*} 
+\begin{p}
+\pf $H\cdot M$ and $(H\cdot M)(K \cdot N) - \langle H\cdot M, K \cdot N \rangle$ are martingales starting at 0.
+
+\eop
+\end{p}
+\s
+
+\corr \emph{(Associativity of It\^o integral)} Let $H\in L^2(M)$. Then $KH \in L^2(M)$ \emph{iff} $K \in L^2(H \cdot M)$ and then
+\begin{align*}
+(KH)\cdot M = K\cdot (H \cdot M)
+\end{align*}
+\begin{p}
+\pf Since $H^2 \cdot \langle M \rangle = \langle H \cdot M \rangle$, has
+\begin{align*}
+\avg \big( \int_0^{\infty} K_s^2 H_s^2 d\langle M \rangle_s \big) = \avg \big( \int_0^{\infty} K_s^2 d\langle H \cdot M \rangle_s \big)
+\end{align*}
+so $HK \in L^2(M)$ is equivalent to having $K \in L^2(H \cdot M)$.
+
+\quad For $N \in M_c^2$, has
+\begin{align*}
+\langle (KH) \cdot M, N \rangle_t = \big( (KH) \cdot \langle M, N \rangle \big)_t = \big(K \cdot(H \cdot \langle M, N \rangle )\big)_t
+\end{align*}
+and
+\begin{align*}
+\langle K \cdot (H \cdot M) , N \rangle_t = (K \cdot \langle H \cdot M, N \rangle)_t = (K \cdot (H \cdot \langle M, N \rangle))_t
+\end{align*}
+so $KH\cdot M = K\cdot (H\cdot M)$ by uniqueness.
+
+\eop
+\end{p}
+
+\subsection{Extension to local martingales}
+
+\defi Let $M$ be a \emph{continuous local martingale.} Define $L_{loc}^2(M)$ to be the space of (up to euivalence classes) predictable $H$ such that
+\begin{align*}
+\text{a.s.,} \quad \forall t\geq 0,\,\,\, \int_0^t H_s^2 d \langle M \rangle_s < \infty 
+\end{align*}
+\s
+
+\thm Let $M$ be a continuous local martingale.
+\begin{i}
+\item[(i)] For every $H \in L^2_{loc}(M)$, there is a unique (up to indistiguishability) contiuous local martingale $H\cdot M$ with $(H\cdot M)_0 =0$ such that
+\begin{align*}
+\langle H \cdot M, N \rangle = H \cdot \langle M, N\rangle \quad \forall N \text{ continuous local martingale}
+\end{align*}
+\item[(ii)] If $H\in L_{loc}^2(M)$ and $K$ is predictable then $K\in L^2_{loc}(H \cdot M)$ \emph{iff} $HK\in L^2_{loc}(M)$ and then
+\begin{align*}
+H \cdot (K \cdot M) = (HK) \cdot M
+\end{align*}
+\item[(iii)] If $T$ is a stopping time,
+\begin{align*}
+(1_{[0, T]} H)\cdot M = (H \cdot M)^T = H\cdot M^T
+\end{align*}
+Finally, if $M\in M^2_c$ and $H\in L^2(M)$ then the definition is consistent with then previous one. 
+\end{i}
+\s
+
+\newday
+
+(13th February, Wednesda)
+\s
+
+\thm Let $M$ be a continuous local martingale.
+\begin{i}
+\item[(i)] For every $H \in L^2_{loc}(M)$, there is a unique (up to indistiguishability) contiuous local martingale $H\cdot M$ with $(H\cdot M)_0 =0$ such that
+\begin{align*}
+\langle H \cdot M, N \rangle = H \cdot \langle M, N\rangle \quad \forall N \text{ continuous local martingale}
+\end{align*}
+\item[(ii)] If $H\in L_{loc}^2(M)$ and $K$ is predictable then $K\in L^2_{loc}(H \cdot M)$ \emph{iff} $HK\in L^2_{loc}(M)$ and then
+\begin{align*}
+H \cdot (K \cdot M) = (HK) \cdot M
+\end{align*}
+\item[(iii)] If $T$ is a stopping time,
+\begin{align*}
+(1_{[0, T]} H)\cdot M = (H \cdot M)^T = H\cdot M^T
+\end{align*}
+\end{i}
+Finally, if $M\in M^2_c$ and $H\in L^2(M)$ then this definition is consistent with the previous one. 
+\begin{p}
+\pf Once we prove (i), the other two follow using the exactly same arguement. So we just prove (i).
+
+(i) Assume $M_0 =0$ and  $\int_0^t H_s^2 d\langle M \rangle_s < \infty$ for all $(t, \omega)$ (by setting $H=0$ where this fails). Set $S_n = \inf\{t\geq 0 : \int_0^t (1+H_s^2) d\langle M \rangle_s > n\}$. Note that $S_n$ is a stopping times, $S_n \nearrow \infty$ as $n\rightarrow \infty$ and
+\begin{align*}
+\langle M^{S_n}, M^{S_n} \rangle_t = \langle M, M \rangle_{t\wedge S_n} \leq n
+\end{align*}
+Hence $M^{S_n}$ are in $M^2_c$ and $\int_0^{\infty} H_s^2 d\langle M^{S_n} \rangle_s =\int_0^{S_n} H_s^2 d\langle M \rangle_s \leq n$ so $H\in L^2(M^{S_n})$. So the stochastic integral $H\cdot M^{S_n}$ is already defined for each $n$, and we can let
+\begin{align*}
+(H\cdot M)^{S_n} = \big( H \cdot M^{S_m} \big)^{S_n} \quad \text{for } m>n
+\end{align*}
+(since ``stopping commutes with stocahstic integral"). So there is a unique (up to indistinguishability) process denoted $H\cdot M$ such that
+\begin{align*}
+(H\cdot M)^{S_n} = H \cdot M^{S_n} \quad \forall n\in \mathbb{N}
+\end{align*}
+Then $H\cdot M$ is adapted continuous, and it is a local martignale since the $(H\cdot M)^{S_n} = (H\cdot M^{S_n})$ are martingales and $S_n \rightarrow \infty$.
+
+\textbf{$\clubsuit$ Claim :} $\langle H\cdot M , N \rangle = H \cdot \langle M, N \rangle$ for any continuous local martingale $N$.
+\begin{subproof}
+: Assume that $N_0 =0$ and set $S_n' = \inf \{t\geq 0 : |N_t| >n \}$, $T_n = S_n \wedge S_n'$. Then $N^{S_n'}$ is in $M_c^2$ and 
+\begin{align*}
+\langle H\cdot M, N \rangle^{T_n} &= \langle (H\cdot M)^{S_n}, N^{S_n'}\rangle \\
+&=\langle H \cdot M^{S_n}, N^{S_n'} \rangle \\
+&= H \cdot \langle M^{S_n} , N^{S_n'} \rangle \\
+&= H\cdot \langle M, N \rangle^{T_n} \\
+&= (H\cdot \langle M, N \rangle)^{T_n}
+\end{align*}
+Since $T_n \nearrow \infty$, thus $\langle H \cdot M, N \rangle = H \cdot \langle M, N \rangle$.
+\end{subproof}
+Uniqueness follows as before. Also, (ii) and (iii) follow from (i) as before.
+\s
+
+For the last statement, ff $M\in M_c^2$ and $H\in L^2(M)$ then $H\cdot M \in M_c^2$ by (i) which shows that $\langle H\cdot M \rangle_{\infty} = (H^2 \cdot \langle M \rangle)_{\infty}$ and thus $\norms{H\cdot M}{M^2}^2 = \avg\langle H, M \rangle_{\infty} < \infty$. The uniqeuness statement in the equivalent of (i) from $L^2$-bounded cases shows consistencey with previous definition.
+\eop 
+\end{p}
+
+\subsection{Extension to Semimartingales}
+
+\defi A process $H$ is \textbf{locally bounded} if
+\begin{align*}
+\text{a.s., } \forall t>0, \quad \sup_{s\leq t} |H_s| < \infty
+\end{align*}
+In particular, any continuous process is locally bounded.
+\s
+
+\fact If $H$ is locally bounded and predictable and if $A$ is a finite variation process,
+\begin{align*}
+\forall t>0, \quad \int_0^t H_s |dA_s| < \infty \quad \text{a.s.}
+\end{align*}
+In particular, for such $H$, and $M$ a continuous local martingale, it follows that $H\in L_{loc}^2(M)$.
+\s
+
+\defi Let $X = X_0 + M + A$ be a continuous semimartingale, and let $H$ be a predictable locally bounded process. Then the \textbf{It\^o integral $H\cdot X$ is the continuous semimartingale} is
+\begin{align*}
+H \cdot X = H\cdot M + H\cdot A
+\end{align*}
+where $H\cdot M$ is the integral defined in the previous section and $H\cdot A$ is the finite varaiation integral. We write $(H\cdot X)_t = \int_0^t H_s dX_s$.
+\s
+
+\prop \emph{(Stochastic Dominated Convergence Theorem, Stochastic DCT)} Let $X$ be a continuous semimartingale, and let $H$ be locally bounded predictable process and let $K$ be a predictable non-negative process. Let $t>0$ and assume that
+\begin{i}
+\item[(i)] $H_s^n \xrightarrow{n\rightarrow \infty} H_s$ for all $s\in [0,t]$.
+\item[(ii)] $|H_s^n|\leq K_s$ for all $s\in [0, t]$ and $n\in \mathbb{N}$.
+\item[(iii)] $\int_0^t K_s^2 d\langle M \rangle + \int_0^t K_s |dA_s| < \infty$ (where $X = X_0 + M +A)$. \emph{[This condition is always true if $K$ is locally bounded]}
+\end{i}
+Then $\int_0^t H_s^n dX_s \xrightarrow{ucp}\int_0^t H_s dX_s$ as $n\rightarrow \infty$.
+\begin{p}
+\pf Let $X= X_0 + X+A$. For the finite variation part $A$, the \emph{usual DCT} implies
+\begin{align*}
+\int_0^t H_s^n dA_a \rightarrow \int_0^t H_s dA_s
+\end{align*}
+Set $T_m = \inf \{t\geq 0 : \int_0^t K_s^2 d\langle M \rangle_s >n \}$. Then
+\begin{align*}
+\avg \Big[ \big( \int_0^{t\wedge T_m} H_s^n dM_s - \int_0^{t\wedge T_m} H_s dM_s \big)^2 \Big] \leq \avg \Big[ \int_0^{t\wedge T_m} (H_s^n - H_s)^2 d\langle M \rangle_s \Big] \rightarrow 0
+\end{align*}
+by DCT. Since $T_m \wedge t =t$ for $m$ large enough almost surely, $\prob (T_m \wedge t =t) \rightarrow 1$ and this implies the convergence in probabiilty for fixed $t$ by Markov's inequality. For convergence ucp(uniformly on compact domains in probability), use Doob's inequality to see that
+\begin{align*}
+\avg \Big[ \sup_{t\in [0,u]} \big( \int_0^{t\wedge T_m} H_s^n dM_s - \int_0^{t\wedge T_m} H_s dM_s \big)^2 \Big] \leq &  4 \sup_{t\in [0,u]} \avg \Big[ \int_0^{t\wedge T_m} (H_s^n - H_s)^2 d\langle M \rangle_s \Big] \\
+=& 4 \avg \Big[ \int_0^{u\wedge T_m} (H_s^n - H_s)^2 d\langle M \rangle_s \Big] \rightarrow 0
+\end{align*}
+and again use Markov's inequality.
+\eop
+\end{p}
+\s
+
+\corr Let $X$ be a continuous semimartingale, and let $H$ be a locally bounded adapted left-continuous processs. Then for any subdivision $0 =t_0^{(m)} < \cdots < t_{n_m}^{(m)}=t$ of $[0,t]$ with $\max_i |t_i^{(m)} - t_{i-1}^{(m)}| \rightarrow 0$ as $m\rightarrow \infty$, has :
+\begin{align*}
+\lim_{m\rightarrow \infty} \sum_{i=1}^{n_m} H_{t_{i-1}^{(m)}} \big(X_{t_i^{(m)}} -X_{t_{i-1}^{(m)}} \big) = \int_0^t H_s dX_s
+\end{align*}
+
+where the convergence is made ucp.
+\emph{[Taking the left end-point $t_{i-1}^{(m)}$ is important, and is consistent with the choice of It\^o integral. Different choice corresponds to what the integral means.]}
+\begin{p}
+\pf Exactly as in the finite variation case (using stochastic DCT).
+\end{p}
+\s
+
+\newday
+
+(15th February, Friday)
+\s
+
+\textbf{Last time :} $\int_0^t H_s dX_s = \lim_{m\rightarrow \infty} \sum_{i=1}^{n_m} H_{t_{i-1}^{(m)}} (X_{t_i^{(m)}} - X_{t_{i-1}^{(m)}})$.
+\s
+
+\textbf{Remark :} Suppose $H$ is continuous. Unlike the case that $X$ is of finite variation, it is essential here that $H$ is evaluated at the left end point.
+\s
+
+\textbf{Example :}
+\begin{align*}
+\lim_{m\rightarrow \infty} \sum_{i=1}^{n_m} X_{t_{i-1}^{(m)}}(X_{t_i^{(m)}} - X_{t_{i-1}^{(m)}}) = \int_0^t X_s dX_s
+\end{align*}
+but
+\begin{align*}
+& \lim_{m\rightarrow \infty} \sum_{i=1}^{n_m} X_{t_i^{(m)}} (X_{t_i^{(m)}} - X_{t_{i-1}^{(m)}}) \\
+= & \lim_{m\rightarrow \infty} \sum_{i=i}^{n_m} X_{t_{i-1}^{(m)}} (X_{t_i^{(m)}} - X_{t_{i-1}^{(m)}}) + \lim_{m\rightarrow \infty} \sum_{i=1}^{n_m} (X_{t_i^{(m)}} - X_{t_{i-1}^{(m)}})^2\\
+= & \int_0^t X_s dX_s + \langle X, X \rangle_t
+\end{align*}
+For example, if $X=B$ is the standard Brownian motion, then $\langle X, X\rangle_t =t$.
+\s
+
+\textbf{Remark :} The choice of the left endpoint gives the It\^o integral. There is another common choice called the \textbf{Stratonovich integral} which is defined by
+\begin{align*}
+\int_0^t X_s \pa Y_s = \int_0^t X_s dY_s + \frac{1}{2} \langle X, Y \rangle_t
+\end{align*}
+It thus corresponds to the approximation
+\begin{align*}
+\sum_{i=1}^{n_m} \frac{1}{2} (X_{t_i^{(m)}} + X_{t_{i-1}^{(m)}}) (Y_{t_i^{(m)}} - Y_{t_{i-1}^{(m)}})
+\end{align*}
+Note that $\int_0^{\cdot} X_s \pa Y_s$ is generally not a local martingale. 
+
+\subsection{It\^o formula}
+
+\thm \emph{(Integration by parts)} Let $X$ and $Y$ be continuous semimartingales. Then a.s,
+\begin{align*}
+X_t Y_t - X_0 Y_0 = \int_0^t X_s dY_s + \int_0^t Y_s dX_s + \langle X, Y \rangle_t
+\end{align*}
+The last term $\langle X, Y \rangle$ is called the \textbf{It\^o correction.}
+\s
+
+\textbf{Remark :} In terms of the Stranovich integral, a.s,
+\begin{align*}
+X_t Y_t - X_0 Y_0 = \int_0^t X_s dY_s + \int_0^t Y_s dX_s
+\end{align*}
+\begin{p}
+\textbf{proof of the theorem)} Clearly,
+\begin{align*}
+& X_t Y_t - X_s Y_s = X_s(Y_t -Y_s) + Y_s (X_t -X_s) + (X_t -X_s)(Y_t-Y_s) \\
+\Rightarrow \quad  & X_{k2^{-m}} Y_{k2^{-m}} - X_0 Y_0 = \sum_{i=1}^k ( X_{i2^{-m}} Y_{i2^{-m}} - X_{(i-1)2^{-m}} Y_{(i-1)2^{-m}}) \\
+= & \sum_{i=1}^k \Big(  X_{(i-1)2^{-m}}(Y_{i2^{-m}} - Y_{(i-1)2^{-m}}) + Y_{(i-1)2^{-m}}(X_{i2^{-m}} -X_{(i-1)2^{-m}}) \\
+& \quad \quad\quad + (X_{i2^{-m}} - X_{(i-1)2^{-m}})(Y_{i2^{-m}} - Y_{(i-1)2^{-m}}) \Big)
+\end{align*}
+Thus for $t\in 2^{-n} \in \mathbb{N}$, by taking $m\rightarrow \infty$,
+\begin{align*}
+X_t Y_t - X_0 Y_0 = (X\cdot Y)_t + (Y \cdot X)_t + \langle X, Y \rangle_t \quad \text{(by previous approximation results)}
+\end{align*}
+Finally, for $t\in \reals$ use continuity to conclude.
+
+\eop
+\end{p}
+\s
+
+\thm \emph{(It\^o formula)} Let $X^1, \cdots, X^p$ be continuous semimartingales, and let $f \in C^2(\reals^p ; \reals)$. Then, writing $X = (X^1, \cdots, X^p)$, a.s,
+\begin{align*}
+f(X_t) =  f(X_0) + \sum_{i=1}^p \int_0^t \frac{\pa f}{\pa x^i}(X_s)dX_s^i + \frac{1}{2} \sum_{i,j=1}^p \int_0^t \frac{\pa^2 f}{\pa x^i \pa x^j} (X_s) d\langle X^i, X^j \rangle_s \call{\star}
+\end{align*}
+\emph{[Note that if $X$ is a local martingale, then the second term in the RHS is a continuous local martingale and the third term in the RHS is a finite varaition process, hence $f(X_t)$ is a continuous semimartingale - so we end up with a semimartingale even if we want to just work with martingales.]}
+
+\quad Informally, we may write
+\begin{align*}
+df(X_t) = \sum_{i=1}^p \frac{\pa f}{\pa x^i} (X_t) dX_t^i + \frac{1}{2} \sum_{i,j=1}^p \frac{\pa^2 f}{\pa x^i \pa x^j}(X_t) d\langle X^i, X^j \rangle_t
+\end{align*}
+\begin{p}
+\pf For $f$ constant, $(\star)$ is obvious.
+
+\textbf{$\spadesuit$ Claim :} Assume $(\star)$ holds for some $f$. Then it also holds for $g$ defined by $g(x) = x^k f(x)$, for $x= (x^1, \cdots, x^p) \in \reals^p$.
+\begin{subproof}
+: Application of \emph{integration by parts}(theorem above) with $X= X^k$ and $Y = f(X)$ gives
+\begin{align*}
+g(X_t) - g(X_0) = \int_0^t X_s^k df(X_s) + \int_0^t f(X_s) dX^k_s + \langle X^k, f(X) \rangle_t = \text{(A)+(B)+(C)}
+\end{align*}
+By $(\star)$ for $f$, and $(H\cdot (K\cdot X)) = (HK) \cdot X$,
+\begin{align*}
+\text{(A)} =& \int_0^t X_s^k df(X_s) = (X^k \cdot f(X))_t \\
+=& \Big( X^k \cdot \Big( f(X_0) + \sum_{i=1}^p (\frac{\pa f}{\pa x^i} \cdot X^i)_t + \frac{1}{2} \sum_{i,j=1}^p \big( \frac{\pa^2 f}{\pa x_i \pa x_j} \cdot \langle X^i, X^j\rangle \big) \Big) \Big)_t \\
+=& \sum_{i=1}^p \int_0^t X_s^k \frac{\pa f}{\pa x^i}(X_s) dX_s^i + \frac{1}{2} \sum_{i,j=1}^p \int_0^t X_s^k \frac{\pa^2 f}{\pa x^i \pa x^j} (X_s)d \langle X^i, X^j \rangle_s
+\end{align*}
+By $(\star)$ for $f$ and $\langle X, H\cdot Y \rangle = H \cdot \langle X, Y \rangle$, and noting that finite variation part has no contribution in covariance,
+\begin{align*}
+\text{(C)} = \langle X^k, f(X) \rangle_t = \sum_{i=1}^p \int_0^t X_s^k \frac{\pa f}{\pa x^i} (X_s) d\langle X^k, X^i \rangle_s
+\end{align*}
+Putting these together,
+\begin{align*}
+g(X_t) = g(X_0) + \sum_{i=1}^p \int_0^t \frac{\pa g}{\pa x^i}(X_s) dX_s^i + \frac{1}{2} \sum_{i,j=1}^p \int_0^t \frac{\pa^2 g}{\pa x^i \pa x^j} (X_s) d\langle X^i, X^j \rangle_s 
+\end{align*}
+\end{subproof} 
+Having the claim, by induction, $(\star)$ holds for all polynomials.
+\s
+
+For a continuous local martingale $X^i$, write $X^i = X_0^i + M^i + A^i$, with $M^i$ a continuous local martingale and $A^i$ a finite variation process.
+
+\textbf{$\spadesuit$ Claim :} $(\star)$ holds for $f\in C^2$ if $|X_t^i (\omega)|\leq n$, and $\int_0^t |dA_s^i| \leq n$ for all $(t, \omega)$.
+\begin{subproof}
+: By the \emph{Weierstrass approximation theorem}, there are polynomials $p_k$ such that
+\begin{align*}
+\sup_{|k| \leq n} \Big(|f(x) - p_k(x)| + |D f(x) - D p_k(x)|+ |D^2 f(x) - D^2 p_k(x)| \Big) \leq \frac{1}{k}
+\end{align*}
+Taking limits, in probabiity,
+\begin{align*}
+& f(X_t) - f(X_0) = \lim_{k\rightarrow \infty} (p_k(X_t) - p_k(X_0))\\
+& \int_0^t \frac{\pa f}{\pa x^i} (X_s) dX_s^i = \lim_{k\rightarrow \infty} \int_0^t \frac{\pa p_k}{\pa x^i}(X_s) dX_s^i \quad \text{by } \emph{stochastic DCT}\\
+& \int_0^t \frac{\pa^2 f}{\pa x^i \pa x^j}(X_s)d\langle X_s^i, X_s^j \rangle = \lim \int_0^\infty \frac{\pa^2 p_k}{\pa x^i \pa x^j}(X_s) d\langle X^i, X^j \rangle_s \quad \text{by DCT}
+\end{align*}
+\end{subproof}
+
+\end{p}
+\s
+
+\newday
+
+(18th February, Monday)
+\s
+
+We were proving,
+
+\thm \emph{(It\^o formula)} Let $X^1, \cdots, X^p$ be continuous semimartingales, and let $f \in C^2(\reals^p ; \reals)$. Then, writing $X = (X^1, \cdots, X^p)$, a.s,
+\begin{align*}
+f(X_t) =  f(X_0) + \sum_{i=1}^p \int_0^t \frac{\pa f}{\pa x^i}(X_s)dX_s^i + \frac{1}{2} \sum_{i,j=1}^p \int_0^t \frac{\pa^2 f}{\pa x^i \pa x^j} (X_s) d\langle X^i, X^j \rangle_s \call{\star}
+\end{align*}
+\begin{p}
+\textbf{proof continued)} Last time we proved $(\star)$ under the additional hypothesis that
+\begin{align*}
+\max_i |X_t^i| \leq n, \quad \max_{i} \int_0^t |dA_s^i| \leq n
+\end{align*}
+For the general case, let $T_n = \inf \{t\geq 0 : \max_ |X_t^i| \geq n, \max_i \int_0^t |dA_s^i| \geq n\}$. Then by the case we already know,
+\begin{align*}
+f(X_t^{T_n}) =& f(X_0^{T_n}) + \sum_{i=1}^{p} \int_0^t \frac{\pa f}{\pa x^i} (X_s^{T_n}) d(X^{T_n})_s^i + \frac{1}{2} \sum_{i,j=1}^p \int_0^t \frac{\pa^2 f}{\pa x^i \pa x^j} (X_s^{T_n}) d\langle (X^{T_n})^i, (X^{T_n})^j \rangle_s \\
+=& f(X_0) + \int_0^{t\wedge T_n} \frac{\pa f}{\pa x^i} (X_s) dX_s^i + \int_0^{t\wedge T_n} \frac{\pa^2 f}{\pa x^i \pa x^j} (X_s) d\langle X^i, X^j \rangle_s
+\end{align*}
+Take $n\rightarrow\infty$ then we are done.
+
+\eop
+\end{p}
+\s
+
+If you are lost in the way getting here, this is a good point to jump back in - most of the utility of \emph{Stochastic Calculus} comes from this It\^o formula, and does not care much about how we arrived here.
+\s
+
+\textbf{Remark :} In terms of the \emph{Stratonovich integral},
+\begin{align*}
+f(X_t) = f(X_0) + \sum_{i=1}^p \int_0^t \frac{\pa f}{\pa x^i} (X_s) dX_s^i
+\end{align*}
+This is the reason why Stratonovich integral is sometimes more useful than It\^o integral. However, it is hard to verify if the result is a martingale or not in this setting, so you will eventually need to pass on to It\^o integral in order to do martingale computations.
+\s
+
+\subsubsection*{Summary of calculation rules for the It\^o integral :}
+
+Let us adopt the notations
+\begin{align*}
+Z_t - Z_0 = \int_0^t H_s dX_{S_t} \quad \Leftrightarrow & \quad dZ_t = H_t dX_t \\
+Z_t - Z_0 = \langle X, Y\rangle_t =\int_0^t d\langle X, Y \rangle_s \quad \Leftrightarrow & \quad dZ_t = dX_t dY_t
+\end{align*}
+Then, :
+\begin{align*}
+\begin{array}{rl}
+\textbf{``Associativity" }  & H_t (K_t dX_t) = (H_t K_t) dX_t, \quad (\textit{i.e. } H\cdot (K \cdot X) = (HK) \cdot X) \\
+\textbf{``Kunita-Watanabe equality" } & H_t dX_t dY_t = (H_t dX_t) dY_t, \quad (\textit{i.e. } H\cdot \langle X, Y \rangle = \langle H\cdot X, Y \rangle )\\
+\textbf{``It\^o formula" } & df(X_t) = \sum_{i}\frac{\pa f}{\pa x^i} dX_t^i + \frac{1}{2} \sum_{i,j} \frac{\pa^2 f}{\pa x^i \pa x^j} (X_t) dX_t^i dX_t^j
+\end{array}
+\end{align*}
+For example, if $X= B$ is a Brownian motion, then
+\begin{align*}
+df(B_t) = f'(B_t) dB_t + \frac{1}{2}f''(B_t) dt, \quad \textit{i.e. } (dB_t)^2 = dt
+\end{align*}
+
+\section{Applications to Brownian Motion and Martingales}
+
+\subsection{L\'evy's characterisation of Brownian motion}
+
+\thm Let $X = (X^1, \cdots, X^p)$ be continuous local martingales. Suppose $X_0 = 0$ and that $\langle X^i, X^j \rangle_t = \delta_{ij} t$ for all $t\geq 0$. Then $X$ is a standard $p$-diemnsional Brownaim motion. That is, \emph{the covariation singles out the Brownian motion.}
+\begin{p}
+\pf It suffices to show that for all $0\leq s <t$, (i) $X_t - X_s$ is independent of $\FF_s$ and (ii) $X_t - X_s \sim N(0, (t-s)id_{p \times p})$.
+
+\quad Both properties follow form the following claim :
+\begin{align*}
+\avg \big(e^{i\theta \cdot (X_t - X_s)} | \FF_s \big) = e^{-\frac{1}{2} |\theta|^2 (t-s)} \quad \text{for all } \theta\in \reals^p, \,\, s< t \call{\diamondsuit}
+\end{align*}
+Indeed, $(\diamondsuit)$ implies $\avg (e^{i\theta \cdot (X_t - X_s)}) = \exp (- \frac{1}{2} |\theta|^2 (t-s))$ thus $X_t - X_s \sim N(0, (t-s)id)$. To show independence, consider $A\in \FF_s$ with $\prob (A) > 0$. Then $X_t - X_s \sim N (0, (t-s)id)$ under $\prob (\cdot |A) = \prob(\cdot \cap A) / \prob(A)$. Hence
+\begin{align*}
+\avg (1_A f(X_t - X_s)) = \prob(A) \avg(f(X_t - X_s))\quad \forall f \text{ measurable},
+\end{align*}
+\textit{i.e.} $A$ is independent of $X_t - X_s$. The same is trivial if $\prob(A) =0$. Thus, $X_t - X_s$ is independent of $\FF_s$.
+\s
+
+To show $(\diamondsuit)$, fix $\theta \in \reals^p$ and set $Y = \theta \cdot X_t = \sum_{i=1}^p \theta^i X_t^i$. Then
+\begin{align*}
+\langle Y \rangle_t = \langle Y , Y \rangle_t = \sum_{i,j=1}^p \theta^i \theta^j \langle X^i, X^j \rangle_t = \sum_{i=1}^p (\theta^i)^2 t = |\theta|^2 t
+\end{align*}
+where the third equality follows from the assumption in the statement of the theorem. Let $Z_t = e^{i Y_t + \frac{1}{2} \langle Y \rangle_t} = e^{iY_t + \frac{1}{2} |\theta|^2 t}$. By It\^o formula with $f(x) = e^x$ and $\bar{X}= iY + \frac{1}{2} \langle Y \rangle$,
+\begin{align*}
+dZ_t =& df(X_t) = Z_t \big( d\bar{X}_t + \frac{1}{2} d\langle \bar{X} \rangle_t \big) \\
+=& Z_t (i \cdot dY_t + \frac{1}{2} d\langle Y \rangle_t - \frac{1}{2} d\langle Y \rangle_t) = iZ_t dY_t
+\end{align*}
+\emph{(verify these calculations - might be faulty.)} In particular, $Z$ is a continuous local martingale. Since $Z$ is bounded on every bounded interval, $Z$ is in fact a martingale (when we are checking martingale property, we only do computations on bounded times, so it suffices to have absolute bound on each bounded interval). So $\avg(Z_t | \FF_s) = Z_s$ and hence
+\begin{align*}
+\avg \big( e^{i\theta \cdot (X_t - X_s)} | \FF_s \big) = e^{-\frac{1}{2} |\theta|^2 (t-s)}
+\end{align*}
+which was the claim.
+
+\eop
+\end{p}
+\s
+
+This theorem can be of intrinsic interest, but is also interesting in terms of applications. We often construct a stochastic process not directly from a Brownain motion, but in different ways, for example by Wiener measure. Then this characterization verifies if this process is a Brownian motion or not.
+
+\subsection{Dubins-Schwarz Theorem}
+
+\thm Let $M$ be a continuous local martingale with $M_0 =0$ and $\langle M \rangle_{\infty} =\infty$ a.s. Let $T_s = \inf \{t\geq 0 : \langle M \rangle_t >s \}$ be the right-continuous inverse of $\langle M \rangle$.
+\begin{align*}
+B_s = M_{T_s}, \quad \mathscr{G}_s = \FF_{T_s}
+\end{align*}
+Then $T_s$ is an $(\FF_t)$ stopping times, $\langle M \rangle_{T_s}$ for all $s\geq 0$, $B$ is a $(\mathscr{G}_s)_{s\geq 0}$-Brownian motion and
+\begin{align*}
+M_t = B_{\langle M \rangle_t},
+\end{align*}
+\textit{i.e.} $M$ is a random time change of a Brownian motion.
+\s
+
+\newday
+
+(20th February, Wednesday)
+\s
+
+Before we prove the theorem, we need a lemma. 
+\s
+
+\lem Let $M$ be a continuous local martingale. Almost surely for all $u<v$, $M$ is constant on $[u,v]$ \emph{iff} $\langle M \rangle$ is constant on $[u,v]$.
+\begin{p}
+\pf By continuity, it suffices to prove that for any fixed $u, v$, a.s.
+\begin{align*}
+\{ M_t = M_u \,\, \forall t\in [u,v] \} = \{ \langle M \rangle_u = \langle M \rangle_v \}
+\end{align*}
+Let $N_t = M_t - M_{t\wedge u} = \int_{t\wedge u}^t dM_s$. Then $\langle N \rangle_t = \langle M \rangle_t - \langle M \rangle_{t\wedge u}$ (by \emph{Kunita-Watanabe} formula). For any $\epsilon$, let $T_{\epsilon} = \inf \{t\geq 0 : \langle N \rangle_t > \epsilon \}$. Then $N^{T_{\epsilon}} \in M_c^2$ since $\langle N^{T_{\epsilon}} \rangle \leq \epsilon$ and $\avg((N_t^{T_{\epsilon}})^2) = \avg (\langle N^{T_{\epsilon}} \rangle_{t}) \leq \epsilon$. So 
+\begin{align*}
+\avg \big( N_t^2 \charac_{\{\langle M \rangle_v =\langle M \rangle_u \}} \big) = \avg \big( \charac_{\langle N \rangle_v =0} N_{t\wedge T_{\epsilon}}^2 \big) \leq \avg (N^2_{t\wedge T_{\epsilon}}) \leq \epsilon
+\end{align*}
+so $N_t =0$ a.s. on $\{\langle M \rangle_v = \langle M \rangle_u \}$ for any $t\in [u,v]$. Hence we have shown that a.s. $\langle M \rangle_u = \langle M \rangle_v$ implies $M$ is constant on $[u,v]$.
+\s
+
+The other direction is implied by the approximation formula for the quadratic variation. Without loss of generality, put $u=0 < v$ and let $\langle M \rangle^{(m)}_v = \sum_{i=1}^{2^m} \big( M_{i\cdot 2^{-m}v} - M_{(i-1)\cdot 2^{-m}v}) \big)^2$, then $\langle M \rangle^{(m)}_v =0$ whenever $M \equiv M_0$ on $[0,v]$. So for any $\epsilon>0$,
+\begin{align*}
+&\prob \big(  | \langle M \rangle_v - \langle M \rangle_v^{(m)} | \geq \epsilon, \,\, M_t =M_0\,\, \forall t\in[0,v] \big) \\
+=& \prob \big( |\langle M \rangle_v| \geq \epsilon \,\, M_t =M_0\,\, \forall t\in[0,v] \big) \rightarrow 0 \quad \text{as } m \rightarrow \infty
+\end{align*}
+so in fact $\prob \big( |\langle M \rangle_v| \geq \epsilon \,\, M_t =M_0\,\, \forall t\in[0,v] \big) =0$ for any $\epsilon >0$, which concludes the proof.
+ 
+\emph{[Note that we will never use the last implication]}
+
+\eop
+\end{p}
+
+
+\thm \emph{(Dubins-Schwarz)} Let $M$ be a continuous local martingale with $M_0 =0$ and $\langle M \rangle_{\infty} =\infty$ a.s. Let $T_s = \inf \{t\geq 0 : \langle M \rangle_t >s \}$ be the right-continuous inverse of $\langle M \rangle$. Let
+\begin{align*}
+B_s = M_{T_s}, \quad \mathscr{G}_s = \FF_{T_s}
+\end{align*}
+Then $T_s$ is an $(\FF_t)$ stopping time, $\langle M \rangle_{T_s}=s$ for all $s\geq 0$, $B$ is a $(\mathscr{G}_s)_{s\geq 0}$-Brownian motion and
+\begin{align*}
+M_t = B_{\langle M \rangle_t}
+\end{align*}
+\begin{p}
+\pf Since $\langle M \rangle$ is continuous and adapted, the $T_s$ are stopping times and $T_s < \infty$ a.s. Redefine $T_s =0$ if $\langle M \rangle_{\infty} < \infty$. Note that $T_s$ is still a stopping times since $(\FF_s)$ is complete, hence $\FF_0$ includes all events of probability 0.
+
+\textbf{$\heartsuit$ Claim :} $(\mathscr{G}_s)$ is a filtration obeying the \emph{usual conditions}. \emph{[note, we have constructed our thoery on the implicit assumption that each filtration obeys the usual condition. So should $(\mathscr{G}_s)$]}
+\begin{subproof}
+: For $A\in \mathscr{G}_s = \FF_{T_s}$ and $s<t$,
+\begin{align*}
+A \cap \{T_t \leq u\} = A \cap \{T_s \leq u \} \cap \{T_t \leq u\} \in \FF_u
+\end{align*}
+so $A\in A_{T_t} = \mathscr{G}_t$. Hence $(\mathscr{G}_s)$ is a filtration.
+\s
+
+Right-continuity and completeness are descended from the properties $(\FF_t)$ and right-continuity of $t\mapsto T_t$. 
+\end{subproof}
+\textbf{$\heartsuit$ Claim :} $B$ is adapted to $(\mathscr{G}_s)$.
+\begin{subproof}
+: Recall, from \emph{Advanced Probability}, that if $X$ is c\`adl\`ag and $T$ is a stopping time then $X_T \charac_{T<\infty} \in \FF_T$. Apply this with $X=M$, $T=T_s$ and $\FF_T = \mathscr{G}_s$. This gives $B_t \in \mathscr{G}_s$.
+\end{subproof}
+\textbf{$\heartsuit$ Claim :} $B$ is continuous.
+\begin{subproof}
+: $T_s$ is c\`adl\`ag in $s$, so $B_s = M_{T_s}$ is c\`adl\`ag and thus right-continuous.
+
+Also to check $B$ is left continuous, observe $B$ is left-continuous at $s$ $\Leftrightarrow$ $B_s = B_{s^-}$ $\Leftrightarrow$ $M_{T_s} = M_{T_{s^-}}$ where $T_{s^-} = \inf \{t\geq 0 : \langle M \rangle_t =s \}$. We divide into two cases,
+\begin{i}
+\item if $T_s = T_{s^-}$ then $B$ is left-continuous.
+\item if $T_s > T_{s^-}$ then $\langle M \rangle$ is constant on $[T_{s^-}, T_s]$. Hence $M_{T_s} = M_{T_{s^-}}$ holds by the previous lemma, \textit{i.e.} $B$ is left-continuous.
+\end{i}
+By these two cases, we see that $B$ is left-continuous
+\end{subproof}
+\textbf{$\heartsuit$ Claim :} $B$ is a continuous martingale with respect to $(\mathscr{G}_s)$ and $\langle B \rangle_s = s$ for all $s\geq 0$.
+\begin{subproof}
+: Let $0\leq r <s$. Then $\langle M^{T_s} \rangle_{\infty} = \langle M \rangle_{T_s} = s$ (here we used the fact that $\langle M^{T_s} \rangle_t$ tends to $\infty$ a.s.). So $M^{T_s} \in M_c^2$, and so $(M^2 - \langle M \rangle)^{T_s}$ is a uniformly integrable martingale. Now \emph{Optional Stopping Theorem} implies
+\begin{align*}
+& \avg (B_s | \mathscr{G}_r) = \avg (M_{\infty}^{T_s} | \FF_{T_r} ) = M_{T_r} = B_r \\
+& \avg (B_s^2 - s | \mathscr{G}_r) = \avg \big( (M^2 - \langle M \rangle)^{T_s}_{\infty} | \FF_{T_r}\big) = M^2_{T_r} - \langle M \rangle_{T_r} = B_r^2 -r 
+\end{align*}
+\end{subproof}
+By the claim and the \emph{L\'evy's characterisation} of Brownian motions, it follows that $B$ is a Brownian motion.
+
+\eop
+\end{p}
+\s
+
+\emph{Caution! :} Schwarz in \emph{Dubins-Schwarz} does not have a `t' in his name.
+
+\subsection{Girsanov's Theorem}
+
+This is a next application of It\^o's formula.
+\s
+
+\textbf{Example :} Let $X\sim N(0, C)$. be an $n$-dimensional Gauissian vector with positive definite covariance matric $C= (C_{ij})_{i,j=1}^n$ and mean $0$. Then
+\begin{align*}
+\avg (f(X)) = \big( \text{det} \frac{M}{2\pi} \big)^{1/2} \int_{\reals^n} f(x) e^{-\frac{1}{2} x\cdot M x} dx, \quad (M = C^{-1})
+\end{align*}
+Let $a\in \reals^n$. Then 
+\begin{align*}
+\avg (f(X+a)) =& \big( \text{det} \frac{M}{2\pi} \big)^{1/2} \int_{\reals^n} f(x) e^{-\frac{1}{2} (x-a)\cdot M (x-a)} dx \\
+=& \big( \text{det} \frac{M}{2\pi} \big)^{1/2} \int_{\reals^n} f(x) e^{- \frac{1}{2} x\cdot Mx - \frac{1}{2} a\cdot Ma + x\cdot M a} dx =: \big( \text{det} \frac{M}{2\pi} \big)^{1/2} \int_{\reals^n} f(x) e^{- \frac{1}{2} x\cdot Mx} Z dx
+\end{align*}
+where $Z := \exp (\frac{1}{2} a\cdot Ma + x\cdot M a)$, so $\avg (f(X+a)) = \avg (f(X) Z)$. Thus if $\prob$ denotes the distribution of $X$, then the measure $\mathbb{Q}$ with
+\begin{align*}
+\frac{d\mathbb{Q}}{d\prob} = Z
+\end{align*}
+is that of a $N(0, C)$ Gaussian vector, \textit{i.e.} of $X+a$.
+\s
+
+\textbf{Example :} Let $B$ be a standard Brownian motion with $B_0 =0$. Fix finitely many times $0=t_0 = t_1 < \cdots < t_n$. Then $(B_{t_i})_{i=1}^n$ is a centred Gaussian vector with
+\begin{align*}
+\avg (f((B_{t_i})_{i=1}^n)) = \text{const.} \times \int_{\reals^n} f(x)e^{-\frac{1}{2} \sum_{i=1}^n \frac{(x_i - x_{i-1})^2}{t_i -t_{i-1}}} dx_1 \cdots dx_n 
+\end{align*}
+Let $h: \reals_+ \rightarrow \reals$ be a deterministic function. Then
+\begin{align*}
+\avg (f((B + h)_{t_i})) = \avg(Z f(B_{t_i}))
+\end{align*}
+with $Z= \exp \big( -\frac{1}{2}\sum_{i=1}^n \frac{(h_{t_i} - h_{t_{i-1}})^2}{t_i - t_{i-1}} + \sum_{i=1}^n \frac{(h_{t_i} - h_{t_{i-1}})(B_{t_i} - B_{t_{i-1}})}{t_i - t_{i-1}} \big)$.
+\s
+
+The Girsanov's Theorem is essentially a generalized version of these with the summation replaced by integration with more careful treatment.
+\s
+
+\newday
+
+(22nd February, Friday)
+\s
+
+\defi Let $L$ be a continuous local martingale with $L_0 =0$. Then the \textbf{stochastic exponential} of $L$ is
+\begin{align*}
+\EE (L)_t = e^{L_t - \frac{1}{2} \langle L \rangle_t}
+\end{align*}
+
+\fact $Z = \EE (M)$ is a continuous local martingale and it satisfies
+\begin{align*}
+dZ_t = Z_t dL_t
+\end{align*}
+\emph{i.e.} $Z_t = 1 + \int_0^t Z_s dL_s$.
+\begin{p}
+\pf By It\^o's formula applied to $X = L - \frac{1}{2} \langle L \rangle$ and $f(x) = e^x$,
+\begin{align*}
+dZ_t = df(X_t) = Z_t (dL_t - \frac{1}{2} d\langle L \rangle_t + \frac{1}{2} d\langle L \rangle_t) = Z_t dL_t
+\end{align*}
+Since $L$ is a continuous local martingale, so is $Z\cdot L$ since $Z= 1+Z\cdot L$, hence $Z$ is a continuous local martingale.
+
+\eop 
+\end{p}
+\s
+
+\thm \emph{(Girsanov)} Let $L$ be a continuous local martingale with $L_0 =0$. Suppose that $\EE (L)$ is a \emph{UI(uniformly integrable)} martingale. Define a probability measure $\mathbb{Q}$ by
+\begin{align*}
+\frac{d\mathbb{Q}}{d \prob} = \EE (L)_{\infty}
+\end{align*}
+If $M$ is a continuous local martingale with respect to $\prob$, then $\tilde{M} = M - \langle M, L\rangle$ is a continuous local martingale with respect to $\mathbb{Q}$.
+\s
+
+\emph{Remark :} The quadratic variation does not change, $\langle M \rangle = \langle \tilde{M} \rangle$. This follows, for example, from
+\begin{align*}
+\langle M \rangle_t = \lim_{n\rightarrow \infty} \sum_{i=1}^{\lfloor 2^m t \rfloor} (M_{2^{-m}i} - M_{2^{-m}(i-1)})^2 \quad \prob\text{-a.s. along a subsequence}
+\end{align*}
+and $\mathbb{Q}$-null sets are identical to $\prob$-null sets, so the limit is also true in $\mathbb{Q}$-a.s. sense. 
+\s
+
+\begin{p}
+\pf Let $T_n = \inf \{t\geq 0 : |\tilde{M}_t| >n \}$. Then $T_n$ is a stopping time, and $\mathbb{Q}(T_n \nearrow \infty) = \prob (T_n \nearrow \infty)=1$ by continuity of $\tilde{M}$ and that $\prob \sim \mathbb{Q}$. Thus it suffices to show that $\tilde{M}^{T_n}$ is a continuous local martingale with respect to $\mathbb{Q}$ for all $n$. Let $Y_t = {M}_t^{T_n} - \langle M^{T_n} , L \rangle_t$ and $Z_t = \EE(L)_t$.
+
+\textbf{$\heartsuit$ Claim :} $(Z Y)_t$ is a continuous local martingale with respect to $\prob$. 
+\begin{subproof}
+: we just check using It\^o formula, that
+\begin{align*}
+d(ZY) =& Y_t dZ_t + Z_t dY_t + d\langle Z, Y \rangle_t \\
+=& (M_t^{T_n} - \langle M^{T_n}, L \rangle_t )Z_t dL_t + Z_t (dM_t^{T_n} - d\langle M^{T_n}, L \rangle) + Z_t d\langle L, M^{T_n} \rangle_t \\
+= & (M_t^{T_n} - \langle M^{T_n}, L \rangle_t )Z_t dL_t + Z_t dM_t^{T_n}
+\end{align*}
+where we used $d \langle Z, Y \rangle = d\langle Z, M^{T_n} \rangle = Zd\langle L, M^{T_n} \rangle$ since $dZ= ZdL$ and $\langle Z\cdot L, M^{T_n} \rangle = Z\cdot \langle L, M^{T_n} \rangle$. Thus $d(ZY)$ is a sum of stochastic differentials with respect to local martingales. Hence $ZY$ is a continuous local martingale.
+\end{subproof}
+
+\textbf{$\heartsuit$ Claim :} $ZY$ is a uniformly integrable martingale with respect to $\prob$.
+\begin{subproof}
+: this follows from the fact that $Z= \EE(L)$ is by assumption a uniformly integrable martingale, together with the fact that $Y$ is bounded (recall, by definition that $|Y|\leq n$) (but be careful that if $Z$ was just a unifromly integrable local martingale, then this is not necessarily true so we need a bit more). Indeed, a local martingale $M$ is a matingale \emph{iff}
+\begin{align*}
+\forall t, \quad \mathscr{X}_t = \{ M_T : T\text{ is a stopping time with } T\leq t \} \text{ is UI}
+\end{align*}
+\begin{subproof}
+: (verifying  this statement was an Exercise. Or see online lecture notes p21-22) Forward implication follows from the fact that, for any $t>0$, $\{ \avg[X_t | \mathscr{G}] : \mathscr{G} \subset \FF_t$ a sub-$\sigma$-algebra$\}$ is uniformly integrable (see \emph{Advanced Probability} or \emph{Example Sheet \#1}).
+
+\quad To see the backward implication, fisrt note that for any bounded stopping time $T$, say $T\leq t_0$ a.s, the process $(X^T_t)_t$ is uniformly integrable and therefore $\avg[X^T_t | \FF_s] = X^T_s$ whenever $s\leq t\leq t_0$. Then the result follows from a part of the \emph{Optional Stopping Theorem} stating that $X$ is a martingale \emph{iff} the process $X^T$ is a martingale for any bounded stopping time $T$.
+\end{subproof}
+Since being UI is preserved under multiplicaiton by bounded random variables, this implies the claim.
+\end{subproof}
+
+\textbf{$\heartsuit$ Claim :} $Y$ is a martingale with respect to $\mathbb{Q}$ (recall $\frac{d \mathbb{Q}}{d \prob} = \EE (L)_{\infty} = Z_{\infty}$).
+\begin{subproof}
+: First observe that
+\begin{align*}
+\avg^{\mathbb{Q}}(Y_t - Y_s | \FF_s) =& \avg^{\prob}(Z_{\infty}Y_t - Z_{\infty} Y_s |\FF_s ) \\
+=& \avg^{\prob}\big( \avg^{\prob}(Z_{\infty}Y_t - Z_{\infty} Y_s |\FF_t ) | \FF_s \big) = \avg^{\prob} (Z_t Y_t - Z_s Y_s | \FF_s) =0
+\end{align*}
+Since $Y = (M - \langle M, L \rangle)^{T_n}$ is a $\mathbb{Q}$-martingale and $T_n \nearrow \infty$ a.s., thus $M - \langle M, L \rangle$ is a $\mathbb{Q}$-local martingale.
+\end{subproof}
+Having these claims, the proof is complete.
+
+\eop
+\end{p}
+\s
+
+To apply the theorem, we need to verify that the exponential martingale is uniformly integrable. One criterion for doing this is the following, yet not the most general one.
+\s
+
+\prop Suppose that $\langle L \rangle$ is bounded, say $\langle L \rangle_{\infty} \leq C$. Then $\EE(L)$ is a UI martingale.
+\begin{p}
+\pf It suffices to show that $\sup_t L_t$ has Gaussian tail :
+\begin{align*}
+\prob \big( \sup_{t\geq 0} L_t \geq a \big) \leq e^{-a^2 /2C}
+\end{align*}
+Indeed, then
+\begin{align*}
+\avg \big(  \sup_t \EE(L)_t \big) \leq& \,\, \avg \big( \exp (\sup_t L_t ) \big) \quad (\text{used } \EE(L) = e^{L - \frac{1}{2} \langle L \rangle}  \leq e^L) \\
+=& \int_0^{\infty} \prob \big( \exp (\sup L_t) \geq \lambda \big) d\lambda \\
+=& \int_0^{\infty} \prob \big( \sup_t L_t \geq \log \lambda \big) d\lambda \\
+\leq& 1+ \int_1^{\infty} e^{- \frac{(\log \lambda)^2}{2C}} d\lambda < \infty
+\end{align*}
+so $\EE(L)_t$ is bounded by the random variable $\sup_t \EE(L)_t \in L^1$ and thus $\EE(L)$ is uniformly integrable.
+\s
+
+(Checking the tail bound is an exercise, on the Example Sheet)
+
+\textbf{$\heartsuit$ Claim :} Let $M$ be a continuous local martingale with $M_0 =0$. Then for any $a,b>0$,
+\begin{align*}
+\prob\Big( \sup_{t\geq 0} M_t \geq a, \langle M\rangle_{\infty} \leq b\Big) \leq \exp \Big( -\frac{a^2}{2b} \Big)
+\end{align*}
+\begin{subproof}
+: Let $T=\inf \{t\geq 0 : M_t =a \}$, then $\{M_{\infty}^{T} =a \} \supset \{ \sup_t M_t >a\}$. Fix $\lambda \in \reals_{>0}$, and let
+\begin{align*}
+Z_t = \exp \Big( \lambda M_t^T -\frac{1}{2} \lambda^2 \langle M \rangle_t^T \Big)
+\end{align*}
+By \emph{Ito's formula}, $Z$ is a continuous local martingale and $Z_t \leq e^{\lambda a}$ for all $t\geq 0$, so is bounded. Hence, $Z$ is in fact a true martingale. Now
+\begin{align*}
+1 = Z_0 = \avg Z_{\infty} &\geq \avg(Z_{\infty} \charac_{\sup_{t} M_t >a, \langle M \rangle_{\infty} \leq b}) \\
+&\geq \avg (\exp (\lambda a -\frac{1}{2} \lambda^2 b) \charac_{\sup_{t} M_t >a, \langle M \rangle_{\infty} \leq b})
+\end{align*}
+since upon the event $\{\sup_{t} M_t >a\}$, we always have $M_{\infty}^T =a$. Hence
+\begin{align*}
+\prob (\sup_t M_t >a, \langle M \rangle_{\infty} \leq b) \leq e^{-\lambda a + \frac{1}{2} \lambda^2 b}
+\end{align*} 
+Optimizing over $\lambda$, we get
+\begin{align*}
+\prob (\sup M_t >a, \langle M \rangle_{\infty} \leq b) \leq e{-\frac{a^2}{2b}}
+\end{align*}
+and
+\begin{align*}
+\prob(\sup_t M_t \geq a, \langle M \rangle_{\infty} \leq b) \leq \inf \{ \prob(\sup_t M_t >a', \langle M\rangle_{\infty} \leq b) ; a'<a \} \leq e^{-a^2 /2b}
+\end{align*}
+as desired.
+\end{subproof}
+\eop 
+\end{p}
+\s
+
+In the proof, we had to check tedious details using techiniques of measure theory and martingale theory, but the real core of the proof of the theorem in fact comes from the examples displayed at the end of the last lecture. We just need to see the finite dimensional cases to see how the proof in general works. 
+\s
+
+\newday
+
+(25th February, Monday)
+\s
+
+(A comment from last lecture) \prop Let $M$ be a continuous local martingale with $M_0 =0$. Then $M \in M_c^2$ \emph{iff} $\avg \langle M \rangle_{\infty} < \infty$ and then $M^2 - \langle M \rangle$ is a UI martingale and $\norms{M}{M^2} = (\avg \langle M \rangle_{\infty})^{1/2}$.
+\begin{p}
+\pf See \emph{Example Sheet \#1}.
+\end{p}
+\s
+
+There is a more general criterion for $\mathscr{E}(M)$ to be uniformly integrable.
+\s
+
+\thm \emph{(Novikov)} Let $M$ be a continuous local martingale with $M_0 = 0$. Then $\avg (e^{\frac{1}{2} \langle M \rangle_{\infty}})< \infty$ implies that $\mathscr{E}(M)$ is a UI martingale.
+\s
+
+\corr \emph{(corollary of Girsanov's Theorem)} Let $B$ be a standard Brownian motion (under $\prob$) and let $L$ be a continuous local martingale with $L_0 = 0$ such that $\mathscr{E}(L)$ is a UI martingale. Then $\tilde{B} = B- \langle B, L \rangle$ is a standard Brownian motion under the measure $\mathbb{Q}$ where
+\begin{align*}
+\frac{d\mathbb{Q}}{d\mathbb{P}} = \mathscr{E}(L)_{\infty}
+\end{align*}
+\begin{p}
+\pf By \emph{Girsanov's Theorem}, $\tilde{B}$ is a continuous local martingale. Moreover, $\langle \tilde{B}\rangle_t = \langle B\rangle_t =t$. By \emph{L\'{e}vy's characterisation}, $\tilde{B}$ is a standard Brownian motion.
+
+\eop
+\end{p}
+\s
+
+Why is this useful? Consider the following (informal) example.
+\s
+
+\textbf{Example :} Consider the SDE (this is yet to be defined), for a fixed time $T< \infty$,
+\begin{align*}
+dX_t =b(X_t) dt + dB_t, \quad t\leq T
+\end{align*}
+We can construct a soluion as follows. Let $X$ be a standard Brownian motion under $\prob$. Let
+\begin{align*}
+L_t = \int_0^{t\wedge T} b(X_s) dX_s
+\end{align*}
+Assume that $\mathscr{E}(L)$ is a UI martingale. Then
+\begin{align*}
+X_t - \langle X, L\rangle_t = X_t - \int_0^{t\wedge T} b(X_s) d\langle X \rangle_s = X_t - \int_0^{t\wedge T} b(X_s) ds
+\end{align*}
+is a standard Brownian motion under $\mathbb{Q}$ given by $d\mathbb{Q} / d\prob = \mathscr{E}(L)_{\infty}$. Thus if we call this Brownain motion $\tilde{B}$ then the last equation is written by
+\begin{align*}
+X_t - \int_0^{t\wedge T}b(X_s) ds = \tilde{B}_t
+\end{align*}
+So instead of solving the equation $dX_t = b(X_t) dt + dB_t$, we can just start with a Brownian motion in the changed measure $\mathbb{Q}$ and change the measure back to $\prob$ to see the distribution of $X$.
+
+\quad When is $\mathscr{E}(L)$ is a UI martingale? We have
+\begin{align*}
+\langle L \rangle_{\infty} = \int_0^T b(X_s)^2 ds
+\end{align*}
+So it is sufficient if $b$ is a bounded function.
+
+\subsection{The Cameron-Martin formuala}
+
+This section is about a different application of Girsanov's Theorem.
+\s
+
+\defi The \textbf{(classical/canonical) Wiener space} $(W,\mathscr{W}, P)$ is given by $W = C(\reals_, \reals)$, $\mathscr{W} = \sigma(X_t : t\geq 0)$ where $X_t : W\rightarrow \reals$ is given by $X_t(w) = w(t)$ for $w\in W$ and $P$ is the unique probility measure on $(W, \mathscr{W})$ such that $(X_t)$ is a standard Brownian motion. $X$ is also called the \textbf{canonical version of Brownian motion}. (This is a Banach space)
+\s
+
+\defi The \textbf{Cameron-Martin space} is
+\begin{align*}
+\mathscr{H} = \{h \in W : h(t) = \int_0^t g(s) ds \quad \text{for some }g\in L^2(\reals_+) \}
+\end{align*}
+For $h\in \mathscr{H}$, the function $\dot{h} =g$ is the weak derivative of $g$.
+\s
+
+\emph{Exercise :} $\mathscr{H}$ is a Hilbert space with inner product
+\begin{align*}
+(h, f)_{\mathscr{H}} = \int_0^{\infty} \dot{h}(s)\dot{f}(s) ds
+\end{align*} 
+The dual space of $\mathscr{H}$ can be identified with
+\begin{align*}
+\mathscr{H}^* = \{\mu \in \mathscr{M}(\reals_+) : \int_0^{\infty }(s\wedge t)\mu(ds) \mu(dt) = (\mu, \mu)_{\mathscr{H}^*}< \infty, \mu(\{0\})=0\}
+\end{align*}
+in the sense that for any $l: \mathscr{H} \rightarrow \reals$ bounded and linear, there is $\mu \in \mathscr{H}$ such that $l(h) = \int_0^{\infty} h(t) \mu(dt)$ and vice-versa.
+\s
+
+\emph{Remark :} We would like to think of a Brownian motion as the standard Gaussian measure on $\mathscr{H}$. This measure does not exist. But the next theorem shows it almost does.
+\s
+
+\thm \emph{(Cameron-Martin)} Let $h\in \mathscr{H}$ and define $P^h$ by ($P^h$ is going to be a canonical measure on the Wiener space)
+\begin{align*}
+P^h(A) = P \big( \{ w\in W : w+ h \in A \} \big)
+\end{align*}
+for $A\in \mathscr{W}$. Then the measure $P^h$ is absolutely continuous with respect to the Wiener measure $P$ and
+\begin{align*}
+\frac{dP^h}{dP} = \exp \Big( \int_0^{\infty} \dot{h}(s) dX_s - \frac{1}{2}\int_0^{\infty} \dot{h}(s)^2 ds \Big)
+\end{align*}
+\begin{p}
+\pf Apply \emph{Girsanov's Theorem} with $L_t = \int_0^{t} \dot{h}(s) dX_s$. Since $\langle L \rangle_{\infty} = \int_0^{\infty} \dot{h}^2 ds = \snorms{h}{\mathscr{H}}^2 < \infty$. $\mathscr{E}(L)$ is a UI martingale. Then
+\begin{align*}
+\mathscr{E}(L)_{\infty} = \exp \Big( \int_0^{\infty} \dot{h}(s) dX_s - \frac{1}{2}\int_0^{\infty} \dot{h}(s)^2 ds \Big)
+\end{align*}
+so the rest is as in pervious examples.
+
+\eop
+\end{p}
+
+(See a refernce book for deeper analytical viewpoint)
+
+
+\section{Stochastic Differential Equations}
+
+\subsection{Notions of Solutions}
+
+In \emph{Section 1}, we considered the SDE(Stochastic Differntial Equation) $\dot{x}(t) =F(x(t)) + \eta(t)$, where $\eta$ is a white noise. Since the integral of white noise should be interpreted as a Brownian motion, it is reasonable to interpret this SDE as
+\begin{align*}
+X_t - X_0 = \int_0^t F(X_s) ds + B_t \quad \Leftrightarrow \quad dX_t = F(X_t) dt + dB_t 
+\end{align*}
+Note that $\Leftrightarrow$ holds because it is defined as a notaion.
+\s
+
+\newday
+
+(27th February, Wednesday)
+\s
+
+\defi Let $d, m\in \mathbb{N}$, $B: \reals_+ \times \reals^d \rightarrow \reals^d$, $\sigma : \reals_+ \times \reals^d \rightarrow \reals^{d\times m}$ be locally bounded Borel functions. The \textbf{stochastic diffrential equation (SDE)} $E(\sigma, b)$ is
+\begin{align*}
+dX_t = b(t, X_t) dt + \sigma(t, X_t) dB_t
+\end{align*}
+The SDE $E(\sigma, b)$ together with the initial condition $X_0 = x\in \reals^d$ is denoted $E_x(\sigma, b)$.
+\s
+
+\defi A \textbf{(weak) solution} to the SDE $E(\sigma, b)$ consists of
+\begin{i}
+\item a filtered probability space $(\Omega, \FF, (\FF_t)_{t}, \prob)$ obeying the \emph{usual conditions};
+\item an $m$-dimensional $(\FF_t)$-Brownian motion $B$;
+\item an $(\FF_t)$-adapted continuous process $X$ with values in $\reals^d$ such that
+\begin{align*}
+X_t = X_0 + \int_0^t \sigma(s, X_s) dB_s + \int_0^t b(s, X_s) ds.
+\end{align*} 
+\end{i}
+\s
+
+\defi For a \textbf{strong solution} to $E(\sigma, b)$, we specify the probability space $(\Omega, \FF, \prob)$ and a Brownian motion $B$, and chooose $(\FF_t)_t$ to be the \emph{completed filtration} induced by $B$. A strong solution is an $(\FF_t)$-adapted continous process $X$ as in the definition of weak solution. That is, it satisfies
+\begin{align*}
+X_t = X_0 + \int_0^t \sigma(s, X_s) dB_s + \int_0^t b(s, X_s) ds.
+\end{align*} 
+This means one can think of a strong solution as a function of the Brownian motion.
+\s
+
+The main difference in strong solution from weak solution is that the filtration and the Brownian motion is given \textit{a priori}. As the names suggest, weak solutions are easier to find but strong solutions have better properties. They are both useful.
+\s
+
+\defi For the SDE $E(\sigma, b)$ we say that there is
+\begin{i}
+\item \textbf{weak uniqueness} or \textbf{uniqueness in law} if all solutions to $E_x(\sigma, b)$ has the same law.
+\item \textbf{pathwise uniquness} if, for $(\Omega, \FF, \FF_t, \Omega, \prob)$ and $B$ fixed, all solutions with the same initial conditions are indistinguishable. \emph{[This does not mean that the filtration and $B$ are given as in the definition of a strong solution. This just means that if two weak solutions have the same attached filtration and Brownian motion, then they are indistinguishable.]}
+\end{i}
+Pathwise uniqueness implies weak uniqueness, but this is not obvious (called Yamada-Watanabe theorem, see below).
+\s
+
+\textbf{Example :} \emph{(Tanaka)} The SDE
+\begin{align*}
+dX_t = \text{sign}(X_t) dB_t, \quad X_0=x \call{\text{TK}}
+\end{align*}
+where $\text{sign}(x) = 1$ if $x>0$, $\text{sign}(x) =-1$ if $x\leq 0$, has a weak solution that is unique in law, but it is pathwise uniqueness does not hold. 
+\begin{p}
+\pf Let $X$ be a one-dimensional Brownian motion with $X_0 =x$. Set $\tilde{B}_t = \int_0^t \text{sign}(X_s) dX_s$ then
+\begin{align*}
+x+ \int_0^t \text{sign}(X_s) d\tilde{B}_s = x+ \int_0^t \text{sign}(X_s)^2 dX_s = x + (X_t - X_0) =X_t
+\end{align*}
+so $dX_t = \text{sign}(X_t) d\tilde{B}_t$ with $X_0 =x$.
+
+\quad Moreover, $\tilde{B}$ is a Brownian motion since it is a contnuous local martingale with
+\begin{align*}
+\langle \tilde{B} \rangle_t = \int_0^t \text{sign}(X_t)^2 d\langle X\rangle_t  = \langle X\rangle_t =t,
+\end{align*} 
+so $\tilde{B}$ and $X$ are both standard Brownian motion by \emph{L\'evy's characterisation}.
+
+\quad By the same argument, in fact, any solution is a standard Brownian motion. Therefore weak uniqueness holds.
+\s
+
+To show that pathwisse uniqueness fails, at least when $x=0$, we will show that if $X$ is a solution with $X_0 =0$ then $-X$ is a solution with the same Brownian motion $B$. Indeed,
+\begin{align*}
+-X_t = -\int_0^t \text{sign}(X_s) dB_s = \int_0^t \text{sign}(-X_s) dB_s + 2\int_0^t 1_{X_s =0} dB_s
+\end{align*}
+Let $N_t = 2\int_0^t 1_{X_s =0} dB_s$. It will be sufficient to prove that $N =0$ to see that $-X_t$ is also a solution.
+
+\textbf{$\heartsuit$ Claim :} $N$ is indistinguishable from 0.
+\begin{subproof}
+: Clearly, $N$ is a continuous local martingale and $\langle N \rangle_t = 4\int_0^t 1_{X_s =0} ds=0$ a.s. since the zero set of Brownian motion has Lebesgue measure 0 a.s.(\emph{why?}). So $N=0$ up to indistinguishability.
+\end{subproof}
+So $-X$ also solves $(\text{TK})$.
+
+\eop
+\end{p}
+\s
+
+\emph{Remark :} $X$ above is not a strong solution.
+\s
+
+\thm \emph{(Pathwise uniqueness for SDEs with Lipschitz coefficients)} Suppose that $b$ and $\sigma$ are \emph{locally Lipschitz} (in space variable), \textit{i.e.}, for each $n >0$, there exists $K_n >0$ such that forall $|x|, |y| \leq n$, $t\geq 0$, has 
+\begin{align*}
+&|b(t,x) - b(t, y)| \leq K_n |x-y| \quad \text{and} \\
+&|\sigma(t,x) - \sigma(t,y)| \leq K_n |x-y|.
+\end{align*}
+Then pathwise uniqueness holds for $E(\sigma,b)$.
+\begin{p}
+\pf Let $X$ and $X'$ be two soluitons to $E(\sigma, b)$ defined on the same probability space such that $X_0 = X_0'$. Let $T_n = \inf \{t\geq 0: |X_t| >n \text{ or }|X'_t| >n \}$ and
+\begin{align*}
+f_n(t) = \avg \big( |X_{t\wedge T_n} - X'_{t\wedge T_n}|^2 \big)
+\end{align*}
+By continuity of $X$ and $X'$, it suffices to show that for all $n$ and all $t$, one has $f_n(t) =0$. 
+
+\textbf{$\heartsuit$ Claim :} $f_n(t) = 0$ for all $n, t>0$.
+\begin{subproof}
+: By \emph{It\^o's formula},
+\begin{align*}
+|X_{t\wedge T_n} - X'_{t\wedge T_n}|^2 = & \int_0^{t\wedge T_n } 2(X_s - X_s') \cdot (b(X_s)- b(X'_s)) ds \\
+& + \int_0^{t\wedge T_n} 2(X_s - X'_s) \cdot (\sigma(X_s) - \sigma(X'_s)) dB_s + \int_0^{t\wedge T_n} |\sigma(X_s) - \sigma(X'_s)|^2 ds
+\end{align*}
+Since $(X_s - X'_s)(\sigma(X_s)- \sigma(X'_s))$ is bounded on $s< T_n$, the second term is a martingale with expectation 0, so
+\begin{align*}
+& \avg \big( |X_{t\wedge T_n} - X'_{t\wedge_n}|^2 \big) \leq  (2K_n + K_n^2) \int_0^{t} \avg\big( |X_{s\wedge T_n} - X'_{s\wedge T_n}|^2 \big) ds \\
+\Rightarrow \quad &f_n(t) \leq (2K_n + K_n^2) \int_0^{t} f_n(s) ds
+\end{align*}
+By \emph{Gronwall's inequality} (see below), we have $f_n(t) \leq  f_n(0) e^{(2K_n + K_n^2)t} =0$.
+\end{subproof} 
+\eop
+\end{p}
+\s
+
+\newday
+
+(1st March, Friday)
+\s
+
+\statement{Gronwall's Lemma} (on \emph{Example Sheet \#3}) Let $T>0$ and let $f:[0, T] \rightarrow \reals$ be non-negative \emph{bounded} Borel function. Assume $f(t) \leq a + b \int_0^t f(s) ds$ for all $t\leq T$. Then
+\begin{align*}
+f(t) \leq ae^{bt} \quad \text{for all } t\leq T
+\end{align*}
+\emph{Remark :} The proof of the uniqueness proves (for locally Lipschitz coefficients) processes defined up to the time $T$ must agree up to time $T$.
+
+\subsection{Strong existence for Lipschitz coefficients}
+
+Recall, we denote $E(\sigma, b)$ for $dX_t = b(t, X_t) dt + \sigma(t, X_t) dB_t$.
+\s
+
+\thm Assume $b$ and $\sigma$ are globally Lipschitz, \textit{i.e.} there is $K>0$ such that for all $x,y\in \reals^d$, $t\geq 0$,
+\begin{align*}
+|b(t, x)- b(t,y)| \leq K|x-y|, \quad |\sigma(t,x) - \sigma(t,y)| \leq K|x-y|
+\end{align*}
+For any $(\Omega, \FF, (\FF_t), \prob)$ (obeying usual condition), any $(\FF_t)$-Brownian motion $B$, any $x\in \reals$, there is a unique strong solution to $E_x(\sigma, b)$.
+\begin{p}
+\pf To simplify notation, we assume $d=m=1$. Define
+\begin{align*}
+F(X)_t = x + \int_0^t \sigma(s, X_s) dB_s + \int_0^t b(s, X_s) ds
+\end{align*}
+Then $X$ is a strong solution to $E_x(\sigma, b)$ if $F(X)=X$. To find such a fixed point, we use \emph{Picard iteration}. Fix $T>0$. For $X$ continuous, adapted process, set
+\begin{align*}
+\tnorms{X}{T} = \avg \big( \sup_{t\in [0, T]} |X_t|^2 \big)^{1/2}
+\end{align*}
+Then $B = \{X : \Omega \times [0, T] \rightarrow \reals, \tnorms{X}{T} < \infty \}$ is a Banach space.
+
+\textbf{$\clubsuit$ Claim :} $\tnorms{F(X) - F(Y)}{T}^2 \leq (2T+8)K^2 \int_0^T \tnorms{X-Y}{t}^2 dt$. 
+\begin{subproof}
+: Just estimate $\tnorms{F(X)-F(Y)}{T}$,
+\begin{align*}
+\tnorms{F(X)-F(Y)}{T}^2 \leq & \, 2\avg \Big( \sup_{t\leq T} \Big| \int_0^t \big( b(s, X_s) - b(s, Y_s) \big) ds \Big|^2  \Big) \\
+& + 2\avg \Big( \sup_{t\leq T} \Big| \int_0^t \big( \sigma(s, X_s) - \sigma(s, Y_s) \big) dB_s \Big|^2 \Big) =: \text{(A)+(B)}
+\end{align*}
+Then
+\begin{align*}
+\text{(A)} & \leq 2T \avg \Big( \sup_{t\leq T} \int_0^t |b(s, X_s) - b(s, Y_s)|^2 ds \Big) \quad \text{(Cauchy-Schwarz)} \\
+& \leq 2 TK^2 \int_0^T \tnorms{X-Y}{T}^2  dt 
+\end{align*}
+and
+\begin{align*}
+\text{(B)} & \leq 8\avg \Big( \int_0^T |\sigma(s, X_s) - \sigma(s, Y_s)|^2 ds \Big) \quad \text{(Doob's }L^2) \\
+& \leq 8K^2  \int_0^T \tnorms{X-Y}{t} dt
+\end{align*}
+\end{subproof}
+\textbf{$\clubsuit$ Claim :} $\tnorms{F(0)}{T} < \infty$.
+\begin{subproof}
+: the argument is the same as putting 0 for $F(Y)$ above,
+\begin{align*}
+ F(0)_t &= x + \int_0^t b(s, 0) ds + \int_0^t \sigma(s, 0) dB_s \\
+\Rightarrow \quad \tnorms{F(0)}{T}^2 &\leq 3\Big( |x|^2 + \tnorms{\int_0^t b(s, 0) ds}{T}^2 + \tnorms{\int_0^t \sigma(s, 0) dB_s}{T}^2 \Big) \\
+&\leq 3\Big( |x|^2 +  T\int_0^T b(s, 0)^2 ds + 4\int_0^T |\sigma(s,0)|^2 ds  \Big) < + \infty
+\end{align*}
+\end{subproof}
+Now use \emph{Picard iteration} : Let $X_t^0 = 0$ for all $t$ and set $X^{i+1} = F(X^i)$ so by the first claim, for some $C>0$,
+\begin{align*}
+\tnorms{X^{i+1} - X^i}{T}^2 &\leq CT \int_0^T \tnorms{X^{i} - X^{i-1}}{t}^2 dt \leq (CT)^2 \int_0^T \int_0^t \tnorms{X^{i-1} - X^{i-2}}{s} ds \\
+&\leq \cdots\cdots \leq \frac{(CT)^i}{i!} \tnorms{X^1 - X^0}{T} = \frac{(CT)^i}{i!} \tnorms{F(0)}{T} 
+\end{align*}
+Therefore,
+\begin{align*}
+\sum_{i=1}^{\infty} \tnorms{X^i - X^{i-1}}{T}^2 < \infty \quad \forall T>0
+\end{align*}
+and hence $X^i$ converes uniformly on $[0, T]$ a.s. for all $T>0$. Say $X$ is the limit. Then $F(X)=X$.
+\s
+
+By uniqueness, solutions up to different times $T$ must agree when both are defined. Hence we can extend them to all of $[0, \infty)$. 
+
+\eop
+\end{p}
+\s
+
+The following proposition provides a (rough) estimate on the dependence of the solution on the initinal condition.
+\s
+
+\prop Under the assumptions of the thoerem, let $X^{x}$ be the solution with initial condition $X_0^x =x$. Then for any $p\geq 2$,
+\begin{align*}
+\avg \big( \sup_{s\leq t} |X_t^x - X_s^y|^p \big) \leq C_p |x-y|^p e^{C_p (t\vee 1)^p t}
+\end{align*}
+
+\newday
+
+(4th March, Monday)
+\s
+
+To prove the proposition, we need :
+\s
+
+\lem \emph{(Burkholder-Davis-Gundy (BDG) inequality)} For every real $p>0$, there exists $C_p>0$ depending only on $p$ such that, for every continuous local martingale $M$ with $M_0 =0$ and every stopping time $T$,
+\begin{align*}
+\avg [\sup_{0\leq s\leq T}(M^s)^p] \leq C_p \avg [ \langle M \rangle_T^{p/2}]
+\end{align*}
+\begin{p}
+For proof for the case $p\geq 2$, see \emph{Example sheet \#2}. For the case $p< 2$, a good refernce would be ``Brownian motions, Martingales, and Stochastic Calculus" by Jean-Francois Le Gall.
+
+\quad Note that we will only use the $p\geq 2$ case.
+\end{p}
+\s
+
+\prop Under the assumptions as in the theorem, let $X^x$ be the solution with initial condition $X_0^x =x \in \reals^d$. That is,
+\begin{align*}
+X_t^x = x+ \int_0^t \sigma(r, X_r^x) dB_r + \int_0^t b(r, X_r^x) dx.
+\end{align*}
+Then for $p\geq 2$,
+\begin{align*}
+\avg \sup_{s\leq t} |X_s^x - X_s^y|^p \leq C_p |x-y|^p \exp (C_p (t\vee 1)^p t)
+\end{align*}
+\begin{p}
+\pf For simplicity, assum $d=m=1$. Fix $x, y\reals^d$ and let $T_n =\inf \{t\geq 0 : |X_t^x|>n \text{ or } |X_t^y| >n \}$. Since $|a+b+c|^p \leq 3^{p-1}(|a|^p + |b|^p + |c|^p)$,
+\begin{align*}
+\avg \big( \sup_{s\leq t} |X^x_{s\wedge T_n} -  X^y_{s\wedge T_n}|^p  \big) \leq & \,3^{p-1} \Big[ |x-y|^p + \avg \Big( \sup_{s\leq t} \Big| \int_0^{s\wedge T_n} \big( \sigma(r, X_r^x) - \sigma(r, X_r^y)\big) dB_r \Big|^p \Big) \\
+& + \avg \Big( \sup_{s\leq t} \Big| \int_0^{s\wedge T_n} \big( b(r, X_r^x) - b(r, X_r^y)\big) dr \Big|^p \Big) \Big] \\
+=: & \, 3^{p-1}( |x-y|^p + \text{(A) + (B)} )
+\end{align*}
+By \emph{BDG inequality},
+\begin{align*}
+\text{(A)} \leq &\, C_p \avg \Big( \int_0^{t\wedge T_n} \big( \sigma(r, X_r^x) - \sigma(r, X_r^y) \big)^2 dr \Big)^{p/2} \\
+\leq &\, C_p t^{\frac{p}{2} -1} \avg \Big( \int_0^{t\wedge T_n} \big| \sigma(r, X_r^x) - \sigma(r, X_r^y) \big|^p dr \Big) \quad \text{(H\"older)} \\
+\leq &\, C_p t^{\frac{p}{2} - 1} \int_0^t \avg \big| \sigma(t \wedge T_n, X_{r\wedge T_n}^x) -\sigma(t \wedge T_n, X_{r\wedge T_n}^y) \big|^p dr \\
+\leq &\, C_p t^{\frac{p}{2} - 1} \int_0^t \avg \big( K |X^x_{r\wedge T_n} - X^y_{r\wedge T_n}|^p \big) dr
+\end{align*}
+Also, only using H\"older,
+\begin{align*}
+\text{(B)} & \leq t^{p-1} \avg \Big(\int_0^t \big| b(r\wedge T_n, X^x_{r\wedge T_n}) - b(r\wedge T_n, X^y_{r\wedge T_n})\big|^p dr \Big) \\
+& \leq t^{p-1} \avg \int_0^t K |X^x_{r\wedge T_n} - X^y_{r\wedge T_n}|^p dr
+\end{align*}
+In summary,
+\begin{align*}
+f_n(t) := \avg (\sup_{s\leq t} |X^x_{s\wedge T_n} - X^y_{s\wedge T_n}|^p ) \leq 3^{p-1} |x-y|^p + \tilde{C}_p (t\vee 1)^{p/2} t^{\frac{p}{2}} \int_0^t \avg (\sup_{s\leq t} |X^x_{s\wedge T_n} - X^y_{s\wedge T_n}|^p) dr
+\end{align*}
+Note that $f_n$ is bounded on any interval $[0, T]$ for $n< \infty$. By \emph{Gr\"onwall's inequality}, 
+\begin{align*}
+f_n(t) \leq 3^{p-1} |x-y|^p \exp (\tilde{C}_p (t\vee 1)^{p/2} t^{\frac{p}{2}+1})
+\end{align*}
+By Fatou, taking $n\rightarrow \infty$, we obtain the claimed inequality. 
+
+\eop
+\end{p}
+\s
+
+Strong solution can be considered functions of Brownian motion in the following sense. Recall the \emph{($d$-dimensional) Wiener space} $(W^d, \mathscr{W}^d, P^d)$ where
+\begin{align*}
+W^d = C(\reals_+, \reals^d), \quad \mathscr{W} = \sigma(X_t^i : \in \reals_+, i=1, \cdots, d), \quad \text{where }X_t(w) = w(t) \text{ for } w\in W^d
+\end{align*}
+and $P^d$ is the probability measure on $(W^d, \mathscr{W}^d)$ such that $(X_t)_{t\geq 0}$ is a standard Brownian motion with $X_0 =0$.
+
+\quad The space $C(\reals_+, \reals^d)$ can be given the topology of uniform convergence on compact intervals. This topology is induced by the metric
+\begin{align*}
+d(w, \tilde{w}) = \sum_{k=1}^{\infty} \alpha_k (\snorms{w - \tilde{w}}{L^{\infty}([0, t];\reals^d)} \wedge 1)
+\end{align*}
+for any seqeunce $(\alpha_k) \subset \reals_+$ with $\sum_{k=1}^{\infty} \alpha_k =1$. 
+\s
+
+\emph{Remark :} This metric makes $C(\reals_+ \reals^d)$ a complete separable metric space (a so called \emph{Polish space}).
+\s
+
+\thm Under the assumptions of the last theorem (strong solution for Lipschitz coefficients), for $x\in\reals^d$, there exists maps
+\begin{align*}
+F_x : W^m = C(\reals_+ , \reals^m) \rightarrow W^d = C(\reals_+, \reals^d)
+\end{align*}
+measurable with respect to the completion of $\mathscr{W}^m$ on $W^m$ and w.r.t. $\mathscr{W}^d$ on $W^d$ such that
+\begin{itemize}
+\item[(i)] $\forall t\geq 0$, $F_x(w)_t$ is a measurable function of $\sigma (w(s) : s\leq t)$ for $P^d$-a.s. $w \in W^m$.
+\item[(ii)] $\forall w\in C(\reals_+, \reals^m) : x\in \reals^d \mapsto F_x(w) \in C(\reals_+, \reals^d)$ is continuous.
+\item[(iii)] $\forall x\in \reals^d$, $\forall (\Omega, \FF, (\FF_t)_{t\geq 0}, \prob)$ satisfying the usual conditions, every $(\FF_t)$-Brownian motion $\hat{B}$ with $\hat{B}_0 =0$, the unique solution to $E_x(\sigma, b)$ is $\hat{X}_t = F_x(\hat{B})_t$.
+\item[(iv)] In the set-up of (iii), if $U$ is $\FF_0$-measurable, then $F_U(\hat{B})_t$ is the unique solution to $E(\sigma, b)$ with $X_0 =U$.
+\end{itemize}
+(Such $F$ is called the \textbf{It\^o map}.)
+\begin{p}
+\pf For simplicity, assume $d=m=1$ in the notation. Let
+\begin{align*}
+\mathscr{G}_t = \sigma(w(s) : 0\leq s\leq t) \vee \mathscr{N}, \quad \mathscr{G} = \mathscr{G}_{\infty}
+\end{align*}
+where $\mathscr{N}$ are the $P$-null sets. Then by the existence theorem applied to $(W^n, \mathscr{G}, (\mathscr{G}_t), P^d)$, $B_t(w) = w(t)$, there is a unique solution $X^x$ to $E_x(\sigma, b)$.
+
+\quad Let $p\geq 2$, that is to be specified later. By the last proposition and $d(w, \tilde{w}) = \sum_{k} \alpha_k ( \sup_{s\leq k} |w(s)- \tilde{w}(s)| \wedge 1)$ with $(\alpha_k)$ to be chosen,
+\begin{align*}
+\avg \big( d(X^x , X^y)^p \big) & \leq \avg \Big( \big( \sum_k \alpha_k \sup_{s\leq k} |X_s^x - X_s^y| \big)^p \Big) \\
+& \leq \sum_{k=1}^{\infty} \alpha_k \avg \big( \sup_{s\leq k} |X_s^x - X_s^y|^p \big) \quad \text{(Jensen)} \\
+& \leq C_p |x-y|^p \sum_{k} \alpha_k \exp ( C_p  k^{p+1})  \\
+& \leq \tilde{C}_p |x-y|^p \call{\dagger}
+\end{align*}
+where the last inequality follows by choosing $(\alpha_k)$ appropriately. A version of \emph{Kolmogorov's contnuity criterion} applies to processes in a complete metric space indexed by $\reals^d$ if $(\dagger)$ holds with $p>d$. Applying this to $(X^x, x\in \reals^d)$, there is a modification $(\tilde{X}^x, x\in \reals^d)$ that is continuous in $x\in \reals^d$. We set $F_x(w) = \tilde{X}^x(w) = (\tilde{X}^x_t (w))_{t \geq 0}$.
+\end{p}
+\s
+
+\newday
+
+(6th March, Wednesday)
+\s
+
+Last time : $X^x$ was strong solution with respect to filtration induced by $B$ on the canonical space and $\tilde{X}^x$ was a continuous (in $x$) modification by Komogorov continuity theorem, and let $F_x(w) = \tilde{X}^x(w)$ for $w\in C(\reals_+, \reals^m)$.
+\s
+
+\begin{p}
+\textbf{proof continued)} The construction from last lecture proves point (ii). 
+
+\quad For (i), we observe $w\mapsto F_x(w)_t =\tilde{X}_t^x(w)$. We have $\tilde{X}^x_t(w) = X_t^x(x)$ for $P$-a.e. $w$. But $X_t^x$ measurable with respect to $\sigma(w(s) : s\leq t)$ completed by null sets. Hence $\tilde{X}_t^x$ also is $\mathscr{G}_t$-measurable (recall, $\mathscr{G}_t$ was the completed filtration of the Brownian motion).
+
+\quad To show (iii), fix $(\Omega, \FF, (\FF_t)_t, \prob)$ and $\hat{B}$, we set
+\begin{align*}
+\hat{X} = F_x (\hat{B})_t
+\end{align*}
+Since $F_x$ maps into $C(\reals_+, \reals^d)$, $\hat{X}$ is continuous in $t$. Since ${F}_x(\hat{B})_t$ coincides a.s. with a measurable function of $(\hat{B}_t:0\leq s\leq t)$ and $(\FF_t)$ in complete it follows that $\hat{X}$ is adapted. By definition, 
+\begin{align*}
+\tilde{X}_t &= x + \int_0^t \sigma(s, \tilde{X}_s) dB_s + \int_0^t b(s, \tilde{X}_s) ds \\
+&= x+ \lim_{m\rightarrow \infty} \sum_{i=1}^{\lfloor 2^m t\rfloor} \sigma(s, \tilde{X}_{(i-1)2^{-m}})(B_{i2^{-m}} - B_{(i-1)2^{-m}}) +\int_0^{\infty} b(s, \tilde{X}_s) ds
+\end{align*}
+Since the limit converges in $P^m$-probability, we also have convergence $P^m$-a.s. along a subsequence. Since $F_x(w)_t = \tilde{X}_t^x (w)$ along this subsequence,
+\begin{align*}
+F_x(w)_t = x &+ \lim_{m\rightarrow \infty} \sum_{m=1}^{\lfloor 2^m t\rfloor} \sigma(s, F_x(w)_{(i-1)^{2^{-m}}})(w(i2^{-m}) - w((i-1)2^{-m})) \\
+& + \int_0^t b(s, F_x(w)_s) ds \quad \text{for } P^m\text{-a.s. }w\in W^m
+\end{align*}
+Since $\hat{B}$ has law $P^m$ on $W^m$, we can substitue $w= \hat{B}$ and then revert the approximation of the sotchastic integral to get
+\begin{align*}
+\hat{X}_t =x + \int_0^t \sigma(s, \hat{X}_s) d\hat{B}_s + \int_0^t b(s, \hat{X}_s) ds
+\end{align*}
+as desired.
+\quad Refer to a reference for the proof of point (iv).
+
+\eop
+
+\emph{[Note that, this technical procedure is necessary because we are changing from one probability space to the other. Since stochstic integrals not only refers to a path of a Brownian motion but also refers to a larger part of the probability space (as we consider convergence in the construction of integrals), we have to be careful when we are changing the probability space.]}
+\end{p}
+\s
+
+\corr The solutions to $E_x(\sigma, b)$ can be constructed for all $x\in \reals^d$ simultaneously such that a.s. $X^x$ is continuous in the initial condtion.
+\begin{p}
+\pf Direct from the theorem.
+\end{p}
+
+\subsection{Some examples of SDEs}
+
+\subsubsection*{Geometric Brownian motion}
+
+For $w \in C(\reals_+, \reals)$, define $F_x(w)$ by
+\begin{align*}
+[F_x(w)](t) = x\exp \big( \sigma(w(t)) + (\mu - \frac{\sigma^2}{2})t \big)
+\end{align*}
+If $B$ is a standard Brownian motion with $B_0 =0$, then $X_t = F_x(B)_t$ satisfies 
+\begin{align*}
+dX_t = \sigma X_t dB_t + \mu X_t dt, \quad X_0 = x \call{*} 
+\end{align*}
+On the other hand, if we choose $w$ to be any smooth path, then $x_t = F_x(w)_t$ satisfies the ODE
+\begin{align*}
+dx_t = \sigma x_t dw_t + x_t \big( \mu -\frac{\sigma^2}{2} \big) dt, \quad \text{where } x_0 =x
+\end{align*}
+Thus the \emph{It\^o map} $F$ satisfies the `wrong' equation on smooth paths! The process solving $(*)$ is called \emph{Geometric Brownian motion}.
+\s
+
+\subsubsection*{The Ornstein-Uhlenbeck process}
+
+Let $\lambda >0$. The \emph{Ornstein-Uhlenbeck process} is the (unique) solution to
+\begin{align*}
+dX_t = -\lambda X_t dt + dB_t
+\end{align*}
+To solve this SDE, apply \emph{It\^o's formula} to $e^{\lambda t} X_t$ :
+\begin{align*}
+& d(e^{\lambda t} X_t) = e^{\lambda t} dX_t + \lambda e^{\lambda t} X_t dt = e^{\lambda t} dB_t \\
+\Leftrightarrow \quad & e^{\lambda t} X_t - X_0 = \int_0^t e^{\lambda s} dB_s \\
+\Leftrightarrow \quad & X_t = e^{-\lambda t}X_0 +\int_0^t e^{-\lambda(t-s)} D_b
+\end{align*}
+The last term $\int_0^t e^{-\lambda(t-s)}dB_s$ integrates a deterministic function in the Brownian motion, so it can be thought as a Wiener integral.
+\s
+
+\fact If $X_0 =x$ is fixed (or if $X_0$ is Gaussian), then $(X_t)$ is a \emph{Gaussian process}, \textit{i.e.} $(X_{t_i})_{i=1}^n$ is jointly Gaussian, for $0=t_0 < t_1 <\cdots <t_n$.
+\begin{p}
+\pf Exercise - use of Wiener integral simplifies the proof.
+\end{p}
+\s
+
+A Gaussian process is determined by its mean and its covariance.
+\s
+
+\fact If $X_0 =x$, then $\avg(X_t) = e^{-\lambda t} x$, $\text{Cov}(X_t, X_s) = \frac{1}{2\lambda} (e^{-\lambda |t-s|}- e^{-\lambda |t+s|})$.
+\begin{p}
+\pf Clearly, $\avg X_t = e^{-\lambda t} \avg X_0 + \avg \int_0^t e^{-\lambda (t-s)}dB_s = e^{-\lambda t} \avg X_0$. Also, by \emph{It\^o isomtery},
+\begin{align*}
+\text{Cov}(X_t, X_s) &= \avg \big( (X_t -\avg X_t)(X_s -\avg X_s) \big) \\
+&= \avg \Big( \int_0^t e^{-\lambda (t-u)} dB_u \int_0^s e^{-\lambda (s-u)} dB_u \Big) \\
+&= \int_0^{\infty} \charac_{u<t} e^{-\lambda (t-u)} \charac_{u<s} e^{-\lambda (s-u)} du \\
+&= e^{-\lambda(t+s)} \int_0^{t+s} e^{2\lambda u} du  = \frac{1}{2\lambda} e^{-\lambda(t+s)} (e^{2\lambda(s\wedge t)}-1)
+\end{align*} 
+\eop
+\end{p}
+\s
+
+\corr $X_t \sim N (e^{-\lambda t}x, \frac{1-e^{-2\lambda t}}{2\lambda})$
+\s
+
+\fact If $X_0 \sim N(0, \frac{1}{\lambda})$, then $X_t \sim N(0, \frac{1}{2\lambda})$ for all $t>0$, and $X_t$ is a \emph{stationary} Gaussian process with $\text{Cov}(X_s, X_t) = \frac{1}{2\lambda}e^{-\lambda |t-s|}$
+\s
+
+\newday
+
+(8th March, Friday)
+
+\subsection{Local Solutions}
+
+\prop \emph{(Local It\^o formula)} Let $X = (X^1, \cdots, X^d)$ be semimartingales. Let $U\subset \reals^d$ be open, and let $f: U\rightarrow \reals^d$ be $C^2$. Set $T =\inf\{ t\geq 0: X_t \not\in U\}$. Then for all $t<T$,
+\begin{align*}
+f(X_t) = f(X_0) + \sum_{i=1}^d \frac{\pa f}{\pa x^i} (X_s) dX_s^i + \frac{1}{2}\frac{\pa^2 f}{\pa x^i \pa x^j}(X_s) d\langle X^i, X^j \rangle_s
+\end{align*}
+\begin{p}
+\textbf{proof)} Apply It\^o's formula to $X^{T_n}$ where $T_n = \inf\{ t\geq 0 : \text{dist}(X_t, U^c) \leq \frac{1}{n}\}$. Observe that $T_n \nearrow T$ as $n\rightarrow \infty$. 
+
+\eop
+\end{p}
+\s
+
+\textbf{Example :} Let $B$ be a standard Brownian motion with $B_0 =1$ (in dimension 1). Taking $U=(0, \infty)$, $f(x) = \sqrt{x}$ gives
+\begin{align*}
+\sqrt{B_t} = 1+\frac{1}{2} \int_0^t B_s^{-1/2}dB_s - \frac{1}{8} \int_0^t B_s^{-3/2} ds
+\end{align*}
+for $t< T= \inf\{t\geq 0: B_t = 0 \}$.
+\s
+
+\thm Let $U\subset \reals^d$ be open and $b: \reals_+ \times U \rightarrow \reals^d$ and $\sigma : \reals_+ \times U \rightarrow \reals^{d\times m}$ be \emph{locally Lipschitz continuous}. Then for every $(\Omega, \FF, (\FF_t)_t, \prob)$, a Brownian motion $B$ adapted to this filtration, and every $x\in U$, there exists a stopping time $T$ such that, for $t< T$,
+\begin{align*}
+X_t = x+ \int_0^t b(s, X_s) ds + \int_0^t \sigma(s, X_s) dB_s
+\end{align*}
+where $T$ is such that for all $K\subset U$ compact, we have $\sup\{t< T : X_t \in K \} < T$. 
+
+\quad Such $T$ is called the \textbf{explosion time}.
+\begin{p}
+\pf Fix $K_n \subset K$ compact such that $K_{n+1} \supset K_n$ and $\bigcup_{n} K_n = U$. One can find $b_n$ and $a_n$ defined on all of $\reals^d$ such that
+\begin{align*}
+b_n|_{K_n} = b|_{K_n}, \quad \text{and } \sigma_n |_{K_n} = \sigma|_{K_n}
+\end{align*}
+and such that $b_n$ and $\sigma_n$ are \emph{globally Lipschitz continuous}. Hence there is a unique solution $X^n$ to $E_x(\sigma_n, b_n)$ for each $n$. Let $T_n = \inf\{t\geq 0 : X_t^n \not\in K_n \}$.  By uniqueness, $X^{n+1}$ also solves $E_x(\sigma_n, b_n)$ up to time $T_n$. Thus $X_t^{n+1} = X_t^n$ for $t< T_n$ and we can define $X_t$ for $t< T = \sup_n T_n$ by requiring that $X_t = X_t^N$ for $t< T_n$.
+
+\textbf{$\spadesuit$ Claim :} Let $K$ be compact. Then on $\{T<\infty\}$,
+\begin{align*}
+\text{a.s.} \quad \sup \{t< T : X_t \in K \} < T
+\end{align*}
+\begin{subproof}
+: Let $L$ be another compact set such that $K \subset \text{int}(L) \subset L \subset U$. Let $\varphi : U \rightarrow \reals$ be $C^{\infty}$ such that $\varphi|_K =1$ and $\varphi|_{\text{int}(L)^c} =0$. Let
+\begin{align*}
+&R_1 = \inf\{t\geq 0 : X_t \not\in L\} , \quad S_n = \inf\{t\geq R_n : X_t\in K\} \\
+&R_n = \inf\{t\geq S_{n-1} : X_t \not\in L \}
+\end{align*}
+Let $N$ be the number of crossings of $X$ from $\text{int}(L)^c$ to $K$. Then on $\{T \leq t, N\geq n\}$,
+\begin{align*}
+n = \sum_{k=1}^n (1-0) &= \sum_{k=1}^n (\varphi(X_{S_k}) - \varphi(X_{R_k})) \\
+&= \int_0^t \sum_{k=1}^n \charac_{(R_k, S_k]}(s) (D\varphi(X_s) \cdot dX_s + \frac{1}{2} D^2 \varphi(X_s) d\langle X \rangle_s ) \\
+&= \int_0^t (H_s^n dB_s + \tilde{H}_s^n ds ) =: Z_t^n
+\end{align*}
+with $H^n$ and $\tilde{H}^n$ are predictable and \emph{bounded} independently of $n$. So
+\begin{align*}
+& n^2 \charac_{\{T\leq t, N\geq n\}} = (Z_t^n)^2\\
+\Rightarrow \quad & \prob (T\leq t , N\geq n) = \frac{\avg (Z_t^n)^2}{n^2} \leq \frac{C(t)}{n^2}
+\end{align*}
+and hence $\prob(T\leq t, N= \infty) =0$, and in particular $\prob (T< \infty, N= \infty )=0$, which implies the claim.
+\end{subproof}
+\eop
+\end{p}
+\s
+
+\textbf{Example :} Consider the SDEs
+\begin{align*}
+dX_t^i = -\nabla_i H(X_t) dt + dB_t^i, \quad X_0 =x
+\end{align*}
+Assume that there are $a\geq 0$, $b\geq 0$ such that
+\begin{align*}
+x\cdot \nabla H(x) \geq - a|x|^2 -b
+\end{align*}
+Then, the SDE has a global solution, \textit{i.e.} $T=\infty$ a.s.
+\begin{p}
+\pf Let $T_n = \inf \{t\geq 0 : |X_t|^2 >n \}$. Then by \emph{It\^o's formula} to $X^{T_n}$,
+\begin{align*}
+\avg |X_{t\wedge T_n}|^2 & = \avg |X_0|^2 - \avg \Big( 2 \int_0^{t\wedge T_n} X_s \cdot \nabla H(X_s) ds - t\wedge T_n \Big) \\
+& \leq \avg |X_0|^2 + 2a \avg \Big( \int_0^{t\wedge T_n} |X_s|^2 ds \Big) + (1+ 2b) \avg (t\wedge T_n) \\
+& \leq \avg |X_0|^2 + (1+2b)t + 2a\int_0^t \avg |X_{s\wedge T_n}|^2 ds  
+\end{align*}
+By \emph{Gronwall's lemma},
+\begin{align*}
+\avg |X_{t\wedge T_n}|^2 \leq (\avg |X_0^2| + (1+2b)t) e^{2at}
+\end{align*}
+If $\prob(T< \infty)>0$, then for sufficiently large $t$, $|X_{t\wedge T_n}|^2 \rightarrow \infty$ as $n\rightarrow \infty$ with positive probability, so it follows that $\prob(T< \infty) =0$.
+
+\eop
+\end{p}
+\s
+
+\newday
+
+(11th March, Monday)
+
+\section{Applications to PDEs and Markov Processes}
+
+\subsection{Prababilistic representations of solutions to PDEs}
+
+\textbf{Exercise :} Let $b: \reals^d \rightarrow \reals^d$ and $\sigma : \reals^d \rightarrow \reals^{d\times m}$ be (locally) bounded Borel functions and let $x\in \reals^d$. Assume that $X$ is a solution to $E_x(\sigma, b)$. Then for every $f\in C^1(\reals_+) \otimes C^2(\reals^d)$,
+\begin{align*}
+M_t^f = f(t, X_t) - f(0, X_0) - \int_0^t \Big( \frac{\pa}{\pa s} + L \Big) f(s, X_s) ds
+\end{align*}
+is a continuous local martingale where
+\begin{align*}
+Lf (y) = \frac{1}{2} \sum_{i,j=1}^d a_{ij}(y)\frac{\pa^2 f}{\pa y^i \pa y^j} + \sum_{i=1}^d b_i(y)\frac{\pa f}{\pa y^i}
+\end{align*}
+where $a(y) = \sigma (y)\sigma(y)^T \in \reals^{d\times d}$.
+\s
+
+\defi The $L$ is called the \textbf{(infinitesimal) generator} of $X$.
+\s
+
+\textbf{Example :}
+\begin{i}
+\item $dX =dB$, a Brownian motion has $L =\frac{1}{2}\lap$.
+\item $dX = -Xdt + dB$, an Orstein-Uhlenbeck process has $L = \frac{1}{2} \lap - x\cdot \nabla$.
+\end{i}
+\s
+
+\subsubsection*{Drichlet-Poisson problem}
+Let $U\subset \reals^d$, $U\neq \phi$ be open and bounded. Given $f\in C(\bar{U})$ and $g\in C(\pa U)$, a (DP) asks to find $u\in C^2(\bar{U})= C^2(U) \cap C(\bar{U})$ such that
+\begin{align*}
+\begin{cases}
+-Lu(x) = f(x) \quad & \text{for }x\in U \\
+u(x) = g(x) \quad & \text{for } x\in \pa U
+\end{cases} \call{\text{DP}}
+\end{align*}
+This is called a \textbf{Poisson problem} if $f=0$ and called a \textbf{Dirichlet Problem} if $g=0$.
+\s
+
+\defi $a: \bar{U} \rightarrow \reals^{d\times d}$ is \textbf{uniformly elliptic} if there is $c>0$ such that
+\begin{align*}
+\xi^T a(x) \xi \geq c|\xi|^2 \quad \text{for all } \xi \in \reals^d, x\in \bar{U}
+\end{align*}
+\s
+
+\thm Assume that $U$ has a smooth boundary, that $a$ and $b$ are H\"older continuous functions, and that $a$ is uniformly elliptic. Then for every H\"older continuous $f: \bar{U} \rightarrow \reals$ and every continuous $g: \pa U \rightarrow \reals$, (DP)  has a solution.
+
+\emph{[See PDE textbooks. Can also use probabilistic method to prove this.]}
+\s
+
+\thm Let $U \subset \reals^d$ be open, bounded and non-empty. Let $b$ and $\sigma$ be bounded measurable, assume $a = \sigma \sigma^T$ is uniformly elliptic and let $u$ be the solution of (DP) with coefficients $\sigma$ and $b$. Let $x\in U$, let $X$ be a solution to $E_x(\sigma, b)$. Let $T_U = \inf\{t\geq 0 : X_t \not\in U\}$. Then $\avg [ T_U ] < \infty$ and
+\begin{align*}
+u(x) = \avg_x \Big( u(X_{T_U}) - \int_{0}^{T_U} Lu(X_s) ds \Big) = \avg_x \Big( g(X_{T_U}) + \int_0^{T_U} f(X_s) ds  \Big)
+\end{align*}
+\begin{p}
+\pf Let $U_n = \{x\in U : \text{dist}(x, \pa U) > \frac{1}{n}\}$, $T_n = \inf \{t\geq 0 : X_t \not\in U_n \}$. There are $u_n \in C_b^2(\reals^d)$ such that $u|_{U_n} = u_n|_{U_n}$. Then
+\begin{align*}
+M_t^n = (M^{U_n})_t^{T_n} = u_n(X_{t\wedge T_n}) - u_n(X_0) - \int_0^{t\wedge T_n} Lu_n(X_s) ds
+\end{align*}
+is a continuous local martingale, bounded for $t\leq t_0$ for any $t_0 >0$, so a martingale. Hence $u(x) = u_n (x)$ for $x\in U$, $n$ large enough so that $x\in U_n$ and
+\begin{align*}
+u(x) = u_n(x) & = \avg \Big( u_n(X_{t\wedge T_n}) - \int_0^{t\wedge T_n} Lu_n(X_s) \Big) \\
+&= \avg \Big( u(X_{t\wedge T_n}) + \int_0^{t\wedge T_n} f(X_s) ds \Big)
+\end{align*}
+To take the limit $t\wedge T_n \rightarrow T_U$ we will need $\avg T_U < \infty$. To see this, let $v$ be a solution to (DP) with $f(x) 1$ and $g(x) = 0$ for all $x$. Then
+\begin{align*}
+\avg (t\wedge T_n) = \avg \Big( \int_0^{t\wedge T_n} 1 ds \Big) = v(x) - \avg (v(X_{w\wedge T_n})) \leq 2\snorms{v}{\infty} < \infty
+\end{align*}
+By monotone convergence and since $T_n\wedge t \nearrow T_U$, has
+\begin{align*}
+\avg (T_U) = \lim_{t\rightarrow \infty} \lim_{n\rightarrow \infty} \avg(t\wedge T_n) \leq 2\snorms{v}{\infty} < \infty
+\end{align*}
+\textbf{$\heartsuit$ Claim:} $u(x) = \avg (u(X_{T_U}) + \int_0^{T_U} f(X_s) ds)$
+\begin{subproof}: Since $t\wedge T_n \nearrow T_U$ as $n\rightarrow \infty$ and $t\rightarrow \infty$, and since
+\begin{align*}
+\avg \Big( \int_0^{T_U} |f(X_s)|ds  \Big) \leq \snorms{f}{\infty} \avg [T_U] \leq C < \infty.
+\end{align*}
+The \emph{Dominated convergence theorem} implies
+\begin{align*}
+\avg \Big( \int_0^{t\wedge T_n} f(X_s) ds \Big) \rightarrow \avg \Big( \int_0^{T_U} f(X_s) ds\Big).
+\end{align*}
+Since $u$ is continuous on $\bar{U}$, also by DCT,
+\begin{align*}
+\avg (u(X_{t\wedge T_n})) \rightarrow \avg (u(X_{T_U}))
+\end{align*}
+\end{subproof}
+This completes the proof.
+
+\eop
+\end{p}
+\s
+
+A similar method can also be used not only to prove the existence of solution but to find the soltuion. (not going to do this here).
+\s
+
+\subsubsection*{Cauchy Problem}
+
+Given $f\in C_b^2(\reals^d)$, find $u\in C(\reals_+) \otimes C^2(\reals^d)$ such that
+\begin{align*}
+\begin{cases}
+\frac{\pa u}{\pa t} = Lu \quad & \text{on } (0, \infty) \times \reals^d \\
+u(0, \cdot) =f \quad & \text{on }\reals^d
+\end{cases} \call{\text{CP}}
+\end{align*}
+where $L$ is given as above.
+\s
+
+\thm For $f\in C_b^2(\reals^d)$, there exists a solution to (CP).
+
+\emph{[Again, refer to a standard PDE texts, such as Evans.]}
+\s
+
+\thm Let $u$ be a (bounded) solution to (CP). Let $x\in \reals^d$, let $X$ be any solution to $E_x(\sigma, b)$, $0\leq s\leq t$, then
+\begin{align*}
+\avg(f(X_t ) | \FF_s) = u(t-s, X_s)
+\end{align*}
+In particular,
+\begin{align*}
+\avg_x f(X_t) = u(t, x)
+\end{align*}
+\begin{p}
+\pf Let $g(s, x) = u(t-s, x)$ (time runs backward). Then
+\begin{align*}
+\Big(\frac{\pa}{\pa s} + L \Big) g(s, x) = 0
+\end{align*}
+so $M^g = g(s, X_s) - g(s,x)$ is a (true) martingale, so
+\begin{align*}
+u(t-s, X_s) = g(s, X_s) = \avg (g(t, X_t) | \FF_s )= \avg (u(0, X_t) | \FF_s) = \avg(f(X_t)| \FF_s)
+\end{align*}
+\eop
+\end{p}
+\s
+\s
+
+\newday
+
+(13th March, Wednesday)
+\s
+
+\thm \emph{(Feynman-Kac formula)} Let $L$, $b$, $\sigma$ as before. Let $f\in C_b^2(\reals^d)$, $V\in C_b(\reals^d)$ and suppose that $u: \reals_+ \times \reals^d \rightarrow \reals$ satisfies
+\begin{align*}
+\begin{cases}
+\frac{\pa u}{\pa t} = Lu + Vu \quad &\text{on } \reals_+ \times \reals^d\\
+u(0, \cdot) = f\quad &\text{on }\reals^d
+\end{cases}
+\end{align*}
+($Vu$ here is just a pointwise multiplication). Let $X$ be a solution to $E_x(\sigma, b)$ for some $x\in \reals^d$. Then for all $t\geq 0$,
+\begin{align*}
+u(t,x) = \avg_x \Big[ f(X_t) \exp \Big( \int_0^t V(X_s) ds \Big) \Big]
+\end{align*}
+\emph{[This result resembles the form of path integral solution of Schr\"odinger's equation. This is the reason why this is called the `Feynman'-Kac formula. However, proving the same with Schr\"odinger's equation (where there is $-i$ infront of $\frac{\pa u}{\pa t}$) is much more difficult as we lose positivity of $L$.]}
+\begin{p}
+\pf Let $E_t = \exp (\int_0^t V(X_s) ds)$. For $s<t$, set $M_s = u(t-s, X_s) E_s$, then
+\begin{align*}
+dM_s &= - \frac{\pa }{\pa t} u(t-s, X_s) E_s ds + \nabla u(t-s, X_s) E_s\sigma_s dB_s + L u(t-s, X_s) E_s ds + u(t-s, X_s) V(X_s) E_s ds \\
+&= \Big( -\frac{\pa}{\pa t} + L  + V(X_s) \Big)u(t-s, X_s) E_s ds + d(\text{martingale}) \\
+&= d(\text{martingale})
+\end{align*}
+Thus $M$ is a continuous local martingale on $[0,t]$. by assumption, $M$ is also bounded, so a martingale. Hence
+\begin{align*}
+u(t,x) = M_0 = \avg_x M_t = \avg_x u(0, X_t) E_t = \avg (f(X_t) E_t)
+\end{align*}
+\eop
+\end{p}
+
+\subsection{Markov property}
+
+Let $B(\reals^d)$ be the Banach space of \textbf{bounded Borel functions} on $\reals^d$, with $\snorms{f}{} = \sup_{x\in \reals^d} |f(x)|$ for $f\in B(\reals^d)$.
+\s
+
+\defi 
+\begin{itemize}
+\item[(i)] A collection of bounded linear operators $Q_t$ on $B(\reals^d)$ is a \textbf{transition semigroup} if $Q_t f \geq 0$ if $f\geq 0$ (pointwise), $Q_t \charac=\charac$, $\snorms{Q_t}{} \leq 1$, and
+\begin{align*}
+Q_{t+s} = Q_t Q_s \quad \forall t,s\geq 0
+\end{align*}
+\item[(ii)] An $(\FF_t)$-adapted process $X$ is a \textbf{Markov process} with transition semigroup $(Q_t)_t$ if
+\begin{align*}
+\avg(f(X_{s+t})|\FF_s) = Q_t f(X_s) \quad \forall s,t\geq 0, \,\, f\in B(\reals^d)
+\end{align*}
+\end{itemize}
+\s
+
+\thm Let $b: \reals^d \rightarrow \reals$, $\sigma : \reals^d \rightarrow \reals^{d\times m}$ be \emph{Lipschitz} (this can be weakened). Assume $X$ is a solution to $E(\sigma, b)$ on some $(\Omega, \FF, (\FF_t), \prob)$ and $B$. Then $X= (X_t)_{t\geq 0}$ is a Markov process with semigroup
+\begin{align*}
+Q_t f(x) = \avg (f(X_t^x)) = \int f(F_x(w)_t) P^m(dw)
+\end{align*}
+where $X_t^x$ is an arbitary solution to $E_x(\sigma,b)$, and $F_x$ is the \emph{It\^o solution map}, $P^m$ is the Wiener measure.
+\begin{p}
+\pf Let $X$ be a solution to $E(\sigma, b)$.
+
+\textbf{$\heartsuit$ Claim :} $\avg(f(X_{t+s})|\FF_s) = Q_t f(X_s)$
+\begin{subproof}
+: By definition of $X$,
+\begin{align*}
+& X_t = X_0 + \int_0^t \sigma(X_u) dB_u + \int_0^t b(X_u) du \quad \forall t\geq 0 \\
+\Rightarrow \quad & X_{t+s} = X_s + \int_s^{t+s} \sigma (X_u) dB_u + \int_s^{t+s} b(X_u) du \quad \forall s,t\geq 0
+\end{align*}
+Set $X_t' = X_{s+t}$, $\FF_t' = \FF_{s+t}$, $B_t' = B_{s+t} - B_s$. Then $(\Omega, \FF, (\FF'), P)$ is another filtered proability space obeying the usual conditions, and $B'$ is a $(\FF'_t)$-Brownain motion with $B_0' =0$. Then
+\begin{align*}
+X_t' = X_0' + \int_0^t \sigma(X_u') dB_u' + \int_0^t b(X'_u) du 
+\end{align*}
+(Justification of $\int_s^{s+t} \sigma(X_u) dB_u = \int_0^t \sigma(X'_u)dB'_u$ uses approximation of integrals - this should not be treated naively!). Thus $X'$ solves $E(\sigma, b)$ with $X_0' = X_s$. By the thoerem about the solution map, we have $X' = F_{X_s} (B')$ a.s. So
+\begin{align*}
+\avg(f(X_{s+t})|\FF_s) = \avg(f(X_t') | \FF_s) = \avg(f(F_{X_s}(B')_t) |\FF_s) = \int f(F_{X_s}(w)_t) P^m(dw) = Q_t f(X_s)
+\end{align*}
+\end{subproof}
+Also, 
+\begin{align*}
+Q_{t+s} f(x) = \avg (f(X_{t+s}^x)) = \avg\Big( \avg(f(X_{t+s}^x) | \FF_s) \Big) = \avg (Q_t f(X_s^x)) = Q_s Q_t f(x)
+\end{align*}
+so $(Q_t)_{t\geq 0}$ indeed forms a transition semigroup.
+
+\eop
+\end{p}
+\s
+
+\defi Let $Q_t$ be the transition semigroup.
+\begin{itemize}
+\item[(i)] A probability measure $\mu$ on $\reals^d$ is \textbf{invariant} under $(Q_t)$ if
+\begin{align*}
+\int Q_t f(x) \mu(dx) = \int f(x) d\mu(x) \quad \forall f\in B(\reals^d)
+\end{align*} 
+\item[(ii)] A probability measure $\mu$ is \textbf{reversible} with respect to $(Q_t)$ if
+\begin{align*}
+\int g(x) Q_t f(x) \mu(dx) = \int f(x) Q_t g(x) \mu(dx)
+\end{align*}
+(check this.) 
+\end{itemize}
+\s
+
+\fact Reversibility of $\mu$ implies it is invariant. (Take $g=1$ and use $Q_t 1=1$.)
+\s
+
+\textbf{Example :} Consider the transition semigroup associated to the SDE, with suitable on $H$,
+\begin{align*}
+dX_t = -\frac{1}{2}\nabla H(X_t) dt + dB_t
+\end{align*}
+(Note thet, if taking $H(x)=\lambda |x|^2$, this gives an Orstein-Uhlenbeck process.) Then the measure $\mu(dx) = \frac{1}{Z} e^{-H(x)}dx$, where $Z= \int e^{-H(x)}dx$ is reversible for $(*)$.
+
+\quad An applcation, if you want to sample from the measure $\mu(dx) = \frac{1}{Z} e^{-H(x)}dx$, then we can simulate the SDE for a suitably long time and how the distribution is made after long time. (called Markov chain Monte-Carlo simulation)
+\s
+
+\lem Assumte that the explosion time for $(*)$ is infinite. Then for $f: C([0, T], \reals^)d\rightarrow \reals$,
+\begin{align*}
+\avg \Big( f(X|_{[0, T]}) \Big) = \avg^{\text{BM}} \Big[ f(X|_{[0,T]}) \exp \Big( \frac{1}{2} H(X_0) - \frac{1}{2} H(X_T) - \int_0^T (\frac{1}{8} |\nabla H|^2 - \frac{1}{4} \lap H) (X_s) ds \Big) \Big]
+\end{align*}
+(where $\avg^{\text{BM}}$ takes average over law under whihc $X$ is a Brownian motion with same initial condition.)
+(An interpretation(??) of Girsanov's theorem.)
+
+
+
+
+
+
+\end{document}

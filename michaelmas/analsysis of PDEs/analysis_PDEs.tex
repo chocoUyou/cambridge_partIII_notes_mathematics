@@ -133,7 +133,7 @@ This document was uploaded on http://www.github.com/ChocoUyou, along with its so
 \begin{itemize}
 \item $U$ : unless otherwise stated, $U$ is a Lebesgue-measurable susbset of $\reals^n$. Usually, $U$ is an open set.
 \item $C^{k, \gamma}(U)$ : The \textbf{H\"{o}lder space with exponent $k$, $\gamma$}. Here, $k\in \mathbb{N}$ and $\gamma \in [0,1)$.
-\item $C^{k}_{c}(U)$ : The set of functions with $k^{\th}$ derivative and compact support(that is, a function supported on a closed bounded set). When $k= \infty$, then each $f\in C^{\infty}_c(U)$ has derivative in any order.
+\item $C^{k}_{c}(U)$ : The set of functions with $k^{\text{th}}$ derivative and compact support(that is, a function supported on a closed bounded set). When $k= \infty$, then each $f\in C^{\infty}_c(U)$ has derivative in any order.
 \item $L^p(U)$ : The \textbf{Lebesgue space with exponent $p$.} This is the space of (Lebesgue-measurable) functions $f: \reals^n \rightarrow \reals$ such that $|f|^p$ has finite integral over $U$, i.e.
 \begin{align*}
 L^p(U) = \{f : \reals^n \rightarrow \reals | \int_U |f(x)|^p dx < + \infty \}
@@ -1699,7 +1699,7 @@ In fact, in the example sheet(Exercise 2.9), you will see that this family of in
 
 \corrnum{1} Let $U \subset \reals^n$ be open, bounded $C^1$-domain, and $1\leq p<n$. Then $W^{1,p}(U) \subset L^{p^*}(U)$ (where $p^*$ is as before) and $\exists$ $C(p,n,U)$ such that
 \begin{align*}
-\norms{u}{L^{p^*}(U)} \leq C(p,n,U) \norms{Du}{W^{1,p} (U)} \quad \forall u \in W^{1,p}(U)
+\norms{u}{L^{p^*}(U)} \leq C(p,n,U) \norms{u}{W^{1,p} (U)} \quad \forall u \in W^{1,p}(U)
 \end{align*} 
 \begin{proof}
 \pf By extension theorem, $\exists$ a bounded operator $E: W^{1,p}(U) \rightarrow W^{1,p}(\reals^n)$ such that $Eu = u$ on $U$ and $Eu$ has compact support. By Sobolev-Gagliardo-Nirenberg theorem, $Eu \in W^{1,p}(\reals^n)$ implies $Eu \in L^{p^*} (\reals^n)$ and therefore $u \in L^{p^*}(U)$ and

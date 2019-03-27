@@ -1,0 +1,954 @@
+\documentclass[10pt,a4paper]{report}
+
+
+\usepackage{amsmath}
+\usepackage[utf8]{inputenc}
+\usepackage{amsmath}
+%\usepackage{unicode-math}
+\usepackage{amsfonts}
+\usepackage{amssymb}
+\usepackage{calrsfs}
+\usepackage[left=2cm,right=2cm,top=2cm,bottom=2cm]{geometry}
+\usepackage[mathscr]{euscript}
+
+\usepackage{color}
+
+%%%%%%%%%%%attach pdf%%%%%%%%%%%%
+\usepackage[final]{pdfpages}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%for writing large parallel%%%%%%
+\usepackage{mathtools}
+\DeclarePairedDelimiter\bignorm{\lVert}{\rVert}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%Draws Pretty Box%%%%%%%
+%%%Use with \bluebox[<top pad>][<bot pad>]{<contents>}
+\definecolor{myblue}{rgb}{.8, .8, 1}
+
+\usepackage{empheq}
+
+\newlength\mytemplen
+\newsavebox\mytempbox
+
+\makeatletter
+\newcommand\bluebox{%
+    \@ifnextchar[%]
+       {\@bluebox}%
+       {\@bluebox[0pt]}}
+
+\def\@bluebox[#1]{%
+    \@ifnextchar[%]
+       {\@@bluebox[#1]}%
+       {\@@bluebox[#1][0pt]}}
+
+\def\@@bluebox[#1][#2]#3{
+    \sbox\mytempbox{#3}%
+    \mytemplen\ht\mytempbox
+    \advance\mytemplen #1\relax
+    \ht\mytempbox\mytemplen
+    \mytemplen\dp\mytempbox
+    \advance\mytemplen #2\relax
+    \dp\mytempbox\mytemplen
+    \colorbox{myblue}{\hspace{0em}\usebox{\mytempbox}\hspace{0em}}}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%for writing symbol above an equality
+\newcommand\xeq{\stackrel{\mathclap{\normalfont\mbox{d}}}{=}}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%%%for drawing commutative diagrams.%%%%%%
+\usepackage{tikz-cd}  
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%double rules%%%%%%%%%%%%%%%%%%%
+\usepackage{lipsum}% Just for this example
+
+\newcommand{\doublerule}[1][.4pt]{%
+  \noindent
+  \makebox[0pt][l]{\rule[.7ex]{\linewidth}{#1}}%
+  \rule[.3ex]{\linewidth}{#1}}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%for changing margin
+\def\changemargin#1#2{\list{}{\rightmargin#2\leftmargin#1}\item[]}
+\let\endchangemargin=\endlist 
+
+\newenvironment{proof}
+{\begin{changemargin}{1cm}{0.5cm} 
+	}%your text here
+	{\end{changemargin}
+}
+
+\newenvironment{subproof}
+{\begin{changemargin}{0.5cm}{0.5cm} 
+	}%your text here
+	{\end{changemargin}
+}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{document}
+
+\newcommand{\thm}{\textbf{Theorem) }}
+\newcommand{\thmnum}[1]{\textbf{Theorem #1) }}
+\newcommand{\defi}{\textbf{Definition) }}
+\newcommand{\definum}[1]{\textbf{Definition #1) }}
+\newcommand{\lem}{\textbf{Lemma) }}
+\newcommand{\lemnum}[1]{\textbf{Lemma #1) }}
+\newcommand{\prop}{\textbf{Proposition)}}
+\newcommand{\propnum}[1]{\textbf{Proposition #1) }}
+\newcommand{\corr}{\textbf{Corollary) }}
+\newcommand{\corrnum}[1]{\textbf{Corollary #1) }}
+\newcommand{\pf}{\textbf{proof) }}
+
+
+\newcommand{\lap}{\triangle} %%Laplacian
+\newcommand{\s}{\vspace{10pt}}
+\newcommand{\bull}{$\bullet$}
+\newcommand{\sta}{$\star$}
+\newcommand{\reals}{\mathbb{R}}
+
+\newcommand{\eop}{\hfill  \textsl{(End of proof)} $\square$} %end of proof
+\newcommand{\eos}{\hfill  \textsl{(End of statement)} $\square$} %end of proof
+
+
+\newcommand{\intN}{\mathbb{Z}_N}
+\newcommand{\nat}{\mathbb{N}}
+\newcommand{\norms}[2]{\bignorm[\big]{#1}_{#2}}
+\newcommand{\avg}{\mathbb{E}}
+\newcommand{\prob}{\mathbb{P}}
+\newcommand{\borel}{\mathscr{B}}
+\newcommand{\EE}{\mathscr{E}}
+\newcommand{\F}{\mathscr{F}}
+\newcommand{\G}{\mathscr{F}}
+\newcommand{\W}{\mathscr{W}}
+\newcommand{\T}{\mathscr{T}}
+\newcommand{\cov}{\text{Cov}}
+\newcommand{\var}{\text{Var}}
+\newcommand{\cha}{1}
+\newcommand{\nprob}{\tilde{\prob}}
+
+
+\newcommand{\newday}{\doublerule[0.5pt]}
+
+\setlength\parindent{0pt}
+
+\chapter*{Advanced Probability}
+
+\section*{0. Review}
+
+\subsection*{0.1. Measure Spaces}
+
+Let $E$ be a set. $\sigma$-algebra on $E$, measurable sets, measure(countable additivity), measure space, Borel $\sigma$-algebra.
+
+\subsection*{0.2. Integration of Measurable Functions}
+
+measurable function, $m\EE^+$, simple function
+
+\thmnum{0.2.1.} (definition/characterization of integral for $m\EE^+$-functions) Let $(E,\EE, \mu)$ be a measure space. Then there exists a \textit{unique} map $\tilde{\mu} : m \EE^+ \rightarrow [0,\infty]$ such that (a),(b),(c)(to be written out) (proof only done for uniqueness of such map)
+\s
+
+equal a.e., integrable function. 
+\s
+
+\lemnum{0.2.2.} \textbf{(Fatou's lemma)} Let $(f_n:n\in \nat)$ be a sequence in $m\EE^+$. Then
+\begin{align*}
+\mu(\liminf_{n\rightarrow \infty} f_n) \leq \liminf_{n\rightarrow \infty} \mu(f_n)
+\end{align*}
+\s
+
+\thmnum{0.2.3}(Dominated Convergence) Let $(f_n :n \in \mathbb{N})$ be a sequence of measurable functions on $(E,\mathscr{E})$. Suppose $f_n(x) \rightarrow f(x)$ as $n\rightarrow \infty$ for some function $f$ and for every $x\in E$. Suppose furthermore that $|f_n| \leq g$ for all $n$, for some measurable function $g$. Then $f_n$ is integrable for all $n$ and so is $f$. Moreover, we have $\mu(f_n) \rightarrow \mu(f)$ as $n\rightarrow \infty$.
+\s
+
+probability space
+
+\subsection*{0.3. Production measure and Fubini's theorem}
+
+product $\sigma$-algebra
+\s
+
+\thmnum{0.3.1.} There exists a unique measure $\mu = \mu_1 \otimes \mu_2$ on $(E_1 \times E_2, \mathscr{E}_1 \times \mathscr{E}_2)$ such that
+\begin{align*}
+\mu(A_1 \times A_2) = \mu_1(A_1) \mu_2(A_2) \quad \forall A_1 \in \mathscr{E}_1, A_2 \in \mathscr{E}_2
+\end{align*}
+\s
+
+\thmnum{0.3.2.} (Fubini's theorem) Let $f$ be a non-negative measurable function on $(E_1 \times E_2, \mathscr{E}_1 \times \mathscr{E}_2)$.
+
+\begin{itemize}
+\item $x_1 \in E_1$, set $f_{x_1} (x_2) = f(x_1, x_2)$, then $f_{x_1}$ is $\mathscr{E_2}$-measurable for all $x_1 \in E_1$.
+
+\item Set $f_1(x_1) = \mu_2(f_{x_1})$. Then $f_1$ is $\mathscr{E}_1$-measurable, and $\mu_1(f_1) = \mu(f)$.
+\end{itemize} 
+
+This shows
+\begin{align*}
+\int_{E_2} \big( \int_{E_1} f(x_1, x_2) \mu_1(dx_1) \big) \mu_2(dx_2) = \int_{E_1} \big( \int_{E_2} f(x_1, x_2) \mu_2(dx_2) \big) \mu_1(dx_1)
+\end{align*}
+(How?)
+\s
+
+Note, $f$ being integrable is also sufficient to for Fubini's theorem.
+\s
+
+\section*{Chapter 1. Conditional Expectation}
+
+Discrete case, Gaussiaan case of conditional expectations. Conditional density functions.
+
+\subsection*{1.4. Existence and uniqueness of conditional expectation}
+
+$(\Omega, \mathscr{F},\prob)$ is always the probability space behind.
+\s
+
+\thmnum{1.4.1.} Let $X$ be integrable random variable and let $\mathscr{G}$ be a sub-$\sigma$-algebra of $\mathscr{F}$. There exist a random variable $Y$ such that
+\begin{itemize}
+\item[(a)] $Y$ is $\G$-measurable,
+\item[(b)] $Y$ is integrable and for all $A \in \G$, $\avg(Y1_A) = \avg(X1_A)$.
+\end{itemize}
+Moreover, if $Y'$ is another random variable satisfying (a) and (b) then $Y'=Y$ a.s.
+\s
+
+We will write $Y = \avg(X | \G)$ a.s.(because $\avg(X|\G)$ is not a fully specified random variable) and we say $Y$ is a \textbf{(version of) the conditional expectation of $X$ given $\G$}. In case $X = 1_A$ write $Y=\prob(A|\G)$ a.s.
+\s
+
+An analogous statement holds with 'integrable' replaced by 'non-negative' throughout the statement.
+
+\subsection*{1.5. Properties of conditional expectation}
+
+Fix an integrable random variable $X$ and sub-$\sigma$-algebra $\G$. \textbf{Theorem 1.4.1} has useful consequences : (give proofs for non-obvious points)
+\begin{itemize}
+\item[(i)] $\avg (\avg(X|\G)) = \avg(X)$
+\item[(ii)] If $X$ is $\G$-measurable then $\avg(X|\G) =X$ a.s.
+\item[(iii)] If $X$ is independent of $\G$ then $\avg(X|\G) = \avg(X)$ a.s.
+\item[(iv)] If $X\geq 0$ a.s. then $\avg(X|\G) \geq 0$ a.s. (follows from the proof of \textbf{Theorem 1.4.1})
+\item[(v)] For all $\alpha, \beta\in \reals$, all integrable random variables $X,Y$, has
+\begin{align*}
+\avg(\alpha X + \beta Y |\G) = \alpha \avg(X|\G) + \beta \avg(Y|\G) \quad \text{a.s.}
+\end{align*}
+\s
+
+Now consider a sequence of random variables $(X_n)_n$. 
+\item[(vi)] \emph{(conditional monotone convergence)} If $0\leq X_n \nearrow X$ pointwise then $\avg(X_n |\G)\rightarrow \avg(X|\G)$ a.s.
+\item[(vii)] \emph{(Conditional Fatou's lemma)} For any non-negative random variables $X_n$,
+\begin{align*}
+\avg(\liminf_{n\rightarrow \infty} X_n |\G) \leq \liminf_{n\rightarrow \infty} \avg(X_n |\G)
+\end{align*}
+
+\item[(viii)] \emph{(Conditional dominated convergence)} If $X_n(\omega) \rightarrow X(\omega)$ for all $\omega$ as $n\rightarrow \infty$ and there exist $Y$ integrable so $|X_n| \leq Y$ for all $n$, then 
+\begin{align*}
+\avg(X_n|\G) \rightarrow \avg(X|\G) \quad \text{a.s.}
+\end{align*}
+\item[(ix)] \emph{(Conditional Jensen)} Let $c: \reals \rightarrow (-\infty, \infty]$ be convex. Then $c(\avg(X|\G)) \leq \avg( c(X) |\G)$ a.s.
+\item[(x)] $\norms{\avg(X|\G)}{p}\leq \norms{X}{p}$ for all $p\in [0,\infty)$ (where $\norms{X}{p} = \avg(|X|^p)$)
+\item[(xi)] \emph{(Tower property)} This is also important for martingales.
+
+Suppose $\mathscr{H} \subset \G \subset \F$ be sub-$\sigma$-algebras. Then
+\begin{align*}
+\avg(X|\mathscr{H}) = \avg(\avg(X|\G)|\mathscr{H}) \quad \text{a.s.}
+\end{align*}
+\item[(xii)] \emph{(Taking out what is known)} This is related to the 'filtration' that is to be introduced in the theory of martingales.
+
+Let $Y$ be a bounded $\G$-measurable random variable. Then 
+\begin{align*}
+\avg(YX|\G)  = Y\avg(X|\G) \quad \text{a.s.}
+\end{align*}
+\item[(xiii)] Let $\mathscr{H}$ be a $\sigma$-algebra and suppose $\mathscr{H}$ is independent of $\sigma(X,\G)$. Then
+\begin{align*}
+\avg(X|\sigma(\G, \mathscr{H})) = \avg(X|\mathscr{H}) \quad \text{a.s.}
+\end{align*}
+\s
+
+\lem Suppose $X$ is integrable and $\avg(X1_A) = 0$ for all $A\in \mathscr{A}$ where $\mathscr{A}$ is a $\pi$-system generating $\F$. Then $X=0$ a.s.
+\end{itemize}
+\s
+
+We end the chapter with a lemma that is going to be useful.
+\s
+
+\lemnum{1.5.1.} Let $X\in L^1(\prob)$. Set $\mathcal{Y} = \{\avg(X|\G) : \G \subset \F$ a sub-$\sigma$-algebra $\}$. Then $\mathcal{Y}$ is UI(\emph{uniformly integrable}). That is,
+\begin{align*}
+\sup_{Y \in \mathcal{Y}} \avg(|Y| 1_{|Y|\geq \lambda}) \rightarrow 0 \quad \text{as } \lambda \rightarrow \infty
+\end{align*}
+
+\section*{Chapter 2. Martingales in Discrete Time}
+
+\subsection*{2.1. Definitions.}
+
+Let $(\Omega, \F, \prob)$ be a probability space.
+
+Filtration. Random process, adapted to a filtration, natural filtration, integrable random process, martingale, super/sub-martingale.
+
+\subsection*{Optional Stopping}
+
+stopping time, the algebra $\F_T$ for a stopping time $T$, stopped process.
+\s
+
+\propnum{2.2.1.} Let $X$ be an adapted process. Let $S$, $T$ be stopping times for $X$. Then
+\begin{itemize}
+\item[(a)] $S\wedge T$ is a stopping time for $X$.
+\item[(b)] $\F_T$ is a $\sigma$-algebra.
+\item[(c)] If $S\leq T$ then $\F_S \subset \F_T$.
+\item[(d)] $X_T 1_{T<\infty}$ is an $\F_T$-measurable random variable.
+\item[(e)] $X^T$ is adapted.
+\item[(f)] If $X$ is integrable, then $X^T$ is also integrable.
+\end{itemize}
+\s
+
+\thmnum{2.2.2} \emph{(Optional stopping theorem)} Let $X$ be a super-martingale and let $S,T$ be \emph{bounded} stopping times with $S \leq T$ a.s. Then
+\begin{align*}
+\avg[X_T] \leq \avg[X_S]
+\end{align*}
+\s
+
+$\star$ Note that $X$ is a sub-martingale \emph{if and only if} ($-X$) is a super-martingale, and that $X$ is a martingale \emph{if and only if} $X$ and ($-X$) are super-martingales. Hence, we obtain sub-martingale and martingale versions of the theorem :
+\begin{align*}
+&\text{If } (X_n) \text{ is a sub-martingale, } \avg[X_T] \geq \avg[X_S] \\
+&\text{If } (X_n) \text{ is a martingale, } \avg[X_T] = \avg[X_S]
+\end{align*}
+\s
+
+\thmnum{2.2.3.} \emph{(OST, Part II)} Let $X$ be an adapted integrable process. Then the followings are equivalent.
+\begin{itemize}
+\item[(a)] $X$ is a super-martingale. 
+\item[(b)] for all bounded stopping times $T$ and stopping time $S$,
+\begin{align*}
+\avg(X_T |\F_S) \leq X_{S\wedge T} \quad \text{a.s.},
+\end{align*}
+\item[(c)] for all stopping times $T$, the stopped process $X^T$ is a super-martingale,
+\item[(d)] for all bounded stopping times $T$ and all stopping times $S$ with $S\leq T$ a.s,
+\begin{align*}
+\avg(X_T) \leq \avg(X_S)
+\end{align*}
+\end{itemize}
+
+$\star$ The theorem gives an inverse statement of the optional stopping theorem.
+\s
+
+\subsection*{2.3. Doob's upcrossing inequality}
+
+upcrossing, upcrossing number
+
+\thmnum{2.3.1.}(Doob's upcrossing inequality) State and prove
+\s
+
+This theorem does not seem to have any significance at the moment, but it will turn out to be important later on.
+
+\subsection*{2.4. Doob's maximal inequalities.}
+
+Define $X_n^* = \sup_{k\geq n} |X_k|$
+\s
+
+In the next two theorems, we see that the martingale(or sub-martingale) property allows us to obtain estimates on this $X_n^*$ in terms of expectations for $X_n$.\\
+\s
+
+\thmnum{2.4.1} (Doob's maximal inequality) state and prove
+\s
+
+\thmnum{2.4.2} (Doob's $L^p$-inequality) State and prove
+\s
+
+Doob's maximal and $L^p$ inequalities have different versions which apply under the same hypothesis to
+\begin{align*}
+X^* = \sup_{n\geq 0} |X_n|
+\end{align*}
+(state and prove)
+\s
+
+\subsection*{2.5. Doob's martingale convergence theorems}
+
+We are going to study three different martingale convergence theorems. They are all important.
+\s
+
+\begin{itemize}
+\item We say that a random process $X$ is \textbf{$L^p$-bounded} if $\sup_{n\geq 0} \norms{X_n}{p} <\infty$.
+\item We say that $X$ is \textbf{uniformly integrable} if
+\begin{align*}
+\sup_{n\geq 0} \avg (| X_n | 1_{|X_n| >\lambda})\rightarrow 0 \quad \text{as }\lambda \rightarrow \infty
+\end{align*}
+\item If $X$ is $L^p$ bounded for some $p>1$, then this implies that $X$ is uniformly integrable. This again implies that $X$ is $L^1$ bounded. (prove)
+\end{itemize}
+\begin{center}
+\bluebox{$X$ is $L^p$-bounded, $p>1$}
+$\Downarrow$
+\bluebox{$X$ is Uniformly integrable}
+$\Downarrow$
+\bluebox{$X$ is $L^1$-bounded}
+\end{center}
+\s
+
+\thmnum{2.5.1}\emph{(Almost sure martingale convergence theorem)} State and prove
+\s
+
+\textbf{Remark :} Every non-negative integrable super-martingale is $L^1$-bounded, hence it converges a.s.
+\s
+
+\thmnum{2.5.2}\emph{($L^1$ martingale convergence theorem)} State and prove
+
+\quad We can think of this theorem as establishing the bijection
+\begin{center}
+\bluebox{unif. integrable martingale/a.s.} \,\, $\leftrightarrow$ \bluebox{$L^1(\F_{\infty})$}
+\end{center}
+\s
+
+\thmnum{2.5.3}\emph{($L^p$-martingale convergence theorem)} State and prove
+
+(This is very similar to the statement of $L^1$-martingale convergence theorem. Indeed, the proof is also very similar.)
+\s
+
+\thmnum{2.5.5.} Let $X$ be a uniformly integrable martingale and let $T$ be any stopping time. Then $\avg(X_T) = \avg(X_0)$. Moreover, for all stopping time $S$ and $T$, we have
+\begin{align*}
+\avg(X_T |\F_S) = X_{S\wedge T} \quad \text{a.s.}
+\end{align*}
+-State the significance of this theorem
+\s
+
+(Is there a way to extend Theorem 2.2.3. in a similar way?)
+\s
+
+\subsubsection*{Backward martingale}
+\begin{itemize}
+\item A \textbf{backward filtration} $(\hat{\F}_n)_{n\geq 0}$ is a sequence of $\sigma$-algebras such that $\F \supset \hat{\F}_n \supset \hat{\F}_{n+1}$.
+\item This also defines $\hat{\F}_{\infty} = \bigcap_{n\geq 0} \hat{\F}_n$
+\end{itemize}
+\s
+
+\thmnum{2.5.4.} \emph{(Backward martingale convergence theorem)} For all $Y\in L^1(\F)$, we have 
+\begin{align*}
+\avg(Y|\hat{\F}_n) \rightarrow \avg(Y|\hat{\F}_{\infty}) \quad \text{a.s. and in } L^1 \quad \text{as } n\rightarrow \infty
+\end{align*}
+-state why we do not need uniform integrability.
+
+\section*{3. Applications of martingale theory}
+
+\subsection*{Sums of independent random variables}
+
+Let $S_n = X_1 + \cdots + X_n$, where $(X_n)_{n\geq 0}$ is a sequence of independent random variables.
+\s
+
+\thmnum{3.1.1} \emph{(Strong Law of Large Numbers)} Let $(X_n)_{n\geq 0}$ be a sequence of independent identically distributed (\emph{i.i.d}) integrable random variables. Set $\mu = \avg(X_{1})$. Then
+\begin{align*}
+S_n / n \rightarrow \mu \quad \text{ a.s. and in } L^1
+\end{align*}
+\s
+
+\corrnum{3.1.2} \emph{(Weak law of large numbers)} Let $(X_n)_{n\geq 1}$ be a sequence of i.i.d. integrable r.v.. Set $\mu =\avg(X_1)$. Then 
+\begin{align*}
+\prob(|\frac{S_n}{n} -\mu| > \epsilon) \rightarrow 0 \quad \text{as } n\rightarrow \infty \quad \forall \epsilon >0
+\end{align*}
+\s
+
+\subsection*{3.2. Non-negative martingale and change of measure}
+
+Probability measure $\tilde{P}$ for a random variable with $\avg(X)=1$,and $\tilde{P}_n$ for $(X_n)_{n\geq 0}$.
+\s
+
+\propnum{3.2.1.} The measures $\nprob_n$ are consistent. That is
+\begin{align*}
+\nprob_{n+1} | \F_n = \nprob_n \quad \forall n \quad \text{\emph{iff}} \quad (X_n)_{n\geq 0} \quad \text{is a martingale}
+\end{align*}
+Moreover, there is a measure $\nprob$ on $\F$, which has a density w.r.t $\prob$ such that
+\begin{align*}
+\nprob |\F_n = \nprob_n \quad \forall n \quad \text{\emph{iff}} \quad (X_n)_n \quad \text{is a uniformly integrable martingale}
+\end{align*}
+\s
+
+\thmnum{3.2.3} \emph{(Radon-Nikodym theorem)} Let $\mu$ and $\nu$ be $\sigma$-finite measures on a measurable space $(E, \mathscr{E})$. Then the followings are equivalent :
+\begin{itemize}
+\item[(a)] $\nu(A) =0$ for all $A\in \mathscr{E}$ such that $\mu(A) =0$, i.e. $\nu$ is \textbf{absolutely continuous} with respect to $\mu$.
+\item[(b)] There exists a measurable function $f$ on $E$ such that $f\geq 0$ and $\nu(A) = \mu(f 1_A)$ for all $A\in \mathscr{E}$.
+\end{itemize}
+The function $f$ which is unique up to modification $\mu$-a.e.
+(proof given for case where \emph{$\mathscr{E}$ is countably generated}, so assume there is a sequence $(G_n : n \in \mathbb{N})$ of subsets of $E$ which generates $\mathscr{E}$)
+\s
+
+Radon-Nikodym derivative
+\s
+
+\subsection*{3.3. Markov Chains}
+
+$E$ countable set, $\mu$ probability measure on $E$, $\mu_x$, $\mu(f) = \sum_x \mu_x f_x$, transition matrix, Markov chain with transition matrix $P$
+\s
+
+\propnum{3.3.1} Let $(X_n)_{n\geq 0}$ be a random process in $E$ and take $\F_n = \sigma (X_k : k\geq n)$. Then the following are equivalent :
+\begin{itemize}
+\item[(a)] $(X_n)_{n\geq 0}$ is a Markov chain with initial distribution $\mu$ and transition matrix $P$.
+\item[(b)] For all $n$ and all $x_0,x_1,\cdots,x_n\in E$,
+\begin{align*}
+\prob(X_0 = x_0, X_1=x_1,\cdots,X_n=x_n) = \mu_{x_0} p_{x_0 x_1} \cdots p_{x_{n-1}x_n}
+\end{align*}
+\end{itemize}
+\s
+
+\propnum{3.3.2} Let $E^*$ denote the set of sequence $x=(x_n : n\geq 0)$ taking values in $E$ and define $X_n : E^* \rightarrow E$ by $X_n(x) = x_n$. Set $\mathscr{E} = \sigma (X_k : k\geq 0)$. Let $P$ be a transition matrix on $E$. Then, for each $y\in E$, there is a unique probability measure $\prob_y$ on $(E^*,\mathscr{E}^*)$ such that $(X_n)_{n\geq 0}$ is a Markov chain with transition matrix $P$ and starting from $y$.
+\s
+
+An example of a Markov chain in $\mathbb{Z}^d$ is the simple symmetric random walk with transition matrix
+\begin{align*}
+p_{xy} = \begin{cases}
+1/2d \quad \text{if } |x-y| =1 \\
+0 \quad \text{otherwise}
+\end{cases}
+\end{align*}
+The following result shows a simple instance of a general relationship between Markov processes and martingale.
+\s
+
+\propnum{3.3.3} Let $(X_n)_{n\geq 0}$ be an adapted process in $E$. TFAE :
+\begin{itemize}
+\item[(a)] $(X_n)_{n\geq 0}$ is a Markov chain with transition matrix $P$.
+\item[(b)] For all bounded functions $f$ on $E$, the following process is a \emph{martingale}
+\begin{align*}
+M^f_n = f(X_n) - f(X_0) - \sum_{k=0}^{n-1} (P-I) f(X_k)
+\end{align*}
+\end{itemize}
+\s
+
+(bounded) harmonic function
+\s
+
+\thmnum{3.3.4} The function $u$ is bounded, harmonic in $D$, and $u=f$ on $\partial D$. Moreover, if $\prob_x (T<\infty) =1 $ for all $x\in D$ , then $u$ is the unique bounded extension of $f$ which is harmonic in $D$. (state what $T$ and $u$ should be)
+
+\section*{4. Random processes in continuous time}
+
+\subsection*{4.1. Definitions}
+
+continuous random process($C(\reals_{\geq 0}, \reals)$), cadlag function, cadlag random process($D(\reals_{\geq 0}, \reals)$).
+
+$\sigma$-algebra on $C(\reals_{\geq 0}, \reals)$, $D(\reals_{\geq 0}, \reals)$.
+
+Finite dimensional distribution.
+
+\subsection*{Kolmogorov's Criterion}
+
+\thmnum{4.2.1} \emph{(Kolmogorov's criterion)} state and prove
+\s
+
+The interpretation?
+\s
+
+We have defined and used $\mathbb{D}_n = \{k2^{-n} : k\in \mathbb{Z}^+ \}$, $\mathbb{D} = \cup_{n\geq 0}\mathbb{D}_n$, $D_n = [0,1] \cap \mathbb{D}$, $D= \cup_n D_n = \mathbb{D} \cap [0,1]$.
+
+\subsection*{4.3. Martingales in continuous time}
+
+We assume in this section that our probability space $(\Omega, \F, \prob)$ is equipped with a continuous filtration. (define this)
+
+\quad $\F_{t^+}$, $\mathscr{N}$, usual conditions
+
+\quad continuous/cadlag (sup/sub-)martingale.
+
+\quad Define, for a cadlag random process $X$, $X^*$ and $X^{(n)*}$ (defined these). The cadlag property implies $X^{(n)*} \rightarrow X^*$ as $n\rightarrow \infty$. (check!)
+\s
+
+\thmnum{4.3.1}(Doob's maximal inequality ) state and prove
+(The proof is written at the remark right before the theorem.)
+\s
+
+\thmnum{4.3.2}(Doob's $L^p$ inequaltiy) state and prove
+\s
+
+\thmnum{4.3.3}(Doob's upcrossing inequality) state and prove
+\s
+
+We also have different versions of martingale convergence theorem.
+\s
+
+\thmnum{4.3.4} (a.s. martingale convergence theorem) state and prove
+\s
+
+\thmnum{4.3.5} ($L^1$ martingale convergence theorem) state and prove (be aware that there is an extra assumption in the statement in converse direction)
+\s
+
+\thmnum{4.3.6} ($L^p$ martingale convergence theorem) state and prove
+\s
+
+stopping time $T$, the algebra $\F_T$, stopped process $X^T$.
+\s
+
+\propnum{4.3.7} Let $S$ and $T$ be stopping times and let $X$ be a cadlag adapted process. Then
+\begin{itemize}
+\item[(a)] $S\wedge T$ is a stopping time.
+\item[(b)] $\F_T$ is a $\sigma$-algebra.
+\item[(c)] If $S\leq T$, then $\F_S \subset \F_T$.
+\item[(d)] $X_T 1_{T<\infty}$ is $\F_T$-measurable.
+\item[(e)] $X^T$ is adapted.
+\end{itemize}
+\s
+
+\thmnum{4.3.8} \emph{(Optional stopping theorem)}  state and prove.
+
+Moreover, if $X$ is uniformly integrable, then (b) and (d) hold for all stopping times.
+
+\section*{Chapter 5. Weak Convergence}
+
+\subsection*{5.1. Definitions}
+
+Let $E$ be a metric space. Whenever we are talking about a metric space, the $\sigma$-algebra is given by the Borel $\sigma$-algebra.
+
+\quad $C_b(E)$, weak convergence of $(\mu_n)_n \in \mathscr{P}(E)$.
+\s
+
+\thmnum{5.1.1} The following are equivalent.
+\begin{itemize}
+\item[(a)] $\mu_n \rightarrow \mu$ weakly on $E$
+\item[(b)] $\liminf_{n\rightarrow \infty} \mu_n(U) \geq \mu(U)$ for all $U$ open
+\item[(c)] $\limsup_{\mu(F)} \leq \mu(F)$ for all $F$ closed.
+\item[(d)] $\mu_n(B) \rightarrow \mu(B)$ for all $B \in \borel$ such that $\mu(\partial B)=0$.(Boundary is the set of limit points of $B$ that are not contained in $B$.)
+\end{itemize}
+(proof was an exercise)
+\s
+
+\propnum{5.1.2} Consider the case $E =\reals$. TFAE
+\begin{itemize}
+\item[(a)] $\mu_n \rightarrow \mu$ weakly for some probability measure $\mu$.
+\item[(b)] $F_n(x) \rightarrow F(x)$ for all $x\in \reals$ such that $F(x^-) = F(x)$. (Here, $F(x)  = \mu((\infty,x])$ is the \textbf{distribution function} of $\mu$.) (Sometimes called convergence of distributions)
+\item[(c)] There exists a probability space $(\Omega,\F, \prob)$ and random variables $X_n, X$ on $\Omega$ such that $X_n \sim \mu_n$, $X\sim \mu$ and $X_n \rightarrow X$ almost surely.
+\end{itemize}
+(refers to probability and measure notes for proof)
+\s
+
+\subsection*{5.2. Prohorov's Theorem}
+
+Tight set of probability measures
+
+\thmnum{5.2.1} \emph{(Prohorov)} state and prove
+\s
+
+This gives a version of weakly sequential compactness of probability measures. Only going to prove this for $\reals$.
+
+\subsection*{5.3. Weak Convergence and Characteristic Functions}
+
+Take $E = \reals^d$.  Characteristic function $\phi : \reals^d \rightarrow \mathbb{C}$ of a probability measure $\mu$.
+
+\lemnum{5.3.1} Fix $d=1$. For all $\lambda \in (0,\infty)$,
+\begin{align*}
+\mu(\reals \backslash (-\lambda, \lambda)) \leq C\lambda \int_{0}^{\lambda} (1- \text{Re}(\phi(u))) du
+\end{align*}
+where $C = (1- \sin(1))^{-1} < \infty$.
+\s
+
+\thmnum{5.3.2} Let $\mu_n, \mu$ be probability measures on $\reals^d$ with characteristic functions $\phi_n, \phi$. Then the following are equivalent
+\begin{itemize}
+\item[(a)] $\mu_n \rightarrow \mu$ weakly on $\reals^d$.
+\item[(b)] $\phi_n(u) \rightarrow \phi(u)$ for all $u\in \reals^d$.
+\end{itemize}
+(proven only for the case $d=1$)
+\s
+
+In fact, the proof of the theorem implies a slightly stronger statement, which is less useful.
+\s
+
+\thmnum{5.3.3} \emph{(L\'{e}vy's continuity theorem for characteristic functions)} Let $(\mu_n : n\in \mathbb{N})$ be a sequence of probability measures on $\reals^n$ with characteristic functions $\phi_n$. Suppose $\phi_n (u) \rightarrow \phi(u)$ for all $u$ for some function $\phi$ (not necessarily a characteristic function) such that $\phi$ is continuous at $0$. Then $\phi$ is the characteristic function of some probability measure $\mu$ on $\reals^d$ and $\mu_n \rightarrow \mu$ weakly on $\reals^d$.
+\s
+
+\section*{6. Large Deviations}
+	
+\subsection*{6.1. Cram\'{e}rs theorem}
+
+\thmnum{6.1.1} Let $(X_n : n\in \mathbb{N})$ be a sequence of integrable \emph{i.i.d.} random variables in $\reals$. Set $m = \avg(X_1)$, $S_n = X_1 + \cdots + X_n$. We know $S_n / n \rightarrow \delta_m$ in probability, so if $(m-\epsilon, m+ \epsilon) \cap B =\phi$ then $\prob (S_n/n \in B) \rightarrow 0$ as $n\rightarrow \infty$. Then in fact the convergence rate is given by $\sim \exp (-n \alpha(B))$ for some $\alpha$. (state this in a precise sense)
+
+(Proof makes use of Proposition 6.1.2 and Lemma 6.1.3)
+\s
+
+\textbf{Note :} $\psi$ is always a convex function, so $\psi^*$ is also a convex function.
+\s
+
+\textbf{Examples :}
+\begin{itemize}
+\item[(i)] $X_1 \sim N(0,1)$, then
+\begin{align*}
+\frac{1}{n} \log (\prob(S_n \geq a)) \rightarrow -\frac{a^2}{2} \quad \forall a\geq 0
+\end{align*}
+Can check this directly, using the fact that $S_n \sim N(0,n)$ in this case.
+\item[(ii)] $X_1 \sim \text{Exp}(1)$, then
+\begin{align*}
+\frac{1}{n} \log \prob(S_n \geq na) \rightarrow -(a-1-\log (a)) \quad \forall a\geq 1
+\end{align*}
+On the other hand, $\text{Var}(X_1) =1 <\infty$, so $\frac{S_n -n}{\sqrt{n}} \rightarrow N(0,1)$ by CLT. So
+\begin{align*}
+\prob(S_n \geq n + a\sqrt{n}) \rightarrow \int_a^{\infty} \frac{1}{\sqrt{2\pi}} e^{-x^2/2} dx.
+\end{align*}
+\end{itemize}
+\s
+
+\propnum{6.1.2} Suppose $X$ is integrable and not a.s. constant. Then 
+\begin{align*}
+& \psi_K(\lambda) = \log \avg(e^{\lambda X_1}|X_1 \leq K) < \infty \quad \forall K < \infty \\
+\text{\emph{and}} \quad & \psi_K(\lambda) \nearrow \psi(\lambda) \quad \text{as } K\rightarrow \infty
+\end{align*}
+Moreover in the case $\psi(\lambda) < \infty$ for all $\lambda \geq 0$, $\psi$ has a continuous derivative on $[0,\infty)$ and is $C^2$ on $(0,\infty)$ with
+\begin{align*}
+& \psi'(\lambda) = \int_{\reals} x\mu_{\lambda}(dx) \\
+& \psi''(\lambda) = \text{Var}(\mu_{\lambda}) > 0
+\end{align*}
+and $\psi'$ is a homeomorphism from $[0,\infty)$ to $[m, \text{sup}(\text{supp}(\mu))$.
+
+(Proof in examples sheet)
+\s
+
+\lemnum{6.1.3} For all $a\geq m$, with $\prob(X_1 > 0) > 0$ we have $\psi^*_K(a) \searrow \psi^*(a)$ as $K\rightarrow \infty$. Moreover in the case $\psi(\lambda) < \infty$ for all $\lambda \geq 0$, $\psi^*$ is continuous at $a$ and we have $\psi^*(a) =\lambda^* a - \psi(\lambda^*)$ where $\lambda^*$ is uniquely determined by $\psi'(\lambda^*) = a$.
+
+\section*{7. Brownian Motion}
+
+\subsection*{7.1. Definition}
+
+\defi Brownian motion(starting from $x$), heat semigroup.
+\s
+
+Equivalent condition for being a Brownian motion?
+
+\subsection*{7.2. Wiener's theorem}
+
+$W_d, \W_d$, a $\sigma$-algebra on $W_d$.
+\s
+
+Given a continuous process $(X_t)_{t\geq 0}$ in $\reals^d$ on $\Omega$, we can define 
+\begin{align*}
+X : \Omega \rightarrow W_d, \quad X(\omega)(t) = X_t(\omega)
+\end{align*}
+-State why $X$ is $\W_d$-measurable.
+\s
+
+\thmnum{7.2.1.}\emph{(Wiener)} For all $d\geq 1$ and $x\in \reals^d$, there exist a unique probability measure $\mu_x$ on $(W_d, \W_d)$ such that $(x_t)_{t\geq 0}$ is a Brownian motion in $\reals^d$ staring from $x$. In particular, Brownian motion exists.
+
+\subsection*{7.3. Symmetries of Brownian Motion}
+
+\propnum{7.3.1} Let $(X_t)_{t\geq 0}$ be a $\text{BM}_0(\reals^d)$ and let $\sigma \in (0,\infty)$ and $U\in O(d)$. Then the following processes are also $\text{BM}_0(\reals^d)$.
+\begin{itemize}
+\item[(i)] \textbf{(Scaling property)} $(\sigma X_{\sigma^{-2}t})_{t\geq 0}$,
+\item[(ii)] \textbf{(Rotation invariance)} $(UX_t)_{t\geq 0}$.
+\end{itemize}
+In fact $\text{BM}_0(\reals^d)$ is characterized among continuous Gaussian processes by its means and covariances,
+\begin{align*}
+\avg(X_t) =0, \quad \text{cov}(X_s^i, X_t^j) = \avg(X^i_s X^j_t) = \delta_{ij} (s\wedge t)
+\end{align*}
+
+\subsection*{7.4. Brownian Motion in a Given Filtration}
+
+Suppose given a filtration $(\F_t)_{t\geq 0}$ on $(\Omega, \F, \prob)$. A $(\F_t)$-BM is...
+\s
+
+\propnum{7.4.1} Let $X = (X_t)_{t\geq 0}$ be a $\text{BM}(\reals^d)$ and let $F$ be a bounded measurable function on $W_d$. Define
+\begin{align*}
+f(x) = \int F(\omega) \mu_x (d\omega), \quad x\in \reals^d
+\end{align*}
+Then $f$ is measurable on $\reals^d$ and $\avg(F(X) |\F_0)  = f(X_0)$ a.s. (recall, $\mu_x$ is the law of $\text{BM}_x$)
+(Was an exercise.) (Has a simple proof in the solution for the example sheet {\#}3.)
+\s
+
+\subsection*{7.5. Martingales of BM}
+
+\thmnum{7.5.1} Let $(X_t)_{t\geq 0}$ be an $(\F_t)_{t\geq 0}$-BM in $\reals^d$ and let $f\in C_b^2(\reals^d)$ . Define
+\begin{align*}
+M_t = f(X_t) - f(X_0) - \int_0^t \frac{1}{2} \Delta f(X_s) ds
+\end{align*}
+Then $(M_t)_{t\geq 0}$ is an $(\F_t)_{t\geq 0}$-martingale.
+\s
+
+We are in fact apply the theorem in the case where the assumption $f \in C_b^2(\reals^d)$ does not hold. We can actually relax this condition using almost the same proof, e.g. any $f$ of polynomial growth rate would work.
+\s
+
+\textbf{Exercise :} see how much we can relax $C_b^2(\reals^d)$.
+
+\textbf{Examples : } Let $(X_t^i)_{t\geq 0}$, $i=1, \cdots, n$ be a BM. Then... give examples!
+
+\subsection*{7.6. Strong Markov Property}
+
+\thmnum{7.6.1} Let $(X_t)_{t\geq 0}$ be an $(\F_t)_{t\geq 0}$-BM and let $T$ be a stopping time. Then... state and prove
+
+\subsection*{7.7. Properties of 1-d BM}
+
+\propnum{7.7.1} Let $(X_t)_{t\geq 0}$ be a $\text{BM}_0(\reals)$. Set $T_a = \inf \{t\geq 0 : X_t =a \}$. Then
+\begin{align*}
+& \prob(T_a < \infty) =1 \quad \text{for all } a\in \reals \quad \text{\emph{and}} \\
+& \prob(T_{-a} \leq T_b) = \frac{b}{a+b} \quad \forall a,b\geq 0 \quad \text{\emph{and}} \\
+& \avg(T_a \wedge T_b) = ab
+\end{align*}
+Moreover $T_a$ has a density $f_a$ on $[0,\infty)$ given by
+\begin{align*}
+f_a(t) = \frac{a}{\sqrt{2\pi t^3}} e^{-a^2/2t} \quad t\geq 0
+\end{align*}
+Moreover the following holds almost surely.
+\begin{itemize}
+\item[(a)] $X_{t} /t \rightarrow 0$ as $t\rightarrow \infty$.
+\item[(b)] $\inf_{t\geq 0} X_t = -\infty$, $\sup_{t\geq 0} X_t =\infty$. 
+\item[(c)] for all $s\geq 0$, there exist $t,n\geq s$ such that $X_t < 0 < X_n$.
+\item[(d)] for all $s>0$ there exist $t,n \in [0,s)$ such that $X_t < 0<X_n$.
+\end{itemize}
+(proof was an exercise)
+\s
+
+\thmnum{7.7.2} Let $X \sim \text{BM}_0(\reals)$. Then the following properties hold almost surely : 
+\begin{itemize}
+\item[(a)] for all $\alpha < 1/2$, $(X_t)_{t\geq 0}$ is locally H\"{o}lder continuous of exponent $\alpha$.
+\item[(b)] for all $\alpha >1/2$ there is no non-trivial interval on which $X$ is H\"{o}lder continuous of exponent $\alpha$.
+\end{itemize}
+
+\subsection*{7.8. Recurrence and Transience of Brownian Motion}
+
+The following theorem tells about recurrence and transience in different dimensions.
+\s
+
+\thmnum{7.8.1} Let $(X_t)_{t\geq 0}$ is a $\textbf{BM}_0(\reals^d)$.
+\begin{itemize}
+\item[(a)] For $d=1$, $\prob(\{t\geq 0 : X_t =0 \}$ is unbounded$) =1$. \textbf{(Point recurrent)}
+\item[(b)] For $d=2$, and all $\epsilon>0$, $\prob (X_t =0$ for some $t>0) =0$ but $\prob(\{ t\geq 0 : |X_t| \leq \epsilon \}$ is unbounded$)=1$. \textbf{(Neighbourhood recurrent}, but not recurrent\textbf{)}
+\item[(c)] For $d\geq 3$, $\prob(|X_t| \rightarrow \infty$ as $t\rightarrow \infty ) =1$. \textbf{(Transient)}
+\end{itemize}
+
+\subsection*{7.9. Brownian Motion and the Dirichlet Problem}
+
+Let $D$ be a connected open set in $\reals^d$. Write $\partial D$ for the boundary. Let $c: D \rightarrow [0,\infty)$, $f: \partial D \rightarrow [0,\infty)$ be measurable functions. For $x\in \overline{D}$, let $(X_t)_{t\geq 0}$ be a Brownian motion starting at $x$.
+
+\quad expected total cost $\phi(x)$, solution $\psi$ of the Dirichlet problem (for Poisson equation)
+\s
+
+\thmnum{7.9.2 (a)} Let $\psi$ be a \emph{non-negative super-solution} of the Dirichlet Problem(DP), $\psi \in C(\overline{D}) \cap C^2(D)$, then $\psi \geq \phi$.
+\s
+
+\thmnum{7.9.2 (b)} Let $\psi$ be a \emph{non-negative bounded solution} of the Dirichlet Problem, $\psi \in C(\overline{D}) \cap C^2(D)$
+\begin{align*}
+\begin{cases}
+\begin{array}{ll}
+-\frac{1}{2} \Delta \psi = c & \text{in } D \\
+\psi = f & \text{on } \partial D
+\end{array}
+\end{cases}
+\end{align*}
+and suppose that $\avg(\psi(X_t)1_{t<T}) \rightarrow 0$ as $t\rightarrow \infty$($\cdots (\dagger$)). Then $\psi = \phi$.
+
+\textbf{Remark about the condition ($\dagger$) :} state
+\s
+
+\thmnum{7.9.2 (c).(I)} Assume $d\geq 3$ and $D= \reals^d$ and $c$ has compact support and $c\in C^2(D)$. Then $\phi \in C^2(\reals^d)$ and $-\frac{1}{2} \Delta \phi =c$.
+\s
+
+\thmnum{7.9.4} Let $D$ be a connected open set $\subset \reals^d$ and let $\phi$ be a \emph{non-negative} measurable function on $D$. Suppose
+\begin{align*}
+\phi(x) = \int_{S(x,p)} \phi(y) \sigma_{x,p}(dy)
+\end{align*}
+whenever $B(x,p) \subset D$ where $\sigma_{x,p}$ is the uniform distribution on $S(x,p) = \{ y : |x-y| =p \}$. Then \emph{either} $\phi(x) = \infty$ for all $x$ \emph{or} $\phi \in C^{\infty}(D)$ with $\Delta \phi =0$.
+
+(not done in lecture)
+\s
+
+\thmnum{7.9.5} \emph{(Blumenthal's zero-one law)} state and prove
+\s
+
+\propnum{7.9.6} \emph{(Brownian motion enters all cones immediately)} Let $A$ be an open subset of $S^{d-1}$ and let $\epsilon>0$. Set $C$ a cone,
+\begin{align*}
+C = \{ty : y\in A, t\in (0,\epsilon) \}
+\end{align*} 
+Let $X \sim \text{BM}_0(\reals^d)$, and define $T_C = \inf \{ t\geq 0: X_t \in T_C \}$. Then $\prob(T_C =0)=1$. 
+\begin{proof}
+See example sheet.
+\end{proof}
+\s
+
+Some definition (\textbf{External cone condition, ECC))} : Let $D \subset \reals^d$ be open and connected. Then $D$ satisfies ECC if for all $x\in \partial D$ , there exist $A$ open $\subset S^{d-1}$, $\epsilon >0$ such that
+\begin{align*}
+\{x+ty : t\in (0,\epsilon), y\in A \} \cap D = \phi
+\end{align*}
+This is weaker than the Lipschitz boundary condition.
+
+\s
+\thmnum{7.9.2(c)} Let $D$ be a connected open set $\subset \reals^d$. Let $c\in C^2(\reals^d)$, $f\in C(\partial D)$. Set
+\begin{align*}
+\phi(x) = \avg \Big( \int_0^T c(X_t) dt + f(X_T) 1_{T<\infty} \Big) \quad \forall x\in \overline{D}
+\end{align*}
+where $X \sim \text{BM}_x(\reals^d)$ and $T = \inf \{ t\geq 0: X_t \not\in D \}$. Assume $D$ satisfies the \emph{external cone condition(ECC)} and that $\phi$ is locally bounded. Then $\phi \in C^2(D) \cap C(\overline{D})$ and $-\frac{1}{2}\Delta \phi =c$ in $D$ and $\phi =f$ on $\partial D$. i.e. $\phi$ solves the Dirichlet problem.
+
+-showing it satisfies the boundary condition is quite cumbersome
+\s
+
+\lemnum{7.9.3} Let $D_0$ be a \emph{bounded subset} of $D$. Define $T_0 = \inf \{t\geq 0: X_t \not\in D_0 \}$, $x\in \overline{D}$. Then $\phi(x) = \avg \Big( \int_0^{T_0} c(X_t) dt + \phi(X_{T_{0}}) \Big)$.
+\s
+
+\section*{8. Poisson Random Measures}
+
+Our ambition?
+
+\subsection*{8.1. Construction}
+
+Distribution $P(\lambda)$
+\s
+
+\propnum{8.1.1.}\emph{(Addition property)} Let $(N_k : k\in \mathbb{N})$ be a sequence of independent random variables with $N_k \sim P(\lambda_k)$ for all $k$. Then 
+\begin{align*}
+\sum_{k} N_k \sim P \big( \sum_k \lambda_k \big)
+\end{align*}
+\s
+
+\propnum{8.1.2.}\emph{(Splitting property)} Suppose $N\sim P(\lambda)$. Let $(Y_n : n\in \mathbb{N})$ be a sequence of i.i.d. random variables in $\mathbb{N}$. Set $N_k = \sum_{n=1}^N 1_{Y_n =k}$ for $k\geq 1$. Then $(N_k : k\in \mathbb{N})$ is a sequence of independent $P(\lambda_k)$ random variables with $\lambda_k = \lambda \prob(Y_1 =k)$.
+\s
+
+Let $(E, \mathscr{E}, \mu)$ be a \emph{$\sigma$-finite} measure space.
+
+Poisson Ramdom measure $PRM(\mu)$, and its construction.
+\s
+
+To show uniqueness, we need in which sense PRM is unique - to do this, define $E^*$ and $\EE^*$, then $PRM$ can be though of as a random variable $(\Omega, \F, \prob)  \rightarrow (E^*, EE^*)$. Then such random variable is unique upto a.s. sense (unique in law).
+
+
+\subsection*{8.2. Integrals with respect to Poisson Random Measures}
+
+\thmnum{8.2.1} Let $M$ be a $\text{PRM}(\mu)$ and let $g$ be a measurable function on $(E, \mathscr{E})$. Assume $\mu(E) < \infty$. Define
+\begin{align*}
+M(g) = \begin{cases}
+\begin{array}{ll}
+\int_E g(y) M(dy) & \text{if  } M(E) < \infty \\
+0 & \text{o/w}
+\end{array}
+\end{cases}
+\end{align*}
+Then $M(g)$ is a well-defined random variable and 
+\begin{align*}
+\avg(e^{inM(g)}) = \exp \Big[ \int_E (e^{ing(y)} -1) \mu(dy) \Big]
+\end{align*}
+and if $g\in L^1(\mu)$ then $M(g) \in L^1(\prob)$ with $\avg(M(g)) = \mu(g)$ and $\text{Var}(M(g)) = \mu(g^2)$.
+\s
+
+$\tilde{M}$, the compensated Poisson Random Measure. 
+\s
+
+
+\propnum{8.2.2} Assume $K(E) < \infty$ and $g\in L^1(K)$. Set
+\begin{align*}
+\tilde{M}_t(g) = \begin{cases}
+\begin{array}{ll}
+\int_{(0,t] \times E} g(y) \tilde{M} (ds,dy) & \text{if }  \mu( (0,t] \times E) < \infty \,\, \forall t\geq 0 \\
+0 & \text{otherwise}
+\end{array}
+\end{cases}
+\end{align*}
+Then $(\tilde{M}_t(g))_{t\geq 0}$ is a \emph{cadlag martingale} with \emph{stationary independent increments}. Moreover,
+\begin{align*}
+\begin{array}{ll}
+\avg(\tilde{M}_t(g)^2) = t\int_E g(y)^2 K(dy) & \cdots\cdots\cdots (\heartsuit) \\
+\avg(e^{iu\tilde{M}_t(g)}) =\exp\Big[ t\int_E (e^{iug(y)}-1) K(dy) \Big] & \cdots\cdots\cdots (\oplus)
+\end{array}
+\end{align*}
+(in examples sheet)
+\s
+
+
+\thmnum{8.2.3} Let $g\in L^2(K)$. Take $E_n \in \mathscr{E}$ with $E_n \nearrow E$ and $K(E_n) < \infty$. Set $X_t^n = \tilde{M}_t(g1_{E_n})$. Then there exists a \emph{cadlag martingale} $(X_t)_{t\geq 0}$ such that $\avg(\sup_{s\leq t} |X_s^n - X_s|^2) \rightarrow 0$ as $n\rightarrow \infty$ for all $t\geq 0$. 
+
+\quad Define $\tilde{M}_t(g) = X_t$. Then $(\tilde{M}_t(g))_{t\geq 0}$ has \emph{stationary independent increments} and ($\heartsuit$) and $(\oplus)$ still hold - so we may write, in convention,
+\begin{align*}
+\tilde{M}_t(g) = \int_{(0,t] \times E} g(y) \tilde{M}(ds,dy)
+\end{align*}
+and call $(\tilde{M}_t(g))_{t\geq 0}$ (a version of the stochastic) integral of $g$ with respect to $\tilde{M}$. (Although the integral does not converge absolutely!!!)
+
+\section*{9. L\'{e}vy Processes}
+
+\subsection*{9.1. Definitions}
+
+Levy process, Levy triple. Levy process with Levy triple $(a,b,K)$, and its characteristic function.
+
+\subsection*{9.2. L\'{e}vy-Khinchine Theorem}
+
+\thmnum{9.2.1} Let $(X_t)_{t\geq 0}$ be a L\'{e}vy process (i.e. cadlag, stationary independent increments with $X_0=0$.) Then there exists a L\'{e}vy triple $(a,b,K)$ such that $\avg(e^{iuX_t}) = e^{t\psi(u)}$ for all $t\geq 0$, $u \in \reals$ where
+\begin{align*}
+\psi(u) \equiv \psi_{a,b,K}(u) =ibu - \frac{1}{2}au^2 + \int_{\reals} (e^{iuy}-1-iuy 1_{|y|\leq 1}) K(dy)
+\end{align*}
+and $\int_{\reals} (1\wedge |y|^2) K(dy) < \infty$.
+\end{document}
