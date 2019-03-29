@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.18 (MiKTeX 2.9.6500) (preloaded format=pdflatex 2018.2.9)  29 MAR 2019 02:01
+This is pdfTeX, Version 3.14159265-2.6-1.40.18 (MiKTeX 2.9.6500) (preloaded format=pdflatex 2018.2.9)  29 MAR 2019 14:46
 entering extended mode
 **./StochasticC.tex
 (StochasticC.tex
@@ -1199,7 +1199,7 @@ Overfull \hbox (17.86604pt too wide) detected at line 2813
 Here is how much of TeX's memory you used:
  15690 strings out of 493312
  310656 string characters out of 3136305
- 462971 words of memory out of 3000000
+ 462972 words of memory out of 3000000
  18853 multiletter control sequences out of 15000+200000
  77703 words of font info for 89 fonts, out of 3000000 for 9000
  1141 hyphenation exceptions out of 8191
@@ -1226,7 +1226,7 @@ Files (x86)/MiKTeX 2.9/fonts/type1/public/lm/lmsy10.pfb><C:/Program Files (x86)
 fonts/type1/public/lm/lmsy8.pfb><C:/Program Files (x86)/MiKTeX 2.9/fonts/type1/
 public/amsfonts/symbols/msam10.pfb><C:/Program Files (x86)/MiKTeX 2.9/fonts/typ
 e1/public/amsfonts/symbols/msbm10.pfb>
-Output written on StochasticC.pdf (54 pages, 556264 bytes).
+Output written on StochasticC.pdf (54 pages, 556423 bytes).
 PDF statistics:
  263 PDF objects out of 1000 (max. 8388607)
  0 named destinations out of 1000 (max. 500000)

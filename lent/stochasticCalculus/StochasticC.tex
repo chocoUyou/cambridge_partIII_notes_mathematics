@@ -1677,7 +1677,7 @@ df(B_t) = f'(B_t) dB_t + \frac{1}{2}f''(B_t) dt, \quad \textit{i.e. } (dB_t)^2 =
 
 \subsection{L\'evy's characterisation of Brownian motion}
 
-\thm Let $X = (X^1, \cdots, X^p)$ be continuous local martingales. Suppose $X_0 = 0$ and that $\langle X^i, X^j \rangle_t = \delta_{ij} t$ for all $t\geq 0$. Then $X$ is a standard $p$-dimensional Brownaim motion. That is, \emph{the covariation singles out the Brownian motion.}
+\thm Let $X = (X^1, \cdots, X^p)$ be continuous local martingales. Suppose $X_0 = 0$ and that $\langle X^i, X^j \rangle_t = \delta_{ij} t$ for all $t\geq 0$. Then $X$ is a standard $p$-dimensional Brownian motion. That is, \emph{the covariation singles out the Brownian motion.}
 \begin{p}
 \pf It suffices to show that for all $0\leq s <t$, (i) $X_t - X_s$ is independent of $\FF_s$ and (ii) $X_t - X_s \sim N(0, (t-s)id_{p \times p})$.
 
@@ -1701,7 +1701,7 @@ where the third equality follows from the assumption in the statement of the the
 dZ_t =& df(X_t) = Z_t \big( d\bar{X}_t + \frac{1}{2} d\langle \bar{X} \rangle_t \big) \\
 =& Z_t (i \cdot dY_t + \frac{1}{2} d\langle Y \rangle_t - \frac{1}{2} d\langle Y \rangle_t) = iZ_t dY_t
 \end{align*}
-\emph{(verify these calculations - might be faulty.)} In particular, $Z$ is a continuous local martingale. Since $Z$ is bounded on every bounded interval, $Z$ is in fact a martingale (when we are checking martingale property, we only do computations on bounded times, so it suffices to have absolute bound on each bounded interval). So $\avg(Z_t | \FF_s) = Z_s$ and hence
+In particular, $Z$ is a continuous local martingale. Since $Z$ is bounded on every bounded interval, $Z$ is in fact a martingale (when we are checking martingale property, we only do computations on bounded times, so it suffices to have absolute bound on each bounded interval). So $\avg(Z_t | \FF_s) = Z_s$ and hence
 \begin{align*}
 \avg \big( e^{i\theta \cdot (X_t - X_s)} | \FF_s \big) = e^{-\frac{1}{2} |\theta|^2 (t-s)}
 \end{align*}
@@ -1972,7 +1972,7 @@ since upon the event $\{\sup_{t} M_t >a\}$, we always have $M_{\infty}^T =a$. He
 \end{align*} 
 Optimizing over $\lambda$, we get
 \begin{align*}
-\prob (\sup M_t >a, \langle M \rangle_{\infty} \leq b) \leq e{-\frac{a^2}{2b}}
+\prob (\sup M_t >a, \langle M \rangle_{\infty} \leq b) \leq e^{-\frac{a^2}{2b}}
 \end{align*}
 and
 \begin{align*}
@@ -2148,7 +2148,7 @@ Pathwise uniqueness implies weak uniqueness, but this is not obvious (called Yam
 \begin{align*}
 dX_t = \text{sign}(X_t) dB_t, \quad X_0=x \call{\text{TK}}
 \end{align*}
-where $\text{sign}(x) = 1$ if $x>0$, $\text{sign}(x) =-1$ if $x\leq 0$, has a weak solution that is unique in law, but it is pathwise uniqueness does not hold. 
+where $\text{sign}(x) = 1$ if $x>0$, $\text{sign}(x) =-1$ if $x\leq 0$, has a weak solution that is unique in law, but the pathwise uniqueness does not hold. 
 \begin{p}
 \pf Let $X$ be a one-dimensional Brownian motion with $X_0 =x$. Set $\tilde{B}_t = \int_0^t \text{sign}(X_s) dX_s$ then
 \begin{align*}
@@ -2697,7 +2697,7 @@ This completes the proof.
 \end{p}
 \s
 
-A similar method can also be used not only to prove the existence of solution but to find the soltuion. (not going to do this here).
+A similar method can also be used not only to prove the existence of solution but to find the solution. (not going to do this here).
 \s
 
 \subsubsection*{Cauchy Problem}
@@ -2770,7 +2770,7 @@ u(t,x) = M_0 = \avg_x M_t = \avg_x u(0, X_t) E_t = \avg (f(X_t) E_t)
 \eop
 \end{p}
 
-\subsection{Markov property}
+\subsection{Markov process}
 
 Let $B(\reals^d)$ be the Banach space of \textbf{bounded Borel functions} on $\reals^d$, with $\snorms{f}{} = \sup_{x\in \reals^d} |f(x)|$ for $f\in B(\reals^d)$.
 \s
