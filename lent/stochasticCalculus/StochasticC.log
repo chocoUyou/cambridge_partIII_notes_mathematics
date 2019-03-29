@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.18 (MiKTeX 2.9.6500) (preloaded format=pdflatex 2018.2.9)  16 MAR 2019 13:57
+This is pdfTeX, Version 3.14159265-2.6-1.40.18 (MiKTeX 2.9.6500) (preloaded format=pdflatex 2018.2.9)  29 MAR 2019 02:01
 entering extended mode
 **./StochasticC.tex
 (StochasticC.tex
@@ -1134,18 +1134,18 @@ msy/m/n/12 h\OML/lmm/m/it/12 M; N\OMS/lmsy/m/n/12 i[][]  [][]$\OT1/lmr/m/n/12
  []
 
 [19] [20]
-Overfull \hbox (24.24966pt too wide) in paragraph at lines 1154--1156
+Overfull \hbox (18.66605pt too wide) in paragraph at lines 1154--1156
 \OT1/lmr/m/n/12 Here, $\U/msb/m/n/12 E\OT1/lmr/m/n/12 (\OML/lmm/m/it/12 X[]\OT1
 /lmr/m/n/12 )[] = \U/msb/m/n/12 E\OT1/lmr/m/n/12 (\OML/lmm/m/it/12 H[]\U/msb/m/
-n/12 E[]\OT1/lmr/m/n/12 (\OML/lmm/m/it/12 M[] \OMS/lmsy/m/n/12   \OML/lmm/m/it/
-12 M[]\OT1/lmr/m/n/12 )[]\OMS/lmsy/m/n/12 j\U/eus/m/n/12 F[]\OT1/lmr/m/n/12 )[]
-$ while $\U/msb/m/n/12 E\OT1/lmr/m/n/12 (\OML/lmm/m/it/12 M[] \OT1/lmr/m/n/12 +
- \OML/lmm/m/it/12 M[] \OMS/lmsy/m/n/12   \OT1/lmr/m/n/12 2\OML/lmm/m/it/12 M[]M
-[]\OMS/lmsy/m/n/12 j\U/eus/m/n/12 F[]\OT1/lmr/m/n/12 ) =
+n/12 E\OT1/lmr/m/n/12 ((\OML/lmm/m/it/12 M[] \OMS/lmsy/m/n/12   \OML/lmm/m/it/1
+2 M[]\OT1/lmr/m/n/12 )[]\OMS/lmsy/m/n/12 j\U/eus/m/n/12 F[]\OT1/lmr/m/n/12 ))$ 
+while $\U/msb/m/n/12 E\OT1/lmr/m/n/12 (\OML/lmm/m/it/12 M[] \OT1/lmr/m/n/12 + \
+OML/lmm/m/it/12 M[] \OMS/lmsy/m/n/12   \OT1/lmr/m/n/12 2\OML/lmm/m/it/12 M[]M[]
+\OMS/lmsy/m/n/12 j\U/eus/m/n/12 F[]\OT1/lmr/m/n/12 ) =
  []
 
 [21] [22] [23] [24] [25] [26] [27]
-Overfull \hbox (0.25827pt too wide) in paragraph at lines 1565--1566
+Overfull \hbox (0.25827pt too wide) in paragraph at lines 1563--1564
 []\OT1/lmss/bx/n/12 Theorem)  \OT1/lmr/m/it/12 (It^o for-mula) \OT1/lmr/m/n/12 
 Let $\OML/lmm/m/it/12 X[]; []  ; X[]$ \OT1/lmr/m/n/12 be con-tin-u-ous semi-mar
 tin-gales, and let $\OML/lmm/m/it/12 f \OMS/lmsy/m/n/12 2 \OML/lmm/m/it/12 C[]\
@@ -1154,7 +1154,7 @@ OT1/lmr/m/n/12 (\U/msb/m/n/12 R[]\OT1/lmr/m/n/12 ; \U/msb/m/n/12 R\OT1/lmr/m/n/
  []
 
 [28] [29]
-Overfull \hbox (0.25827pt too wide) in paragraph at lines 1628--1629
+Overfull \hbox (0.25827pt too wide) in paragraph at lines 1626--1627
 []\OT1/lmss/bx/n/12 Theorem)  \OT1/lmr/m/it/12 (It^o for-mula) \OT1/lmr/m/n/12 
 Let $\OML/lmm/m/it/12 X[]; []  ; X[]$ \OT1/lmr/m/n/12 be con-tin-u-ous semi-mar
 tin-gales, and let $\OML/lmm/m/it/12 f \OMS/lmsy/m/n/12 2 \OML/lmm/m/it/12 C[]\
@@ -1163,12 +1163,12 @@ OT1/lmr/m/n/12 (\U/msb/m/n/12 R[]\OT1/lmr/m/n/12 ; \U/msb/m/n/12 R\OT1/lmr/m/n/
  []
 
 
-Overfull \hbox (9.24176pt too wide) detected at line 1672
+Overfull \hbox (9.24176pt too wide) detected at line 1670
 []
  []
 
 [30] [31] [32] [33] [34] [35] [36] [37] [38] [39]
-Overfull \hbox (9.66263pt too wide) in paragraph at lines 2155--2156
+Overfull \hbox (9.66263pt too wide) in paragraph at lines 2153--2154
 []\OT1/lmr/bx/n/12 proof) \OT1/lmr/m/n/12 Let $\OML/lmm/m/it/12 X$ \OT1/lmr/m/n
 /12 be a one-dimensional Brow-n-ian mo-tion with $\OML/lmm/m/it/12 X[] \OT1/lmr
 /m/n/12 = \OML/lmm/m/it/12 x$\OT1/lmr/m/n/12 . Set $[] = [][] [](\OML/lmm/m/it/
@@ -1176,22 +1176,22 @@ Overfull \hbox (9.66263pt too wide) in paragraph at lines 2155--2156
  []
 
 [40]
-Overfull \hbox (30.84583pt too wide) detected at line 2208
+Overfull \hbox (30.84583pt too wide) detected at line 2206
 []
  []
 
 [41] [42] [43]
-Overfull \hbox (24.48589pt too wide) detected at line 2354
+Overfull \hbox (24.48589pt too wide) detected at line 2352
 []
  []
 
 [44] [45] [46] [47] [48] [49] [50] [51]
-Overfull \hbox (56.36136pt too wide) detected at line 2767
+Overfull \hbox (56.36136pt too wide) detected at line 2765
 []
  []
 
 [52]
-Overfull \hbox (17.86604pt too wide) detected at line 2815
+Overfull \hbox (17.86604pt too wide) detected at line 2813
 []
  []
 
@@ -1199,11 +1199,11 @@ Overfull \hbox (17.86604pt too wide) detected at line 2815
 Here is how much of TeX's memory you used:
  15690 strings out of 493312
  310656 string characters out of 3136305
- 462972 words of memory out of 3000000
+ 462971 words of memory out of 3000000
  18853 multiletter control sequences out of 15000+200000
  77703 words of font info for 89 fonts, out of 3000000 for 9000
  1141 hyphenation exceptions out of 8191
- 61i,18n,84p,777b,347s stack positions out of 5000i,500n,10000p,200000b,50000s
+ 61i,18n,84p,779b,347s stack positions out of 5000i,500n,10000p,200000b,50000s
 {C:/Program Files (x86)/MiKTeX 2.9/fonts/enc/dvips
 /lm/lm-rm.enc}{C:/Program Files (x86)/MiKTeX 2.9/fonts/enc/dvips/lm/lm-mathsy.e
 nc}{C:/Program Files (x86)/MiKTeX 2.9/fonts/enc/dvips/lm/lm-mathit.enc}{C:/Prog
@@ -1226,7 +1226,7 @@ Files (x86)/MiKTeX 2.9/fonts/type1/public/lm/lmsy10.pfb><C:/Program Files (x86)
 fonts/type1/public/lm/lmsy8.pfb><C:/Program Files (x86)/MiKTeX 2.9/fonts/type1/
 public/amsfonts/symbols/msam10.pfb><C:/Program Files (x86)/MiKTeX 2.9/fonts/typ
 e1/public/amsfonts/symbols/msbm10.pfb>
-Output written on StochasticC.pdf (54 pages, 556327 bytes).
+Output written on StochasticC.pdf (54 pages, 556264 bytes).
 PDF statistics:
  263 PDF objects out of 1000 (max. 8388607)
  0 named destinations out of 1000 (max. 500000)

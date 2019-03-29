@@ -310,7 +310,7 @@ For motivation, we recall some ODE theory. Fix $U \subset \reals^n$, and assume 
 with $u : I \subset \reals \rightarrow U$.
 \s
 
-\thm (Picard-Lindel\"{o}f) Suppose there exist $r,K>0$ s.t. $B_r(u_0) = \{ w\in \reals^n : |w-u_0|<r\}$ and $|f(x)-f(y) \leq K|x-y|$ for all $x,y \in B_r(x_0)$. Then there exists $\epsilon >0$(depending in $r$ and $K$) and a unique $C^1$-function $u : (-\epsilon,\epsilon)\rightarrow U$ solving (\ref{theODE}).
+\thm (Picard-Lindel\"{o}f) Suppose there exist $r,K>0$ s.t. $B_r(u_0) = \{ w\in \reals^n : |w-u_0|<r\}$ and $|f(x)-f(y)| \leq K|x-y|$ for all $x,y \in B_r(x_0)$. Then there exists $\epsilon >0$(depending in $r$ and $K$) and a unique $C^1$-function $u : (-\epsilon,\epsilon)\rightarrow U$ solving (\ref{theODE}).
 
 \pf Use $U$ solves (\ref{theODE}), then 
 \begin{align}
@@ -423,11 +423,11 @@ for all $\alpha$, and say that $g$ is a \textbf{majorant} of $f$.
 where $\tilde{x} = (|x_1|,\cdots,|x_n|)$. Now $|\tilde{x}| = |x|  <r$ so $\sum_{\alpha} g_{\alpha} \tilde{x}^{\alpha}$ converges, hence $\sum_{\alpha} \abs{f_{\alpha} x^{\alpha}}$ converges. Hence $f$ converges on $|x|<r$ absolutely. 
 \item[(ii)] Pick $s$ s.t. $0<s\sqrt{n} <r$, and set $y=s(1,\cdots,1)$. Then $|y| = s\sqrt{n} <r$. Hence $\sum_{\alpha}f_{\alpha}y^{\alpha}$ converges. A convergent series has bounded terms, $\exists C>0$ s.t. $\abs{f_{\alpha}y^{\alpha}} \leq C$ for all $\alpha$, and therefore
 \begin{align*}
-\abs{f_{\alpha}} \leq \frac{C}{y_1^{\alpha_1} \cdots y_n^{\alpha_n}} = \frac{C}{s^{|\alpha|}} \leq \frac{C |\alpha|!}{s^{\alpha} \alpha!}
+\abs{f_{\alpha}} \leq \frac{C}{y_1^{\alpha_1} \cdots y_n^{\alpha_n}} = \frac{C}{s^{|\alpha|}} \leq \frac{C |\alpha|!}{s^{|\alpha|} \alpha!}
 \end{align*}
 But then $g(x)$ defined by
 \begin{align*}
-g(x) = \frac{Cs}{s-(x_1 + \cdots + x_n)}  = C \sum_{\alpha} \frac{|\alpha|!}{s^{\alpha}\alpha!}x^{\alpha}
+g(x) = \frac{Cs}{s-(x_1 + \cdots + x_n)}  = C \sum_{\alpha} \frac{|\alpha|!}{s^{|\alpha|}\alpha!}x^{\alpha}
 \end{align*}
 majorises $f$ and converges for $|x|<s/\sqrt{n}<r/n$.
 \end{itemize}
@@ -456,18 +456,17 @@ B^n_r = \{t^2 +|x'|^2 <r^2 \}, \quad B_r^{n-1} = \{|x'|<r, t=0 \}
 \end{align*}
 \s
 
-\renewcommand{\vec}{\underline}
 We consider a system of equations for unknown $\vec{u}(x) \in \reals^m$. More concretely, we seek a solution to
-\begin{align} 
-\vec{u}_t &= \sum_{j=1}^{n-1} \doubleunderline{B}_j (\vec{u},x') \cdot \vec{u}_{x_j} + \vec{c}(\vec{u},x') \quad \text{on } B_r^n \label{5} \\
-\vec{u} &= 0 \quad \text{on } B_r^{n-1} \nonumber
+\begin{align}
+\vec{u}_t & = \sum_{j=1}^{n-1} \doubleunderline{B}_j (\vec{u},x') \cdot \vec{u}_{x_j} + \vec{c}(\vec{u},x') \quad \text{on } B_r^n \label{5} \\
+\vec{u} & = 0 \quad \text{on } B_r^{n-1} \nonumber 
 \end{align}
 where $\vec{u}_{x_j}=\partial u/\partial x_j$ etc. We assume that we are given the real analytic functions
 \begin{align*}
 \doubleunderline{B}_j :& \reals^m \times \reals^{n-1} \rightarrow \text{Mat}(m\times m) \\
 \vec{c} :& \reals^m \times \reals^{n-1} \rightarrow \reals^m
 \end{align*}
-(these functions do not have to defined on the entire space, but just have to be defined on $\reals^n \times B^{n-1}_r$)
+(these functions do not have to be defined on the entire space, but just have to be defined on $\reals^n \times B^{n-1}_r$)
 
 Note we assume $\doubleunderline{B}_j$ and $\vec{u}$ do not depend explicitly on $t$. We can always introduce $u^{m+1}$ satisfying $\partial_t u^{m+1} =1$, $u^{m+1} =0$ on $B_r^{n-1}$ and extending the system.
 
@@ -509,7 +508,7 @@ together imply $f_{tt} + f_{xx} = F_t$. (Note $F=0$ gives Cauchy-Riemann equatio
 \pf \begin{itemize}
 \item[1.] The strategy will be to write
 \begin{align}
-\vec{u}(x)  = \sum_{\alpha} \vec{u}_{\alpha}x^{\alpha} \label{6}
+\vec{u}(x)  = \sum_{\alpha} \vec{u}_{\alpha} x^{\alpha} \label{6}
 \end{align}
 and compute coefficients
 \begin{align*}
@@ -950,7 +949,7 @@ where
 \norms{u}{L^p(U)} = \begin{cases}
 \big( \int_{U} |u(x)|^p dx \big)^{1/p} \quad \text{for } 1\leq p <\infty \\
 \\
-\text{assup}_x u(x) = \inf \{C\geq 0 : |u(x)| \leq C \text{ for almost every } x \}
+\text{assup}_x u(x) = \inf \{C\geq 0 : |u(x)| \leq C \text{ for almost every } x \}  \quad \text{for } p =\infty 
 \end{cases}
 \end{align*}
 and the $\sim$ is an equivalence relation defined by $u_1 \sim u_2$ \emph{if and only if} $u_1 = u_2$ almost everywhere.
@@ -993,10 +992,10 @@ $\star$ Check that if $D^{\alpha} u = v$, then $v$ is indeed also a weak derivat
 \begin{align*}
 (-1)^{|\alpha|} \int_{U} uD^{\alpha} \phi dx = \int_U v\phi dx \quad \forall \phi \in C^{\infty}_c(U)
 \end{align*}
-In other words, $u$, $v$ obey the correct integration of parts formula, when integrated against a test function $\phi \in C^{\infty}_c(U) = \{u\in C^k(U) \,\,\,\, \forall k=1,2,\cdots | \text{supp}(U) \subset \subset U \}$.
+In other words, $u$, $v$ obey the correct integration of parts formula, when integrated against a test function $\phi \in C^{\infty}_c(U) = \{u\in C^k(U) \,\,\,\, \forall k=1,2,\cdots | \text{supp}(u) \subset \subset U \}$.
 \s
 
-If $u\in C^k(U)$< then $D^{\alpha} u$ is a weak $\alpha$-derivative of $u$ for all $|\alpha| \leq k$ (use integration by part for proof)
+If $u\in C^k(U)$, then $D^{\alpha} u$ is a weak $\alpha$-derivative of $u$ for all $|\alpha| \leq k$ (use integration by part for proof)
 \s
 
 \lem Suppose $v,\tilde{v} \in \loc (U)$ are both weak $\alpha$-derivatives of $u\in \loc (U)$. Then $v= \tilde{v}$ almost everywhere.
@@ -1006,7 +1005,7 @@ If $u\in C^k(U)$< then $D^{\alpha} u$ is a weak $\alpha$-derivative of $u$ for a
 \end{align*}
 by the definition of $v$ and $\tilde{v}$ being $\alpha$-derivatives. Then
 \begin{align*}
-\int_U (v-\tilde{v}) \phi dx =0 \quad \forall \phi \in C^{\infty}_c (Y) \quad \Rightarrow \quad v= \tilde{v} \quad \text{a.e.}
+\int_U (v-\tilde{v}) \phi dx =0 \quad \forall \phi \in C^{\infty}_c (U) \quad \Rightarrow \quad v= \tilde{v} \quad \text{a.e.}
 \end{align*}
 
 \eop
@@ -1031,7 +1030,7 @@ Since weak derivative is unique, we denote the $\alpha^{\text{th}}$ weak derivat
 \end{itemize} 
 \s
 
-We will find out that these spaces will be useful in fining solutions of PDEs. In particular, the $H^k$ spaces will be useful.
+We will find out that these spaces will be useful in finding solutions of PDEs. In particular, the $H^k$ spaces will be useful.
 \s
 
 \textbf{Example :} Let $U = B_1(0) = \{ |x| <1 \} \subset \reals^n$. Set $u(x) = |x|^{-\lambda}$ for $x\in U \backslash \{0\}$ and $\lambda >0$. This diverges at $x=0$, so this is not a $C^{k}(U)$ function.
@@ -1235,7 +1234,7 @@ Suppose $u\in W^{k,p}(U)$. Then $\xi_i u \in W^{k,p}(U)$ and $\text{supp}(\xi_i 
 &\norms{u^i - \xi_i u}{W^{k,p}(U)} \leq \frac{\delta}{2^{i+1}} \quad i=0,1,2,\cdots \\
 & \text{supp}(U_i) \subset W_i = U_{i+1} \backslash \bar{U}_i \quad i=1,2,\cdots
 \end{align*}
-\item[3.] Write $v = \sum_{i=0}^{\infty} u^i$, then $v \in C^{\infty}(U)$ as for each $V \subset\subset U$, the sum is finite. Since $u = \sum_{i=0}^{\infty} \xi_i u$, for each $V\subset\subset U$< we have
+\item[3.] Write $v = \sum_{i=0}^{\infty} u^i$, then $v \in C^{\infty}(U)$ as for each $V \subset\subset U$, the sum is finite. Since $u = \sum_{i=0}^{\infty} \xi_i u$, for each $V\subset\subset U$, we have
 \begin{align*}
 \norms{v-u}{W^{k,p}(U)} &\leq \sum_{i=0}^{\infty} \norms{u^i- \xi_i u}{W^{k,p}(U)} \\
 & \leq \delta \sum_{i=0}^{\infty} 2^{-i-1} = \delta
@@ -1267,7 +1266,7 @@ U \cap B_r (p) = \{ x\in B_{r}(p) : x_n > \gamma(x_1, \cdots, x_{n-1}) \}
 	\includegraphics[scale=0.5]{2}
 \end{figure}
 
-\thm Suppose $U \subset \reals^n$ is a $C^{0,1}$ domain ($U$ has Lipshitz boundary). Let $u\in W^{k,p}(U)$ for some $1\leq p <\infty$. Then there exist functions $u_m \in C^{\infty}(\bar{U})$ such that $u_m \rightarrow u$ in $W^{k,p}(U)$.
+\thm Suppose $U \subset \reals^n$ is a $C^{0,1}$ domain ($U$ has Lipschitz boundary). Let $u\in W^{k,p}(U)$ for some $1\leq p <\infty$. Then there exist functions $u_m \in C^{\infty}(\bar{U})$ such that $u_m \rightarrow u$ in $W^{k,p}(U)$.
 \begin{proof}
 \pf \begin{itemize}
 \item[1.] Fix $x^0 \in \pa U$. Since $U$ is Lipshitz, $\exists r>0$, $\gamma \in C^{0,1}(\reals^{n-1})$ (after relabelling axes) s.t.
@@ -1883,7 +1882,7 @@ It turns out this is not a strong enough condition in general. We shall also req
 \end{align*}
 \s
 
-Uniform ellipticity is a statement about invertibility of matrix $(a_{ij})_{ij}$. In fact, in finite dimensional case, ellipticity implies uniform ellipticity.
+Uniform ellipticity is a statement about invertibility of matrix $(a_{ij})_{ij}$.
 \s
 
 We consider the boundary value problem
@@ -2202,7 +2201,7 @@ for $f\in \reals^n$, $A\in \text{Mat}(n\times n)$. If $\exists \gamma$ such that
 An important concept in the study of PDEs is the idea of compactness. We can often find a bounded sequence (say of approximations to the solution of some PDE) and we would like to extract a subsequence which converges, e.g. \emph{Bolzanno-Weierstrass theorem}
 \s
 
-\defi Suppose $(U_n)_{n=1}^{\infty}$ is a sequence in a Hilbert space $\big( H,(\cdot,\cdot) \big)$. We say that $u_n$ converges \textbf{weakly} to $u\in H$, written $u_n \rightarrow u$ if
+\defi Suppose $(U_n)_{n=1}^{\infty}$ is a sequence in a Hilbert space $\big( H,(\cdot,\cdot) \big)$. We say that $u_n$ converges \textbf{weakly} to $u\in H$, written $u_n \xrightarrow{w} u$ if
 \begin{align*}
 (u_n, w) \rightarrow (u,w) \quad \forall w\in H
 \end{align*}
@@ -2273,7 +2272,7 @@ be a cube of side length $L$. Then we have:
 \end{align*}
 \s
 
-Note, this is equivalent to saying $\norms{u - \overline{u}}{L^2(Q)}^2 \leq \frac{n}{2} |L|^2 \norms{Du}{L^2(Q)}^2$ where $\overline{u} = \frac{1}{|Q|} \int_Q u(x) dx$ - which makes explicit connecting with Poincar\'{e} inequality.
+Note, this is equivalent to saying $\norms{u - \overline{u}}{L^2(Q)}^2 \leq \frac{n}{2} |L|^2 \norms{Du}{L^2(Q)}^2$ where $\overline{u} = \frac{1}{|Q|} \int_Q u(x) dx$ - which makes explicit connection with Poincar\'{e} inequality.
 \s
 
 \begin{proof}
@@ -2314,7 +2313,7 @@ Squaring this identity, we have
 u(x)^2 + u(y)^2 - 2u(x)u(y) \leq & n \Big( \int_{y_1}^{x_1} \frac{d}{dt} u(t,x_2, \cdots, x_n)dt \Big)^2 \\
 & + \cdots + n\Big( \int_{y_n}^{x_n} \frac{d}{dt} u(y_1, \cdots, y_{n-1},t)dt \Big)^2 \quad \cdots \cdots \cdots \textbf{(A)}
 \end{align*}
-where on the RHS we have use $(a_1 + \cdots + a_n)^2 \leq n(a_1 + \cdots + a_n^2)$ which follows from Cauchy-Schwarz inequality. Integrating the above inequality over $x$ and $y$ in $Q$ gives
+where on the RHS we have use $(a_1 + \cdots + a_n)^2 \leq n(a_1^2 + \cdots + a_n^2)$ which follows from Cauchy-Schwarz inequality. Integrating the above inequality over $x$ and $y$ in $Q$ gives
 \begin{align*}
 \int_Q dx \int_Q dy (u(x)^2 + u(y)^2 -2u(x)u(y)) = 2|Q|\norms{u}{L^(Q)}^2 -2 \Big( \int_Q u(x) dx \Big)^2
 \end{align*}
@@ -2415,9 +2414,9 @@ We define the formal adjoint of $L$ by
 \begin{align*}
 L^{\dagger} v = -\sum_{i,j=1}^n (a^{ij}(x) v_{x_j})_{x_i} - \sum_{i=1}^n b^i(x)v_{x_i} + (c(x) - \sum_{i=1}^n b_{x_i}^i ) v
 \end{align*}
-Formal adjoint means $(v,Lu)_{L^2(U)} = (L^{\dagger}v,u)_{L^2(U)}$ for all $u,v\in C_c^{\infty}(U)$.
+Being an actual adjoint means $(v,Lu)_{L^2(U)} = (L^{\dagger}v,u)_{L^2(U)}$ for all $u,v\in C_c^{\infty}(U)$.
 
-\quad If $b\in C^1(U)$, this is an elliptic operator itself, otherwise we have to understand this as a formal expression through the following definition.
+\quad If $b=0$, this is an elliptic operator itself, otherwise we have to understand this as a formal expression through the following definition.
 \s
 
 \defi We say $v\in H_0^1(U)$ is a weak solution of the \textbf{adjoint problem} if
@@ -2429,7 +2428,7 @@ v = 0 & \text{on } \pa U
 \end{array}
 \end{cases}
 \end{align*}
-provided $B[u,v] = B^{\dagger}[u,v] = (f,u)_{L^2(U)}$ for all $u \in H_0^1(U)$.
+That is, $B[u,v] = B^{\dagger}[u,v] = (f,u)_{L^2(U)}$ for all $u \in H_0^1(U)$.
 \s
 
 With this setting, along with the additional assumption that $a^{ij}$ is \emph{uniformly elliptic}, we have the following result. \s
@@ -2596,7 +2595,7 @@ u =0  & \text{on } \pa U
 \end{align*}
 admits a unique weak solution for all $f\in L^2(U)$.
 
-\quad Now consider the remaining case where $\lambda > -\gamma$. By \emph{Fredholm alternative}, we know that ($\lozenge$) faild to have a solution for all $f\in L^2(U)$ \emph{iff} $\exists u \neq 0$ such that
+\quad Now consider the remaining case where $\lambda > -\gamma$. By \emph{Fredholm alternative}, we know that ($\lozenge$) failed to have a solution for all $f\in L^2(U)$ \emph{iff} $\exists u \neq 0$ such that
 \begin{align*}
 \begin{cases}
 \begin{array}{ll}
@@ -2623,7 +2622,7 @@ where $L_{\gamma}^{-1}$ and $K$ are as in the proof of \emph{Fredholm alternativ
 \quad By the general theory of compact operators, $K$ has at most countably many eigenvalue $\mu$, say $\{\mu_k \}$ and if $\{ \mu_k \}$ is infinite, then $\mu_k \rightarrow 0$. So the set $\Sigma$ of $\lambda$ such that ($\lozenge$) does not have a solution for all $f\in L^2(U)$ is at most countable and if the sequence is infinite, it tends to $\infty$.
 \s
 
-Parts (ii) and (iii) follow from \emph{Fredholm alternative.}
+Parts (ii) and (iii) follow from \emph{spectrum of compact operators}.
 
 \eop
 \end{proof}
@@ -3213,7 +3212,7 @@ Then $u\in H^{k+1}(U_T)$ and
 \end{proof}
 \s
 
-Note that since $u_{tt}|_{\Sigma_0} = (f-Lu)|_{\Sigma_0}$ etc, the conditions on $\Sigma_0$ can be reduced tot he requirements that
+Note that since $u_{tt}|_{\Sigma_0} = (f-Lu)|_{\Sigma_0}$ etc, the conditions on $\Sigma_0$ can be reduced to the requirements that
 \begin{align*}
 \psi \in H^{k+1}(U), \quad \psi' \in H^k(U)
 \end{align*}

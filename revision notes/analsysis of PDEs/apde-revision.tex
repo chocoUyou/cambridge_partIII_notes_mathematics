@@ -1,0 +1,780 @@
+\documentclass[10pt,a4paper]{report}
+
+
+\usepackage{amsmath}
+\usepackage[utf8]{inputenc}
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{amssymb}
+\usepackage{calrsfs}
+\usepackage[left=2cm,right=2cm,top=2cm,bottom=2cm]{geometry}
+\usepackage[mathscr]{euscript}
+
+%%%%%%%%%%%attach pdf%%%%%%%%%%%%
+\usepackage[final]{pdfpages}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%%%%%For writing large opertors%%%%%%%%%%%
+%\usepackage{stmaryrd}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%for writing large parallel%%%%%%
+\usepackage{mathtools}
+\DeclarePairedDelimiter\bignorm{\lVert}{\rVert}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%%%for drawing commutative diagrams.%%%%%%
+\usepackage{tikz-cd}  
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%for changing margin
+\def\changemargin#1#2{\list{}{\rightmargin#2\leftmargin#1}\item[]}
+\let\endchangemargin=\endlist 
+
+\newenvironment{proof}
+{\begin{changemargin}{1cm}{0.5cm} 
+	}%your text here
+	{\end{changemargin}
+}
+
+\newenvironment{subproof}
+{\begin{changemargin}{0.5cm}{0.5cm} 
+	}%your text here
+	{\end{changemargin}
+}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%double rules%%%%%%%%%%%%%%%%%%%
+\usepackage{lipsum}% Just for this example
+
+\newcommand{\doublerule}[1][.4pt]{%
+  \noindent
+  \makebox[0pt][l]{\rule[.7ex]{\linewidth}{#1}}%
+  \rule[.3ex]{\linewidth}{#1}}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{document}
+\newcommand{\thm}{\textbf{Theorem) }}
+\newcommand{\thmnum}[1]{\textbf{Theorem #1) }}
+\newcommand{\defi}{\textbf{Definition) }}
+\newcommand{\definum}[1]{\textbf{Definition #1) }}
+\newcommand{\lem}{\textbf{Lemma) }}
+\newcommand{\lemnum}[1]{\textbf{Lemma #1) }}
+\newcommand{\prop}{\textbf{Proposition) }}
+\newcommand{\propnum}[1]{\textbf{Proposition #1) }}
+\newcommand{\corr}{\textbf{Corollary) }}
+\newcommand{\corrnum}[1]{\textbf{Corollary #1) }}
+\newcommand{\pf}{\textbf{proof) }}
+
+\newcommand{\lap}{\triangle} %%Laplacian
+\newcommand{\s}{\vspace{10pt}}
+\newcommand{\reals}{\mathbb{R}}
+
+\newcommand{\eop}{\hfill  \textsl{(End of proof)} $\square$} %end of proof
+\newcommand{\eos}{\hfill  \textsl{(End of statement)} $\square$} %end of proof
+
+
+\newcommand{\intN}{\mathbb{Z}_N}
+\newcommand{\nat}{\mathbb{N}}
+\newcommand{\norms}[2]{\bignorm[\big]{#1}_{#2}}
+\newcommand{\abs}[1]{\big| #1 \big|}
+\newcommand{\avg}{\mathbb{E}}
+\newcommand{\prob}{\mathbb{P}}
+\newcommand{\borel}{\mathscr{B}}
+\newcommand{\EE}{\mathscr{E}}
+\newcommand{\pa}{\partial}
+
+\renewcommand{\vec}{\underline}
+\renewcommand{\bar}{\overline}
+
+\def\doubleunderline#1{\underline{\underline{#1}}}
+
+\newcommand{\newday}{\doublerule[0.5pt]}
+
+\setlength\parindent{0pt}
+
+\chapter*{Analysis of PDEs}
+\s
+
+\section*{Introduction}
+
+For $U \subset \reals^n$ is open, \emph{partial differential equation} of order $k$, a system of PDEs.
+\s
+
+\subsection*{Data and Well-Posedness}
+
+well-posedness?
+\s
+
+\textbf{Notations) } Let $\alpha = (\alpha_1, \cdots, \alpha_n) \in \mathbb{N}^n$ be a multi-index(where $\mathbb{N} =\{ 0,1,2,3,\cdots\}$). Then define : $|\alpha|$, $D^{\alpha}f(x)$, $x^{\alpha}$, $\alpha!$, $\beta \leq \alpha$.
+\s
+
+\subsection*{Classifying PDEs}
+
+linear, semi-linear, quasi-linear, fully non-linear
+
+\subsection*{Cauchy-Kovalevskaya Theorem}
+
+\thm (Picard-Lindel\"{o}f) Suppose there exist $r,K>0$ s.t. $B_r(u_0) = \{ w\in \reals^n : |w-u_0|<r\}$ and $|f(x)-f(y)| \leq K|x-y|$ for all $x,y \in B_r(x_0)$. Then there exists $\epsilon >0$(depending in $r$ and $K$) and a unique $C^1$-function $u : (-\epsilon,\epsilon)\rightarrow U$ solving
+\begin{align}
+\dot{u}(t) = f(u(t)), \quad u(0)= u_0 \in U \label{theODE}
+\end{align}
+with $u: I\subset \reals \rightarrow U$.
+\s
+
+Motivation for Cauchy-Kovalevskaya?
+
+formal power series solution
+\s
+
+\thm(Cauchy-Kovalevskaya, for the case of ODEs) The formal power series solution(to be constructed) converges to a solution of (\ref{theODE}) in a neighbourhood of $t=0$ if $f$ is real analytic(to be defined) at $u_0$.
+
+(to be followed from a general result.)
+\s
+
+\defi real analytic function $f: U\rightarrow \reals$, $U\subset \reals^n$.
+\s
+\s
+
+$\bullet$ Last lecture : $U \subset \reals^n$ open, $f: U \rightarrow \reals$ is real analytic at $x_0 \in U$ if $\exists f_{\alpha} \in \reals$, $r>0$ s.t.
+\begin{align*}
+f(x)  = \sum_{\alpha} f_{\alpha}(x-x_0)^{\alpha} \quad \forall |x-x_0|<r
+\end{align*}
+\s
+
+\textbf{Properties of real analytic functions}
+\begin{itemize}
+\item $f$ is real analytic at $x_0$ if and only if $\exists s>0$ and $C,\rho>0$ such that:
+\begin{align*}
+\sup_{|x-x_0|< s}\big| D^{\alpha}f(x) \big| \leq C \frac{|\alpha|!}{\rho^{|\alpha|}}
+\end{align*}
+\item If $f$ is RA(real analytic) at $x_0$, it is RA for all $x$ close enough to $x_0$.
+\item If $f: U \rightarrow \reals$ is real analytic everywhere on a connected set $U$, then $f$ is determined by its values on any open subset of $U$. (Or by its Taylor expansion at a single point.)
+\end{itemize}
+(proofs in ES1)
+\s
+
+\textbf{Example :} If $r>0$ set
+\begin{align*}
+f(x) = \frac{r}{r-(x_1 + \cdots + x_n)} \quad \text{for } |x|<r/\sqrt{n}
+\end{align*}
+(Verify it is RA and find its Taylor expansion)
+\s
+
+\defi $g\gg f$ (majorises), majorant 
+\s
+
+\lem \begin{itemize}
+\item[(i)] If $g\gg f$ and $g$ converges for $|x|<r$ then $f$ also converges (absolutely) for $|x| <r$.
+\item[(ii)] If $f$ converges for $|x|<r$, then for any $s\in (0,r/\sqrt{n})$, $f$ has a majorant that converges for $|x|<s/\sqrt{n}$.($n$ is the dimension of the space)
+\end{itemize}
+\s
+
+\textbf{Remark :} If $f = (f^1, \cdots, f^m)$ and $g =(g^1, \cdots, g^m)$ are formal power series, then we say
+\begin{align*}
+g\gg f \quad \text{if} \quad g^i \gg f^i \quad i=1,\cdots,m
+\end{align*}
+\s
+
+\subsection*{Cauchy-Kovalevskaya for First Order Systems}
+
+As coordinates on $\reals^n$ we take $(x',t) = x$ where $x'=(x_1,\cdots,x_{n-1}) \in \reals^{n-1}$, $t=x^n \in \reals$. Set $B^n_r = \{t^2 +|x'|^2 <r^2 \}$, $B_r^{n-1} = \{|x'|<r, t=0 \}$
+\s
+
+We consider a system of equations for unknown $\vec{u}(x) \in \reals^m$,
+\begin{align}
+\begin{array}{ll}
+\vec{u}_t = \sum_{j=1}^{n-1} \doubleunderline{B}_j (\vec{u},x') \cdot \vec{u}_{x_j} + \vec{c}(\vec{u},x') \quad & \text{on } B_r^n  \\
+\vec{u} = 0 \quad & \text{on } B_r^{n-1} 
+\end{array} \label{5}
+\end{align}
+(Note we assume $\doubleunderline{B}_j$ and $\vec{u}$ do not depend explicitly on $t$. why do we note lose any generality by assuming this?)
+
+\quad Write $\doubleunderline{B}_j = ((b_j^{kl}))$ and $\vec{c}  = (c^1, \cdots, c^m)^T$. Then in components (\ref{5}) reads: write out
+\s
+
+\thm (Cauchy-Kovalevskaya) Assume $\{\doubleunderline{B}_j \}_{j=1}^{n-1}$ and $\vec{c}$ are real analytic. Then for sufficiently small $r>0$ there exists a unique real analytic function $\vec{u} : B_r^n \rightarrow \reals^m$ solving the problem (\ref{5}).
+\s
+
+\subsection*{Reduction to a First Order System}
+
+\textbf{Example) }
+\begin{proof}
+\quad Consider the PDE problem for $u:\reals^3 \rightarrow \reals$
+\begin{align}
+u_{tt} &= uu_{xy} - u_{xx} + u_t  \label{11} \\
+u\big|_{t=0}  &= u_0  \nonumber \\
+u_t \big|_{t=0} &= u_1 \nonumber
+\end{align}
+where $u_0, u_1:\reals^2 \rightarrow \reals$ are given real analytic functions (near 0).
+
+\quad Write out how we do the reduction to a First order system and apply Cauchy-Kovalevskaya.
+\end{proof}
+\s
+
+\textbf{Note :} Which fact does this procedure rely on?
+\s
+
+How can we generalize this to solve the quasilinear problem :
+\begin{align*}
+& \sum_{|\alpha|=k} a_{\alpha} (D^{k-1}u,\cdots, u, x) D^{\alpha}u + a_0 (D^{k-1}u, \cdots, u,x) = 0 \quad \text{for } |x|<r \\
+&  u = \frac{\partial u}{\partial x_n} =  \cdots = \frac{\partial^{k-1} u}{\partial x_n^{k-1}} = 0 \quad \quad \text{for } |x'| <r,\, x_n=0
+\end{align*}
+(called a Cauchy problem)?
+
+\subsection*{Cauchy Problems for Quasilinear Equations with Data on a Surface}
+
+Real analysis hypersurface
+\s
+
+Let $\gamma$ be the unit normal to $\Sigma$ and suppose $u$ solves
+\begin{align}
+& \sum_{|\alpha| =k} a_{\alpha}(D^{k-1}u, \cdots, u,x)D^{\alpha} u + a_0(D^{k-1}u, \cdots, u,x) =0 \quad \text{in } B_{\epsilon}(x) \label{dagger}\\
+& u= \gamma^i \partial_i u = \cdots =(\gamma^i \partial_i)^{k-1} = 0 \quad \text{on } \Sigma \nonumber
+\end{align}
+How do we translate this into a Cauchy problem on $B_r^n$?
+\s
+
+\defi suface $\Sigma$ non-characteristic at $x\in \Sigma$ for a problem $\dagger$ (derive the relation to satisfy in terms of $(\dagger)$)
+\s
+
+\thm Suppose $\Sigma \subset \reals^n$ is a real analytic hypersurface. If $\Sigma$ is non-characteristic for (\ref{dagger}) at $x\in \Sigma$, there exists a unique real analytic solution to (\ref{dagger}) in a neighbourhood of $x$.
+
+\subsection*{Characteristic Surfaces for 2nd Order Linear PDE}
+
+Consider the linear operator
+\begin{align*}
+Lu = \sum_{i,j=1}^n a_{ij}\frac{\pa^2 u}{\pa x_i \pa x_j} + \sum_{i=1}^n b_i \frac{\pa u}{\pa x^i} + cu
+\end{align*}
+with $a_{ij},b_i,c : \reals^n \rightarrow \reals$ and the Cauchy problem
+\begin{align*}
+Lu = f, \quad u = \sum_{i=1}^n \xi^i \frac{\pa u}{\pa x^i} = 0 \quad \text{on } \Pi_{\xi} = \{ \xi \cdot x =0 \}
+\end{align*}
+-Condition for $\Pi_{\xi}$ to be characteristic, a principal symbol of $L$, elliptic operator,
+
+
+
+\subsection*{Criticisms/Shortcomings of Cauchy-Kovalevskaya}
+
+What are thy?
+
+\section*{Elliptic Boundary Value Problems}
+
+Dirichlet Problem (for laplace equation)
+
+\subsection*{H\"{o}lder and Sobolev Spaces}
+
+\subsubsection*{H\"{o}lder spaces}
+
+$U\subset \reals^n$ open, $C^k(U)$, $C^k(\bar{U})$, H\"older continuity with exponent $\gamma$, H\"older seminorm $[u]_{C^{0, \gamma}}(\bar{U})$, $C^{k, \gamma}(\bar{U})$ H\"older norm $\norms{u}{C^{k, \gamma}(\bar{U})}$
+
+\subsubsection*{The Spaces $L^p(U)$, $L^p_{\text{loc}}(U)$}
+
+$U\subset\reals^n$ open suppose $1\leq p<\infty$. $L^{p}$ for $p\in [1, \infty]$. Why are these spaces complete?
+
+\quad $L^p_{\text{loc}}(U)$ space.
+
+\subsubsection*{Weak Derivatives}
+
+\defi $\alpha^{\text{th}}$ weak derivative of $u \in L^1_{\text{loc}}$
+\s
+
+$\star$ Check that if $D^{\alpha} u = v$, then $v$ is indeed also a weak derivative of $u$.
+\s
+
+\lem Suppose $v,\tilde{v} \in L^1_{\text{loc}} (U)$ are both weak $\alpha$-derivatives of $u\in L^1_{\text{loc}} (U)$. Then $v= \tilde{v}$ almost everywhere, \textit{i.e.} weak derivative is unique.
+
+\s
+\defi Sobolev space, $H^k$, $W^{k,p}$-norm, $W_0^{k,p}$-space.
+\s
+
+We will find out that these spaces will be useful in fining solutions of PDEs. In particular, the $H^k$ spaces will be useful.
+\s
+
+\textbf{Example :} Let $U = B_1(0) = \{ |x| <1 \} \subset \reals^n$. Set $u(x) = |x|^{-\lambda}$ for $x\in U \backslash \{0\}$ and $\lambda >0$. show : $u\in W^{1,p}(U) \quad \Leftrightarrow \quad \lambda < \frac{n-p}{p}$.
+\s
+
+\thm  For each $k=1,2,\cdots$ and $1\leq p\leq \infty$. Then the space $W^{k,p}(U)$ is a Banach space.
+
+\subsection*{Approximation of Functions in Sobolev Spaces}
+
+\subsection*{Convolution and Smoothing}
+
+\defi standard mollifier, $\epsilon$-mollification.
+
+\quad Let $U_{\epsilon} = \{ x\in U | \text{dist}(x,\partial U) > \epsilon \}$.
+\s
+
+\thm (Properties of Mollifiers) \begin{itemize}
+\item[(i)] $f^{\epsilon} \in C^{\infty}(U_{\epsilon})$ and $D^{\alpha}f^{\epsilon} = \int_U D^{\alpha}_x \eta_{\epsilon}(x-y)f(y) dy$.
+\item[(ii)] $f^{\epsilon}\rightarrow f$ almost everywhere as $\epsilon \rightarrow 0$.
+\item[(iii)] If $f\in C^0 (U)$, then $f^{\epsilon} \rightarrow f$ uniformly on compact subsets of $U$.
+\item[(iv)] If $1\leq p <\infty$ and $f \in L^p_{\text{loc}}(U)$ then $f^{\epsilon} \rightarrow f$ in $L^p_{\text{loc}}(U)$, i.e.
+\begin{align*}
+\norms{f^{\epsilon} - f}{L^p(V)} \rightarrow 0 \quad \forall V \subset\subset U
+\end{align*}
+\end{itemize}
+(proved in handout)
+\s
+
+\lem Assume $u \in W^{k,p}(U)$ for some $1\leq p < \infty$. Set $u^{\epsilon} = \eta_{\epsilon} * u$ in $U_{\epsilon}$. Then
+\begin{itemize}
+\item[(i)] $u^{\epsilon} \in C^{\infty}(U_{\epsilon}) \quad \forall \epsilon >0$
+\item[(ii)] If $V \subset \subset U$, then $u^{\epsilon} \rightarrow u$ in $W^{k,p}(V)$
+\end{itemize}
+\s
+
+We can do better :
+\s
+
+\thm (Global approximation by smooth functions) Suppose $U\subset \reals^n$ is open and \emph{bounded}, and suppose $u\in W^{k,p}(U)$ for some $1\leq p<\infty$. Then there exists functions $u_n \in C^{\infty}(U) \cap W^{k,p}(U)$ such that
+\begin{align*}
+u_n \rightarrow u \quad \text{in } W^{k,p}(U)
+\end{align*}
+\s
+
+Note, we do not assert $u_n \in C^{\infty}(\bar{U})$. When can this result go bad?
+\s
+
+\defi $C^{k,\alpha}$ domain
+\s
+
+\thm Suppose $U \subset \reals^n$ is a $C^{0,1}$ domain ($U$ has Lipshitz boundary). Let $u\in W^{k,p}(U)$ for some $1\leq p <\infty$. Then there exist functions $u_m \in C^{\infty}(\bar{U})$ such that $u_m \rightarrow u$ in $W^{k,p}(U)$.
+\s
+
+\thm (Extension of Sobolev functions) Suppose $U\subset \reals^n$, open, bounded, is a $C^{1,0}$ domain. Choose a bounded $V$ such that $U \subset\subset V$. Then there exists a bounded linear operator $E : W^{1,p}(U) \rightarrow W^{1,p}(\reals^n)$ such that for each $u \in W^{1,p}(U)$ :
+\begin{itemize}
+\item[(i)] $Eu =u$ almost everywhere in $U$.
+\item[(ii)] $Eu$ has support in $V$.
+\item[(iii)] $\norms{Eu}{W^{1,p}(\reals^n)} \leq C \norms{u}{W^{1,p}(U)}$ where $C$ only depends on $U,V$ and $p$.
+\end{itemize}
+\s
+
+We call $Eu$ an \textbf{extension of $u$ to $\reals^n$}. This is not unique.
+\s
+
+\lem Suppose $U = B_r(0) \cap \{x_n >0 \}$.  Suppose $u \in C^1( \overline{\{x_n>0 \}})$. We can find an $Eu \in C^1(\reals^n)$ such that
+\begin{align*}
+\norms{Eu}{W^{1,p}(B_r(0))} \leq C \norms{u}{W^{1,p}(U)}
+\end{align*}
+for some constant $C>0$.
+\s
+
+\lem Suppose $U\subset \reals^n$, bounded, open $C^1$-domain. Suppose $u\in C^1 (\bar{U})$. Then $\exists \bar{u} \in C^1_c(\reals^n)$ that depends linearly on $u$ and that
+\begin{align*}
+\norms{\bar{u}}{W^{1,p}(\reals^n)} \leq C \norms{u}{W^{1,p}(U)} \quad u= \bar{u} \text{ on } U
+\end{align*}
+\s
+
+We can repeat our argument to show a result for extensions of functions in $W^{1,p}(U)$ where $U$ is a $C^k$ domain, using a suitable higher order reflections.
+\s
+
+\subsubsection*{Trace theorem}
+
+\thm \emph{(Trace Theorem)} Assume $U\subset \reals^n$ is open, bounded $C^1$ domain. There exists a bounded linear operator
+\begin{align*}
+T : W^{1,p}(U) \rightarrow L^p(\pa U) \quad 1\leq p <\infty
+\end{align*}
+such that
+\begin{itemize}
+\item[(i)] $Tu = u \big|_{\pa U}$ if $u \in W^{1,p}(U) \cap C(\bar{U})$
+\item[(ii)] $\norms{Tu}{L^p(\pa U)} \leq C\norms{u}{W^{1,p}(U)}$ for all $u\in W^{1,p}(U)$ where $C = C(U,p)$ only depends on $U$ and $p$.
+\end{itemize}
+\s
+
+The trace map $T : W^{1, p}(U)\rightarrow L^P(\pa U)$ is not surjective. 
+\s
+
+\textbf{Note :} One can show without difficulty that if $u \in W_0^{1,p}(U)$ then $Tu=0$. The converse is also true : if $u\in W^{1,p}(U)$ and $Tu =0$ then $u \in W_0^{1,p}(U)$.
+
+\subsection*{Sobolev Inequalities, Embeddings}
+
+\thm \emph{(Sobolev-Gagliardo-Nirenberg, or SGN)} Assume $n>p$. We have $W^{1,p}(\reals^n) \subset L^{p^*} (\reals^n)$ with $p^* = \frac{np}{n-p}>p$, and $\exists C >0$ depending only on $n,p$ such that $\forall u \in W^{1,p}(\reals^n)$,
+\begin{align*}
+\norms{u}{L^{p^*}(\reals^n)} \leq C \norms{Du}{L^p(\reals^n)} \leq C\norms{u}{W^{1,p}(\reals^n)}
+\end{align*}
+(makes use of next lemma)
+\s
+
+\lem \emph{(projection lemma)} Let $n\geq 2$ and $f_1, \cdots, f_n \in L^{n-1}(\reals^{n-1})$. For any $1\leq i\leq n$, denote $\tilde{x}_i = (x_1, \cdots, x_{i-1}, x_{i+1}, \cdots, x_n) \in \reals^{n-1}$ (remove $i^{\text{th}}$ component from $(x_1, \cdots, x_n) \in \reals^n$) and
+\begin{align*}
+f : \reals^n \rightarrow \reals \quad f(t) = f_1(\tilde{x}_1) f_2(\tilde{x}_2) \cdots f_n(\tilde{x}_n)
+\end{align*}
+Then $f\in L^1(\reals^n)$ with
+\begin{align*}
+\norms{f}{L^1(\reals^n)} \leq \prod_{i=1}^n \norms{f_i}{L^{n-1}(\reals^{n-1})}
+\end{align*}
+\s
+
+In fact, in the example sheet(Exercise 2.9), you will see that this family of inequality, bounding $\norms{u}{q}$ by $\norms{Du}{p}$, can only exist for only particular pair of exponents $(p,q)$ satisfying $\frac{1}{q} = \frac{1}{p} - \frac{1}{n}$
+\s
+
+\corrnum{1} Let $U \subset \reals^n$ be open, bounded $C^1$-domain, and $1\leq p<n$. Then $W^{1,p}(U) \subset L^{p^*}(U)$ (where $p^*$ is as before) and $\exists$ $C(p,n,U)$ such that
+\begin{align*}
+\norms{u}{L^{p^*}(U)} \leq C(p,n,U) \norms{u}{W^{1,p} (U)} \quad \forall u \in W^{1,p}(U)
+\end{align*} 
+\s
+
+\corrnum{2} \emph{(Poincar\'{e} Inequality)} Suppose $U\subset \reals^n$ be open and bounded. Suppose $u \in W_0^{1,p}(U)$ for some $1\leq p<n$. Then we have the following estimate.
+\begin{align*}
+\norms{u}{L^q (U)} \leq C\norms{Du}{L^p(U)} \quad \forall q \in [1,p^*)
+\end{align*}
+where $C = C(p,q,n,U)$. In particular,
+\begin{align*}
+\norms{u}{L^{p}(U)} \leq C \norms{Du}{L^p(U)}
+\end{align*}
+\s
+
+Now suppose $n<p< \infty$. Then naively, we might expect a function in $W^{1,p}(\reals^n)$ to be better than $L^{\infty}$. In fact, we have
+\s
+
+\thm \emph{(Morrey's Inequality)} Suppose $n<p<\infty$. Then $\exists C = C(p,n)$ such that
+\begin{align*}
+\norms{u}{C^{0,\gamma}(\reals^n)} \leq C\norms{u}{W^{1,p}(\reals^n)} \quad \forall u \in C_c^1(\reals^n)
+\end{align*}
+where $\gamma = 1-\frac{n}{p}$. (interpretation?)
+\s
+
+\corr Let $n< p < \infty$. Suppose $u \in W^{1,p} (U)$. For $U\subset \reals^n$ open, bounded $C^{1}$-domain. (boundedness is in fact not necessary.) Then $\exists u^* \in C^{0,1-\frac{n}{p}}(U)$ such that $u = u^*$ almost everywhere, and
+\begin{align*}
+\norms{u^*}{C^{0,1-\frac{n}{p}}(U)} \leq C \norms{u}{W^{1,p}(U)}
+\end{align*}
+for some $C = C(n,p,U)$.
+\s
+
+By iterating these results, it is possible to establish similar embedding results for $W^{k,p}(\reals^n)$ into $W^{k',p'}(\reals^n)$ for $k'<k, p'>p$ or $C^{k',\gamma}(\reals^n)$ for $k'<k$.
+\s
+
+For example, we have $u \in W^{2,2}(\reals^3)$ then $u \in C^{0,1/2}(\reals^3)$ (prove how this is done).
+\s
+
+\section*{Second Order Elliptic Equations}
+
+Let $U\subset \reals^n$ and consider the operator
+\begin{align*}
+Lu = - \sum_{i,j=1}^n \big( a^{ij}(x) u_{x_j} \big)_{x_i} + \sum_{i=1}^n b^i (x) u_{x_i} + c(x)u \quad (\textbf{Divergence form})
+\end{align*}
+where $a^{ij},b^i,c$ are given functions on $U$. Typically we will assume they are at least $L^{\infty}$, but sometimes we will require more. 
+\s
+
+\defi Elliptic / uniformly elliptic operator $L$.
+\s
+
+Assume $L$ is uniformly elliptic\s
+\s
+
+We consider the boundary value problem
+\begin{align}
+\begin{cases} 
+Lu = f \quad \text{in } U \\
+u\big|_{\pa U} =0
+\end{cases} \label{12}
+\end{align} 
+where $U$ is \emph{always} open bounded $C^1$-domain.
+\s
+
+\defi A weak solution $u\in H^1_0(U)$, the form $B[u,v]$.
+\s
+
+\thm \emph{(Lax-Milgram)} Let $H$ be a (real) Hilbert space, with inner product $(\cdot, \cdot)$ and suppose $B : H\times H \rightarrow \reals$ is a bilinear mapping such that... (state and prove)
+
+\subsection*{Energy Estimates}
+
+Suppose $a^{ij}, b^i, c \in L^{\infty}(U)$ for $U$ open, bounded and $B[u,v]$ as before.
+\s
+
+\thm There exist $\alpha, \beta >0$ and $\gamma \geq 0$ such that
+\begin{itemize}
+\item[(i)] $\big| B[u,v]\big| \leq \alpha \norms{u}{H^1(U)} \norms{v}{H^1(U)}$ for all $u,v\in H^1(U)$ \quad \emph{and}
+\item[(ii)] $\beta \norms{u}{H^1(U)}^2 \leq B[u,u] + \gamma \norms{u}{L^2(U)}^2$ (\textbf{G{\aa}rding Inequality})
+\end{itemize}
+\s
+
+\textbf{Remark :} If $B[\cdot,\cdot]$ is a bilinear form corresponding to an operator with $b^i=0$, $c\geq 0$ then we can deduce G{\aa}rding's inequality holds with $\gamma =0$ for $u\in H_0^1 (U)$ by modifying the above proof with choosing $\epsilon$ appropriately.
+\s
+
+\thm \emph{(First Existence Theorem for Weak Solutions)} Let $U\subset \reals^n$ be open, bounded and $L$ be as before. Then there exists $\gamma \geq 0$ such that for any $\mu \geq \gamma$ and any $f\in L^2(U)$ there exists a unique weak solution to the boundary value problem(BVP) :
+\begin{align*}
+\begin{cases}
+\begin{array}{ll}
+Lu + \mu u =f & \text{in } U  \quad \cdots\cdots (\dagger) \\
+u = 0 & \text{on } \pa U
+\end{array}
+\end{cases}
+\end{align*}
+Moreover, $\norms{u}{H^1(U)} \leq C \norms{f}{L^2(U)}$ for some $C = C(L,U,\mu)$
+\s
+
+\defi weak convergence (in a Hilbert space)
+\s
+
+\thm Let $H$ be a separable Hilbert space and suppose $(u_n)_{n=1}^{\infty}$ is a bounded sequence, $u_n \in H$, $\norms{u_n}{} \leq K$ for all $n$. Then $(u_n)_{n=1}^{\infty}$ admits a weakly convergent subsequence.
+\s
+
+\lem \emph{(Poincar\'{e} revisited)} Suppose $u\in H^1(\reals^n)$. Let
+\begin{align*}
+Q = [\xi_1, \xi_1 +L] \times [\xi_2, \xi_2 +L] \times \cdots \times [\xi_n, \xi_n +L]
+\end{align*}
+be a cube of side length $L$. Then we have:
+\begin{align*}
+\norms{u}{L^2(Q)}^2 \leq \frac{1}{|Q|} \Big( \int_Q udx \Big)^2 + \frac{n}{2} |L|^2 \norms{Du}{L^2(Q)}^2
+\end{align*}
+\s
+
+Note, this is equivalent to saying $\norms{u - \overline{u}}{L^2(Q)}^2 \leq \frac{n}{2} |L|^2 \norms{Du}{L^2(Q)}^2$ where $\overline{u} = \frac{1}{|Q|} \int_Q u(x) dx$.
+\s
+
+\thm \emph{(Rellich-Kondrachov)} Suppose $U \subset \reals^n$ is open, bounded $C^1$-domain. Let $(u_m)_{m=1}^{\infty}$ be a sequence in $H^1(U)$ with
+\begin{align*}
+\norms{u_m}{H^1(U)} \leq K
+\end{align*}
+Then there exists $u\in H^1(U)$ and a subsequence $(u_{m_j})_{j=1}^{\infty}$ such that $u_{m_j}$ tends to $u$ weakly in $H^1(U)$ and strongly in $L^2(U)$, i.e.
+\begin{align*}
+u_{m_j} \rightarrow u \quad \text{in } L^2(U), \quad u_{m_j} \xrightarrow{weak} u \quad \text{in } H^1(U)
+\end{align*}
+
+\textbf{Remark :} Could replace $H^1(U)$ with $H_0^1(U)$ everywhere and the result will hold. Then we could drop $C^1$ regularity of $\pa U$ (follows from the proof)
+\s
+
+\defi A bounded linear operator $K:H\rightarrow H$ being compact,.
+\s
+
+\thm \emph{(Fredholm alternative for compact operators)} Let $K:H\rightarrow H$ be a compact operator. Then (state)
+
+(see Linear Analysis for proof)
+\s
+
+Formal adjoint $L^{\dagger}$
+
+\quad If $b\in C^1(U)$, this is an elliptic operator itself, otherwise we have to understand this as a formal expression through the following definition.
+\s
+
+\defi We say $v\in H_0^1(U)$ is a weak solution of the adjoint problem if...
+\s
+
+With this setting, along with the additional assumption that $a^{ij}$ is \emph{uniformly elliptic}, we have the following result. \s
+
+\thm \emph{(Fredhold alternative for elliptic BVP)} Consider
+\begin{align}
+\begin{cases}
+\begin{array}{ll}
+Lu = f & \text{in } U, \quad f\in L^2(U) \\
+u = 0 & \text{on } \pa U
+\end{array}
+\end{cases} \label{14}
+\end{align}
+Then \emph{either} \begin{itemize}
+\item[(a)] for each $f\in L^2(U)$, (12) admits a \emph{unique} weak solution, \emph{or}
+\item[(b)] there exist a weak solution to
+\begin{align}
+\begin{cases}
+\begin{array}{ll}
+Lu = 0 & \text{in } U \\
+u = 0 & \text{on } \pa U
+\end{array}
+\end{cases} \label{15}
+\end{align}
+with $u \neq 0$.
+\end{itemize}
+If (b) holds, the dimension of the space $N \subset H_0^1(U)$ of weak solutions to (13) is finite and equals the dimension of $N^* \subset H_0^1(U)$, the space of weak solutions to the homogeneous adjoint problem
+\begin{align*}
+\begin{cases}
+\begin{array}{ll}
+L^{\dagger}v = 0 & \text{in } U \\
+v = 0 & \text{on } \pa U
+\end{array}
+\end{cases}
+\end{align*}
+\quad Finally (12) has a solution \emph{iff}
+\begin{align*}
+(f,v)_{L^2(U)} = 0 \quad \forall v\in N^*
+\end{align*}
+
+\subsection*{Spectrum of Elliptic Operators}
+
+Suppose $A: H\rightarrow H$ is a bounded linear operator on a Hilbert space $H$. Then
+
+\defi $\rho(A)$, $\sigma(A)$(spectrum), point spectrum, eigenvalue, eigenvector.
+\s
+
+\thm \emph{(Spectrum of a compact operator)} Assume $\text{dim}(H) = \infty$ and $K : H\rightarrow K$ is compact and $H$ is separable, then
+\begin{itemize}
+\item[(i)] $0 \in \sigma (K)$,
+\item[(ii)] $\sigma(K) - \{0\} = \sigma_p(K) - \{0\}$ \emph{and}
+\item[(iii)] either $\sigma(K) - \{0\} \text{ is finite}$ or $\sigma(K) - \{0\} \text{ is a seqeunce tending to 0}$.
+\end{itemize}
+If moreover $K$ is symmetric, $K= K^{\dagger}$, then there exists a countable orthonormal basis of $H$ consisting of eigenvectors.
+\s
+
+\thm \emph{(Spectrum of $L$)} Let $L$, $B$, $U$ be as in the last theorem. Then
+\begin{itemize}
+\item[(i)] there exists an at most countable set $\Sigma \subset \reals$ such that the BVP
+\begin{align*}
+\begin{cases}
+\begin{array}{ll}
+Lu = \lambda u + f & \text{in } U \\
+u = 0 & \text{on } \pa U
+\end{array}
+\end{cases} \quad \cdots \cdots \cdots (\lozenge)
+\end{align*}
+has a unique weak solution for each $f\in L^2(U)$ \emph{iff} $\lambda \not\in \Sigma$.
+\item[(ii)] If $\Sigma$ is infinite then $\Sigma = \{\lambda_k \}_{k=1}^{\infty}$(i.e. is at most countably infinite) and up to reordering, $\lambda_k \nearrow \infty$ as $k\rightarrow \infty$.
+\item[(iii)] To each $\lambda \in \Sigma$, there is a attached a finite dimensional space
+\begin{align*}
+\mathscr{E}(\lambda) = \{ u \in H_0^1(U) : u \text{ is a weak soution of } Lu=\lambda u \text{ in } U, u=0 \text{ on } U \}
+\end{align*}
+\end{itemize}
+We say $\lambda \in \Sigma$ is an \textbf{eigenvalue of $L$} and $u\in \mathscr{E}(\lambda)$ is the \textbf{corresponding eigenfunction}.
+\s
+
+\thm \emph{(Spectrum of symmetric elliptic operators)} Suppose $L$ is a symmetric uniformly elliptic operator $Lu = -\sum_{i,j=1}^n (a^{ij}u_{x_i})_{x_j} + cu$ on $U \subset \reals^n$ open, bounded, $C^1$ domian. Then we can represent the eigenvalues of $L$ as
+\begin{align*}
+\lambda_1 \leq \lambda_2 \leq \cdots
+\end{align*}
+where each eigenvalue appears multiple times according to its multiplicity (dim($\mathscr{E}(\lambda)$)), and there exists an orthonormal basis $\{w_k \}_{k=1}^{\infty}$ for $L^2(U)$ with $w_k \in H_0^1(U)$ an eigenfunction of $L$ corresponding to $\lambda_k$, i.e.
+\begin{align*}
+\begin{cases}
+\begin{array}{ll}
+Lw_k = \lambda_k w_k & \text{in } U \\
+w_k = 0 & \text{on } \pa U
+\end{array}
+\end{cases}
+\end{align*}
+
+\subsection*{Elliptic Regularity}
+
+Suppose $U\subset \reals^n$ is open, and $V \subset \subset U$. For $0< |h| < \text{dist}(V, \pa U)$, we define the difference quotients
+\begin{align*}
+\Delta_i^h u(x) = \frac{u(x+ he_i) - u(x)}{h} \quad i=1,2,\cdots, n
+\end{align*}
+and define
+\begin{align*}
+\Delta^h u(x) = (\Delta_1^h u(x), \Delta_2^h u(x), \cdots, \Delta_n^h u(x))
+\end{align*}
+Note $\Delta_i^h(x) u \in H^1(V)$ if $u\in H^1(U)$.
+\s
+
+\lem Suppose $u \in L^2(U)$. Then $u\in H^1(V)$ with $\norms{Du}{L^2(V)} \leq K$ \emph{iff} $\norms{\Delta^h u}{L^2(V)} \leq K$ for some $K\geq 0$ and all $0< |h|< \frac{1}{2}\text{dist}(V, \pa U)$.
+\s
+
+\thm \emph{(Interior Regularity)} Suppose $L$ is a uniformly elliptic operator on $U$, $a^{ij} \in C^1(U)$, $b^i, c\in L^{\infty}(U)$ and $f\in L^2(U)$. Suppose further that $u \in H^1(U)$ satisfies
+\begin{align*}
+B[u,v] = (f, v) \quad \forall v \in H_0^1(U) \quad \cdots\cdots\cdots (\star)
+\end{align*}
+Then $u\in H_{\text{loc}}^2(U)$ and for each $V \subset\subset U$ we have the estimate
+\begin{align*}
+\norms{u}{H^2(V)} \leq C( \norms{f}{L^2(U)} + \norms{u}{L^2(U)}) 
+\end{align*}
+where $C = C(U,V,L)$ does not depend on $f$.
+\s
+
+\thm \emph{(Higher interior regularity)} Let $m$ be a non-negative integer, assume $a^{ij},b^{i}, c\in C^{m+1}(U)$ and $f\in H^m (U)$(or $\in L^2(U)\cap H^m_{\text{loc}}(U)$). Suppose $u\in H^1(U)$ satisfies $B[u,v] = (f,v)_{L^2(U)}$ for all $v\in H_0^1(U)$. Then in fact $u\in H^{m+2}_{\text{loc}}(U)$ and for each $V\subset\subset U$ we have
+\begin{align*}
+\norms{u}{H^{m+2}(V)} \leq C \big( \norms{f}{H^m(U)} + \norms{u}{L^2(U)} \big)
+\end{align*}
+where $C= C(U,V,L)$ does not depend on $u$ or $f$.
+
+(proof in ES4)
+\s
+
+\textbf{Remarks :}
+\begin{itemize}
+\item Note this is a local result
+\item This result allows us to understand the equation as holding pointwise almost everywhere. Let $v\in C_c^{\infty}(U)$ and $B[u,v] = (f,v)_{L^2(U)}$. Since $u\in H^2_{\text{loc}}(U)$, we can integrate by parts to find $\int_U (Lu -f) v dx = 0$. This holds for any $v\in C_c^{\infty}(U)$, so $Lu = f$ almost everywhere. If $m$ is large enough, $f\in H^m(U)$ implies $u\in C^2_{\text{loc}}(U)$ and solution is classical. (\textbf{Exercise} : figure out how large $m$ should be, using Sobolev embedding).
+\end{itemize}
+\s
+
+\thm \emph{(Boundary $H^2$ regularity)} Assume $a^{ij}\in C^1(\overline{U})$, $b^i,c\in L^{\infty}(U)$ and $f\in L^2(U)$. Suppose $u\in H_0^1(U)$ is a weak solution of $Lu =f$ in $U$, $u=0$ on $\partial U$($\diamond$) and finally assume $\pa U$ is $C^2$. Then $u\in H^2(U)$ and we have the estimate
+\begin{align*}
+\norms{u}{H^2(U)} \leq C \big( \norms{f}{L^2(U)} + \norms{u}{L^2(U)} \big)
+\end{align*}
+If the BVP has a \emph{unique} solution for each $f\in L^2(U)$, we can drop the $\norms{u}{L^2(U)}$ term from RHS.
+\s
+
+We can still do better.
+\s
+
+\thm \emph{(Higher boundary regularity)} Let $m\in \mathbb{N}$, assume $a^{ij},b^i,c\in C^{m+1}(\overline{U})$, $f\in H^m(U)$ and $\pa U$ is $C^{m+2}$. Then if $u\in H_0^1(U)$ is the weak solution of
+\begin{align*}
+\begin{cases}
+\begin{array}{ll}
+Lu =f  & \text{in } U \\
+u =0 & \text{on } \pa U
+\end{array}
+\end{cases}
+\end{align*}
+We in fact have $u\in H^{m+2}(U)$ with
+\begin{align*}
+\norms{u}{H^{m+1}(U)} \leq C(\norms{f}{H^{m}(i)} + \norms{u}{L^2(U)})
+\end{align*}
+and can drop $\norms{u}{L^2(U)}$ if solution for the BVP exists for all $f\in L^2(U)$.
+\s
+
+\section*{Initial-Boundary Value Problems for Wave Equations}
+
+Suppose $U\subset \reals^n$ is open with $C^1$-boundary. We define $U_T, \Sigma_t, \pa^* U_T$, $Lu$ (where $a^{ij}, b^i, b,c \in C^1(\bar{U}_T)$). Assume $a^{ij}$ satisfy the uniform ellipticity condition.
+
+\quad We consider the initial-boundary value problem(IBVP).
+\s
+
+\defi weak solution of the IBVP 
+
+(Note that, we do not say $\pa_t u = \psi'$ on $\Sigma_0$ in trace sense, because $\pa_t u$ is just a $L^2$-function while we do not have trace theorem for $L^2$ functions.)
+\s
+
+\thm A weak solution to a IBVP, if it exists, is unique. (would be useful to evoke the motivation of the proof)
+\s
+
+\thm Given $\psi \in H_0^1(U)$, $\psi' \in L^2(U)$ and $f\in L^2(U_T)$, there exists a weak solution $u\in H^1(U_T)$ and
+\begin{align}
+\norms{u}{H^1(U_T)} \leq C(\norms{\psi}{H^1(U)} +\norms{\psi'}{L^2(U)} + \norms{f}{L^2(U_T)}) \label{33}
+\end{align}
+for some $C = C(U,T,a^{ij},a^i,b,c)$ not depending on $u$.
+\s
+
+\subsubsection*{Improved Regularity for the hyperbolic IBVP}
+
+We define for a Banach space $X$, $L^p((0,T); X) = \{ u : (0,T) \rightarrow X \,:\, \norms{u}{L^p((0,T);X)} < +\infty \}$ with norm $\norms{u}{L^p((0,T);X)}$
+\s
+
+\thm \emph{(Higher Regularity for IBVP)} If $a^{ij}, b^i, b, c\in C^{k+1}(\bar{U}_T)$, $\pa U$ is $C^{k+1}$ and 
+\begin{align*}
+& \pa^i_t u \big|_{\Sigma_0} \in H_0^1(U), \quad i=0, \cdots,k \\
+& \pa_t^{k+1} u \big|_{\Sigma_0} \in L^2(U) \\
+& \pa_t^i f \in L^2((0,T) ; H^{k-i}(U)), \quad i=0, \cdots, k
+\end{align*}
+Then $u\in H^{k+1}(U_T)$ and
+\begin{align*}
+\pa_t^i u \in L^{\infty}((0,T) ; H^{k+1-i}(U)), \quad i=0, \cdots, k+1
+\end{align*}
+(proof in handout)
+\s
+
+Note that since $u_{tt}|_{\Sigma_0} = (f-Lu)|_{\Sigma_0}$ etc, the conditions on $\Sigma_0$ can be reduced tot he requirements that
+\begin{align*}
+\psi \in H^{k+1}(U), \quad \psi' \in H^k(U)
+\end{align*}
+together with some compatibility condition hold at $\pa \Sigma_0$. (how do we do this? find the compatibility condition)
+\s
+
+\subsubsection*{Finite propagation speed and solutions on unbounded domains}
+
+\quad Let $S_0 \subset U$ be an open set with smooth boundary and let
+\begin{align*}
+D = \{ (t,x) \in U_T : x\in S_0, t\in (0, \tau(x)) \}
+\end{align*}
+where $\tau : S_0 \rightarrow \reals$ is a smooth function vanishing at $\pa S_0$. We say $S' = \{ (\tau(x), x) : x\in S_0 \} \subset U_T$ is \textbf{space-like} if (state)
+\s
+
+\thm If $S_0, D, S'$ are as above with $S'$ \emph{space-like} and $u\in H^1(U_T)$ is a weak solution to the IBVP (\ref{20}). Then $u|_D$ depends only on $\psi|_{S_0}, \psi'|_{S_0}$ and $f|_D$. 
+\s
+
+This implies in particular that signals propagate at finite speed : suppose
+\begin{align*}
+\sum_{i,j} a^{ij} \xi_i \xi_j \leq \mu |\xi|^2 \quad \forall (x,t) \in U_T, \,\, \xi \in \reals^n
+\end{align*}
+Then no signal propagates faster than $\sqrt{\mu}$. (state how we can formalize this)
+
+Using this property, we can construct solutions on \emph{unbounded domains} by reducing locally to a bounded problem and using this uniqueness result - state how I do this.
+
+\end{document}
