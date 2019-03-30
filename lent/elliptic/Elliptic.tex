@@ -147,7 +147,7 @@ Main reference would be [1]. 2nd reference would be the [2]. Also [3] covers som
 (17th January, Thursday)
 \s
 
-In Analysis of PDEs, we proved existence of solution and regulariy for equations of form
+In Analysis of PDEs, we proved existence of solution and regularity for equations of form
 \begin{align*}
 Lu + \begin{cases}
 \pa_t u \\
@@ -177,7 +177,7 @@ But what have people done before \emph{Lax-Milgram}? For a simple example, consi
 -\lap u = f \quad \text{in } \Omega \\
 u =g \quad \text{on } \pa \Omega
 \end{align*}
-Recall, Lax-Milgram theorem uses Riesz repersentation theorem which does not give the explicit formula for the solution of the problem. Insetad, we would like to have explicit solution of the form
+Recall, Lax-Milgram theorem uses Riesz representation theorem which does not give the explicit formula for the solution of the problem. Instead, we would like to have explicit solution of the form
 \begin{align*}
 u(x) = \int_{\Omega} K(x,t) f(y) dy + \int_{\pa \Omega}\tilde{K}(x,t) g(w) dS_w
 \end{align*}
@@ -212,7 +212,7 @@ Later, would choose you preferences :
 \begin{i}
 \item Spectral theory for $-\lap  + v(x)$ in $\reals^d$
 
-\item Nonlinear PDEs, e.g. Minimal surface (related to differential geoemtry), Monge-Amp\`{e}re (related to optimal transport theory)
+\item Nonlinear PDEs, e.g. Minimal surface (related to differential geometry), Monge-Amp\`{e}re (related to optimal transport theory)
 
 \item hypoellipticity, on domain $\Omega = \reals^d_x \times \reals^d_v$, with operator $\mathscr{K} = v\cdot \nabla_x - \lap_x$. 
 
@@ -233,7 +233,7 @@ Later, would choose you preferences :
 Let $\Omega \subset \reals^d$ be an open bounded connected set.
 \s
 
-\defi \emph{(Regular Points)} $\xi \in \pa \Omega$ is \textbf{regular} if $\exists$ \emph{barrier function} at $\xi$. That is, a function $w\in C^0 (\bar{\Omega})$ such thtat $\lap w \leq 0$, $w>0$ in $\Omega \backslash \{\xi\}$, and $w(\xi)=0$.
+\defi \emph{(Regular Points)} $\xi \in \pa \Omega$ is \textbf{regular} if $\exists$ \emph{barrier function} at $\xi$. That is, a function $w\in C^0 (\bar{\Omega})$ such that $\lap w \leq 0$, $w>0$ in $\Omega \backslash \{\xi\}$, and $w(\xi)=0$.
 \s
 
 \thm \emph{(Perron)} Let $\varphi \in C^0 (\pa \Omega)$ and consider the Dirichlet problem $-\lap u =0$ in $\Omega$ and $u=\varphi$ on $\pa \Omega$. Then
@@ -354,9 +354,9 @@ and therefore we may estimate $|\nabla u(x)|$ in terms of $u$.
 \sup_{\Omega} |\pa^{\alpha}u| \leq \Big( \frac{|\alpha|d}{\text{dist}(\Omega', \pa \Omega)}\Big)^{|\alpha|} \sup_{\Omega} |u|
 \end{align*}
 \begin{p}
-\textbf{Fact :} (Exercise) $\lap u= 0$ implies $u\in C^{\infty}(\Omega)$ and $u$ real analystic.
+\textbf{Fact :} (Exercise) $\lap u= 0$ implies $u\in C^{\infty}(\Omega)$ and $u$ real analytic.
 
-\pf $\lap(\pa_{x_i} u) = \pa_{x_i} \lap u =0$ in $\Omega^1$ harmoinc, then mean-value theorem states that
+\pf $\lap(\pa_{x_i} u) = \pa_{x_i} \lap u =0$ in $\Omega^1$ harmonic, then mean-value theorem states that
 \begin{align*}
 \pa_{x_i} u(y) = \frac{1}{w_d R^d} \int_{B(y ,R)} \pa_{x_i} u dx = \frac{1}{w_d R^d} \int_{\pa B(y, R)} u(x) (n_x \cdot e_i) dx
 \end{align*}
@@ -396,7 +396,7 @@ But $w(y) = 0$ on the boundary, and therefore $w\equiv 0$ on $B(y,R)$ by \emph{m
 \end{p}
 \s
 
-\thmnum{3.2} Given $\Omega \subset \reals^d$ domian. $(u_n)_{n=1}^{\infty} \subset C^0(\Omega)$ such that $\lap u_n =0$ in $\Omega$ \emph{and}
+\thmnum{3.2} Given $\Omega \subset \reals^d$ domain. $(u_n)_{n=1}^{\infty} \subset C^0(\Omega)$ such that $\lap u_n =0$ in $\Omega$ \emph{and}
 \begin{align*}
 \sup_{n\in \mathbb{N}} \sup_{x\in \Omega} |u_n(x)| < \infty
 \end{align*}
@@ -436,7 +436,7 @@ v \equiv u \quad \text{in } \overline{\Omega}
 \end{align*}
 \s
 
-We need a definition and a lemma to prove this propostion.
+We need a definition and a lemma to prove this proposition.
 \s
 
 \defi \emph{(Harmonic lifting)} Given $u\in C^0(\Omega)$ subharmonic in $\Omega$ and $B\subset \Omega$ a ball, $\overline{B} \subset \Omega$, we can define the \textbf{harmonic lifting}
@@ -488,7 +488,7 @@ Our next goal is to solve the Perron's theorem :
 \item[(2)] If Dirichlet problem is solvable for all $\varphi$, then $\pa \Omega$ is \emph{regular}.
 \end{i}
 \begin{proof}
-\textbf{proof of point 1)} To solve the Perrons' theorem, we want to \emph{constuct} a solution (Perron's solution). Let
+\textbf{proof of point 1)} To solve the Perrons' theorem, we want to \emph{construct} a solution (Perron's solution). Let
 \begin{align*}
 u_{\varphi}(x) &= \sup \{ v\in C^0(\bar{\Omega})\,\, :\,\, v \text{ is subharmonic in } \Omega\,\, \text{ and} \,\,v\leq \varphi \text{ on }\pa \Omega \} \\
 &=: \sup S_{\varphi}
@@ -764,10 +764,10 @@ Therefore, using the procedure explained earlier in the lecture, we have proved 
 (29th January, Tuesday)
 \s
 
-We have proved : Using potential theorey, $-\lap u =f$ on $\Omega$, $u= \varphi$ on $\pa \Omega$ has unique solution $u\in C^2(\Omega) \cap C^0(\bar{\Omega})$. For the uniqueness, we used maximal principles, and properties of harmonic functions.
+We have proved : Using potential theory, $-\lap u =f$ on $\Omega$, $u= \varphi$ on $\pa \Omega$ has unique solution $u\in C^2(\Omega) \cap C^0(\bar{\Omega})$. For the uniqueness, we used maximal principles, and properties of harmonic functions.
 \s
 
-We are now moving on to regularity properties of solutions, the \emph{H\"older regularity}. We will first see an elementary H\"oler estimate, move on to Schauder thoery, and also see De Gorgi \emph{\&} Nash theory.
+We are now moving on to regularity properties of solutions, the \emph{H\"older regularity}. We will first see an elementary H\"older estimate, move on to Schauder theory, and also see De Giorgi \emph{\&} Nash theory.
 \s
 
 In Schauder theory, we deal with $Lu=f$, where $L$ is an elliptic operator with smooth coefficients. But to do this, we need some more knowledge in the Laplacian.
@@ -802,7 +802,7 @@ We first start the study of H\"{o}lder regularity locally.
 \textit{Equivalently,} \quad &\norms{D^2 W}{C^0(B_1)} +R^{\alpha}[D^2 W]_{\alpha, B_1} \leq C \Big( \norms{f}{C^0(\bar{B_2})} + R^{\alpha}[f]_{\alpha, B_2} \Big)
 \end{align*}
 \begin{p}
-\pf The only thing we can do at this point is just to compute the difference and make estimate on H\"older norm directly. \emph{[Gorgi method introduced later is an improved version of this, using the idea of oscillation (see later).]}
+\pf The only thing we can do at this point is just to compute the difference and make estimate on H\"older norm directly. \emph{[Giorgi method introduced later is an improved version of this, using the idea of oscillation (see later).]}
 Fix $x, \bar{x} \in B_1$. Let $0<\delta := |x-\bar{x}|< 2R$ and $\xi = \frac{1}{2}(x+\bar{x})$.
 \begin{align*}
 &\pa^2_{x_i x_j} W(x) = \int_{B_2} \pa_{x_i x_j}^2 E(x-y) \Big(f(y)- f(x)\Big) dy - f(x) \int_{\pa B_2} \pa_{x_i} E(x-y) (n_y \cdot e_j) dS_y \\
@@ -905,7 +905,7 @@ $a^{ji} = a^{ij}$(\emph{symmetric}) and $\Lambda |\xi|^2 \leq a^{ij}(x) \xi_i \x
 
 \subsubsection*{H\"older norms(II)}
 
-For sake of simplicity in the expressions of the results we will obtain, we introduce diffrent forms of H\"oler norms, that are equivalent to the original H\"oler norm. These notations were introduced by Nirenberg at 1950s, which is about 20years after Schauder's original work was published.
+For sake of simplicity in the expressions of the results we will obtain, we introduce different forms of H\"older norms, that are equivalent to the original H\"older norm. These notations were introduced by Nirenberg at 1950s, which is about 20years after Schauder's original work was published.
 \s
 
 \defi \emph{(More H\"older norms)} Assume $\Omega$ is compact. For $x,y\in \Omega$, let $d_x = \text{dist}(x, \pa \Omega)$, $d_y = \text{dist}(y, \pa \Omega)$ and $d_{x,y} := \min \{d_x,d_y\}$. Define
@@ -950,7 +950,7 @@ D = \begin{pmatrix}
 0 &\cdots & 1/\sqrt{\lambda_d}
 \end{pmatrix}
 \end{align*}
-Also, if we let $\tilde{f}(y) = f(x)$, with these notations, $L_0 u(x) = f(x)$ can be written as $\lap \tilde{u}(y) = \tilde{f}(y)$. While, most regularity of the solution is preserved under this transforamtion - since we have $P \in \text{O}(d)$, whenever a function $v$ is transformed with $\tilde{v}(y) =v(x)$, by chain rule,
+Also, if we let $\tilde{f}(y) = f(x)$, with these notations, $L_0 u(x) = f(x)$ can be written as $\lap \tilde{u}(y) = \tilde{f}(y)$. While, most regularity of the solution is preserved under this transformation - since we have $P \in \text{O}(d)$, whenever a function $v$ is transformed with $\tilde{v}(y) =v(x)$, by chain rule,
 \begin{align*}
 &\frac{1}{\sqrt{\Lambda}}|x| \leq |Qx| \leq \frac{1}{\sqrt{\lambda}}|x| \quad \forall x\in \reals^d ,\\
 &\frac{1}{C}|v|_{k, \alpha, \Omega}^* \leq |\tilde{v}|^*_{k, \alpha, \Omega}\leq C|v|^*_{k, \alpha, \Omega}, \\
@@ -986,7 +986,7 @@ where we intend $a^{ij}(x_0) - a^{ij}(x)$ to be small. If we show that $F(x)$ ha
 for a constant $C= C(d, \alpha, \lambda, \tilde{\Lambda})$.
 \s
 
-\textbf{Remark :} We may assume $\Omega$ is compact, as we may take nested sequece of compact sets that covers $\Omega$, if the constants uniform in this family of compact sets - which is indeed the case.
+\textbf{Remark :} We may assume $\Omega$ is compact, as we may take nested sequence of compact sets that covers $\Omega$, if the constants uniform in this family of compact sets - which is indeed the case.
 \s
 
 \newday
@@ -994,7 +994,7 @@ for a constant $C= C(d, \alpha, \lambda, \tilde{\Lambda})$.
 (2nd February, Saturday)
 \s
 
-To prove \textbf{Theorem 7.4}, We first intrduce two interpolation lemmas to control regularity.
+To prove \textbf{Theorem 7.4}, We first introduce two interpolation lemmas to control regularity.
 \s
 
 \lemnum{1} For any $\sigma,\tau \geq 0$,
@@ -1121,7 +1121,7 @@ where $C(\mu)$ depends on $d, \alpha, \lambda, \Lambda$. Now applying \textbf{Le
 \begin{align*}
 \frac{4}{\mu^{\alpha}} [u]^*_{2, \Omega} \leq \frac{C}{\mu^{\alpha}}|u|_{0, \Omega} + \mu^{\alpha}[u]^*_{2, \alpha, \Omega} 
 \end{align*}
-and therefore putting all these reuslts together, we obtain
+and therefore putting all these results together, we obtain
 \begin{align*}
 d^{2+ \alpha}_{x_0} \frac{|\pa^2_{x_i x_j} u(x_0) - \pa^2_{x_i x_j} u(y_0)|}{|x_0 - y_0|^{\alpha}} \leq  C\mu^{\alpha} [u]^*_{2, \alpha, \Omega} + C(\mu) (|u|_{0, \Omega} + |f|^{(2)}_{0 \alpha, \Omega})
 \end{align*}
@@ -1142,7 +1142,7 @@ Choose $C(d, \alpha, \lambda, \Lambda) \mu^{\alpha} < \frac{1}{2}$, then we have
 (5th February, Tuesday)
 \s
 
-Goal : to prove global H\"oler ($C^{2, \alpha}$) for any $u\in C^2(\Omega) \cap C^0(\bar{\Omega})$ satisfying $Lu =f$ in $\Omega$, $u =\varphi$ on $\pa \Omega$.
+Goal : to prove global H\"older ($C^{2, \alpha}$) for any $u\in C^2(\Omega) \cap C^0(\bar{\Omega})$ satisfying $Lu =f$ in $\Omega$, $u =\varphi$ on $\pa \Omega$.
 
 Recall our hypothesis, for $L = \sum a^{ij}\pa_i \pa_j + \sum b^i \pa_i +c$,
 \begin{align*}
@@ -1213,9 +1213,9 @@ where $|u|^*_{k, \Omega\cup T} := |u|^*_{k,0,\alpha, \Omega\cup T}$.
 
 Consider $\psi : \Omega \rightarrow \Omega'$, $C |x-y| \leq |\psi(x) - \psi(y)| \leq \tilde{C}(x-y)$. Make change of variable $u(x) = \tilde{u}(x')= \tilde{u}(\psi(x))$ then we would have
 \begin{align*}
-C |u(x)|_{j, \beta, \Omega} \lesssim |u'(x')|_{j, \beta, \Omega'}\lesssim \tilde{C} |u(x)|_{j, \beta, \Omega}
-C |u(x)|_{j, \beta, \Omega\cup T} \lesssim |\tilde{u}(x')|_{j, \beta, \Omega'\cup T'} \lesssim \tilde{C} |u(x)|^*_{j, \beta, \Omega\cup T} \\
-C |u(x)|^{(\sigma)}_{0, \beta, \Omega\cup T} \lesssim |\tilde{u}(x)|^{(\sigma)}_{0, \beta, \Omega'\cup T'} \lesssim \tilde{C} |u(x)|^{(\sigma)}_{0, \beta, \Omega \cup T}
+& C |u(x)|_{j, \beta, \Omega} \lesssim |u'(x')|_{j, \beta, \Omega'}\lesssim \tilde{C} |u(x)|_{j, \beta, \Omega} \\
+& C |u(x)|_{j, \beta, \Omega\cup T} \lesssim |\tilde{u}(x')|_{j, \beta, \Omega'\cup T'} \lesssim \tilde{C} |u(x)|^*_{j, \beta, \Omega\cup T} \\
+& C |u(x)|^{(\sigma)}_{0, \beta, \Omega\cup T} \lesssim |\tilde{u}(x)|^{(\sigma)}_{0, \beta, \Omega'\cup T'} \lesssim \tilde{C} |u(x)|^{(\sigma)}_{0, \beta, \Omega \cup T}
 \end{align*}
 by chain rule.
 \s
@@ -1257,7 +1257,7 @@ To produce H\"older interior estimate for $\Omega' \subset\subset \Omega$, choos
 \begin{i}
 \item[(1)] $x,y,\in \Omega_{\sigma}$, then interior H\"older inequality applies
 \item[(2)] $x,y\in B(x,\delta)$, then boundary H\"older inequality applies.
-\item[(3)] For a boundary point $x_j$$x\in \Omega_{\sigma}$, $y\in B_{x_j, \rho}$ or $x\in B(x_j, \rho), y\in B(x)j, \rho)$ then
+\item[(3)] For a boundary point $x_j$, $x\in \Omega_{\sigma}$, $y\in B_{x_j, \rho}$ or $x\in B(x_j, \rho), y\in B(x)j, \rho)$ then
 \begin{align*}
 \frac{|\pa_x^2 u(x) - \pa^2_{}u(y)|}{|x-y|^{\alpha}} \leq \frac{1}{\sigma^{\alpha}}(|\pa^2 u(x)|+ |\pa^2 u(y)|) \leq C(|u|_0 + |f|_{0, \alpha})
 \end{align*} 
@@ -1290,7 +1290,7 @@ where $C$ is independent of $\delta$.
 \begin{align*}
 |u|_{2, \alpha, B_0 \cap \Omega} \leq C(|u|_{0, \Omega} + |f|_{0, \alpha, \Omega})
 \end{align*}
-We had $\delta = \delta(\pa \Omega)$ uniform using compactness argumetnt.
+We had $\delta = \delta(\pa \Omega)$ uniform using compactness argument.
 \s
 
 With these in hand, we prove \emph{global estimates}, or \emph{patching estimates}
@@ -1334,23 +1334,23 @@ So putting these together, we have the global estimtae.
 
 \subsubsection*{Existence of Classical solutions}
 
-We have proved existence of solution to Poisson equation using Perron's method. We prove analogous result for ellpitic partial differential equations.
+We have proved existence of solution to Poisson equation using Perron's method. We prove analogous result for elliptic partial differential equations.
 \s
 
 \thm Let $L$ be elliptic satisfying (H) and $c(x) \leq 0$. Let $\Omega$ satisfy the exterior sphere condition(\textit{i.e.} $\forall x_0 \in \pa \Omega$, $\exists B \subset \reals^d \backslash \Omega$, a ball, such that $B\cap \bar{\Omega} = \{x_0 \}$). Assume $f\in C^{0, \alpha}(\bar{\Omega})$ and $\varphi \in C^0(\pa \Omega)$. Then the Dirichlet problem $Lu =f$ in $\Omega$ and $u= \varphi$ on $\pa \Omega$ has a unique classical solution $u\in C^0(\bar{\Omega}) \cap C^{2, \alpha}(\Omega)$.
 
-\emph{[a difference with the previous result is that we do not have $u \in C^{2, \alpha}(\bar{\Omega})$ anymore - so we do not have linear bound of $u$ in terms of $f$ and $\varphi$. --> what does this mean???]}
+\emph{[a difference with the previous result is that we do not have $u \in C^{2, \alpha}(\bar{\Omega})$ any more - so we do not have linear bound of $u$ in terms of $f$ and $\varphi$. --> what does this mean???]}
 \begin{p}
 \pf Proof to be done in the Example Sheet. But the idea is similar to that of Poisson equation.
 \begin{i}
-\item First see solvability in balls - idea of harmonic lifting appplies again. 
+\item First see solvability in balls - idea of harmonic lifting applies again. 
 \item Use maximum principles for $Lu \geq 0$(or $\leq 0$) (to be done in next lecture)
 \item Use compactness of solutions of $Lu =f$, that is a consequence of interior estimate.
 \end{i} 
 \end{p}
 \s
 
-Next lecture, we will see maximum prinicple for elliptic operators. This allows us to prove the theorem and furthermore to make exursion to non-linear world - some examples are (1) $-\lap u = f(u)$, (2) $\text{det}(D^2 \Phi) = f(\phi, \nabla \phi)$ (Monge -Amp\`{e}re), and (3) $\text{div}\Big( \frac{\nabla u}{\sqrt{1+ |\nabla u|^2}} \Big) = f(u)$ - we do not have general explicit solution for these equations, but we can make various estimates based on maximum principle.
+Next lecture, we will see maximum principle for elliptic operators. This allows us to prove the theorem and furthermore to make excursion to non-linear world - some examples are (1) $-\lap u = f(u)$, (2) $\text{det}(D^2 \Phi) = f(\phi, \nabla \phi)$ (Monge -Amp\`{e}re), and (3) $\text{div}\Big( \frac{\nabla u}{\sqrt{1+ |\nabla u|^2}} \Big) = f(u)$ - we do not have general explicit solution for these equations, but we can make various estimates based on maximum principle.
 \s
 
 \newday
@@ -1406,7 +1406,7 @@ Take $\epsilon \rightarrow 0$ to conclude
 \end{i}
 \s
 
-\lem \emph{(Hopf)} Let $L$ be uniformly elliiptic and $Lu \geq 0$ in $\Omega$. Take $x_0 \in \pa\Omega$ such that
+\lem \emph{(Hopf)} Let $L$ be uniformly elliptic and $Lu \geq 0$ in $\Omega$. Take $x_0 \in \pa\Omega$ such that
 \begin{i}
 \item[(i)] $u$ is continuous at $x_0$,
 \item[(ii)] $u(x_0) > u(x)$ for all $x\in \Omega$,
@@ -1433,10 +1433,10 @@ Then $z_0 \in \Omega \backslash \Omega^-$ so $\pa \Omega^- \cap \Omega \neq \phi
 \end{p}
 \s
 
-A maximum principle in a different flavor :
+A maximum principle in a different flavour :
 \s
 
-\thm \emph{(Maximum prinicple, Alexandroff)} Let $u \in C^0(\bar{\Omega}) \cap C^2(\Omega)$ be satisfying $Lu \geq f$ in $\Omega$ with $\frac{|b(x)|}{D^*}, \frac{f(x)}{D^*} \in L^d(\Omega)$, $c\leq  0$ in $\Omega$, where $D^* := \text{det}(A(x))^{1/d}$. Then
+\thm \emph{(Maximum principle, Alexandroff)} Let $u \in C^0(\bar{\Omega}) \cap C^2(\Omega)$ be satisfying $Lu \geq f$ in $\Omega$ with $\frac{|b(x)|}{D^*}, \frac{f(x)}{D^*} \in L^d(\Omega)$, $c\leq  0$ in $\Omega$, where $D^* := \text{det}(A(x))^{1/d}$. Then
 \begin{align*}
 \sup_{\Omega} u \leq \sup_{\pa \Omega} u^+  + c \norms{\frac{f^-}{D^*}}{L^d(\Gamma_+)}
 \end{align*}
@@ -1448,7 +1448,7 @@ for $\Gamma_+ \subset \Omega$.
 (14th February, Thursday)
 \s
 
-Recall, we used, but reamins to be proved :
+Recall, we used, but remains to be proved :
 
 \lem \emph{(Hopf)} Let $L$ be uniformly elliptic, $Lu \geq 0$ in $\Omega$, $u\in C^2(\Omega)$. Let $x_0 \in \pa \Omega$ be such that
 \begin{i}
@@ -1462,7 +1462,7 @@ Then
 \item[2.] if $c\leq 0$ and $c(x)/\lambda$ is bounded, $u(x_0)<0$ then $\frac{\pa u}{\pa n_x}(x_0)>0$.
 \end{i}
 \begin{p}
-\pf Pick $y$ and $R$ with $x_0 \in \pa B(y, R)$. Let $0< \rho < R$. Consider annuli of form $A_{\rho} = B(y, R) \backslash B(y, \rho)$. Introduce auxillary function
+\pf Pick $y$ and $R$ with $x_0 \in \pa B(y, R)$. Let $0< \rho < R$. Consider annuli of form $A_{\rho} = B(y, R) \backslash B(y, \rho)$. Introduce auxiliary function
 \begin{align*}
 v(x) = e^{-\alpha r^2} - e^{-\alpha R^2}, \quad r=|x-y|\in [\rho, R],
 \end{align*}
@@ -1470,7 +1470,7 @@ with $\alpha$ to be chosen later. Then one has
 \begin{align*}
 Lv = e^{-\alpha r^2} \Big( 4\alpha^{ii}(x_i -y_i)(x_j -y_j) - 2\alpha (a^{ii} + b^i (x_i - y_i)) \Big) + cv
 \end{align*}
-Take $\alpha$ large enough, $Lv \geq 0$. As $u - u(x_0) < 0$ on $\pa B(y, \rho)$, we may find $\epsilon >0$ such that $u - u(x_0) + \epsilon v \leq 0$ on $\pa B(y, \rho)$, and since $L(u-u(x_0)+ \epsilon v) \geq$, by \emph{Weak Mamum Principle}, one has $u - u(x_0) + \epsilon v\leq 0$ in $A_{\rho}$. Hence
+Take $\alpha$ large enough, $Lv \geq 0$. As $u - u(x_0) < 0$ on $\pa B(y, \rho)$, we may find $\epsilon >0$ such that $u - u(x_0) + \epsilon v \leq 0$ on $\pa B(y, \rho)$, and since $L(u-u(x_0)+ \epsilon v) \geq$, by \emph{Weak Maximum Principle}, one has $u - u(x_0) + \epsilon v\leq 0$ in $A_{\rho}$. Hence
 \begin{align*}
 \frac{\pa u}{\pa n_x}(x_0)\geq - \epsilon \frac{\pa v}{\pa n_x}(x_0) \geq - \epsilon v'(R) > 0
 \end{align*}
@@ -1482,11 +1482,11 @@ Take $\alpha$ large enough, $Lv \geq 0$. As $u - u(x_0) < 0$ on $\pa B(y, \rho)$
 
 \subsubsection*{Alexandroff maximum principle}
 
-Suppose $L = \sum_{ij} \pa^2_{x_i x_j} + \sum_{i} b^i \pa_{x_i} + c(x)$ satisfies ellipticity condtion (\textit{i.e.} $A = (a^{ij})_{i,j=1}^d$ positive definite in $\Omega$) in $\Omega$. Define $D(x) = \text{det}(A(x))$, $D^* = D^{1/d}$, then
+Suppose $L = \sum_{ij} \pa^2_{x_i x_j} + \sum_{i} b^i \pa_{x_i} + c(x)$ satisfies ellipticity condition (\textit{i.e.} $A = (a^{ij})_{i,j=1}^d$ positive definite in $\Omega$) in $\Omega$. Define $D(x) = \text{det}(A(x))$, $D^* = D^{1/d}$, then
 \begin{align*}
 0\leq \lambda(x) \leq D^*(x) \leq \Lambda(x)
 \end{align*}
-where $\lambda(x)$ is the minimum eigenvalue of $A(x)$ and $\Lambda(x)$ is the maximum eighenvalue of $A(x)$. Let $u\in C^2(\Omega)$, and $\Gamma^+ = \{y\in \Omega : u(x)\leq u(y) + \nabla u(y)(x-y), \forall x\in \Omega\}$, the \textbf{upper contact set of $u$}
+where $\lambda(x)$ is the minimum eigenvalue of $A(x)$ and $\Lambda(x)$ is the maximum eigenvalue of $A(x)$. Let $u\in C^2(\Omega)$, and $\Gamma^+ = \{y\in \Omega : u(x)\leq u(y) + \nabla u(y)(x-y), \forall x\in \Omega\}$, the \textbf{upper contact set of $u$}
 
 \emph{[Remark : Has $D^2 u \leq 0$ on $\Gamma^+$. In particular, $u$ is concave in $\Omega$ iff $\Gamma^+ =\Omega$.]}.
 \s
@@ -1497,7 +1497,7 @@ where $\lambda(x)$ is the minimum eigenvalue of $A(x)$ and $\Lambda(x)$ is the m
 \end{align*}
 for some constant $C = C(d, \text{diam}(\Omega), \norms{\frac{b}{D^*}}{L^d(\Omega)})$.
 
-\emph{[A nice thing about this estimate is that $f^-/D^*$ need not be H\"older in order to make this estimate - it can be something much weaker. Hence, this can be applied on functions that dependent on $u$ in a non-lienar fashion, which makes it possible to make estimates on non-linear equations.]}
+\emph{[A nice thing about this estimate is that $f^-/D^*$ need not be H\"older in order to make this estimate - it can be something much weaker. Hence, this can be applied on functions that dependent on $u$ in a non-linear fashion, which makes it possible to make estimates on non-linear equations.]}
 \s
 
 \lem Let $g \in L^1_{loc}(\reals^d)$, $g\geq 0$. Then $\forall u \in C^0(\bar{\Omega}) \cap C^2(\Omega)$, we have
@@ -1621,12 +1621,12 @@ So we have
 & \lap(u_{k+1} - u_{k}) - \lambda(u_{k+1}- u_{k}) \leq 0 \\
 & u_{k+1} \geq u_k  \quad \text{on } \pa \Omega
 \end{align*}
-(Note that we always have $u_{k+1} = u_k =0$ on $\pa \Omega$ whenever $k\geq 1$, and if $k=0$, then $u_1 =0 \geq u_0$ on $\pa \Omega$). So by maximum priniciple, we have $u_{k+1} \geq u_k{u}$ in $\Omega$.
+(Note that we always have $u_{k+1} = u_k =0$ on $\pa \Omega$ whenever $k\geq 1$, and if $k=0$, then $u_1 =0 \geq u_0$ on $\pa \Omega$). So by maximum principle, we have $u_{k+1} \geq u_k{u}$ in $\Omega$.
 
-\quad Analogously, we also have $u_{k+1} \leq \bar{u}$ in $\Omega$, which conlcludes the claim.
+\quad Analogously, we also have $u_{k+1} \leq \bar{u}$ in $\Omega$, which concludes the claim.
 \end{subproof}
 
-Also \emph{elliptic regualrity}(\textit{c.f.} see \textbf{Theorem 6.3}), we have that $\{u_k\}_k \subset C^{2, \alpha}(\bar{\Omega})$, $u_k \leq u_{k+1}$ in $\Omega$, and bounded with $m\leq u_k \leq M$. Hence by \emph{Arzel\`a-Ascoli Theorem}, we have $u_{\infty} \in C^{0}(\bar{\Omega})$ such that $u_k \rightarrow u_{\infty}$ in $C^0(\bar{\Omega})$, where the convergence is made upto a subsequence (but since $u_k \leq u_{k+1} \leq \bar{u}$ for each $k$, we in fact do not have to take a subsequence).
+Also \emph{elliptic regularity}(\textit{c.f.} see \textbf{Theorem 6.3}), we have that $\{u_k\}_k \subset C^{2, \alpha}(\bar{\Omega})$, $u_k \leq u_{k+1}$ in $\Omega$, and bounded with $m\leq u_k \leq M$. Hence by \emph{Arzel\`a-Ascoli Theorem}, we have $u_{\infty} \in C^{0}(\bar{\Omega})$ such that $u_k \rightarrow u_{\infty}$ in $C^0(\bar{\Omega})$, where the convergence is made upto a subsequence (but since $u_k \leq u_{k+1} \leq \bar{u}$ for each $k$, we in fact do not have to take a subsequence).
 
 \quad Moreover, for $k>l$, $u_k -u_l$ satisfies the equation
 \begin{align*}
@@ -1800,7 +1800,7 @@ By continuity again, $w_{\lambda_0 - \epsilon} < 0$ in $K$ and we also find that
 \begin{align*}
 |\Sigma_{\lambda_0 -\epsilon} \backslash K| < \delta
 \end{align*}
-is also small. Apply \emph{maximum principle for narrow dmains} on $\Sigma_{\lambda_0 - \epsilon}$, then $w_{\lambda_0 - \epsilon}(x) \leq 0$ in $\Sigma_{\lambda_0 - \epsilon} \backslash K$. Now by the \emph{Serrin comparision principle}, since $w_{\lambda_0 -\epsilon}$ is strictly negative in $K$, we have $w_{\lambda_0 - \epsilon} < 0$ in $\Sigma_{\lambda_0 -\epsilon}$. Thi is a contradiction to the minimality of $\lambda_0$. Therefore, $\lambda_0$ should be 0.
+is also small. Apply \emph{maximum principle for narrow domains} on $\Sigma_{\lambda_0 - \epsilon}$, then $w_{\lambda_0 - \epsilon}(x) \leq 0$ in $\Sigma_{\lambda_0 - \epsilon} \backslash K$. Now by the \emph{Serrin comparison principle}, since $w_{\lambda_0 -\epsilon}$ is strictly negative in $K$, we have $w_{\lambda_0 - \epsilon} < 0$ in $\Sigma_{\lambda_0 -\epsilon}$. Thi is a contradiction to the minimality of $\lambda_0$. Therefore, $\lambda_0$ should be 0.
 \s
 
 The statement about the derivative comes from the fact that $u(x_1, y)$ is decreasing in $x_1$ for any $(x_1, y) \in \Sigma_0$.
@@ -1814,16 +1814,16 @@ The statement about the derivative comes from the fact that $u(x_1, y)$ is decre
 (26th February, Tuesday)
 \s
 
-We have seen in the last lecture how we can find solution for $-\lap u = f(u)$ using $C^{2, \alpha}$ Schauder estimates (potential thoery).
+We have seen in the last lecture how we can find solution for $-\lap u = f(u)$ using $C^{2, \alpha}$ Schauder estimates (potential theory).
 
-\quad One famous example of equations of such type is prescribed curvuture equation. That is, for a Riemannian surface $(M,g)$, it solves
+\quad One famous example of equations of such type is prescribed curvature equation. That is, for a Riemannian surface $(M,g)$, it solves
 \begin{align*}
 \text{div}\big( \frac{\nabla u}{\sqrt{1 + |\nabla u|^2}} \big) = H(u), \quad \text{det}(D^2 y) = F(\kappa, u) = \tilde{F}(x, u, \nabla u)
 \end{align*}
-for curvatures $\kappa, H$ and with coefficients in te linear regime may be measurable (say $L^p$).
+for curvatures $\kappa, H$ and with coefficients in the linear regime may be measurable (say $L^p$).
 \s
 
-\textbf{Goal :} to develope a regularity theory for \emph{weak solutions}. 
+\textbf{Goal :} to develop a regularity theory for \emph{weak solutions}. 
 \s
 
 Let $L$ be an operator of form
@@ -1884,7 +1884,7 @@ So we have proved that $(u_{x_0, 2^{-k}R})_{k\in\mathbb{N}}$ is a Cauchy sequenc
 \begin{align*}
 |u_{x_0, r} - \hat{u}(x_0)| \leq c(d, \alpha) Mr^{\alpha} \call{\otimes}
 \end{align*}
-Now by \emph{Lebesgue's differentiation theorem}, $\lim_{r\rightarrow 0^+} \int_{B(x_0, r)} \frac{u(x)}{|B(x_0, r)|} dx = u(x_0, r)$ for a.e. $x_0$, whenever $u\in L^1_{loc}(\Omega) \subset L^2(\Omega)$ so $\hat{u} = u$ a.e. in $\Omega$. But $\hat{u}$ is continuous because it is a uniform limit of continuous functions. Hence $u$ is also continous (has continuous correction) at $x_0$.
+Now by \emph{Lebesgue's differentiation theorem}, $\lim_{r\rightarrow 0^+} \int_{B(x_0, r)} \frac{u(x)}{|B(x_0, r)|} dx = u(x_0, r)$ for a.e. $x_0$, whenever $u\in L^1_{loc}(\Omega) \subset L^2(\Omega)$ so $\hat{u} = u$ a.e. in $\Omega$. But $\hat{u}$ is continuous because it is a uniform limit of continuous functions. Hence $u$ is also continuous (has continuous correction) at $x_0$.
 \s
 
 Next, we prove that $u$ is bounded in $\Omega$ with estimates. Observe that 
@@ -1970,7 +1970,7 @@ We conclude by applying the last proposition of the last lecture.
 We expect that if $a^{ij} \in C^0(\bar{\Omega})$, $c =c(x) \in L^d(\Omega)$, $f\in L^{\frac{2d}{d+2}}(\Omega)$ then the weak solution satisfies $u\in H^1(\Omega) \cap C^{0, \alpha}(\Omega)$.
 \s
 
-\textit{A priori}, we study the setting of $\Omega$ reduced to balls. So we at the moment insist to work on $B(0, 1) =B$, $B(0, r)=B_r$. The idea is to first assume that $a^{oij}$ is \emph{close} to some constant coefficient, say $A = (a^{ij}(x_0))_{i,j=1}^d$ freezing $a^{ij}$ to $a^{ij}(x_0)$. Then we will use perturbation argument.
+\textit{A priori}, we study the setting of $\Omega$ reduced to balls. So we at the moment insist to work on $B(0, 1) =B$, $B(0, r)=B_r$. The idea is to first assume that $a^{ij}$ is \emph{close} to some constant coefficient, say $A = (a^{ij}(x_0))_{i,j=1}^d$ freezing $a^{ij}$ to $a^{ij}(x_0)$. Then we will use perturbation argument.
 
 \quad To use perturbation argument, we may write $u= v+w$ where $w$ is the weak solution of $L_0 w =0$ where $L_0 w := - \sum_{i,j} \pa_{x_j}(a^{ij}(x_0) \pa_{x_i} w)$ and $v$ solves
 \begin{align*}
@@ -2029,7 +2029,7 @@ where $C= C(\lambda, \Lambda)$.
 
 \textbf{$\clubsuit$ Claim :} $|w|^2_{L^{\infty}(B_{1/2})} + |\nabla w|^2_{L^{\infty}(B_{1/2})} \leq C(\lambda, \Lambda)\int_{B_1} |w|^2 dx$.
 \begin{subproof}
-: first observe that if $w$ satisfies $L_0 w =0$, then $w$ is automatically smooth (as it is only a dialation of a harmonic function) and $\pa^{\alpha} w$ satisfies the same equation. So by \emph{Cacciofolli},
+: first observe that if $w$ satisfies $L_0 w =0$, then $w$ is automatically smooth (as it is only a dilation of a harmonic function) and $\pa^{\alpha} w$ satisfies the same equation. So by \emph{Cacciofolli},
 \begin{align*}
 \int_{B(0, 1/2)} |\nabla (\pa^{\alpha} w)|^2 dx \leq C \int |\pa^{\alpha} w|^2 dx \leq \cdots \lesssim \int |w|^2 
 \end{align*}
@@ -2451,7 +2451,7 @@ For any choice of $h> k \geq k_0$ and $\frac{1}{2} \leq r < R \leq 1$, any we ap
 & \quad \quad + (h + \snorms{f}{L^q})^2 \frac{1}{(h-k)^{2(1+\epsilon)}} \Big( \int_{A(k,r)} (u-k)^2 dx \Big)^{1+\epsilon} \\
 & \leq \frac{1}{(h-k)^{2\epsilon}} \Big( \int_{A(k,r)} (u-k)^2 dx \Big)^{1+\epsilon} \Big( \frac{1}{(R-r)^2} + \frac{(h+ \snorms{f}{L^q})^2}{(h-k)^2} \Big) =: \text{RHS}(k,r,R) \call{\dagger''}
 \end{align*}
-Hence we have an interative scheme :
+Hence we have an iterative scheme :
 \begin{itemize}
 \item Let $k_l = k_0 + k^* \big(1- \frac{1}{2^l}\big)$, so $k_l \leq k_0 + k^*$. The constant $k^*$ would be specified later to be sufficiently large.
 \item Let $r_l = \tau + \frac{1}{2^l}(1-\tau)$ where $\tau = \frac{1}{2}$.
@@ -2512,7 +2512,7 @@ for some $\alpha = \alpha(d, \lambda/\Lambda) \in (0,1)$.
 
 We will need three key ingredients to prove the theorem.
 \begin{itemize}
-\item Poincar\'{e}-Sobolev ienquality
+\item Poincar\'{e}-Sobolev inequality
 \item Density theorem
 \item Oscillation theorem
 \end{itemize}
@@ -2538,7 +2538,7 @@ First, we have the following lemma.
 \int_B |u|^2 dx \leq C(\epsilon, d) \int_B |\nabla u|^2 dx 
 \end{align*}
 \begin{p}
-\pf We prove by contradiction. We assume that there is a sequence $(u_m)_m \subset H^1(B)$ satisfyint the assumption and such that
+\pf We prove by contradiction. We assume that there is a sequence $(u_m)_m \subset H^1(B)$ satisfying the assumption and such that
 \begin{align*}
 \int_B |\nabla u_m|^2 dx \xrightarrow{m\rightarrow \infty} 0 \quad \text{while} \quad \int_B |u_m|^2 dx = 1, \,\,\forall m
 \end{align*} 
@@ -2623,7 +2623,7 @@ To see the general case without assuming $u\geq \delta$ for some $\delta$, obser
 (Not done in the lectures. Copied down from Qing Han \& Fanghua Lin)
 \s
 
-\thmnum{4.10} \emph{(Osciallation Theorem)} Suppose that $u$ is a bounded solution of $Lu=0$ in $B_2$. Then there exists $\gamma =\gamma(n, \Lambda/\lambda)\in(0,1)$ such that
+\thmnum{4.10} \emph{(Oscillation Theorem)} Suppose that $u$ is a bounded solution of $Lu=0$ in $B_2$. Then there exists $\gamma =\gamma(n, \Lambda/\lambda)\in(0,1)$ such that
 \begin{align*}
 \text{osc}_{B_{1/2}}u \leq \gamma \text{osc}_{B_1} u
 \end{align*}

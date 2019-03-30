@@ -1,0 +1,685 @@
+\documentclass[10pt,a4paper]{article}
+
+\usepackage{amsmath}
+\usepackage[utf8]{inputenc}
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{amssymb}
+\usepackage{calrsfs}
+\usepackage[left=2cm,right=2cm,top=2cm,bottom=2cm]{geometry}
+\usepackage[mathscr]{euscript}
+\usepackage{bm}
+
+%%%%%%%%%%%attach pdf%%%%%%%%%%%%
+%\usepackage[final]{pdfpages}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%%%%Latin Modern Font%%%%%%%%%%%%%%%%%%%%%
+\usepackage{lmodern}
+
+\newcommand{\latinmodern}[1]{{\fontfamily{lmss}\selectfont
+\textbf{#1}
+}}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%%%%%For writing large opertors%%%%%%%%%%%
+%\usepackage{stmaryrd}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%for writing large parallel%%%%%%
+\usepackage{mathtools}
+\DeclarePairedDelimiter\bignorm{\lVert}{\rVert}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%%%for drawing commutative diagrams.%%%%%%
+\usepackage{tikz-cd}  
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%for changing margin
+\def\changemargin#1#2{\list{}{\rightmargin#2\leftmargin#1}\item[]}
+\let\endchangemargin=\endlist 
+
+\newenvironment{proof}
+{\begin{changemargin}{1cm}{0.5cm} 
+	}%your text here
+	{\end{changemargin}
+}
+
+\newenvironment{subproof}
+{\begin{changemargin}{0.5cm}{0.5cm} 
+	}%your text here
+	{\end{changemargin}
+}
+
+\renewenvironment{i}
+{\begin{itemize} 
+	}%your text here
+	{\end{itemize}
+}
+
+\renewenvironment{a}
+{\begin{align*}
+ }
+ {\end{align*}
+}
+
+\newenvironment{p}
+{\begin{proof} 
+	}%your text here
+	{\end{proof}
+}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%double rules%%%%%%%%%%%%%%%%%%%
+\usepackage{lipsum}% Just for this example
+
+\newcommand{\doublerule}[1][.4pt]{%
+  \noindent
+  \makebox[0pt][l]{\rule[.7ex]{\linewidth}{#1}}%
+  \rule[.3ex]{\linewidth}{#1}}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{document}
+
+\title{Introduction to Optimal Transport}
+\author{Lectured by Matthew Thorpe}
+\date{Lent 2019}
+
+\maketitle
+
+\newcommand{\statement}[1]{\latinmodern{\textbf{#1)}}}
+
+\newcommand{\thm}{\statement{Theorem}}
+\newcommand{\thmnum}[1]{\statement{Theorem #1}}
+\newcommand{\defi}{\statement{Definition}}
+\newcommand{\definum}[1]{\statement{Definition #1}}
+\newcommand{\lem}{\statement{Lemma}}
+\newcommand{\lemnum}[1]{\statement{Lemma #1}}
+\newcommand{\prop}{\statement{Proposition}}
+\newcommand{\propnum}[1]{\statement{Proposition #1}}
+\newcommand{\corr}{\statement{Corollary}}
+\newcommand{\corrnum}[1]{\statement{Corollary #1}}
+\newcommand{\pf}{\textbf{proof) }}
+
+\newcommand{\norms}[2]{\bignorm[\big]{#1}_{#2}}
+\newcommand{\snorms}[2]{\bignorm[\small]{#1}_{#2}}
+\newcommand{\charac}{\bm{1}}
+\newcommand{\wa}[1]{ d_{ \mathrel{\scalebox{0.5}[0.5]{$W$}}^{#1}}}
+
+\newcommand{\lap}{\triangle} %%Laplacian
+\newcommand{\s}{\vspace{10pt}}
+\newcommand{\bull}{$\bullet$}
+\newcommand{\sta}{$\star$}
+\newcommand{\reals}{\mathbb{R}}
+
+\newcommand{\eop}{\hfill  \textsl{(End of proof)} $\square$} %end of proof
+\newcommand{\eos}{\hfill  \textsl{(End of statement)} $\square$} %end of proof
+
+\newcommand{\call}[1]{\quad \cdots\cdots\cdots\,\,(#1)}
+
+\newcommand{\intN}{\mathbb{Z}_N}
+\newcommand{\nat}{\mathbb{N}}
+\newcommand{\abs}[1]{\big| #1 \big|}
+\newcommand{\avg}{\mathbb{E}}
+\newcommand{\prob}{\mathbb{P}}
+\newcommand{\borel}{\mathscr{B}}
+\newcommand{\EE}{\mathscr{E}}
+\newcommand{\pa}{\partial}
+\newcommand{\PP}{\mathscr{P}}
+\newcommand{\pgi}{\text{P}_{\text{GI}}}
+
+\renewcommand{\vec}{\underline}
+\renewcommand{\bar}{\overline}
+
+\def\doubleunderline#1{\underline{\underline{#1}}}
+
+\newcommand{\newday}{\doublerule[0.5pt]}
+
+\setlength\parindent{0pt}
+
+\section{Background on Measure Theory}
+
+\defi $\sigma$-algebra, measure, probability measure, Borel $\sigma$-algebra on topological space $X$, probability measure, Polish space
+\s
+
+\definum{1.1.} weak-* convergence of measures
+\s
+
+\thmnum{1.2.} \emph{(Portmanteau theorem)} Let $X$ be a metric space, $\{\mu_n\}_{n=1}^{\infty} \subset \mathscr{P}(X)$, $\mu \in \mathscr{P}(X)$. Then TFAE :
+\begin{i}
+\item $\lim_{n\rightarrow \infty} \int_X f(x) d\mu_n =\int_X f(x) d\mu \quad \forall f\in C_b^0(X)$.
+\item $\lim_{n\rightarrow \infty} \int_X f(x) d\mu_n =\int_X f(x) d\mu$ for all $f$ Lipschitz and bounded.
+\item $\limsup \int f(x) d\mu_n \leq \int_X f(x) d\mu(x)$ for all $f$ upper semi-continuous and bounded above.
+\item $\liminf \int f(x) d\mu \geq \int f(x) d\mu$ for all $f$ lower semi-continuous and bounded below.
+\item $\limsup \mu_n(C) \leq \mu(C)$ for all closed sets $C$.
+\item $\liminf \mu_n(O) \geq \mu(O)$ for all open sets $O$.
+\item $\lim \mu_n(A) \geq \mu(A)$ for all continuity sets $A$ of $\mu$, \textit{i.e.} $\mu(\pa A) =0$.
+\end{i}
+\s
+
+\defi tight probability measures
+\s
+
+\thmnum{1.3} \emph{(Prokhorov's Theorem)} Let $X$ be a \emph{Polish space}. Then a set $\mathscr{K} \subset \mathscr{P}(X)$ is tight \textit{iff} the closure of $\mathscr{K}$ is sequentially compact in weak* topology.
+\s
+
+\definum{1.4} pushforward of measure
+\s
+
+\propnum{1.5} Let $\mu \in \PP(X)$, $T: X\rightarrow Y$, $S:Y\rightarrow Z$ and $f\in L^1(Y)$. Then
+\begin{i}
+\item[1.] \emph{(Change of variables)} $\int_Y f(y)d(T_{\#} \mu) (y) = \int_X f(T(x))d\mu(x) \call{2.2}$
+\item[2.] \emph{(Composition of measures)} $(S\circ T)_{\#}\mu = S_{\#}(T_{\#}\mu)$. 
+\end{i}
+\s
+
+\thmnum{1.6} \emph{(Disintegration of Measures)} Let $\mathbb{X}, Z$ be Polish spaces and $P : \mathbb{X}\rightarrow Z$ Be measurable. Let $\pi : \PP(\mathbb{X})$ and define $\omega= P_{\#} \pi \in \PP(Z)$. Then $\exists \omega$-almost everywhere uniquely defined family of probability measures $\{\pi(\cdot |z)\}_{z\in Z}$ such that $\pi(\cdot |z) \in \PP(P^{-1}(z))$ and
+\begin{align*}
+\int_{\mathbb{X}} f(x) d\pi(x) = \int_Z \int_{P^{-1}(z)} f(x) d\pi(x|z)d\omega(z), \quad \forall f: \mathbb{X}\rightarrow [0, +\infty] \text{ measurable}
+\end{align*}
+(not proving)
+\s
+
+\textbf{Comments :}
+\begin{i}
+\item[(1)] $\pi(A|z)$ can be thought of as the conditional probability of $A$ given $z$.
+\item[(2)] Usual application is when $\mathbb{X} = X\times Y$ and $\pi \in \Pi(\mu, \nu)$, $P(x,y) = x$, then $\mu = P_{\#}\pi$ and $P^{-1}(x) = \{x\} \times Y$ (with a abuse of notation, $\pi(\cdot |x) \in \PP(Y)$) and we can write
+\begin{align*}
+\int_{X\times Y} f(x,y) d\pi(x,y) = \int_X \int_{\{x\}\times Y} f(x,y) d\pi(y|x) d\mu(x) \quad \forall f: X\times Y \rightarrow [0, +\infty] \text{ measurable}
+\end{align*}
+\end{i}
+\s
+
+\section{Formulation of Optimal Transport}
+
+\subsection{The Monge Formulation} 
+
+Let $\mu, \nu$ be measures on $X, Y$ and $C : X\times Y \rightarrow [0, \infty]$ be the cost function.
+\s
+
+\definum{2.1} We say that $T: X\rightarrow Y$ transports $\mu \in \mathscr{P}(X)$ to $\nu \in \PP(Y)$ if...
+\s
+
+\subsubsection*{Existence of Transport Map}
+Let $\mu, \nu$ be probability measures as above. Then can we find $T : X\rightarrow Y$ such that $T_{\#} \mu =\nu$?
+\s
+
+\subsubsection*{The Monge's Problem}
+
+\definum{2.4} Monge's Optimal Transport Problem
+\s
+
+\subsection{The Kantorovich Formulation}
+
+\defi $\Pi(\mu,\nu)$, Kantorovich Optimal Transport Problem
+\s
+
+We have $\inf \mathbb{K}(\pi) \leq \inf \mathbb{M}(T)$ (- prove this)
+\s
+
+\subsection{Existence of Transport Plans}
+
+\propnum{2.6}  Let $\mu \in \mathscr{P}(X)$, $\nu \in \mathscr{P}(Y)$, $X, Y$ Polish spaces and $c: X\times Y \rightarrow [0, \infty]$ is lower semi-continuous. Then $\exists \pi^{\dagger} \in \Pi(\mu, \nu)$ such that
+\begin{align*}
+\mathbb{K}(\pi^{\dagger}) = \min_{\pi \in \Pi(\mu, \nu)}\mathbb{K}(\pi)
+\end{align*}
+
+\section{Special cases}
+We  now just consider the special cases in which :
+\begin{i}
+\item[1.] $\mu, \nu$ on the real line \emph{or},
+\item[2.] $\mu, \nu$ on the discrete space
+\end{i}
+
+\subsection{Optimal Transport in 1D}
+
+Let $\mu, \nu\in \mathscr{P}(\reals)$ with culmulative distribution functions(CDF) $F$ and $G$ respectively.  Then $F,G$ are right-continuous, non-decreasing, $F(-\infty) =0$ and $F(+\infty) =1$. Define
+\begin{align*}
+&F^{-1}(t) : = \inf \{x\in \reals : F(x)>t \}\\
+\Rightarrow \quad & F^{-1}(F(x)) \geq x, \quad F(F^{-1}(t))\geq t
+\end{align*}
+(the implication is an exercise) If $F$ is invertible, these inequalities are in fact equalities.
+\s
+
+\thmnum{3.1} Let $\mu, \nu \in \mathscr{P}(\reals)$ with culmulative distribution functions $F$ and $G$ resp. Let $c(x,y)= d(x-y)$, for a function $d$ convex and continuous. Let $\pi^{\dagger} \in \mathscr{P}(\reals^2)$ with culmulative distribution function $H(x,y) = \min\{F(x), G(y)\}$. Then $\pi^{\dagger} \in \Pi(\mu, \nu)$, $\pi^{\dagger}$ optimal for the Kantorovich problem with cost function $c(x,y)$. Moreover,
+\begin{align*}
+\min_{\pi \in \Pi(\mu, \nu)}\mathbb{K}(\pi ) =\int_0^1 d(F^{-1}(t) - G^{-1}(t))dt
+\end{align*}
+(proof uses proposition 3.3)
+\s
+
+\corrnum{3.2} Let $\mu$ and $\nu$ be as in the theorem.
+\begin{i}
+\item[(1)] If $c(x,y) = |x-y|$, the optimal transport distance, we have
+\begin{align*}
+\inf_{\pi \in \Pi(\mu, \nu)} \mathbb{K}(\pi) = \int_{\reals} |F(x) - G(x)| dx
+\end{align*}
+\item[2)] If $\mu$ does not give mass to atoms, then 
+\begin{align*}
+\min_{\pi \in \Pi(\mu, \nu)} \mathbb{K}(\pi) = \min_{T: T_{\#}\mu =\nu} \mathbb{M}(T)
+\end{align*}
+and $T^{\dagger} = G^{-1}\circ F$ is a minimiser to Monge's optimal transport problem, \textit{i.e.} $T_{\#}^{\dagger} \mu = \nu$ and $\inf_{T: T_{\#} \mu = \nu} \mathbb{M}(T) = \mathbb{M}(T^{\dagger})$.
+\end{i}
+\s
+
+Let $\mu, \nu \in \PP(\reals)$, with culmulative distribution function $F,G$ respectively. We also defined the \textbf{generalized inverse} of a cdf $F$ on $[0,1]$ by
+\begin{align*}
+F^{-1}(t) = \inf \{x\in \reals : F(x) > t\}
+\end{align*}
+then $F^{-1}(F(x))\geq x$ and $F(F^{-1}(t)) \geq t$.
+\s
+
+\defi We say \textbf{$\Gamma \subset \reals^2$ is monotone with respect to $d$} if...
+\s
+
+\textbf{Example :} Let $\Gamma = \{(x,y) : f(x)=y\}$ with $f,d$ increasing. Then $\Gamma$ is monotone. \emph{(Exercise)}.
+\s
+
+\propnum{3.3} Let $\mu, \nu \in\PP(\reals)$. Assume $\pi^{\dagger} \in \Pi(\mu, \nu)$ is an optimal plan for the cost function $c(x,y) = d(x,y)$ where $d$ is continuous. Then for all $(x_1, y_1), (x_2, y_2) \in \text{supp}(\pi)$, we have
+\begin{align*}
+d(x_1 -y_1) + d(x_2-y_2) \leq d(x_1-y_2)+d(x_2-y_1)
+\end{align*}
+\textit{i.e.} $\text{supp}(\pi)$ is \emph{cyclically monotone}.
+
+\subsection{Existence of Transport Maps for Discrete Measures}
+
+Here we assume that $\mu = \frac{1}{n} \sum_{i=1}^m \delta_{x_i}$ and $\nu = \frac{1}{n} \sum_{j=1}^n \delta_{y_j}$.
+\s
+
+Let $\sigma : \{1, 2, \cdots ,n \} \rightarrow \{1, 2, \cdots ,n \}$ be any permutation. Then $T(x_i) = y_{\sigma(i)}$ is an admissible transport map.
+\s
+
+\emph{Questions :}
+\begin{itemize}
+\item[(1)] Let $\nu =\frac{1}{m}\sum_{j=1}^m \delta_{y_j}$ is it important that $m=n$? 
+\item[(2)] Do all $\{x_i\},\{y_i\}$ need to be distinct? 
+\end{itemize}
+\s
+
+\defi Extreme points of a convex set $B\subset M$, $M$ a Banach space
+\s
+
+\thmnum{3.5} \emph{(Minkowski-Carath\'{e}odory Theorem)} Let $B\subset \reals^m$ be non-empty, convex and compact. The for any $\pi^{\dagger} \in B$ there is a measures $\eta$ supported on $E(B)$ such that for any affine function $f$,
+\begin{align*}
+f(\pi^{\dagger}) = \int f(\pi) d\eta(\pi)
+\end{align*}
+(not proved in lecture)
+\s
+
+\textbf{Remark : } The theorem can be generalised to Banach spaces where it is known as \emph{Choquet's theorem}.
+\s
+
+\thmnum{3.6} \emph{(Birkhoff's theorem)} Let $B$ be the set of $n\times n$ bistochastic matrices, \textit{i.e.}
+\begin{align*}
+B =\{ \pi \in \reals^{n\times n} : \pi_{ij} \geq 0, \sum_{j=1}^n \pi_ij =1 \text{ for all } i, \sum_{i=1}^n \pi_{ij}=1 \text{ for all  }j\}
+\end{align*}
+Then the set of extremal points of $B$ is exactly the set of permutation matrices, \text{i.e.}
+\begin{align*}
+E(B) = \{\pi \in \{0,1\}^{n\times n} : \sum_{j=1}^n \pi_{ij}=1\text{ for all }i, \sum_{i=1}^n \pi_{ij}=1 \text{ for all }j \}
+\end{align*}
+(proof not done in lecture)
+\s
+
+\thmnum{3.7} Let $\mu = \frac{1}{n} \sum_{i=1}^n \delta_{x_i}$, $\nu = \frac{1}{n} \sum_{j=1}^n \delta_{y_i}$ and assume that $\{x_i \}_{i=1}^n$ are distinct ($\{y_i\}_{i=1}^n$ not necessarily distinct). Then there exists a solution to \emph{Monge optimal transport problem} between $\mu$ and $\nu$. 
+\s
+
+\section{Kantorovich Duality}
+
+\subsection{Kantorovich Duality}
+
+\thmnum{4.1} \emph{(Kantorovich Duality, KD)} Let $\mu \in \mathscr{P}(X)$, $\nu \in \mathscr{P}(Y)$ when $X, Y$ are Polish spaces. Let $c: X\times Y \rightarrow [0, +\infty]$ be lower semi-continuous. Define $\mathbb{J}$ by
+\begin{align*}
+\mathbb{J} : L^1(\mu) \times L^1(\nu) & \rightarrow \reals \\
+(\varphi, \psi) & \mapsto \int_X \varphi(x) d\mu(x) + \int_Y \psi(y)d\nu(y)
+\end{align*}
+and $\Phi_c$ by
+\begin{align*}
+\Phi_c = \{ (\varphi, \psi) \in L^1(\mu) \times L^1(\nu) : \varphi(x) + \psi(y) \leq c(x,y) \text{ for } \mu-\text{a.e. } x\in X, \nu-\text{a.e. } y\in Y \}
+\end{align*}
+Then
+\begin{align*}
+\min_{\pi \in \Pi(\mu, \nu)} = \sup_{(\varphi, \psi)\in \Phi_c} \mathbb{J}(\varphi, \psi)
+\end{align*}
+\s
+
+\subsection{Fenchel Rockafellar Duality}
+
+The aim is to derive a rigorous min-max principle. We use methods from convex analysis. In particular, we use Legendre-Fenchel transform.
+\s
+
+\definum{4.2} Legendre-Fenchel transformation of a function on a normed vector space.
+\s
+
+\thmnum{4.3} \emph{(Fenchel-Rockafellar duality)} Let $E$ be a normed vector space and $\Theta, \Xi : E\rightarrow \cup \{+ \infty \}$ two convex functions. Assume $\exists z_0 \in E$ such that $\Theta(z_0) < \infty$ and $\Xi(z_0) < \infty$ (and $\Theta$ is continuous at $z_0$). Then
+\begin{align*}
+\inf_{z\in E} (\Theta(z) + \Xi(z)) = \max_{z^*\in E^*} (-\Theta^*(-z^*) - \Xi^*(z^*))
+\end{align*}
+In particular, the supremum on the RHS is attained. 
+
+(uses lemma 4.4 and theorem 4.5)
+\s
+
+\lemnum{4.4} Let $E$ be a normed vector space.
+\begin{i}
+\item[1.] If $\Theta : E\rightarrow \reals\cup \{+ \infty\}$ is convex then so is the \textbf{epigraph} $A$ defined by
+\begin{align*}
+A = \{(z,t) \in E \times \reals : t\geq \Theta (z) \}
+\end{align*}
+\item[2.] If $\Theta : E\rightarrow \reals  \cup \{+ \infty \}$ is concave then the \textbf{hypograph} $B$ defined by
+\begin{align*}
+B = \{(z,t) \in E\times \reals : t\leq \Theta(z) \}
+\end{align*}
+is convex.
+\item[3.] If $C\subset E$ is convex, then $\text{int}(C)$ is convex.
+\item[4.] If $D\subset E$ is convex and $\text{int}(D) \neq \phi$ then $\bar{D} = \overline{\text{int}(D)}$
+\end{i}
+(was an exercise)
+\s
+
+\thmnum{4.5} \emph{(Hahn-Banach)} Let $E$ be a topological vector space. Assume $A, B$ are convex non-empty and disjoint subsets of $E$ and that $A$ is open. Then there exists a closed hyperplane separating $A$ and $B$.
+
+(proof not done here)
+\s
+
+\subsection{Proof of Kantorovich Duality}
+
+We first prove that  $\sup \mathbb{J} \leq \inf \mathbb{K}$ (easy part) and $\sup \mathbb{J} \geq \inf \mathbb{K}$ (hard part).
+\s
+
+\lemnum{4.7} Under the same conditions as \textbf{Theorem 4.1}, we have
+\begin{align*}
+\sup_{(\varphi, \psi)\in \Phi_c} \mathbb{J} \leq \inf_{\pi \in \Pi(\mu, \nu)} \mathbb{K}(\pi) 
+\end{align*}
+\s
+
+\lemnum{4.8} Under the same conditions as \textbf{Theorem 4.1}, has
+\begin{align*}
+\sup_{(\varphi, \psi)\in \Phi_c} \mathbb{J} \geq \inf_{\pi \in \Pi(\mu, \nu)} \mathbb{K}(\pi) 
+\end{align*}
+
+\subsection{Existence of Maximisers to the Dual Problem}
+
+
+\definum{4.9} c-transform of $\varphi\rightarrow \reals\cup\{+\infty\}$.
+\s
+
+\thmnum{4.10} Let $\mu \in \mathscr{P}(X)$, $\nu\in \mathscr{P}(Y)$, $X,Y$ are Polish spaces and $c: X\times Y\rightarrow [0, +\infty)$. Assume $\exists c_X \in L^1(\mu)$, $c_Y \in L^1(\nu)$ such that $c(x,y) \leq c_X(x) + c_Y(y)$ for $\mu$-a.e. $x\in X$, $\nu$-a.e. $y\in Y$. Then $\exists (\varphi^{\dagger}, \psi^{\dagger}) \in \Phi_c$ such that
+\begin{align*}
+\sup_{\Phi_c} \mathbb{J}= \mathbb{J}(\varphi^{\dagger}, \psi^{\dagger})
+\end{align*}
+Furthermore, we can choose $(\varphi^{\dagger},\psi^{\dagger}) = (\eta^{cc}, \eta^c)$ for some $\eta \in L^1(\mu)$.
+
+(the proof uses lemma 4.11 and 4.12)
+\s
+
+\lemnum{4.11} Let $\mu \in \mathscr{P}(X)$, $\nu \in \mathscr{P}(Y)$, $X, Y$ Polish spaces. For any $a\in \reals$, $(\tilde{\varphi}, \tilde{\psi}) \in \Phi_c$, we have that $(\varphi, \psi) = (\tilde{\varphi}^{cc} - a, \tilde{\varphi}^c + a)$ satisfies $\mathbb{J}(\varphi, \psi) \geq \mathbb{J}(\tilde{\varphi}, \tilde{\psi})$ and $\varphi(x) + \psi(y) \leq c(x,y)$ for $\mu$-a.e. $x\in X$, $\nu$-a.e. $y\in Y$.
+
+\quad Furthermore, if $\mathbb{J}(\tilde{\varphi}, \tilde{\psi}) > -\infty$ and there are $c_X\in L^1(\mu), c_Y \in L^1(\nu)$ such that $\varphi \leq c_X$ and $\psi \leq c_Y$ then $(\varphi, \psi) \in \Phi_c$.
+\s
+
+\lemnum{4.12} Let $\mu \in \mathscr{P}(X)$, $\nu\in \mathscr{P}(Y)$, $X,Y$ Polish and $c: X\times Y \rightarrow \reals$. Assume $c(x,y) \leq c_X(x) + c_Y(y)$ for functions $c_X\in L^1(\mu) $, $c_Y\in L^1(\nu)$. Then there is a sequence $(\varphi_k, \psi_k)_k \subset \Phi_c$ such that $\mathbb{J}(\varphi_k, \psi_k) \rightarrow \sup_{\Phi_c} \mathbb{J}$ and satisfy $\varphi_k(x) \leq c_X(x)$ for $\mu$-a.e. $x$ and $\psi_k(y) \leq c_Y(y)$ for $\nu$-a.e $y$ for all $k\in \mathbb{N}$.
+\s
+
+\subsection{Kantorovich-Rubinstein Theorem}
+
+\thmnum{4.13} \emph{(Kantorovich-Rubinstein Theorem)} Let $X= Y$ be Polish, $c: X\times Y \rightarrow [0, + \infty]$ be lower semi-continuous metric on $X$. Define $\norms{f}{Lip}= \sup_{x\neq y\in X} \frac{|f(x) - f(y)|}{c(x,y)}$ for $f: X\rightarrow \reals$. Let $\mu \in \PP(X)$, $\nu \in \PP(X)$ and assume $c(\cdot, x_0) \in L^1(\mu)$, $c(x_0, \cdot) \in L^1(\nu)$ for some point $x_0 \in X$. Then
+\begin{align*}
+\min_{\pi \in \Pi(\mu, \nu)}\mathbb{K}(\pi) = \sup \big\{ \int_X f d(\mu - \nu) : f\in L^1(|\mu - \nu|), \,\, \norms{f}{Lip} \leq 1\big\}
+\end{align*}
+
+\section{Semi-Discrete Optimal Transport}
+
+Assume
+\begin{i}
+\item[1.] $\nu = \sum_{j=1}^n m_{j} \delta_{y_j}$, $\{m_i\}_{i=1}^n \subset [0,1]$, $\sum_{j=1}^n m_j =1$ and $\{y_j \}_{j=1}^n \subset \reals^d$.
+\item[2.] $\mu \in \PP_2(\reals^d)$ has density $\rho$.  
+\end{i}
+\s
+
+\definum{5.1} The \emph{Laguerre diagram (power diagram)} for a set of points $\{y_j\}_{j=1}^n$ and weight $\{w_j\}_{j=1}^n\subset \reals$ is...
+\s
+
+\textbf{Aims :}
+\begin{i}
+\item Show there exists optimal $T: \reals^d \rightarrow \reals^d$ that defines a Laguerre diagram.
+\item and the weights $\{w_j\}_{j=1}^n$ for the optimal Laguerre diagram solve a concave variational problem
+\begin{align*}
+\max g(w) \quad \text{where } w= (w_1, \cdots w_n)
+\end{align*} 
+where $g$ is as defined in the next lemma.
+\end{i}
+\s
+
+\lemnum{5.2} Let $\rho \in L^1(\reals^d)$ be a probability density, $\{m_j \}_{j=1}^m \subset [0,1]$ satisfy $\sum_{j=1}^m m_j =1$ and $\{y_j \}_{j=1}^m \subset \reals^d$. Then $g: \reals^n \rightarrow \reals$ defined by 
+\begin{align*}
+g(w) = \int_{\reals^d} \inf_j (|x-y_j|^2 - w_j) \rho(x) dx + \sum_{j=1}^n w_j m_j \call{\star}
+\end{align*}
+is concave.
+\s
+
+\lemnum{5.3} Define $g$ by $(\star)$ for $\rho \in L^1(\reals^d)$, $\{y_j \}_{j=1}^n \subset \reals^n$, $\{m_j \}_{j=1}^n \subset \reals$. Let $\{L_i(w)\}_{i=1}^n$ be a \emph{Laugerre diagram} with weights $w$ and points $\{y_j \}_{j=1}^n$. Then
+\begin{align*}
+\frac{\pa g}{\pa w_i}(w) = -\int_{L_i(w)} \rho(x) dx + m_i
+\end{align*}
+\s
+
+\thmnum{5.4} Assume $\{y_j \}_{j=1}^m \subset \reals$, $\{m_j\}_{j=1}^m \subset [0,1]$, $\sum_{j=1}^n m_j =1$ and $\nu = \sum_{j=1}^n m_j \delta_{y_j}$. Let $\mu \in \PP_2(\reals^d)$ have density $\rho$ and $g(w)$ is defined by $(\star)$, maximised by $w= (w_1, \cdots, w_n)$, and let $\{L_j\}_{j=1}^n$ be the corresponding \emph{Laguerre diagram}. Now define
+\begin{align*}
+&T^{\dagger}(x) = y_j \quad \text{if } x\in L_j \quad (\text{which defines }\mu\text{-a.e.}) \\
+&\psi^{\dagger}(y_j) = w_j, \quad \varphi^{\dagger}(x) = \inf_{j} (|x-y_j|^2 -w_j)
+\end{align*}
+Then,
+\begin{i}
+\item[1.] $T^{\dagger}$ is a solution to the MOT problem with cost $c(x,y) = |x-y|^2$.
+\item[2.] $(\varphi^{\dagger}, \psi^{\dagger})$ are an optimal pair for the Kantorovich dual problem with cost $c(x,y) = |x-y|^2$.
+\end{i}
+\s
+
+\section{Existence and Characterisation of Transport Maps}
+
+
+
+\subsection{Knott-Smith Optimality and Beiner's Theorem}
+
+\defi subdifferential of a convex function $\varphi$
+\s
+
+\thmnum{6.1} \emph{(Knott-Simith Optimality Criterion)} Let $\mu \in \mathscr{P}_2(X)$, $\nu \in \mathscr{P}_2(Y)$, $X, Y \subset \reals^d$, $c(x,y)= \frac{1}{2}|x-y|^2$. Then $\pi^{\dagger} \in \Pi(\mu, \nu)$ minimises the KOT problem \emph{iff} $\exists \tilde{\varphi}^{\dagger} \in L^1(\mu)$ convex and lower semi-continuous such that $\text{supp}(\pi^{\dagger}) \subset \text{Gra}( \pa \tilde{\varphi}^{\dagger})$ (equivalent to having $y\in \pa \tilde{\varphi}^{\dagger}(x)$ for $\pi^{\dagger}$-a.e. $(x,y)$). Moreover the pair $(\tilde{\varphi}^{\dagger}, (\tilde{\varphi}^{\dagger})^c)$ is a minimiser of $\inf_{\tilde{\Phi}} \mathbb{J}$, where $\tilde{\Phi} = \{ (\tilde{\varphi}, \tilde{\psi}) \in L^1(\mu)\times L^1(\nu) : \tilde{\varphi}(x) + \tilde{\psi}(y) \geq x\cdot y \}$.
+\s
+
+\s
+
+\thmnum{6.2} \emph{(Brenier's Theorem)} Let $\mu \in \mathscr{P}_2(X)$, $\nu \in \mathscr{P}_2(Y)$, $X, Y\subset \reals^d$ and $c(x,y) = \frac{1}{2} |x-y|^2$. Assume that $\mu$ does not give mass to small sets (a small set is any set with Hausdorff dimenstion at most $d-1$). Then there is a unique $\pi^{\dagger} \in \Pi(\mu, \nu)$ that minimises the KOT problem.
+
+\quad Moreover, $\pi^{\dagger}$ satisfies $\pi^{\dagger} = (id \times \nabla \tilde{\varphi})_{\#} \mu$ where $\nabla \tilde{\varphi}$ is the unique gradient of a convex function that pushes $\mu$ forward to $\nu$ (that is, $(\nabla \tilde{\varphi})_{\#} \mu = \nu$) and $(\tilde{\varphi},\tilde{\varphi}^c)$ minimise $\mathbb{J}$ over $\tilde{\Phi}$.
+\s
+
+\emph{Comments :}
+\begin{i}
+\item[(1)] $\pi^{\dagger} = (id \times \nabla \tilde{\varphi})_{\#} \mu$ $\Leftrightarrow$ $d\pi^{\dagger}(x,y) = \delta_{\nabla \tilde{\varphi}(x)}(y) \times d\mu(x)$.
+\item[(2)] We will show that, in \textbf{Proposition 6.5}, convex functions are differentiable Lebesgue almost everywhere. Since $\mu$ gives zero mass to sets of Lebesgue measure 0, then any convex function is differentiable $\mu$ almost everywhere.
+\end{i}
+\s
+
+\corrnum{6.3} Under the same assumptions as \textbf{Theorem 6.2}, $\nabla \tilde{\varphi}$ is the unique solution to the MOT problem, \textit{i.e.}
+\begin{align*}
+\frac{1}{2} \int_X |x- \nabla \tilde{\varphi}(x)|^2 d\mu(x) = \inf_{T: T_{\#}\mu = \nu} \frac{1}{2} \int_X |x- T(x)|^2 d\mu(x)
+\end{align*}
+
+\subsection{Preliminary Results for Convex Analysis}
+
+Just in this section, we will write $\varphi$ rather than $\tilde{\varphi}$.
+\s
+
+\propnum{6.4} Let $\varphi : \reals^d \rightarrow \reals\cup \{\infty\}$ be proper (not identically $+ \infty$), lower semi-continuous and convex function. Then $\forall x, y\in \reals^d$, 
+\begin{align*}
+xy = \varphi(x) + \varphi^*(y) \quad \Leftrightarrow \quad y\in \pa \varphi(x)
+\end{align*}
+\s
+
+\propnum{6.5} Let $\varphi : \reals^d \rightarrow \reals \cup \{+\infty \}$ be convex, then
+\begin{i}
+\item[(1)] $\varphi$ is differential Lebesgue-almost everywhere on the interior of its domain and
+\item[(2)] Whenever $\varphi$ is differentiable, has $\pa \varphi(x) = \{\nabla \varphi(x) \}$.
+\end{i}
+-proof uses Rademacher's theorem
+\s
+
+\statement{Rademacher's Theorem} If $U\subset \reals^d$ is open and $f:U\rightarrow \reals$ is Lipschitz continuous then $f$ is differentiable a.e.
+
+(not prove this results.)
+\s
+
+\propnum{6.6} Let $\varphi : \reals \cup \{+\infty \}$ be proper. then the following are equivalent.
+\begin{i}
+\item[(1)] $\varphi$ is convex and lower semi-continuous.
+\item[(2)] $\varphi = \psi^*$ for some proper function $\psi$.
+\item[(3)] $\varphi^{**} = \varphi$.
+\end{i}
+
+\subsection{Proof of the Knott-Smith Optimality Criterion}
+
+Let $c(x,y) = \frac{1}{2} |x-y|^2$, $\mu, \nu \in \mathscr{P}_2 (\reals^d)$. We first make few observations. 
+\begin{i}
+\item[(A)] Let $(\varphi, \psi) \in \Phi_c$. Define $\tilde{\varphi}(x) = \frac{1}{2} |x|^2 - \varphi(x)$ and $\tilde{\psi}(y) = \frac{1}{2} |y|^2 - \psi(y)$. One can see that $\tilde{\varphi} \in L^1(\mu)$, $\tilde{\psi} \in L^1(\nu)$. and 
+\begin{align*}
+\tilde{\varphi}(x) + \tilde{\psi}(y) =& \frac{1}{2} |x|^2 + \frac{1}{2} |y|^2 - \varphi(x) - \varphi(y) \\
+\geq & \frac{1}{2} |x|^2 + \frac{1}{2} |y|^2 - \frac{1}{2} |x-y|^2 = x\cdot y
+\end{align*}
+So $(\tilde{\varphi}, \tilde{\psi}) \in \tilde{\Phi}$ where $\tilde{\Phi} = \{(\tilde{\varphi}, \tilde{\psi}) \in L^1(\mu) \times L^1(\nu) : \tilde{\varphi}(x) + \tilde{\psi}(y) \geq x\cdot y\}$.
+
+\quad Similarly if $(\tilde{\varphi}, \tilde{\psi}) \in \tilde{\Phi}$, then $(\varphi, \psi) \in \Phi_c$.
+
+\item[(B)] If we let $M = \frac{1}{2}\int_X |x|^2 d\mu(x) + \frac{1}{2} \int_Y |y|^2 d\nu(y)$, then $\mathbb{J}(\tilde{\varphi}, \tilde{\psi}) = M - \mathbb{J}(\varphi, \psi)$ and for $\pi \in \Pi(\mu, \nu)$, has $\mathbb{K}(\pi) = M - \int_{X\times Y} x\cdot y d\pi(x,y)$. Kantorovich duality (\textbf{Theorem 4.1}) implies that
+\begin{align*}
+\min_{(\tilde{\varphi}, \tilde{\psi}) \in \tilde{\Phi}} \mathbb{J}(\tilde{\varphi}, \tilde{\psi})  = \max_{\pi \in \Pi(\mu, \nu)} \int_{X\times Y} x\cdot y d\pi(x,y)
+\end{align*}
+Also 
+\begin{align*}
+\pi^{\dagger} \in \Pi(\mu, \nu)\text{ minimises }\mathbb{K}\text{ over }\Pi(\mu, \nu) \,\, &\Leftrightarrow \,\, \pi^{\dagger}\text{ maximises }\int_{X\times Y} x\cdot y d\pi(x,y) \\
+(\varphi, \psi) \in \Phi_c\text{ maximises }\mathbb{J}\text{ over }\Phi_c \,\, & \Leftrightarrow \,\,(\tilde{\varphi}, \tilde{\psi}) \in \tilde{\Phi}\text{ minimise }\mathbb{J}\text{ over }\tilde{\Phi}.
+\end{align*}
+
+\item[(C)] Recall that there exists maximiser $(\varphi^{cc}, \varphi^c)\in \Phi_c$ of $\mathbb{J}$. So $(\tilde{\varphi}, \tilde{\psi}) := (\frac{1}{2}|\cdot|^2 - \varphi^{cc}, \frac{1}{2}|\cdot|^2 - \varphi^c)$ minimise $\mathbb{J}$ over $\tilde{\Phi}$. Furthermore
+\begin{align*}
+\tilde{\psi}(y) =& \frac{1}{2}|y|^2 - \varphi^c(y) = \sup_{x\in X} \big( \frac{1}{2} |y|^2 - \frac{1}{2}|x-y|^2 + \varphi(y) \big) \\
+=& \sup_{x\in X} \big( x\cdot y -\frac{1}{2} |x|^2 + \varphi(x) \big) = \sup_{x\in X} (x\cdot y - \tilde{\varphi}(x)) = \tilde{\varphi}^*(y)
+\end{align*}
+And
+\begin{align*}
+\tilde{\varphi}(x) =& \frac{1}{2} |x|^2 - \varphi^{cc}(x) = \sup_{y\in Y} \big( \frac{1}{2} |x|^2 - \frac{1}{2} |x-y|^2 + \varphi^c (y) \big) \\
+=& \sup_{y\in Y}\big( \frac{1}{2}|x|^2 - \frac{1}{2}|x-y|^2 + \frac{1}{2}|y|^2 - \tilde{\varphi}^*(y) \big) \quad (\text{used previous computation}) \\
+=& \sup_{y\in Y} (x\cdot y - \tilde{\varphi}^*(y)) \\
+=& \tilde{\varphi}^{**}(x)
+\end{align*}
+By \textbf{Proposition 6.6}, $\tilde{\eta} := \tilde{\varphi}^{**}$ is convex and lower semi-continuous and $\tilde{\eta}^* = \tilde{\varphi}^{***} = \tilde{\varphi}^*$. 
+\item[(D)] For $(\tilde{\varphi}, \tilde{\varphi}^*)$ with $\tilde{\varphi} \in L^1(\mu)$, we have
+\begin{align*}
+\int_{X\times Y} \tilde{\varphi}(x) + \tilde{\varphi}^* (y) d\pi^{\dagger}(x,y) & = \int_{X\times Y} x\cdot y d\pi^{\dagger}(x,y) \\
+& \leq \frac{1}{2} \int_{X\times Y} |x|^2 + |y|^2 d\pi^{\dagger} (x,) =\frac{1}{2} \int_X |x|^2 d\mu(x) + \frac{1}{2} \int_Y |y|^2 d\nu(y)
+\end{align*}
+so $\mathbb{J}(\tilde{\varphi}, \tilde{\varphi}^*) < \infty$.
+\item[(E)] From the result of (C), if we just prove that $\tilde{\varphi}^* \in L^1(\nu)$ whenever $\tilde{\varphi} \in L^1(\mu)$, then $(\eta, \eta^*) \in L^1(\mu) \times L^1(\nu)$ so there is a minimiser of $\mathbb{J}$ and $\tilde{\Phi}$ that takes the form $(\tilde{\eta}, \tilde{\eta}^*)$ where $\tilde{\eta}$ is convex, lower semi-continuous and is proper.
+\s
+
+To see this, assume $\tilde{\varphi}\in L^1(\mu)$. First note that $\exists x_0 \in X$ and $b_0 = \tilde{\varphi}(x_0) +1 \in \reals$ such that
+\begin{align*}
+\tilde{\varphi}^*(y) \geq x_0 \cdot y - \tilde{\varphi}(x_0) -1 =: x_0 \cdot y - b_0 =: f(y)
+\end{align*} 
+Then we have $\tilde{\varphi}^* - f(y) \geq 0$, so $\norms{\tilde{\varphi}^* - f}{L^1(\mu)} = \int_Y \big( \tilde{\varphi}^*(y) - f(y) \big) d\nu(y)$. Hence
+\begin{align*}
+\norms{\tilde{\varphi}^* - f}{L^1(\mu)} =& \int_Y \big( \tilde{\varphi}^*(y) - f(y) \big) d\nu(y) \\
+\leq & \, \mathbb{J} (\tilde{\varphi}, \tilde{\varphi}^*) + \norms{\tilde{\varphi}}{L^1(\mu)} + \frac{1}{2} |x_0| + \frac{1}{2} \int_Y |y|^2 d\nu(y) + b_0 \\
+<&  +\infty
+\end{align*}
+where the second line is implied by Cauchy-Schwarz inequality. So $\tilde{\varphi}^* - f\in L^1(\nu)$ and since $f\in L^1(\nu)$, we conclude $\tilde{\varphi}^* \in L^1(\nu)$ as required.
+
+\end{i}
+\s
+
+We now come back to the one of the two main theorems of the chapter.
+\s
+
+\thmnum{6.1} \emph{(Knott-Smith(KS) optimality criterion)} Let $\mu \in \mathscr{P}_2(X)$, $\nu \in \mathscr{P}_2(Y)$, $X, Y\in \reals^d$, $c(x,y) = \frac{1}{2} |x-y|^2$. Then $\pi^{\dagger} \in \Pi(\mu, \nu)$ minimises $\mathbb{K}$ over $\Pi(\mu, \nu)$ \emph{iff} there exists $\tilde{\varphi} \in L^1(\mu)$ convex, lower-semicontinuous such that $y\in \pa \tilde{\varphi}(x)$ for $\pi^{\dagger}$-a.e. $(x,y)$.
+
+\quad Moreover $(\tilde{\varphi}, \tilde{\varphi}^*)$ maximises $\mathbb{J}$ over $\tilde{\Phi}$.
+
+\subsection{Proof of Brenier's Theorem}
+
+\thmnum{6.2} \emph{(Brenier's Theorem)} Let $\mu \in \mathscr{P}_2(X)$, $\nu \in \mathscr{P}_2(Y)$, $X, Y\subset \reals^d$ and $c(x,y) = \frac{1}{2} |x-y|^2$. Assume that $\mu$ does not give mass to small sets (a small set is any set with Hausdorff dimension at most $d-1$). Then there is a unique $\pi^{\dagger} \in \Pi(\mu, \nu)$ that minimises the KOT problem.
+
+\quad Moreover, $\pi^{\dagger}$ satisfies $\pi^{\dagger} = (id \times \nabla \tilde{\varphi})_{\#} \mu$ where $\nabla \tilde{\varphi}$ is the unique gradient of a convex function that pushes $\mu$ forward to $\nu$ (that is, $(\nabla \tilde{\varphi})_{\#} \mu = \nu$) and $(\tilde{\varphi},\tilde{\varphi}^c)$ minimise $\mathbb{J}$ over $\tilde{\Phi}$.
+\s
+
+
+\section{Wasserstein Distances}
+
+In this chapter, we assume $c(x,y)  = |x-y|^p$ with $p\in [1, +\infty)$ with $X=Y \subset \reals^d$.
+\s
+
+Another interesting cost function that does not fit into the Wasserstein framework is $c(x,y) = 1_{x\neq y}$.
+\s
+
+\propnum{7.1} Let $\mu, \nu \in \mathscr{P}(X)$, $X\subset \reals^d$, $c(x,y) =\charac_{x\neq y}$. Then
+\begin{align*}
+\inf_{\pi \in \Pi(\mu, \nu)} \mathbb{K}(\pi) = \frac{1}{2} \snorms{\mu - \nu}{TV}
+\end{align*}
+where $\snorms{\mu}{TV} = 2\sup_A |\mu(A)|$.
+
+\subsection{Wasserstein Distances}
+
+We work on the space of measures with bounded $p^{th}$ moment, $\mathscr{P}_p(X)$.
+\s
+
+\definum{7.2} $p$ -Wasserstien distance\s
+
+\propnum{7.3} Let $X\subset \reals^d$. Then the distance $\wa{p} : \PP_p(X) \times \PP_p(X) \rightarrow [0, \infty)$ is a metric.
+\s
+
+-For the triangular inequality, we needed the following \emph{glueing lemma}.
+\s
+
+\lemnum{7.4} Let $X, Y, Z \subset \reals^d$, $\mu\in \PP(X)$, $\nu \in \PP(Y)$, $\omega \in \PP(Z)$, $\pi_1\in \Pi(\mu, \nu)$, $\pi_2 \in \Pi(\nu, \omega)$. Then there is a measure $\gamma \in \PP (X\times Y \times Z)$ such that $P_{\#}^{X\times Y} \gamma = \pi_1$ and $P_{\#}^{Y,Z} = \pi_{12}$ where $P^{X,Y}(x,y,z) = (x,y)$, $P^{Y,Z}(x,y,z) =(y,z)$.
+\s
+
+\propnum{7.5} Let $X\subset \reals^d$. For every $p,q \in [1, +\infty)$, $q\leq p$ and any $\mu, \nu\in \PP_p(X)$, we have $\wa{p}(\mu, \nu) \geq d_{W^q} (\mu, \nu)$.
+
+\quad Furthermore, if $X$ is bounded then $\wa{p}^p (\mu, \nu) \leq \text{diam}(X)^{p-1} \wa{1}(\mu, \nu)$ (where $\text{diam}(X) = \sup_{w, z\in X} |w-z|$)
+
+\subsection{The Wasserstein Topology}
+
+\thmnum{7.6} Let $X\subset \reals^d$ be \emph{compact}, $\{\mu_n\}_{n\in \mathbb{N}} \subset \PP(X)$ and $\mu\in \PP(X)$ and $p\in [1, \infty)$. Then
+\begin{align*}
+\mu_m \xrightarrow{w-^*} \mu \quad \emph{iff} \quad \wa{p}(\mu_m, \mu) \rightarrow 0
+\end{align*}
+\s
+
+\thmnum{7.7} $\mu_n, \mu \in \PP_p(\reals^d)$. Then 
+\begin{align*}
+\wa{p}(\mu_n, \mu) \rightarrow 0 \quad \emph{iff} \quad \mu_n \xrightarrow{w^*} \,\, \mu\text{ and }\int_{\reals^d} |x|^p d\mu_n \rightarrow \int_{\reals^d} |x|^p d\mu
+\end{align*}
+
+\subsection{Geodesics in the Wasserstien Space}
+
+\definum{7.8} Let $p\in [1, +\infty]$ and $(Z, d)$ be a metric space and $\omega: (a,b)(\subset \reals) \rightarrow Z$ a curve in $Z$. We say $\omega \in \text{AC}^p((a,b),Z)$ if..., absolutely continuous curve, locally absolutely continuous.
+\s
+
+\definum{7.9} length of $\omega$, geodesic between $z_0,z_1\in Z$, constant speed geodesic
+\s
+
+\textbf{Notes :}
+\begin{i}
+\item[(1)] If $\omega$ is a constant speed geodesic, then it is a geodesic.
+\item[(2)] If $d(\omega(t), \omega(s)) = |t-s| d(z_0, z_1)$ for all $s, t\in (0,1)$ then $\omega \in \text{AC}^1((0, 1),Z)$ with $g(s) = d(z_0, z_1)$.
+\end{i}
+\s
+
+\definum{7.10} $(Z, d)$ a metric space, Define length space if... is a geodesic space if...
+\s
+
+\thmnum{7.11} Let $p\in [1, +\infty)$, $X\subset \reals^d$ convex. Define $P_t : X\times X \rightarrow X$ by $P_t(x,y) = (1-t) x+ty$. Let $\mu, \nu \in \PP_p(X)$ and assume that $\pi \in \Pi(\mu, \nu)$ minimize $\mathbb{K}$ with cost $c(x,y) = |x-y|^p$. Then, the curve $\mu_t = (P_t)_{\#} \pi$ is a constant speed geodesic in $(\PP_p(X), \wa{p})$ connecting $\mu$ and $\nu$.
+
+\quad Furthermore, if $\pi = (id \times T)_{\#} \mu$ where $T:X\rightarrow X$ (so in particular $T$ is an optimal transport map), then $\mu_t = ((1-t)id + tT)_{\#} \mu$.
+
+\end{document}

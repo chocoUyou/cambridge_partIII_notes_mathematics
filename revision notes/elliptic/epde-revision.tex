@@ -1,0 +1,825 @@
+\documentclass[10pt,a4paper]{article}
+
+\usepackage[utf8]{inputenc}
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{amssymb}
+\usepackage{calrsfs}
+\usepackage[left=2cm,right=2cm,top=2cm,bottom=2cm]{geometry}
+\usepackage[mathscr]{euscript}
+
+\usepackage{lmodern}
+
+%%%%%%%%%%%attach pdf%%%%%%%%%%%%
+\usepackage[final]{pdfpages}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%%%%%For writing large opertors%%%%%%%%%%%
+%\usepackage{stmaryrd}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%for writing large parallel%%%%%%
+\usepackage{mathtools}
+\DeclarePairedDelimiter\bignorm{\lVert}{\rVert}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%%%for drawing commutative diagrams.%%%%%%
+\usepackage{tikz-cd}  
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%for changing margin
+\def\changemargin#1#2{\list{}{\rightmargin#2\leftmargin#1}\item[]}
+\let\endchangemargin=\endlist 
+
+\newenvironment{proof}
+{\begin{changemargin}{0.5cm}{0.5cm} 
+	}%your text here
+	{\end{changemargin}
+}
+
+\newenvironment{subproof}
+{\begin{changemargin}{0.5cm}{0.5cm} 
+	}%your text here
+	{\end{changemargin}
+}
+
+\renewenvironment{i}
+{\begin{itemize} 
+	}%your text here
+	{\end{itemize}
+}
+
+\newenvironment{p}
+{\begin{proof} 
+	}%your text here
+	{\end{proof}
+}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%double rules%%%%%%%%%%%%%%%%%%%
+\usepackage{lipsum}% Just for this example
+
+\newcommand{\doublerule}[1][.4pt]{%
+  \noindent
+  \makebox[0pt][l]{\rule[.7ex]{\linewidth}{#1}}%
+  \rule[.3ex]{\linewidth}{#1}}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{document}
+
+\title{Elliptic Partial Differential Equations}
+\author{Lecture by Ivan Moyano}
+\date{Lent 2019, typed by Jiwoon Park}
+
+\maketitle
+
+\newcommand{\latinmodern}[1]{{\fontfamily{lmss}\selectfont
+\textbf{#1}
+}}
+
+\newcommand{\thm}{\latinmodern{Theorem) }}
+\newcommand{\thmnum}[1]{\latinmodern{Theorem #1) }}
+\newcommand{\defi}{\latinmodern{Definition) }}
+\newcommand{\definum}[1]{\latinmodern{Definition #1) }}
+\newcommand{\lem}{\latinmodern{Lemma) }}
+\newcommand{\lemnum}[1]{\latinmodern{Lemma #1) }}
+\newcommand{\prop}{\latinmodern{Proposition) }}
+\newcommand{\propnum}[1]{\latinmodern{Proposition #1) }}
+\newcommand{\corr}{\latinmodern{Corollary) }}
+\newcommand{\corrnum}[1]{\latinmodern{Corollary #1) }}
+\newcommand{\pf}{\textbf{proof) }}
+
+\newcommand{\lap}{\triangle} %%Laplacian
+\newcommand{\s}{\vspace{10pt}}
+\newcommand{\bull}{$\bullet$}
+\newcommand{\sta}{$\star$}
+\newcommand{\reals}{\mathbb{R}}
+
+\newcommand{\norms}[2]{\bignorm[\big]{#1}_{#2}}
+\newcommand{\snorms}[2]{\bignorm[\small]{#1}_{#2}}
+
+\newcommand{\eop}{\hfill  \textsl{(End of proof)} $\square$} %end of proof
+\newcommand{\eos}{\hfill  \textsl{(End of statement)} $\square$} %end of proof
+
+\newcommand{\intN}{\mathbb{Z}_N}
+\newcommand{\nat}{\mathbb{N}}
+
+\newcommand{\abs}[1]{\big| #1 \big|}
+\newcommand{\avg}{\mathbb{E}}
+\newcommand{\prob}{\mathbb{P}}
+\newcommand{\borel}{\mathscr{B}}
+\newcommand{\EE}{\mathscr{E}}
+\newcommand{\pa}{\partial}
+
+\newcommand{\call}[1]{\quad \cdots\cdots\cdots\,\,(#1)}
+
+\renewcommand{\vec}{\underline}
+\renewcommand{\bar}{\overline}
+
+\def\doubleunderline#1{\underline{\underline{#1}}}
+
+\newcommand{\newday}{\doublerule[0.5pt]}
+
+\setlength\parindent{0pt}
+\s
+
+\subsection*{Perron's methods}
+
+Let $\Omega \subset \reals^d$ be an open bounded connected set.
+\s
+
+\defi regular point $\xi \in \pa \Omega$, barrier function.
+
+\thm \emph{(Perron)} Statement? (proof is done later)
+
+\defi subharmonic, superharmonic functions$\in C^2(\Omega)$.
+\s
+
+\textbf{Mean value inequality)} state and prove (in versions for harmonic/subharmonic/superharmonic functions.)
+\s
+
+\corrnum{1} \emph{(Maximum principle)} If $u$ is subharmonic, then $\sup_{\bar{B}_R} u = \sup_{\pa B_R} u$, and if $u$ is superharmonic, then $\inf_{\bar{B}_R} u = \inf_{\pa B_R} u$.
+\s
+
+\corrnum{2} \emph{(Strong maximum principle)} Let $u$ be sub(resp. super)harmonic in $\Omega$. Assume $\exists x_0 \in \Omega$ such that $\max_{\bar{\Omega}} u = u(x_0) = M$(resp. $\min_{\bar{\Omega}} u = u(x_0)$). Then $u = \text{constant}$.
+\s
+
+\defi sub/super-harmonic function in $C^0(\Omega)$
+\s 
+
+\lem Let $u_1, u_2$ be subharmonic functions Then $\max(u_1, u_2)$ is subharmonic.
+\s
+
+Now come back to the Dirichlet problem in the ball $B = B(0, R)$,
+\begin{align*}
+\begin{cases}
+\lap u =0 \quad \text{in } B\\
+u = \varphi \quad \text{on } \pa B
+\end{cases} \call{D}
+\end{align*}
+\s
+
+\thm For all $\varphi \in C^0(\pa B)$,
+\begin{align*}
+u(x) = \begin{cases}
+\int_{\pa B} \frac{R^2 - |x|^2}{dw_d R} \frac{\varphi(y)}{|x-y|^d} dS_y \quad, x\in B\\
+\varphi(x), \quad x\in \pa B
+\end{cases}
+\end{align*}
+is $C^2(B) \cap C^0(\bar{B})$ and satisfies the Dirichlet problem ($D$). 
+
+\subsubsection*{Interior estimate for derivatives}
+
+\thmnum{2.9} \emph{(Interior estimates for harmonic functions)} Let $\lap u =0$ in $\Omega$. Let $\Omega' \subset \Omega$ compact. Then $\forall \alpha \in \mathbb{N}^d$,
+\begin{align*}
+\sup_{\Omega} |\pa^{\alpha}u| \leq \Big( \frac{|\alpha|d}{\text{dist}(\Omega', \pa \Omega)}\Big)^{|\alpha|} \sup_{\Omega} |u|
+\end{align*}
+\s
+
+\textbf{Fact :} (Exercise) $\lap u= 0$ implies $u\in C^{\infty}(\Omega)$ and $u$ real analytic.
+\s
+
+\thmnum{3.1} Let $\Omega \subset \reals^d$, then $u\in C^0(\Omega)$ harmonic in $\Omega$ \emph{iff} $\forall y\in \Omega$ and $\forall R>0$, $\overline{B(y, R)}\subset \Omega$,
+\begin{align*}
+u(y) = \frac{1}{dw_d R^{d-1}} \int_{\pa B(y, R)}u(x) dS_x \call{\text{MID}}
+\end{align*}
+\s
+
+\thmnum{3.2} Given $\Omega \subset \reals^d$ domain. $(u_n)_{n=1}^{\infty} \subset C^0(\Omega)$ such that $\lap u_n =0$ in $\Omega$ \emph{and}
+\begin{align*}
+\sup_{n\in \mathbb{N}} \sup_{x\in \Omega} |u_n(x)| < \infty
+\end{align*}
+Then $\exists (u_{n_k})_k$ such that $u_{n_k} \xrightarrow{\text{unif.}} u$ in any $\Omega' \subset \Omega$ compact and $\lap u=0$ in $\Omega$.
+\s
+
+\textbf{Indication :} the construction of the Perron's solution is made through a process of the form $u = \sup \{ v\in C^0(\Omega) \text{ subharmonic, } v\leq \varphi \text{ on } \pa \Omega \}$. $u$ will be the candidate for our solution of the Dirichlet problem.
+\s
+
+\propnum{3.4} $u$ is subharmonic and $v$ is superharmonic in $\Omega$, $u, v\in C^0(\Omega)$. Then
+\begin{align*}
+v\geq u \text{ on } \pa \Omega \quad \Rightarrow \quad \begin{cases}
+v > u \quad \text{in } \overline{\Omega} \quad \emph{or} \\
+v \equiv u \quad \text{in } \overline{\Omega}
+\end{cases}
+\end{align*}
+\s
+
+\defi harmonic lifting of $u\in C^0(\Omega)$ in a ball $B$.
+\s
+
+\lemnum{3.6} Let $u\in C^0(\Omega)$ subharmonic in $\Omega$, $U$ a harmonic lifting of $u$ with respect to $\bar{B} \subset \Omega$. Then $U$ is subharmonic in $\Omega$ and $U\geq u$ in $\Omega$.
+\s
+
+\lemnum{3.7} Given $\{u_j\}_{j=1}^N$ subharmonic functions in $\Omega$, we have that 
+\begin{align*}
+u(x) = \max \{u_j(x) : 1\leq j\leq N\}
+\end{align*}
+is also subharmonic in $\Omega$.
+\s
+
+\thm \emph{(Perron)} Let $\varphi \in C^0 (\pa \Omega)$ and consider the Dirichlet problem $-\lap u =0$ in $\Omega$ and $u=\varphi$ on $\pa \Omega$. Then
+\begin{i}
+\item[(1)] The classical Dirichlet problem has a unique solution $u\in C^2(\Omega)$ if $\pa \Omega$ \emph{regular}.
+\item[(2)] If Dirichlet problem is solvable for all $\varphi$, then $\pa \Omega$ is \emph{regular}.
+\end{i}
+
+\subsection*{Poisson equation}
+
+Consider the problem
+\begin{align*}
+\begin{cases}
+-\lap u =f \quad &\text{in }\Omega \\
+u=\varphi \quad &\text{on } \pa \Omega
+\end{cases} \call{D}
+\end{align*}
+where $\Omega$ is a bounded set in $\reals^d$ and $\pa \Omega$ is regular for the $\lap$.
+
+\quad First we want to find the fundamental solution : $\lap E =\delta_{x=0}$ with $E\in C^{\infty} (\reals^d \backslash \{0\})$, i.e. the fundamental solution. We have
+\begin{align*}
+E(x) = \begin{cases}
+\frac{1}{2} |x|, \quad d=1\\
+\frac{1}{2\pi} \log |x|, \quad d=2\\
+\frac{1}{dw_d (d-2)}|x|^{2-d}, \quad d\geq 3
+\end{cases}
+\end{align*}
+(show this)
+\s
+
+\subsubsection*{Green's representation}
+
+\propnum{4.3} Assume that $u\in C^2(\Omega)\cap C^0(\bar{\Omega})$, solving Poisson's equation
+\begin{align*}
+\begin{cases}
+\lap u = - f, \quad &f \in C^0(\Omega)\\
+u = \varphi, \quad &\varphi \in C^0(\pa \Omega)
+\end{cases}
+\end{align*}
+Then
+\begin{align*}
+u(y) = \int_{\pa \Omega} \Big( \varphi\frac{\pa E}{\pa n_x}(x-y) - E(x-y)\frac{\pa u}{\pa n_x}(x) \Big) dS_x + \int_{\Omega} E(x-y) f(x) dx
+\end{align*}
+\s
+
+\defi Green's function.
+\s
+
+\defi locally H\"older function $f\in C^0(\Omega)$
+\s
+
+\thmnum{5.3} Under these hypothesis ($f\in C^0(\Omega)$, $\varphi \in C^0(\pa \Omega)$ are locally H\"older), the Dirichlet problem has a unique solution $u\in C^2{\Omega} \cap C^0(\bar{\Omega})$.
+
+(needs following lemmas)
+\s
+
+Construction of the solution of ($D$) is made in two steps.
+\begin{i}
+\item[\textbf{1st.}] Given $f\in C^0(\Omega) + \text{locally H\"older } \alpha$, we set
+\begin{align*}
+W(x) = \int_{\reals^d} E(x-y) f(y) dy, \quad x\in \reals^d \call{\dagger}
+\end{align*}
+We shall prove $W\in C^2(\reals^d)$, $W|_{\pa \Omega} \in C^0(\pa \Omega)$ and $\lap W=f$ in $\Omega$.
+
+\item[\textbf{2nd.}] We use Perrons' theorem to solve
+\begin{align*}
+\begin{cases}
+\lap \tilde u =0\quad &\text{in } \Omega\\
+\tilde u = \varphi - W|_{\pa \Omega}\quad &\text{on } \pa \Omega
+\end{cases}
+\end{align*}
+Then we already know $\tilde u\in C^2(\Omega) \cap C^0(\bar{\Omega})$ since $\varphi - W|_{\pa \Omega} \in C^0(\pa \Omega)$.
+
+\quad Set $u = W+ \tilde{y}$, then $-\lap u =f$ and $u|_{\pa \Omega} = \varphi$ on $\pa \Omega$.
+\end{i}
+\s
+
+\lemnum{5.1} Under the hypothesis that $f\in L^1(\Omega) \cap L^{\infty}(\Omega)$, $W$ in $(\dagger)$ is $C^1(\reals^d)$ and
+\begin{align*}
+\pa_{x_j} W(x) = \int_{\reals^d} \pa_{x_j} E(x-y) f(y) dy, \quad \forall x\in \reals^d
+\end{align*}
+\s
+
+\lemnum{5.2} Let $f\in L^1 \cap L^{\infty}(\Omega)$ and $|f(x)-f(y)|\leq C_{\alpha,x} |x-y|^{\alpha}$ locally around any $x\in \Omega$. then $W$ as above is $C^2(\reals^d)$ and for any $\Omega_0 \subset \reals^d$ such that the divergence theorem holds we have
+\begin{align*}
+\pa_{x_i x_j} W(x) = &\int_{\Omega_0} \pa_{x_i x_j} E(x-y) (f(y)- f(x))  dy \\
+&- f(x)\int_{\pa \Omega_0} \pa_{x_j} E(x-y) (n_y \cdot e_i) dS_y =: F_{ij}(x) \call{**}
+\end{align*}
+where $e_i$ are standard bases of $\reals^d$, and $\pa_{x_i x_j} E(x-y)$ should be understood as a distribution.
+\begin{proof}
+\pf Use similar cutoff function, having in addition $\pa_{ij} V_{\epsilon} \rightarrow F_{ij}$. 
+\end{proof}
+\s
+
+\subsubsection*{H\"{o}lder solutions for $-\lap u =f$}
+
+\defi $[f]_{\alpha, \Omega}$, $\snorms{f}{C^{0, \alpha}(\Omega)}$, $\snorms{f}{C^{k, \alpha}(\Omega)}$.
+
+\quad Also define $\snorms{f}{C^k(\Omega)}'$, $\snorms{f}{C^{k, \alpha}(\Omega)}'$ (in terms of $d = \text{diam}(\Omega)$)
+\s
+
+\lemnum{6.1} Let $x_0\in \reals^d$, $B_2 = B(x_0, 2R)$, $B_1=B(x_0, R)$, $f\in C^{0, \alpha}(\bar{B}_2)$, $0<\alpha<1$, then $W$ defined by $W(x) = \int_{\Omega} E(x-y) f(y)dy$ is in $C^{2,\alpha}(B_1)$. Furthermore,
+\begin{align*}
+&\norms{D^2 W}{C^{0, \alpha}(B_1)}' \leq C \norms{f}{C^{0, \alpha}(B_2)}' \\
+\textit{Equivalently,} \quad &\norms{D^2 W}{C^0(B_1)} +R^{\alpha}[D^2 W]_{\alpha, B_1} \leq C \Big( \norms{f}{C^0(\bar{B_2})} + R^{\alpha}[f]_{\alpha, B_2} \Big)
+\end{align*}
+\s
+
+\corrnum{6.2} Let $u\in C^2_0(\reals^d)$, $f\in C^{0, \alpha}(\reals)$ compactly supported and such that $-\lap u = f$ in $\reals^d$. Then $u\in C^{2, \alpha}(\reals^d)$, and if $B= B(x_0, R)$ is any ball containing $\text{supp}(u)$ (the support is compact by its definition), we have
+\begin{align*}
+\norms{D^2 u}{C^{0, \alpha}(B)}' \leq C [f]_{0, \alpha, B}'
+\end{align*}
+for some $C =C(d, \alpha)$ and
+\begin{align*}
+\norms{u}{C^{1,\alpha}(B)}\leq C' R^2 [f]_{0, B}
+\end{align*}
+for some $C' = C(d)$.
+\s
+
+\propnum{6.3} $\Omega \subset \reals^d$ domain, $f\in C^{0, \alpha}(\Omega)$ and $u\in C^2(\Omega)$ be the solution of $-\lap u =f$ in $\Omega$. Then $u\in C^2(\Omega) \cap C^0(\bar{\Omega})$ and satisfies, for all balls $B_1 = (x_0, R)$, $B_2= B(x_0, 2R) \subset \Omega$,
+\begin{align*}
+\norms{u}{C^{2, \alpha}(B_1)}' \leq C \big(\norms{u}{C^0(B_2)} + \norms{f}{C^{0,\alpha}(B_2)}' \big) 
+\end{align*}
+for some $C =C(d, \alpha)>0$.
+\s
+
+We can prove this estimate in more general setting, when $Lu =f$ with
+\begin{align*}
+Lu = \sum_{i,j=1}^d a^{ij}(x) \pa^2_{x_i x_j} u + \sum_{i=1}^d b^i(x) \pa_{x_i} u + c(x)u, \quad u\in C^2(\Omega)
+\end{align*}
+$a^{ji} = a^{ij}$(\emph{symmetric}) and $\Lambda |\xi|^2 \leq a^{ij}(x) \xi_i \xi_j \geq \lambda |\xi|^2$ for some $\lambda, \Lambda >0$(\emph{(uniformly elliptic)}) and all $\xi \in \reals^d$.
+\s
+
+\subsubsection*{H\"older norms(II)}
+
+\defi \emph{(More H\"older norms)} Assume $\Omega$ is compact. For $x,y\in \Omega$, let $d_x = \text{dist}(x, \pa \Omega)$, $d_y = \text{dist}(y, \pa \Omega)$ and $d_{x,y} := \min \{d_x,d_y\}$. Define $[ u ]^*_{k,0, \Omega}$, $|u|^*_{k, \Omega}$.
+
+\quad Also for $u\in C^{k, \alpha}$, define $[u]^*_{k, \alpha, \Omega}$ and a norm in $C^{k, \alpha}(\bar{\Omega})$, $|u|^*_{k, \alpha, \Omega}$.
+
+\quad For $j\in \mathbb{N}$, also define $[u]^{(j)}_{k,0, \Omega}$, $[u]^{(j)}_{k, \alpha,\Omega}$, $|u|^{(j)}_{k,\Omega}$, $|u|^{(j)}_{k, \alpha, \Omega}$ 
+\s
+
+Let $L_0$ only have 2nd order terms, i.e. $L_0 u = \sum a^{ij} \pa^2_{x_i x_j} u$.
+\s
+
+\propnum{7.2} Let $L_0$ satisfy \emph{uniform ellipticity} and \emph{symmetry}, and $u\in C^2(\Omega)$ satisfy $L_0 u=f$, $f\in C^{0, \alpha}(\Omega)$. Then
+\begin{align*}
+|u|^*_{2, \alpha, \Omega} \leq C(|u|_{0, \Omega} + |f|^{(2)}_{0, \alpha, \Omega})
+\end{align*}
+for some $C \equiv C(d,\alpha, \lambda, \Lambda) >0$.
+\s
+
+\thmnum{7.4} \emph{(Interior Schauder estimate for $Lu=f$)} Let $\Omega \subset \reals^d$ be open, $L$ be uniformly elliptic, symmetric, $f\in C^{0, \alpha}(\Omega)$ and $|a^{ij}|^{(0)}_{0, \alpha, \Omega}, |b^i|^{(1)}_{0, \alpha, \Omega}, |c|^{(2)}_{0, \alpha, \Omega} \leq \tilde{\Lambda}$. Then if $u\in C^2(\Omega)$ with $Lu =f$, we have the estimate
+\begin{align*}
+|u|^*_{2, \alpha, \Omega} \leq C(|u|_{0, \Omega} + |f|^{(2)}_{\alpha, \Omega})
+\end{align*}
+for a constant $C= C(d, \alpha, \lambda, \tilde{\Lambda})$.
+
+-needs following interpolation inequalities for proof.
+\s
+
+\textbf{Remark :} We may assume $\Omega$ is compact, as we may take nested sequence of compact sets that covers $\Omega$, if the constants uniform in this family of compact sets - which is indeed the case.
+\s
+
+\lemnum{1} For any $\sigma,\tau \geq 0$,
+\begin{align*}
+|fg|^{(\sigma +\tau)}_{0, \alpha, \Omega}\leq |f|^{(\sigma)}_{0, \alpha, \Omega} + |g|^{(\tau)}_{0, \alpha, \Omega}
+\end{align*}
+\s
+
+\lemnum{2} \emph{(Interpolation, H\"ormander)} Let $u\in C^{2, \alpha}(\Omega)$, $\Omega \subset\reals^d$ be a domain. Then for any $\epsilon >0$, there is a constant $C(\epsilon)>0$ such that
+\begin{align*}
+&[u]^*_{j, \beta, \Omega} \leq C(\epsilon) |u|_{0, \Omega} + \epsilon [u]^*_{2, \alpha, \Omega} \\
+&|u|^*_{j, \beta, \Omega} \leq C(\epsilon) |u|_{0, \Omega} + \epsilon [u]^*_{2, \alpha, \Omega}
+\end{align*}
+for $j=0,1,2$, $0\leq \alpha, \beta\leq 1$ and $j+\beta\leq 2+\alpha$.
+\s
+
+\emph{[More generally, we can think of inequalities in the following setting : Suppose we have an inequality of form $\snorms{u}{B_1} \lesssim \snorms{u}{B_0}^{\theta} \snorms{u}{B_2}^{1-\theta}$, where $B_2\subset B_1 \subset B_0$ are nested Banach spaces. Then we have $\snorms{u}{B_2} \leq C_{\epsilon} \snorms{u}{B_0} + \epsilon \snorms{u}{B_2} + C \snorms{f}{X}$, so $(1-\epsilon)\snorms{u}{B_2} \leq C(\epsilon) \snorms{u}{B_0} + C\snorms{f}{X}$ for small $\epsilon$.]}
+\s
+
+Recall our hypothesis, for $L = \sum a^{ij}\pa_i \pa_j + \sum b^i \pa_i +c$,
+\begin{align*}
+&\text{(H1)} \quad |a^{ij}|_{0, \alpha, \Omega}^{(0)}, |b^i|^{(1)}_{0, \alpha, \Omega}, |c|^{(2)}_{0, \alpha, \Omega}\leq \Lambda, \quad \Lambda>0 \\
+&\text{(H2)} \quad a^{ij}(x) = a^{ji}(x), \quad \sum_{i,j=1}^d a^{ij}(x) \xi_i \xi_j > \lambda |\xi|^2
+\end{align*}
+and
+\begin{align*}
+(H) \quad a^{ij}, b^i, c \text{ are H\"older continouus, } a^{ij}=a^{ji}, a \text{ is uniformly elliptic, with parameter } \lambda
+\end{align*}
+\subsubsection*{Interior H\"older estimate}
+
+\corr Under (H1) and (H2), the solution of $Lu =f$ satisfies that $\forall \Omega' \subset\subset \Omega$,
+\begin{align*}
+\delta |\nabla u |_{0, \Omega'} + \delta^2 |D^2 u|_{0, \Omega'} + \delta^{2+ \alpha}[\pa^2 u]_{\alpha, \Omega'}\leq C(|u|_{0, \Omega}+ |f|_{0, \alpha, \Omega})
+\end{align*}
+for $C = C(d, \alpha, \lambda, \Lambda, \Omega)$ and $\delta= \text{dist}(\Omega', \pa \Omega)$. 
+
+(what is this a corollary of?)
+\s
+
+\subsubsection*{Boundary and Global estimates}
+
+\defi Domains of class $C^{2, \alpha}$), boundary portion $T\subset \pa \Omega$.
+\s
+
+The key point in the proof of H\"older interior was to use \emph{Interpolation Estimates}. This would be the same in boundary estimates and global estimates.
+\s
+
+\lemnum{8.1} \emph{(Interpolation estimates on the boundary)} Let $\Omega\subset \reals^d_+$ open in $\reals^d_+$ with a boundary portion $T$ on $\{x_d =0\}$. Assume $u\in C^{2, \alpha}(\Omega \cup T)$. Then $\forall \epsilon >0$,
+\begin{align*}
+&[u]^*_{j, \beta, \Omega\cup T} \leq C_{\epsilon} |u|_{0, \Omega} + \epsilon [u]^*_{2, \alpha, \Omega, \cup T},  \\
+&|u|^*_{j, \beta , \Omega\cup T} \leq C_{\epsilon}|u|_{0, \Omega} + \epsilon [u]^*_{2,\alpha, \Omega \cup T}, \quad \forall \alpha\in [0,1], \,\, j+ \beta < 2+ \alpha
+\end{align*}
+(not proved)
+\s
+
+\lemnum{8.2} Let $\Omega \subset \reals^d_+$, $T$ boundary portion, and $u \in C^2(\Omega \cup T)$ bounded solution of $Lu = f$ and $u=0$ on $T$ under hypothesis (H1) and (H2) on $\Omega \cup T$ and $f\in C^{0, \alpha}(\Omega \cup T)$. Then
+\begin{align*}
+|u|^{*}_{2, \alpha, \Omega \cup T}\leq C(|u|_{0, \Omega}+ |f|^{(2)}_{0, \alpha, \Omega \cup T})
+\end{align*} 
+for $C = C(d, \alpha, \lambda, \Lambda)$.
+
+-The proof is almost the same as \textbf{Theorem 7.4}.
+\s
+
+\defi Let $T$ be a boundary portion of $\Omega$, $x,y \in \Omega$, $\bar{d}_x := \text{dist}(x, \pa \Omega \backslash T)$, $\bar{d}_{x,y} = \min (\bar{d}_x, \bar{d}_y)$. Define $[u]^*_{k, \alpha, \Omega \cup T}$, $|u|^*_{k,\alpha, \Omega\cup T}$, where $|u|^*_{k, \Omega\cup T} := |u|^*_{k,0,\alpha, \Omega\cup T}$.
+\s
+
+\subsubsection*{Curved boundaries of Class $C^{k, \alpha}$}
+
+Consider $\psi : \Omega \rightarrow \Omega'$, $C |x-y| \leq |\psi(x) - \psi(y)| \leq \tilde{C}(x-y)$. Make change of variable $u(x) = \tilde{u}(x')= \tilde{u}(\psi(x))$ then we would have
+\begin{align*}
+C |u(x)|_{j, \beta, \Omega} \lesssim |u'(x')|_{j, \beta, \Omega'}\lesssim \tilde{C} |u(x)|_{j, \beta, \Omega}
+C |u(x)|_{j, \beta, \Omega\cup T} \lesssim |\tilde{u}(x')|_{j, \beta, \Omega'\cup T'} \lesssim \tilde{C} |u(x)|^*_{j, \beta, \Omega\cup T} \\
+C |u(x)|^{(\sigma)}_{0, \beta, \Omega\cup T} \lesssim |\tilde{u}(x)|^{(\sigma)}_{0, \beta, \Omega'\cup T'} \lesssim \tilde{C} |u(x)|^{(\sigma)}_{0, \beta, \Omega \cup T}
+\end{align*}
+by chain rule.
+\s
+
+\lemnum{8.3} Let $\Omega$ be a bounded domain of class $C^{2, \alpha}$ in $\reals^d$, $u\in C^{2, \alpha}(\bar{\Omega})$ satisfies $Lu = f$ in $\Omega$, $u =0$ on $\pa \Omega$ where $f\in C^{0, \alpha}(\bar{\Omega})$ and $L$ satisfies (H2) and
+\begin{align*}
+|a^{ij}|_{0, \alpha, \Omega}, \,\, |b^{i}|_{0, \alpha, \Omega},\,\, |c|_{0, \alpha, \Omega} \leq \Lambda.
+\end{align*}
+Then we have, for some $\delta>0$ not depending $x_0$ such that
+\begin{align*}
+|u|_{2, \alpha, \Omega \cap B(x_0, \delta)} \leq C(|u|_{0, \Omega} + |f|_{0, \alpha, \Omega}), \quad \forall x_0 \in \pa \Omega
+\end{align*} 
+for $C = C(d, \alpha, \lambda, \Lambda, \Omega)$ but not depending on $x_0$.
+\s
+
+\s
+
+We had interior estimate in $C^{1, \alpha}$ and boundary estimates in $C^{2, \alpha}$. If $L = \sum a^{ij}(x) \pa^2_{x_i x_j} + \sum b^i(x) \pa_{x_i} + c(x)$, is uniformly elliptic, $a^{ij} =a^{ji}$ and $|a^{ij}|_{0, \alpha, \Omega}, |b^i|_{0, \alpha, \Omega}, |c|_{0, \alpha, \Omega}< \Lambda$, then we have :
+\s
+
+\thm \emph{(Global estimates)} Let $\Omega$ has $C^{2, \alpha}$ boundary and \emph{bounded}, $f\in C^{0, \alpha}(\bar{\Omega})$ and $u\in C^{2, \alpha}(\bar{\Omega})$ satisfies $Lu =f$ in $\Omega$, $u = \varphi$ on $\pa \Omega$ with $\varphi \in C^{2, \alpha}(\Omega)$. Then there is $C >0$ such that
+\begin{align*}
+|u|_{2, \alpha, \Omega} \leq C (|u|_{0, \Omega} + |\varphi|_{2, \alpha, \Omega} + |f|_{0, \alpha, \Omega})
+\end{align*}
+where $C = C(d, \alpha, \lambda, \Lambda, \Omega)>0$.
+
+-proof hint : To produce H\"older interior estimate for $\Omega' \subset\subset \Omega$, choose $\sigma = \delta$ of \textbf{Lemma 8.3}  and let $\Omega_{\sigma} = \{x\in \Omega : \text{dist}(x, \pa \Omega)>\sigma\}$. For $x, y\in \Omega$, there are three possibilities :
+\begin{i}
+\item[(1)] $x,y,\in \Omega_{\sigma}$, then interior H\"older inequality applies
+\item[(2)] $x,y\in B(x,\delta)$, then boundary H\"older inequality applies.
+\item[(3)] For a boundary point $x_j$$x\in \Omega_{\sigma}$, $y\in B_{x_j, \rho}$ or $x\in B(x_j, \rho), y\in B(x)j, \rho)$ then
+\begin{align*}
+\frac{|\pa_x^2 u(x) - \pa^2_{}u(y)|}{|x-y|^{\alpha}} \leq \frac{1}{\sigma^{\alpha}}(|\pa^2 u(x)|+ |\pa^2 u(y)|) \leq C(|u|_0 + |f|_{0, \alpha})
+\end{align*} 
+\end{i}
+
+
+
+\subsubsection*{Existence of Classical solutions}
+
+\thm Let $L$ be elliptic satisfying (H) and $c(x) \leq 0$. Let $\Omega$ satisfy the exterior sphere condition(\textit{i.e.} $\forall x_0 \in \pa \Omega$, $\exists B \subset \reals^d \backslash \Omega$, a ball, such that $B\cap \bar{\Omega} = \{x_0 \}$). Assume $f\in C^{0, \alpha}(\bar{\Omega})$ and $\varphi \in C^0(\pa \Omega)$. Then the Dirichlet problem $Lu =f$ in $\Omega$ and $u= \varphi$ on $\pa \Omega$ has a unique classical solution $u\in C^0(\bar{\Omega}) \cap C^{2, \alpha}(\Omega)$.
+
+\emph{[a difference with the previous result is that we do not have $u \in C^{2, \alpha}(\bar{\Omega})$ anymore - so we do not have linear bound of $u$ in terms of $f$ and $\varphi$. --> what does this mean???]}
+\begin{proof}
+\pf Proof to be done in the Example Sheet. But the idea is similar to that of Poisson equation.
+\begin{i}
+\item First see solvability in balls - idea of harmonic lifting appplies again. 
+\item Use maximum principles for $Lu \geq 0$(or $\leq 0$) (to be done in next lecture)
+\item Use compactness of solutions of $Lu =f$, that is a consequence of interior estimate.
+\end{i} 
+\end{proof}
+\s
+
+\subsubsection*{Weak/Strong Maximum Principles for $Lu =f$}
+
+As usual, $Lu = \sum a^{ij}\pa^2_{x_i x_j} u + \sum b^i \pa_{x_i} u + c(x) u = f$ in $\Omega$, $u=\varphi$ on $\pa \Omega$.
+\s
+
+To establish maximum principle, we need to make strong restriction on $c$.
+\s
+
+\thm Let $L$ be (not necessarily uniform) elliptic (that is, $a^{ij}(x) \xi_i \xi_j \geq \lambda(x) |\xi|^2$), $c=0$ in $\Omega$ and $u\in C^2(\Omega) \cap C^0(\bar{\Omega})$ with $Lu \geq 0$ in $\Omega$ and $\beta(x) := \frac{\sup_{i=1,\cdots,d} |b^i(x)|}{\lambda (x)} \leq\beta$ for all $x\in \Omega$ (recall, $\lambda$ is the ellipticity constant.) Then
+\begin{align*}
+\sup_{\Omega} u = \sup_{\pa \Omega} u
+\end{align*}
+\s
+
+\thm \emph{(Strong maximum principle, E. Hopf)}  We now let $L$ be uniformly elliptic, say $\sum_{ij} a^{ij} \xi_i \xi_j \geq \lambda |\xi|^2$ with $\lambda>0$ uniform. Let $u\in C^2(\Omega) \cap C^0(\bar{\Omega})$ satisfy $Lu \geq 0$, and assume $\max_{z\in \bar{\Omega}} u(z) = u(z_0)$. Then
+\begin{i}
+\item[(1)] If $c=0$ and $z_0 \in \Omega$, then $u$ is constant.
+\item[(2)] If $c\leq 0$, $c/\lambda$ bounded, and $u(z_0) \leq 0$ for some $z_0 \in \Omega$, then $u$ is constant.
+\end{i}
+-need a lemma
+\s
+
+\lem \emph{(Hopf)} Let $L$ be uniformly elliiptic and $Lu \geq 0$ in $\Omega$. Take $x_0 \in \pa\Omega$ such that
+\begin{i}
+\item[(i)] $u$ is continuous at $x_0$,
+\item[(ii)] $u(x_0) > u(x)$ for all $x\in \Omega$,
+\item[(iii)] $\pa \Omega$ satisfies the \emph{interior sphere condition}.
+\end{i}
+Then,
+\begin{i}
+\item[(1)] if $c=0$, then $\frac{\pa u}{\pa n_x} (x_0) >0$,
+\item[(2)] if $c\leq 0$, $c/\lambda$ is bounded and $u(x_0) \geq 0$, then $\frac{\pa u}{\pa n_x}(x_0) \leq 0$.
+\end{i}
+\s
+
+\subsubsection*{Alexandroff maximum principle}
+
+Suppose $L = \sum_{ij} \pa^2_{x_i x_j} + \sum_{i} b^i \pa_{x_i} + c(x)$ satisfies ellipticity condtion (\textit{i.e.} $A = (a^{ij})_{i,j=1}^d$ positive definite in $\Omega$) in $\Omega$. Define $D(x) = \text{det}(A(x))$, $D^* = D^{1/d}$, then
+\begin{align*}
+0\leq \lambda(x) \leq D^*(x) \leq \Lambda(x)
+\end{align*}
+where $\lambda(x)$ is the minimum eigenvalue of $A(x)$ and $\Lambda(x)$ is the maximum eighenvalue of $A(x)$. Let $u\in C^2(\Omega)$, and $\Gamma^+ = \{y\in \Omega : u(x)\leq u(y) + \nabla u(y)(x-y), \forall x\in \Omega\}$, the \textbf{upper contact set of $u$}
+
+\emph{[Remark : Has $D^2 u \leq 0$ on $\Gamma^+$. In particular, $u$ is concave in $\Omega$ iff $\Gamma^+ =\Omega$.]}.
+\s
+
+\thm \emph{(Alexandroff)} If $\Omega \subset \reals^n$, $u\in C^2(\Omega) \cap C^0(\bar{\Omega})$, $Lu \geq f$ in $\Omega$ with $\frac{|b|}{D^*}, \frac{f}{D^*} \in L^d(\Omega)$, $c\leq 0$ in $\Omega$, then
+\begin{align*}
+\sup_{\Omega} u \leq \sup_{\pa \Omega} u^+ + C\norms{\frac{f^-}{D^*}}{L^d(\Gamma^+)}
+\end{align*}
+for some constant $C = C(d, \text{diam}(\Omega), \norms{\frac{b}{D^*}}{L^d(\Omega)})$.
+
+-is very useful. proof uses the next lemma
+\s
+
+\lem Let $g \in L^1_{loc}(\reals^d)$, $g\geq 0$. Then $\forall u \in C^0(\bar{\Omega}) \cap C^2(\Omega)$, we have
+\begin{align*}
+\int_{B(0, \tilde{u})}g(x) dx \leq \int_{\Gamma_{u}^+} g(\nabla u) |\text{det}(D^2 u)|dx
+\end{align*}
+for $\tilde{u} = \frac{1}{\text{diam}(\Omega)} (\sup_{\bar{\Omega}} u - \sup_{\pa \Omega} u) \geq 0$.
+\s
+
+\textbf{Remark :} $\forall x\in \Gamma^+$,
+\begin{align*}
+\text{det}(D^2u(x))\leq \frac{1}{D} \Big( \frac{-a^{ij}(x) \pa^2_{x_i x_j}u}{d}\Big)^d
+\end{align*}
+\s
+
+We first assume the lemma and prove the theorem.
+
+\subsubsection*{Semilinear equation}
+
+Study one particular class of semilinear equations of form
+\begin{align*}
+\begin{cases}
+\lap u = f(x,u)\quad & x\in \Omega \\
+u=0 \quad & x\in \pa \Omega
+\end{cases}
+\end{align*}
+for some function $f: \bar{\Omega} \times \reals \rightarrow \reals, (x,\xi) \mapsto f(x, \xi)$. Here, $f(x, u)$ makes non-linearity. Note that this has no contribution from $\nabla u$ (we call those equations for which $f$ depends on $\nabla u$, the quasilinear equations). 
+\s
+
+\thm Let $\Omega$ be \emph{bounded} and has $C^{2, \alpha}$ boundary, $f\in C^1(\bar{\Omega} \times \reals)$. Assume that there are $\vec{u}, \bar{u} \in C^{2, \alpha}(\bar{\Omega})$ satisfying
+\begin{align*}
+\begin{cases}
+\vec{u} \leq \bar{u} \,\, \text{ in } \Omega \quad & {} \\
+\lap \vec{u} \geq f(x, \vec{u}) \,\, \text{ in }\Omega,\quad & \vec{u} \leq 0 \,\, \text{ on } \pa \Omega \\
+\lap \bar{u} \leq f(x,\bar{u}) \,\, \text{ in }\Omega, \quad & \bar{u} \geq 0 \,\,  \text{ on }\pa \Omega
+\end{cases}
+\end{align*}
+
+Then there exists $u\in C^{2, \alpha}(\bar{\Omega})$ such that $\lap u = f(x,u(x))$ in $\Omega$, $u=0$ on $\pa \Omega$ and $\vec{u}\leq u\leq \bar{u}$ in $\Omega$.
+\emph{[This is called the method of sub-\&-supersolutions]}
+
+(The proof uses a version  of Arzela-Ascoli theorem - state it/ proof to be done in the example sheet)
+\s
+
+\corr Let $\Omega \subset C^{2, \alpha}$ be bounded, and let $f\in C^1(\bar{\Omega} \times \reals)$ and $f$ is bounded. Then there exists a solution $u \in C^{2, \alpha}(\bar{\Omega})$ of $\lap u = f(x, u)$ in $\Omega$ and $u=0$ on $\pa \Omega$.
+\s
+
+\thm \emph{(Gidas, Ni \& Nirenberg)} Let $B= B(0,1) \subset \reals^d$. Assume that $u\in C^0(\bar{B})\cap C^2(B)$ is a positive solution ($u\geq 0$ on $B$) of
+\begin{align*}
+\begin{cases}
+\lap u + f(u) =0 \quad & \text{in }B\\
+u = 0 \quad & \text{on }\pa B
+\end{cases}
+\end{align*}
+Assume that $f$ is \emph{locally Lipschitz} in $\reals$. Then $u$ is radially symmetric and 
+\begin{align*}
+\frac{\pa u}{\pa r}(x) < 0 \quad \text{whenever } x\neq 0.
+\end{align*}
+
+(not proving)
+\s
+
+\thm \emph{(Varadham, Maximum principle in narrow domains)} Consider $Lu = \sum_{ij}a^{ij} \pa^2_{x_i x_j} u + \sum_i b^i \pa_{x_i} u + c(x) u$, $a^{ij}$ positive definite pointwise in $\Omega$, $|b^i| + |c| \leq \Lambda$, $\text{det}(a^{ij}(x)) \geq \lambda$, $\delta := \text{diam}(\Omega)>0$. Assume $u \in C^0(\bar{\Omega}) \cap C^2(\Omega)$ satisfies $Lu \geq 0$ in $\Omega$ and $u\leq 0$ in $\pa \Omega$. Then $\exists C_{\delta} = C_{\delta}(d, \Lambda, \lambda) >0$ such that,
+\begin{align*}
+|\Omega|\leq C_{\delta} \quad \text{ implies } \quad u\leq 0\,\, \text{in } \Omega.
+\end{align*}
+where $|\Omega|$ is the Lebesgue measure of $\Omega$.
+\emph{[Remark : we do not need condition on sign of $c$]}
+\s
+
+\thm \emph{(Serrin, Comparison principle)} Suppose that $u\in C^0(\bar{\Omega}) \cap C^2(\Omega)$ with $Lu \geq 0$ in $\Omega$ and $u\leq 0$ in $\Omega$ (not $\pa \Omega$, all of $\Omega$), with $L$ having continuous coefficients (no bounds necessary). Then
+\begin{i}
+\item either $u< 0$ in $\Omega$,
+\item or $u\equiv 0$ in $\Omega$.
+\end{i}
+\s
+
+\lem \emph{(Fanghua Lin \& Qing Han)} (See Section 2.6 of Han, Lin ([3])) Let $\Omega$ a bounded convex domain in the $x_1$-direction and symmetric with respect to $\{x_1 =0 \}$. If $u\in C^0(\bar{\Omega}) \cap C^2(\Omega)$ satisfies 
+\begin{align*}
+\begin{cases}
+\lap u + f(u) =0 \quad &\text{in } \Omega \\
+u =0 \quad &\text{on } \pa \Omega.
+\end{cases}
+\end{align*}
+with $f$ \emph{locally Lipschitz}. Assume that $u>0$ in $\Omega$, then $u$ is symmetric with respect to $x_1$ direction and
+\begin{align*}
+\frac{\pa u}{\pa x_1}(x) < 0 \quad \forall x\in \Omega, \,\, x_1>0
+\end{align*}
+\s
+
+\newday
+
+Let $L$ be an operator of form
+\begin{align*}
+L = -\sum_{i=1}^d \pa_{x_i}(a^{ij}(x) \pa_{x_i} u) + c(x) \quad (\text{so that } b^i \equiv 0)
+\end{align*}
+and consider equation $Lu = f$ in $\Omega$. We impose conditions
+\begin{align*}
+\begin{cases}
+& a^{ij} \in L^{\infty} \cap C^0(\Omega),\\
+& a^{ij}= a^{ji} \\
+& a^{ij}(\xi)\xi_i \xi_j \geq \lambda |\xi|^2, \,\, \forall \xi \in \reals^d \\
+& f\in L^{\frac{2d}{d+2}}(\Omega) \quad (\text{exponent chosen for Sobolev embedding})
+\end{cases}
+\end{align*}
+$u$ is a weak solution of $Lu =f$ if
+\begin{align*}
+\int_{\Omega} \big( \sum_{i,j=1}^n a^{ij}(x) \pa_{x_j} u \pa_{x_i} \varphi + cu\varphi \big) dx = \int_{\Omega} \varphi f dx, \quad \forall \varphi \in H_0^1(\Omega)
+\end{align*}
+We want to characterize H\"older continuity in terms of the growth of local integrals.
+\s
+
+Let $\Omega \subset \reals^d$ be bounded and connected. Given $u\in L^1_{loc}(\Omega)$, given $x_0 \in \Omega$, $r>0$ such that $B(x_0, r) \subset \Omega$, we define
+\begin{align*}
+u_{x_0, r} = \frac{1}{B(x_0, r)}\int_{B(x_0, r)} u(x) dx
+\end{align*}
+\s
+
+\thm Assume that $u\in L^2(\Omega)$ and there are $M>0$, $\alpha \in (0,1)$.
+\begin{align*}
+\int_{B(x_0, r)} |u (x) - u_{x_0, r}|^2 dx \leq M^2 r^{d+ 2\alpha}, \quad \forall B(x_0,r) \subset \Omega
+\end{align*}
+Then $u$ has continuous correction in $C^{0, \alpha}(\Omega)$ and $\forall \bar{\Omega'} \subset \Omega$, we have 
+\begin{align*}
+|u|_{0, \alpha, \Omega'} \leq C(M + \snorms{u}{L^2(\Omega)})
+\end{align*}
+for some $C= C(d, \alpha, \Omega, \Omega') >0$.
+\s
+
+\corr Suppose $u\in H^1_{loc} (\Omega)$ satisfies that for some $\alpha \in (0,1)$,
+\begin{align*}
+\int_{B(x_0, r)} |\nabla u|^2 dx \leq M^2 r^{d-2 + 2\alpha}, \quad \forall B(x_0, r) \subset \Omega
+\end{align*}
+Then $u\in C^{0, \alpha}(\Omega)$ and $\forall \Omega'$ with $\bar{\Omega'} \subset \Omega$,
+\begin{align*}
+|u|_{0, \alpha, \Omega'} \leq C(M + \snorms{u}{L^2(\Omega)})
+\end{align*}
+for some $C = C(d, \alpha, \Omega', \Omega) >0$.
+\s
+
+We expect that if $a^{ij} \in C^0(\bar{\Omega})$, $c =c(x) \in L^d(\Omega)$, $f\in L^{\frac{2d}{d+2}}(\Omega)$ then the weak solution satisfies $u\in H^1(\Omega) \cap C^{0, \alpha}(\Omega)$. To use perturbation argument, we may write $u= v+w$ where $w$ is the weak solution of $L_0 w =0$ where $L_0 w := - \sum_{i,j} \pa_{x_j}(a^{ij}(x_0) \pa_{x_i} w)$ and $v$ solves
+\begin{align*}
+\sum_{i,j=1}^d \int_B a^{ij}(x_0) \pa_{x_i} v \pa_{x_j} \varphi dx = \int_B (f\varphi - cu\varphi) dx +\sum_{i,j=1}^d \int (a^{ij}(x_0) - a^{ij}(x)) \pa_{x_i} u \pa_{x_j} \varphi dx, \quad \forall \varphi \in H_0^1(B)
+\end{align*}
+The first step would be to study the constant-coefficient case to have control on $w$.
+\s
+
+\thm \emph{(Caccioppoli's inequality for harmonic functions)} If $w\in C^1$ solved $L_0 w= 0$ weakly, \textit{i.e.} it satisfies $\int_B a^{ij}(x_0) \pa_{x_i} w \pa_{x_j} \varphi dx =0$ for all $\varphi \in H_0^1(B)$, then 
+\begin{align*}
+\int_B |\nabla w|^2 \eta^2 dx \leq C \int_B |\nabla \eta|^2 |w|^2 dx, \quad \forall \eta \in C^1_0(B)
+\end{align*}
+for $C= C(\lambda, \Lambda) >0$ where $\lambda |\xi|^2 \leq \sum_{ij} a^{ij}(x_0) \xi_i \xi_j \leq \Lambda |\xi|^2$. 
+\s
+
+\corr \emph{(Precis version of Cacciofolli's inequality)} With same choice of $w$ as above, for all $0<r<R\leq 1$,
+\begin{align*}
+\int_{B(0,r)} |\nabla w|^2 dx \leq \frac{C}{(R-r)^2} \int_{B(0,R)} |w|^2 dx
+\end{align*}
+\emph{[This can be thought of as a reverse of Poincar\'e inequality]}
+\s
+
+\prop Assume that $w$ is a weak solution of $\sum_{i,j=1}^d \int_B a^{ij} \pa_{x_i} w \pa_{x_j} \varphi dx$ for all $\varphi \in H_0^1(B)$. Then for all  $0< \rho \leq r$, 
+\begin{align*}
+\int_{B(0, \rho)} |w|^2 dx &\leq C\big( \frac{\rho}{r} \big)^d \int_{B(0, r)} |w|^2 dx,\\
+\int_{B(0, \rho)} |w - w_{0, \rho}|^2 dx &\leq C \big(\frac{\rho}{r} \big)^{d+2} \int_{B(0,r)} |w- w_{0,r}|^2 dx
+\end{align*}
+where $C= C(\lambda, \Lambda)$.
+\s
+
+\corr Under the previous hypothesis, we have that $\forall u\in H^1(B(x_0, r))$ and $\forall  0< \rho \leq r$, we have
+\begin{align*}
+\int_{B(x_0, \rho)} |\nabla u|^2 dx \leq C \Big( \big( \frac{\rho}{r}\big)^d \int_{B(x_0, r)} |\nabla u|^2 dx + \int_{B(x_0, r)} |\nabla(u-w)|^2 dx \Big)
+\end{align*}
+\s
+
+\thm Let $u\in H^1(B)$ be a weak solution of $Lu=f$.
+\begin{align*}
+\int_{B} \sum_{i,j=1}^d a^{ij}(x) \pa_{x_i} u \pa_{x_j} \varphi dx + \int_B c(x) u\varphi dx =\int f\varphi dx, \quad \forall \varphi \in H_0^1 (B)
+\end{align*}
+with $a^{ij} = a^{ji}$, $a^{ij} \in C^0(\bar{B})$, $c\in L^d (B)$, $f\in L^q$, $q\in (\frac{2}{d}, d)$ and $d\geq 2$. Then
+\begin{align*}
+\int_{B(x,r)} |\nabla u|^2 dx \leq Cr^{d-2 + 2\alpha}\big( \snorms{f}{L^q(B_1)}^2 + \snorms{u}{H^1}^2 \big)
+\end{align*}
+with $\alpha = 2- \frac{d}{q} \in (0,1)$ and $C \equiv C(\lambda, \Lambda, \snorms{c}{L^d(B)}, \tau) >0$ where $\tau :\reals_+ \rightarrow \reals_+ \cup \{0\}$ sufficiently chosen so that
+\begin{align*}
+|a^{ij}(x) - a^{ij}(y)| \leq \tau(|x-y|), \quad \forall x,y\in B
+\end{align*} 
+\s
+
+\subsubsection*{De Giorgi's Theorem, Part I}
+
+Let $B= B(0,1)$. Let $L = \sum a^{ij}(x) \pa_{ij} + c(x)$ (so that $b=0$) with $\lambda$-uniformly elliptic, $a^{ij} \in L^{\infty}(B)$(not even continuous) and $c\in L^q(B)$ for $q> d/2$.
+\s
+
+\defi \emph{(weak subsolution)} Let $u\in H^1(B)$ is a \textbf{weak subsolution} of $Lu =f$, for $f$ given, if...
+\s
+
+\thm \emph{(De Giorgi, part I)} Under the previous hypothesis, assume in addition that $f\in L^q(B)$, $q> d/2$ and $\exists \Lambda >0$ suhch that
+\begin{align*}
+\sup_{i,j} |a^{ij}|_{L^{\infty}(B)} + \snorms{c}{L^q} \leq \Lambda
+\end{align*}
+Then, if $u \in H^1(B)$ is a \emph{weak subsolution} of $Lu =f$, then
+\begin{align*}
+& u^+ \in L^{\infty}_{loc}(B) \quad \text{and}\\
+\sup_{B(0, 1/2)} & u^+ \leq C(\snorms{u^+}{L^2(B)}^2 + \snorms{f}{L^q(B)}^2)
+\end{align*}
+\emph{[The same bound was proved by Nash, with a method to which applies also to parabolic equations. But De Giorgi's method gives better insight.]} 
+
+(the proof is \emph{very very} long)
+
+\subsubsection*{De Giorgi's Theorem, Part II}
+
+Set $B= B(0,1)$. We now write $Lu$ in the \emph{divergence form}
+\begin{align*}
+Lu = \sum_{i,j=1}^d \pa_{x_i}(a^{ij}(x) \pa_{x_j} u) + c(x)
+\end{align*}
+Here, we assume $c=0$. Also let $a^{ij} \in L^{\infty}(B)$, $a^{ij}= a^{ji}$ and $\lambda |\xi|^2 \leq \sum a^{ij} \xi_i \xi_j \leq \Lambda |\xi|^2$. 
+\s
+
+\thm \emph{(De Giorgi, part II)} If $u$ is a weak solution of $Lu=0$ in $B(0, 1)$, then $u\in C^{0, \alpha}(b)$ and
+\begin{align*}
+\sup_{x\in B(0, 1/2)} |u(x)| + \sup_{x,y\in B(0, 1/2)} \frac{|u(x) - u(y)|}{|x-y|^{\alpha}} \leq C(d, \Lambda/\lambda)\snorms{u}{L^2(B)}
+\end{align*}
+for some $\alpha = \alpha(d, \lambda/\Lambda) \in (0,1)$.
+\s
+
+We will need three key ingredients to prove the theorem.
+\begin{itemize}
+\item Poincar\'{e}-Sobolev ienquality
+\item Density theorem
+\item Oscillation theorem
+\end{itemize}
+\s
+
+\lem Let $\Phi \in C^{0,1}_{loc}(\reals)$ by \emph{convex} and $\Phi' \geq 0$. If $u$ is a subsolution of $Lu =0$, then we have that $v= \Phi(u)$ is also a subsolution of $Lu =0$ whenever $v\in H_{loc}^1(B)$.
+\s
+
+\emph{Remark :} if $u$ is a supersolution and $\Phi$ is concave, then $\Phi(u)$ is a subsolution.
+\s
+
+\textbf{Remark :} if $u$ is a subsolution, then $v = (u-k)^+$ is also a subsoltuion, with choice of $\Phi(s) = (s-k)^+$.
+\s
+
+\prop \emph{(Poincar\'e-Sobolev inequality)} For any $\epsilon >0$, there is $C = C(\epsilon, d)>0$ such that $\forall u\in H^1(B)$ satisfying $\text{meas}\{x\in B ; u(x) =0 \}\geq \epsilon \cdot \text{meas}(B)$, we have
+\begin{align*}
+\int_B |u|^2 dx \leq C(\epsilon, d) \int_B |\nabla u|^2 dx 
+\end{align*}
+\s
+
+\prop \emph{(Density theorem)} Suppose $u$ is a positive supersolution of $Lu =0$ in $B(0, 2)$ satisfying $\text{meas}\{x\in B(0,1) ; u(x) \geq 1 \} \geq \epsilon \cdot \text{meas}(B)$. Then there is $C= C(\epsilon, d, \Lambda/\lambda) >0$ such that
+\begin{align*}
+\inf_{B(0, 1/2)} u \geq C
+\end{align*}
+\quad Similarly, if $u$ is a negative subsolution, then $\sup_{B(0, 1/2)} u \leq C$.
+\s
+
+\defi The \textbf{oscillation} of $u$
+\s
+
+\prop Assume that $u$ is a bounded solution of $Lu=0$ in $B(0, 2)$, then there is $\gamma = \gamma(d, \Lambda/\lambda) \in (0,1)$ such that
+\begin{align*}
+\text{osc}_{B(0, 1/2)}(u) \leq \gamma \text{osc}_{B(0,1)}(u)
+\end{align*}
+\end{document}
