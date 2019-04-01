@@ -321,9 +321,9 @@ is $C^2(B) \cap C^0(\bar{B})$ and satisfies the Dirichlet problem ($D$).
 
 \quad Define the integral kernel as $k(x,y) = \frac{R^2 - |x|^2}{dw_d R} \frac{1}{|x-y|^d}$, then we have $u(x) = \int k(x,y) \varphi(y) dS_y$ and $\int_{\pa B} k(x,y) dS_y =1$ for each $x\in B$. The idea is that, when $x$ is sufficiently close to $x_0$, then the integral of the kernel near $x_0$ dominates the whole integral. Pick $\delta>0$ such that $|\varphi(x)- \varphi(x_0)|< \epsilon$ whenever $|x_0 -x| < \delta$.
 \begin{align*}
-|u(x)- \varphi(x_0)| \leq \Big| \int_{|y-x_0|> \delta} \frac{R^2 - |x_0|^2}{dw_d R} \frac{\varphi(y) - \varphi(x_0)}{|x_0 - y|^d} dS_y \Big| + \Big| \int_{|y-x_0| \leq \delta} k(x,y)(\varphi(y)-\varphi(x_0) dS_y \Big|
+|u(x)- \varphi(x_0)| \leq \Big| \int_{|y-x_0|> \delta} \frac{R^2 - |x|^2}{dw_d R} \frac{\varphi(y) - \varphi(x_0)}{|x - y|^d} dS_y \Big| + \Big| \int_{|y-x_0| \leq \delta} k(x,y)(\varphi(y)-\varphi(x_0) )dS_y \Big|
 \end{align*}
-The first term is dominated by $2M(R^2 - |x_0|^2)\delta^d / dw_d R \rightarrow 0$ as $\delta \rightarrow 0$ and using the fact that $\int k(x,y)dy$, the second term is smaller than $\epsilon$, so for sufficiently small $\delta$, we can make bound $|u(x) - \varphi(x_0)|< 2\epsilon$.
+The first term is dominated by $2M(R^2 - |x|^2)\delta^{-d} / dw_d R \rightarrow 0$ as $|x|\rightarrow R$, and using the fact that $\int k(x,y)dy$, the second term is smaller than $\epsilon$, so for sufficiently small $\delta$, we can make bound $|u(x) - \varphi(x_0)|< 2\epsilon$.
 
 \eop
 \end{p}
@@ -631,7 +631,7 @@ We now assume that $\varphi \in C^0(\pa \Omega)$ and $f\in C^0(\Omega)$ is \text
 \defi $f\in C^0(\Omega)$ is \textbf{locally H\"older} if for $\alpha\leq 1$, $\forall x\in \Omega$, $\exists\delta>0$, $\exists C_{x,\alpha}>0$ such that $|f(x)-f(y)|\leq C_{x,\alpha} |x-y|^{\alpha}$ for all $y\in B(x,\delta)$.
 \s
 
-\thmnum{5.3} Under these hypothesis, the Dirichlet problem has a unique solution $u\in C^2{\Omega} \cap C^0(\bar{\Omega})$.
+\thmnum{5.3} Under these hypothesis, the Dirichlet problem has a unique solution $u\in C^2(\Omega) \cap C^0(\bar{\Omega})$.
 \s
 
 \emph{Observation} : if we can find a classical solution to $\lap w = f$ without assuming the boundary condition, then since we know from Perron's method that we can solve Laplace's equation with any continuous boundary condition, we can add some harmonic function to $w$ to construct a solution to the Dirichlet problem.
@@ -641,20 +641,20 @@ What we do is the following : Recall that, we have proved that if $E(x)$ is the 
 \begin{align*}
 u(y)= \int_{\Omega} E(x-y) f(x)dx + \int_{\pa \Omega} u(x)\frac{\pa E}{\pa n_x} (x-y) - \frac{\pa u}{\pa n_x}(x) E(x-y) dS_x
 \end{align*}
-So if we can construct a function $G$ so that $G = E +h$ with $\lap h =0$ such that $G|_{\pa \Omega} =0$, then this can be rewritten as
+So if we can construct a function $G(x,y)$ so that $G(x,y) = E(x-y) +h(x,y)$ with $\lap_x h =0$ such that $G(x,y)|_{x\in \pa \Omega} =0$, then this can be rewritten as
 \begin{align*}
-u(y) = \int_{\Omega} G(x-y) f(x) dx + \int_{\pa \Omega} \varphi(x) \frac{\pa G}{\pa n_x}(x-y) - G(x-y) \frac{\pa u}{\pa n_x}(x) dS_x
+u(y) = \int_{\Omega} G(x,y) f(x) dx + \int_{\pa \Omega} \varphi(x) \frac{\pa G}{\pa n_x}(x,y) dS_x
 \end{align*}
 \s
 
-\defi \textbf{Green's function} is $G = E +h$ with $\lap h =0$ such that $G|_{\pa \Omega} =0$.
+\defi \textbf{Green's function} is $G(x,y) = E(x-y) +h(x,y)$ with $\lap_x h =0$ such that $G(x,y)|_{x\in \pa \Omega} =0$. (or sometimes given with the roles of $x$ and $y$ interchanged)
 \s
 
 Construction of the solution of ($D$) is made in two steps.
 \begin{i}
 \item[\textbf{1st.}] Given $f\in C^0(\Omega) + \text{locally H\"older } \alpha$, we set
 \begin{align*}
-W(x) = \int_{\reals^d} E(x-y) f(y) dy, \quad x\in \reals^d \call{\dagger}
+W(x) = \int_{\Omega} E(x-y) f(y) dy, \quad x\in \reals^d \call{\dagger}
 \end{align*}
 We shall prove $W\in C^2(\reals^d)$, $W|_{\pa \Omega} \in C^0(\pa \Omega)$ and $\lap W=f$ in $\Omega$.
 
@@ -676,7 +676,7 @@ So $W$ definded in $(\dagger)$ would be our central object of study.
 
 \lemnum{5.1} Under the hypothesis that $f\in L^1(\Omega) \cap L^{\infty}(\Omega)$, $W$ in $(\dagger)$ is $C^1(\reals^d)$ and
 \begin{align*}
-\pa_{x_j} W(x) = \int_{\reals^d} \pa_{x_j} E(x-y) f(y) dy, \quad \forall x\in \reals^d
+\pa_{x_j} W(x) = \int_{\Omega} \pa_{x_j} E(x-y) f(y) dy, \quad \forall x\in \reals^d
 \end{align*}
 \begin{p}
 \textbf{Idea :} Near the singularity of $E$, the singularity integrable, and at $\infty$, we use the fact that $f$ is integrable to bound the integral. So roughly, as $|\nabla E(x-y)| \leq \frac{1}{dw_d} |x-y|^{1-d}$, we have
@@ -810,7 +810,7 @@ Fix $x, \bar{x} \in B_1$. Let $0<\delta := |x-\bar{x}|< 2R$ and $\xi = \frac{1}{
 \end{align*}
 Then
 \begin{align*}
-\pa_{x_i x_j}^2 W(x) - \pa_{x_i x_j}^2 W(\bar{x}) = f(x)I_1 + (f(x)- f(\bar{x}))I_2 + I_3 + I_4 + (f(x)-f(\bar{x}))I_5 + I_6 
+\pa_{x_i x_j}^2 W(\bar{x}) - \pa_{x_i x_j}^2 W(x) = f(x)I_1 (f(x)- f(\bar{x}))I_2 + I_3 + I_4 + (f(x)-f(\bar{x}))I_5 + I_6 
 \end{align*}
 where
 \begin{align*}
@@ -847,7 +847,7 @@ For $I_6$,
 \begin{align*}
 |I_6| &\leq [f]_{\alpha, B_2} \int_{B_2 \backslash B(\xi, \delta)} \Big|\pa^2_{x_i x_j} E(x-y) -\pa^2_{x_i x_j} E(\bar{x}-y)\Big| |x-y|^{\alpha} dy \\
 &\leq \delta[f]_{\alpha, B_2} \int_{B_2 \backslash B(\xi, \delta)} \Big| \nabla \pa_{x_i x_j}^2 E(x_{int} -y)\Big| |x-y|^{\alpha} dy \\
-&\leq C_4(d)' \delta[f]_{\alpha, B_2} \int_{\delta}^{2R} \int_{S^{d-1}} r^{-1-d} r^{\alpha} r^{d-1} dr \\
+&\leq C_4(d)' \delta[f]_{\alpha, B_2} \int_{\delta}^{2R} r^{-1-d} r^{\alpha} r^{d-1} dr \\
 &\leq C_4(d)'' \delta[f]_{\alpha, B_2}\Big[ \frac{1}{\alpha-1}r^{\alpha-1}\Big]_{r=\delta}^{2R} \\
 &\leq C_4(d) [f]_{C^{0, \alpha}} \delta^{\alpha}
 \end{align*}
