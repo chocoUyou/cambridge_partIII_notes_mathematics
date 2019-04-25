@@ -167,7 +167,7 @@ where $Lu = \sum_{i,j} \pa_i (a^{ij}(x) \pa_j u) + \sum_j b_i(x)\pa_j u + c(x)u$
 
 To prove uniqueness and existence of solution of elliptic PDEs, we used \emph{Lax-Milgram theorem}, which leads us to use \emph{variational methods (or energy methods)} in Hilbert space $L^2(\Omega)$. Recall, we $u$ is a weak solution of $Lu =f$, $u|_{\pa \Omega}=g$ if $B[u,v]= \langle f,v\rangle$ for all $v\in H^s(\Omega)$, together with given boundary condition(in the sense of traces). Then we proved regularity results of the solution $Lu =f \in L^2(\Omega)$, for exampel $u\in H^1(\Omega) \cap H^2(\Omega)$, given $a,b,c$ sufficiently smooth, which was a result of energy estimate
 \begin{align*}
-\norms{u}{H^2}\leq C\norms{f}{L^2}
+\snorms{u}{H^2}\leq C\snorms{f}{L^2}
 \end{align*}
 
 \subsubsection*{Potential theory}
@@ -199,7 +199,7 @@ The potential theory is completely different from Lax-Milgram theory, and is at 
 
 \subsubsection*{1st step. Schauder theory}
 
-Let $Lu = f \in C^{0, \alpha}$, $u|_{\pa \Omega}= g \in C^0(\pa \Omega)$. Then we have $u\in C^{2,\alpha}(\Omega) \cap C^0(\bar{\Omega})$. We will examine $\norms{u}{C^{0, \alpha}}= \inf_{x,y} \frac{|u(x)-u(y)|}{x-y|^{\alpha}}$. This uses classical potential theory (Perrons' method). This has link to the theory of Harmonic functions (e.g. maximal principle) and probability theory.
+Let $Lu = f \in C^{0, \alpha}$, $u|_{\pa \Omega}= g \in C^0(\pa \Omega)$. Then we have $u\in C^{2,\alpha}(\Omega) \cap C^0(\bar{\Omega})$. We will examine $\snorms{u}{C^{0, \alpha}}= \inf_{x,y} \frac{|u(x)-u(y)|}{|x-y|^{\alpha}}$. This uses classical potential theory (Perrons' method). This has link to the theory of Harmonic functions (e.g. maximal principle) and probability theory.
 
 \subsubsection*{2nd step. Extend Schauder theory of $L$ not close to $-\lap$}
 
@@ -351,7 +351,7 @@ and therefore we may estimate $|\nabla u(x)|$ in terms of $u$.
 
 \thmnum{2.9} \emph{(Interior estimates for harmonic functions)} Let $\lap u =0$ in $\Omega$. Let $\Omega' \subset \Omega$ compact. Then $\forall \alpha \in \mathbb{N}^d$,
 \begin{align*}
-\sup_{\Omega} |\pa^{\alpha}u| \leq \Big( \frac{|\alpha|d}{\text{dist}(\Omega', \pa \Omega)}\Big)^{|\alpha|} \sup_{\Omega} |u|
+\sup_{\Omega'} |\pa^{\alpha}u| \leq \Big( \frac{|\alpha|d}{\text{dist}(\Omega', \pa \Omega)}\Big)^{|\alpha|} \sup_{\Omega} |u|
 \end{align*}
 \begin{p}
 \textbf{Fact :} (Exercise) $\lap u= 0$ implies $u\in C^{\infty}(\Omega)$ and $u$ real analytic.
@@ -581,7 +581,7 @@ u = \varphi, \quad &\varphi \in C^0(\pa \Omega)
 \end{align*}
 Then
 \begin{align*}
-u(y) = \int_{\pa \Omega} \Big( \varphi\frac{\pa E}{\pa n_x}(x-y) - E(x-y)\frac{\pa u}{\pa n_x}(x) \Big) dS_x + \int_{\Omega} E(x-y) f(x) dx
+u(y) = \int_{\pa \Omega} \Big( \varphi\frac{\pa E}{\pa n_x}(x-y) - E(x-y)\frac{\pa u}{\pa n_x}(x) \Big) dS_x - \int_{\Omega} E(x-y) f(x) dx
 \end{align*}
 \begin{proof}
 \pf Let $\Omega_{\rho} = \Omega \backslash B(y, \rho)$. Recall : for a $C^1$-function $w$, one has
@@ -631,7 +631,7 @@ We now assume that $\varphi \in C^0(\pa \Omega)$ and $f\in C^0(\Omega)$ is \text
 \defi $f\in C^0(\Omega)$ is \textbf{locally H\"older} if for $\alpha\leq 1$, $\forall x\in \Omega$, $\exists\delta>0$, $\exists C_{x,\alpha}>0$ such that $|f(x)-f(y)|\leq C_{x,\alpha} |x-y|^{\alpha}$ for all $y\in B(x,\delta)$.
 \s
 
-\thmnum{5.3} Under these hypothesis, the Dirichlet problem has a unique solution $u\in C^2(\Omega) \cap C^0(\bar{\Omega})$.
+\thmnum{5.3} Under these hypothesis($f$ is locally H\"older and $\varphi \in C^0(\pa \Omega)$), the Dirichlet problem has a unique solution $u\in C^2(\Omega) \cap C^0(\bar{\Omega})$.
 \s
 
 \emph{Observation} : if we can find a classical solution to $\lap w = f$ without assuming the boundary condition, then since we know from Perron's method that we can solve Laplace's equation with any continuous boundary condition, we can add some harmonic function to $w$ to construct a solution to the Dirichlet problem.
@@ -685,7 +685,7 @@ So $W$ definded in $(\dagger)$ would be our central object of study.
 \end{align*}
 For $R$ small enough, this is bounded by
 \begin{align*}
-|\pa_{x_j} W(x)| \leq \frac{1}{dw_d} \norms{f}{L^{\infty}(\Omega)} \int_{|x-y|< R} \frac{dy}{|x-y|^{d-1}} + \frac{1}{dw_d R^{d-1}} \int_{\reals^{d}} |f(y)| dy
+|\pa_{x_j} W(x)| \leq \frac{1}{dw_d} \snorms{f}{L^{\infty}(\Omega)} \int_{|x-y|< R} \frac{dy}{|x-y|^{d-1}} + \frac{1}{dw_d R^{d-1}} \int_{\reals^{d}} |f(y)| dy
 \end{align*}
 
 
@@ -712,9 +712,9 @@ so
 We have $\pa_{x_j} \eta_{\epsilon}(x-y) = \frac{1}{\epsilon} \eta_{x_j}(\frac{x-y}{\epsilon})$ so
 \begin{align*}
 & \leq \int_{|x-y|< 2\epsilon} |\pa_{x_j} \eta_{\epsilon}(x-y)||E(x-y)||f(y)|dy + \int_{|x-y|<2\epsilon} (1-\eta_{\epsilon}(x)) |\pa_{x_j}E(x-y)| |f(y)|dy \\
-& \leq \frac{2}{\epsilon} \norms{f}{L^{\infty}} \int_{|x-y|< 2\epsilon} |E(x-y)| dy + \norms{f}{L^{\infty}} \int_{|x-y|< 2\epsilon} |\pa_{x_j} E(x-y)|dy \\
-& \leq \frac{2}{\epsilon}\norms{f}{L^{\infty}} \int_0^{2\epsilon} \int_{S^{d-1}} \frac{r^{d-1}}{r^{d-2}} dS_{\omega} dr + c_d \norms{f}{L^{\infty}} \iint \frac{r^{d-1}}{r^{d-1}}dS_{\omega} dr \\
-& = \frac{2}{\epsilon} \norms{f}{L^{\infty}} |S^{d-1}| \frac{1}{2}(2\epsilon)^2 + c_d \norms{f}{L^{\infty}} 2\epsilon |S^{d-1}|  o(\epsilon)
+& \leq \frac{2}{\epsilon} \snorms{f}{L^{\infty}} \int_{|x-y|< 2\epsilon} |E(x-y)| dy + \snorms{f}{L^{\infty}} \int_{|x-y|< 2\epsilon} |\pa_{x_j} E(x-y)|dy \\
+& \leq \frac{2}{\epsilon}\snorms{f}{L^{\infty}} \int_0^{2\epsilon} \int_{S^{d-1}} \frac{r^{d-1}}{r^{d-2}} dS_{\omega} dr + c_d \snorms{f}{L^{\infty}} \iint \frac{r^{d-1}}{r^{d-1}}dS_{\omega} dr \\
+& = \frac{2}{\epsilon} \snorms{f}{L^{\infty}} |S^{d-1}| \frac{1}{2}(2\epsilon)^2 + c_d \snorms{f}{L^{\infty}} 2\epsilon |S^{d-1}|  o(\epsilon)
 \end{align*}
 \end{subproof}
 Once we have the claim, the lemma follows directly.
@@ -779,17 +779,17 @@ In Schauder theory, we deal with $Lu=f$, where $L$ is an elliptic operator with 
 \begin{align*}
 [f]_{\alpha, \Omega} = \sup_{x\neq y, x,y\in \Omega} \frac{|f(x)-f(y)|}{|x-y|^{\alpha}}
 \end{align*}
-and $\norms{f}{C^{0,\alpha}(\Omega)} = \norms{f}{C^0(\Omega)} + [f]_{\alpha, \Omega}$ and also
+and $\snorms{f}{C^{0,\alpha}(\Omega)} = \snorms{f}{C^0(\Omega)} + [f]_{\alpha, \Omega}$ and also
 \begin{align*}
-\norms{f}{C^{k,\alpha}(\Omega)} = \norms{f}{C^k(\Omega)} + \sup_{|\beta|=k}[\pa^{\beta} f]_{\alpha, \Omega}
+\snorms{f}{C^{k,\alpha}(\Omega)} = \snorms{f}{C^k(\Omega)} + \sup_{|\beta|=k}[\pa^{\beta} f]_{\alpha, \Omega}
 \end{align*}
-where $\norms{f}{C^k(\Omega)} = \sum_{|\beta|\leq k} \norms{\pa^{\beta} f}{C^0(\Omega)}$.
+where $\snorms{f}{C^k(\Omega)} = \sum_{|\beta|\leq k} \snorms{\pa^{\beta} f}{C^0(\Omega)}$.
 \s
 
 Now Rescale the norms w.r.t. $\Omega$. Letting $d= \text{diam}(\Omega) = \sup \{|x-y| : x,y\in \bar{\Omega}\}$, define
 \begin{align*}
-&\norms{f}{C^k(\Omega)}' = \sum_{j=0}^k d^j \sup_{|\beta|=j} \sup_{\Omega} |\pa^{\beta}f| \\
-&\norms{f}{C^{k, \alpha}(\Omega)}' = \norms{f}{C^k(\Omega)}' + d^{k+\alpha}\sup_{|\beta|=k}[\pa^{\beta}f]_{\alpha, \Omega}
+&\snorms{f}{C^k(\Omega)}' = \sum_{j=0}^k d^j \sup_{|\beta|=j} \sup_{\Omega} |\pa^{\beta}f| \\
+&\snorms{f}{C^{k, \alpha}(\Omega)}' = \snorms{f}{C^k(\Omega)}' + d^{k+\alpha}\sup_{|\beta|=k}[\pa^{\beta}f]_{\alpha, \Omega}
 \end{align*}
 \s
 
@@ -798,8 +798,8 @@ We first start the study of H\"{o}lder regularity locally.
 
 \lemnum{6.1} Let $x_0\in \reals^d$, $B_2 = B(x_0, 2R)$, $B_1=B(x_0, R)$, $f\in C^{0, \alpha}(\bar{B}_2)$, $0<\alpha<1$, then $W$ defined by $W(x) = \int_{\Omega} E(x-y) f(y)dy$ is in $C^{2,\alpha}(B_1)$. Furthermore,
 \begin{align*}
-&\norms{D^2 W}{C^{0, \alpha}(B_1)}' \leq C \norms{f}{C^{0, \alpha}(B_2)}' \\
-\textit{Equivalently,} \quad &\norms{D^2 W}{C^0(B_1)} +R^{\alpha}[D^2 W]_{\alpha, B_1} \leq C \Big( \norms{f}{C^0(\bar{B_2})} + R^{\alpha}[f]_{\alpha, B_2} \Big)
+&\snorms{D^2 W}{C^{0, \alpha}(B_1)}' \leq C \snorms{f}{C^{0, \alpha}(B_2)}' \\
+\textit{Equivalently,} \quad &\snorms{D^2 W}{C^0(B_1)} +R^{\alpha}[D^2 W]_{\alpha, B_1} \leq C \Big( \snorms{f}{C^0(\bar{B_2})} + R^{\alpha}[f]_{\alpha, B_2} \Big)
 \end{align*}
 \begin{p}
 \pf The only thing we can do at this point is just to compute the difference and make estimate on H\"older norm directly. \emph{[Giorgi method introduced later is an improved version of this, using the idea of oscillation (see later).]}
@@ -857,13 +857,13 @@ where we used $|\pa^2_{x_i x_j} E(x-y) -\pa^2_{x_i x_j} E(\bar{x}-y)| \leq \delt
 \end{p}
 \s
 
-\corrnum{6.2} Let $u\in C^2_0(\reals^d)$, $f\in C^{0, \alpha}(\reals)$ compactly supported and such that $-\lap u = f$ in $\reals^d$. Then $u\in C^{2, \alpha}(\reals^d)$, and if $B= B(x_0, R)$ is any ball containing $\text{supp}(u)$ (the support is compact by its definition), we have
+\corrnum{6.2} Let $u\in C^2_0(\reals^d)$, $f\in C^{0, \alpha}(\reals^d)$ compactly supported and such that $-\lap u = f$ in $\reals^d$. Then $u\in C^{2, \alpha}(\reals^d)$, and if $B= B(x_0, R)$ is any ball containing $\text{supp}(u)$ (the support is compact by its definition), we have
 \begin{align*}
-\norms{D^2 u}{C^{0, \alpha}(B)}' \leq C [f]_{0, \alpha, B}'
+\snorms{D^2 u}{C^{0, \alpha}(B)}' \leq C \snorms{f}{0, \alpha, B}'
 \end{align*}
 for some $C =C(d, \alpha)$ and
 \begin{align*}
-\norms{u}{C^{1,\alpha}(B)}\leq C' R^2 [f]_{0, B}
+\snorms{u}{C^{1,\alpha}(B)}\leq C' R^2 \snorms{f}{0, B}
 \end{align*}
 for some $C' = C(d)$.
 \begin{p}
@@ -875,7 +875,7 @@ for some $C' = C(d)$.
 
 \propnum{6.3} $\Omega \subset \reals^d$ domain, $f\in C^{0, \alpha}(\Omega)$ and $u\in C^2(\Omega)$ be the solution of $-\lap u =f$ in $\Omega$. Then $u\in C^2(\Omega) \cap C^0(\bar{\Omega})$ and satisfies, for all balls $B_1 = (x_0, R)$, $B_2= B(x_0, 2R) \subset \Omega$,
 \begin{align*}
-\norms{u}{C^{2, \alpha}(B_1)}' \leq C \big(\norms{u}{C^0(B_2)} + \norms{f}{C^{0,\alpha}(B_2)}' \big) 
+\snorms{u}{C^{2, \alpha}(B_1)}' \leq C \big(\snorms{u}{C^0(B_2)} + \snorms{f}{C^{0,\alpha}(B_2)}' \big) 
 \end{align*}
 for some $C =C(d, \alpha)>0$.
 \begin{p}
@@ -999,7 +999,7 @@ To prove \textbf{Theorem 7.4}, We first introduce two interpolation lemmas to co
 
 \lemnum{1} For any $\sigma,\tau \geq 0$,
 \begin{align*}
-|fg|^{(\sigma +\tau)}_{0, \alpha, \Omega}\leq |f|^{(\sigma)}_{0, \alpha, \Omega} + |g|^{(\tau)}_{0, \alpha, \Omega}
+|fg|^{(\sigma +\tau)}_{0, \alpha, \Omega}\leq |f|^{(\sigma)}_{0, \alpha, \Omega} |g|^{(\tau)}_{0, \alpha, \Omega}
 \end{align*}
 \s
 
@@ -1438,7 +1438,7 @@ A maximum principle in a different flavour :
 
 \thm \emph{(Maximum principle, Alexandroff)} Let $u \in C^0(\bar{\Omega}) \cap C^2(\Omega)$ be satisfying $Lu \geq f$ in $\Omega$ with $\frac{|b(x)|}{D^*}, \frac{f(x)}{D^*} \in L^d(\Omega)$, $c\leq  0$ in $\Omega$, where $D^* := \text{det}(A(x))^{1/d}$. Then
 \begin{align*}
-\sup_{\Omega} u \leq \sup_{\pa \Omega} u^+  + c \norms{\frac{f^-}{D^*}}{L^d(\Gamma_+)}
+\sup_{\Omega} u \leq \sup_{\pa \Omega} u^+  + c \snorms{\frac{f^-}{D^*}}{L^d(\Gamma_+)}
 \end{align*}
 for $\Gamma_+ \subset \Omega$.
 \s
@@ -1493,9 +1493,9 @@ where $\lambda(x)$ is the minimum eigenvalue of $A(x)$ and $\Lambda(x)$ is the m
 
 \thm \emph{(Alexandroff)} If $\Omega \subset \reals^n$, $u\in C^2(\Omega) \cap C^0(\bar{\Omega})$, $Lu \geq f$ in $\Omega$ with $\frac{|b|}{D^*}, \frac{f}{D^*} \in L^d(\Omega)$, $c\leq 0$ in $\Omega$, then
 \begin{align*}
-\sup_{\Omega} u \leq \sup_{\pa \Omega} u^+ + C\norms{\frac{f^-}{D^*}}{L^d(\Gamma^+)}
+\sup_{\Omega} u \leq \sup_{\pa \Omega} u^+ + C\snorms{\frac{f^-}{D^*}}{L^d(\Gamma^+)}
 \end{align*}
-for some constant $C = C(d, \text{diam}(\Omega), \norms{\frac{b}{D^*}}{L^d(\Omega)})$.
+for some constant $C = C(d, \text{diam}(\Omega), \snorms{\frac{b}{D^*}}{L^d(\Omega)})$.
 
 \emph{[A nice thing about this estimate is that $f^-/D^*$ need not be H\"older in order to make this estimate - it can be something much weaker. Hence, this can be applied on functions that dependent on $u$ in a non-linear fashion, which makes it possible to make estimates on non-linear equations.]}
 \s
@@ -1550,7 +1550,7 @@ so
 \begin{align*}
 \frac{\tilde{u}^d}{\mu^d}+1 \leq \exp \Big( \frac{d}{w_d} \int_{\Gamma^+ \cap \Omega^+} \big( |b|^d + \frac{(f^-)^d}{D \mu^d} \big)dx\Big)
 \end{align*}
-Choose $\mu = \norms{\frac{f^-}{D^*}}{L^d(\Gamma^+ \cap \Omega^+)}$, then we are done.
+Choose $\mu = \snorms{\frac{f^-}{D^*}}{L^d(\Gamma^+ \cap \Omega^+)}$, then we are done.
 
 \eop
 \end{p}
@@ -1634,7 +1634,7 @@ Also \emph{elliptic regularity}(\textit{c.f.} see \textbf{Theorem 6.3}), we have
 \end{align*}
 so \emph{global Schauder estimate} gives
 \begin{align*}
-\norms{u_k - u_l}{2, 0, \bar{\Omega}} \leq & C \norms{ \big( f(\cdot, u_{k-1}(\cdot)) - f(\cdot, u_{l-1}(\cdot)) \big) - \lambda (u_{k-1} - u_{l-1}}{0, 0, \bar{\Omega}} \\
+\snorms{u_k - u_l}{2, 0, \bar{\Omega}} \leq & C \snorms{ \big( f(\cdot, u_{k-1}(\cdot)) - f(\cdot, u_{l-1}(\cdot)) \big) - \lambda (u_{k-1} - u_{l-1}}{0, 0, \bar{\Omega}} \\
 \rightarrow & 0 \quad \text{as } k,l\rightarrow \infty
 \end{align*}
 where we have used the fact that $f$ should be $\lambda$-Lipschitz in the second component and uniformly continuous is the first component. Hence the convergence $u_k \rightarrow u$ is in fact made in $C^{2,0}(\bar{\Omega})$. So we have
@@ -2033,14 +2033,14 @@ where $C= C(\lambda, \Lambda)$.
 \begin{align*}
 \int_{B(0, 1/2)} |\nabla (\pa^{\alpha} w)|^2 dx \leq C \int |\pa^{\alpha} w|^2 dx \leq \cdots \lesssim \int |w|^2 
 \end{align*}
-with appropriate integration domains for in between terms. So we see $\norms{u}{H^k(B_{1/2})} \leq C(k, \lambda, \Lambda)\norms{w}{L^2(B_1)}$. Also one may make embedding $H^k \hookrightarrow L^{\infty}$ for $k>d/2$, with $\norms{w}{L^{\infty}(B_{1/2})} \leq C' \norms{w}{H^k(B_{1/2})}$, so we have the conclusion.
+with appropriate integration domains for in between terms. So we see $\snorms{u}{H^k(B_{1/2})} \leq C(k, \lambda, \Lambda)\snorms{w}{L^2(B_1)}$. Also one may make embedding $H^k \hookrightarrow L^{\infty}$ for $k>d/2$, with $\snorms{w}{L^{\infty}(B_{1/2})} \leq C' \snorms{w}{H^k(B_{1/2})}$, so we have the conclusion.
 
 \emph{[A short derivation of embedding $i : H^k(\Omega) \hookrightarrow L^{\infty}(\Omega)$ for $k>d/2$ and $\Omega$ bounded : For $f\in L^{\infty}(\Omega)$,
 \begin{align*}
 |f(x)| =&\, \Big| \frac{1}{(2\pi)^d} \int_{\reals^d} \tilde{u}(\xi) e^{ix\xi} d\xi\Big| \\
 =&\, \Big| \frac{1}{(2\pi)^d}\int_{\reals^d} \frac{(1+|\xi|^2)^{k/2}}{(1+|\xi|^2)^{k/2}}\hat{u}(\xi)e^{ix\xi} d\xi \Big| \\
 \leq &\, \Big( \int \frac{d\xi}{(1+|\xi|^2)^{k}}\Big)^{1/2}\Big( \int (1+|\xi|^2)^{k}|\hat{u}(\xi)|^2 d\xi\Big)^{1/2} \\
-\leq &\, C' \norms{u}{H^k(\Omega)} 
+\leq &\, C' \snorms{u}{H^k(\Omega)} 
 \end{align*}
 Note that the integral converges only if $k>d/2$.]}
 \end{subproof}
@@ -2157,7 +2157,7 @@ Also by \emph{H\"older inequality},
 \end{align*}
 where $q$ was chosen so that $\alpha = 2- \frac{n}{q} \in (0,1)$. Hence we have
 \begin{align*}
-\int_{B(x_0, \rho)} |Du|^2 & \leq C \bigg( \Big[ \big(\frac{\rho}{r} \big)^d + \tau^2(r) \Big] \int_{B(x_0,r)} |Du|^2 + r^{d-2+2\alpha} \norms{f}{L^q(B_1)}^2 \\
+\int_{B(x_0, \rho)} |Du|^2 & \leq C \bigg( \Big[ \big(\frac{\rho}{r} \big)^d + \tau^2(r) \Big] \int_{B(x_0,r)} |Du|^2 + r^{d-2+2\alpha} \snorms{f}{L^q(B_1)}^2 \\
 & \quad\quad\quad\quad + \Big( \int_{B(x_0, r)} |c|^d dx\Big)^{\frac{2}{d}}\int_{B(x_0, r)} u^2 dx \bigg)
 \end{align*}
 To proceed, we note the following lemma :
@@ -2330,10 +2330,10 @@ with $\frac{1}{p}+ \frac{1}{p'} = \frac{1}{q} + \frac{1}{q'} =1$, and $q$ is as 
 \begin{align*}
 \int |f|v \zeta^2 dx \leq \snorms{f}{L^q} \Big( \int |v\zeta|^{\frac{2d}{d-2}} \Big)^{\frac{d-2}{2d}} \Big( \int_{\{\zeta v\neq 0\}} |\zeta|^{\theta} dx \Big)^{1/\theta}
 \end{align*} 
-Key idea : it seems dealing with $\norms{\zeta}{L^{\theta}}$ is difficult. However, noting that $|\zeta| <1$, then $\big( \int_{\{\zeta v\neq 0\}} |\zeta|^{\theta} dx \big)^{1/\theta} \leq \text{meas}(\{\zeta v\neq 0\})^{1/\theta}$. Also, by Sobolev embedding, has $\big( \int |v\zeta|^{\frac{2d}{d-2}} \big)^{\frac{d-2}{2d}} \leq \snorms{\nabla(v\zeta)}{L^2}$. So by Young's inequality,
+Key idea : it seems dealing with $\snorms{\zeta}{L^{\theta}}$ is difficult. However, noting that $|\zeta| <1$, then $\big( \int_{\{\zeta v\neq 0\}} |\zeta|^{\theta} dx \big)^{1/\theta} \leq \text{meas}(\{\zeta v\neq 0\})^{1/\theta}$. Also, by Sobolev embedding, has $\big( \int |v\zeta|^{\frac{2d}{d-2}} \big)^{\frac{d-2}{2d}} \leq \snorms{\nabla(v\zeta)}{L^2}$. So by Young's inequality,
 \begin{align*}
-\int |f|v \zeta^2 dx & \leq C_{\delta} \norms{f}{L^q}^2 \text{meas}(\{\zeta v\neq 0\})^{2/\theta} + \delta \int |\nabla (v\zeta)|^2 dx \\
-& = C_{\delta} \norms{f}{L^q}^2 \text{meas}(\{\zeta v\neq 0\})^{1+ \frac{2}{d} - \frac{2}{q}} + \delta \int |\nabla(u\zeta)|^2 dx 
+\int |f|v \zeta^2 dx & \leq C_{\delta} \snorms{f}{L^q}^2 \text{meas}(\{\zeta v\neq 0\})^{2/\theta} + \delta \int |\nabla (v\zeta)|^2 dx \\
+& = C_{\delta} \snorms{f}{L^q}^2 \text{meas}(\{\zeta v\neq 0\})^{1+ \frac{2}{d} - \frac{2}{q}} + \delta \int |\nabla(u\zeta)|^2 dx 
 \end{align*}
 for some $C_{\delta}$.
 \s
@@ -2360,7 +2360,7 @@ Using the claim, we would have $(*)$ with $c$ eliminated and in written terms of
 \end{align*}
 Using H\"older inequality and Sobolev embedding, has
 \begin{align*}
-\int (v\zeta)^2 dx \leq \norms{v\zeta}{L^{\frac{2d}{d-2}}}^2 \text{meas}(\{v\zeta \neq 0 \})^{\frac{2}{d}} \leq C_d \int |\nabla(v\zeta)|^2 dx \cdot \text{meas}(\{v\zeta \neq 0 \})^{\frac{2}{d}}
+\int (v\zeta)^2 dx \leq \snorms{v\zeta}{L^{\frac{2d}{d-2}}}^2 \text{meas}(\{v\zeta \neq 0 \})^{\frac{2}{d}} \leq C_d \int |\nabla(v\zeta)|^2 dx \cdot \text{meas}(\{v\zeta \neq 0 \})^{\frac{2}{d}}
 \end{align*}
 This yields, along with $(**)$,
 \begin{align*}

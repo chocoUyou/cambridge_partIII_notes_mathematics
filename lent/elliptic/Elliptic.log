@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.18 (MiKTeX 2.9.6500) (preloaded format=pdflatex 2018.2.9)  31 MAR 2019 22:25
+This is pdfTeX, Version 3.14159265-2.6-1.40.18 (MiKTeX 2.9.6500) (preloaded format=pdflatex 2018.2.9)  25 APR 2019 18:47
 entering extended mode
 **./Elliptic.tex
 (Elliptic.tex
@@ -1152,7 +1152,7 @@ Overfull \hbox (34.99677pt too wide) detected at line 2453
 Here is how much of TeX's memory you used:
  15581 strings out of 493312
  309373 string characters out of 3136305
- 458540 words of memory out of 3000000
+ 457540 words of memory out of 3000000
  18762 multiletter control sequences out of 15000+200000
  59782 words of font info for 64 fonts, out of 3000000 for 9000
  1141 hyphenation exceptions out of 8191
@@ -1177,7 +1177,7 @@ y10.pfb><C:/Program Files (x86)/MiKTeX 2.9/fonts/type1/public/lm/lmsy6.pfb><C:/
 Program Files (x86)/MiKTeX 2.9/fonts/type1/public/lm/lmsy8.pfb><C:/Program File
 s (x86)/MiKTeX 2.9/fonts/type1/public/amsfonts/symbols/msam10.pfb><C:/Program F
 iles (x86)/MiKTeX 2.9/fonts/type1/public/amsfonts/symbols/msbm10.pfb>
-Output written on Elliptic.pdf (52 pages, 537462 bytes).
+Output written on Elliptic.pdf (52 pages, 536990 bytes).
 PDF statistics:
  249 PDF objects out of 1000 (max. 8388607)
  0 named destinations out of 1000 (max. 500000)

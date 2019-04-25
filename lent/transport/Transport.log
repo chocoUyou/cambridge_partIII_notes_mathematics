@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.18 (MiKTeX 2.9.6500) (preloaded format=pdflatex 2018.2.9)  30 MAR 2019 22:37
+This is pdfTeX, Version 3.14159265-2.6-1.40.18 (MiKTeX 2.9.6500) (preloaded format=pdflatex 2018.2.9)  13 APR 2019 18:48
 entering extended mode
 **./Transport.tex
 (Transport.tex
@@ -1012,58 +1012,58 @@ LaTeX Font Info:    Try loading font information for OMS+rsfs on input line 89.
 
 
 ("C:\Program Files (x86)\MiKTeX 2.9\tex\latex\calrsfs\omsrsfs.fd")
-LaTeX Font Info:    Try loading font information for OT1+lmss on input line 181
+LaTeX Font Info:    Try loading font information for OT1+lmss on input line 180
 .
 
 ("C:\Program Files (x86)\MiKTeX 2.9\tex\latex\lm\ot1lmss.fd"
 File: ot1lmss.fd 2009/10/30 v1.6 Font defs for Latin Modern
 )
 LaTeX Font Info:    External font `lmex10' loaded for size
-(Font)              <12> on input line 181.
+(Font)              <12> on input line 180.
 LaTeX Font Info:    External font `lmex10' loaded for size
-(Font)              <8> on input line 181.
+(Font)              <8> on input line 180.
 LaTeX Font Info:    External font `lmex10' loaded for size
-(Font)              <6> on input line 181.
-LaTeX Font Info:    Try loading font information for U+eus on input line 185.
+(Font)              <6> on input line 180.
+LaTeX Font Info:    Try loading font information for U+eus on input line 184.
 
 ("C:\Program Files (x86)\MiKTeX 2.9\tex\latex\amsfonts\ueus.fd"
 File: ueus.fd 2013/01/14 v3.01 Euler Script
 ) [1
 
 {C:/Users/Jiwoon/AppData/Local/MiKTeX/2.9/pdftex/config/pdftex.map}]
-LaTeX Font Info:    Try loading font information for OMS+lmr on input line 200.
+LaTeX Font Info:    Try loading font information for OMS+lmr on input line 199.
 
 
 ("C:\Program Files (x86)\MiKTeX 2.9\tex\latex\lm\omslmr.fd"
 File: omslmr.fd 2009/10/30 v1.6 Font defs for Latin Modern
 )
 LaTeX Font Info:    Font shape `OMS/lmr/m/n' in size <12> not available
-(Font)              Font shape `OMS/lmsy/m/n' tried instead on input line 200.
+(Font)              Font shape `OMS/lmsy/m/n' tried instead on input line 199.
  [2]
-Overfull \hbox (6.76222pt too wide) detected at line 271
+Overfull \hbox (6.76222pt too wide) detected at line 270
 []
  []
 
 <1.png, id=24, 1394.20876pt x 1045.9075pt>
 File: 1.png Graphic file (type png)
 <use 1.png>
-Package pdftex.def Info: 1.png  used on input line 285. on input line 285.
+Package pdftex.def Info: 1.png  used on input line 284. on input line 284.
 Package pdftex.def Info: Requested size: 209.12228pt x 156.87935pt on input lin
-e 285.
+e 284.
 
 LaTeX Warning: `h' float specifier changed to `ht'.
 
 <2.png, id=26, 1456.44125pt x 796.9775pt>
 File: 2.png Graphic file (type png)
 <use 2.png>
-Package pdftex.def Info: 2.png  used on input line 301. on input line 301.
+Package pdftex.def Info: 2.png  used on input line 300. on input line 300.
 Package pdftex.def Info: Requested size: 218.45676pt x 119.54146pt on input lin
-e 301.
+e 300.
 
 LaTeX Warning: `h' float specifier changed to `ht'.
 
 [3] [4 <./1.png> <./2.png>] [5]
-Overfull \hbox (1.1646pt too wide) in paragraph at lines 405--406
+Overfull \hbox (1.1646pt too wide) in paragraph at lines 404--405
 \OT1/lmr/m/n/12 qe-unce $\OML/lmm/m/it/12 [] \OMS/lmsy/m/n/12 2 \OT1/lmr/m/n/1
 2 (\OML/lmm/m/it/12 ; \OT1/lmr/m/n/12 ) [] \OML/lmm/m/it/12  \OMS/lmsy/m/n/
 12 2 \OML/lmm/m/it/12 M\OT1/lmr/m/n/12 (\OML/lmm/m/it/12 X \OMS/lmsy/m/n/12  \
@@ -1079,33 +1079,33 @@ m/n/12 !
 <3.png, id=53, 1889.0575pt x 685.56125pt>
 File: 3.png Graphic file (type png)
 <use 3.png>
-Package pdftex.def Info: 3.png  used on input line 532. on input line 532.
+Package pdftex.def Info: 3.png  used on input line 531. on input line 531.
 Package pdftex.def Info: Requested size: 283.3464pt x 102.82974pt on input line
- 532.
+ 531.
  [9 <./3.png>] [10]
 <4.png, id=61, 1375.1375pt x 1127.21124pt>
 File: 4.png Graphic file (type png)
 <use 4.png>
-Package pdftex.def Info: 4.png  used on input line 633. on input line 633.
+Package pdftex.def Info: 4.png  used on input line 632. on input line 632.
 Package pdftex.def Info: Requested size: 206.26172pt x 169.07439pt on input lin
-e 633.
+e 632.
  [11 <./4.png>]
-Overfull \hbox (33.60335pt too wide) detected at line 686
+Overfull \hbox (33.60335pt too wide) detected at line 685
 []
  []
 
 [12]
-Overfull \hbox (34.87111pt too wide) detected at line 722
+Overfull \hbox (34.87111pt too wide) detected at line 721
 []
  []
 
 
-Overfull \hbox (64.74269pt too wide) detected at line 738
+Overfull \hbox (64.74269pt too wide) detected at line 737
 []
  []
 
 [13] [14] [15] [16]
-Overfull \hbox (16.72643pt too wide) detected at line 948
+Overfull \hbox (16.72643pt too wide) detected at line 947
 []
  []
 
@@ -1113,12 +1113,12 @@ Overfull \hbox (16.72643pt too wide) detected at line 948
 <5.png, id=95, 1933.2225pt x 1109.14375pt>
 File: 5.png Graphic file (type png)
 <use 5.png>
-Package pdftex.def Info: 5.png  used on input line 1131. on input line 1131.
+Package pdftex.def Info: 5.png  used on input line 1130. on input line 1130.
 Package pdftex.def Info: Requested size: 289.97087pt x 166.36438pt on input lin
-e 1131.
+e 1130.
  [21 <./5.png>] [22] [23] [24] [25] [26] [27] [28] [29]
 [30] [31] [32] [33]
-Overfull \hbox (0.36534pt too wide) in paragraph at lines 1755--1756
+Overfull \hbox (0.36534pt too wide) in paragraph at lines 1754--1755
 []\OT1/lmr/m/n/12 (b) We show $\OML/lmm/m/it/12 '$ \OT1/lmr/m/n/12 is Lip-s-chi
 tz con-tin-u-ous on $\OML/lmm/m/it/12 B\OT1/lmr/m/n/12 (\OML/lmm/m/it/12 x; []
 =\OT1/lmr/m/n/12 2[])$. Let $\OML/lmm/m/it/12 x[]; x[] \OMS/lmsy/m/n/12 2 \OML/
@@ -1126,12 +1126,12 @@ lmm/m/it/12 B\OT1/lmr/m/n/12 (\OML/lmm/m/it/12 x; []=\OT1/lmr/m/n/12 2[])$
  []
 
 [34] [35] [36]
-Overfull \hbox (3.294pt too wide) detected at line 1871
+Overfull \hbox (3.294pt too wide) detected at line 1870
 []
  []
 
 [37]
-Overfull \hbox (12.91943pt too wide) in paragraph at lines 1942--1943
+Overfull \hbox (12.91943pt too wide) in paragraph at lines 1941--1942
 []\OT1/lmr/bx/n/12 proof of Bre-nier's the-o-rem) \OT1/lmr/m/n/12 Let $\OML/lmm
 /m/it/12 [] \OMS/lmsy/m/n/12 2 \OT1/lmr/m/n/12 (\OML/lmm/m/it/12 ; \OT1/lmr
 /m/n/12 )$ min-imise KOT prob-lem and $\OMS/lmsy/m/n/12 f\OML/lmm/m/it/12 []\O
@@ -1140,22 +1140,22 @@ m/n/12 g[]$
  []
 
 [38] [39]
-Overfull \hbox (32.63097pt too wide) detected at line 2068
+Overfull \hbox (32.63097pt too wide) detected at line 2067
 []
  []
 
 [40] [41] [42]
-Overfull \hbox (53.06013pt too wide) detected at line 2186
+Overfull \hbox (53.06013pt too wide) detected at line 2185
 []
  []
 
 [43]
-Overfull \hbox (32.52626pt too wide) detected at line 2222
+Overfull \hbox (32.52626pt too wide) detected at line 2221
 []
  []
 
 
-Overfull \hbox (3.81999pt too wide) in paragraph at lines 2236--2238
+Overfull \hbox (3.81999pt too wide) in paragraph at lines 2235--2237
 [] \OT1/lmr/m/n/12 If we only have $\OML/lmm/m/it/12 g \OMS/lmsy/m/n/12 2 \OML/
 lmm/m/it/12 L[]\OT1/lmr/m/n/12 ((\OML/lmm/m/it/12 a; b\OT1/lmr/m/n/12 ))$, then
  we say $\OML/lmm/m/it/12 w \OMS/lmsy/m/n/12 2 [][]\OT1/lmr/m/n/12 ((\OML/lmm/m
@@ -1165,21 +1165,21 @@ lmm/m/it/12 L[]\OT1/lmr/m/n/12 ((\OML/lmm/m/it/12 a; b\OT1/lmr/m/n/12 ))$, then
  []
 
 [44] [45] [46] [47] [48]
-Overfull \hbox (14.49075pt too wide) detected at line 2516
+Overfull \hbox (14.49075pt too wide) detected at line 2515
 []
  []
 
 [49] [50] [51] [52] [53] [54]
-Overfull \hbox (3.54861pt too wide) detected at line 2794
+Overfull \hbox (3.54861pt too wide) detected at line 2793
 []
  []
 
 [55] [56] (Transport.aux) ) 
 Here is how much of TeX's memory you used:
- 14972 strings out of 493312
- 298639 string characters out of 3136305
+ 14971 strings out of 493312
+ 298629 string characters out of 3136305
  444801 words of memory out of 3000000
- 18154 multiletter control sequences out of 15000+200000
+ 18153 multiletter control sequences out of 15000+200000
  77703 words of font info for 89 fonts, out of 3000000 for 9000
  1141 hyphenation exceptions out of 8191
  61i,21n,84p,824b,418s stack positions out of 5000i,500n,10000p,200000b,50000s
@@ -1205,7 +1205,7 @@ MiKTeX 2.9/fonts/type1/public/lm/lmsy6.pfb><C:/Program Files (x86)/MiKTeX 2.9/f
 onts/type1/public/lm/lmsy8.pfb><C:/Program Files (x86)/MiKTeX 2.9/fonts/type1/p
 ublic/amsfonts/symbols/msam10.pfb><C:/Program Files (x86)/MiKTeX 2.9/fonts/type
 1/public/amsfonts/symbols/msbm10.pfb>
-Output written on Transport.pdf (56 pages, 927518 bytes).
+Output written on Transport.pdf (56 pages, 927471 bytes).
 PDF statistics:
  281 PDF objects out of 1000 (max. 8388607)
  0 named destinations out of 1000 (max. 500000)

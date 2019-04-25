@@ -135,7 +135,6 @@
 \def\doubleunderline#1{\underline{\underline{#1}}}
 
 \newcommand{\newday}{\doublerule[0.5pt]}
-\newcommand{\digression}{**********************************************************************************************}
 
 \setlength\parindent{0pt}
 
@@ -258,7 +257,7 @@ S_{\#}(T_{\#}\mu) (A) =& T_{\#}\mu(S^{-1}(A)) = \mu(T^{-1}(S^{-1}(A))) \\
 \end{p}
 \s
 
-\thmnum{1.6} \emph{(Disintegration of Measures)} Let $\mathbb{X}, Z$ be Polish spaces and $P : \mathbb{X}\rightarrow Z$ Be measurable. Let $\pi : \PP(\mathbb{X})$ and define $\omega= P_{\#} \pi \in \PP(Z)$. Then $\exists \omega$-almost everywhere uniquely defined family of probability measures $\{\pi(\cdot |z)\}_{z\in Z}$ such that $\pi(\cdot |z) \in \PP(P^{-1}(z))$ and
+\thmnum{1.6} \emph{(Disintegration of Measures)} Let $\mathbb{X}, Z$ be Polish spaces and $P : \mathbb{X}\rightarrow Z$ be measurable. Let $\pi \in \PP(\mathbb{X})$ and define $\omega= P_{\#} \pi \in \PP(Z)$. Then $\exists \omega$-almost everywhere uniquely defined family of probability measures $\{\pi(\cdot |z)\}_{z\in Z}$ such that $\pi(\cdot |z) \in \PP(P^{-1}(z))$ and
 \begin{align*}
 \int_{\mathbb{X}} f(x) d\pi(x) = \int_Z \int_{P^{-1}(z)} f(x) d\pi(x|z)d\omega(z), \quad \forall f: \mathbb{X}\rightarrow [0, +\infty] \text{ measurable}
 \end{align*}
