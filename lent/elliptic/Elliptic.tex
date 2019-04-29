@@ -1230,7 +1230,7 @@ Then we have, for some $\delta>0$ not depending $x_0$ such that
 \end{align*} 
 for $C = C(d, \alpha, \lambda, \Lambda, \Omega)$ but not depending on $x_0$.
 \begin{p}
-\pf Let $x_0 \in \pa \Omega$, $\psi$ be a diffeomorphism that flattens the boundary portion of $\Omega$ near $x_0$ and $B(x_0, \rho)$ be the boundary portion. $B' = B(x_0, \rho) \cap \Omega$. After change of variables using $\psi$, $\tilde{u}(y) = u(x)$, $y = \psi(x)$. Then we may write, using chain rule, that 
+\pf Let $x_0 \in \pa \Omega$, $\psi$ be a diffeomorphism that flattens the boundary portion of $\Omega$ near $x_0$ and $B(x_0, \rho)$ be the boundary portion. $B' = B(x_0, \rho) \cap \Omega$. After change of variables using $\psi$, $\tilde{u}(y) = u(x)$, $y = \psi(x)$, $D' = \psi(B')$ and $T' = \psi(B_\rho(x_0) \cap \pa \Omega) = \psi(T)$. Then we may write, using chain rule, that 
 \begin{align*}
 &\tilde{L}\tilde{u}= \sum_{i,j=1}^n \tilde{a}^{ij} \pa_{y_i y_j}^{\alpha} \tilde{u} + \sum \tilde{b}^i \pa_{x_i} u + \tilde{c}\tilde{u}(y) = \tilde{f} \\
 &\tilde{a}^{ij}(y) = \frac{\pa_i \psi_i}{\pa x_r} \frac{\pa_j \psi}{\pa x_s} a^{rs}(x)
@@ -1245,7 +1245,7 @@ So using \textbf{Lemma 8.2},
 \end{align*}
 and so
 \begin{align*}
-|u|^*_{2,\alpha, B\cup T} \leq  C(|u|_{0, B'} + |f|_{0, \alpha, B\cup T}) \leq C(|u|_{0, \Omega}+ |f|_{0, \alpha, \Omega})
+|u|^*_{2,\alpha, B'\cup T} \leq  C(|u|_{0, B'} + |f|_{0, \alpha, B'\cup T}) \leq C(|u|_{0, \Omega}+ |f|_{0, \alpha, \Omega})
 \end{align*}
 Now using compactness of $\Omega$, we can pick a constant $C$ that applies uniformly on the boundary points $x_0 \in \pa \Omega$.
 \s
@@ -1255,9 +1255,9 @@ Now using compactness of $\Omega$, we can pick a constant $C$ that applies unifo
 
 To produce H\"older interior estimate for $\Omega' \subset\subset \Omega$, choose $\sigma = \delta$ of \textbf{Lemma 8.3}  and let $\Omega_{\sigma} = \{x\in \Omega : \text{dist}(x, \pa \Omega)>\sigma\}$. For $x, y\in \Omega$, there are three possibilities :
 \begin{i}
-\item[(1)] $x,y,\in \Omega_{\sigma}$, then interior H\"older inequality applies
-\item[(2)] $x,y\in B(x,\delta)$, then boundary H\"older inequality applies.
-\item[(3)] For a boundary point $x_j$, $x\in \Omega_{\sigma}$, $y\in B_{x_j, \rho}$ or $x\in B(x_j, \rho), y\in B(x)j, \rho)$ then
+\item[(1)] $x,y,\in \Omega_{\sigma}$, then interior H\"older estimate applies.
+\item[(2)] $x,y\in B(x,\delta)$, then boundary H\"older estimate applies.
+\item[(3)] For a boundary point $x_j$, $x\in \Omega_{\sigma}$, $y\in B_{x_j, \rho}$ or $x\in B(x_j, \rho), y\in B_{\sigma}(\bar{x})$ for some $\bar{x}\in \pa \Omega$, then
 \begin{align*}
 \frac{|\pa_x^2 u(x) - \pa^2_{}u(y)|}{|x-y|^{\alpha}} \leq \frac{1}{\sigma^{\alpha}}(|\pa^2 u(x)|+ |\pa^2 u(y)|) \leq C(|u|_0 + |f|_{0, \alpha})
 \end{align*} 
@@ -1321,9 +1321,9 @@ We have by definition $|u|_{2, \alpha, \Omega} = |u|_{2, 0,\Omega} + [\pa^2 u]_{
 \begin{i}
 \item[(1)] If $x, y\in \Omega_{\sigma}$, then apply \emph{interior estimate} applies.
 \item[(2)] If $x, y\in \Omega \backslash \Omega_{\sigma}$ with $x, y\in B(x_0, \sigma)$, then \emph{boundary estimate} applies.
-\item[(3)] If $x, y\in \Omega \backslash \Omega_{\sigma}$ with $x\in B(x_0, \sigma)$ and $y \in B(x_0', \sigma)$, then has $|x-y|^{\alpha} > (\sigma /2)^{\alpha}$ so
+\item[(3)] If $x, y\in \Omega \backslash \Omega_{\sigma}$ but not in case (2) for any $x_0 \in \pa \Omega$, then has $|x-y|^{\alpha} > (2 \sigma)^{\alpha}$ so
 \begin{align*}
-\frac{|\pa^2 u(x) - \pa^2 u(y)|}{|x-y|^{\alpha}} \leq \frac{2^{\alpha}}{\sigma^{\alpha}} \big(|\pa^2 u(x)| + |\pa^2 u(y)| \big) \leq 2\Big(\frac{2}{\sigma} \Big)^{\alpha} |u|_{2, 0, \Omega} \leq C(\sigma)(|f|_{0, \alpha, \Omega} + |u|_{0, \Omega})
+\frac{|\pa^2 u(x) - \pa^2 u(y)|}{|x-y|^{\alpha}} \leq \frac{2}{2^{\alpha}\sigma^{\alpha}} \big(|\pa^2 u(x)| + |\pa^2 u(y)| \big) \leq 2\Big(\frac{1}{2\sigma} \Big)^{\alpha} |u|_{2, 0, \Omega} \leq C(\sigma)(|f|_{0, \alpha, \Omega} + |u|_{0, \Omega})
 \end{align*}
 \end{i}
 So putting these together, we have the global estimtae.
@@ -1370,6 +1370,7 @@ To establish maximum principle, we need to make strong restriction on $c$, \text
 \begin{align*}
 \sup_{\Omega} u = \sup_{\pa \Omega} u
 \end{align*}
+The same result holds when $c\geq 0$ and $u(z_0) \geq 0$.
 \begin{p}
 \pf \textbf{1st step :} Assume $Lu >0$ in $\Omega$, and assume $\exists z_0 \in \Omega$ such that $u(z_0) = \sup_{x\in \Omega} u(x)$. Then we should have $\nabla u(z_0) =0$ and $D^2 u(z_0) \leq 0$. By ellipticity, we have 
 \begin{align*}
@@ -1395,14 +1396,17 @@ Take $\epsilon \rightarrow 0$ to conclude
 \begin{align*}
 \sup_{\bar{\Omega}} u = \sup_{\pa \Omega} u
 \end{align*}
+The proof for the case $c\leq 0$ follows exactly the same.
 \eop
 \end{p}
+\s
+
 \s
 
 \thm \emph{(Strong maximum principle, E. Hopf)}  We now let $L$ be uniformly elliptic, say $\sum_{ij} a^{ij} \xi_i \xi_j \geq \lambda |\xi|^2$ with $\lambda>0$ uniform. Let $u\in C^2(\Omega) \cap C^0(\bar{\Omega})$ satisfy $Lu \geq 0$, and assume $\max_{z\in \bar{\Omega}} u(z) = u(z_0)$. Then
 \begin{i}
 \item[(1)] If $c=0$ and $z_0 \in \Omega$, then $u$ is constant.
-\item[(2)] If $c\leq 0$, $c/\lambda$ bounded, and $u(z_0) \leq 0$ for some $z_0 \in \Omega$, then $u$ is constant.
+\item[(2)] If $c\leq 0$, $c/\lambda$ bounded, and $u(z_0) \geq 0$ for some $z_0 \in \Omega$, then $u$ is constant.
 \end{i}
 \s
 
@@ -1459,7 +1463,7 @@ Recall, we used, but remains to be proved :
 Then
 \begin{i}
 \item[1.] if $c=0$, then $\frac{\pa u}{\pa n_x} >0$ (if it exists - in fact, one can prove a more general version of this statement)
-\item[2.] if $c\leq 0$ and $c(x)/\lambda$ is bounded, $u(x_0)<0$ then $\frac{\pa u}{\pa n_x}(x_0)>0$.
+\item[2.] if $c\leq 0$ and $c(x)/\lambda$ is bounded, $u(x_0)\geq 0$ then $\frac{\pa u}{\pa n_x}(x_0)>0$.
 \end{i}
 \begin{p}
 \pf Pick $y$ and $R$ with $x_0 \in \pa B(y, R)$. Let $0< \rho < R$. Consider annuli of form $A_{\rho} = B(y, R) \backslash B(y, \rho)$. Introduce auxiliary function
@@ -1468,9 +1472,9 @@ v(x) = e^{-\alpha r^2} - e^{-\alpha R^2}, \quad r=|x-y|\in [\rho, R],
 \end{align*}
 with $\alpha$ to be chosen later. Then one has
 \begin{align*}
-Lv = e^{-\alpha r^2} \Big( 4\alpha^{ii}(x_i -y_i)(x_j -y_j) - 2\alpha (a^{ii} + b^i (x_i - y_i)) \Big) + cv
+Lv = e^{-\alpha r^2} \Big( 4\alpha^2 a^{ij}(x_i -y_i)(x_j -y_j) - 2\alpha (a^{ii} + b^i (x_i - y_i)) \Big) + cv
 \end{align*}
-Take $\alpha$ large enough, $Lv \geq 0$. As $u - u(x_0) < 0$ on $\pa B(y, \rho)$, we may find $\epsilon >0$ such that $u - u(x_0) + \epsilon v \leq 0$ on $\pa B(y, \rho)$, and since $L(u-u(x_0)+ \epsilon v) \geq$, by \emph{Weak Maximum Principle}, one has $u - u(x_0) + \epsilon v\leq 0$ in $A_{\rho}$. Hence
+Take $\alpha$ large enough and $\rho$ large enough so $Lv \geq 0$ on $A_{\rho}$. As $u - u(x_0) < 0$ on $\pa B(y, \rho)$, we may find $\epsilon >0$ such that $u - u(x_0) + \epsilon v \leq 0$ on $\pa B(y, \rho)$, and since $L(u-u(x_0)+ \epsilon v) \geq 0$, by \emph{Weak Maximum Principle}, one has $u - u(x_0) + \epsilon v\leq 0$ in $A_{\rho}$. Hence
 \begin{align*}
 \frac{\pa u}{\pa n_x}(x_0)\geq - \epsilon \frac{\pa v}{\pa n_x}(x_0) \geq - \epsilon v'(R) > 0
 \end{align*}
@@ -1482,7 +1486,7 @@ Take $\alpha$ large enough, $Lv \geq 0$. As $u - u(x_0) < 0$ on $\pa B(y, \rho)$
 
 \subsubsection*{Alexandroff maximum principle}
 
-Suppose $L = \sum_{ij} \pa^2_{x_i x_j} + \sum_{i} b^i \pa_{x_i} + c(x)$ satisfies ellipticity condition (\textit{i.e.} $A = (a^{ij})_{i,j=1}^d$ positive definite in $\Omega$) in $\Omega$. Define $D(x) = \text{det}(A(x))$, $D^* = D^{1/d}$, then
+Suppose $L = \sum_{ij} a^{ij} \pa^2_{x_i x_j} + \sum_{i} b^i \pa_{x_i} + c(x)$ satisfies ellipticity condition (\textit{i.e.} $A = (a^{ij})_{i,j=1}^d$ positive definite in $\Omega$) in $\Omega$. Define $D(x) = \text{det}(A(x))$, $D^* = D^{1/d}$, then
 \begin{align*}
 0\leq \lambda(x) \leq D^*(x) \leq \Lambda(x)
 \end{align*}
@@ -1502,15 +1506,16 @@ for some constant $C = C(d, \text{diam}(\Omega), \snorms{\frac{b}{D^*}}{L^d(\Ome
 
 \lem Let $g \in L^1_{loc}(\reals^d)$, $g\geq 0$. Then $\forall u \in C^0(\bar{\Omega}) \cap C^2(\Omega)$, we have
 \begin{align*}
-\int_{B(0, \tilde{u})}g(x) dx \leq \int_{\Gamma_{u}^+} g(\nabla u) |\text{det}(D^2 u)|dx
+\int_{B(0, \tilde{u})}g(x) dx \leq \int_{\Gamma_{u}^+ \cap \Omega^+} g(\nabla u) |\text{det}(D^2 u)|dx
 \end{align*}
-for $\tilde{u} = \frac{1}{\text{diam}(\Omega)} (\sup_{\bar{\Omega}} u - \sup_{\pa \Omega} u) \geq 0$.
+for $\tilde{u} = \frac{1}{\text{diam}(\Omega)} (\sup_{\bar{\Omega}} u - \sup_{\pa \Omega} u) \geq 0$ and $\Omega^+ = \{u\geq 0\}$.
 \s
 
 \textbf{Remark :} $\forall x\in \Gamma^+$,
 \begin{align*}
 \text{det}(D^2u(x))\leq \frac{1}{D} \Big( \frac{-a^{ij}(x) \pa^2_{x_i x_j}u}{d}\Big)^d
 \end{align*}
+This follows easily if we make change of basis so that $a^{ij}\pa^2 x_i x_j$ is diagonal and noticing that $\text{det}(D^2 u(x))\cdot D = \text{det}(D^2 u(x) \circ A(x))$.
 \s
 
 We first assume the lemma and prove the theorem.
@@ -1518,11 +1523,11 @@ We first assume the lemma and prove the theorem.
 \textbf{proof of the theorem)} For $x\in \Omega^+ := \{x\in \Omega : u>0 \}$ and for some parameter $\mu>0$,
 \begin{align*}
 -a^{ij} \pa^2_{x_i x_j} u(x) \leq & b^i \pa_{x_i} u + cu -f \leq |b| |\nabla u| + f^- \\
-\leq & \Big(|b|^d + \frac{(f^-)^d}{\mu^d} \Big)^{1/d} \Big(|\nabla u|^d + \mu^d \Big)^{1/d}
+\leq & 2 \Big(|b|^d + \frac{(f^-)^d}{\mu^d} \Big)^{1/d} \Big(|\nabla u|^d + \mu^d \Big)^{1/d}
 \end{align*}
 where the last inequality follows from H\"older inequality. So
 \begin{align*}
-\big( a^{ij} \pa^2_{x_i x_j} u\big)^d \leq \Big(|b|^d + \frac{(f^-)^d}{\mu^d} \Big) \Big(|\nabla u|^d + \mu^d \Big)
+\big( - a^{ij} \pa^2_{x_i x_j} u\big)^d \leq \Big(|b|^d + \frac{(f^-)^d}{\mu^d} \Big) \Big(|\nabla u|^d + \mu^d \Big)
 \end{align*}
 The previous lemma would be applied with carefully chosen $g$,
 \begin{align*}
@@ -1531,7 +1536,7 @@ g(p) = \frac{1}{|p|^d + \mu^d} \in L^1_{loc}(\reals^d)
 By the \textbf{Lemma} and the \textbf{Remark}, we have
 \begin{align*}
 \int_{B(0, \tilde{u})} g(x) dx \leq & \int_{\Gamma^+} |g(\nabla u)||\text{det}(D^2 u)| dx \\
-\leq & \int_{\Gamma^+} \frac{1}{|\nabla u|^d + \mu^d} \frac{1}{D} \Big(|b|^d + \frac{f^-}{\mu^d} \Big)^d \Big(|\nabla u|^d + \mu^d \Big) dx
+\leq & \int_{\Gamma^+} \frac{1}{|\nabla u|^d + \mu^d} \frac{1}{D} \Big(|b|^d + \frac{(f^-)^d}{\mu^d} \Big) \Big(|\nabla u|^d + \mu^d \Big) dx
 \end{align*}
 (recall, $D(x) = \text{det}(A(x))$) so
 \begin{align*}
@@ -1539,16 +1544,16 @@ By the \textbf{Lemma} and the \textbf{Remark}, we have
 \end{align*}
 On the other hand,
 \begin{align*}
-\int_{B(0, \tilde{u})} g(x) dx = & \int_{B(0, \tilde{u}) }\frac{dx}{|\nabla u|^d + \mu^d} = |w_d| \int_0^{\tilde{u}}\frac{r^{d-1}}{r^d + \mu^d} dr \\
-= & \frac{|w_d|}{d} \log \Big(\frac{\tilde{u}^d + \mu^d}{\mu^d} \Big) =\frac{|w_d|}{d} \log \Big( \frac{\tilde{u}^d}{\mu^d} +1 \Big) 
+\int_{B(0, \tilde{u})} g(x) dx = & \int_{B(0, \tilde{u}) }\frac{dx}{|x|^d + \mu^d} = d w_d \int_0^{\tilde{u}}\frac{r^{d-1}}{r^d + \mu^d} dr \\
+= & w_d \log \Big(\frac{\tilde{u}^d + \mu^d}{\mu^d} \Big) =w_d \log \Big( \frac{\tilde{u}^d}{\mu^d} +1 \Big) 
 \end{align*}
 Putting two results together,
 \begin{align*}
-\log (\frac{\tilde{u}^d}{\mu^d}+1) \leq \frac{d}{|w_d|} \int_{\Gamma^+ \cap \Omega^+} \frac{1}{D} (|b|^d + \frac{(f^-)^d}{\mu^d}) dx
+\log (\frac{\tilde{u}^d}{\mu^d}+1) \leq \frac{1}{|w_d|} \int_{\Gamma^+ \cap \Omega^+} \frac{1}{D} (|b|^d + \frac{(f^-)^d}{\mu^d}) dx
 \end{align*}
 so
 \begin{align*}
-\frac{\tilde{u}^d}{\mu^d}+1 \leq \exp \Big( \frac{d}{w_d} \int_{\Gamma^+ \cap \Omega^+} \big( |b|^d + \frac{(f^-)^d}{D \mu^d} \big)dx\Big)
+\frac{\tilde{u}^d}{\mu^d}+1 \leq \exp \Big( \frac{1}{w_d} \int_{\Gamma^+ \cap \Omega^+} \big( |b|^d + \frac{(f^-)^d}{D \mu^d} \big)dx\Big)
 \end{align*}
 Choose $\mu = \snorms{\frac{f^-}{D^*}}{L^d(\Gamma^+ \cap \Omega^+)}$, then we are done.
 
@@ -1600,7 +1605,7 @@ Define for $k\in \mathbb{N}$, $u_0 = \vec{u}$ and
 \begin{align*}
 \begin{cases}
 \lap u_{k+1} - \lambda u_{k+1} = f(x, u_k) - \lambda u_k \quad & \text{in }\Omega \\
-u_{k+1} =0 \quad & \text{on }\Omega
+u_{k+1} =0 \quad & \text{on } \pa\Omega
 \end{cases} \call{\star_{k+1}}
 \end{align*}
 The existence of such $u_k$ is guaranteed from our previous works.
@@ -1727,13 +1732,13 @@ where $|\Omega|$ is the Lebesgue measure of $\Omega$.
 \pf If $c\leq 0$, then the result directly follows from \emph{Alexandroff maximum principle} applied with $f=0$.
 \s
 
-If $c>0$, make decomposition $c= c^+ - c^-$, $c^+, c^- \geq 0$. Then $Lu \geq 0$ entails
+If $c\not\leq 0$, make decomposition $c= c^+ - c^-$, $c^+, c^- \geq 0$. Then $Lu \geq 0$ entails
 \begin{align*}
 Lu - c^+(x)u = \sum a^{ij} \pa^2_{ij} u + \sum b^i \pa_i u - c^-(x) u  \geq -c^+(x) u
 \end{align*}
 Applying \emph{Alexandroff maximum principle} with $f= -c^+(x) u$, we obtain
 \begin{align*}
-\sup_{\Omega} u \leq & C \snorms{c^+ }{L^d (\Gamma^+ \cap \Omega^+)} \leq  C \leq \snorms{c^+}{L^{\infty}} |\Omega|^{1/d} \sup_{\Omega} |u| \\
+\sup_{\Omega} u \leq & C \snorms{c^+ }{L^d (\Gamma^+ \cap \Omega^+)} \leq  C \snorms{c^+}{L^{\infty}} |\Omega|^{1/d} \sup_{\Omega} u \\
 \leq & \frac{1}{2} \sup_{\Omega} u \quad \text{given } |\Omega| \text{ small enough}
 \end{align*}
 So this implies $u\leq 0$ in $\Omega$.
@@ -1742,7 +1747,7 @@ So this implies $u\leq 0$ in $\Omega$.
 \end{p}
 \s
 
-\thm \emph{(Serrin, Comparison principle)} Suppose that $u\in C^0(\bar{\Omega}) \cap C^2(\Omega)$ with $Lu \geq 0$ in $\Omega$ and $u\leq 0$ in $\Omega$ (not $\pa \Omega$, all of $\Omega$), with $L$ having continuous coefficients (no bounds necessary). Then
+\thm \emph{(Serrin, Comparison principle)} Suppose that $u\in C^0(\bar{\Omega}) \cap C^2(\Omega)$ with $Lu \geq 0$ in $\Omega$ and $u\leq 0$ in $\Omega$ (not $\pa \Omega$, all of $\Omega$), with $L$ having continuous coefficients (no bounds necessary) and uniformly elliptic. Then
 \begin{i}
 \item either $u< 0$ in $\Omega$,
 \item or $u\equiv 0$ in $\Omega$.
@@ -1752,7 +1757,7 @@ So this implies $u\leq 0$ in $\Omega$.
 \begin{align*}
 \sum a^{ij} \pa^2_{ij} u + \sum b^i \pa_{i} u - c^- u \geq - c^+ u 
 \end{align*}
-but as $u\leq 0$ in $\Omega$, has $-c^+ u \geq 0$. So if $\exists x_0 \in \Omega$ such that $u(x_0)=0$, then \emph{strong maximum principle} tells us that $u\equiv 0$, and if not, we have $u 0$.
+but as $u\leq 0$ in $\Omega$, has $-c^+ u \geq 0$. So if $\exists x_0 \in \Omega$ such that $u(x_0)=0$, then \emph{strong maximum principle} tells us that $u\equiv 0$, and if not, we have $u < 0$.
 
 \eop
 \end{p}
@@ -1773,7 +1778,7 @@ with $f$ \emph{locally Lipschitz}. Assume that $u>0$ in $\Omega$, then $u$ is sy
 \pf Since $\Omega$ is bounded in $x_1$-direction, we may let $\sup \{x_1 : x= (x_1, y) \in\Omega \} =: a$. For any $\lambda \in [0, a)$, introduce
 \begin{align*}
 & \Sigma_{\lambda} = \{x\in \Omega : x_1 > \lambda \}, \quad T_{\lambda} = \{x_1 = \lambda \}\\
-& \Sigma'_{\lambda} = \{ x_{\lambda} : x \in \Sigma_{\lambda} \} \,\, \text{where } x_{\lambda} \equiv (x_1, y)_{\lambda} = (2-x_1, y) \text{ is the reflection of } x \text{ respect to } T_{\lambda}
+& \Sigma'_{\lambda} = \{ x_{\lambda} : x \in \Sigma_{\lambda} \} \,\, \text{where } x_{\lambda} \equiv (x_1, y)_{\lambda} = (2\lambda-x_1, y) \text{ is the reflection of } x \text{ respect to } T_{\lambda}
 \end{align*}
 and define 
 \begin{align*}
@@ -1787,12 +1792,12 @@ where $c$ is some bounded function in $\Sigma_{\lambda}$ exploiting \emph{locall
 \begin{align*}
 \begin{cases}
 & \lap w_{\lambda} + c(x, \lambda)w_{\lambda} =0 \quad \text{in } \Sigma_{\lambda} \\
-& w_{\lambda} \leq 0 \quad \text{and } w_{\lambda} \neq 0 \quad \text{on } \pa \Sigma_{\lambda}
+& w_{\lambda} \leq 0 \quad \text{and } w_{\lambda} \not\equiv 0 \quad \text{on } \pa \Sigma_{\lambda}
 \end{cases}
 \end{align*}
 If $\lambda$ is close to $a$, and noting that $u$ can not be identically be a constant, the \emph{maximum principle in narrow domain} implies $w_{\lambda}<0$ in $\Sigma_{\lambda}$. Set $\lambda_0$ to be the infimum of $\lambda \in (0, a)$ such that $w_{\lambda}<0$ in $\Sigma_{\lambda}$.
 
-\quad We will argue by contradiction to show such $\lambda_0$ can not be positive. If $\lambda_0 >0$, then by coutinuity of $w_{\lambda}$, we have $w_{\lambda_0} \leq 0$ in $\Sigma_{\lambda_0}$ and $w_{\lambda_0} =0$ on $\pa \Sigma_{\lambda_0}$. \emph{Strong maximum principle} now gives $w_{\lambda_0} < 0$ in $\Sigma_{\lambda_0}$.  Let $\epsilon >0$ be arbitrary. Fix $\delta >0$ (to be chosen later). Let $K$ be a closed subset in $\Sigma_{\lambda_0}$ so that $|\Sigma_{\lambda_0} \backslash K| < \delta/2$ and for some $\eta >0$,
+\quad We will argue by contradiction to show such $\lambda_0$ can not be positive. If $\lambda_0 >0$, then by coutinuity of $w_{\lambda}$, we have $w_{\lambda_0} \leq 0$ in $\Sigma_{\lambda_0}$ and $w_{\lambda_0} \leq 0$ on $\pa \Sigma_{\lambda_0}$. \emph{Strong maximum principle} now gives $w_{\lambda_0} < 0$ in $\Sigma_{\lambda_0}$.  Let $\epsilon >0$ be arbitrary. Fix $\delta >0$ (to be chosen later). Let $K$ be a closed subset in $\Sigma_{\lambda_0}$ so that $|\Sigma_{\lambda_0} \backslash K| < \delta/2$ and for some $\eta >0$,
 \begin{align*}
 w_{\lambda_0}(x) \leq -\eta <0 \quad \forall x\in K.
 \end{align*}
@@ -1836,7 +1841,7 @@ and consider equation $Lu = f$ in $\Omega$. We impose conditions
 & a^{ij} \in L^{\infty} \cap C^0(\Omega),\\
 & a^{ij}= a^{ji} \\
 & a^{ij}(\xi)\xi_i \xi_j \geq \lambda |\xi|^2, \,\, \forall \xi \in \reals^d \\
-& f\in L^{\frac{2d}{d+2}}(\Omega) \quad (\text{exponent chosen for Sobolev embedding})
+& f\in L^{\frac{2d}{d-2}}(\Omega) \quad (\text{exponent chosen for Sobolev embedding})
 \end{cases}
 \end{align*}
 $u$ is a weak solution of $Lu =f$ if
@@ -1865,7 +1870,7 @@ for some $C= C(d, \alpha, \Omega, \Omega') >0$.
 \pf Let $R_0 = \text{dist}(\Omega', \pa \Omega) >0$. Let $0< r_1< r_2 \leq R_0$. Then
 \begin{align*}
 |u_{x_0, r_1} - u_{x_0, r_2}|^2 =& \Big| \frac{1}{|B(x_0, r_1)|} \int_{B(x_0, r_1)}u(y)dy - \frac{1}{|B(x_0, r_2)|} \int_{B(x_0, r_2)}u(y)dy  \Big|^2 \\
-\leq& 2|u(x) - u_{x_0, r_1}|^2 _+ 2|u(x) - u_{x_0, r_2}|^2
+\leq& 2|u(x) - u_{x_0, r_1}|^2 + 2|u(x) - u_{x_0, r_2}|^2
 \end{align*}
 Integrate on $B(x_0, r_1)$,
 \begin{align*}
@@ -1884,17 +1889,17 @@ So we have proved that $(u_{x_0, 2^{-k}R})_{k\in\mathbb{N}}$ is a Cauchy sequenc
 \begin{align*}
 |u_{x_0, r} - \hat{u}(x_0)| \leq c(d, \alpha) Mr^{\alpha} \call{\otimes}
 \end{align*}
-Now by \emph{Lebesgue's differentiation theorem}, $\lim_{r\rightarrow 0^+} \int_{B(x_0, r)} \frac{u(x)}{|B(x_0, r)|} dx = u(x_0, r)$ for a.e. $x_0$, whenever $u\in L^1_{loc}(\Omega) \subset L^2(\Omega)$ so $\hat{u} = u$ a.e. in $\Omega$. But $\hat{u}$ is continuous because it is a uniform limit of continuous functions. Hence $u$ is also continuous (has continuous correction) at $x_0$.
+Now by \emph{Lebesgue's differentiation theorem}, $\lim_{r\rightarrow 0^+} \int_{B(x_0, r)} \frac{u(x)}{|B(x_0, r)|} dx = u(x_0, r)$ for a.e. $x_0$, whenever $u\in L^2(\Omega) \subset L^1_{loc}(\Omega)$ so $\hat{u} = u$ a.e. in $\Omega$. But $\hat{u}$ is continuous because it is a uniform limit of continuous functions. Hence $u$ is also continuous (has continuous correction) at $x_0$.
 \s
 
 Next, we prove that $u$ is bounded in $\Omega$ with estimates. Observe that 
 \begin{align*}
 |u_{x, r} - u(y, r)| = \frac{1}{|B(x,r)|} \Big| \int_{B(x,r)} u(\xi) d\xi - \int_{B(y, r)} u(\xi) d\xi \Big| \rightarrow 0
 \end{align*}
-as $|x-y| \rightarrow 0$. Also by $(\otimes)$<
+as $|x-y| \rightarrow 0$. Also by $(\otimes)$,
 \begin{align*}
-& |u(x_0)| \leq CM R^{\alpha} + |u_{x, R}| \quad \forall x_0 \in \Omega', \forall R\leq R_0 \\
-\Rightarrow \quad & |u|_{0, \Omega'} \leq MR_0^{\alpha} + \snorms{u}{L^2(\Omega)} \call{\oplus}
+& |u(x_0)| \leq CM R^{\alpha} + |u_{x_0, R}| \quad \forall x_0 \in \Omega', \forall R\leq R_0 \\
+\Rightarrow \quad & C\big( |u|_{0, \Omega'} \leq MR_0^{\alpha} + \snorms{u}{L^2(\Omega)} \big) \call{\oplus}
 \end{align*}
 where we have second line since
 \begin{align*}
@@ -1922,7 +1927,7 @@ So we see that, for $R$ chosen sufficiently small,
 If $|x-y| > R_0/2$, we have by $(\oplus)$
 \begin{align*}
 |u(x)- u(y)| \leq & 2\sup_{\Omega'} |u| \leq C \Big(M + \frac{\snorms{u}{L^2{\Omega}}}{R_0^{\alpha}} \Big)R_0^{\alpha} \\
-\leq & 2^{\alpha} C \Big(M + \frac{\snorms{u}{L^2(\Omega)}}{(R_2/2)^{\alpha}} \Big) |x-y|^{\alpha}
+\leq & 2^{\alpha} C \Big(M + \frac{\snorms{u}{L^2(\Omega)}}{(R_0/2)^{\alpha}} \Big) |x-y|^{\alpha}
 \end{align*}
 \eop
 \end{p}
@@ -1967,7 +1972,7 @@ We conclude by applying the last proposition of the last lecture.
 \end{p}
 \s
 
-We expect that if $a^{ij} \in C^0(\bar{\Omega})$, $c =c(x) \in L^d(\Omega)$, $f\in L^{\frac{2d}{d+2}}(\Omega)$ then the weak solution satisfies $u\in H^1(\Omega) \cap C^{0, \alpha}(\Omega)$.
+We expect that if $a^{ij} \in C^0(\bar{\Omega})$, $c =c(x) \in L^d(\Omega)$, $f\in L^{\frac{2d}{d-2}}(\Omega)$ then the weak solution satisfies $u\in H^1(\Omega) \cap C^{0, \alpha}(\Omega)$.
 \s
 
 \textit{A priori}, we study the setting of $\Omega$ reduced to balls. So we at the moment insist to work on $B(0, 1) =B$, $B(0, r)=B_r$. The idea is to first assume that $a^{ij}$ is \emph{close} to some constant coefficient, say $A = (a^{ij}(x_0))_{i,j=1}^d$ freezing $a^{ij}$ to $a^{ij}(x_0)$. Then we will use perturbation argument.
@@ -2006,7 +2011,7 @@ as desired.
 \end{p}
 \s
 
-\corr \emph{(Precis version of Cacciofolli's inequality)} With same choice of $w$ as above, for all $0<r<R\leq 1$,
+\corr \emph{(Precis version of Caccioppoli's inequality)} With same choice of $w$ as above, for all $0<r<R\leq 1$,
 \begin{align*}
 \int_{B(0,r)} |\nabla w|^2 dx \leq \frac{C}{(R-r)^2} \int_{B(0,R)} |w|^2 dx
 \end{align*}
@@ -2046,7 +2051,7 @@ Note that the integral converges only if $k>d/2$.]}
 \end{subproof}
 Having the claim,
 \begin{align*}
-\int_{B(0, \rho)} |w|^2 dx \lesssim \rho^d |w|^2_{L^{\infty}(B_{1/2})} \leq C \rho^d \int_{B_1} |w|^2 dx
+\int_{B(0, \rho)} |w|^2 dx \lesssim \rho^d |w|^2_{L^{\infty}(B_{\rho})} \leq \rho^d |w|^2_{L^{\infty}(B_{1/2})} \leq \rho^d \int_{B_1} |w|^2 dx
 \end{align*}
 so we have the first statement. Also,
 \begin{align*}
@@ -2102,14 +2107,15 @@ We have a simple corollary of this.
 \begin{align*}
 \int_{B} \sum_{i,j=1}^d a^{ij}(x) \pa_{x_i} u \pa_{x_j} \varphi dx + \int_B c(x) u\varphi dx =\int f\varphi dx, \quad \forall \varphi \in H_0^1 (B)
 \end{align*}
-with $a^{ij} = a^{ji}$, $a^{ij} \in C^0(\bar{B})$, $c\in L^d (B)$, $f\in L^q$, $q\in (\frac{2}{d}, d)$ and $d\geq 2$. Then
+with $a^{ij} = a^{ji}$, $a^{ij} \in C^0(\bar{B})$, $c\in L^d (B)$, $f\in L^q$, $q\in (\frac{2d}{d+2}, d)$ and $d\geq 2$. Then
 \begin{align*}
-\int_{B(x,r)} |\nabla u|^2 dx \leq Cr^{d-2 + 2\alpha}\big( \snorms{f}{L^q(B_1)}^2 + \snorms{u}{H^1}^2 \big)
+\int_{B(x,r)} |\nabla u|^2 dx \leq Cr^{d-2 + 2\alpha}\big( \snorms{f}{L^q(B_1)}^2 + \snorms{u}{H^1}^2 \big) \quad \forall r\leq 1
 \end{align*}
 with $\alpha = 2- \frac{d}{q} \in (0,1)$ and $C \equiv C(\lambda, \Lambda, \snorms{c}{L^d(B)}, \tau) >0$ where $\tau :\reals_+ \rightarrow \reals_+ \cup \{0\}$ sufficiently chosen so that
 \begin{align*}
 |a^{ij}(x) - a^{ij}(y)| \leq \tau(|x-y|), \quad \forall x,y\in B
 \end{align*} 
+Therefore $u\in C^{0, \alpha}(B)$.
 \eos
 \s
 
@@ -2149,7 +2155,7 @@ Now by the corollary, has
 \begin{align*}
 \int_{B(x_0, \rho)} |\nabla u|^2 dx &\leq C \Big[ \Big( \frac{\rho}{r} \Big)^d \int_{B(x_0, r)} |\nabla u|^2 dx + \int_{B(x_0, r)} |\nabla v|^2 dx \Big] \\
 & \leq C \cdot \Big[ \Big( \frac{\rho}{r} \Big)^d + \tau^2 \Big) \int_{B(x_0, r)} |\nabla u|^2 dx + \Big( \int |f|^{\frac{2d}{d+2}} dx\Big)^{\frac{d+2}{d}} \\
-& \quad \quad\quad\quad + \Big( \int_{B(x_0, r)} |c|^d dx \Big)^{\frac{d}{2}} \int_{B(x_0, r)} u^2 dx \Big]
+& \quad \quad\quad\quad + \Big( \int_{B(x_0, r)} |c|^d dx \Big)^{\frac{2}{d}} \int_{B(x_0, r)} u^2 dx \Big]
 \end{align*}
 Also by \emph{H\"older inequality},
 \begin{align*}
@@ -2162,11 +2168,11 @@ where $q$ was chosen so that $\alpha = 2- \frac{n}{q} \in (0,1)$. Hence we have
 \end{align*}
 To proceed, we note the following lemma :
 \begin{subproof}
-\lem $\phi =\phi(t)$ be a non-negative, non-decreasing function on $[0, R]$ such that
+\lem Fix $\alpha > \beta >0$. Then for each $\gamma \in (\beta, \alpha)$, there is $\sigma >0$ such that whenever $\epsilon \in (0, \sigma)$ and $\phi =\phi(t)$ is a non-negative, non-decreasing function on $[0, R]$ such that
 \begin{align*}
 \phi(\rho) \leq A \Big( \big( \frac{\rho}{r}\big)^{\alpha} + \epsilon \Big) \phi(r) + Br^{\beta}, \quad A, \epsilon, B>0, \,\, \beta >\alpha
 \end{align*}
-Then 
+then
 \begin{align*}
 \phi(r) \leq C \Big( \frac{\phi(R)}{R^{\gamma}}r^{\gamma} + Br^{\beta} \Big), \quad \text{for some } \gamma \in (\beta , \alpha)
 \end{align*}
@@ -2180,9 +2186,29 @@ Then
 \int_{B(x_0, \rho)} |\nabla u|^2 dx & \leq C \big( \frac{\rho}{r} \big)^{d-2+2\alpha} \int_{B(x_0, R)} |\nabla u|^2 dx + C \snorms{f}{L^q}^2 r^{d-2+2\alpha} \\
 & \leq \tilde{C} r^{d-2+2\alpha} (\snorms{u}{H^1}^2 + \snorms{f}{L^q}^2)
 \end{align*}
-\item If $c\not\equiv 0$, see example sheet \#4.
+\item If $c\not\equiv 0$, (not done in the lecture) assume by scaling that $\Big( \snorms{\nabla u}{L^2}^2 + \snorms{f}{L^q}^2 \Big)\rho^2\leq 1$. By embedding $H^1 \hookrightarrow L^{2d/(d-2)}$, has
+\begin{align*}
+\int_{B(0,r)} u^2 dx \leq \Big( \int u^{2d/(d-2)} dx\Big)^{\frac{d-2}{d}} \Big( \int 1 \Big)^{2/d} \leq C \snorms{\nabla u}{L^2}r^2
+\end{align*}
+So
+\begin{align*}
+\int_{B(x_0, \rho)} |Du|^2 dx \leq C\Big( \Big[ (\rho/r)^2 + \tau^2(r) \Big] \int_{B_r} |Du|^2 + r^{d-2+2\alpha} \snorms{f}{L^q}^2 \Big)
+\end{align*}
+and by lemma, we have
+\begin{align*}
+\int_{B_{\rho}}|Du|^2 dx \leq C \Big( \snorms{\nabla u}{L^2}^2 + \snorms{f}{L^q}^2 \Big)\rho^2
+\end{align*}
+so get $\int_{B_{\rho}} u^2 \leq C(\snorms{\nabla u}{L^2}^2 + \snorms{f}{L^q}^2)\rho^4$, and improved estimate. By induction, as long as $2k<d$, we have (by assumption $\Big( \snorms{\nabla u}{L^2}^2 + \snorms{f}{L^q}^2 \Big)\rho^2 \leq 1$)
+\begin{align*}
+\int_{B_{\rho}} u^2 \leq C \rho^2 \Big( \snorms{\nabla u}{L^2}^2 + \snorms{f}{L^q}^2 \Big)\rho^{2k}
+\end{align*}
+so we get, eventually, that
+\begin{align*}
+\int_{B_{\rho}} |Du|^2 dx \leq C\Big( \Big[ (\rho/r)^d + \tau(r)^2 \Big]\int_{B_r}|Du|^2 + r^{d-2+2\alpha}\snorms{f}{L^2}^2 \Big)
+\end{align*}
+So application of the case $c=0$ gives the desired inequality.
 \end{itemize}
-
+\eop
 \end{p}
 \s
 
@@ -2213,7 +2239,7 @@ with $a^{ij} \in C^0(B)$, $c(x) \in L^d(B)$, and $u\in H^1(B)$ is the weak solut
 \end{align*}
 We have frozen the coefficients of $a^{ij}$ at $x_0$, so $L_0 = w$ with $L_0 = \sum a^{ij}(x_0) \pa_{x_i} \pa_{x_j}$, and $v =u-w$, so that
 \begin{align*}
-\sum \int a^{iij}(x_0) \pa_{x_i} v \pa_{x_j} \varphi dx = \int_B f\varphi dx - \int cu \varphi dx + \sum (a^{iij}(x_0) - a^{ij}(x)) \pa_{x_i} u \pa_{x_j} \varphi 
+\sum \int a^{ij}(x_0) \pa_{x_i} v \pa_{x_j} \varphi dx = \int_B f\varphi dx - \int cu \varphi dx + \sum (a^{iij}(x_0) - a^{ij}(x)) \pa_{x_i} u \pa_{x_j} \varphi 
 \end{align*}
 \quad For $B(x_0, R) \subset B(x_0, 1)$, $0< \rho < r \leq R$, we had, by choosing $\varphi,v$
 \begin{align*}
@@ -2279,7 +2305,7 @@ Let $B= B(0,1)$. Let $L = \sum a^{ij}(x) \pa_{ij} + c(x)$ (so that $b=0$) with $
 for any $\varphi \in H_0^1(B)$ such that $\varphi \geq 0$ in $B=B(0,1)$.
 \s
 
-\thm \emph{(De Giorgi, part I)} Under the previous hypothesis, assume in addition that $f\in L^q(B)$, $q> d/2$ and $\exists \Lambda >0$ suhch that
+\thm \emph{(De Giorgi, part I)} Under the previous hypothesis, assume in addition that $f\in L^q(B)$, $q> d/2$ and $\exists \Lambda >0$ such that
 \begin{align*}
 \sup_{i,j} |a^{ij}|_{L^{\infty}(B)} + \snorms{c}{L^q} \leq \Lambda
 \end{align*}
@@ -2299,16 +2325,16 @@ with $k$ large enough.
 
 Take for given $k \in \reals_{(>0)}$, and let $v:= (u-k)^+$. Let $\zeta \in C_0^1(B)$, $0\leq \zeta \leq 1$ and put $\varphi = v\zeta^2 \geq 0$. Inject $\varphi = v\zeta^2$ in the weak formulation, with ``$\int = \int_{u>k}$" (in this set, would have $u=v +k$ and $\nabla u = \nabla v$ a.e., and if $u<k$, any derivative of $v$ vanishes.) Exploiting that $\pa (v\zeta^2) = (\pa v) \zeta^2 + 2v\zeta \pa \zeta$, we have
 \begin{align*}
-\sum_{i,j=1} \int a^{ij} \pa_{x_i} u \pa_{x_j}(v\zeta^2) dx & \geq \sum_{i,j=1}^d \int a^{ij} \pa_{x_i} v \pa_{x_j} v dx - 2\Lambda \int |\nabla v| |v| |\zeta| |\nabla \zeta| dx \\
+\sum_{i,j=1} \int a^{ij} \pa_{x_i} u \pa_{x_j}(v\zeta^2) dx & \geq \sum_{i,j=1}^d \int a^{ij} \pa_{x_i} v \pa_{x_j} v \cdot \zeta^2 dx - 2\Lambda \int |\nabla v| |v| |\zeta| |\nabla \zeta| dx \\
 & \geq \lambda \int |\nabla v|^2 \zeta^2 dx - 2\Lambda \int |\nabla v| |v| |\zeta| |\nabla \zeta| dx
 \end{align*} 
 Injection of this expression in the weak formulation yields
 \begin{align*}
-\lambda \int |\nabla v|^2 \zeta^2 dx \leq \int |c||u|v\zeta^2 dx + \int |f| v\zeta^2 dx + C_{\Lambda} \int |v|^2 |\nabla \zeta|^2 dx 
+\frac{\lambda}{2} \int |\nabla v|^2 \zeta^2 dx \leq \int |c||u|v\zeta^2 dx + \int |f| v\zeta^2 dx + C_{\Lambda} \int |v|^2 |\nabla \zeta|^2 dx 
 \end{align*}
 where we have used $\int |\nabla v||v||\zeta||\nabla \zeta| dx \leq \frac{C_{\Lambda, \lambda}}{2} \int |\nabla \zeta|^2 |v|^2 + \frac{\lambda}{2} \int |\nabla v|^2 \zeta^2$. Therefore,
 \begin{align*}
-\int |(\nabla v) \zeta|^2 & \lesssim \int |c|v^2 \zeta^2 dx + k \int |c|\zeta^2 v dx + \int |f| v\zeta^2 + C_{\Lambda} \int |\nabla \zeta|^2 v^2 dx  \\
+\int |(\nabla v) \zeta|^2 & \lesssim \int |c|(u^2+v^2) \zeta^2 dx + \int |f| v\zeta^2 + C_{\Lambda} \int |\nabla \zeta|^2 v^2 dx  \\
 & \lesssim \int |c|v^2 \zeta^2 dx + k^2 \int_{\{v\zeta \neq 0\}} |c|\zeta^2 dx + \int |f| v\zeta^2 dx + C_{\Lambda} \int |\nabla \zeta|^2 v^2 dx \call{*}
 \end{align*}
 just using Young's inequality. \emph{[The integration domain $\{v\zeta \neq 0\}$ looks strange, but it would be useful in a while.]} The goal is to refine this bound. 
@@ -2342,17 +2368,17 @@ for some $C_{\delta}$.
 \begin{subproof}
 : Using \emph{H\"older} again,
 \begin{align*}
-\int |c| v^2 \zeta^2 dx & \leq \Big( |c|^q dx\Big)^{1/q} \Big( \int_{\{v\zeta \neq 0\}} (v\zeta)^{2q'} dx\Big)^{1/q'} \\
-& \leq \snorms{c}{L^q} \Big( \int |v\zeta|^{\frac{2d}{d-2}} dx\Big)^{\frac{d-2}{d}} \text{meas}(\{v\zeta \neq 0\})^{1-\frac{d-2}{d} - \frac{1}{q}} \\
-& \leq \delta \snorms{c}{L^q}^2 \int |\nabla(\zeta v)|^2 dx + C_{\delta}\cdot \text{meas}(\{v\zeta \neq 0\})^{\frac{2}{d} - \frac{1}{q}}
+\int |c| v^2 \zeta^2 dx & \leq \Big( \int |c|^q dx\Big)^{1/q} \Big( \int_{\{v\zeta \neq 0\}} (v\zeta)^{2q'} dx\Big)^{1/q'} \\
+& \leq \snorms{c}{L^q} \Big( \int |v\zeta|^{\frac{2d}{d-2}} dx\Big)^{\frac{d-2}{d}} \text{meas}(\{v\zeta \neq 0\})^{\frac{2}{d} - \frac{1}{q}} \\
+& \lesssim \snorms{c}{L^q} \Big( \int |\nabla (v\zeta)|^{2} dx\Big)^{1/2} \text{meas}(\{v\zeta \neq 0\})^{\frac{2}{d} - \frac{1}{q}}
 \end{align*}
-Recalling $\snorms{c}{L^q} \leq \Lambda$, we can choose $\delta >0$ such that $\delta \cdot \Lambda < 1/100$.
+With $\text{meas}(\{v\zeta \neq 0 \})$ sufficiently small, this term can be absorbed in the left hand side. Recalling $\snorms{c}{L^q} \leq \Lambda$, we can choose $\delta >0$ such that $\delta \cdot \Lambda < 1/100$.
 
 \quad The term $k^2 \int_{\{v\zeta \neq 0 \}} |c| \zeta^2$ is bounded by
 \begin{align*}
 k^2 \int_{\{v\zeta \neq 0 \}} |c| \zeta^2 dx \leq k^2 \snorms{c}{L^q} \text{meas}(\{v\zeta \neq 0\})^{1- \frac{1}{q}}
 \end{align*}
-Also note that $\text{meas}(\{v\zeta \neq 0 \})^{\frac{2}{d} - \frac{1}{q}}$ may be absorbed in $\text{meas}(\{v\zeta \neq 0 \})^{1-\frac{1}{q}}$ whenever $\text{meas}(\{v\zeta \neq 0 \})$ is small.
+Also note that $\text{meas}(\{v\zeta \neq 0 \})^{1 + \frac{2}{d} - \frac{1}{q}} \leq \text{meas}(\{v\zeta \neq 0 \})^{1-\frac{1}{q}}$ whenever $\text{meas}(\{v\zeta \neq 0 \})$ is small.
 \end{subproof}
 Using the claim, we would have $(*)$ with $c$ eliminated and in written terms of $\text{meas}(\{v\zeta \neq 0\})$, 
 \begin{align*}
@@ -2421,14 +2447,14 @@ for some $0<r<R<1$. With such choice of $\zeta$, we have
 \end{align*}
 We may then recast $(\dagger)$ in terms of $A(k,r)$.
 \begin{align*}
-\int_{A(k,r)} (u-k)^2 dx \lesssim |A(k,r)|^{\epsilon} \frac{1}{(R-r)^2} \int_{A(k,r)} (u-k)^2 dx + (k+ \snorms{f}{L^q})^2 |A(k,r)|^{1+ \epsilon} \call{\dagger'}
+\int_{A(k,r)} (u-k)^2 dx \lesssim |A(k,R)|^{\epsilon} \frac{1}{(R-r)^2} \int_{A(k,R)} (u-k)^2 dx + (k+ \snorms{f}{L^q})^2 |A(k,R)|^{1+ \epsilon} \call{\dagger'}
 \end{align*}
-whenever $|A(k,r)|$ is small enough. We want to make some sort of bound on the RHS and use iterative scheme to make $\int_{A(h,r)} (u-h)^2 \rightarrow 0$ for some fixed $h$. $|A(h,r)|$ can be estimated as
+whenever $|A(k,R)|$ is small enough. We want to make some sort of bound on the RHS and use iterative scheme to make $\int_{A(h,r)} (u-h)^2 \rightarrow 0$ for some fixed $h$. $|A(h,r)|$ can be estimated as
 \begin{align*}
 |A(h,r)| &=\text{meas}(\{x\in B(0, r) : u\geq h\}) \\
 &= \int_{x\in B_r, u\geq h} dx \leq \frac{1}{h} \int_{A(h,r)} u^+ dx \leq \frac{1}{h} \Big( \int_{A(h,r)} (u^+)^2 dx \Big)^{1/2} \Big(\int_{A(h,r)} dx \Big)^{1/2} \\
 &= \frac{1}{h} \Big( \int_{A(h,r)} (u^+)^2 dx \Big) |A(h,r)|^{1/2} \\
-\Rightarrow \quad |A(h,r)| &= \frac{1}{h^2} \Big( \int_{A(h,r)} (u^+)^2 dx \Big)
+\Rightarrow \quad |A(h,r)| &\leq \frac{1}{h^2} \Big( \int_{A(h,r)} (u^+)^2 dx \Big)
 \end{align*}
 Take $k_0 := C_0 \snorms{u}{L^2(B)}$, for $C_0$ large enough so that
 \begin{align*}
@@ -2446,10 +2472,10 @@ and
 For any choice of $h> k \geq k_0$ and $\frac{1}{2} \leq r < R \leq 1$, any we apply $(\dagger')$ with the new estimates.
 \begin{align*}
 &\text{LHS}(h,r) := \int_{A(h,r)} (u-h)^2 dx \\
-&\lesssim \frac{|A(h,r)|^{\epsilon}}{(R-r)^2} \int_{A(k,r)} (u-k)^2 dx + (h + \snorms{f}{L^q})^2 |A(h,r)|^{1+ \epsilon} \\
-&\leq \frac{1}{(R-r)^2} \frac{1}{(h-k)^{2\epsilon}}\Big( \int_{A(k,r) } (u-k)^2 dx \Big)^{\epsilon} \Big( \int_{A(k,r)} (u-k)^2 dx \Big) \\
-& \quad \quad + (h + \snorms{f}{L^q})^2 \frac{1}{(h-k)^{2(1+\epsilon)}} \Big( \int_{A(k,r)} (u-k)^2 dx \Big)^{1+\epsilon} \\
-& \leq \frac{1}{(h-k)^{2\epsilon}} \Big( \int_{A(k,r)} (u-k)^2 dx \Big)^{1+\epsilon} \Big( \frac{1}{(R-r)^2} + \frac{(h+ \snorms{f}{L^q})^2}{(h-k)^2} \Big) =: \text{RHS}(k,r,R) \call{\dagger''}
+&\lesssim \frac{|A(h,R)|^{\epsilon}}{(R-r)^2} \int_{A(k,R)} (u-k)^2 dx + (h + \snorms{f}{L^q})^2 |A(h,R)|^{1+ \epsilon} \\
+&\leq \frac{1}{(R-r)^2} \frac{1}{(h-k)^{2\epsilon}}\Big( \int_{A(k,R) } (u-k)^2 dx \Big)^{\epsilon} \Big( \int_{A(k,R)} (u-k)^2 dx \Big) \\
+& \quad \quad + (h + \snorms{f}{L^q})^2 \frac{1}{(h-k)^{2(1+\epsilon)}} \Big( \int_{A(k,R)} (u-k)^2 dx \Big)^{1+\epsilon} \\
+& \leq \frac{1}{(h-k)^{2\epsilon}} \Big( \int_{A(k,R)} (u-k)^2 dx \Big)^{1+\epsilon} \Big( \frac{1}{(R-r)^2} + \frac{(h+ \snorms{f}{L^q})^2}{(h-k)^2} \Big) =: \text{RHS}(k,r,R) \call{\dagger''}
 \end{align*}
 Hence we have an iterative scheme :
 \begin{itemize}
@@ -2464,7 +2490,7 @@ Hence we have an iterative scheme :
 &= \Big(\frac{2^l}{1- \tau} + \frac{2^l (k_0 + k^* + \snorms{f}{L^q})}{k^*}\Big) \frac{2^{l\epsilon}}{(k^*)^{\epsilon}} \varphi(k_{l-1} , r_{l-1})^{1+\epsilon} \\
 &= \frac{k_0 + 3k^* + \snorms{f}{L^q}}{(k^*)^{1+ \epsilon}}  2^{l(1+\epsilon)} \varphi(k_{l-1},r_{l-1} )^{1+ \epsilon} \quad \text{as } \tau=\frac{1}{2}
 \end{align*}
-Choose $k^* = C_{\infty} (k_0 + \snorms{f}{L^q} + \varphi(k_0, r_0))$, then, as $r^{\epsilon} > 2^{1+\epsilon} >1$,
+Choose $k^* = C_{\infty} (k_0 + \snorms{f}{L^q} + \varphi(k_0, r_0))$, then using induction, with $C_{\infty}$ sufficiently large,
 \begin{align*}
 \varphi(k_l, r_l) \lesssim \frac{1}{r^l} \varphi(k_0, r_0)^{1+\epsilon} \xrightarrow{l\rightarrow\infty} 0
 \end{align*}
@@ -2489,7 +2515,7 @@ This implies
 
 Set $B= B(0,1)$. We now write $Lu$ in the \emph{divergence form}
 \begin{align*}
-Lu = \sum_{i,j=1}^d \pa_{x_i}(a^{ij}(x) \pa_{x_j} u) + c(x)
+Lu = - \sum_{i,j=1}^d \pa_{x_i}(a^{ij}(x) \pa_{x_j} u) + c(x)
 \end{align*}
 Here, we assume $c=0$. Also let $a^{ij} \in L^{\infty}(B)$, $a^{ij}= a^{ji}$ and $\lambda |\xi|^2 \leq \sum a^{ij} \xi_i \xi_j \leq \Lambda |\xi|^2$. 
 \s
@@ -2503,9 +2529,9 @@ Here, we assume $c=0$. Also let $a^{ij} \in L^{\infty}(B)$, $a^{ij}= a^{ji}$ and
 In \emph{De Giorgi (part I)}, we have proved that whenever $u$ is a weak subsolution of $Lu = f$, $f\in L^q(B)$, then it is in $L^{\infty}_{loc}(B)$ and $\snorms{u^+}{L^{\infty}(0, \frac{1}{2})} \leq C(\snorms{u}{H^1}^2 + \snorms{f}{L^q}^2)$.
 \s
 
-\thm \emph{(De Giorgi, part II)} If $u$ is a weak solution of $Lu=0$ in $B(0, 1)$, then $u\in C^{0, \alpha}(b)$ and
+\thm \emph{(De Giorgi, part II)} If $u$ is a weak solution of $Lu=0$ in $B(0, 1)$, then $u\in C^{0, \alpha}(B)$ and
 \begin{align*}
-\sup_{x\in B(0, 1/2)} |u(x)| + \sup_{x,y\in B(0, 1/2)} \frac{|u(x) - u(y)|}{|x-y|^{\alpha}} \leq C(d, \Lambda/\lambda)\snorms{u}{L^2(B)}
+\snorms{u}{C^{0, \alpha}(B_{1/2})} = \sup_{x\in B(0, 1/2)} |u(x)| + \sup_{x,y\in B(0, 1/2)} \frac{|u(x) - u(y)|}{|x-y|^{\alpha}} \leq C(d, \Lambda/\lambda)\snorms{u}{L^2(B)}
 \end{align*}
 for some $\alpha = \alpha(d, \lambda/\Lambda) \in (0,1)$.
 \s
@@ -2527,7 +2553,7 @@ First, we have the following lemma.
 \end{p}
 \s
 
-\emph{Remark :} if $u$ is a supersolution and $\Phi$ is concave, then $\Phi(u)$ is a subsolution.
+\emph{Remark :} if $u$ is a supersolution and $\Phi$ is concave, then $\Phi(u)$ is a supersolution.
 \s
 
 \textbf{Example :} if $u$ is a subsolution, then $v = (u-k)^+$ is also a subsoltuion, with choice of $\Phi(s) = (s-k)^+$.
@@ -2537,6 +2563,7 @@ First, we have the following lemma.
 \begin{align*}
 \int_B |u|^2 dx \leq C(\epsilon, d) \int_B |\nabla u|^2 dx 
 \end{align*}
+($B$ can be replaced by any finite-measure domain with $C^{1}$-boundary.)
 \begin{p}
 \pf We prove by contradiction. We assume that there is a sequence $(u_m)_m \subset H^1(B)$ satisfying the assumption and such that
 \begin{align*}
@@ -2563,7 +2590,7 @@ so this implies $u_{\infty}$ should be identically 0, which gives a contradictio
 \begin{align*}
 \inf_{B(0, 1/2)} u \geq C
 \end{align*}
-\quad Similarly, if $u$ is a negative subsolution, then $\sup_{B(0, 1/2)} u \leq C$.
+\quad Similarly, if $u$ is a positive subsolution, then $\inf_{B(0, 1/2)} u \leq C$.
 \begin{p}
 \pf Assume that $u\geq \delta >0$. (We will let $\delta \rightarrow 0^+$ later). Choosing $\Phi(s) = (\log(s))^- = \max \{-\log(s), 0\}$, we have $v \leq \log \delta$ and $v =(\log u)^-$ is a \emph{subsolution}. As $v$ is a subsolution, the \emph{De Giorgi (Part I)} guarantees that
 \begin{align*}
@@ -2581,9 +2608,10 @@ We want to bound the $\int |\nabla v|^2$ part. We use the weak formulation of $u
 \begin{align*}
 0 \leq \sum_{ij} \int_{B(0,2)} a^{ij} \pa_{x_i} u \, \pa_{x_j} \big(\frac{\zeta^2}{u} \big) dx = - \sum \int a^{ij} \frac{\zeta^2}{u^2} \pa_{x_i} u \, \pa_{x_j} u dx + 2\sum \int \frac{\zeta a^{ij} \pa_{x_i}u \pa_{x_j} \zeta}{u} dx
 \end{align*}
-so using uniform ellipticity of $(a^{ij})_{ij}$ and AM-GM equality, has
+so using uniform ellipticity of $(a^{ij})_{ij}$ and Young's inequality, has
 \begin{align*}
- \int \zeta^2 |\nabla (\log u)|^2 dx \leq C(\Lambda/\lambda)\Big( \int \frac{\zeta^2}{u^2} |\nabla u|^2 dx + \int |\nabla \zeta|^2 dx \Big)
+\int \zeta^2 |\nabla (\log u)|^2 dx \leq & \delta \int \frac{\zeta^2}{u^2} |\nabla u|^2 dx + C_{\delta} \int |\nabla \zeta|^2 dx \Big) \\
+&= \delta \int \zeta^2 |\nabla \log u|^2 dx + C_{\delta}\int |\nabla \zeta|^2 dx
 \end{align*}
 Fix $\zeta \in C_0^1(B(0,2))$ with $\zeta =1$ in $B(0,1)$, then
 \begin{align*}
@@ -2591,7 +2619,7 @@ Fix $\zeta \in C_0^1(B(0,2))$ with $\zeta =1$ in $B(0,1)$, then
 \end{align*}
 (check this) and
 \begin{align*}
-\sup_{B(0,1/2)} v \leq \snorms{\nabla v}{L^2} = \snorms{\nabla (\log u)}{L^2} \leq C
+\sup_{B(0,1/2)} v \lesssim \snorms{\nabla v}{L^2} = \snorms{\nabla (\log u)}{L^2} \leq C
 \end{align*}
 But
 \begin{align*}
