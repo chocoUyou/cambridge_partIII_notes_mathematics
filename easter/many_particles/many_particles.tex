@@ -1,0 +1,312 @@
+\documentclass[12pt,a4paper]{extarticle}
+
+%%%%%%%basic packages%%%%%%%%%%%%%%%%
+\usepackage{amsmath}
+\usepackage[utf8]{inputenc}
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{amssymb}
+\usepackage{calrsfs}
+\usepackage[left=2cm,right=2cm,top=2cm,bottom=2cm]{geometry}
+\usepackage[mathscr]{euscript}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%customizing sectioning
+\usepackage[T1]{fontenc}
+\usepackage{titlesec}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%\titleformat{\section}{\normalfont\Large\filcenter\bfseries}{\thesection}{0.7em}{\uppercase}[\vspace{5pt}]
+\titleformat{\section}{\normalfont\large\raggedright\bfseries}{Chapter\,\thesection}{0.7em}{\uppercase}[\vspace{5pt}\setcounter{statements}{1}]
+\titleformat{\subsection}{\normalfont\large\raggedright\bfseries}{Section\,\,\thesubsection}{0.7em}{}
+\renewcommand{\S}{\raisebox{2pt}{\scalebox{0.6}[0.8]{\textsection}}}
+\titleformat{\subsubsection}{\normalfont\normalsize\bfseries}{\thesubsubsection}{0.7em}{\,\, \S\,\,}
+
+\titlespacing{\section}{0pt}{5.5ex plus 1ex minus .2ex}{2.0 ex plus .2ex}
+\titlespacing{\subsection}{0pt}{3.0ex plus 1ex minus .2ex}{1.5ex plus .2ex}
+
+\newcommand{\sectionbreak}{\clearpage}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%for bold face numbers%%%%%%%%%
+\usepackage{bm}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%for colouring texts%%%%%%%%%%
+\usepackage{xcolor}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%latin modern font%%%%%%%%%%%%%
+\usepackage{lmodern}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%attach pdf%%%%%%%%%%%%
+\usepackage[final]{pdfpages}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%%%%%For writing large opertors%%%%%%%%%%%
+%\usepackage{stmaryrd}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%for writing large parallel%%%%%%
+\usepackage{mathtools}
+\DeclarePairedDelimiter\bignorm{\lVert}{\rVert}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%%%for drawing commutative diagrams.%%%%%%
+\usepackage{tikz-cd}  
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%Draws Pretty Box%%%%%%%
+%%%Use with \bluebox[<top pad>][<bot pad>]{<contents>}
+\definecolor{myblue}{rgb}{.8, .8, 1}
+
+\usepackage{empheq}
+
+\newlength\mytemplen
+\newsavebox\mytempbox
+
+\makeatletter
+\newcommand\bluebox{%
+    \@ifnextchar[%]
+       {\@bluebox}%
+       {\@bluebox[0pt]}}
+
+\def\@bluebox[#1]{%
+    \@ifnextchar[%]
+       {\@@bluebox[#1]}%
+       {\@@bluebox[#1][0pt]}}
+
+\def\@@bluebox[#1][#2]#3{
+    \sbox\mytempbox{#3}%
+    \mytemplen\ht\mytempbox
+    \advance\mytemplen #1\relax
+    \ht\mytempbox\mytemplen
+    \mytemplen\dp\mytempbox
+    \advance\mytemplen #2\relax
+    \dp\mytempbox\mytemplen
+    \colorbox{myblue}{\hspace{0em}\usebox{\mytempbox}\hspace{0em}}}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%for changing margin
+\def\changemargin#1#2{\list{}{\rightmargin#2\leftmargin#1}\item[]}
+\let\endchangemargin=\endlist 
+
+\newenvironment{proof}
+{\begin{changemargin}{0.5cm}{0.5cm} 
+	}%your text here
+	{\end{changemargin}
+}
+
+\newenvironment{subproof}
+{\begin{changemargin}{0.5cm}{0.5cm} 
+	}%your text here
+	{\end{changemargin}
+}
+
+\newcommand{\latinmodern}[1]{{\fontfamily{lmss}\selectfont\textbf{#1}}}
+
+\newcounter{statements}
+\stepcounter{statements}
+
+\newenvironment{state}[1]
+{\begin{changemargin}{0.0cm}{0.0cm}
+\ifx#1d
+	\latinmodern{Definition}
+\else\if#1p
+	\latinmodern{Proposition \arabic{section}.\arabic{statements}}\stepcounter{statements}
+\else\if#1l
+	\latinmodern{Lemma \arabic{section}.\arabic{statements}}\stepcounter{statements}
+\else\if#1c
+	\latinmodern{Corollary \arabic{section}.\arabic{statements}}\stepcounter{statements}
+\else\ifx#1t
+	\latinmodern{Theorem \arabic{section}.\arabic{statements}}\stepcounter{statements}
+\else
+  	nodefinition
+\fi\fi\fi\fi\fi
+	\begin{em}
+	}%your text here
+	{\end{em}\end{changemargin}	
+}
+
+\newenvironment{statement}[1]
+{\begin{changemargin}{0.0cm}{0.0cm}
+\latinmodern{#1}
+	\begin{em}
+	}%your text here
+	{\end{em}\end{changemargin}	
+}
+
+\newcommand{\pf}{\textit{Proof.} }
+\newcommand{\pfnum}[1]{\textit{Proof #1.} }
+\newcommand{\fact}{\latinmodern{Fact : }}
+
+\newenvironment{boxing}
+    {\begin{center}
+    \begin{tabular}{|p{0.9\textwidth}|}
+    \hline\\
+    }
+    { 
+    \\\\\hline
+    \end{tabular} 
+    \end{center}
+    }
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%double rules%%%%%%%%%%%%%%%%%%%
+\usepackage{lipsum}% Just for this example
+
+\newcommand{\doublerule}[1][.4pt]{%
+  \noindent
+  \makebox[0pt][l]{\rule[.7ex]{\linewidth}{#1}}%
+  \rule[.3ex]{\linewidth}{#1}}
+
+\begin{document}
+
+\newcommand{\lap}{\triangle} %%Laplacian
+\newcommand{\s}{\vspace{10pt}}
+\newcommand{\reals}{\mathbb{R}}
+
+\newcommand{\eop}{\hfill  \textsl{(End of proof)} $\square$} %end of proof
+\newcommand{\eos}{\hfill  \textsl{(End of statement)} $\square$} %end of proof
+
+\newcommand{\norms}[2]{\bignorm[\big]{#1}_{#2}}
+\newcommand{\snorms}[2]{\bignorm[\small]{#1}_{#2}}
+\newcommand{\avg}{\mathbb{E}}
+\newcommand{\prob}{\mathbb{P}}
+\newcommand{\borel}{\mathscr{B}}
+\newcommand{\EE}{\mathscr{E}}
+\newcommand{\FF}{\mathscr{F}}
+\newcommand{\LL}{\mathscr{L}}
+\newcommand{\DD}{\mathscr{D}}
+\newcommand{\GG}{\mathscr{G}}
+\newcommand{\pa}{\partial}
+\newcommand{\charac}{\bm{1}}
+\let\emptyset\varnothing
+
+\newcommand{\var}{\textnormal{Var}}
+\newcommand{\ent}{\textnormal{Ent}}
+\newcommand{\definer}{\mathbin{=\mkern-5.5mu\raisebox{0.9pt}{\scalebox{0.8}[0.8]{\textnormal{:}}}}}
+\newcommand{\definel}{\mathbin{\raisebox{0.9pt}{\scalebox{0.8}[0.8]{\textnormal{:}}}\mkern-5.5mu=}}
+
+\renewcommand{\vec}{\underline}
+\renewcommand{\bar}{\overline}
+
+\newcounter{callcounter}
+\setcounter{callcounter}{0}
+
+\newcommand{\call}{\tag{\arabic{section}.\arabic{callcounter}} \stepcounter{callcounter}}
+
+\newcommand{\comment}[1]{\textcolor{red}{#1}}
+
+\setlength\parindent{0pt}
+
+\title{Analysis of Many-Particles Systems}
+\author{Lecture by Clement Mouhot, Typed by Jiwoon Park}
+\date{Lent 2019}
+\maketitle
+\s
+
+2D incompressible Euler equations (and would see connections with Navier-Stokes equation).
+\s
+
+For $u(t,x,_1, x_2)$ (a 2D flow)
+\begin{align*}
+\begin{cases}
+\pa_t u + (u\cdot \nabla) u + \nabla p = (\nu \lap u)0 \\
+\nabla \cdot u=0
+\end{cases}
+\end{align*}
+If we define $w = \text{rot}(u) = \pa_1 u_2 -\pa_2 u_1$, then we have
+\begin{align*}
+\pa_t + u\cdot \nabla w =0
+\end{align*}
+(in 3D, some additional terms arise, which complicates the theory) with $u = \nabla^T \lap^{-1}w$. So the vorticity is preserved under the flow. Writing just in terms of $w$, we have
+\begin{align*}
+\pa_t w + (\nabla^T \lap^{-1} w)\cdot \nabla w =0
+\end{align*}
+(note that $\nabla^T \lap^{-1}$ is related to Biot-Savart law, but in the case of magnetic field, we just have $\nabla \lap^{-1}w$.)
+\s
+
+Some aspects to this problem are :
+\s
+
+\textbf{Helmholtz-Kirchoff :} approximate $w(t,x)$ by (1) point vertices, (2) vortex blows, \textit{i.e.} $w= \frac{1}{N}\sum_{j=1}^N \delta_{x_j(t)}$. (first, one would like to prove the well-posedness of the vorticitiy equation, and then prove the convergence of point-vertices solution to the continous solution. However, this is not well-understood yet.)
+\s
+
+\textbf{Onsager 1949 :} Hydrodynamic turbulance
+\begin{itemize}
+\item would likely be a statistical distribution
+\item does the solution conserve energy or not, and at which regularity? - We can show that smooth solutions to the Euler equation conserve the energy very easily, but it is not known to which degree of regularity this is true. Heurisitically, Onsager argued that considering the integral ``$\int (u\cdot \nabla)u \cdot u$", the energy is conserved for $u$ of $C^{1/3}$, but not for $C^{\alpha}$ with $\alpha < 1/3$. So Onsager conjectured : above $C^{1/3}$, energy is conserved. Below this, energy is not conserved (dissipated with turbulence) but in fact Scheffer, Shnirelman, DL-S, Isett built `monsters' compactly supported in $,x$ and not zero. 
+\end{itemize}
+\s
+
+\textbf{One example :}
+\begin{itemize}
+\item Persistence of large-scale structures in 2D fluids, in particularly upper atmosphere of Jupiter (Great red spot) \& Neptune(Great dark spot). These suggest the spontaneous appearance of long-lived large-scale vertices, and this was in fact the motivation for Onsager to study the vortex systems.
+\end{itemize}
+\s
+
+\textbf{Mathematical points :}
+\begin{itemize}
+\item Nonlinear PDE $\rightarrow$ Cauchy problem, well-posedness $w\in L^1 \cap L^{\infty}$. (Yudovich 1963)
+\item Interacting vortex system : $\exists !$ solutions, convergence to the/a solution of the limit PDE
+\item Techniques of Cauchy problem useful for many-particle approxiamtion because of weak-strong uniqueness. (Weak-Strong uniqueness principle :) whne a strong solution exists, prove that all weak solutions agree on $[0, T]$, given a strong solution space (e.g. $C^k$.))
+\end{itemize}
+Vortex system seen as a very weak solution (Dobrushin, Bram-Hepp etc.)
+\s
+
+\textbf{Some important results on Cauchy problem :}
+\begin{itemize}
+\item DiPerna-Majda (80's/90's) existence of weak solution in vorticity system.
+\item 1991 - Chemin : persistence of a vortex patch (a vortex patch is a vortex of form of $C^{k, \epsilon}$-Jordan curve), Debort : existence of vorticity solutions in $H^{-1}_{\geq 0} + L^{q>1}$.
+\item 2003 - Loeper : (improvement on ) uniqueness 
+\end{itemize}
+\s
+
+\textbf{Remark :}
+\begin{itemize}
+\item[1.] In 3D, Elgindi (in arxiv) proves the formulation of singularity for $u\in C^{1, \alpha}$ (so that $w\in C^{\alpha}$) with $\alpha >0$ small. 
+\item[2.] In 2D and 3D, solution might not be unique, not energy-preserving, and not well-posed. \textbf{Idea} for constructing such solutions : inject oscillations so that it saturates the $(u\cdot \nabla)u$ term with singularity. This is done by an iteration scheme (see Philip Isett, 2018).
+
+\quad A question : is there a relation between these `monsters' and non-chaotic solution of the vortex system? (chaotic means that the correlation between vortices decay fast. Non-chaotic means this correlation is preserved to certain degree).
+\end{itemize}
+\s
+
+\textbf{Vortex system approximation :} 
+\begin{itemize}
+\item[1.] First wave collected in Marchioro-Pulvirenti 1994
+\item[2.] Lowengrub-Goodman-Hou 90s, proved for initial configuration on a regular grid, say $x_1, \cdots, x_N$. Then the $x_j$'s evolve under the equation
+\begin{align*}
+\dot{x}_j = \sum F_{ij}, \quad x_j = x_j(0)
+\end{align*}
+Then $\frac{1}{N}\sum \delta_{x_j(t)} \xrightarrow{w} w_t$ - this result is good enough for use in numerical schemes, because it is always preferable to start from regular initial configurations for numerical simulations. However, this was not sufficient in view of statistical mechanics.
+\item[3.]  Schochet 1996 : removes restriction of the grid, with assumption $\geq 0$ of vorticity. Uses reasoning by compactness. (``The point‐vortex method for periodic weak solutions of the 2‐D Euler equations")
+\item[4.] Hauray 2015 : uses Wasserstein distance estimate for vortex blows. (``Uniform contractivity in Wasserstein metric for the original 1D Kac's model")
+\item[5.] Serfaty, Duerinckx 2018 : uses ``Energy modulated method" / ``Entropy modulated method" (in form apt for the problem), in case $w\geq 0$. (``Mean-Field Dynamics for Ginzburg-Landau Vortices with Pinning and Forcing")
+\end{itemize}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+\end{document}
