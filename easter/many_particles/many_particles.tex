@@ -155,12 +155,16 @@
 %%%%%%%%%%%%%%double rules%%%%%%%%%%%%%%%%%%%
 \usepackage{lipsum}% Just for this example
 
-\newcommand{\doublerule}[1][.4pt]{%
-  \noindent
-  \makebox[0pt][l]{\rule[.7ex]{\linewidth}{#1}}%
-  \rule[.3ex]{\linewidth}{#1}}
 
 \begin{document}
+
+
+\newcommand{\doublerule}[1][.4pt]{%
+  \noindent
+  \makebox[0pt][l]{\rule[.7ex]{#1\linewidth}{0.5pt}}%
+  \rule[.3ex]{#1\linewidth}{0.5pt}
+  }
+\newcommand{\newday}[1]{\doublerule{0.4}#1\doublerule{0.4}}
 
 \newcommand{\lap}{\triangle} %%Laplacian
 \newcommand{\s}{\vspace{10pt}}
@@ -284,8 +288,12 @@ Then $\frac{1}{N}\sum \delta_{x_j(t)} \xrightarrow{w} w_t$ - this result is good
 \item[4.] Hauray 2015 : uses Wasserstein distance estimate for vortex blows. (``Uniform contractivity in Wasserstein metric for the original 1D Kac's model")
 \item[5.] Serfaty, Duerinckx 2018 : uses ``Energy modulated method" / ``Entropy modulated method" (in form apt for the problem), in case $w\geq 0$. (``Mean-Field Dynamics for Ginzburg-Landau Vortices with Pinning and Forcing")
 \end{itemize}
+\s
 
+\newday{1st May, Wednesday}
+\s
 
+\textbf{Recall on Euler 2D :} 
 
 
 
